@@ -1,0 +1,7 @@
+# Static media host for Shyam Premi SN (videos + thumbnails that Make fetches by URL).
+name = "shyam-premi-media"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[assets]
+directory = "./public"

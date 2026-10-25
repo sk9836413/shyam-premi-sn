@@ -1,0 +1,58 @@
+{
+  "slug": "navratri-day3-chandraghanta-katha",
+  "title": "Maa Chandraghanta ki Katha",
+  "kicker": "Navratri · Day 3",
+  "voice": "hm_omega",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "scenes": [
+    {
+      "image": "../test-images/chandraghanta-1.jpg",
+      "tts": "नवरात्रि के तीसरे दिन, सुनिए माँ चंद्रघंटा की कथा।",
+      "sub": "Navratri ke teesre din, suniye Maa Chandraghanta ki katha.",
+      "motion": "in"
+    },
+    {
+      "prompt": "Goddess Parvati in deep meditation in the snowy Himalayas, simple ascetic clothes, rudraksha mala, Lord Shiva appearing in a soft divine light to bless her",
+      "tts": "माँ पार्वती की कठोर तपस्या सफल हुई, और महादेव उनसे विवाह के लिए मान गए।",
+      "sub": "Maa Parvati ki kathor tapasya safal hui, aur Mahadev unse vivah ke liye maan gaye.",
+      "motion": "pan"
+    },
+    {
+      "prompt": "Lord Shiva arriving for his wedding with an unusual procession of ganas and playful ghost-like spirits, ash on his body, a serpent around his neck, riding the bull Nandi, festive mountain village at dusk",
+      "tts": "विवाह के दिन भोलेनाथ अपनी अनोखी बारात लेकर आए। शरीर पर भस्म, गले में नाग, और साथ में भूत-प्रेत और गण।",
+      "sub": "Vivah ke din Bholenath anokhi baraat lekar aaye. Sharir par bhasm, gale mein naag, saath mein bhoot-pret aur gan.",
+      "motion": "out"
+    },
+    {
+      "prompt": "Queen Mainavati, mother of Parvati, frightened and fainting in a royal Himalayan palace, maids rushing to help her, worried faces, palace interior with lamps",
+      "tts": "यह रूप देखकर पार्वती जी की माता मैना देवी भयभीत होकर मूर्छित हो गईं।",
+      "sub": "Yeh roop dekhkar Parvati ji ki mata Maina Devi bhaybheet hokar moorchhit ho gayin.",
+      "motion": "in"
+    },
+    {
+      "image": "../test-images/chandraghanta-2.jpg",
+      "tts": "तब पार्वती जी ने माँ चंद्रघंटा का रूप धारण किया। माथे पर घंटे के आकार का अर्धचंद्र, और सिंह पर सवार।",
+      "sub": "Tab Parvati ji ne Maa Chandraghanta ka roop dhaaran kiya. Maathe par ghante jaisa ardhchandra, aur singh par savaar.",
+      "motion": "in"
+    },
+    {
+      "prompt": "Lord Shiva transformed into a handsome radiant bridegroom, Chandrashekhar form, crescent moon in his hair, wearing royal wedding attire and jewels, gentle smile, golden divine glow",
+      "tts": "माँ ने महादेव से सुंदर रूप में आने की विनती की, और शिव जी ने चंद्रशेखर का दिव्य रूप धारण किया।",
+      "sub": "Maa ne Mahadev se sundar roop mein aane ki vinti ki, aur Shiv ji ne Chandrashekhar ka divya roop dhaaran kiya.",
+      "motion": "pan"
+    },
+    {
+      "prompt": "The divine wedding of Lord Shiva and Goddess Parvati, sacred fire, marigold garlands, devas showering flowers from the sky, joyful celebration",
+      "tts": "और शिव-पार्वती का मंगल विवाह संपन्न हुआ। माँ चंद्रघंटा अपने भक्तों को निर्भय रहने का आशीर्वाद देती हैं।",
+      "sub": "Aur Shiv-Parvati ka mangal vivah sampann hua. Maa Chandraghanta bhakton ko nirbhay rehne ka aashirvaad deti hain.",
+      "motion": "out"
+    },
+    {
+      "tts": "ॐ देवी चंद्रघंटायै नमः। जय माता दी। जय श्री श्याम।",
+      "sub": "Om Devi Chandraghantayai Namah. Jai Mata Di! Follow Shyam Premi SN",
+      "motion": "out",
+      "endcard": true
+    }
+  ],
+  "signoff": "Jai Shree Shyam"
+}

@@ -1,0 +1,154 @@
+# Shyam Premi SN: two story videos a day (YouTube Short + Instagram/Facebook reel via Make).
+# Morning ~07:00 IST, evening ~19:00 IST. Each run skips if its slot is already in automation/log.md.
+name: Daily story video
+
+on:
+  schedule:
+    - cron: '10 1 * * *'   # 06:40 IST -> morning
+    - cron: '40 1 * * *'   # retry
+    - cron: '10 13 * * *'  # 18:40 IST -> evening
+    - cron: '40 13 * * *'  # retry
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: morning or evening (empty = by time of day)
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-story
+  cancel-in-progress: false
+
+jobs:
+  story:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      FFMPEG_PATH: ffmpeg
+      PYTHON: python
+      KOKORO_DIR: ${{ github.workspace }}/.kokoro
+      SUB_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+      CF_ACCOUNT_ID: cc7da560c73a0539ed32313476555d4a
+      CLOUDFLARE_ACCOUNT_ID: cc7da560c73a0539ed32313476555d4a
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Date and slot
+        id: date
+        run: |
+          today=$(TZ=Asia/Kolkata date +%F)
+          slot="${{ inputs.slot }}"
+          if [ -z "$slot" ]; then
+            hour=$(TZ=Asia/Kolkata date +%H)
+            if [ "$hour" -lt 14 ]; then slot=morning; else slot=evening; fi
+          fi
+          echo "today=$today" >> "$GITHUB_OUTPUT"
+          echo "slot=$slot" >> "$GITHUB_OUTPUT"
+          if grep -q "^$today | $slot |" automation/log.md; then
+            echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::$today $slot already published"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.date.outputs.done != 'true'
+        with:
+          node-version: 22
+
+      - uses: actions/setup-python@v5
+        if: steps.date.outputs.done != 'true'
+        with:
+          python-version: '3.12'
+
+      - name: Tools
+        if: steps.date.outputs.done != 'true'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q kokoro-onnx==0.6.1 soundfile==0.14.0
+
+      - name: Cache Kokoro model
+        if: steps.date.outputs.done != 'true'
+        uses: actions/cache@v4
+        with:
+          path: .kokoro
+          key: kokoro-v1.0
+
+      - name: Download Kokoro model
+        if: steps.date.outputs.done != 'true'
+        run: |
+          mkdir -p .kokoro
+          base=https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0
+          [ -f .kokoro/kokoro-v1.0.onnx ] || curl -sSL -o .kokoro/kokoro-v1.0.onnx $base/kokoro-v1.0.onnx
+          [ -f .kokoro/voices-v1.0.bin ] || curl -sSL -o .kokoro/voices-v1.0.bin $base/voices-v1.0.bin
+
+      - name: Write the story
+        if: steps.date.outputs.done != 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --max-turns 80
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(ls:*)"
+          prompt: |
+            Write today's Shyam Premi SN story video. Today's date (IST) is ${{ steps.date.outputs.today }}, slot: ${{ steps.date.outputs.slot }}.
+            Follow automation/STORY.md exactly. Write story/today/scenes.json, make scripts/validate.mjs pass,
+            and append one line to automation/log.md. Change nothing else.
+
+      - name: Validate
+        if: steps.date.outputs.done != 'true'
+        run: |
+          node scripts/validate.mjs story/today/scenes.json
+          slug=$(node -p "require('./story/today/scenes.json').slug")
+          case "$slug" in "${{ steps.date.outputs.today }}-${{ steps.date.outputs.slot }}-"*) ;; *) echo "::error::Unexpected slug $slug"; exit 1;; esac
+          grep -q "^${{ steps.date.outputs.today }} | ${{ steps.date.outputs.slot }} |" automation/log.md || { echo "::error::log.md line missing"; exit 1; }
+          echo "SLUG=$slug" >> "$GITHUB_ENV"
+
+      - name: Render
+        if: steps.date.outputs.done != 'true'
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+        run: node story/render-story.mjs story/today/scenes.json
+
+      - name: YouTube
+        id: yt
+        continue-on-error: true
+        if: steps.date.outputs.done != 'true'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: node scripts/youtube.mjs upload --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json | tee "$RUNNER_TEMP/yt.json"
+
+      - name: Instagram and Facebook (Make)
+        id: make
+        continue-on-error: true
+        if: steps.date.outputs.done != 'true'
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+          MAKE_API_KEY: ${{ secrets.MAKE_API_KEY }}
+        run: node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json | tee "$RUNNER_TEMP/make.json"
+
+      - name: Record
+        # Only once something was published, so a failed render is retried by the next slot run.
+        if: always() && env.SLUG != '' && (steps.yt.outcome == 'success' || steps.make.outcome == 'success')
+        run: |
+          mkdir -p story/published
+          cp story/today/scenes.json "story/published/$SLUG.json"
+          yt=$(node -p "try{JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')).youtube?.url||''}catch{''}")
+          echo "- $SLUG | youtube: ${yt:-failed} | make: $(node -p "try{JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/make.json','utf8')).status}catch{'failed'}")" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/log.md automation/calendar.md automation/published.md "story/published/$SLUG.json"
+          git commit -qm "Story $SLUG"
+          git pull -q --rebase && git push -q
+
+      - name: Fail if a platform failed
+        if: steps.yt.outcome == 'failure' || steps.make.outcome == 'failure'
+        run: |
+          echo "::error::YouTube: ${{ steps.yt.outcome }}, Make: ${{ steps.make.outcome }}"
+          exit 1
