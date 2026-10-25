@@ -31,8 +31,8 @@ jobs:
       PYTHON: python
       KOKORO_DIR: ${{ github.workspace }}/.kokoro
       SUB_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
-      CF_ACCOUNT_ID: cc7da560c73a0539ed32313476555d4a
-      CLOUDFLARE_ACCOUNT_ID: cc7da560c73a0539ed32313476555d4a
+      # The media Worker runs FLUX and hosts the videos, so no Cloudflare API token is needed.
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
     steps:
       - uses: actions/checkout@v4
 
@@ -109,7 +109,7 @@ jobs:
       - name: Render
         if: steps.date.outputs.done != 'true'
         env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
         run: node story/render-story.mjs story/today/scenes.json
 
       - name: YouTube
@@ -127,8 +127,7 @@ jobs:
         continue-on-error: true
         if: steps.date.outputs.done != 'true'
         env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
           MAKE_API_KEY: ${{ secrets.MAKE_API_KEY }}
         run: node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json | tee "$RUNNER_TEMP/make.json"

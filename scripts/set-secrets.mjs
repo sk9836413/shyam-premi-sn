@@ -24,8 +24,8 @@ const readEnv = (file) => (fs.existsSync(file)
   : {});
 
 const secrets = {
-  CF_API_TOKEN: await ask('1) Cloudflare API token (Enter to skip): '),
-  CLAUDE_CODE_OAUTH_TOKEN: await ask('2) Claude Code token, from `claude setup-token` (Enter to skip): '),
+  CLAUDE_CODE_OAUTH_TOKEN: await ask('Claude Code token, from `claude setup-token` (Enter to skip): '),
+  MEDIA_TOKEN: fs.existsSync(path.join(DIR, 'media-token.txt')) ? fs.readFileSync(path.join(DIR, 'media-token.txt'), 'utf8').trim() : '',
   ...readEnv(path.join(DIR, 'make.env')),
   ...readEnv(path.join(DIR, 'youtube.env')),
 };

@@ -35,9 +35,13 @@ async function image(scene, i) {
   if (scene.image) return path.resolve(base, scene.image);
   const file = path.join(base, 'images', `${spec.slug}-${i}.jpg`);
   if (fs.existsSync(file)) return file;
-  const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/@cf/black-forest-labs/flux-1-schnell`, {
+  // In CI the media Worker runs FLUX through its AI binding (no Cloudflare API token needed);
+  // locally the Workers AI REST API is called with the wrangler login.
+  const viaWorker = process.env.MEDIA_URL && process.env.MEDIA_TOKEN;
+  const res = await fetch(viaWorker ? `${process.env.MEDIA_URL}/ai/flux`
+    : `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/@cf/black-forest-labs/flux-1-schnell`, {
     method: 'POST',
-    headers: { Authorization: `Bearer ${cfToken()}`, 'Content-Type': 'application/json' },
+    headers: { Authorization: `Bearer ${viaWorker ? process.env.MEDIA_TOKEN : cfToken()}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ prompt: `${scene.prompt}. ${spec.style}`, steps: 8 }),
   });
   const j = await res.json();
@@ -150,7 +154,7 @@ const out = path.join(base, 'out', `${spec.slug}.mp4`);
 run([
   ...clips.flatMap((c) => ['-i', c.file]), '-f', 'lavfi', '-i', drone, '-f', 'lavfi', '-i', bell, ...clips.flatMap((c) => ['-i', c.voice]),
   '-filter_complex', f.join(';'), '-map', `[${prev}]`, '-map', '[a]',
-  '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-crf', '20', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2',
+  '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-crf', '23', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2',
   '-t', total.toFixed(2), '-movflags', '+faststart', out,
 ]);
 console.log(JSON.stringify({ out, seconds: Number(total.toFixed(1)), scenes: n }));

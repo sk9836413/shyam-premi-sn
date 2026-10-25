@@ -1,7 +1,15 @@
-# Static media host for Shyam Premi SN (videos + thumbnails that Make fetches by URL).
+# Media + image Worker for Shyam Premi SN. GitHub Actions calls it with the MEDIA_TOKEN secret:
+#   POST /ai/flux  {prompt, steps}  -> FLUX.1-schnell image (Workers AI binding, no API token needed)
+#   PUT  /m/<file>                  -> store a video/thumbnail in KV for 7 days
+#   GET  /m/<file>                  -> public URL that Make/Instagram/Facebook fetch (Range supported)
 name = "shyam-premi-media"
+main = "worker.js"
 compatibility_date = "2026-10-01"
 workers_dev = true
 
-[assets]
-directory = "./public"
+[ai]
+binding = "AI"
+
+[[kv_namespaces]]
+binding = "MEDIA"
+id = "64d26892f70a449bbe2ded13a2ec6695"
