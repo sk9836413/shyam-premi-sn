@@ -15,6 +15,8 @@ const KOKORO = process.env.KOKORO_DIR || 'E:/tools/kokoro';
 const ACCOUNT = process.env.CF_ACCOUNT_ID || 'cc7da560c73a0539ed32313476555d4a';
 const FONT = process.env.SUB_FONT || 'C\\:/Windows/Fonts/segoeuib.ttf';
 const W = 1080, H = 1920, FPS = 30, FADE = 0.6;
+// Title bar: shrink the font so "kicker | title" fits beside the logo (bold fonts are ~0.62 em per character).
+const titleSize = (text) => Math.max(26, Math.min(40, Math.floor(860 / (0.62 * text.length))));
 const LOGO_FILE = process.env.LOGO || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../brand/logo.png');
 const LOGO = fs.existsSync(LOGO_FILE) ? LOGO_FILE : null;
 
@@ -121,7 +123,7 @@ for (const [i, scene] of spec.scenes.entries()) {
       `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,
       ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
       `[bgl][fg]overlay=0:250:shortest=1${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
-        `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=40:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}[v]`,
+        `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}[v]`,
     ].join(';'), ...encode]);
   }
   clips.push({ file: clip, seconds, voice: path.join(work, `voice-${i}.wav`) });
