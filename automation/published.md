@@ -1,1 +1,2 @@
 - 2026-10-26-morning-shiv-markandeya | youtube: https://youtube.com/shorts/ZveAEMBnBaU | make: hosted-only
+- 2026-10-27-morning-hanuman-sanjeevani | youtube: https://youtube.com/shorts/0V2mHEVg5hE | make: hosted-only
