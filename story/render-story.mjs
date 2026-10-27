@@ -52,7 +52,36 @@ async function image(scene, i) {
   return file;
 }
 
+// Voice: Microsoft's neural Hindi voices through edge-tts (much more natural than Kokoro, no account
+// needed). Kokoro is the fallback when edge-tts fails. TTS_ENGINE=kokoro forces the old voice.
+const EDGE_VOICES = { hm_omega: 'hi-IN-MadhurNeural', hf_alpha: 'hi-IN-SwaraNeural' };
+let voiceExt = 'wav';
+
+function ttsEdge() {
+  const voice = EDGE_VOICES[spec.voice || 'hm_omega'] || EDGE_VOICES.hm_omega;
+  return spec.scenes.map((s, i) => {
+    const out = path.join(work, `voice-${i}.mp3`);
+    const r = spawnSync(PYTHON, ['-m', 'edge_tts', '--voice', voice, '--rate=-6%', '--text', s.tts, '--write-media', out], { encoding: 'utf8' });
+    if (r.status !== 0 || !fs.existsSync(out)) throw new Error(`edge-tts line ${i}: ${(r.stderr || '').trim().split('\n').pop()}`);
+    const d = spawnSync(FFPROBE, ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', out], { encoding: 'utf8' });
+    return Number(d.stdout.trim());
+  });
+}
+
 function tts() {
+  if (process.env.TTS_ENGINE !== 'kokoro') {
+    try {
+      const durations = ttsEdge();
+      voiceExt = 'mp3';
+      return durations;
+    } catch (e) {
+      console.log(`edge-tts failed, using Kokoro: ${e.message}`);
+    }
+  }
+  return ttsKokoro();
+}
+
+function ttsKokoro() {
   const lines = path.join(work, 'lines.txt');
   fs.writeFileSync(lines, spec.scenes.map((s) => s.tts).join('\n'));
   const py = `
@@ -126,7 +155,7 @@ for (const [i, scene] of spec.scenes.entries()) {
         `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}[v]`,
     ].join(';'), ...encode]);
   }
-  clips.push({ file: clip, seconds, voice: path.join(work, `voice-${i}.wav`) });
+  clips.push({ file: clip, seconds, voice: path.join(work, `voice-${i}.${voiceExt}`) });
   console.log(`scene ${i + 1}/${spec.scenes.length}: ${seconds.toFixed(1)}s`);
 }
 
