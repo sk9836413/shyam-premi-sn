@@ -23,12 +23,14 @@ scenes.forEach((sc, i) => {
   const n = `scene ${i + 1}`;
   const last = i === scenes.length - 1;
   need(sc.tts && DEVANAGARI.test(sc.tts), `${n}: tts must be Hindi in Devanagari`);
-  need(sc.tts && sc.tts.length <= 160, `${n}: tts over 160 characters (${sc.tts?.length})`);
+  const max = last ? 200 : 160;
+  need(sc.tts && sc.tts.length <= max, `${n}: tts over ${max} characters (${sc.tts?.length})`);
   need(sc.tts && !/\d/.test(sc.tts), `${n}: write numbers in tts as words`);
   need(sc.sub && !DEVANAGARI.test(sc.sub), `${n}: sub must be Roman-script Hinglish`);
   need(sc.sub && sc.sub.length <= 120, `${n}: sub over 120 characters (${sc.sub?.length})`);
   if (last) {
     need(sc.endcard === true && !sc.prompt, `${n}: the last scene must be {"endcard": true, "tts", "sub"} with no prompt`);
+    need(/subscribe/i.test(sc.sub || '') && /like/i.test(sc.sub || ''), `${n}: the end card must ask to like, share and subscribe`);
   } else {
     need(!sc.endcard, `${n}: only the last scene can be the end card`);
     need(sc.prompt && sc.prompt.length >= 40, `${n}: prompt missing or too short`);

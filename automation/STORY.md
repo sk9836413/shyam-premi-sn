@@ -69,8 +69,14 @@ Each scene:
 - `motion`: `in`, `out` or `pan`. Vary them.
 
 Structure: scene 1 is the hook ("Aaj suniye …"), then the story in order, then the moral or blessing,
-then the **last scene** must be `{"endcard": true, "tts": "<mantra or jaikara in Devanagari>",
-"sub": "<same in Roman> … Follow Shyam Premi SN"}`, with no prompt.
+then the **last scene** must be `{"endcard": true, "tts": "<mantra or jaikara in Devanagari>
+<a warm one-line request to like, share and subscribe>", "sub": "<same in Roman>"}`, with no prompt.
+The request is gentle and positive, never a threat or a promise. Vary its wording day to day, e.g.
+tts `जय श्री श्याम! कथा अच्छी लगी हो तो लाइक करें, अपनों से शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।`,
+sub `Jai Shree Shyam! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN`.
+The endcard tts may be up to 200 characters.
+Also end `youtube_description`, `instagram_caption` and `facebook_caption` with one short line asking
+viewers to like, share and follow/subscribe (Hinglish).
 
 Captions: Hinglish in Roman script, respectful, no engagement bait like "share karo warna". Many
 bhakts search YouTube in Hindi, so the YouTube fields also carry the main keyword in Devanagari
