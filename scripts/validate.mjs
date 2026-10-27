@@ -42,10 +42,13 @@ need(yt.length > 0 && yt.length <= 90 && yt.endsWith(' #Shorts'), 'youtube_title
 need(!/[<>]/.test(yt + (s.youtube_description || '') + (s.youtube_tags || '')), 'YouTube fields must not contain < or >');
 need((s.youtube_description || '').trim().length > 0, 'youtube_description is empty');
 const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
-need(tags.length >= 8 && tags.length <= 15, `youtube_tags: 8-15 tags (has ${tags.length})`);
+need(tags.length >= 10 && tags.length <= 15, `youtube_tags: 10-15 tags (has ${tags.length})`);
 need(s.instagram_caption && s.instagram_caption.length <= 2200, 'instagram_caption: 1-2200 characters');
 need((s.facebook_caption || '').trim().length > 0, 'facebook_caption is empty');
-for (const k of ['title', 'youtube_title', 'youtube_description', 'instagram_caption', 'facebook_caption']) {
+// title is drawn on the video with a Latin-only font; the YouTube fields carry Devanagari keywords too.
+need(DEVANAGARI.test(yt), 'youtube_title needs the keyword in Devanagari too ("Roman | देवनागरी #Shorts")');
+need(DEVANAGARI.test(s.youtube_tags || ''), 'youtube_tags need some Devanagari search phrases');
+for (const k of ['title', 'instagram_caption', 'facebook_caption']) {
   need(!DEVANAGARI.test(s[k] || ''), `${k} must be Roman-script Hinglish`);
 }
 const all = JSON.stringify(s);

@@ -72,12 +72,16 @@ Structure: scene 1 is the hook ("Aaj suniye …"), then the story in order, then
 then the **last scene** must be `{"endcard": true, "tts": "<mantra or jaikara in Devanagari>",
 "sub": "<same in Roman> … Follow Shyam Premi SN"}`, with no prompt.
 
-Captions (Hinglish, Roman script, respectful, no engagement bait like "share karo warna"):
+Captions: Hinglish in Roman script, respectful, no engagement bait like "share karo warna". Many
+bhakts search YouTube in Hindi, so the YouTube fields also carry the main keyword in Devanagari
+(`title` stays Roman: it is drawn on the video with a Latin-only font):
 
-- `youtube_title`: max 90 characters, the story/deity keyword first, ending with ` #Shorts`.
-- `youtube_description`: 2–4 lines: what the story is, the mantra, then `Jai Shree Shyam 🙏`,
-  then 3–5 hashtags.
-- `youtube_tags`: 8–15 comma-separated search phrases (deity name, katha, festival, Khatu Shyam).
+- `youtube_title`: max 90 characters: the Roman keyword first, then ` | ` and the same keyword in
+  Devanagari, ending with ` #Shorts`. Example: `Hanuman ji aur Sanjeevani ki Katha | हनुमान जी की कथा #Shorts`.
+- `youtube_description`: 2–4 lines: what the story is (Hinglish), one line in Devanagari Hindi with
+  the deity and story name, the mantra, then `Jai Shree Shyam 🙏`, then 3–5 hashtags.
+- `youtube_tags`: 10–15 comma-separated search phrases, about half Roman and half Devanagari
+  (`Hanuman ji ki katha, हनुमान जी की कथा, संजीवनी बूटी, Khatu Shyam, खाटू श्याम …`).
 - `instagram_caption`: hook line, 2–3 lines of the story's message, the mantra, then 5–10 relevant
   hashtags (`#KhatuShyam #JaiShreeShyam #Navratri …`). Max 2,200 characters.
 - `facebook_caption`: 2–4 lines and 2–4 hashtags.
