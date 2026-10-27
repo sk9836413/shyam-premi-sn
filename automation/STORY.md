@@ -46,6 +46,7 @@ Do not repeat a story already listed in `automation/log.md` within the last 60 d
   "slug": "<yyyy-mm-dd>-<short-english-slug>",
   "title": "<Hinglish title, max 45 characters, e.g. Maa Kushmanda ki Katha>",
   "kicker": "<context, max 22 characters, e.g. Navratri · Day 4 or Mangalvar Vishesh>",
+  "playlist": "<one of the playlist names below>",
   "voice": "hm_omega",
   "signoff": "Jai Shree Shyam",
   "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
@@ -77,6 +78,11 @@ sub `Jai Shree Shyam! Katha achhi lagi ho to Like, Share aur Subscribe karein ·
 The endcard tts may be up to 200 characters.
 Also end `youtube_description`, `instagram_caption` and `facebook_caption` with one short line asking
 viewers to like, share and follow/subscribe (Hinglish).
+
+`playlist`: exactly one of `Khatu Shyam ji ki Kathayein`, `Shiv ji ki Kathayein`, `Hanuman ji ki Kathayein`,
+`Ganesh ji ki Kathayein`, `Vishnu ji aur Krishna ki Kathayein`, `Maa Durga aur Devi ki Kathayein`,
+`Shani Dev ki Kathayein`, `Surya Dev ki Kathayein`, `Tyohar aur Vrat Kathayein`, matching the story's deity
+(festival stories go in `Tyohar aur Vrat Kathayein`).
 
 Captions: Hinglish in Roman script, respectful, no engagement bait like "share karo warna". Many
 bhakts search YouTube in Hindi, so the YouTube fields also carry the main keyword in Devanagari

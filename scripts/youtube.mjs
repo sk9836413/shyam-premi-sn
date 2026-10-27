@@ -93,6 +93,27 @@ async function upload(env, videoFile, meta) {
   return { id: video.id, url: `https://youtube.com/shorts/${video.id}`, privacy: video.status?.privacyStatus };
 }
 
+// Each Short also goes into its deity's public playlist (created when missing), so a viewer who liked
+// one katha finds the next one. Best effort: a failure is reported, not thrown.
+async function addToPlaylist(env, videoId, title) {
+  const token = await accessToken(env);
+  const api = (url, init = {}) => fetch(`https://www.googleapis.com/youtube/v3/${url}`, {
+    ...init, headers: { Authorization: `Bearer ${token}`, ...(init.body ? { 'Content-Type': 'application/json' } : {}) },
+  });
+  const { items = [] } = await json(await api('playlists?part=snippet&mine=true&maxResults=50'), 'Playlist lookup');
+  let id = items.find((p) => p.snippet.title === title)?.id;
+  if (!id) {
+    id = (await json(await api('playlists?part=snippet,status', {
+      method: 'POST',
+      body: JSON.stringify({ snippet: { title, description: `${title}: Shyam Premi SN ki chhoti kathayein. Jai Shree Shyam 🙏`, defaultLanguage: 'hi' }, status: { privacyStatus: 'public' } }),
+    }), 'Playlist create')).id;
+  }
+  await json(await api('playlistItems?part=snippet', {
+    method: 'POST', body: JSON.stringify({ snippet: { playlistId: id, resourceId: { kind: 'youtube#video', videoId } } }),
+  }), 'Playlist add');
+  return title;
+}
+
 async function auth(clientFile) {
   const raw = JSON.parse(fs.readFileSync(clientFile, 'utf8'));
   const client = raw.installed || raw.web;
@@ -139,7 +160,12 @@ async function main() {
     if (!video || !scenes) throw new Error('Usage: youtube.mjs upload --video <mp4> --scenes <scenes.json>');
     const meta = metaFromScenes(scenes);
     if (args.includes('--dry-run')) return { status: 'dry-run', ...meta };
-    return { status: 'ok', youtube: await upload(env, video, meta) };
+    const youtube = await upload(env, video, meta);
+    const playlist = JSON.parse(fs.readFileSync(scenes, 'utf8')).playlist;
+    if (playlist) {
+      try { youtube.playlist = await addToPlaylist(env, youtube.id, playlist); } catch (e) { youtube.playlistError = e.message; }
+    }
+    return { status: 'ok', youtube };
   }
   throw new Error('Usage: youtube.mjs auth|check|upload (see the top of this file)');
 }
