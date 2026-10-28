@@ -14,7 +14,7 @@ const PYTHON = process.env.PYTHON || 'E:/tools/kokoro/venv/Scripts/python.exe';
 const KOKORO = process.env.KOKORO_DIR || 'E:/tools/kokoro';
 const ACCOUNT = process.env.CF_ACCOUNT_ID || 'cc7da560c73a0539ed32313476555d4a';
 const FONT = process.env.SUB_FONT || 'C\\:/Windows/Fonts/segoeuib.ttf';
-const W = 1080, H = 1920, FPS = 30, FADE = 0.6;
+const W = 1080, H = 1920, FPS = 30, FADE = 0.4;
 // Title bar: shrink the font so "kicker | title" fits beside the logo (bold fonts are ~0.62 em per character).
 const titleSize = (text) => Math.max(26, Math.min(40, Math.floor(860 / (0.62 * text.length))));
 const LOGO_FILE = process.env.LOGO || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../brand/logo.png');
@@ -61,7 +61,7 @@ function ttsEdge() {
   const voice = EDGE_VOICES[spec.voice || 'hm_omega'] || EDGE_VOICES.hm_omega;
   return spec.scenes.map((s, i) => {
     const out = path.join(work, `voice-${i}.mp3`);
-    const r = spawnSync(PYTHON, ['-m', 'edge_tts', '--voice', voice, '--rate=-6%', '--text', s.tts, '--write-media', out], { encoding: 'utf8' });
+    const r = spawnSync(PYTHON, ['-m', 'edge_tts', '--voice', voice, '--rate=+0%', '--text', s.tts, '--write-media', out], { encoding: 'utf8' });
     if (r.status !== 0 || !fs.existsSync(out)) throw new Error(`edge-tts line ${i}: ${(r.stderr || '').trim().split('\n').pop()}`);
     const d = spawnSync(FFPROBE, ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', out], { encoding: 'utf8' });
     return Number(d.stdout.trim());
@@ -122,7 +122,8 @@ const durations = tts();
 const clips = [];
 for (const [i, scene] of spec.scenes.entries()) {
   const img = await image(scene, i);
-  const seconds = Math.max(3.5, durations[i] + 1.4);
+  // Tight pacing keeps Shorts short (viewers who finish and replay are what YouTube rewards).
+  const seconds = Math.max(2.6, durations[i] + 0.7);
   const frames = Math.round(seconds * FPS);
   const subFile = path.join(work, `sub-${i}.txt`);
   const titleFile = path.join(work, 'title.txt');
@@ -132,6 +133,13 @@ for (const [i, scene] of spec.scenes.entries()) {
   const clip = path.join(work, `clip-${i}.mp4`);
   const subtitle = `drawtext=fontfile='${FONT}':textfile='${esc(subFile)}':fontsize=50:fontcolor=white:line_spacing=12:` +
     `box=1:boxcolor=0x000000@0.55:boxborderw=22:x=(w-text_w)/2:y=1385`;
+  // Hook: big text over the first scene for 2.5 s, the moment viewers decide whether to keep watching.
+  const hookFile = path.join(work, 'hook.txt');
+  if (i === 0 && spec.hook) fs.writeFileSync(hookFile, wrap(spec.hook, 18));
+  const hook = i === 0 && spec.hook
+    ? `,drawtext=fontfile='${FONT}':textfile='${esc(hookFile)}':fontsize=84:fontcolor=0xFFE27A:line_spacing=14:` +
+      `box=1:boxcolor=0x1a0b00@0.72:boxborderw=34:x=(w-text_w)/2:y=860:enable='lt(t,2.5)'`
+    : '';
   const encode = ['-map', '[v]', '-frames:v', String(frames), '-r', String(FPS), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', clip];
   if (scene.endcard && LOGO) {
     // End card: the channel logo on deep blue, fading in, with the sign-off line.
@@ -152,7 +160,7 @@ for (const [i, scene] of spec.scenes.entries()) {
       `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,
       ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
       `[bgl][fg]overlay=0:250:shortest=1${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
-        `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}[v]`,
+        `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}[v]`,
     ].join(';'), ...encode]);
   }
   clips.push({ file: clip, seconds, voice: path.join(work, `voice-${i}.${voiceExt}`) });

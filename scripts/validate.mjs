@@ -21,12 +21,18 @@ need(PLAYLISTS.includes(s.playlist), `playlist must be one of: ${PLAYLISTS.join(
 need(/no text/i.test(s.style || ''), 'style must include "no text"');
 
 const scenes = Array.isArray(s.scenes) ? s.scenes : [];
-need(scenes.length >= 6 && scenes.length <= 9, `6-9 scenes needed (has ${scenes.length})`);
+const evening = /-evening-/.test(s.slug || '');
+const [minScenes, maxScenes, maxChars] = evening ? [3, 4, 200] : [5, 6, 420];
+need(scenes.length >= minScenes && scenes.length <= maxScenes, `${minScenes}-${maxScenes} scenes needed for this slot (has ${scenes.length})`);
+const totalTts = scenes.reduce((n, sc) => n + (sc.tts || '').length, 0);
+need(totalTts <= maxChars, `total narration ${totalTts} characters; keep it under ${maxChars} so the Short stays short`);
+need(s.hook && s.hook.length <= 38 && !DEVANAGARI.test(s.hook), 'hook: Roman Hinglish, 1-38 characters');
+need(!/^(aaj suniye|namaste|jai shree shyam)/i.test(scenes[0]?.sub || ''), 'scene 1 must open with the dramatic moment or a question, not a greeting');
 scenes.forEach((sc, i) => {
   const n = `scene ${i + 1}`;
   const last = i === scenes.length - 1;
   need(sc.tts && DEVANAGARI.test(sc.tts), `${n}: tts must be Hindi in Devanagari`);
-  const max = last ? 200 : 160;
+  const max = last ? 140 : 110;
   need(sc.tts && sc.tts.length <= max, `${n}: tts over ${max} characters (${sc.tts?.length})`);
   need(sc.tts && !/\d/.test(sc.tts), `${n}: write numbers in tts as words`);
   need(sc.sub && !DEVANAGARI.test(sc.sub), `${n}: sub must be Roman-script Hinglish`);
