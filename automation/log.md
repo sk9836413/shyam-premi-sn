@@ -5,3 +5,4 @@
 2026-10-27 | morning | 2026-10-27-morning-hanuman-sanjeevani | Hanuman ji (Mangalvar) | Lakshman murchha, Hanuman ji Dronagiri parvat se Sanjeevani booti laaye
 2026-10-27 | evening | 2026-10-27-evening-khatu-shyam-barbarik-sheesh-daan | Khatu Shyam ji | Barbarik ke teen baan, Krishna ko sheesh daan, Kaliyug mein Shyam naam ka aashirwad
 2026-10-28 | morning | 2026-10-28-morning-ganesh-parikrama | Ganesh ji (Budhvar) | Shiv-Parvati ka phal, Kartikeya ki prithvi parikrama, Ganesh ji ki mata pita parikrama
+2026-10-28 | evening | 2026-10-28-evening-khatu-shyam-sheesh-prakat | Khatu Shyam ji | Gaay ka doodh bahna, Khatu mein Shyam Baba ka sheesh prakat hona, Raja Roop Singh ka mandir, Shyam Kund
