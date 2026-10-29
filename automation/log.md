@@ -7,3 +7,4 @@
 2026-10-28 | morning | 2026-10-28-morning-ganesh-parikrama | Ganesh ji (Budhvar) | Shiv-Parvati ka phal, Kartikeya ki prithvi parikrama, Ganesh ji ki mata pita parikrama
 2026-10-28 | evening | 2026-10-28-evening-khatu-shyam-sheesh-prakat | Khatu Shyam ji | Gaay ka doodh bahna, Khatu mein Shyam Baba ka sheesh prakat hona, Raja Roop Singh ka mandir, Shyam Kund
 2026-10-29 | morning | 2026-10-29-morning-karwa-chauth-veeravati | Karwa Chauth | Veeravati ka vrat, nakli chaand, Maa Parvati ka margdarshan, vrat poora hua
+2026-10-29 | evening | 2026-10-29-evening-khatu-shyam-haare-ka-sahara | Khatu Shyam ji | Haare ka sahara darshan, Krishna ka Shyam naam vardaan Barbarik ko, Khatu Dham mein bhakton ki shraddha

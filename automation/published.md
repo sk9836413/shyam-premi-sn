@@ -4,3 +4,4 @@
 - 2026-10-28-morning-ganesh-parikrama | youtube: https://youtube.com/shorts/xmyT1u86M-A | make: hosted-only
 - 2026-10-28-evening-khatu-shyam-sheesh-prakat | youtube: https://youtube.com/shorts/HLQ935BNgQY | make: hosted-only
 - 2026-10-29-morning-karwa-chauth-veeravati | youtube: https://youtube.com/shorts/GzHgdOptVv8 | make: hosted-only
+- 2026-10-29-evening-khatu-shyam-haare-ka-sahara | youtube: https://youtube.com/shorts/XIZjpX8BM-k | make: hosted-only
