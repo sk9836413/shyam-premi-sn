@@ -4,6 +4,7 @@ Confirmed with at least two sources. Add new dates the same way.
 
 | Date | Festival / vrat |
 |---|---|
+| 2026-10-29 | Karwa Chauth, Vakratunda Sankashti Chaturthi |
 | 2026-11-06 | Dhanteras |
 | 2026-11-07 | Choti Diwali (Naraka Chaturdashi) |
 | 2026-11-08 | Diwali (Lakshmi Puja) |
