@@ -6,3 +6,4 @@
 - 2026-10-29-morning-karwa-chauth-veeravati | youtube: https://youtube.com/shorts/GzHgdOptVv8 | make: hosted-only
 - 2026-10-29-evening-khatu-shyam-haare-ka-sahara | youtube: https://youtube.com/shorts/XIZjpX8BM-k | make: hosted-only
 - 2026-10-30-morning-lakshmi-samudra-manthan | youtube: https://youtube.com/shorts/iJUBbNqz4Js | make: hosted-only
+- 2026-10-30-evening-khatu-shyam-moravinandan | youtube: https://youtube.com/shorts/8VcAcwHY00I | make: hosted-only

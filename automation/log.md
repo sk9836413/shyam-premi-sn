@@ -9,3 +9,4 @@
 2026-10-29 | morning | 2026-10-29-morning-karwa-chauth-veeravati | Karwa Chauth | Veeravati ka vrat, nakli chaand, Maa Parvati ka margdarshan, vrat poora hua
 2026-10-29 | evening | 2026-10-29-evening-khatu-shyam-haare-ka-sahara | Khatu Shyam ji | Haare ka sahara darshan, Krishna ka Shyam naam vardaan Barbarik ko, Khatu Dham mein bhakton ki shraddha
 2026-10-30 | morning | 2026-10-30-morning-lakshmi-samudra-manthan | Maa Lakshmi (Shukravar) | Durvasa ka shraap, Vishnu ji ki salah par Samudra Manthan, Maa Lakshmi ka kamal par prakat hona, Vishnu ji ko varmala
+2026-10-30 | evening | 2026-10-30-evening-khatu-shyam-moravinandan | Khatu Shyam ji | Moravinandan darshan, neela ghoda, Ghatotkach-Maurvi ke putra Barbarik, Haare ka sahara jaikara
