@@ -11,3 +11,4 @@
 2026-10-30 | morning | 2026-10-30-morning-lakshmi-samudra-manthan | Maa Lakshmi (Shukravar) | Durvasa ka shraap, Vishnu ji ki salah par Samudra Manthan, Maa Lakshmi ka kamal par prakat hona, Vishnu ji ko varmala
 2026-10-30 | evening | 2026-10-30-evening-khatu-shyam-moravinandan | Khatu Shyam ji | Moravinandan darshan, neela ghoda, Ghatotkach-Maurvi ke putra Barbarik, Haare ka sahara jaikara
 2026-10-31 | morning | 2026-10-31-morning-shani-hanuman-ravan-kaid | Shani Dev / Hanuman ji (Shanivar) | Ravan ki Lanka mein kaid Shani Dev ko Hanuman ji ne mukt kiya, Shani Dev ka bhakton ko kasht na dene ka vachan
+2026-10-31 | evening | 2026-10-31-evening-khatu-shyam-shyam-kund | Khatu Shyam ji | Shyam Kund darshan, jahan Baba ka sheesh prakat hua, man ko shanti, Haare ka sahara jaikara

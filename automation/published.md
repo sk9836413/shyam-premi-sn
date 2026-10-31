@@ -8,3 +8,4 @@
 - 2026-10-30-morning-lakshmi-samudra-manthan | youtube: https://youtube.com/shorts/iJUBbNqz4Js | make: hosted-only
 - 2026-10-30-evening-khatu-shyam-moravinandan | youtube: https://youtube.com/shorts/8VcAcwHY00I | make: hosted-only
 - 2026-10-31-morning-shani-hanuman-ravan-kaid | youtube: https://youtube.com/shorts/IZ2gChZQYPs | make: hosted-only
+- 2026-10-31-evening-khatu-shyam-shyam-kund | youtube: https://youtube.com/shorts/_9o30VAxUfA | make: hosted-only
