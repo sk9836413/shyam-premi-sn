@@ -198,7 +198,7 @@ async function clip(scene, i, img, voice) {
       `[0:v]scale=2880:2880:flags=lanczos,crop=2880:1620:0:${y},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${H}:fps=${FPS}[bg]`,
       `[1:v]scale=96:96[lg]`,
       `[bg][lg]overlay=40:30,` +
-        draw(titleFile, `fontsize=${titleSize}:fontcolor=0xFFE7A8:shadowcolor=0x000000@0.8:shadowx=2:shadowy=2:x=152:y=78-text_h/2`) +
+        draw(titleFile, `fontsize=${titleSize}:fontcolor=0xFFE7A8:shadowcolor=0x000000@0.8:shadowx=2:shadowy=2:box=1:boxcolor=0x000000@0.35:boxborderw=10:x=152:y=78-text_h/2`) +
         `,${subtitle}${label.map((l) => `,${l}`).join('')}[v]`,
     ].join(';'), ...encode]);
   }
@@ -220,6 +220,7 @@ const clips = await pool(scenes, JOBS, async (s, i) => {
 // Per chapter: crossfade its clips, dip through black at both ends, and lay its narration at the
 // exact scene starts. Chapters are then joined end to end (same encoder settings, so no re-encode).
 const chapters = [];
+const jobs = [];
 let at = 0;
 for (const [c, ch] of spec.chapters.entries()) {
   const idx = scenes.map((s, i) => (s.chapter === c ? i : -1)).filter((i) => i >= 0);
@@ -247,14 +248,15 @@ for (const [c, ch] of spec.chapters.entries()) {
   a.push(`[0:a]${cl.map((_, k) => `[a${k}]`).join('')}amix=inputs=${cl.length + 1}:duration=first:normalize=0[a]`);
   chapters.push({ title: ch.title, start: at, seconds: secs, video, audio });
   at += secs;
-  await Promise.all([
+  jobs.push(() => Promise.all([
     ff([...cl.flatMap((x) => ['-i', x.file]), '-filter_complex', f.join(';'), '-map', '[v]', '-frames:v', String(frames), '-r', String(FPS),
       '-c:v', 'libx264', '-preset', 'fast', '-crf', '21', '-g', '60', '-pix_fmt', 'yuv420p', '-an', video]),
     ff(['-f', 'lavfi', '-i', `aevalsrc=0|0:s=48000:d=${secs.toFixed(4)}`, ...cl.flatMap((x) => ['-i', x.voice.file]),
       '-filter_complex', a.join(';'), '-map', '[a]', '-c:a', 'pcm_f32le', audio]),
-  ]);
-  console.log(`chapter ${c + 1}/${spec.chapters.length}: ${secs.toFixed(1)} s`);
+  ]).then(() => console.log(`chapter ${c + 1}/${spec.chapters.length}: ${secs.toFixed(1)} s`)));
 }
+// Two chapters at a time: each x264 encode already uses several cores.
+await pool(jobs, 2, (job) => job());
 
 const total = at;
 const vlist = path.join(work, 'video.txt');
