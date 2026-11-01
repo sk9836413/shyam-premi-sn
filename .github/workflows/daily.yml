@@ -289,7 +289,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           claude_args: |
             --max-turns 120
-            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(ls:*)"
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(ls:*),Bash(mkdir -p story/long)"
           prompt: |
             Write today's Shyam Premi SN LONG katha video. Today's date (IST) is ${{ steps.date.outputs.today }}, slot: long.
             Follow automation/STORY.md exactly: sections 1-2 for choosing and researching the subject, and section 5
