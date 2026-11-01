@@ -10,3 +10,4 @@
 - 2026-10-31-morning-shani-hanuman-ravan-kaid | youtube: https://youtube.com/shorts/IZ2gChZQYPs | make: hosted-only
 - 2026-10-31-evening-khatu-shyam-shyam-kund | youtube: https://youtube.com/shorts/_9o30VAxUfA | make: hosted-only
 - 2026-11-01-morning-ahoi-ashtami-katha | youtube: https://youtube.com/shorts/_-WS10mQskA | make: hosted-only
+- 2026-11-01-long-ahoi-ashtami-katha | youtube: https://youtu.be/Nk-5CUYZc18 | long 5:21, 43 scenes, render 5 min, 1440 neurons

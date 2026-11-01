@@ -1,0 +1,31 @@
+{
+  "slug": "2026-11-01-long-ahoi-ashtami-katha",
+  "seconds": 321.1,
+  "scenes": 43,
+  "chapters": [
+    {
+      "title": "Ek Maa ka Dard",
+      "start": 0
+    },
+    {
+      "title": "Sahukar ka Parivaar",
+      "start": 21.1
+    },
+    {
+      "title": "Shraap ka Dukh",
+      "start": 99.2
+    },
+    {
+      "title": "Garud Pankhni aur Syahu Mata",
+      "start": 170.67
+    },
+    {
+      "title": "Mata ka Vardaan",
+      "start": 229.67
+    }
+  ],
+  "images": 15,
+  "images_generated": 15,
+  "neurons": 1440,
+  "render_seconds": 310
+}

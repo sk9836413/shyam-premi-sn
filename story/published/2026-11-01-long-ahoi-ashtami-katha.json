@@ -1,0 +1,105 @@
+{
+  "slug": "2026-11-01-long-ahoi-ashtami-katha",
+  "format": "long",
+  "title": "Ahoi Ashtami ki Sampoorn Katha",
+  "kicker": "Ahoi Ashtami Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Saat bete the, phir bhi aangan soona",
+  "source": "Lok katha (Ahoi Ashtami vrat katha) ke anusar",
+  "deity": "Ahoi Mata (Ahoi Ashtami)",
+  "summary": "Syahu ka shraap, chhoti bahu ki gaay seva, Garud pankhni ki raksha, Syahu mata ka vardaan aur Ahoi Ashtami vrat ki katha",
+  "thumbnail": { "image": 3, "focus": "center", "text": "Saat bete the, phir bhi..." },
+  "images": [
+    { "prompt": "Wide scene of an ancient Indian merchant's courtyard before Diwali, a kind elderly couple with seven sons and seven daughters-in-law in colourful traditional clothes, clay lamps and rangoli, warm evening light, happy family, main subject in the middle band" },
+    { "prompt": "Wide scene of a young Indian woman in a saree digging soil with a small hand tool at the edge of a green forest, with other women waiting behind her with baskets, golden afternoon light, peaceful, main subject in the middle band" },
+    { "prompt": "Wide gentle scene of a mother porcupine with her little ones near a burrow in a forest, a small cub lying still and the mother looking sorrowful, soft light, tender and non-violent, main subject in the middle band" },
+    { "prompt": "Wide dramatic scene of a sorrowful mother porcupine standing at her burrow speaking firmly to a frightened young Indian woman in a saree with folded hands, glowing dusk light, emotional, main subject in the middle band" },
+    { "prompt": "Wide scene inside an old Indian home, a young woman in a plain saree sitting beside an empty wooden cradle with tears in her eyes, a single clay lamp glowing, sad quiet mood, main subject in the middle band" },
+    { "prompt": "Wide scene of a wise elderly Hindu pandit with a white beard and tilak sitting on a mat advising a respectful young woman who listens with folded hands, village courtyard, warm light, main subject in the middle band" },
+    { "prompt": "Wide scene of seven women in colourful sarees standing together in a village courtyard, six of them looking away worried, the youngest stepping forward calmly toward a young woman in distress, warm afternoon light, main subject in the middle band" },
+    { "prompt": "Wide scene of a young Indian woman in a saree lovingly serving a beautiful white cow in a rustic cowshed with garlands, morning sunlight, devotion and gentleness, main subject in the middle band" },
+    { "prompt": "Wide scene of a white cow and a young woman in a saree resting beneath a big banyan tree on a long forest path at evening, golden sky, peaceful journey, main subject in the middle band" },
+    { "prompt": "Wide scene in a tree with a large nest holding two little chicks of a golden eagle-like bird, a snake creeping near the nest and a young woman in a saree reaching up bravely to protect them, dramatic but gentle, main subject in the middle band" },
+    { "prompt": "Wide scene of a majestic golden mother bird of the Garuda lineage with spread wings, her chicks speaking to her, and a young woman in a saree standing with folded hands, the mother bird looking kindly, warm light, main subject in the middle band" },
+    { "prompt": "Wide scene of a kind elderly mother porcupine in a glowing cave home blessing a young woman in a saree who bows with folded hands, soft golden light and flowers, divine peaceful mood, main subject in the middle band" },
+    { "prompt": "Wide joyful scene of an Indian home courtyard with a middle-aged mother in a saree surrounded by seven grown sons and seven daughters-in-law smiling, clay lamps and marigold garlands, festive Diwali evening, main subject in the middle band" },
+    { "prompt": "Wide scene of Indian mothers in colourful sarees sitting around a wall painting of a divine mother goddess with little children, a brass pot of water, lamps and offerings, evening with first stars appearing in the sky, devotional mood, main subject in the middle band" },
+    { "prompt": "Wide divine scene of Maa Ahoi as a radiant motherly goddess in a red and gold saree with a gentle smile and blessing hand, surrounded by small children and soft glowing lights and flowers, traditional iconography, main subject in the middle band" }
+  ],
+  "chapters": [
+    {
+      "title": "Ek Maa ka Dard",
+      "scenes": [
+        { "img": 3, "focus": "center", "motion": "in", "tts": "सात बेटे थे, फिर भी आँगन सूना हो गया। आख़िर उस परिवार के साथ ऐसा क्या हुआ?", "sub": "Saat bete the, phir bhi aangan soona ho gaya. Aakhir us parivaar ke saath aisa kya hua?" },
+        { "img": 4, "focus": "center", "motion": "out", "tts": "एक अनजाने में हुई भूल, और एक माँ के दिल से निकले दर्द भरे शब्द।", "sub": "Ek anjaane mein hui bhool, aur ek maa ke dil se nikle dard bhare shabd." },
+        { "img": 14, "focus": "center", "motion": "in", "tts": "इस कथा में जानिए, अहोई अष्टमी का व्रत क्यों रखा जाता है और माता की कृपा कैसे मिली।", "sub": "Is katha mein jaaniye, Ahoi Ashtami ka vrat kyon rakha jaata hai aur Mata ki kripa kaise mili." }
+      ]
+    },
+    {
+      "title": "Sahukar ka Parivaar",
+      "scenes": [
+        { "img": 0, "focus": "center", "motion": "in", "tts": "बहुत समय पहले एक नगर में एक साहूकार रहता था। उसके सात बेटे और सात बहुएँ थीं।", "sub": "Bahut samay pehle ek nagar mein ek sahukar rehta tha. Uske saat bete aur saat bahuein thin." },
+        { "img": 0, "focus": "top", "motion": "pan", "tts": "साहूकार की एक बेटी भी थी, जो दीपावली से पहले अपने मायके आई हुई थी।", "sub": "Sahukar ki ek beti bhi thi, jo Deepawali se pehle apne maayke aayi hui thi." },
+        { "img": 1, "focus": "center", "motion": "out", "tts": "दिवाली पर घर को लीपना था, इसलिए बहुएँ और ननद जंगल में मिट्टी लाने गईं।", "sub": "Diwali par ghar ko leepna tha, isliye bahuein aur nanad jungle mein mitti laane gayin." },
+        { "img": 1, "focus": "bottom", "motion": "in", "tts": "ननद एक जगह खुरपी से मिट्टी खोदने लगी। वहीं स्याहू यानी साही अपने बच्चों के साथ रहती थी।", "sub": "Nanad ek jagah khurpi se mitti khodne lagi. Wahin Syahu yaani saahi apne bachchon ke saath rehti thi." },
+        { "img": 2, "focus": "center", "motion": "pan", "tts": "अनजाने में खुरपी स्याहू के एक बच्चे को लग गई, और वह नन्हा बच्चा बच नहीं सका।", "sub": "Anjaane mein khurpi Syahu ke ek bachche ko lag gayi, aur woh nanha bachcha bach nahi saka." },
+        { "img": 2, "focus": "top", "motion": "panl", "tts": "स्याहू की माँ ने जब यह देखा तो उसका दिल टूट गया। वह बहुत दुखी हो गई।", "sub": "Syahu ki maa ne jab yeh dekha to uska dil toot gaya. Woh bahut dukhi ho gayi." },
+        { "img": 3, "focus": "center", "motion": "in", "tts": "वह बोली, तूने मेरे बच्चे को मुझसे छीना है, इसलिए मैं तेरी कोख बाँध दूँगी।", "sub": "Woh boli, tune mere bachche ko mujhse chheena hai, isliye main teri kokh baandh doongi." },
+        { "img": 3, "focus": "bottom", "motion": "out", "tts": "यह सुनकर ननद घबरा गई। उसने अपनी भाभियों से कहा, कोई मेरी जगह अपनी कोख बँधवा ले।", "sub": "Yeh sunkar nanad ghabra gayi. Usne apni bhabhiyon se kaha, koi meri jagah apni kokh bandhwa le." },
+        { "img": 6, "focus": "center", "motion": "in", "tts": "छह भाभियों ने मना कर दिया, क्योंकि कौन माँ अपनी संतान का सुख खोना चाहेगी।", "sub": "Chhah bhabhiyon ne mana kar diya, kyonki kaun maa apni santaan ka sukh khona chahegi." },
+        { "img": 6, "focus": "top", "motion": "pan", "tts": "लेकिन सबसे छोटी भाभी मान गई, ताकि ननद पर आया संकट टल जाए।", "sub": "Lekin sabse chhoti bhabhi maan gayi, taaki nanad par aaya sankat tal jaaye." },
+        { "img": 4, "focus": "top", "motion": "in", "tts": "आगे देखिए, उस छोटी बहू के साथ क्या हुआ, और स्याहू के शाप का क्या असर पड़ा।", "sub": "Aage dekhiye, us chhoti bahu ke saath kya hua, aur Syahu ke shraap ka kya asar pada.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Shraap ka Dukh",
+      "scenes": [
+        { "img": 4, "focus": "center", "motion": "out", "tts": "कुछ समय बाद छोटी बहू के घर बेटा हुआ, लेकिन सात दिन बाद वह चल बसा।", "sub": "Kuch samay baad chhoti bahu ke ghar beta hua, lekin saat din baad woh chal basa." },
+        { "img": 4, "focus": "bottom", "motion": "pan", "tts": "फिर दूसरा बेटा हुआ, वह भी सात दिन बाद चला गया। ऐसे करके उसके सात बेटे चले गए।", "sub": "Phir doosra beta hua, woh bhi saat din baad chala gaya. Aise karke uske saat bete chale gaye." },
+        { "img": 12, "focus": "bottom", "motion": "panl", "tts": "छोटी बहू का मन पूरी तरह टूट गया। घर में दीपक तो जलते थे, पर उसका आँगन सूना था।", "sub": "Chhoti bahu ka man poori tarah toot gaya. Ghar mein deepak to jalte the, par uska aangan soona tha." },
+        { "img": 5, "focus": "center", "motion": "in", "tts": "हारकर उसने एक विद्वान पंडित को बुलाया और अपना सारा दुख उन्हें सुनाया।", "sub": "Haarkar usne ek vidwaan pandit ko bulaya aur apna saara dukh unhe sunaya." },
+        { "img": 5, "focus": "bottom", "motion": "pan", "tts": "पंडित ने कहा, तुमने ननद का संकट अपने ऊपर लिया था। अब सुरही गाय की सेवा करो।", "sub": "Pandit ne kaha, tumne nanad ka sankat apne upar liya tha. Ab Surahi gaay ki seva karo." },
+        { "img": 7, "focus": "center", "motion": "in", "tts": "बहू ने पंडित की बात मानी और पूरे मन से सुरही गाय की सेवा में लग गई।", "sub": "Bahu ne pandit ki baat maani aur poore man se Surahi gaay ki seva mein lag gayi." },
+        { "img": 7, "focus": "top", "motion": "out", "tts": "वह रोज़ सवेरे उठकर गाय की देखभाल करती, और सेवा में कोई कमी नहीं छोड़ती थी।", "sub": "Woh roz savere uthkar gaay ki dekhbhaal karti, aur seva mein koi kami nahi chhodti thi." },
+        { "img": 7, "focus": "bottom", "motion": "panl", "tts": "उसकी सेवा से गाय प्रसन्न हुई, और बोली, चल, मैं तुझे स्याहू माता के पास ले चलती हूँ।", "sub": "Uski seva se gaay prasann hui, aur boli, chal, main tujhe Syahu Mata ke paas le chalti hoon." },
+        { "img": 8, "focus": "center", "motion": "in", "tts": "दोनों लंबी यात्रा पर निकल पड़े। चलते चलते थक गए, तो एक बड़े पेड़ के नीचे आराम करने बैठ गए।", "sub": "Dono lambi yatra par nikal pade. Chalte chalte thak gaye, to ek bade ped ke neeche aaraam karne baith gaye." },
+        { "img": 8, "focus": "bottom", "motion": "pan", "tts": "लेकिन तभी एक ऐसी घटना हुई, जिसने सब कुछ बदल दिया।", "sub": "Lekin tabhi ek aisi ghatna hui, jisne sab kuch badal diya.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Garud Pankhni aur Syahu Mata",
+      "scenes": [
+        { "img": 9, "focus": "center", "motion": "in", "tts": "उसी पेड़ पर गरुड़ पंखनी का घोंसला था। बहू ने देखा कि एक साँप उसके नन्हे बच्चों की ओर बढ़ रहा है।", "sub": "Usi ped par Garud pankhni ka ghonsla tha. Bahu ne dekha ki ek saanp uske nanhe bachchon ki or badh raha hai." },
+        { "img": 9, "focus": "top", "motion": "out", "tts": "बहू ने तुरंत खुरपी से उस साँप को रोक दिया, ताकि उन बच्चों की जान बच जाए।", "sub": "Bahu ne turant khurpi se us saanp ko rok diya, taaki un bachchon ki jaan bach jaaye." },
+        { "img": 10, "focus": "center", "motion": "in", "tts": "तभी गरुड़ पंखनी लौटी। उसने पहले ग़लत समझा और बहू पर क्रोधित हो उठी।", "sub": "Tabhi Garud pankhni lauti. Usne pehle galat samjha aur bahu par krodhit ho uthi." },
+        { "img": 10, "focus": "bottom", "motion": "panl", "tts": "तब बच्चों ने बताया कि इस बहू ने तो हमारी जान बचाई है। सच जानकर पंखनी बहुत प्रसन्न हुई।", "sub": "Tab bachchon ne bataya ki is bahu ne to hamari jaan bachai hai. Sach jaankar pankhni bahut prasann hui." },
+        { "img": 10, "focus": "top", "motion": "pan", "tts": "उसने बहू से पूछा कि वह क्या चाहती है। बहू ने स्याहू माता के पास जाने की इच्छा बताई।", "sub": "Usne bahu se poocha ki woh kya chahti hai. Bahu ne Syahu Mata ke paas jaane ki ichchha batayi." },
+        { "img": 11, "focus": "center", "motion": "in", "tts": "गरुड़ पंखनी ने उसे अपनी पीठ पर बिठाया और स्याहू माता के घर तक पहुँचा दिया।", "sub": "Garud pankhni ne use apni peeth par bithaya aur Syahu Mata ke ghar tak pahuncha diya." },
+        { "img": 11, "focus": "bottom", "motion": "out", "tts": "स्याहू माता ने बहू की सेवा और सच्चाई देखी, और उनका क्रोध शांत हो गया।", "sub": "Syahu Mata ne bahu ki seva aur sachchai dekhi, aur unka krodh shaant ho gaya." },
+        { "img": 11, "focus": "top", "motion": "panl", "tts": "आगे जानिए, स्याहू माता ने उस दुखी माँ को कौन सा वरदान दिया।", "sub": "Aage jaaniye, Syahu Mata ne us dukhi maa ko kaun sa vardaan diya.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Mata ka Vardaan",
+      "scenes": [
+        { "img": 11, "focus": "center", "motion": "pan", "tts": "स्याहू माता बोलीं, जा बेटी, तेरी कोख खुल जाएगी। तेरे सात बेटे होंगे और सात बहुएँ भी।", "sub": "Syahu Mata bolin, ja beti, teri kokh khul jaayegi. Tere saat bete honge aur saat bahuein bhi." },
+        { "img": 12, "focus": "center", "motion": "in", "tts": "बहू जब घर लौटी, तो उसने देखा कि आँगन में सात बेटे और सात बहुएँ मुस्कुरा रहे हैं।", "sub": "Bahu jab ghar lauti, to usne dekha ki aangan mein saat bete aur saat bahuein muskura rahe hain." },
+        { "img": 12, "focus": "top", "motion": "out", "tts": "उसकी आँखों से ख़ुशी के आँसू बह निकले। उसने हाथ जोड़कर माता का धन्यवाद किया।", "sub": "Uski aankhon se khushi ke aansu bah nikle. Usne haath jodkar Mata ka dhanyavaad kiya." },
+        { "img": 14, "focus": "center", "motion": "in", "tts": "कहा जाता है कि तभी से माताएँ अपनी संतान की लंबी उम्र और सुख के लिए अहोई अष्टमी का व्रत रखती हैं।", "sub": "Kaha jaata hai ki tabhi se mataayein apni santaan ki lambi umr aur sukh ke liye Ahoi Ashtami ka vrat rakhti hain." },
+        { "img": 13, "focus": "center", "motion": "pan", "tts": "यह व्रत कार्तिक मास के कृष्ण पक्ष की अष्टमी को होता है, जो दीपावली से कुछ दिन पहले आती है।", "sub": "Yeh vrat Kartik maas ke Krishna paksh ki Ashtami ko hota hai, jo Deepawali se kuch din pehle aati hai." },
+        { "img": 13, "focus": "top", "motion": "in", "tts": "माताएँ सुबह से उपवास रखती हैं और दीवार पर अहोई माता का चित्र बनाकर पूजा करती हैं।", "sub": "Mataayein subah se upvaas rakhti hain aur deewar par Ahoi Mata ka chitra banakar pooja karti hain." },
+        { "img": 13, "focus": "bottom", "motion": "out", "tts": "चित्र में स्याहू और उसके बच्चों को भी बनाया जाता है, और पूजा के बाद यही कथा सुनी जाती है।", "sub": "Chitra mein Syahu aur uske bachchon ko bhi banaya jaata hai, aur pooja ke baad yahi katha suni jaati hai." },
+        { "img": 13, "focus": "center", "motion": "panl", "tts": "शाम को तारों को अर्घ्य देकर व्रत खोला जाता है। कुछ जगहों पर चंद्रमा के दर्शन के बाद भी खोलते हैं।", "sub": "Shaam ko taaron ko arghya dekar vrat khola jaata hai. Kuch jagahon par Chandrama ke darshan ke baad bhi kholte hain." },
+        { "img": 0, "focus": "center", "motion": "out", "tts": "इस कथा की सीख है कि अनजाने में हुई भूल का पछतावा और सच्ची सेवा हमें सही रास्ते पर लाती है।", "sub": "Is katha ki seekh hai ki anjaane mein hui bhool ka pachhtava aur sachchi seva hamein sahi raaste par laati hai." },
+        { "img": 14, "focus": "bottom", "motion": "in", "tts": "माँ का हृदय हमेशा अपने बच्चों के लिए धड़कता है। अहोई माता सभी माताओं और उनकी संतानों पर कृपा बनाए रखें।", "sub": "Maa ka hriday hamesha apne bachchon ke liye dhadakta hai. Ahoi Mata sabhi mataon aur unki santaano par kripa banaye rakhein." },
+        { "endcard": true, "tts": "जय श्री श्याम! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।", "sub": "Jai Shree Shyam! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN" }
+      ]
+    }
+  ],
+  "youtube_title": "Ahoi Ashtami ki Katha | अहोई अष्टमी की कथा | Sampoorn Katha",
+  "youtube_description": "Ahoi Ashtami ki sampoorn katha: sahukar ki chhoti bahu se anjaane mein hui bhool, Syahu ka shraap, Surahi gaay ki seva, Garud pankhni ki raksha aur Syahu Mata ka vardaan.\nIs katha mein jaaniye ki maataayein Ahoi Ashtami ka vrat kyon rakhti hain aur taaron ko arghya kyon dete hain.\nYe katha Lok katha (Ahoi Ashtami vrat katha) ke anusar hai.\nअहोई अष्टमी की सम्पूर्ण कथा: साहूकार की बहू, स्याहू माता और अहोई माता का आशीर्वाद।\nJai Shree Shyam 🙏\nKatha achhi lage to Like, Share aur Shyam Premi SN ko Subscribe zaroor karein.\n#AhoiAshtami #AhoiMata #JaiShreeShyam #Katha",
+  "youtube_tags": "Ahoi Ashtami ki katha, अहोई अष्टमी की कथा, Ahoi Mata, अहोई माता, Ahoi Ashtami vrat katha, अहोई अष्टमी व्रत कथा, Syahu Mata ki katha, स्याहू माता, Ahoi Ashtami 2026, अहोई अष्टमी 2026, Sampoorn Katha, सम्पूर्ण कथा, Shyam Premi SN"
+}

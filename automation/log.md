@@ -13,3 +13,4 @@
 2026-10-31 | morning | 2026-10-31-morning-shani-hanuman-ravan-kaid | Shani Dev / Hanuman ji (Shanivar) | Ravan ki Lanka mein kaid Shani Dev ko Hanuman ji ne mukt kiya, Shani Dev ka bhakton ko kasht na dene ka vachan
 2026-10-31 | evening | 2026-10-31-evening-khatu-shyam-shyam-kund | Khatu Shyam ji | Shyam Kund darshan, jahan Baba ka sheesh prakat hua, man ko shanti, Haare ka sahara jaikara
 2026-11-01 | morning | 2026-11-01-morning-ahoi-ashtami-katha | Ahoi Ashtami (Ravivar) | Sahukar ki patni se anjaane mein syahu ke bachche ko chot, pachtava, Ahoi Mata ka vrat aur kripa
+2026-11-01 | long | 2026-11-01-long-ahoi-ashtami-katha | Ahoi Mata (Ahoi Ashtami) | Syahu ka shraap, chhoti bahu ki gaay seva, Garud pankhni ki raksha, Syahu mata ka vardaan aur Ahoi Ashtami vrat ki katha
