@@ -1,4 +1,5 @@
-# Shyam Premi SN: two story videos a day (YouTube Short + Instagram/Facebook reel via Make).
+# Shyam Premi SN: two story videos a day (YouTube Short + Instagram/Facebook reel via Make), plus one
+# long katha video (16:9, 5-10 min, YouTube only, scheduled for 12:30 IST) made after the morning Short.
 # Morning window 05:30-11:59 IST, evening window 17:30-22:59 IST. GitHub's schedule often fires hours
 # late, so it is polled every 30 minutes inside both windows; the first run in a window publishes and the
 # rest skip (slot already in automation/log.md). Runs outside a window do nothing, so nothing posts at night.
@@ -11,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning or evening (empty = by time of day)
+        description: morning, evening or long (empty = by time of day; long = only the long video)
         required: false
         default: ''
 
@@ -25,6 +26,9 @@ concurrency:
 jobs:
   story:
     runs-on: ubuntu-latest
+    outputs:
+      # The long video job runs after every morning-slot run (and for slot=long); it skips once done.
+      long: ${{ steps.date.outputs.long }}
     timeout-minutes: 60
     env:
       FFMPEG_PATH: ffmpeg
@@ -43,6 +47,10 @@ jobs:
           git fetch -q origin main && git checkout -q origin/main -- automation/log.md
           today=$(TZ=Asia/Kolkata date +%F)
           slot="${{ inputs.slot }}"
+          if [ "$slot" = long ]; then
+            echo "long=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Long video only"; exit 0
+          fi
           if [ -z "$slot" ]; then
             hm=$((10#$(TZ=Asia/Kolkata date +%H%M)))
             if [ $hm -ge 530 ] && [ $hm -lt 1200 ]; then slot=morning
@@ -54,6 +62,7 @@ jobs:
           fi
           echo "today=$today" >> "$GITHUB_OUTPUT"
           echo "slot=$slot" >> "$GITHUB_OUTPUT"
+          if [ "$slot" = morning ]; then echo "long=true" >> "$GITHUB_OUTPUT"; fi
           if grep -q "^$today | $slot |" automation/log.md; then
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today $slot already published"
@@ -158,3 +167,209 @@ jobs:
         run: |
           echo "::error::YouTube: ${{ steps.yt.outcome }}, Make: ${{ steps.make.outcome }}"
           exit 1
+
+  # Daily long katha video (automation/STORY.md section 5): 16:9, 5-10 min, YouTube only, private with
+  # publishAt 12:30 IST. Runs after the morning Short (whatever its result) or alone with slot=long, so the
+  # Shorts never wait for it or fail because of it. Story and images are cached per day, so a retry costs no
+  # extra neurons; after 3 failed attempts it waits for the next day. If the upload fails (quotaExceeded or
+  # an error) the mp4 is parked on the media Worker and the next run retries it (scripts/long-pending.mjs).
+  long:
+    needs: story
+    if: always() && needs.story.outputs.long == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      FFMPEG_PATH: ffmpeg
+      PYTHON: python
+      KOKORO_DIR: ${{ github.workspace }}/.kokoro
+      SUB_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+      # Dormant: a separate Google project's OAuth client, used only if all three secrets are ever set.
+      SHYAM_YT_CLIENT_ID: ${{ secrets.SHYAM_YT_CLIENT_ID }}
+      SHYAM_YT_CLIENT_SECRET: ${{ secrets.SHYAM_YT_CLIENT_SECRET }}
+      SHYAM_YT_REFRESH_TOKEN: ${{ secrets.SHYAM_YT_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Git identity
+        run: |
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Retry a pending upload
+        continue-on-error: true
+        run: |
+          [ -s automation/long-pending.md ] || { echo "Nothing pending"; exit 0; }
+          node scripts/long-pending.mjs retry | tee "$RUNNER_TEMP/retry.json"
+          if ! git diff --quiet automation; then
+            git add automation && git commit -qm "Long video upload retry" && git pull -q --rebase && git push -q
+          fi
+
+      - name: Date
+        id: date
+        run: |
+          today=$(TZ=Asia/Kolkata date +%F)
+          echo "today=$today" >> "$GITHUB_OUTPUT"
+          if grep -q "^$today | long |" automation/log.md; then
+            echo "::notice::$today long video already made"
+          else
+            echo "GO=1" >> "$GITHUB_ENV"
+          fi
+
+      - name: Restore today's story and images
+        if: env.GO == '1'
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            story/long/scenes.json
+            story/long/images
+            story/long/tries
+          key: long-${{ steps.date.outputs.today }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: long-${{ steps.date.outputs.today }}-
+
+      - name: Attempts
+        id: tries
+        if: env.GO == '1'
+        run: |
+          mkdir -p story/long
+          n=$(( $(cat story/long/tries 2>/dev/null || echo 0) + 1 ))
+          echo $n > story/long/tries
+          if [ $n -gt 3 ]; then
+            echo "::warning::The long video failed 3 times today; trying again tomorrow"
+            echo "GO=0" >> "$GITHUB_ENV"; exit 0
+          fi
+          # A story written by an earlier attempt today is reused, with its cached images.
+          if [ -f story/long/scenes.json ] && node -e "process.exit(require('./story/long/scenes.json').slug.startsWith('${{ steps.date.outputs.today }}-long-') ? 0 : 1)"; then
+            echo "have=true" >> "$GITHUB_OUTPUT"
+          else
+            rm -rf story/long/scenes.json story/long/images
+          fi
+
+      - uses: actions/setup-python@v5
+        if: env.GO == '1'
+        with:
+          python-version: '3.12'
+
+      - name: Tools
+        if: env.GO == '1'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q kokoro-onnx==0.6.1 soundfile==0.14.0 edge-tts
+
+      - name: Cache Kokoro model
+        if: env.GO == '1'
+        uses: actions/cache@v4
+        with:
+          path: .kokoro
+          key: kokoro-v1.0
+
+      - name: Download Kokoro model
+        if: env.GO == '1'
+        run: |
+          mkdir -p .kokoro
+          base=https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0
+          [ -f .kokoro/kokoro-v1.0.onnx ] || curl -sSL -o .kokoro/kokoro-v1.0.onnx $base/kokoro-v1.0.onnx
+          [ -f .kokoro/voices-v1.0.bin ] || curl -sSL -o .kokoro/voices-v1.0.bin $base/voices-v1.0.bin
+
+      - name: Write the long story
+        if: env.GO == '1' && steps.tries.outputs.have != 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --max-turns 120
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(ls:*)"
+          prompt: |
+            Write today's Shyam Premi SN LONG katha video. Today's date (IST) is ${{ steps.date.outputs.today }}, slot: long.
+            Follow automation/STORY.md exactly: sections 1-2 for choosing and researching the subject, and section 5
+            "Long video" for everything else. Write story/long/scenes.json and make
+            `node scripts/validate.mjs story/long/scenes.json` pass. You may add confirmed festivals to
+            automation/calendar.md. Change nothing else (do not edit automation/log.md: the workflow records it).
+
+      - name: Validate
+        if: env.GO == '1'
+        run: |
+          node scripts/validate.mjs --long story/long/scenes.json
+          slug=$(node -p "require('./story/long/scenes.json').slug")
+          case "$slug" in "${{ steps.date.outputs.today }}-long-"*) ;; *) echo "::error::Unexpected slug $slug"; exit 1;; esac
+          echo "SLUG=$slug" >> "$GITHUB_ENV"
+
+      - name: Render
+        id: render
+        if: env.GO == '1'
+        run: node story/render-long.mjs story/long/scenes.json
+
+      - name: Save today's story and images
+        if: always() && env.GO == '1'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            story/long/scenes.json
+            story/long/images
+            story/long/tries
+          key: long-${{ steps.date.outputs.today }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Keep the video as an artifact (7 days)
+        if: steps.render.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: long-${{ env.SLUG }}
+          path: story/long/out/
+          retention-days: 7
+          compression-level: 0
+
+      - name: YouTube
+        id: yt
+        if: steps.render.outcome == 'success'
+        continue-on-error: true
+        run: |
+          node scripts/youtube.mjs upload --long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json \
+            --meta "story/long/out/$SLUG.json" --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/yt.json"
+
+      - name: Park the video for a retry
+        if: steps.yt.outcome == 'failure'
+        continue-on-error: true
+        run: |
+          reason=$(node -p "try{const j=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8'));(j.status==='quota'?'quota: ':'')+(j.error||'failed')}catch{'failed'}")
+          node scripts/long-pending.mjs keep "$SLUG" "$reason"
+
+      - name: Record
+        if: always() && steps.render.outcome == 'success'
+        run: |
+          mkdir -p story/published
+          cp story/long/scenes.json "story/published/$SLUG.json"
+          node -e "const fs=require('fs');const m=JSON.parse(fs.readFileSync('story/long/out/$SLUG.json','utf8'));delete m.video;delete m.thumbnail;fs.writeFileSync('story/published/$SLUG.meta.json',JSON.stringify(m,null,2)+'\n')"
+          line=$(node -e "
+            const fs=require('fs'); const s=require('./story/long/scenes.json'); const m=require('./story/long/out/$SLUG.json');
+            let y={}; try { y=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')); } catch {}
+            const len=Math.floor(m.seconds/60)+':'+String(Math.floor(m.seconds%60)).padStart(2,'0');
+            const yt=y.youtube ? y.youtube.url+(y.youtube.publishAt?' (public at 12:30 IST)':'')+(y.youtube.thumbnailError?' (thumbnail failed: '+y.youtube.thumbnailError.slice(0,80)+')':'') : 'pending, retried next run ('+(y.status||'failed')+')';
+            const out={log:'${{ steps.date.outputs.today }} | long | '+s.slug+' | '+s.deity+' | '+s.summary,
+              pub:'- '+s.slug+' | youtube: '+yt+' | long '+len+', '+m.scenes+' scenes, render '+Math.round(m.render_seconds/60)+' min, '+m.neurons+' neurons',
+              sum:'### Long video '+s.slug+'\n\n- Length: '+len+' ('+m.scenes+' scenes, '+m.chapters.length+' chapters)\n- Render: '+m.render_seconds+' s\n- Images: '+m.images+' ('+m.images_generated+' generated, ~'+m.neurons+' neurons)\n- YouTube: '+yt+'\n- Artifact: long-'+s.slug+' (7 days)\n'};
+            fs.writeFileSync(process.env.RUNNER_TEMP+'/sum.md', out.sum); console.log(JSON.stringify(out));")
+          echo "$line" | node -e "const o=JSON.parse(require('fs').readFileSync(0,'utf8'));require('fs').appendFileSync('automation/log.md',o.log+'\n');require('fs').appendFileSync('automation/published.md',o.pub+'\n')"
+          cat "$RUNNER_TEMP/sum.md" >> "$GITHUB_STEP_SUMMARY"
+          git add automation "story/published/$SLUG.json" "story/published/$SLUG.meta.json"
+          git commit -qm "Long $SLUG"
+          git pull -q --rebase && git push -q
+
+      - name: Report a failed upload
+        if: steps.yt.outcome == 'failure'
+        run: |
+          if grep -q '"status":"quota"' "$RUNNER_TEMP/yt.json" 2>/dev/null; then
+            echo "::warning::YouTube quota exceeded: the video is parked on the media Worker and retried next run"
+          else
+            echo "::error::YouTube upload failed: $(cat "$RUNNER_TEMP/yt.json" 2>/dev/null)"; exit 1
+          fi

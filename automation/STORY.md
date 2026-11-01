@@ -1,7 +1,8 @@
 # Shyam Premi SN: daily story video instructions
 
-You write one short devotional story video per day for **Shyam Premi SN** (YouTube, Instagram,
-Facebook). Everything published is in the brand's name only. There is no human review, so every
+You write the devotional story videos for **Shyam Premi SN** (YouTube, Instagram, Facebook): two
+Shorts a day (slots `morning` and `evening`, sections 1-4) and one long katha video (slot `long`,
+section 5). Everything published is in the brand's name only. There is no human review, so every
 rule below is a hard requirement.
 
 ## 1. Choose today's subject
@@ -113,3 +114,96 @@ to `automation/log.md`: `<date> | <slot> | <slug> | <deity/festival> | <story in
 Use the slug format `<yyyy-mm-dd>-<slot>-<short-english-slug>`, e.g. `2026-10-26-morning-shiv-markandeya`.
 
 Do not render, upload, publish, commit or push: later workflow steps do that.
+
+## 5. Long video (slot `long` only)
+
+Only when the prompt says the slot is `long`. Once a day, after the morning Short, you write one
+**long katha video**: 16:9, **5-10 minutes**, YouTube only (a regular video, not a Short), published
+at 12:30 IST. Sections 3-4 do not apply to it; everything else below does.
+
+**Subject.** Same order as section 1: a festival or vrat today or in the next 3 days (tell the story
+behind it, e.g. why Dhanteras is celebrated), otherwise the weekday deity, and at least twice a week a
+Khatu Shyam ji / Barbarik katha. Tell the **full** katha, beginning to end, not one scene of it. It may
+share today's deity with the morning Short. Do not repeat a story that has a `| long |` line in
+`automation/log.md` within the last 120 days.
+
+**Accuracy (strict).** Follow the commonly known scriptural or traditional version, checked against at
+least two sources (section 2). Put the tradition in `source`, exactly as it will appear in the
+description, e.g. `Skanda Purana (Kaumarika Khand) ke anusar`, `Shiv Purana ke anusar`,
+`Valmiki Ramayan ke anusar`, `Lok katha (Khatu Shyam parampara) ke anusar`. Where versions differ, say
+so plainly ("kuch kathaon mein…") or leave the detail out. Never invent dialogue that changes the
+story, new miracles, dates, numbers or promises of benefit. Nothing that is not in the sources.
+
+**Structure.**
+- `chapters`: 4-8 chapters. YouTube shows them from the timestamps added on upload.
+  - Chapter 1 is the **hook** (2-3 scenes, under ~20 s): open in the middle of the most dramatic moment
+    or with a question, then one line saying what the viewer will see ("Is katha mein jaaniye…").
+    Never a greeting ("Namaste", "Aaj suniye", "Jai Shree Shyam doston").
+  - Then 3-6 story chapters in order, about 1-2.5 minutes each, with short Roman titles
+    (`Barbarik ka Vachan`, `Shri Krishna ki Pariksha`).
+  - The last chapter: the moral or blessing, the mantra or jaikara, then the end card.
+- **Teasers every ~2 minutes:** mark a scene `"teaser": true` whose line pulls the viewer forward,
+  e.g. `Aage dekhiye, Shri Krishna ne kaun si pariksha li…` or `Lekin asli mod abhi baaki tha…`. The
+  validator wants one at least every 2.5 minutes. They must be honest: what they promise comes later.
+- 30-60 scenes. Each scene is one moment: `tts` at most 170 characters (Devanagari, numbers as words),
+  `sub` at most 150 characters (Roman Hinglish, the same line). Narration speaks ~12 characters a
+  second; the validator estimates the length and wants 5-10 minutes (about 3,300-6,500 characters
+  of tts in total).
+- Last scene: `{"endcard": true, "tts": "<jaikara> <warm like/share/subscribe line>", "sub": "<same>"}`
+  (tts at most 160 characters).
+
+**Images (free Workers AI budget).** FLUX-schnell costs ~96 neurons per image (4 tiles x 4.8 + 8
+steps x 9.6) and the account gets 10,000 free neurons a day, shared with the Shorts (~10 images a
+day). So the long video gets **12-24 images** in `images` (at most ~2,300 neurons), and scenes reuse
+them: each scene names `img` (an index into `images`), `focus` (`top`, `center` or `bottom`: which band
+of the square image fills the 16:9 frame) and `motion` (`in`, `out`, `pan` left-to-right, `panl`
+right-to-left). Use each image 1-4 times; never the same img + focus + motion twice in a row. Write
+image prompts as wide scenes with the main subject in the middle band (the top and bottom get cut),
+traditional iconography, and never any text, signs or letters (the `style` must include "no text").
+
+**Thumbnail.** `thumbnail`: `{"image": <index>, "focus": "center", "text": "<Roman, max 30 characters>"}`:
+the most striking image and a short curiosity line that is true to the story (no clickbait lies).
+
+**YouTube fields.**
+- `youtube_title`: max 100 characters, Roman keyword ` | ` Devanagari keyword, may end with
+  ` | Sampoorn Katha`. No `#Shorts`.
+- `youtube_description`: 3-6 lines of Hinglish about the story, a line naming the source (the exact
+  `source` text, e.g. `Ye katha Skanda Purana ke anusar hai.`), one line in Devanagari, the mantra,
+  `Jai Shree Shyam 🙏`, a like/share/subscribe line, then 3-5 hashtags. **No timestamps**: the
+  chapters are added automatically on upload.
+- `youtube_tags`: 10-15 search phrases, about half Roman and half Devanagari.
+- `deity` (e.g. `Khatu Shyam ji (Barbarik)`) and `summary` (the story in a few words, max 160
+  characters, no `|`) go into the log line the workflow writes.
+
+```json
+{
+  "slug": "<yyyy-mm-dd>-long-<short-english-slug>",
+  "format": "long",
+  "title": "<Roman, max 60 characters, drawn on the video>",
+  "kicker": "<max 22 characters, e.g. Ravivar Vishesh>",
+  "playlist": "<one of the playlist names in section 3>",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "<Roman, max 38 characters, shown big for the first 3 s>",
+  "source": "<e.g. Skanda Purana ke anusar>",
+  "deity": "...",
+  "summary": "...",
+  "thumbnail": { "image": 0, "focus": "center", "text": "..." },
+  "images": [ { "prompt": "..." }, ... 12-24 ],
+  "chapters": [
+    { "title": "<Roman chapter title>", "scenes": [
+      { "img": 0, "focus": "center", "motion": "in", "tts": "...", "sub": "..." },
+      { "img": 3, "focus": "top", "motion": "pan", "tts": "...", "sub": "...", "teaser": true }
+    ] },
+    ...
+  ],
+  "youtube_title": "...",
+  "youtube_description": "...",
+  "youtube_tags": "..."
+}
+```
+
+Write it to `story/long/scenes.json` and run `node scripts/validate.mjs story/long/scenes.json` until
+it passes. Do not edit `automation/log.md` (the workflow records the long video). Do not render,
+upload, commit or push.
