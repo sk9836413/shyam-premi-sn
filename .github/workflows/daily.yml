@@ -296,6 +296,26 @@ jobs:
             "Long video" for everything else. Write story/long/scenes.json and make
             `node scripts/validate.mjs story/long/scenes.json` pass. You may add confirmed festivals to
             automation/calendar.md. Change nothing else (do not edit automation/log.md: the workflow records it).
+            Use the Write tool for the file (the directory story/long already exists); shell commands other than
+            the validator and ls are not available.
+
+      # When the story is missing, show Claude's own words and any refused tool calls (no tool output) so
+      # the cause can be fixed without exposing anything else in this public log.
+      - name: Why is the story missing
+        if: env.GO == '1' && steps.tries.outputs.have != 'true' && hashFiles('story/long/scenes.json') == ''
+        run: |
+          f=/home/runner/work/_temp/claude-execution-output.json
+          [ -f "$f" ] && node -e '
+            const msgs = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+            for (const m of msgs) {
+              if (m.type === "result") console.log("DENIED:", JSON.stringify((m.permission_denials || []).map((d) => ({ tool: d.tool_name, input: String(JSON.stringify(d.tool_input)).slice(0, 160) }))));
+              if (m.type !== "assistant") continue;
+              for (const c of m.message?.content || []) {
+                if (c.type === "text") console.log("SAID:", c.text.slice(0, 400));
+                if (c.type === "tool_use") console.log("TOOL:", c.name, String(c.input?.file_path || c.input?.command || "").slice(0, 120));
+              }
+            }' "$f"
+          echo "::error::Claude did not write story/long/scenes.json"; exit 1
 
       - name: Validate
         if: env.GO == '1'
