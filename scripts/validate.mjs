@@ -13,7 +13,7 @@ const need = (ok, msg) => { if (!ok) problems.push(msg); };
 const DEVANAGARI = /[ऀ-ॿ]/;
 const BAIT = /share\s*kar(o|ein|na)?\s*(warna|nahi\s*to)|paisa\s*aayega|dhan\s*varsha\s*hogi|guaranteed|100\s*%|bad\s*luck|ignore\s*mat|type\s*karo\s*jai|miracle|chamatkar\s*pakka/i;
 const PLAYLISTS = ['Khatu Shyam ji ki Kathayein', 'Shiv ji ki Kathayein', 'Hanuman ji ki Kathayein', 'Ganesh ji ki Kathayein',
-  'Vishnu ji aur Krishna ki Kathayein', 'Maa Durga aur Devi ki Kathayein', 'Shani Dev ki Kathayein', 'Surya Dev ki Kathayein', 'Tyohar aur Vrat Kathayein'];
+  'Vishnu ji aur Krishna ki Kathayein', 'Maa Durga aur Devi ki Kathayein', 'Shani Dev ki Kathayein', 'Surya Dev ki Kathayein', 'Tyohar aur Vrat Kathayein', 'Mandir Itihas'];
 
 // ---- Long video (16:9, 5-10 min) ----------------------------------------------------------------
 // Narration runs at ~12 characters a second; each scene adds ~0.8 s and each chapter ~1 s of pause.

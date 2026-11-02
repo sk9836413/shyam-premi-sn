@@ -20,6 +20,11 @@ Work out today's date in India (IST) and pick the subject in this order:
    Hanuman ji, Sunday Surya dev. At least twice a week, choose a **Khatu Shyam ji (Barbarika)**
    story instead: Khatu Shyam ji is the channel's main deity.
 
+3. **Famous temples (Mandir series).** Twice a week, when there is no festival, make the `evening`
+   darshan Short about a temple from `automation/mandir-series.md` instead of Khatu Shyam ji: its name,
+   place and one well-sourced fact, following that file's accuracy and **sati-temple rules**. People
+   search for these temples by name, so put the temple name first in the title, in Roman and Devanagari.
+
 Do not repeat a story already listed in `automation/log.md` within the last 60 days.
 
 **Shorts algorithm (why videos are short now).** YouTube pushes a Short to more people only when viewers
@@ -123,7 +128,9 @@ at 12:30 IST. Sections 3-4 do not apply to it; everything else below does.
 
 **Subject.** Same order as section 1: a festival or vrat today or in the next 3 days (tell the story
 behind it, e.g. why Dhanteras is celebrated), otherwise the weekday deity, and at least twice a week a
-Khatu Shyam ji / Barbarik katha. Tell the **full** katha, beginning to end, not one scene of it. It may
+Khatu Shyam ji / Barbarik katha. Tell the **full** katha, beginning to end, not one scene of it. **Mandir Itihas series:** on days with no festival in the next 3 days and no Khatu Shyam katha
+due, write the next part of the temple series in `automation/mandir-series.md`. Aim for about 3 days a week.
+That file sets the part order, slug pattern, sources, the AI-image disclaimer and the legal rule for sati temples. It may
 share today's deity with the morning Short. Do not repeat a story that has a `| long |` line in
 `automation/log.md` within the last 120 days.
 
