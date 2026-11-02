@@ -152,8 +152,7 @@ story, new miracles, dates, numbers or promises of benefit. Nothing that is not 
 - Last scene: `{"endcard": true, "tts": "<jaikara> <warm like/share/subscribe line>", "sub": "<same>"}`
   (tts at most 160 characters).
 
-**Images (free Workers AI budget).** FLUX-schnell costs ~96 neurons per image (4 tiles x 4.8 + 8
-steps x 9.6) and the account gets 10,000 free neurons a day, shared with the Shorts (~10 images a
+**Images (free Workers AI budget).** FLUX-schnell costs ~170 neurons per image at 4 steps (measured ~326 at 8 steps) and the account gets 10,000 free neurons a day, shared with the Shorts (~10 images a
 day). So the long video gets **10-14 images** in `images` (about 1,700-2,400 neurons at ~170 each; measured on 1 Nov 2026), and scenes reuse
 them: each scene names `img` (an index into `images`), `focus` (`top`, `center` or `bottom`: which band
 of the square image fills the 16:9 frame) and `motion` (`in`, `out`, `pan` left-to-right, `panl`
