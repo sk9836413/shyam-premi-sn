@@ -16,3 +16,13 @@ node_modules/
 *.env
 .wrangler/
 story/long/
+# animated-clip pilot: generated media, Kaggle outputs and the account-specific kernel metadata
+animate/input/
+animate/dataset/
+animate/clips/
+animate/kaggle-out/
+animate/build/
+animate/out/
+animate/*.mp4
+animate/*.jpg
+animate/kaggle/kernel-metadata.json

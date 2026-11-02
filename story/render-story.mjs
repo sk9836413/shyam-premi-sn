@@ -1,6 +1,9 @@
 // Renders a narrated vertical story video from scenes.json:
 //   node render-story.mjs scenes.json
 // Images: FLUX.1-schnell on Cloudflare Workers AI (free daily allocation), cached in images/.
+// Animated mode: a scene with "video" (an image-to-video clip, see animate/) uses that real motion,
+// upscaled to the same 1080 px square, instead of the zoompan camera move; if the clip is missing or
+// ANIMATED=0 is set, the scene falls back to the still image + zoompan.
 // Voice: Kokoro Hindi (Devanagari input). Music: synthesized drone + bell. Output: out/<slug>.mp4
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -118,10 +121,19 @@ function run(args) {
   if (r.status !== 0) throw new Error(r.stderr);
 }
 
+// The scene's animated clip, if it has one and animated mode is on.
+const videoFor = (scene) => {
+  if (!scene.video || process.env.ANIMATED === '0') return null;
+  const file = path.resolve(base, scene.video);
+  return fs.existsSync(file) ? file : (console.log(`no clip ${scene.video}, using the still image`), null);
+};
+const probeSeconds = (file) => Number(spawnSync(FFPROBE, ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', file], { encoding: 'utf8' }).stdout.trim());
+
 const durations = tts();
 const clips = [];
 for (const [i, scene] of spec.scenes.entries()) {
-  const img = await image(scene, i);
+  const vid = scene.endcard ? null : videoFor(scene);
+  let animated = false;
   // Tight pacing keeps Shorts short (viewers who finish and replay are what YouTube rewards).
   const seconds = Math.max(2.6, durations[i] + 0.7);
   const frames = Math.round(seconds * FPS);
@@ -152,19 +164,41 @@ for (const [i, scene] of spec.scenes.entries()) {
         `drawtext=fontfile='${FONT}':textfile='${esc(signFile)}':fontsize=76:fontcolor=0xFFD877:x=(w-text_w)/2:y=1210,${subtitle}[v]`,
     ].join(';'), ...encode]);
   } else {
-    // Blurred cover background + the square scene image with a slow camera move + subtitles,
-    // with the channel logo as a small watermark next to the title.
-    run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), '-filter_complex', [
-      `[0:v]scale=${H}:${H},crop=${W}:${H},boxblur=28:4,eq=brightness=-0.18[bg]`,
-      `[0:v]scale=2160:2160,zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}[fg]`,
-      `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,
-      ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
-      `[bgl][fg]overlay=0:250:shortest=1${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
-        `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}[v]`,
-    ].join(';'), ...encode]);
+    if (vid) {
+      // Animated clip: stretched up to 1.3x slower when it is shorter than the narration, then the last
+      // frame is held; the same moving clip, blurred, fills the background.
+      const slow = Math.min(1.3, Math.max(1, seconds / (probeSeconds(vid) || seconds)));
+      try {
+        run(['-i', vid, ...(LOGO ? ['-i', LOGO] : []), '-filter_complex', [
+          `[0:v]setpts=${slow.toFixed(3)}*PTS,fps=${FPS},tpad=stop_mode=clone:stop_duration=${seconds.toFixed(2)},` +
+            `trim=duration=${seconds.toFixed(2)},setpts=PTS-STARTPTS,format=yuv420p,split[a][b]`,
+          `[a]scale=${H}:${H},crop=${W}:${H},boxblur=28:4,eq=brightness=-0.18[bgl]`,
+          `[b]scale=${W}:${W}:flags=lanczos,unsharp=5:5:0.6[fg]`,
+          ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
+          `[bgl][fg]overlay=0:250${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
+            `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}[v]`,
+        ].join(';'), ...encode]);
+        animated = true;
+      } catch (e) {
+        console.log(`animated scene ${i + 1} failed, using zoompan: ${e.message.split('\n')[0]}`);
+      }
+    }
+    // Still path (and fallback): blurred cover background + the square scene image with a slow camera
+    // move + subtitles, with the channel logo as a small watermark next to the title.
+    if (!animated) {
+      const img = await image(scene, i);
+      run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), '-filter_complex', [
+        `[0:v]scale=${H}:${H},crop=${W}:${H},boxblur=28:4,eq=brightness=-0.18[bg]`,
+        `[0:v]scale=2160:2160,zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}[fg]`,
+        `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,
+        ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
+        `[bgl][fg]overlay=0:250:shortest=1${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
+          `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}[v]`,
+      ].join(';'), ...encode]);
+    }
   }
   clips.push({ file: clip, seconds, voice: path.join(work, `voice-${i}.${voiceExt}`) });
-  console.log(`scene ${i + 1}/${spec.scenes.length}: ${seconds.toFixed(1)}s`);
+  console.log(`scene ${i + 1}/${spec.scenes.length}: ${seconds.toFixed(1)}s${animated ? ' (animated)' : ''}`);
 }
 
 // Join with crossfades; place each narration line at its scene's start; add music.

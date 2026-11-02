@@ -1,0 +1,61 @@
+{
+  "slug": "animate-pilot-khatu-shyam-darshan",
+  "title": "Khatu Shyam ji ke Darshan",
+  "kicker": "Shyam Darshan",
+  "playlist": "Khatu Shyam ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Aaj ke Shyam darshan",
+  "scenes": [
+    {
+      "prompt": "A grand white marble Khatu Shyam temple in Rajasthan at dusk, hundreds of small glowing clay diyas lining the stone steps and courtyard, marigold garlands on the arches, deep blue evening sky, calm and sacred mood, wide shot",
+      "image": "input/0.jpg",
+      "video": "clips/0.mp4",
+      "animate": "the small diya flames flicker gently in a soft breeze, the camera slowly pushes in towards the temple, warm light glows softly, calm and peaceful, static temple architecture",
+      "tts": "खाटू धाम में दीपों की रोशनी, और बाबा श्याम का दरबार।",
+      "sub": "Khatu Dham mein deepon ki roshni, aur Baba Shyam ka darbaar.",
+      "motion": "in"
+    },
+    {
+      "prompt": "Red rose petals and orange marigold flowers floating down in front of a richly decorated temple sanctum doorway with golden bells, brass lamps glowing, soft bokeh light, devotional atmosphere",
+      "image": "input/1.jpg",
+      "video": "clips/1.mp4",
+      "animate": "rose petals and marigold flowers fall slowly from above through the warm light, the golden bells sway slightly, gentle slow motion, calm devotional mood",
+      "tts": "फूलों की वर्षा के साथ, बाबा का श्रृंगार।",
+      "sub": "Phoolon ki varsha ke saath, Baba ka shringaar.",
+      "motion": "pan"
+    },
+    {
+      "prompt": "Divine darshan of Khatu Shyam Baba, the radiant shyam-coloured sacred head of Barbarik with a gentle serene smile, large kind eyes, a jewelled golden crown with peacock feathers, red rose and marigold garlands, a soft golden halo glow, temple sanctum decorated with flowers, front view, symmetrical",
+      "image": "input/2.jpg",
+      "video": "clips/2.mp4",
+      "animate": "a very slow gentle camera push-in towards the deity, the face stays still and serene, the peacock feathers and garlands stay still, the soft golden glow gently pulses, a few flower petals drift in the foreground",
+      "tts": "हारे का सहारा, बाबा श्याम हमारा।",
+      "sub": "Haare ka sahara, Baba Shyam hamara.",
+      "motion": "in"
+    },
+    {
+      "prompt": "An Indian devotee in a white kurta and saffron dupatta performing aarti with a brass aarti thali with lit flames, seen from the side, facing a glowing flower-decorated temple sanctum, warm golden lamplight, reverent and peaceful mood",
+      "image": "input/3.jpg",
+      "video": "clips/3.mp4",
+      "animate": "the devotee slowly moves the aarti thali in a gentle circle, the lamp flames flicker, soft smoke rises, warm light, calm devotional mood, steady camera",
+      "tts": "श्रद्धा से आरती करो, बाबा सबकी सुनते हैं।",
+      "sub": "Shraddha se aarti karo, Baba sabki sunte hain.",
+      "motion": "out"
+    },
+    {
+      "endcard": true,
+      "tts": "जय श्री श्याम! दर्शन अच्छे लगे हों तो लाइक, शेयर और सब्सक्राइब करें।",
+      "sub": "Jai Shree Shyam! Darshan achhe lage to Like, Share aur Subscribe karein · Shyam Premi SN"
+    }
+  ],
+  "animate_settings": {
+    "size": 704,
+    "frames": 121,
+    "fps": 24,
+    "steps": 30,
+    "guidance": 5.0,
+    "max_minutes": 150
+  }
+}
