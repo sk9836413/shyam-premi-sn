@@ -14,3 +14,4 @@
 2026-10-31 | evening | 2026-10-31-evening-khatu-shyam-shyam-kund | Khatu Shyam ji | Shyam Kund darshan, jahan Baba ka sheesh prakat hua, man ko shanti, Haare ka sahara jaikara
 2026-11-01 | morning | 2026-11-01-morning-ahoi-ashtami-katha | Ahoi Ashtami (Ravivar) | Sahukar ki patni se anjaane mein syahu ke bachche ko chot, pachtava, Ahoi Mata ka vrat aur kripa
 2026-11-01 | long | 2026-11-01-long-ahoi-ashtami-katha | Ahoi Mata (Ahoi Ashtami) | Syahu ka shraap, chhoti bahu ki gaay seva, Garud pankhni ki raksha, Syahu mata ka vardaan aur Ahoi Ashtami vrat ki katha
+2026-11-02 | morning | 2026-11-02-morning-shiv-ganga-jata | Shiv ji (Somvar) | Bhagirath ki tapasya, Ganga ji ka veg, Shiv ji ne Ganga ko jataon mein dharan kiya
