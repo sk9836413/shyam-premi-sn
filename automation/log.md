@@ -16,3 +16,4 @@
 2026-11-01 | long | 2026-11-01-long-ahoi-ashtami-katha | Ahoi Mata (Ahoi Ashtami) | Syahu ka shraap, chhoti bahu ki gaay seva, Garud pankhni ki raksha, Syahu mata ka vardaan aur Ahoi Ashtami vrat ki katha
 2026-11-02 | morning | 2026-11-02-morning-shiv-ganga-jata | Shiv ji (Somvar) | Bhagirath ki tapasya, Ganga ji ka veg, Shiv ji ne Ganga ko jataon mein dharan kiya
 2026-11-02 | long | 2026-11-02-long-rama-ekadashi-katha | Bhagwan Vishnu (Rama Ekadashi) | Raja Muchukunda, Chandrabhaga aur Shobhan ki Rama Ekadashi vrat katha, Mandarachal ka nagar aur punya ka daan
+2026-11-02 | evening | 2026-11-02-evening-salasar-balaji-darshan | Salasar Balaji Dham (Mandir series, Hanuman ji) | Churu ka Salasar Balaji, anokha roop, Asota ki murti ka Salasar aana (manyata)
