@@ -35,11 +35,20 @@ justifying or propagating it, or eulogising a person who committed sati. YouTube
 content that glorifies self-harm. So for these temples:
 - Cover the temple, the worship of the goddess (for example Narayani Devi / Dadi ji as kul devi), the
   town, the architecture and the community's devotion.
-- **Never** narrate, depict, praise or justify the act of immolation. No fire scenes in images or
-  narration, and no "mahima" of the act.
+- **The story may be told as history** (owner, 2 Nov 2026: "badhava nahi dena, unka story batana h").
+  Tell it the way a history documentary would: neutral, factual and sourced.
+  - Who she was, the period and the place, and that tradition says she became sati. Use **one or two plain
+    sentences** for the event itself, labelled as tradition ("itihas/parampara ke anusar…").
+  - **No** praise of the act: no "mahaan balidaan", "amar tyag", "sati ki mahima" or "sati hona punya hai",
+    and nothing that presents sati as an ideal or something to follow.
+  - **No** graphic or visual depiction: no fire, pyre or burning in the narration details or in any image
+    prompt. Images show the temple, the goddess in a calm darshan form, the town and the devotees.
+  - Put the devotion on the goddess and the temple (Dadi ji's kripa, the faith of the devotees,
+    architecture), not on the act.
+- **Mandatory disclaimer**, spoken briefly right after the event sentence and also in the description:
+  "Sati pratha Bharat mein kanoon (Sati Nivaran Adhiniyam 1987) dwara pratibandhit hai; yeh video sirf
+  itihas aur aastha ki jaankari ke liye hai, is pratha ko badhava nahi deta."
 - Do not promote events the law restricts (for example any sati-related mela or procession).
-- If a fact can only be told through the immolation story, leave it out. If unsure, make that temple a
-  short darshan video instead of a long part.
 
 ## Temples, in order
 
