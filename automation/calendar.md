@@ -6,6 +6,7 @@ Confirmed with at least two sources. Add new dates the same way.
 |---|---|
 | 2026-10-29 | Karwa Chauth, Vakratunda Sankashti Chaturthi |
 | 2026-11-01 | Ahoi Ashtami (also Kalashtami, Bhanu Saptami) |
+| 2026-11-05 | Rama Ekadashi (some calendars: 4 Nov) |
 | 2026-11-06 | Dhanteras |
 | 2026-11-07 | Choti Diwali (Naraka Chaturdashi) |
 | 2026-11-08 | Diwali (Lakshmi Puja) |

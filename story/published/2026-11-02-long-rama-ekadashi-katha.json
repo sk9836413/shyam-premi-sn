@@ -1,0 +1,118 @@
+{
+  "slug": "2026-11-02-long-rama-ekadashi-katha",
+  "format": "long",
+  "title": "Rama Ekadashi ki Sampoorn Katha",
+  "kicker": "Rama Ekadashi Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Shobhan ke vrat ka rahasya",
+  "source": "Brahma Vaivarta Purana ke anusar",
+  "deity": "Bhagwan Vishnu (Rama Ekadashi)",
+  "summary": "Raja Muchukunda, Chandrabhaga aur Shobhan ki Rama Ekadashi vrat katha, Mandarachal ka nagar aur punya ka daan",
+  "thumbnail": { "image": 9, "focus": "center", "text": "Nagar kyun dagmaga raha tha?" },
+  "images": [
+    { "prompt": "Wide night scene in a royal palace courtyard under a full moon: a gentle, thin young Indian prince in simple royal clothes sits weakly on the stone floor, hungry and tired, lamps flickering around him, the prince in the middle of the frame" },
+    { "prompt": "Wide scene of a wise devout ancient Indian king with a crown and a long garland, standing in a grand palace hall in front of a small golden Vishnu idol with tulsi leaves, peaceful atmosphere, king in the middle of the frame" },
+    { "prompt": "Wide scene of Lord Vishnu, blue-skinned, four-armed with conch, discus, mace and lotus, resting on the serpent Sheshnag in the cosmic ocean of milk, Goddess Lakshmi pressing his feet, soft golden glow, Vishnu in the middle of the frame" },
+    { "prompt": "Wide scene of Lord Krishna with a peacock feather crown and yellow dhoti sitting calmly in a royal court, telling a story to King Yudhishthira who listens with folded hands, the Pandava brothers sitting behind, Krishna in the middle of the frame" },
+    { "prompt": "Wide scene of a graceful young Indian princess Chandrabhaga in a red and gold saree with a gentle smile, standing in a palace garden of flowers and lamps with a small Vishnu shrine, princess in the middle of the frame" },
+    { "prompt": "Wide scene of a gentle young prince arriving at a grand palace gate with a small royal procession of horses and attendants at evening, the palace glowing warm, prince in the middle of the frame" },
+    { "prompt": "Wide peaceful scene of an ancient Indian kingdom on a fast day: villagers praying at a small shrine, cows and animals resting calmly under trees, a palace in the background, golden evening light, no text" },
+    { "prompt": "Wide scene inside a palace chamber at dusk: a young prince sits worried with his hand on his forehead while his wife stands beside him with a clay lamp, soft warm lamp light, the couple in the middle of the frame" },
+    { "prompt": "Wide scene of a young woman in a simple white saree sitting before a small Vishnu idol with a tulsi plant and lit diyas in a quiet palace room, calm and devoted with a sad but strong face, woman in the middle of the frame" },
+    { "prompt": "Wide scene of a shimmering golden celestial city with domes and towers on a misty mountain peak, glowing but slightly translucent and wavering like a mirage, clouds around, magical light, city in the middle of the frame" },
+    { "prompt": "Wide scene of a travelling Brahmin with a staff and a small bundle meeting a young prince seated on a throne in a golden celestial hall on a mountain, the prince looks thoughtful, both in the middle of the frame" },
+    { "prompt": "Wide scene of a young woman in a white saree climbing a forest mountain path accompanied by an elderly sage with a white beard and a staff, sunrise light, determined and hopeful, the two in the middle of the frame" },
+    { "prompt": "Wide scene of a prince and princess reunited in a radiant stable golden palace on a mountain, standing hand in hand, flower petals falling, soft divine light with Vishnu's blessing glow above, couple in the middle of the frame" },
+    { "prompt": "Wide scene of Lord Vishnu standing blessing the viewer with a raised hand, with a lit ghee lamp, tulsi leaves and flowers in front, soft golden divine glow, calm devotional mood, Vishnu in the middle of the frame" }
+  ],
+  "chapters": [
+    {
+      "title": "Ek Vrat, Ek Raat",
+      "scenes": [
+        { "img": 0, "focus": "center", "motion": "in", "tts": "रात गहरी थी, और एक राजकुमार भूख-प्यास से तड़प रहा था, क्योंकि उसने एकादशी का व्रत रख लिया था।", "sub": "Raat gehri thi, aur ek rajkumar bhookh-pyaas se tadap raha tha, kyonki usne Ekadashi ka vrat rakh liya tha." },
+        { "img": 9, "focus": "center", "motion": "out", "tts": "मृत्यु के बाद उसे मिला एक चमकता नगर, पर वह नगर हर पल डगमगा रहा था। ऐसा क्यों?", "sub": "Mrityu ke baad use mila ek chamakta nagar, par wah nagar har pal dagmaga raha tha. Aisa kyon?" },
+        { "img": 13, "focus": "center", "motion": "pan", "tts": "इस कथा में जानिए रमा एकादशी की पूरी कहानी, राजा मुचुकुंद, चंद्रभागा और शोभन के साथ।", "sub": "Is katha mein jaaniye Rama Ekadashi ki poori kahani, Raja Muchukund, Chandrabhaga aur Shobhan ke saath." }
+      ]
+    },
+    {
+      "title": "Shri Krishna ne Sunayi Katha",
+      "scenes": [
+        { "img": 3, "focus": "center", "motion": "in", "tts": "यह कथा ब्रह्मवैवर्त पुराण के अनुसार श्री कृष्ण ने महाराज युधिष्ठिर को सुनाई थी।", "sub": "Ye katha Brahma Vaivarta Purana ke anusar Shri Krishna ne Maharaj Yudhishthir ko sunayi thi." },
+        { "img": 3, "focus": "center", "motion": "pan", "tts": "युधिष्ठिर ने पूछा, हे केशव, कार्तिक मास के कृष्ण पक्ष की एकादशी का क्या नाम है और उसकी क्या महिमा है?", "sub": "Yudhishthir ne poochha, he Keshav, Kartik maas ke Krishna paksh ki Ekadashi ka kya naam hai aur uski kya mahima hai?" },
+        { "img": 3, "focus": "center", "motion": "out", "tts": "तब श्री कृष्ण बोले, इसे रमा एकादशी कहते हैं। इसे बड़े पापों के बोझ को हल्का करने वाली माना गया है।", "sub": "Tab Shri Krishna bole, ise Rama Ekadashi kehte hain. Ise bade paapon ke bojh ko halka karne wali maana gaya hai." },
+        { "img": 2, "focus": "center", "motion": "in", "tts": "यह एकादशी भगवान विष्णु को समर्पित है। इसकी कथा श्रद्धा का सच्चा अर्थ समझाती है।", "sub": "Yeh Ekadashi Bhagwan Vishnu ko samarpit hai. Iski katha shraddha ka sachcha arth samjhati hai." }
+      ]
+    },
+    {
+      "title": "Raja Muchukund aur Chandrabhaga",
+      "scenes": [
+        { "img": 1, "focus": "center", "motion": "in", "tts": "प्राचीन काल में मुचुकुंद नाम के एक राजा थे, जो भगवान विष्णु के परम भक्त थे।", "sub": "Prachin kaal mein Muchukund naam ke ek raja the, jo Bhagwan Vishnu ke param bhakt the." },
+        { "img": 1, "focus": "top", "motion": "pan", "tts": "कुछ कथाओं में कहा गया है कि देवताओं से भी उनकी मित्रता थी, और वे धर्म से राज्य चलाते थे।", "sub": "Kuch kathaon mein kaha gaya hai ki devtaon se bhi unki mitrata thi, aur wah dharm se rajya chalate the." },
+        { "img": 6, "focus": "center", "motion": "out", "tts": "उनके राज्य में एकादशी के दिन सब व्रत रखते थे, यहां तक कि पशुओं को भी अन्न नहीं दिया जाता था।", "sub": "Unke rajya mein Ekadashi ke din sab vrat rakhte the, yahan tak ki pashuon ko bhi ann nahi diya jata tha." },
+        { "img": 6, "focus": "bottom", "motion": "in", "tts": "पूरे राज्य में भक्ति और संयम का वातावरण रहता था। राजा के लिए यह नियम सबसे ऊपर था।", "sub": "Poore rajya mein bhakti aur sanyam ka vaataavaran rehta tha. Raja ke liye yeh niyam sabse upar tha." },
+        { "img": 4, "focus": "center", "motion": "in", "tts": "राजा की एक गुणवान पुत्री थी, जिसका नाम था चंद्रभागा।", "sub": "Raja ki ek gunwan putri thi, jiska naam tha Chandrabhaga." },
+        { "img": 4, "focus": "center", "motion": "pan", "tts": "चंद्रभागा भी अपने पिता की तरह विष्णु जी की भक्त थी, और बचपन से एकादशी का व्रत करती थी।", "sub": "Chandrabhaga bhi apne pita ki tarah Vishnu ji ki bhakt thi, aur bachpan se Ekadashi ka vrat karti thi." },
+        { "img": 4, "focus": "top", "motion": "out", "tts": "उसका विवाह राजा चंद्रसेन के पुत्र शोभन से हुआ। पर शोभन के सामने एक कठिन घड़ी आने वाली थी…", "sub": "Uska vivah Raja Chandrasen ke putra Shobhan se hua. Par Shobhan ke saamne ek kathin ghadi aane wali thi...", "teaser": true }
+      ]
+    },
+    {
+      "title": "Shobhan ka Nirnay",
+      "scenes": [
+        { "img": 5, "focus": "center", "motion": "in", "tts": "शोभन स्वभाव से कोमल थे, और शरीर से बहुत दुर्बल भी।", "sub": "Shobhan swabhav se komal the, aur sharir se bahut durbal bhi." },
+        { "img": 5, "focus": "bottom", "motion": "pan", "tts": "एक बार कार्तिक मास में वे अपनी पत्नी के साथ ससुराल, राजा मुचुकुंद के महल आए।", "sub": "Ek baar Kartik maas mein we apni patni ke saath sasural, Raja Muchukund ke mahal aaye." },
+        { "img": 7, "focus": "center", "motion": "in", "tts": "संयोग से उसी समय रमा एकादशी आ गई, और पूरे राज्य में व्रत का नियम था।", "sub": "Sanyog se usi samay Rama Ekadashi aa gayi, aur poore rajya mein vrat ka niyam tha." },
+        { "img": 7, "focus": "center", "motion": "panl", "tts": "शोभन चिंता में पड़ गए, क्योंकि वे जानते थे कि उनसे भूख-प्यास सहन नहीं होगी।", "sub": "Shobhan chinta mein pad gaye, kyonki we jaante the ki unse bhookh-pyaas sahan nahi hogi." },
+        { "img": 5, "focus": "top", "motion": "out", "tts": "कुछ कथाओं में आता है कि चंद्रभागा ने उन्हें राज्य का नियम बताया, कि यहां एकादशी को कोई भोजन नहीं करता।", "sub": "Kuch kathaon mein aata hai ki Chandrabhaga ne unhe rajya ka niyam bataya, ki yahan Ekadashi ko koi bhojan nahi karta." },
+        { "img": 0, "focus": "center", "motion": "pan", "tts": "अंत में शोभन ने निश्चय किया कि वे भी व्रत रखेंगे, चाहे जो हो जाए।", "sub": "Ant mein Shobhan ne nishchay kiya ki we bhi vrat rakhenge, chahe jo ho jaye." },
+        { "img": 7, "focus": "bottom", "motion": "in", "tts": "दिन बीता, रात आई, और भूख-प्यास से उनकी दशा बिगड़ने लगी।", "sub": "Din beeta, raat aayi, aur bhookh-pyaas se unki dasha bigadne lagi." },
+        { "img": 0, "focus": "top", "motion": "out", "tts": "सूर्योदय से पहले ही शोभन के प्राण निकल गए। पर कथा यहीं समाप्त नहीं होती…", "sub": "Suryoday se pehle hi Shobhan ke praan nikal gaye. Par katha yahin samapt nahi hoti...", "teaser": true }
+      ]
+    },
+    {
+      "title": "Chandrabhaga ka Dhairya",
+      "scenes": [
+        { "img": 8, "focus": "center", "motion": "in", "tts": "चंद्रभागा पर दुख का पहाड़ टूट पड़ा। शोभन का अंतिम संस्कार किया गया।", "sub": "Chandrabhaga par dukh ka pahad toot pada. Shobhan ka antim sanskar kiya gaya." },
+        { "img": 8, "focus": "top", "motion": "out", "tts": "कहते हैं चंद्रभागा सती नहीं हुईं। वे पिता के घर रहीं और नियम से हर एकादशी का व्रत करती रहीं।", "sub": "Kehte hain Chandrabhaga sati nahi huin. We pita ke ghar rahin aur niyam se har Ekadashi ka vrat karti rahin." },
+        { "img": 8, "focus": "bottom", "motion": "pan", "tts": "तुलसी और दीपक के साथ वे भगवान विष्णु का पूजन करतीं, और उनके मन में अटूट विश्वास था।", "sub": "Tulsi aur deepak ke saath we Bhagwan Vishnu ka poojan kartin, aur unke man mein atoot vishwas tha." }
+      ]
+    },
+    {
+      "title": "Mandarachal ka Nagar",
+      "scenes": [
+        { "img": 9, "focus": "center", "motion": "in", "tts": "उधर रमा एकादशी के व्रत के प्रभाव से शोभन को मंदराचल पर्वत पर एक दिव्य राज्य मिला।", "sub": "Udhar Rama Ekadashi ke vrat ke prabhav se Shobhan ko Mandarachal parvat par ek divya rajya mila." },
+        { "img": 9, "focus": "top", "motion": "pan", "tts": "वह नगर सोने जैसा चमकता था, पर वह स्थिर नहीं था, और साफ दिखाई भी नहीं देता था।", "sub": "Wah nagar sone jaisa chamakta tha, par wah sthir nahi tha, aur saaf dikhai bhi nahi deta tha." },
+        { "img": 10, "focus": "center", "motion": "in", "tts": "मुचुकुंद के राज्य का एक ब्राह्मण यात्रा करते हुए उस पर्वत पर पहुंचा और शोभन को पहचान लिया।", "sub": "Muchukund ke rajya ka ek Brahmin yatra karte hue us parvat par pahuncha aur Shobhan ko pehchan liya." },
+        { "img": 10, "focus": "bottom", "motion": "out", "tts": "शोभन ने उससे अपने ससुर और पत्नी का हाल पूछा, और बताया कि उनका यह नगर अस्थिर है।", "sub": "Shobhan ne usse apne sasur aur patni ka haal poochha, aur bataya ki unka yeh nagar asthir hai." },
+        { "img": 10, "focus": "center", "motion": "panl", "tts": "उन्होंने कहा कि व्रत उन्होंने श्रद्धा से नहीं, डर से रखा था, इसलिए उनका राज्य टिक नहीं रहा।", "sub": "Unhone kaha ki vrat unhone shraddha se nahi, dar se rakha tha, isliye unka rajya tik nahi raha." },
+        { "img": 10, "focus": "top", "motion": "in", "tts": "शोभन ने कहा कि यह समाचार चंद्रभागा तक पहुंचा दें। आगे देखिए, चंद्रभागा ने क्या किया…", "sub": "Shobhan ne kaha ki yeh samachar Chandrabhaga tak pahuncha den. Aage dekhiye, Chandrabhaga ne kya kiya...", "teaser": true }
+      ]
+    },
+    {
+      "title": "Chandrabhaga ka Punya",
+      "scenes": [
+        { "img": 11, "focus": "center", "motion": "in", "tts": "ब्राह्मण लौटा और उसने चंद्रभागा को पूरा समाचार सुनाया। चंद्रभागा की आंखों में आशा जाग उठी।", "sub": "Brahmin lauta aur usne Chandrabhaga ko poora samachar sunaya. Chandrabhaga ki aankhon mein aasha jaag uthi." },
+        { "img": 11, "focus": "top", "motion": "pan", "tts": "वे उस पर्वत की ओर चलीं। कुछ कथाओं में आता है कि महर्षि वामदेव ने इसमें उनकी सहायता की।", "sub": "We us parvat ki or chalin. Kuch kathaon mein aata hai ki Maharshi Vamdev ne ismein unki sahayata ki." },
+        { "img": 11, "focus": "center", "motion": "out", "tts": "वहां पहुंचकर चंद्रभागा ने बचपन से किए अपने सभी एकादशी व्रतों का पुण्य शोभन को अर्पित कर दिया।", "sub": "Wahan pahunchkar Chandrabhaga ne bachpan se kiye apne sabhi Ekadashi vraton ka punya Shobhan ko arpit kar diya." },
+        { "img": 12, "focus": "center", "motion": "in", "tts": "उस पुण्य के प्रभाव से शोभन का नगर स्थिर और तेजस्वी हो गया।", "sub": "Us punya ke prabhav se Shobhan ka nagar sthir aur tejaswi ho gaya." },
+        { "img": 12, "focus": "top", "motion": "pan", "tts": "पति-पत्नी फिर एक साथ हुए और वहां सुख से रहने लगे।", "sub": "Pati-patni phir ek saath hue aur wahan sukh se rehne lage." },
+        { "img": 12, "focus": "center", "motion": "out", "tts": "इस कथा से सीख मिलती है कि सच्चे मन से किया गया व्रत और प्रेम से दिया गया पुण्य कितना बड़ा होता है।", "sub": "Is katha se seekh milti hai ki sachche man se kiya gaya vrat aur prem se diya gaya punya kitna bada hota hai." }
+      ]
+    },
+    {
+      "title": "Rama Ekadashi ka Sandesh",
+      "scenes": [
+        { "img": 2, "focus": "bottom", "motion": "out", "tts": "श्री कृष्ण बोले, हे युधिष्ठिर, इस कथा के अनुसार जो श्रद्धा से रमा एकादशी का व्रत करता है, वह पापों के बोझ से मुक्त होता है।", "sub": "Shri Krishna bole, he Yudhishthir, is katha ke anusar jo shraddha se Rama Ekadashi ka vrat karta hai, wah paapon ke bojh se mukt hota hai." },
+        { "img": 13, "focus": "center", "motion": "in", "tts": "इस कथा का सार यही है कि व्रत डर से नहीं, श्रद्धा और भक्ति से रखा जाए।", "sub": "Is katha ka saar yahi hai ki vrat dar se nahi, shraddha aur bhakti se rakha jaye." },
+        { "img": 13, "focus": "bottom", "motion": "pan", "tts": "रमा एकादशी इस साल पांच नवंबर को है। कुछ पंचांगों में चार नवंबर बताई गई है।", "sub": "Rama Ekadashi is saal paanch November ko hai. Kuch panchangon mein chaar November batayi gayi hai." },
+        { "img": 13, "focus": "top", "motion": "out", "tts": "भगवान विष्णु का नाम लीजिए: ॐ नमो भगवते वासुदेवाय।", "sub": "Bhagwan Vishnu ka naam lijiye: Om Namo Bhagavate Vasudevaya." },
+        { "endcard": true, "tts": "ॐ नमो भगवते वासुदेवाय! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।", "sub": "Om Namo Bhagavate Vasudevaya! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN" }
+      ]
+    }
+  ],
+  "youtube_title": "Rama Ekadashi ki Katha | रमा एकादशी की कथा | Sampoorn Katha",
+  "youtube_description": "Rama Ekadashi ki poori katha: Raja Muchukund, unki putri Chandrabhaga aur damad Shobhan ki kahani.\nShobhan ne dar se vrat rakha, to Mandarachal parvat ka nagar asthir kyon raha, aur Chandrabhaga ke punya ne kya badla, yahi is katha mein hai.\nYe katha Brahma Vaivarta Purana ke anusar hai. Kuch kathaon mein chhote vivaran alag milte hain.\nरमा एकादशी की कथा: राजा मुचुकुंद, चंद्रभागा और शोभन की भगवान विष्णु की भक्ति की कहानी।\nॐ नमो भगवते वासुदेवाय\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein.\n#RamaEkadashi #Ekadashi #VishnuKatha #JaiShreeShyam",
+  "youtube_tags": "Rama Ekadashi katha, रमा एकादशी की कथा, Rama Ekadashi vrat katha, रमा एकादशी व्रत कथा, Ekadashi vrat katha, एकादशी व्रत कथा, Raja Muchukund, राजा मुचुकुंद, Chandrabhaga aur Shobhan, चंद्रभागा और शोभन, Vishnu ji ki katha, विष्णु भगवान की कथा, Kartik Ekadashi, Brahma Vaivarta Purana"
+}

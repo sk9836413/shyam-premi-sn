@@ -1,0 +1,43 @@
+{
+  "slug": "2026-11-02-long-rama-ekadashi-katha",
+  "seconds": 319,
+  "scenes": 42,
+  "chapters": [
+    {
+      "title": "Ek Vrat, Ek Raat",
+      "start": 0
+    },
+    {
+      "title": "Shri Krishna ne Sunayi Katha",
+      "start": 24.87
+    },
+    {
+      "title": "Raja Muchukund aur Chandrabhaga",
+      "start": 58.9
+    },
+    {
+      "title": "Shobhan ka Nirnay",
+      "start": 111.5
+    },
+    {
+      "title": "Chandrabhaga ka Dhairya",
+      "start": 164.53
+    },
+    {
+      "title": "Mandarachal ka Nagar",
+      "start": 188.6
+    },
+    {
+      "title": "Chandrabhaga ka Punya",
+      "start": 234.6
+    },
+    {
+      "title": "Rama Ekadashi ka Sandesh",
+      "start": 278.47
+    }
+  ],
+  "images": 14,
+  "images_generated": 14,
+  "neurons": 1344,
+  "render_seconds": 474
+}

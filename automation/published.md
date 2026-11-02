@@ -12,3 +12,4 @@
 - 2026-11-01-morning-ahoi-ashtami-katha | youtube: https://youtube.com/shorts/_-WS10mQskA | make: hosted-only
 - 2026-11-01-long-ahoi-ashtami-katha | youtube: https://youtu.be/Nk-5CUYZc18 | long 5:21, 43 scenes, render 5 min, 1440 neurons
 - 2026-11-02-morning-shiv-ganga-jata | youtube: https://youtube.com/shorts/tLsti6xsmNM | make: hosted-only
+- 2026-11-02-long-rama-ekadashi-katha | youtube: https://youtu.be/LQm_boGloEo | long 5:19, 42 scenes, render 8 min, 1344 neurons
