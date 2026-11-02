@@ -3,7 +3,7 @@
 // Shorts are rendered by render-story.mjs; this file is separate so the Shorts pipeline never changes.
 //
 // Images: FLUX.1-schnell (1024x1024) through the shyam-premi-media Worker, only one per entry in
-// spec.images (each costs ~96 Workers AI neurons: 4 tiles x 4.8 + 8 steps x 9.6). Scenes reuse them
+// spec.images (measured 1 Nov 2026: ~326 Workers AI neurons per image at 8 steps; 4 steps, the FLUX-schnell default, roughly halves it). Scenes reuse them
 // with different 16:9 crops (focus top/center/bottom) and camera moves. images[i].file (relative to
 // scenes.json) skips generation, for local tests.
 // Voice: edge-tts hi-IN-MadhurNeural (Kokoro fallback). Music: synthesized drone, a bell per chapter.
@@ -90,7 +90,7 @@ async function image(img, i) {
       const res = await fetch(`${process.env.MEDIA_URL}/ai/flux`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${process.env.MEDIA_TOKEN}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: `${img.prompt}. Wide cinematic composition with the main subject in the middle band. ${spec.style}`, steps: 8 }),
+        body: JSON.stringify({ prompt: `${img.prompt}. Wide cinematic composition with the main subject in the middle band. ${spec.style}`, steps: 4 }),
       });
       const j = await res.json();
       if (!j.success) throw new Error(JSON.stringify(j.errors));

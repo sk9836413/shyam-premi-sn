@@ -154,7 +154,7 @@ story, new miracles, dates, numbers or promises of benefit. Nothing that is not 
 
 **Images (free Workers AI budget).** FLUX-schnell costs ~96 neurons per image (4 tiles x 4.8 + 8
 steps x 9.6) and the account gets 10,000 free neurons a day, shared with the Shorts (~10 images a
-day). So the long video gets **12-24 images** in `images` (at most ~2,300 neurons), and scenes reuse
+day). So the long video gets **10-14 images** in `images` (about 1,700-2,400 neurons at ~170 each; measured on 1 Nov 2026), and scenes reuse
 them: each scene names `img` (an index into `images`), `focus` (`top`, `center` or `bottom`: which band
 of the square image fills the 16:9 frame) and `motion` (`in`, `out`, `pan` left-to-right, `panl`
 right-to-left). Use each image 1-4 times; never the same img + focus + motion twice in a row. Write

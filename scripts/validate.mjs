@@ -33,7 +33,7 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
   need(s.summary && s.summary.length <= 160 && !/[|\n]/.test(s.summary), 'summary: the story in a few words, max 160 characters, no "|"');
 
   const images = Array.isArray(s.images) ? s.images : [];
-  need(images.length >= 12 && images.length <= 24, `images: 12-24 entries (has ${images.length}); each costs ~96 of the 10,000 free neurons a day`);
+  need(images.length >= 10 && images.length <= 14, `images: 10-14 entries (has ${images.length}); each costs ~170 of the 10,000 free neurons a day, shared with the Shorts`);
   images.forEach((im, i) => {
     need(im && typeof im.prompt === 'string' && im.prompt.length >= 40, `image ${i}: prompt missing or too short`);
     need(!/\b(text|letters|writing|sign|caption|words|logo|title)\b/i.test((im?.prompt || '').replace(/no (text|letters|writing)/gi, '')), `image ${i}: prompt must not ask for text, signs or letters`);

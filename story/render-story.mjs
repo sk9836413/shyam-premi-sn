@@ -44,7 +44,7 @@ async function image(scene, i) {
     : `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/@cf/black-forest-labs/flux-1-schnell`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${viaWorker ? process.env.MEDIA_TOKEN : cfToken()}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt: `${scene.prompt}. ${spec.style}`, steps: 8 }),
+    body: JSON.stringify({ prompt: `${scene.prompt}. ${spec.style}`, steps: 4 }),
   });
   const j = await res.json();
   if (!j.success) throw new Error(`image ${i}: ${JSON.stringify(j.errors)}`);
