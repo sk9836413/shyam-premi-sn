@@ -5,6 +5,7 @@
 import glob, json, os, subprocess, sys, time
 
 SPS_ANIMATE_KERNEL = True  # marker used by self_path()
+EXPECT_STAMP = None  # set by animate/kaggle.mjs push: the dataset version this run must use
 
 MID = "Wan-AI/Wan2.2-TI2V-5B-Diffusers"
 WORK = "/kaggle/working"
@@ -81,10 +82,15 @@ def worker(gpu, ids, inp, cfg):
     open(f"{TMP}/ready-{gpu}", "w").write(str(time.time() - t0))
     print(f"[gpu{gpu}] loaded in {time.time() - t0:.0f}s", flush=True)
     os.makedirs(f"{WORK}/clips", exist_ok=True)
+    per_frame = 1750 / 121
     for cid in ids:
         j = jobs[cid]
-        if time.time() > cfg["deadline"]:
-            print(f"[gpu{gpu}] deadline reached, skipping {cid}", flush=True)
+        frames_n = int(j.get("frames", cfg["frames"]))
+        # Do not start a clip that cannot finish inside the budget (estimate: the last clip on this GPU, scaled
+        # by frame count; ~29 min for 121 frames on a T4 before any was measured).
+        est = per_frame * frames_n
+        if time.time() + est > cfg["deadline"]:
+            print(f"[gpu{gpu}] time budget: skipping {cid} (~{est / 60:.0f} min)", flush=True)
             continue
         img = load_image(f"{inp}/{j['image']}").convert("RGB").resize((cfg["size"], cfg["size"]))
         torch.cuda.reset_peak_memory_stats()
@@ -92,7 +98,7 @@ def worker(gpu, ids, inp, cfg):
         try:
             frames = pipe(image=img, prompt_embeds=emb[cid]["pos"].to("cuda", torch.float16),
                           negative_prompt_embeds=emb[cid]["neg"].to("cuda", torch.float16),
-                          height=cfg["size"], width=cfg["size"], num_frames=cfg["frames"],
+                          height=cfg["size"], width=cfg["size"], num_frames=frames_n,
                           num_inference_steps=cfg["steps"], guidance_scale=cfg["guidance"],
                           generator=torch.Generator("cuda").manual_seed(j.get("seed", 42)), output_type="np").frames[0]
         except Exception as e:  # one failed clip must not lose the others
@@ -100,9 +106,10 @@ def worker(gpu, ids, inp, cfg):
             torch.cuda.empty_cache()
             continue
         torch.cuda.synchronize(); secs = time.time() - s
+        per_frame = secs / frames_n * 1.1
         bad = bool(np.isnan(frames).any() or frames.max() < 0.02)
         export_to_video(list(np.nan_to_num(frames)), f"{WORK}/clips/{cid}.mp4", fps=cfg["fps"])
-        rec = {"id": cid, "gpu": gpu, "seconds": round(secs, 1), "frames": cfg["frames"], "fps": cfg["fps"],
+        rec = {"id": cid, "gpu": gpu, "seconds": round(secs, 1), "frames": frames_n, "fps": cfg["fps"],
                "size": cfg["size"], "steps": cfg["steps"], "bad_output": bad,
                "peak_vram_gb": round(torch.cuda.max_memory_allocated() / 2**30, 2)}
         print(f"[gpu{gpu}] {json.dumps(rec)}", flush=True)
@@ -125,8 +132,10 @@ def main():
     T0 = time.time()
     inp = find_input()
     spec = json.load(open(f"{inp}/jobs.json"))
+    if EXPECT_STAMP and spec.get("stamp") != EXPECT_STAMP:
+        raise SystemExit(f"stale dataset: jobs.json is {spec.get('stamp')}, expected {EXPECT_STAMP}")
     cfg = {"size": 704, "frames": 121, "fps": 24, "steps": 30, "guidance": 5.0, **spec.get("settings", {})}
-    cfg["deadline"] = T0 + 60 * cfg.get("max_minutes", 150)
+    cfg["deadline"] = T0 + 60 * cfg.get("max_minutes", 88)
     sh("nvidia-smi", check=False)
     sh("df", "-h", TMP, WORK, check=False)
     import torch
@@ -163,7 +172,7 @@ def main():
     results = []
     for f in glob.glob(f"{WORK}/results-gpu*.jsonl"):
         results += [json.loads(l) for l in open(f)]
-    summary = {"model": MID, "gpus": n_gpu, "gpu_name": torch.cuda.get_device_name(0), "settings": cfg,
+    summary = {"stamp": spec.get("stamp"), "model": MID, "gpus": n_gpu, "gpu_name": torch.cuda.get_device_name(0), "settings": cfg,
                "download_s": round(t_dl), "text_encoder_s": round(t_te), "session_s": round(time.time() - T0),
                "exit_codes": codes, "clips": sorted(results, key=lambda r: r["id"])}
     json.dump(summary, open(f"{WORK}/results.json", "w"), indent=2)

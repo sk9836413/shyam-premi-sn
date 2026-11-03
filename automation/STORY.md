@@ -83,6 +83,18 @@ Each scene:
   Write numbers as words.
 - `sub`: the same line in **Hinglish (Roman script)**, at most 120 characters.
 - `motion`: `in`, `out` or `pan`. Vary them.
+- **Evening only (animated Short):** the evening scenes become real 5-7 s animated clips (image-to-video
+  from the scene's image), so:
+  - `tts` of each non-end-card scene at most **60 characters** (about 5 s of speech), and the end card at most
+    110, so the whole evening narration stays within 330;
+  - `animate`: one English sentence of **gentle** motion that fits the image, e.g. "the diya flames flicker softly
+    and the camera slowly pushes in", "rose petals fall slowly through the warm light", "the devotee slowly moves the
+    aarti thali in a small circle". Small movements only: no running, no dancing, no fast camera, no new people;
+    nothing that changes a face;
+  - `deity: true` on every scene whose image shows a deity or murti (darshan scenes). Its `animate` must keep the
+    face still, e.g. "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently
+    pulses, a few petals drift in the foreground". An automatic check compares the face with the image and falls
+    back to the still image if it changes.
 
 Structure: scene 1 is the hook: start in the middle of the most dramatic moment or with a question
 (never "Aaj suniye…" or a greeting), then the story in order, then the moral or blessing,

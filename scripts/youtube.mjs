@@ -3,7 +3,7 @@
 //
 //   node scripts/youtube.mjs auth [--client <client_secret.json>]   one-time, on the PC (pick the Shyam Premi SN channel)
 //   node scripts/youtube.mjs check
-//   node scripts/youtube.mjs upload --video <mp4> --scenes story/today/scenes.json [--dry-run]
+//   node scripts/youtube.mjs upload --video <mp4> --scenes story/today/scenes.json [--publish-at 19:00] [--dry-run]
 //   node scripts/youtube.mjs upload --long --video <mp4> --scenes story/long/scenes.json --meta <out/slug.json>
 //        [--thumbnail <jpg>] [--publish-at 12:30]   regular video, chapters from --meta, scheduled at that IST time
 //
@@ -97,7 +97,7 @@ function metaFromScenes(file, metaFile) {
   return { title, description, tags };
 }
 
-// The long video is uploaded private with publishAt (today at the given IST time); when that time is under
+// The long video (and the evening Short, made early) is uploaded private with publishAt (today at the given IST time); when that time is under
 // 15 minutes away or already past, it is published straight away.
 function publishAt(hhmm) {
   if (!hhmm) return null;
@@ -216,7 +216,7 @@ async function main() {
     const long = args.includes('--long');
     if (long && !option('--meta')) throw new Error('--long needs --meta <out/slug.json> for the chapters');
     const meta = metaFromScenes(scenes, option('--meta'));
-    const opts = { long, publishAt: long ? publishAt(option('--publish-at')) : null };
+    const opts = { long, publishAt: publishAt(option('--publish-at')) };
     if (args.includes('--dry-run')) return { status: 'dry-run', ...meta, ...opts };
     let youtube;
     try {

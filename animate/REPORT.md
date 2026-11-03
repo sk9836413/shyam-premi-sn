@@ -1,7 +1,9 @@
 # Animated Shorts pilot (Kaggle free GPU)
 
-**Status (3 Nov 2026):** pilot ban gaya: `animate/pilot.mp4` (1080x1920, 33 s, 3 animated scenes + 1 zoompan
-fallback scene + end card). YouTube par upload NAHI kiya; owner pehle dekhenge.
+**Status (3 Nov 2026):** pilot approve ho gaya ("haan animated kar do"). Ab roz ka **shaam ka darshan Short animated**
+hai, poora cloud mein (GitHub Actions + Kaggle). Pilot: `animate/pilot.mp4` (1080x1920, 33 s).
+**Live hone ke liye bas ek kaam baaki:** owner repo secret `KAGGLE_API_TOKEN` set karein. Jab tak secret nahi hai,
+shaam ka Short purane tarike (FLUX still + zoompan) se banta rahega: post kabhi nahi rukegi.
 
 ## 1. Rukawat (hal ho gayi)
 - Pehle account phone-verified nahi tha, isliye GPU aur internet band the. Owner ne phone verify kiya, ab T4 x2 + internet chal raha hai.
@@ -56,9 +58,21 @@ Settings: 704x704, 121 frames @24 fps (5 s), 30 steps, guidance 5, weights fp8-s
 6. `node story/render-story.mjs animate/scenes.json`
 7. Output ko `animate/pilot.mp4` par copy karo. YouTube par upload nahi karna, pehle owner dekhega.
 
-## 7. daily.yml se jodna (agla kadam)
-1. Kaggle token ko GitHub secret banana owner ka faisla hai. Repo public hai, isliye token sirf secret mein rahe.
-2. Alag `animate.yml` banana jo pichhli raat ~21:00 IST par Kaggle job push kare, aur ek ghante baad clips fetch
-   karke media Worker par rakhe.
-3. daily.yml: clips mil gayi to scenes mein `video` jodo. Na milein to zoompan fallback chalega, post kabhi nahi rukegi.
-4. Quota guard: 10 h se kam GPU bache to animation skip karo.
+## 7. daily.yml mein kaise juda hai (3 Nov 2026 se)
+- **Timing:** scheduler Worker 10:43 IST par `slot=evening` dispatch karta hai (pehle 18:46/19:46). Animation ~66 min,
+  render, phir YouTube upload **private + publishAt 19:00 IST**: YouTube khud 19:00 baje public karega. 18:46 IST wala
+  dispatch retry hai: agar log.md mein aaj ka evening already hai to kuch nahi karta (double post nahi).
+- **Evening job:** Claude scenes likhta hai (evening scenes mein `animate` + `deity`, tts <= 60 akshar) -> FLUX images +
+  narration ki lambai (`render-story.mjs --prepare`) -> private dataset `sps-animate-inputs` ka naya version ->
+  private kernel `sps-animate-daily` (T4 x2, max 4 scenes, clip ki lambai scene jitni, 81-169 frames) -> 100 min tak
+  wait -> clips fetch -> automatic reject check -> render (animated + har scene ka zoompan fallback) -> upload.
+- **Fallback:** secret nahi, Kaggle fail/time out, ya hafte mein 10 GPU-hour se kam bache -> sab scenes zoompan.
+- **Automatic reject check** (`animate/check-clips.mjs`, run summary mein table):
+  - deity/murti scene: beech aur aakhri frame ke chehre (centre) ka SSIM pehle frame se; 0.6 se kam = reject.
+  - har clip: frame-difference spike (> 6x median = flicker/jump) aur nayi rang ki lakeer (start frame mein na ho
+    aisa hue > 0.2% pixels) = reject.
+  - Pilot par tune kiya: mandir, phool, murti pass (murti SSIM 0.82); aarti wali rainbow lakeer fail (0.73%);
+    ek nakli "chehra badla" clip bhi fail (SSIM 0.40).
+- **GPU kharcha:** ~66 min (~1.1 h) per shaam ka Short, yaani ~7.7 h/hafta. Kaggle 30 h/hafta; 10 h se kam bache to skip.
+- **Abhi bhi baaki:** Instagram/Facebook (Make) wala step evening Short ko turant (dopahar) bhejta hai, 19:00 ko nahi;
+  Make abhi chalu nahi hai, chalu karte waqt ise 19:00 par shift karna hoga.

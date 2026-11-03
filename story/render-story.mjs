@@ -130,12 +130,27 @@ const videoFor = (scene) => {
 const probeSeconds = (file) => Number(spawnSync(FFPROBE, ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', file], { encoding: 'utf8' }).stdout.trim());
 
 const durations = tts();
+const sceneSeconds = (i) => Math.max(2.6, durations[i] + 0.7);
+
+// --prepare: only make the FLUX images and measure each scene's length, for the image-to-video step
+// (animate/kaggle.mjs prepare --plan). Writes build/<slug>/plan.json; the full render runs later.
+if (process.argv.includes('--prepare')) {
+  const plan = { slug: spec.slug, scenes: [] };
+  for (const [i, scene] of spec.scenes.entries()) {
+    if (scene.endcard) continue;
+    plan.scenes.push({ i, image: await image(scene, i), seconds: Number(sceneSeconds(i).toFixed(2)) });
+  }
+  fs.writeFileSync(path.join(work, 'plan.json'), JSON.stringify(plan, null, 2));
+  console.log(JSON.stringify({ plan: path.join(work, 'plan.json'), scenes: plan.scenes.length }));
+  process.exit(0);
+}
+
 const clips = [];
 for (const [i, scene] of spec.scenes.entries()) {
   const vid = scene.endcard ? null : videoFor(scene);
   let animated = false;
   // Tight pacing keeps Shorts short (viewers who finish and replay are what YouTube rewards).
-  const seconds = Math.max(2.6, durations[i] + 0.7);
+  const seconds = sceneSeconds(i);
   const frames = Math.round(seconds * FPS);
   const subFile = path.join(work, `sub-${i}.txt`);
   const titleFile = path.join(work, 'title.txt');

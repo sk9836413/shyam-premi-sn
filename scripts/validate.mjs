@@ -157,6 +157,12 @@ scenes.forEach((sc, i) => {
     need(sc.prompt && sc.prompt.length >= 40, `${n}: prompt missing or too short`);
     need(!/\b(text|letters|writing|sign|caption|words|logo)\b/i.test((sc.prompt || '').replace(/no (text|letters|writing)/gi, '')), `${n}: prompt must not ask for text, signs or letters`);
     need(['in', 'out', 'pan'].includes(sc.motion), `${n}: motion must be in, out or pan`);
+    if (evening) {
+      // Evening scenes are animated (5-7 s image-to-video clips): short lines, and a motion description.
+      need(sc.tts && sc.tts.length <= 60, `${n}: evening tts over 60 characters (${sc.tts?.length}); the animated clip is ~5-7 s`);
+      need(typeof sc.animate === 'string' && sc.animate.length >= 20 && sc.animate.length <= 300, `${n}: evening scenes need "animate": one English sentence of gentle motion (20-300 characters)`);
+      need(sc.deity === undefined || typeof sc.deity === 'boolean', `${n}: deity must be true or false`);
+    }
   }
 });
 

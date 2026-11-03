@@ -3,6 +3,10 @@
 # Morning window 05:30-11:59 IST, evening window 17:30-22:59 IST. GitHub's schedule often fires hours
 # late, so it is polled every 30 minutes inside both windows; the first run in a window publishes and the
 # rest skip (slot already in automation/log.md). Runs outside a window do nothing, so nothing posts at night.
+# The evening darshan Short is animated (image-to-video on Kaggle's free GPU, ~66 min), so the scheduler Worker
+# dispatches slot=evening at 10:43 IST and YouTube publishes it at 19:00 IST (publishAt); 18:46 IST is the retry.
+# An explicit slot works at any hour. If Kaggle fails, times out or has under 10 GPU hours left this week, the
+# scenes fall back to FLUX stills + zoompan: the post is never skipped.
 name: Daily story video
 
 on:
@@ -19,8 +23,10 @@ on:
 permissions:
   contents: write
 
+# Evening runs have their own queue, so the long animated evening job can run beside the morning one; within a
+# slot, runs queue and the later one skips once the slot is in log.md. log.md and published.md merge as unions.
 concurrency:
-  group: daily-story
+  group: ${{ (inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story' }}
   cancel-in-progress: false
 
 jobs:
@@ -29,7 +35,7 @@ jobs:
     outputs:
       # The long video job runs after every morning-slot run (and for slot=long); it skips once done.
       long: ${{ steps.date.outputs.long }}
-    timeout-minutes: 60
+    timeout-minutes: 160
     env:
       FFMPEG_PATH: ffmpeg
       PYTHON: python
@@ -122,6 +128,31 @@ jobs:
           grep -q "^${{ steps.date.outputs.today }} | ${{ steps.date.outputs.slot }} |" automation/log.md || { echo "::error::log.md line missing"; exit 1; }
           echo "SLUG=$slug" >> "$GITHUB_ENV"
 
+      # Evening: up to 4 scenes become real 5-7 s clips (Wan 2.2 TI2V-5B on a private Kaggle kernel, T4 x2), then an
+      # automatic check rejects face drift, flicker and colour streaks. Any failure leaves the zoompan stills.
+      - name: Animate (Kaggle GPU)
+        id: anim
+        if: steps.date.outputs.done != 'true' && steps.date.outputs.slot == 'evening'
+        continue-on-error: true
+        timeout-minutes: 120
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+        run: |
+          fail() { echo "::warning::Animation skipped, using zoompan: $1"; echo "- Animation skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
+          pip install -q 'kaggle>=2.2' || fail "kaggle CLI install failed"
+          node animate/kaggle.mjs quota --min 10 > "$RUNNER_TEMP/quota.json" || fail "under 10 Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
+          node story/render-story.mjs story/today/scenes.json --prepare || fail "FLUX images / narration failed"
+          plan="story/today/build/$SLUG/plan.json"
+          node animate/kaggle.mjs prepare story/today/scenes.json --plan "$plan" --max 4 || fail "dataset upload failed"
+          node animate/kaggle.mjs push || fail "kernel push failed"
+          start=$(date +%s)
+          node animate/kaggle.mjs wait --minutes 100 || echo "::warning::Kaggle did not complete in time; using any clips it finished"
+          node animate/kaggle.mjs fetch --to story/today/clips > "$RUNNER_TEMP/fetch.json" || fail "could not download the clips"
+          echo "- Kaggle: $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min, quota before: $(cat "$RUNNER_TEMP/quota.json")" >> "$GITHUB_STEP_SUMMARY"
+          node animate/check-clips.mjs story/today/scenes.json --clips story/today/clips --plan "$plan" --summary "$GITHUB_STEP_SUMMARY"
+
       - name: Render
         if: steps.date.outputs.done != 'true'
         env:
@@ -136,7 +167,8 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-        run: node scripts/youtube.mjs upload --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json | tee "$RUNNER_TEMP/yt.json"
+        # The evening Short is made hours early, so YouTube publishes it at 19:00 IST (straight away if later).
+        run: node scripts/youtube.mjs upload --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || '' }} | tee "$RUNNER_TEMP/yt.json"
 
       - name: Instagram and Facebook (Make)
         id: make
@@ -154,8 +186,9 @@ jobs:
         run: |
           mkdir -p story/published
           cp story/today/scenes.json "story/published/$SLUG.json"
-          yt=$(node -p "try{JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')).youtube?.url||''}catch{''}")
-          echo "- $SLUG | youtube: ${yt:-failed} | make: $(node -p "try{JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/make.json','utf8')).status}catch{'failed'}")" >> automation/published.md
+          yt=$(node -p "try{const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')).youtube;y.url+(y.publishAt?' (public at '+y.publishAt+')':'')}catch{''}")
+          anim=$(node -p "const s=require('./story/today/scenes.json').scenes;const n=s.filter(x=>x.video).length;n?' | animated '+n+'/'+s.filter(x=>!x.endcard).length:''")
+          echo "- $SLUG | youtube: ${yt:-failed} | make: $(node -p "try{JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/make.json','utf8')).status}catch{'failed'}")$anim" >> automation/published.md
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/log.md automation/calendar.md automation/published.md "story/published/$SLUG.json"
