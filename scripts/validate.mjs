@@ -134,7 +134,7 @@ need(/no text/i.test(s.style || ''), 'style must include "no text"');
 
 const scenes = Array.isArray(s.scenes) ? s.scenes : [];
 const evening = /-evening-/.test(s.slug || '');
-const [minScenes, maxScenes, maxChars] = evening ? [3, 4, 200] : [5, 6, 420];
+const [minScenes, maxScenes, maxChars] = evening ? [4, 5, 330] : [6, 8, 620];
 need(scenes.length >= minScenes && scenes.length <= maxScenes, `${minScenes}-${maxScenes} scenes needed for this slot (has ${scenes.length})`);
 const totalTts = scenes.reduce((n, sc) => n + (sc.tts || '').length, 0);
 need(totalTts <= maxChars, `total narration ${totalTts} characters; keep it under ${maxChars} so the Short stays short`);

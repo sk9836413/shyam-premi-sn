@@ -25,17 +25,17 @@ Work out today's date in India (IST) and pick the subject in this order:
    place and one well-sourced fact, following that file's accuracy and **sati-temple rules**. People
    search for these temples by name, so put the temple name first in the title, in Roman and Devanagari.
 
-Do not repeat a story already listed in `automation/log.md` within the last 60 days.
+Do not repeat a story already listed in `automation/log.md` within the last 60 days. Before choosing, search log.md (Grep) for the story's key words, e.g. "sheesh", "barbarik", "sanjeevani", in both slugs and titles: on 3 Nov 2026 "Barbarik ka Sheesh Daan" repeated a 27 Oct Short because only the exact slug was checked.
 
 **Shorts algorithm (why videos are short now).** YouTube pushes a Short to more people only when viewers
 watch most of it and replay it. Our 65-90 s kathas got 8-35 views, while the channel's own 15-30 s clips
-got 100+. So: **morning kathas 35-45 s, evening darshan Shorts 15-25 s**, a hook in the first 2 seconds,
+got 100+. So: **morning kathas 50-60 s, evening darshan Shorts 25-35 s** (owner, 3 Nov 2026: "shorts bahut chote aa rhe h time badhao"), a hook in the first 2 seconds,
 one idea per scene, no slow build-up, and an ending that flows back into the start.
 
 **Slot.** The prompt tells you the slot. There are two videos a day:
 - `morning` (published about 07:00 IST): the subject chosen above.
-- `evening` (published about 19:00 IST): a **darshan Short** of 15-25 s, usually Khatu Shyam ji:
-  3-4 scenes (a darshan image, one line of bhav or a short fact/leela, the mantra or jaikara, end card),
+- `evening` (published about 19:00 IST): a **darshan Short** of 25-35 s, usually Khatu Shyam ji:
+  4-5 scenes (a darshan image, one line of bhav or a short fact/leela, the mantra or jaikara, end card),
   calm and beautiful rather than a full story. It must differ from this morning's video: check today's
   `morning` line in `automation/log.md`. On a big festival day both slots may cover the festival.
 
@@ -62,7 +62,7 @@ one idea per scene, no slow build-up, and an ending that flows back into the sta
   "signoff": "Jai Shree Shyam",
   "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
   "hook": "<Hinglish, max 38 characters, shown big on screen for the first 2.5 s, e.g. Barbarik ne sheesh kyun diya?>",
-  "scenes": [ ... morning 5-6 scenes, evening 3-4 scenes ... ],
+  "scenes": [ ... morning 6-8 scenes, evening 4-5 scenes ... ],
   "youtube_title": "...",
   "youtube_description": "...",
   "youtube_tags": "...",
@@ -77,7 +77,7 @@ Each scene:
   Describe deities in their traditional iconography (colour, weapons, vahan, ornaments). Never ask
   for text, signs or letters. Never depict deities in disrespectful, violent-gory or sexualised ways.
 - `tts`: the narration line in **Hindi Devanagari**, one short sentence, at most 110 characters.
-  Total narration (all scenes) at most 420 characters in the morning and 200 in the evening.
+  Total narration (all scenes) at most 620 characters in the morning and 330 in the evening.
   Write numbers as words.
 - `sub`: the same line in **Hinglish (Roman script)**, at most 120 characters.
 - `motion`: `in`, `out` or `pan`. Vary them.
