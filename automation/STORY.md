@@ -20,10 +20,12 @@ Work out today's date in India (IST) and pick the subject in this order:
    Hanuman ji, Sunday Surya dev. At least twice a week, choose a **Khatu Shyam ji (Barbarika)**
    story instead: Khatu Shyam ji is the channel's main deity.
 
-3. **Famous temples (Mandir series).** Twice a week, when there is no festival, make the `evening`
+3. **Famous temples (Mandir series).** On 4 days a week, when there is no festival, make the `evening`
    darshan Short about a temple from `automation/mandir-series.md` instead of Khatu Shyam ji: its name,
    place and one well-sourced fact, following that file's accuracy and **sati-temple rules**. People
    search for these temples by name, so put the temple name first in the title, in Roman and Devanagari.
+
+**Growth data (3 Nov 2026):** the first temple Short (Salasar Balaji Dham) got 123 views and 19 likes overnight, the channel's best in weeks, and short darshan clips beat long kathas. Favour temple and darshan Shorts, and use **festival weeks** (Dhanteras, Diwali, Govardhan, Bhai Dooj, Dev Uthani Ekadashi = Khatu Shyam Janmotsav) with the festival name first in the title, because search volume peaks then. The owner's goal is mass subscribers: end every Short with a clear subscribe ask tied to the next video ("kal [temple/katha] dekhne ke liye subscribe karein").
 
 Do not repeat a story already listed in `automation/log.md` within the last 60 days. Before choosing, search log.md (Grep) for the story's key words, e.g. "sheesh", "barbarik", "sanjeevani", in both slugs and titles: on 3 Nov 2026 "Barbarik ka Sheesh Daan" repeated a 27 Oct Short because only the exact slug was checked.
 
