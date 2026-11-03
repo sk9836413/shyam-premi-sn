@@ -125,7 +125,7 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
 
 // ---- Shorts -------------------------------------------------------------------------------------
 
-need(/^\d{4}-\d{2}-\d{2}-(morning|evening)-[a-z0-9-]+$/.test(s.slug || ''), 'slug must be <yyyy-mm-dd>-<morning|evening>-<lowercase-english-slug>');
+need(/^\d{4}-\d{2}-\d{2}-(morning|evening|noon)-[a-z0-9-]+$/.test(s.slug || ''), 'slug must be <yyyy-mm-dd>-<morning|evening|noon>-<lowercase-english-slug>');
 need(s.title && s.title.length <= 45, `title must be 1-45 characters (is ${s.title?.length ?? 0})`);
 need(s.kicker && s.kicker.length <= 22, `kicker must be 1-22 characters (is ${s.kicker?.length ?? 0})`);
 need(['hm_omega', 'hf_alpha'].includes(s.voice), 'voice must be hm_omega or hf_alpha');
@@ -133,7 +133,7 @@ need(PLAYLISTS.includes(s.playlist), `playlist must be one of: ${PLAYLISTS.join(
 need(/no text/i.test(s.style || ''), 'style must include "no text"');
 
 const scenes = Array.isArray(s.scenes) ? s.scenes : [];
-const evening = /-evening-/.test(s.slug || '');
+const evening = /-(evening|noon)-/.test(s.slug || ''); // noon = an extra animated darshan Short, same rules
 const [minScenes, maxScenes, maxChars] = evening ? [4, 5, 330] : [6, 8, 620];
 need(scenes.length >= minScenes && scenes.length <= maxScenes, `${minScenes}-${maxScenes} scenes needed for this slot (has ${scenes.length})`);
 const totalTts = scenes.reduce((n, sc) => n + (sc.tts || '').length, 0);

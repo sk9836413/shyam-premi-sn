@@ -40,6 +40,10 @@ one idea per scene, no slow build-up, and an ending that flows back into the sta
   4-5 scenes (a darshan image, one line of bhav or a short fact/leela, the mantra or jaikara, end card),
   calm and beautiful rather than a full story. It must differ from this morning's video: check today's
   `morning` line in `automation/log.md`. On a big festival day both slots may cover the festival.
+- `noon` (an extra Short, only when dispatched; published as soon as it is ready): exactly like `evening`
+  (animated darshan, same length and rules, slug `<date>-noon-…`), but it must differ from today's `morning`
+  and `evening` lines in `automation/log.md`. Prefer the next temple in `automation/mandir-series.md` that has
+  not had a Short yet.
 
 ## 2. Research the story
 

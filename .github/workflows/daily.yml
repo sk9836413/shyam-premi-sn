@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning, evening or long (empty = by time of day; long = only the long video)
+        description: morning, evening, noon or long (empty = by time of day; long = only the long video; noon = an extra animated darshan Short, published straight away)
         required: false
         default: ''
 
@@ -26,7 +26,7 @@ permissions:
 # Evening runs have their own queue, so the long animated evening job can run beside the morning one; within a
 # slot, runs queue and the later one skips once the slot is in log.md. log.md and published.md merge as unions.
 concurrency:
-  group: ${{ (inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story' }}
+  group: ${{ inputs.slot == 'noon' && 'daily-story-noon' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
   cancel-in-progress: false
 
 jobs:
@@ -132,7 +132,7 @@ jobs:
       # automatic check rejects face drift, flicker and colour streaks. Any failure leaves the zoompan stills.
       - name: Animate (Kaggle GPU)
         id: anim
-        if: steps.date.outputs.done != 'true' && steps.date.outputs.slot == 'evening'
+        if: steps.date.outputs.done != 'true' && (steps.date.outputs.slot == 'evening' || steps.date.outputs.slot == 'noon')
         continue-on-error: true
         timeout-minutes: 120
         env:
