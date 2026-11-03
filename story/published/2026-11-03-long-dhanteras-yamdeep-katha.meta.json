@@ -1,0 +1,39 @@
+{
+  "slug": "2026-11-03-long-dhanteras-yamdeep-katha",
+  "seconds": 320.3,
+  "scenes": 46,
+  "chapters": [
+    {
+      "title": "Chauthi Raat ka Sach",
+      "start": 0
+    },
+    {
+      "title": "Raja Hima ka Putra",
+      "start": 24.7
+    },
+    {
+      "title": "Rajkumari ki Soojh-Boojh",
+      "start": 76.6
+    },
+    {
+      "title": "Yamraj ka Aagman",
+      "start": 137.93
+    },
+    {
+      "title": "Yamdeep Daan ki Parampara",
+      "start": 193.23
+    },
+    {
+      "title": "Dhanvantari ka Prakat Hona",
+      "start": 236.57
+    },
+    {
+      "title": "Sandesh aur Aashirwad",
+      "start": 285.97
+    }
+  ],
+  "images": 13,
+  "images_generated": 13,
+  "neurons": 1248,
+  "render_seconds": 347
+}

@@ -18,3 +18,4 @@
 2026-11-02 | long | 2026-11-02-long-rama-ekadashi-katha | Bhagwan Vishnu (Rama Ekadashi) | Raja Muchukunda, Chandrabhaga aur Shobhan ki Rama Ekadashi vrat katha, Mandarachal ka nagar aur punya ka daan
 2026-11-02 | evening | 2026-11-02-evening-salasar-balaji-darshan | Salasar Balaji Dham (Mandir series, Hanuman ji) | Churu ka Salasar Balaji, anokha roop, Asota ki murti ka Salasar aana (manyata)
 2026-11-03 | morning | 2026-11-03-morning-khatu-shyam-sheesh-daan | Khatu Shyam ji (Mangalvar) | Barbarik ke teen baan, maa ko haare ka saath dene ka vachan, Krishna ko sheesh daan aur Shyam naam ka vardaan
+2026-11-03 | long | 2026-11-03-long-dhanteras-yamdeep-katha | Bhagwan Dhanvantari / Yamraj (Dhanteras) | Dhanteras ki katha: Raja Hima ke putra ki chauthi raat, rajkumari ke deepak, Yamdeep daan, aur Samudra Manthan se Dhanvantari ka prakat hona

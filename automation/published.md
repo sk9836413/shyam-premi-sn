@@ -15,3 +15,4 @@
 - 2026-11-02-long-rama-ekadashi-katha | youtube: https://youtu.be/LQm_boGloEo | long 5:19, 42 scenes, render 8 min, 1344 neurons
 - 2026-11-02-evening-salasar-balaji-darshan | youtube: https://youtube.com/shorts/Objay7u6zbU | make: hosted-only
 - 2026-11-03-morning-khatu-shyam-sheesh-daan | youtube: https://youtube.com/shorts/sOo3_ZTnvxI | make: hosted-only
+- 2026-11-03-long-dhanteras-yamdeep-katha | youtube: https://youtu.be/EE2L9_kBty8 (public at 12:30 IST) | long 5:20, 46 scenes, render 6 min, 1248 neurons

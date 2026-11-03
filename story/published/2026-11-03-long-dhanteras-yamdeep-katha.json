@@ -1,0 +1,116 @@
+{
+  "slug": "2026-11-03-long-dhanteras-yamdeep-katha",
+  "format": "long",
+  "title": "Dhanteras ki Katha: Yamdeep aur Dhanvantari",
+  "kicker": "Dhanteras · 6 November",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Chauthi raat, Yamraj aur ek deepak",
+  "source": "Lok katha (Raja Hima ki katha) aur Puranon ke anusar",
+  "deity": "Bhagwan Dhanvantari / Yamraj (Dhanteras)",
+  "summary": "Dhanteras ki katha: Raja Hima ke putra ki chauthi raat, rajkumari ke deepak, Yamdeep daan, aur Samudra Manthan se Dhanvantari ka prakat hona",
+  "thumbnail": { "image": 6, "focus": "center", "text": "Yamraj ko lautna kyun pada?" },
+  "images": [
+    { "prompt": "Wide cinematic scene of an Indian palace courtyard at dusk on Dhanteras evening, hundreds of glowing oil lamps arranged in rows along steps and doorways, warm golden glow, festive marigold garlands, peaceful night sky, devotional mood, main glow in the middle band" },
+    { "prompt": "Wide cinematic scene inside an ancient Indian royal palace hall, a kind king and queen holding a newborn prince, a wise old royal astrologer with palm-leaf scrolls looking worried beside them, warm lamp light, rich fabrics, emotional mood, subjects in the middle band" },
+    { "prompt": "Wide cinematic scene of a handsome sixteen year old Indian prince in royal clothes and crown, standing in a palace garden with his anxious but loving parents the king and queen nearby, soft evening light, gentle sad emotion, subjects in the middle band" },
+    { "prompt": "Wide cinematic scene of a traditional Indian royal wedding, young prince and young princess exchanging flower garlands in a beautifully decorated mandap with marigold flowers, family smiling, warm golden light, joyful mood, couple in the middle band" },
+    { "prompt": "Wide cinematic scene of a determined young Indian bride in a red and gold saree placing a high heap of shining gold ornaments and silver coins at the doorway of a palace bedchamber, many small oil lamps glowing around her, warm light, brave and calm expression, subject in the middle band" },
+    { "prompt": "Wide cinematic scene inside a palace bedchamber lit by hundreds of oil lamps in every corner, a young princess sitting beside her husband the prince, singing softly and telling stories, the room bright like golden daylight, peaceful devotional mood, couple in the middle band" },
+    { "prompt": "Wide cinematic scene of Yamraj the god of dharma and death at a palace chamber doorway at midnight, dark blue-skinned, wearing a golden crown and dark red robes, holding a mace, a mighty black buffalo behind him, shielding his eyes from the dazzling golden lamp light, dramatic but respectful, figure in the middle band" },
+    { "prompt": "Wide cinematic scene of a shining dark serpent resting on a glittering heap of gold coins and ornaments at a palace doorway, dazzled and calm, hundreds of oil lamps glowing, a princess singing softly in the background, warm golden glow, mystical mood, subject in the middle band" },
+    { "prompt": "Wide cinematic scene of sunrise over an Indian palace, a happy young prince and princess standing together at the palace window in golden dawn light, the king and queen joyfully blessing them, soft pink and golden sky, relief and happiness, subjects in the middle band" },
+    { "prompt": "Wide cinematic scene of an Indian family lighting a single clay oil lamp on the doorstep outside their home in the evening facing south, rangoli on the ground, soft glowing twilight, mother, father and children praying with folded hands, calm devotional mood, family in the middle band" },
+    { "prompt": "Wide cinematic scene of Samudra Manthan, the churning of the cosmic ocean, devas and asuras pulling the great serpent Vasuki wrapped around Mandara mountain, Lord Vishnu as a giant tortoise supporting the mountain beneath the waves, golden waves and rising mist, epic mood, main action in the middle band" },
+    { "prompt": "Wide cinematic scene of Lord Dhanvantari rising from the milky ocean, calm radiant divine physician with four arms holding a conch, a discus, a medicinal herb pouch and a golden pot of amrit, yellow dhoti, gentle smile, soft divine light, the ocean glowing behind him, figure in the middle band" },
+    { "prompt": "Wide cinematic scene of a Dhanteras puja in an Indian home, a decorated altar with Lord Dhanvantari, Maa Lakshmi seated on a lotus, Kuber ji and Ganesh ji, shining brass utensils, a kalash, marigold flowers and many glowing oil lamps, family praying together, warm festive mood, altar in the middle band" }
+  ],
+  "chapters": [
+    {
+      "title": "Chauthi Raat ka Sach",
+      "scenes": [
+        { "img": 6, "focus": "center", "motion": "in", "tts": "सोलह साल का राजकुमार, और विवाह के चौथे दिन साँप के डंसने का भय… उस रात क्या हुआ?", "sub": "Solah saal ka rajkumar, aur vivah ke chauthe din saanp ke dansne ka bhay… us raat kya hua?" },
+        { "img": 7, "focus": "center", "motion": "out", "tts": "एक पत्नी की सूझ-बूझ, कुछ दीपक, और यमराज का वापस लौट जाना… यही है धनतेरस की कथा।", "sub": "Ek patni ki soojh-boojh, kuch deepak, aur Yamraj ka waapas laut jaana… yahi hai Dhanteras ki katha." },
+        { "img": 0, "focus": "center", "motion": "pan", "tts": "इस कथा में जानिए, धनतेरस पर दीपक क्यों जलाते हैं, और भगवान धन्वंतरि कैसे प्रकट हुए।", "sub": "Is katha mein jaaniye, Dhanteras par deepak kyon jalate hain, aur Bhagwan Dhanvantari kaise prakat hue." }
+      ]
+    },
+    {
+      "title": "Raja Hima ka Putra",
+      "scenes": [
+        { "img": 1, "focus": "center", "motion": "in", "tts": "लोक कथा के अनुसार, बहुत पहले राजा हिम के घर एक सुंदर पुत्र का जन्म हुआ।", "sub": "Lok katha ke anusar, bahut pehle Raja Hima ke ghar ek sundar putra ka janm hua." },
+        { "img": 1, "focus": "top", "motion": "pan", "tts": "राजमहल में खुशियाँ मनीं। फिर राज-ज्योतिषी ने कुंडली देखी, और उनके माथे पर चिंता उभर आई।", "sub": "Rajmahal mein khushiyan manin. Phir raj-jyotishi ne kundli dekhi, aur unke maathe par chinta ubhar aayi." },
+        { "img": 1, "focus": "bottom", "motion": "out", "tts": "उन्होंने बताया, विवाह के चौथे दिन साँप के काटने से राजकुमार की मृत्यु का योग है।", "sub": "Unhone bataya, vivah ke chauthe din saanp ke kaatne se rajkumar ki mrityu ka yog hai." },
+        { "img": 2, "focus": "center", "motion": "in", "tts": "यह सुनकर राजा और रानी का हृदय काँप उठा। वे बस अपने पुत्र के लिए प्रार्थना करते रहे।", "sub": "Yeh sunkar raja aur rani ka hriday kaanp utha. Ve bas apne putra ke liye prarthana karte rahe." },
+        { "img": 2, "focus": "top", "motion": "panl", "tts": "समय बीतता गया, और राजकुमार सोलह वर्ष का सुंदर, गुणवान युवक बन गया।", "sub": "Samay beetta gaya, aur rajkumar solah varsh ka sundar, gunwaan yuvak ban gaya." },
+        { "img": 2, "focus": "bottom", "motion": "out", "tts": "राजा का मन भारी था, फिर भी उन्होंने एक सुयोग्य राजकन्या से उसका विवाह तय किया।", "sub": "Raja ka man bhaari tha, phir bhi unhone ek suyogya rajkanya se uska vivah tay kiya." },
+        { "img": 3, "focus": "center", "motion": "pan", "tts": "लेकिन विवाह के बाद की वह चौथी रात बहुत भारी थी। आगे देखिए, राजकुमारी ने क्या किया।", "sub": "Lekin vivah ke baad ki woh chauthi raat bahut bhaari thi. Aage dekhiye, rajkumari ne kya kiya.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Rajkumari ki Soojh-Boojh",
+      "scenes": [
+        { "img": 3, "focus": "top", "motion": "in", "tts": "धूमधाम से विवाह हुआ। कहा जाता है कि नई रानी को इस भविष्यवाणी का पता चल गया था।", "sub": "Dhoomdhaam se vivah hua. Kaha jaata hai ki nayi rani ko is bhavishyavani ka pata chal gaya tha." },
+        { "img": 3, "focus": "bottom", "motion": "out", "tts": "वह घबराई नहीं। उसने मन ही मन ठान लिया कि अपने पति को इस संकट से बचाएगी।", "sub": "Woh ghabrai nahin. Usne man hi man thaan liya ki apne pati ko is sankat se bachayegi." },
+        { "img": 4, "focus": "center", "motion": "in", "tts": "चौथे दिन की रात आई। राजकुमारी ने अपने सारे गहने और सोने-चाँदी के सिक्के निकाले।", "sub": "Chauthe din ki raat aayi. Rajkumari ne apne saare gehne aur sone-chaandi ke sikke nikale." },
+        { "img": 4, "focus": "bottom", "motion": "pan", "tts": "उनका एक ऊँचा ढेर बनाकर उसने शयनकक्ष के द्वार पर रख दिया।", "sub": "Unka ek ooncha dher banakar usne shayankaksh ke dwaar par rakh diya." },
+        { "img": 5, "focus": "center", "motion": "in", "tts": "फिर उसने कक्ष के हर कोने में, हर ओर, ढेर सारे दीपक जला दिए।", "sub": "Phir usne kaksh ke har kone mein, har or, dher saare deepak jala diye." },
+        { "img": 5, "focus": "bottom", "motion": "panl", "tts": "इतनी रोशनी हुई कि पूरा कक्ष जगमगा उठा, और अँधेरे का कोई कोना नहीं बचा।", "sub": "Itni roshni hui ki poora kaksh jagmaga utha, aur andhere ka koi kona nahin bacha." },
+        { "img": 5, "focus": "top", "motion": "out", "tts": "उसने पति को सोने नहीं दिया। कभी मधुर गीत गाए, और कभी कहानियाँ सुनाईं।", "sub": "Usne pati ko sone nahin diya. Kabhi madhur geet gaye, aur kabhi kahaniyan sunayin." },
+        { "img": 2, "focus": "center", "motion": "pan", "tts": "राजकुमार जागता रहा, और रात धीरे-धीरे गहरी होती गई।", "sub": "Rajkumar jaagta raha, aur raat dheere-dheere gehri hoti gayi." },
+        { "img": 6, "focus": "bottom", "motion": "in", "tts": "तभी आधी रात के सन्नाटे में द्वार पर कोई आया… आगे देखिए, कौन था वह।", "sub": "Tabhi aadhi raat ke sannate mein dwaar par koi aaya… aage dekhiye, kaun tha woh.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Yamraj ka Aagman",
+      "scenes": [
+        { "img": 6, "focus": "center", "motion": "pan", "tts": "कथा के अनुसार, स्वयं यमराज साँप का रूप लेकर राजकुमार के प्राण लेने आए थे।", "sub": "Katha ke anusar, swayam Yamraj saanp ka roop lekar rajkumar ke praan lene aaye the." },
+        { "img": 6, "focus": "top", "motion": "out", "tts": "यमराज, जिनका वाहन भैंसा है और जो धर्मराज भी कहलाते हैं, द्वार पर पहुँचे।", "sub": "Yamraj, jinka vaahan bhainsa hai aur jo Dharmaraj bhi kehlate hain, dwaar par pahunche." },
+        { "img": 7, "focus": "center", "motion": "in", "tts": "पर दीपकों की तेज़ चमक से उनकी आँखें चौंधिया गईं।", "sub": "Par deepakon ki tez chamak se unki aankhen chaundhiya gayin." },
+        { "img": 7, "focus": "top", "motion": "pan", "tts": "वे भीतर नहीं जा पाए। फिर वे सोने-चाँदी के उसी ढेर पर जाकर बैठ गए।", "sub": "Ve bheetar nahin ja paaye. Phir ve sone-chaandi ke usi dher par jaakar baith gaye." },
+        { "img": 7, "focus": "bottom", "motion": "panl", "tts": "वहाँ बैठे-बैठे उन्होंने राजकुमारी के मधुर गीत और कहानियाँ सुनीं।", "sub": "Wahan baithe-baithe unhone rajkumari ke madhur geet aur kahaniyan sunin." },
+        { "img": 5, "focus": "top", "motion": "in", "tts": "गीत सुनते-सुनते रात बीतती गई, और यमराज वहीं ठहरे रहे।", "sub": "Geet sunte-sunte raat beetti gayi, aur Yamraj wahin thehre rahe." },
+        { "img": 4, "focus": "top", "motion": "pan", "tts": "राजकुमारी की सूझ-बूझ के आगे यमराज का वश नहीं चला।", "sub": "Rajkumari ki soojh-boojh ke aage Yamraj ka vash nahin chala." },
+        { "img": 8, "focus": "center", "motion": "in", "tts": "सुबह होते ही यमराज चुपचाप वहाँ से लौट गए, और राजकुमार के प्राण बच गए।", "sub": "Subah hote hi Yamraj chupchaap wahan se laut gaye, aur rajkumar ke praan bach gaye." },
+        { "img": 8, "focus": "top", "motion": "out", "tts": "उसी रात से जुड़ी एक परंपरा आज भी निभाई जाती है… आगे जानिए, वह क्या है।", "sub": "Usi raat se judi ek parampara aaj bhi nibhayi jaati hai… aage jaaniye, woh kya hai.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Yamdeep Daan ki Parampara",
+      "scenes": [
+        { "img": 8, "focus": "bottom", "motion": "pan", "tts": "सुबह जब राजकुमार को जीवित देखा, तो पूरा महल खुशी से भर उठा।", "sub": "Subah jab rajkumar ko jeevit dekha, to poora mahal khushi se bhar utha." },
+        { "img": 8, "focus": "center", "motion": "panl", "tts": "राजा और रानी ने बहू को आशीर्वाद दिया, जिसकी समझदारी से उनके पुत्र को नया जीवन मिला।", "sub": "Raja aur rani ne bahu ko aashirwad diya, jiski samajhdari se unke putra ko naya jeevan mila." },
+        { "img": 9, "focus": "center", "motion": "in", "tts": "मान्यता है कि तभी से धनतेरस की संध्या को यमराज के नाम का दीपक जलाने की परंपरा चली।", "sub": "Manyata hai ki tabhi se Dhanteras ki sandhya ko Yamraj ke naam ka deepak jalane ki parampara chali." },
+        { "img": 9, "focus": "top", "motion": "pan", "tts": "इसे यमदीप दान कहते हैं। घर के बाहर दक्षिण दिशा की ओर दीपक रखा जाता है।", "sub": "Ise Yamdeep daan kehte hain. Ghar ke bahar dakshin disha ki or deepak rakha jaata hai." },
+        { "img": 9, "focus": "bottom", "motion": "out", "tts": "लोग इस दीपक के साथ अपने परिवार की लंबी आयु और सुरक्षा की प्रार्थना करते हैं।", "sub": "Log is deepak ke saath apne parivar ki lambi aayu aur suraksha ki prarthana karte hain." },
+        { "img": 10, "focus": "center", "motion": "in", "tts": "पर धनतेरस की एक और कथा है, जो समुद्र मंथन से जुड़ी है… आगे देखिए।", "sub": "Par Dhanteras ki ek aur katha hai, jo Samudra Manthan se judi hai… aage dekhiye.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Dhanvantari ka Prakat Hona",
+      "scenes": [
+        { "img": 10, "focus": "top", "motion": "pan", "tts": "पुराणों के अनुसार, देवताओं और असुरों ने मिलकर क्षीरसागर का मंथन किया।", "sub": "Puranon ke anusar, devtaon aur asuron ne milkar Kshirsagar ka manthan kiya." },
+        { "img": 10, "focus": "bottom", "motion": "out", "tts": "मंदराचल पर्वत मथानी बना, और नागराज वासुकि रस्सी बने।", "sub": "Mandarachal parvat mathani bana, aur Nagraj Vasuki rassi bane." },
+        { "img": 10, "focus": "center", "motion": "panl", "tts": "मंथन से एक के बाद एक चौदह रत्न निकले।", "sub": "Manthan se ek ke baad ek chaudah ratna nikle." },
+        { "img": 11, "focus": "center", "motion": "in", "tts": "इन्हीं में हाथ में अमृत कलश लिए भगवान धन्वंतरि प्रकट हुए।", "sub": "Inhin mein haath mein amrit kalash liye Bhagwan Dhanvantari prakat hue." },
+        { "img": 11, "focus": "top", "motion": "out", "tts": "धन्वंतरि जी को भगवान विष्णु का अंश और आयुर्वेद का देवता माना जाता है।", "sub": "Dhanvantari ji ko Bhagwan Vishnu ka ansh aur Ayurved ka devta maana jaata hai." },
+        { "img": 11, "focus": "bottom", "motion": "pan", "tts": "मान्यता है कि वह कार्तिक कृष्ण त्रयोदशी का दिन था, जिसे हम धनतेरस कहते हैं।", "sub": "Manyata hai ki woh Kartik Krishna Trayodashi ka din tha, jise hum Dhanteras kehte hain." },
+        { "img": 12, "focus": "center", "motion": "in", "tts": "इसीलिए इस दिन धन्वंतरि जी की पूजा होती है, और स्वास्थ्य को सबसे बड़ा धन माना जाता है।", "sub": "Isiliye is din Dhanvantari ji ki puja hoti hai, aur swasthya ko sabse bada dhan maana jaata hai." },
+        { "img": 12, "focus": "bottom", "motion": "panl", "tts": "साथ ही लोग माँ लक्ष्मी और कुबेर जी का पूजन करते हैं, और घर में नए बर्तन या कोई शुभ वस्तु लाते हैं।", "sub": "Saath hi log Maa Lakshmi aur Kuber ji ka poojan karte hain, aur ghar mein naye bartan ya koi shubh vastu laate hain." }
+      ]
+    },
+    {
+      "title": "Sandesh aur Aashirwad",
+      "scenes": [
+        { "img": 0, "focus": "center", "motion": "out", "tts": "इस कथा का संदेश है कि श्रद्धा, सूझ-बूझ और धैर्य से हर संकट का सामना किया जा सकता है।", "sub": "Is katha ka sandesh hai ki shraddha, soojh-boojh aur dhairya se har sankat ka saamna kiya ja sakta hai." },
+        { "img": 12, "focus": "top", "motion": "pan", "tts": "धनतेरस पर दीपक जलाइए, परिवार के साथ बैठिए, और अपने स्वास्थ्य तथा सबके सुख की प्रार्थना कीजिए।", "sub": "Dhanteras par deepak jalaiye, parivar ke saath baithiye, aur apne swasthya tatha sabke sukh ki prarthana kijiye." },
+        { "img": 9, "focus": "center", "motion": "pan", "tts": "ॐ धन्वंतरये नमः। भगवान धन्वंतरि और माँ लक्ष्मी का आशीर्वाद आप सब पर बना रहे।", "sub": "Om Dhanvantaraye Namah. Bhagwan Dhanvantari aur Maa Lakshmi ka aashirwad aap sab par bana rahe." },
+        { "endcard": true, "tts": "जय श्री श्याम! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।", "sub": "Jai Shree Shyam! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN" }
+      ]
+    }
+  ],
+  "youtube_title": "Dhanteras ki Katha: Yamdeep aur Dhanvantari | धनतेरस की कथा | Sampoorn Katha",
+  "youtube_description": "Dhanteras ki sampoorn katha: Raja Hima ke putra ki chauthi raat, rajkumari ke deepak aur Yamdeep daan ki parampara.\nIs video mein Samudra Manthan se Bhagwan Dhanvantari ke prakat hone ki katha bhi hai.\nYe katha Lok katha (Raja Hima ki katha) aur Puranon ke anusar hai. Kuch kathaon mein vivaran alag ho sakte hain.\nChitra AI dwara banaye gaye hain (sanketik).\nधनतेरस की कथा: यमदीप दान और भगवान धन्वंतरि का प्राकट्य।\nॐ धन्वंतरये नमः\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein, Shyam Premi SN.\n#Dhanteras #DhanterasKatha #Dhanvantari #JaiShreeShyam",
+  "youtube_tags": "Dhanteras ki katha, धनतेरस की कथा, Dhanteras story, Yamdeep daan, यमदीप दान, Dhanvantari katha, धन्वंतरि जी की कथा, Raja Hima ki katha, राजा हिम की कथा, Dhanteras 2026, धनतेरस 2026, Shyam Premi SN"
+}
