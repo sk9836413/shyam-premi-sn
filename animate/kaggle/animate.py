@@ -69,21 +69,15 @@ def worker(gpu, ids, inp, cfg):
     emb = torch.load(f"{TMP}/emb.pt")
     t0 = time.time()
     tr = WanTransformer3DModel.from_pretrained(MID, subfolder="transformer", torch_dtype=torch.float16)
+    if cfg.get("fp8", True):
+        # 5B weights in fp16 (10 GB) + activations do not fit a 15 GB T4: store weights as fp8 (5 GB) and
+        # compute each layer in fp16. Norms and embeddings stay fp16 (diffusers' default skip list).
+        tr.enable_layerwise_casting(storage_dtype=torch.float8_e4m3fn, compute_dtype=torch.float16)
     vae = AutoencoderKLWan.from_pretrained(MID, subfolder="vae", torch_dtype=torch.float32)
     pipe = WanImageToVideoPipeline.from_pretrained(MID, transformer=tr, vae=vae, text_encoder=None,
                                                    image_encoder=None, image_processor=None, torch_dtype=torch.float16)
     pipe.vae.enable_tiling()
-
-    def offload():
-        pipe.to("cpu")
-        torch.cuda.empty_cache()
-        pipe.enable_model_cpu_offload()
-        print(f"[gpu{gpu}] out of VRAM: using model CPU offload", flush=True)
-
-    try:
-        pipe.to("cuda")
-    except torch.cuda.OutOfMemoryError:
-        offload()
+    pipe.enable_model_cpu_offload()  # the VAE leaves the GPU while denoising, the transformer while decoding
     open(f"{TMP}/ready-{gpu}", "w").write(str(time.time() - t0))
     print(f"[gpu{gpu}] loaded in {time.time() - t0:.0f}s", flush=True)
     os.makedirs(f"{WORK}/clips", exist_ok=True)
@@ -93,18 +87,18 @@ def worker(gpu, ids, inp, cfg):
             print(f"[gpu{gpu}] deadline reached, skipping {cid}", flush=True)
             continue
         img = load_image(f"{inp}/{j['image']}").convert("RGB").resize((cfg["size"], cfg["size"]))
+        torch.cuda.reset_peak_memory_stats()
         torch.cuda.synchronize(); s = time.time()
-        call = lambda: pipe(image=img, prompt_embeds=emb[cid]["pos"].to("cuda", torch.float16),
-                      negative_prompt_embeds=emb[cid]["neg"].to("cuda", torch.float16),
-                      height=cfg["size"], width=cfg["size"], num_frames=cfg["frames"],
-                      num_inference_steps=cfg["steps"], guidance_scale=cfg["guidance"],
-                      generator=torch.Generator("cuda").manual_seed(j.get("seed", 42)), output_type="np").frames[0]
         try:
-            frames = call()
-        except torch.cuda.OutOfMemoryError:
-            offload()
-            torch.cuda.synchronize(); s = time.time()
-            frames = call()
+            frames = pipe(image=img, prompt_embeds=emb[cid]["pos"].to("cuda", torch.float16),
+                          negative_prompt_embeds=emb[cid]["neg"].to("cuda", torch.float16),
+                          height=cfg["size"], width=cfg["size"], num_frames=cfg["frames"],
+                          num_inference_steps=cfg["steps"], guidance_scale=cfg["guidance"],
+                          generator=torch.Generator("cuda").manual_seed(j.get("seed", 42)), output_type="np").frames[0]
+        except Exception as e:  # one failed clip must not lose the others
+            print(f"[gpu{gpu}] clip {cid} failed: {type(e).__name__}: {str(e)[:300]}", flush=True)
+            torch.cuda.empty_cache()
+            continue
         torch.cuda.synchronize(); secs = time.time() - s
         bad = bool(np.isnan(frames).any() or frames.max() < 0.02)
         export_to_video(list(np.nan_to_num(frames)), f"{WORK}/clips/{cid}.mp4", fps=cfg["fps"])
@@ -152,7 +146,8 @@ def main():
     t_dl = time.time() - s
     n_gpu = torch.cuda.device_count()
     s = time.time()
-    encode_prompts(spec["jobs"], n_gpu)
+    # In its own process: CUDA memory held by the text encoder is only fully returned when the process exits.
+    subprocess.run([sys.executable, self_path(), "encode", inp, str(n_gpu)], check=True)
     t_te = time.time() - s
     ids = [j["id"] for j in spec["jobs"]]
     procs = []
@@ -176,7 +171,9 @@ def main():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "worker":
+    if len(sys.argv) > 1 and sys.argv[1] == "encode":
+        encode_prompts(json.load(open(f"{sys.argv[2]}/jobs.json"))["jobs"], int(sys.argv[3]))
+    elif len(sys.argv) > 1 and sys.argv[1] == "worker":
         worker(int(sys.argv[2]), sys.argv[3].split(","), sys.argv[4], json.loads(sys.argv[5]))
     else:
         main()

@@ -13,8 +13,8 @@
       "image": "input/0.jpg",
       "video": "clips/0.mp4",
       "animate": "the small diya flames flicker gently in a soft breeze, the camera slowly pushes in towards the temple, warm light glows softly, calm and peaceful, static temple architecture",
-      "tts": "खाटू धाम में दीपों की रोशनी, और बाबा श्याम का दरबार।",
-      "sub": "Khatu Dham mein deepon ki roshni, aur Baba Shyam ka darbaar.",
+      "tts": "खाटू धाम में शाम ढली, दीपों की रोशनी से जगमगा उठा बाबा श्याम का दरबार।",
+      "sub": "Khatu Dham mein shaam dhali, deepon ki roshni se jagmaga utha Baba Shyam ka darbaar.",
       "motion": "in"
     },
     {
@@ -22,8 +22,8 @@
       "image": "input/1.jpg",
       "video": "clips/1.mp4",
       "animate": "rose petals and marigold flowers fall slowly from above through the warm light, the golden bells sway slightly, gentle slow motion, calm devotional mood",
-      "tts": "फूलों की वर्षा के साथ, बाबा का श्रृंगार।",
-      "sub": "Phoolon ki varsha ke saath, Baba ka shringaar.",
+      "tts": "फूलों की वर्षा के साथ हो रहा है बाबा का सुंदर श्रृंगार।",
+      "sub": "Phoolon ki varsha ke saath ho raha hai Baba ka sundar shringaar.",
       "motion": "pan"
     },
     {
@@ -31,8 +31,8 @@
       "image": "input/2.jpg",
       "video": "clips/2.mp4",
       "animate": "a very slow gentle camera push-in towards the deity, the face stays still and serene, the peacock feathers and garlands stay still, the soft golden glow gently pulses, a few flower petals drift in the foreground",
-      "tts": "हारे का सहारा, बाबा श्याम हमारा।",
-      "sub": "Haare ka sahara, Baba Shyam hamara.",
+      "tts": "हारे का सहारा, बाबा श्याम हमारा। एक बार प्रेम से दर्शन कीजिए।",
+      "sub": "Haare ka sahara, Baba Shyam hamara. Ek baar prem se darshan kijiye.",
       "motion": "in"
     },
     {
@@ -40,8 +40,8 @@
       "image": "input/3.jpg",
       "video": "clips/3.mp4",
       "animate": "the devotee slowly moves the aarti thali in a gentle circle, the lamp flames flicker, soft smoke rises, warm light, calm devotional mood, steady camera",
-      "tts": "श्रद्धा से आरती करो, बाबा सबकी सुनते हैं।",
-      "sub": "Shraddha se aarti karo, Baba sabki sunte hain.",
+      "tts": "श्रद्धा से आरती करो, बाबा अपने हर भक्त की पुकार सुनते हैं।",
+      "sub": "Shraddha se aarti karo, Baba apne har bhakt ki pukaar sunte hain.",
       "motion": "out"
     },
     {
@@ -55,7 +55,7 @@
     "frames": 121,
     "fps": 24,
     "steps": 30,
-    "guidance": 5.0,
+    "guidance": 5,
     "max_minutes": 150
   }
 }

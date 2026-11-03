@@ -26,3 +26,4 @@ animate/out/
 animate/*.mp4
 animate/*.jpg
 animate/kaggle/kernel-metadata.json
+animate/clips-rejected/
