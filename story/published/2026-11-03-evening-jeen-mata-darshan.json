@@ -1,0 +1,52 @@
+{
+  "slug": "2026-11-03-evening-jeen-mata-darshan",
+  "title": "Jeen Mata Mandir Sikar",
+  "kicker": "Mandir Darshan",
+  "playlist": "Mandir Itihas",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Jeen Mata Dham ke darshan",
+  "scenes": [
+    {
+      "prompt": "Goddess Durga as Jeen Mata in serene darshan form, red and gold sari, gold crown, garlands of marigold, lit diyas, inside a sacred temple sanctum, warm golden glow",
+      "tts": "सीकर की अरावली पहाड़ियों में बसा है जीण माता धाम।",
+      "sub": "Sikar ki Aravalli pahadiyon mein basa hai Jeen Mata Dham.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few marigold petals drift in the foreground"
+    },
+    {
+      "prompt": "A beautiful ancient Rajasthani hilltop temple among green Aravalli hills at golden hour, a brother and sister in traditional Rajasthani clothes standing on the hill looking at each other with affection, soft mist",
+      "tts": "मान्यता है, जीण माता और भाई हर्ष में गहरा स्नेह था।",
+      "sub": "Manyata hai, Jeen Mata aur bhai Harsh mein gehra sneh tha.",
+      "motion": "pan",
+      "animate": "soft mist drifts slowly across the hills and the camera pans very slowly to the side"
+    },
+    {
+      "prompt": "A small Shiva-Bhairav temple on a distant Aravalli hilltop at dusk, a path of devotees with lamps climbing, warm sky, peaceful atmosphere",
+      "tts": "पास की पहाड़ी पर हर्ष भैरव का मंदिर भी बसा है।",
+      "sub": "Paas ki pahadi par Harsh Bhairav ka mandir bhi basa hai.",
+      "motion": "out",
+      "animate": "the lamp flames flicker softly and the camera slowly pulls back"
+    },
+    {
+      "prompt": "Goddess Jeen Mata murti decorated with red chunri, flowers and a silver umbrella, devotees' folded hands in foreground, aarti diya glowing, warm temple light",
+      "tts": "नवरात्रि में दूर-दूर से भक्त दर्शन को आते हैं।",
+      "sub": "Navratri mein door-door se bhakt darshan ko aate hain.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly, a few petals drift in the foreground"
+    },
+    {
+      "endcard": true,
+      "tts": "जय जीण माता! कल शाकंभरी माता के दर्शन के लिए सब्सक्राइब करें, लाइक और शेयर करें।",
+      "sub": "Jai Jeen Mata! Kal Shakambhari Mata ke darshan ke liye Subscribe karein, Like aur Share karein."
+    }
+  ],
+  "youtube_title": "Jeen Mata Mandir Sikar Darshan | जीण माता मंदिर सीकर #Shorts",
+  "youtube_description": "Jeen Mata Mandir (Sikar, Rajasthan) ke darshan: Aravalli pahadiyon mein basa Shakti dham. Manyata ke anusar Jeen Mata aur bhai Harsh Bhairav ki katha juda hai.\nजीण माता मंदिर, सीकर, राजस्थान के दर्शन।\nChitra AI dwara banaye gaye hain (sanketik).\nMantra: ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे\nJai Shree Shyam 🙏\nKal Shakambhari Mata ke darshan: like, share aur subscribe karein.\n#JeenMata #SikarTemple #Rajasthan #MandirDarshan #Shorts",
+  "youtube_tags": "Jeen Mata Mandir, जीण माता मंदिर, Jeen Mata Sikar, जीण माता सीकर, Harsh Bhairav, हर्ष भैरव, Rajasthan temple, राजस्थान के मंदिर, Mandir darshan, मंदिर दर्शन, Khatu Shyam, खाटू श्याम, Sikar mandir",
+  "instagram_caption": "Jeen Mata Dham ke darshan 🙏\nSikar ki Aravalli pahadiyon mein basa Shakti dham. Manyata hai ki Jeen Mata aur bhai Harsh Bhairav ka sneh yahan ki pehchaan hai.\nChitra AI dwara banaye gaye hain (sanketik).\nOm Aim Hreem Kleem Chamundayai Vichche\nKal Shakambhari Mata ke darshan: Like, Share aur Follow karein.\n#JeenMata #Sikar #Rajasthan #MandirDarshan #JaiShreeShyam #KhatuShyam #Navratri",
+  "facebook_caption": "Jeen Mata Mandir, Sikar ke darshan 🙏 Aravalli pahadiyon mein basa Shakti dham. Chitra AI dwara banaye gaye hain (sanketik). Kal Shakambhari Mata ke darshan: Like, Share aur Follow karein.\n#JeenMata #Sikar #JaiShreeShyam"
+}
