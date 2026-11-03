@@ -17,3 +17,4 @@
 - 2026-11-03-morning-khatu-shyam-sheesh-daan | youtube: https://youtube.com/shorts/sOo3_ZTnvxI | make: hosted-only
 - 2026-11-03-long-dhanteras-yamdeep-katha | youtube: https://youtu.be/EE2L9_kBty8 (public at 12:30 IST) | long 5:20, 46 scenes, render 6 min, 1248 neurons
 - 2026-11-03-evening-jeen-mata-darshan | youtube: https://youtube.com/shorts/eeciyk5LfIU (public at 2026-11-03T13:30:00.000Z) | make: hosted-only
+- 2026-11-03-noon-shakambhari-mata-sakrai-darshan | youtube: https://youtube.com/shorts/IuvXHP8iqEA | make: hosted-only | animated 4/4

@@ -20,3 +20,4 @@
 2026-11-03 | morning | 2026-11-03-morning-khatu-shyam-sheesh-daan | Khatu Shyam ji (Mangalvar) | Barbarik ke teen baan, maa ko haare ka saath dene ka vachan, Krishna ko sheesh daan aur Shyam naam ka vardaan
 2026-11-03 | long | 2026-11-03-long-dhanteras-yamdeep-katha | Bhagwan Dhanvantari / Yamraj (Dhanteras) | Dhanteras ki katha: Raja Hima ke putra ki chauthi raat, rajkumari ke deepak, Yamdeep daan, aur Samudra Manthan se Dhanvantari ka prakat hona
 2026-11-03 | evening | 2026-11-03-evening-jeen-mata-darshan | Jeen Mata Mandir, Sikar (Mandir series, Maa Durga) | Aravalli pahadiyon mein Jeen Mata Dham, bhai Harsh Bhairav ki manyata, Navratri ke darshan
+2026-11-03 | noon | 2026-11-03-noon-shakambhari-mata-sakrai-darshan | Shakambhari Mata, Sakrai, Sikar (Mandir series, Maa Durga) | Aravalli ghati mein Sakrai ka Shakambhari Mata Dham, Durga ka roop, Navratri ki shraddha

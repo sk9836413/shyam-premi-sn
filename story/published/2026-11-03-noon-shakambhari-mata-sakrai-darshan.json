@@ -1,0 +1,56 @@
+{
+  "slug": "2026-11-03-noon-shakambhari-mata-sakrai-darshan",
+  "title": "Shakambhari Mata Sakrai",
+  "kicker": "Mandir Darshan",
+  "playlist": "Mandir Itihas",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Shakambhari Mata Sakrai darshan",
+  "scenes": [
+    {
+      "prompt": "Goddess Shakambhari, a form of Durga, in serene darshan form, green and red sari, gold crown, lotus and garlands of green leaves and marigold, lit diyas, inside a sacred temple sanctum, warm golden glow",
+      "tts": "अरावली की घाटी में बसा है शाकंभरी माता धाम।",
+      "sub": "Aravalli ki ghati mein basa hai Shakambhari Mata Dham.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few marigold petals drift in the foreground",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A beautiful ancient temple nestled in a green Aravalli valley in Rajasthan near Sikar, lush trees and rocky hills, golden hour light, soft mist, a few devotees walking on the path",
+      "tts": "सीकर ज़िले के सकराय में स्थित यह मंदिर बहुत प्रसिद्ध है।",
+      "sub": "Sikar zile ke Sakrai mein sthit yeh mandir bahut prasiddh hai.",
+      "motion": "pan",
+      "animate": "soft mist drifts slowly across the green hills and the camera pans very slowly to the side",
+      "video": "clips/1.mp4"
+    },
+    {
+      "prompt": "Goddess Shakambhari murti decorated with red chunri, fresh green vegetables, fruits and flowers as offering, devotees' folded hands in foreground, aarti diya glowing, warm temple light",
+      "tts": "माँ शाकंभरी को देवी दुर्गा का ही रूप माना जाता है।",
+      "sub": "Maa Shakambhari ko Devi Durga ka hi roop mana jata hai.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly, a few petals drift in the foreground",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "Devotees with lamps and flowers gathering at a hill temple in the Aravalli valley at dusk during Navratri, warm sky, peaceful festive atmosphere",
+      "tts": "नवरात्रि में यहाँ भक्तों की श्रद्धा देखने लायक होती है।",
+      "sub": "Navratri mein yahan bhakton ki shraddha dekhne layak hoti hai.",
+      "motion": "out",
+      "animate": "the lamp flames flicker softly and the camera slowly pulls back",
+      "video": "clips/3.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "जय माँ शाकंभरी! कल रानी सती दादी मंदिर के लिए सब्सक्राइब करें, लाइक और शेयर करें।",
+      "sub": "Jai Maa Shakambhari! Kal Rani Sati Dadi Mandir ke liye Subscribe karein, Like aur Share karein."
+    }
+  ],
+  "youtube_title": "Shakambhari Mata Mandir Sakrai Darshan | शाकंभरी माता मंदिर सकराय #Shorts",
+  "youtube_description": "Shakambhari Mata Mandir (Sakrai, Sikar, Rajasthan) ke darshan: Aravalli ki ghati mein basa Shakti dham. Maa Shakambhari ko Durga ka roop mana jata hai.\nशाकंभरी माता मंदिर, सकराय, सीकर, राजस्थान के दर्शन।\nChitra AI dwara banaye gaye hain (sanketik).\nMantra: ॐ शाकंभरी देव्यै नमः\nJai Shree Shyam 🙏\nKal Rani Sati Dadi Mandir ke darshan: like, share aur subscribe karein.\n#ShakambhariMata #Sakrai #SikarTemple #MandirDarshan #Shorts",
+  "youtube_tags": "Shakambhari Mata Mandir, शाकंभरी माता मंदिर, Sakrai Mata, सकराय माता, Shakambhari Sakrai Sikar, शाकंभरी सकराय सीकर, Rajasthan temple, राजस्थान के मंदिर, Mandir darshan, मंदिर दर्शन, Khatu Shyam, खाटू श्याम, Sikar mandir",
+  "instagram_caption": "Shakambhari Mata Sakrai ke darshan 🙏\nSikar zile ke Sakrai mein Aravalli ki ghati mein basa Shakti dham. Maa Shakambhari ko Durga ka roop mana jata hai aur Navratri mein yahan bhakton ki shraddha dikhti hai.\nChitra AI dwara banaye gaye hain (sanketik).\nOm Shakambhari Devyai Namah\nKal Rani Sati Dadi Mandir ke darshan: Like, Share aur Follow karein.\n#ShakambhariMata #Sakrai #Sikar #Rajasthan #MandirDarshan #JaiShreeShyam #KhatuShyam #Navratri",
+  "facebook_caption": "Shakambhari Mata Mandir, Sakrai (Sikar) ke darshan 🙏 Aravalli ki ghati mein basa Shakti dham. Chitra AI dwara banaye gaye hain (sanketik). Kal Rani Sati Dadi Mandir ke darshan: Like, Share aur Follow karein.\n#ShakambhariMata #Sakrai #JaiShreeShyam"
+}
