@@ -14,3 +14,4 @@
 - 2026-11-02-morning-shiv-ganga-jata | youtube: https://youtube.com/shorts/tLsti6xsmNM | make: hosted-only
 - 2026-11-02-long-rama-ekadashi-katha | youtube: https://youtu.be/LQm_boGloEo | long 5:19, 42 scenes, render 8 min, 1344 neurons
 - 2026-11-02-evening-salasar-balaji-darshan | youtube: https://youtube.com/shorts/Objay7u6zbU | make: hosted-only
+- 2026-11-03-morning-khatu-shyam-sheesh-daan | youtube: https://youtube.com/shorts/sOo3_ZTnvxI | make: hosted-only
