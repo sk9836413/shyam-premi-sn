@@ -141,7 +141,7 @@ jobs:
         run: |
           fail() { echo "::warning::Animation skipped, using zoompan: $1"; echo "- Animation skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 1; }
           [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
-          pip install -q 'kaggle>=2.2' || fail "kaggle CLI install failed"
+          pip install -q 'kaggle>=2.2' six || fail "kaggle CLI install failed"
           node animate/kaggle.mjs quota --min 10 > "$RUNNER_TEMP/quota.json" || fail "under 10 Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
           node story/render-story.mjs story/today/scenes.json --prepare || fail "FLUX images / narration failed"
           plan="story/today/build/$SLUG/plan.json"
