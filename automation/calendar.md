@@ -8,7 +8,7 @@ Confirmed with at least two sources. Add new dates the same way.
 | 2026-11-01 | Ahoi Ashtami (also Kalashtami, Bhanu Saptami) |
 | 2026-11-05 | Rama Ekadashi (some calendars: 4 Nov) |
 | 2026-11-06 | Dhanteras |
-| 2026-11-07 | Choti Diwali (Naraka Chaturdashi) |
+| 2026-11-07 | Choti Diwali (Naraka Chaturdashi) (some calendars: 8 Nov) |
 | 2026-11-08 | Diwali (Lakshmi Puja) |
 | 2026-11-10 | Govardhan Puja (some calendars: 9 Nov) |
 | 2026-11-11 | Bhai Dooj (some calendars: 10 Nov) |

@@ -1,0 +1,39 @@
+{
+  "slug": "2026-11-04-long-naraka-chaturdashi-narakasur-vadh",
+  "seconds": 305,
+  "scenes": 46,
+  "chapters": [
+    {
+      "title": "Katha ki Shuruaat",
+      "start": 0
+    },
+    {
+      "title": "Narakasur ka Atyachar",
+      "start": 18.7
+    },
+    {
+      "title": "Indra ki Pukar",
+      "start": 67.87
+    },
+    {
+      "title": "Pragjyotishpur ka Durg",
+      "start": 103.2
+    },
+    {
+      "title": "Narakasur ka Ant",
+      "start": 153.13
+    },
+    {
+      "title": "Kanyaon ki Mukti",
+      "start": 217.83
+    },
+    {
+      "title": "Narak Chaturdashi ka Sandesh",
+      "start": 257.73
+    }
+  ],
+  "images": 14,
+  "images_generated": 14,
+  "neurons": 1344,
+  "render_seconds": 470
+}

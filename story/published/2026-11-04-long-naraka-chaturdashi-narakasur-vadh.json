@@ -1,0 +1,117 @@
+{
+  "slug": "2026-11-04-long-naraka-chaturdashi-narakasur-vadh",
+  "format": "long",
+  "title": "Narak Chaturdashi ki Katha",
+  "kicker": "Choti Diwali Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Krishna ne Narakasur ka ant kyun kiya?",
+  "source": "Bhagavata Purana ke anusar",
+  "deity": "Shri Krishna / Satyabhama (Narak Chaturdashi)",
+  "summary": "Narak Chaturdashi ki katha: Narakasur ka atyachar, Indra ki pukar, Shri Krishna ka Pragjyotishpur par chadhai, Mur aur Narakasur ka ant, kanyaon ki mukti",
+  "thumbnail": { "image": 0, "focus": "center", "text": "Narakasur ka ant kaise hua?" },
+  "images": [
+    { "prompt": "Wide cinematic scene: Lord Krishna with dark blue skin, peacock feather crown, yellow dhoti and a glowing golden discus, riding the great eagle Garuda through a dramatic orange sunset sky, queen Satyabhama in royal attire beside him, a distant mountain fortress below" },
+    { "prompt": "Wide cinematic scene: mighty demon king Narakasura with dark skin, two small horns, golden crown, heavy jewellery and a stern proud face, seated on a grand dark throne inside a huge palace hall with torches and stone pillars" },
+    { "prompt": "Wide cinematic scene: worried Hindu gods and sages in a heavenly cloud palace, Indra with a golden crown at the front, sad faces, soft golden light and clouds, the divine mother Aditi seated among them with empty ears" },
+    { "prompt": "Wide cinematic scene: king of gods Indra bowing with folded hands before Lord Krishna seated on a throne inside the golden palace of Dwarka by the sea, warm lamps, marble pillars, respectful mood" },
+    { "prompt": "Wide cinematic scene: Lord Krishna and queen Satyabhama standing on the back of the huge eagle Garuda taking off from the golden city of Dwarka at dawn, ocean in the background, Krishna holding his conch, calm determined faces" },
+    { "prompt": "Wide cinematic scene: the great mountain fortress city of Pragjyotishpur with tall stone walls, a deep moat of water, rings of defence walls and rocky hills around it, dark stormy sky, the divine eagle Garuda approaching in the distance" },
+    { "prompt": "Wide cinematic scene: Lord Krishna holding a glowing golden discus facing the five-headed demon Mura rising from dark water near the fortress gate, dramatic lighting, heroic pose, no gore" },
+    { "prompt": "Wide cinematic scene: grand battlefield outside a demon fortress, Lord Krishna and queen Satyabhama on Garuda in the sky facing an army of demons with war elephants and arrows, dust and firelight, epic but not gory" },
+    { "prompt": "Wide cinematic scene: Lord Krishna raising his shining golden Sudarshan discus that blazes with brilliant light, the demon king Narakasura on a war elephant facing him, Satyabhama with a bow beside Krishna, powerful dramatic sky" },
+    { "prompt": "Wide cinematic scene: Bhumi Devi, the goddess of Earth, graceful in green and golden sari with a gentle face, standing with folded hands before Lord Krishna and presenting a pair of shining divine earrings, soft glowing light" },
+    { "prompt": "Wide cinematic scene: Lord Krishna gently opening the doors of a palace and freeing many grateful royal women in colourful traditional clothes who bow with folded hands, warm golden light streaming in, joyful relieved mood" },
+    { "prompt": "Wide cinematic scene: Lord Krishna returning shining divine earrings to the divine mother Aditi in a heavenly palace among clouds, gods with folded hands, flowers falling, serene golden atmosphere" },
+    { "prompt": "Wide cinematic scene: a beautiful Indian village at dusk with hundreds of glowing clay diyas on every doorstep and rooftop, families with children lighting lamps, rangoli on the ground, warm festive Diwali glow, peaceful night sky" },
+    { "prompt": "Wide cinematic scene: the huge eagle Garuda with wide spread golden-brown wings in the sky scattering frightened war elephants, Lord Krishna and Satyabhama riding on him, clouds and sunlight, epic action without gore" }
+  ],
+  "chapters": [
+    {
+      "title": "Katha ki Shuruaat",
+      "scenes": [
+        { "img": 0, "focus": "center", "motion": "in", "tts": "आख़िर श्री कृष्ण को नरकासुर से युद्ध क्यों करना पड़ा?", "sub": "Aakhir Shri Krishna ko Narakasur se yuddh kyun karna pada?" },
+        { "img": 1, "focus": "center", "motion": "out", "tts": "सोलह हज़ार से अधिक कन्याएँ क़ैद में थीं, और देवमाता अदिति के कुंडल तक छिन चुके थे।", "sub": "Solah hazaar se adhik kanyayein qaid mein thin, aur devmata Aditi ke kundal tak chhin chuke the." },
+        { "img": 0, "focus": "top", "motion": "out", "tts": "इस कथा में जानिए नरकासुर का अंत, और नरक चतुर्दशी पर दीप जलाने की परंपरा।", "sub": "Is katha mein jaaniye Narakasur ka ant, aur Narak Chaturdashi par deep jalane ki parampara." }
+      ]
+    },
+    {
+      "title": "Narakasur ka Atyachar",
+      "scenes": [
+        { "img": 1, "focus": "top", "motion": "pan", "tts": "प्रागज्योतिषपुर में नरकासुर नाम का एक असुर राजा राज करता था।", "sub": "Pragjyotishpur mein Narakasur naam ka ek asur raja raj karta tha." },
+        { "img": 9, "focus": "center", "motion": "in", "tts": "उसे भौमासुर भी कहते हैं, क्योंकि वह पृथ्वी देवी का पुत्र माना जाता है।", "sub": "Use Bhaumasur bhi kehte hain, kyunki wo Prithvi Devi ka putra maana jaata hai." },
+        { "img": 1, "focus": "center", "motion": "panl", "tts": "बलशाली होकर वह अहंकार में डूब गया और तीनों लोकों में सबको सताने लगा।", "sub": "Balshali hokar wo ahankar mein doob gaya aur teeno lokon mein sabko satane laga." },
+        { "img": 1, "focus": "center", "motion": "in", "tts": "उसने देवमाता अदिति के दिव्य कुंडल छीन लिए।", "sub": "Usne devmata Aditi ke divya kundal chheen liye." },
+        { "img": 2, "focus": "center", "motion": "out", "tts": "वरुण देव का छत्र और मणि पर्वत भी उसने अपने अधिकार में कर लिया।", "sub": "Varun dev ka chhatra aur Mani Parvat bhi usne apne adhikar mein kar liya." },
+        { "img": 10, "focus": "center", "motion": "in", "tts": "और अनेक राजाओं की कन्याओं को हरकर अपने महल में बंदी बना लिया।", "sub": "Aur anek rajaon ki kanyaon ko harkar apne mahal mein bandi bana liya." },
+        { "img": 5, "focus": "bottom", "motion": "panl", "tts": "इनकी संख्या भागवत में सोलह हज़ार से अधिक बताई गई है, कुछ ग्रंथों में सोलह हज़ार एक सौ।", "sub": "Inki sankhya Bhagwat mein solah hazaar se adhik batai gayi hai, kuch granthon mein solah hazaar ek sau." },
+        { "img": 2, "focus": "center", "motion": "pan", "tts": "सब दुखी थे, कोई उपाय नहीं सूझता था। आगे देखिए, देवराज इंद्र किसकी शरण में गए।", "sub": "Sab dukhi the, koi upay nahi soojhta tha. Aage dekhiye, devraj Indra kiski sharan mein gaye.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Indra ki Pukar",
+      "scenes": [
+        { "img": 3, "focus": "center", "motion": "in", "tts": "देवराज इंद्र द्वारका पहुँचे और श्री कृष्ण को प्रणाम किया।", "sub": "Devraj Indra Dwarka pahunche aur Shri Krishna ko pranam kiya." },
+        { "img": 3, "focus": "center", "motion": "pan", "tts": "उन्होंने नरकासुर के अत्याचारों की पूरी बात सुनाई और रक्षा की प्रार्थना की।", "sub": "Unhone Narakasur ke atyacharon ki poori baat sunai aur raksha ki prarthana ki." },
+        { "img": 4, "focus": "center", "motion": "in", "tts": "श्री कृष्ण ने प्रार्थना सुनी और नरकासुर का अंत करने का निश्चय किया।", "sub": "Shri Krishna ne prarthana suni aur Narakasur ka ant karne ka nishchay kiya." },
+        { "img": 4, "focus": "top", "motion": "out", "tts": "वे अपने वाहन गरुड़ पर सवार हुए, और साथ में थीं उनकी रानी सत्यभामा।", "sub": "Ve apne vahan Garud par sawar hue, aur saath mein thin unki rani Satyabhama." },
+        { "img": 4, "focus": "center", "motion": "pan", "tts": "कुछ कथाओं में कहा गया है कि सत्यभामा भूदेवी का ही अंश थीं।", "sub": "Kuch kathaon mein kaha gaya hai ki Satyabhama Bhudevi ka hi ansh thin." },
+        { "img": 0, "focus": "center", "motion": "panl", "tts": "गरुड़ के विशाल पंखों पर आकाश चीरते हुए वे प्रागज्योतिषपुर की ओर चले।", "sub": "Garud ke vishal pankhon par aakash cheerte hue ve Pragjyotishpur ki or chale." }
+      ]
+    },
+    {
+      "title": "Pragjyotishpur ka Durg",
+      "scenes": [
+        { "img": 5, "focus": "center", "motion": "in", "tts": "प्रागज्योतिषपुर का दुर्ग पर्वतों से घिरा था, और उसके चारों ओर कई घेरे बने थे।", "sub": "Pragjyotishpur ka durg parvaton se ghira tha, aur uske charon or kai ghere bane the." },
+        { "img": 5, "focus": "top", "motion": "pan", "tts": "पहले पर्वतों और शस्त्रों की रक्षा, फिर अग्नि, जल और वायु की बाधाएँ, और फिर मुर के बिछाए फंदे।", "sub": "Pehle parvaton aur shastron ki raksha, phir agni, jal aur vayu ki badhayein, aur phir Mur ke bichhaye fande." },
+        { "img": 6, "focus": "center", "motion": "in", "tts": "श्री कृष्ण ने गदा, बाणों और अपने सुदर्शन चक्र से इन सब घेरों को काट डाला।", "sub": "Shri Krishna ne gada, banon aur apne Sudarshan Chakra se in sab gheron ko kaat dala." },
+        { "img": 6, "focus": "center", "motion": "out", "tts": "द्वार के पास पाँच सिरों वाला असुर मुर था। श्री कृष्ण के शंखनाद से वह जाग उठा।", "sub": "Dwar ke paas paanch siron wala asur Mur tha. Shri Krishna ke shankhnaad se wo jaag utha." },
+        { "img": 6, "focus": "bottom", "motion": "pan", "tts": "सुदर्शन चक्र से श्री कृष्ण ने मुर का अंत किया। इसी से उनका एक नाम मुरारी पड़ा।", "sub": "Sudarshan Chakra se Shri Krishna ne Mur ka ant kiya. Isi se unka ek naam Murari pada." },
+        { "img": 7, "focus": "center", "motion": "in", "tts": "मुर के पुत्र भी युद्ध में उतरे, पर श्री कृष्ण के सामने कोई टिक न सका।", "sub": "Mur ke putra bhi yuddh mein utre, par Shri Krishna ke saamne koi tik na saka." },
+        { "img": 7, "focus": "center", "motion": "pan", "tts": "लेकिन असली युद्ध अभी बाकी था। अब नरकासुर स्वयं रणभूमि में आ रहा था।", "sub": "Lekin asli yuddh abhi baaki tha. Ab Narakasur swayam ranbhoomi mein aa raha tha.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Narakasur ka Ant",
+      "scenes": [
+        { "img": 7, "focus": "top", "motion": "out", "tts": "नरकासुर अपनी विशाल हाथियों की सेना लेकर नगर से बाहर निकला।", "sub": "Narakasur apni vishal haathiyon ki sena lekar nagar se bahar nikla." },
+        { "img": 7, "focus": "bottom", "motion": "panl", "tts": "भयंकर युद्ध छिड़ गया। आकाश में बाण और अस्त्र-शस्त्र बरसने लगे।", "sub": "Bhayankar yuddh chhid gaya. Aakash mein baan aur astra-shastra barasne lage." },
+        { "img": 13, "focus": "center", "motion": "in", "tts": "गरुड़ के पंखों की आँधी से हाथी घबराकर भागे और असुर सेना बिखर गई।", "sub": "Garud ke pankhon ki aandhi se haathi ghabrakar bhaage aur asur sena bikhar gayi." },
+        { "img": 13, "focus": "top", "motion": "in", "tts": "नरकासुर ने बहुत शस्त्र चलाए, पर कोई भी भगवान को डिगा न सका।", "sub": "Narakasur ne bahut shastra chalaye, par koi bhi Bhagwan ko diga na saka." },
+        { "img": 8, "focus": "top", "motion": "out", "tts": "कथाओं के अनुसार नरकासुर को वरदान था कि उसका अंत उसकी माता के हाथों ही होगा।", "sub": "Kathaon ke anusar Narakasur ko vardaan tha ki uska ant uski mata ke haathon hi hoga." },
+        { "img": 13, "focus": "center", "motion": "out", "tts": "कुछ कथाओं में सत्यभामा ने भी धनुष उठाकर युद्ध में श्री कृष्ण का साथ दिया।", "sub": "Kuch kathaon mein Satyabhama ne bhi dhanush uthakar yuddh mein Shri Krishna ka saath diya." },
+        { "img": 8, "focus": "center", "motion": "pan", "tts": "और फिर वह क्षण आया, जब श्री कृष्ण ने अपने सुदर्शन चक्र का स्मरण किया।", "sub": "Aur phir wo kshan aaya, jab Shri Krishna ne apne Sudarshan Chakra ka smaran kiya.", "teaser": true },
+        { "img": 8, "focus": "center", "motion": "in", "tts": "चक्र चमकता हुआ घूमा, और नरकासुर का अंत हो गया। देवताओं ने आकाश से फूल बरसाए।", "sub": "Chakra chamakta hua ghoomaa, aur Narakasur ka ant ho gaya. Devtaon ne aakash se phool barsaye." },
+        { "img": 9, "focus": "top", "motion": "in", "tts": "तब पृथ्वी देवी प्रकट हुईं और उन्होंने अदिति के कुंडल श्री कृष्ण को लौटा दिए।", "sub": "Tab Prithvi Devi prakat hui aur unhone Aditi ke kundal Shri Krishna ko lauta diye." },
+        { "img": 9, "focus": "center", "motion": "out", "tts": "उन्होंने हाथ जोड़कर स्तुति की और नरकासुर के पुत्र भगदत्त को अभय देने की प्रार्थना की।", "sub": "Unhone haath jodkar stuti ki aur Narakasur ke putra Bhagdatt ko abhay dene ki prarthana ki." }
+      ]
+    },
+    {
+      "title": "Kanyaon ki Mukti",
+      "scenes": [
+        { "img": 10, "focus": "center", "motion": "in", "tts": "श्री कृष्ण नरकासुर के महल में गए और सब कन्याओं को बंधन से मुक्त किया।", "sub": "Shri Krishna Narakasur ke mahal mein gaye aur sab kanyaon ko bandhan se mukt kiya." },
+        { "img": 10, "focus": "top", "motion": "out", "tts": "इतने समय बाद खुली हवा और उजाला पाकर सबकी आँखों में आँसू और आशा एक साथ थे।", "sub": "Itne samay baad khuli hawa aur ujala paakar sabki aankhon mein aansu aur asha ek saath the." },
+        { "img": 10, "focus": "center", "motion": "pan", "tts": "कन्याओं ने श्री कृष्ण को अपना रक्षक मानकर हाथ जोड़कर प्रणाम किया।", "sub": "Kanyaon ne Shri Krishna ko apna rakshak maankar haath jodkar pranam kiya." },
+        { "img": 11, "focus": "center", "motion": "pan", "tts": "भागवत पुराण के अनुसार उनके मान-सम्मान की रक्षा के लिए श्री कृष्ण ने उन्हें स्वीकार किया।", "sub": "Bhagavata Purana ke anusar unke maan-samman ki raksha ke liye Shri Krishna ne unhein sweekar kiya." },
+        { "img": 11, "focus": "top", "motion": "in", "tts": "वे सबको सम्मान के साथ द्वारका ले आए, और कुंडल देवमाता अदिति को लौटा दिए।", "sub": "Ve sabko samman ke saath Dwarka le aaye, aur kundal devmata Aditi ko lauta diye." },
+        { "img": 11, "focus": "center", "motion": "out", "tts": "देवताओं के घर फिर प्रसन्नता लौट आई, और तीनों लोकों ने चैन की साँस ली।", "sub": "Devtaon ke ghar phir prasannata laut aayi, aur teeno lokon ne chain ki saans li." }
+      ]
+    },
+    {
+      "title": "Narak Chaturdashi ka Sandesh",
+      "scenes": [
+        { "img": 12, "focus": "center", "motion": "out", "tts": "यह विजय कार्तिक कृष्ण चतुर्दशी से जोड़ी जाती है, इसलिए इसे नरक चतुर्दशी कहते हैं।", "sub": "Ye vijay Kartik Krishna Chaturdashi se jodi jaati hai, isliye ise Narak Chaturdashi kehte hain." },
+        { "img": 12, "focus": "top", "motion": "pan", "tts": "इसे छोटी दिवाली भी कहते हैं, और इस दिन संध्या को घरों में दीपक जलाए जाते हैं।", "sub": "Ise Choti Diwali bhi kehte hain, aur is din sandhya ko gharon mein deepak jalaye jaate hain." },
+        { "img": 12, "focus": "bottom", "motion": "in", "tts": "बहुत से परिवार इस दिन सुबह अभ्यंग स्नान की परंपरा निभाते हैं।", "sub": "Bahut se parivar is din subah abhyang snaan ki parampara nibhate hain." },
+        { "img": 11, "focus": "bottom", "motion": "pan", "tts": "यह दिन धनतेरस, दिवाली और भाई दूज तक चलने वाले दीपावली के पाँच दिनों के उत्सव का हिस्सा है।", "sub": "Ye din Dhanteras, Diwali aur Bhai Dooj tak chalne wale Deepavali ke paanch dinon ke utsav ka hissa hai." },
+        { "img": 12, "focus": "center", "motion": "panl", "tts": "संदेश यही है कि अंधकार चाहे कितना भी गहरा हो, सत्य और धर्म का एक दीप उसे मिटा देता है।", "sub": "Sandesh yahi hai ki andhkar chahe kitna bhi gehra ho, satya aur dharm ka ek deep use mita deta hai." },
+        { "endcard": true, "tts": "जय श्री कृष्ण! जय श्री श्याम! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।", "sub": "Jai Shri Krishna! Jai Shree Shyam! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN" }
+      ]
+    }
+  ],
+  "youtube_title": "Narak Chaturdashi ki Katha | नरक चतुर्दशी की कथा | Sampoorn Katha",
+  "youtube_description": "Choti Diwali (Narak Chaturdashi) ki sampoorn katha: Narakasur ka atyachar, Indra ki pukar, Shri Krishna aur Satyabhama ka Pragjyotishpur par chadhai, Mur ka ant aur Narakasur ka ant.\nIs katha mein dekhiye ki 16,000 se adhik kanyaon ko kaise mukti mili aur Diwali se pehle deep jalane ki parampara kaise jodi jaati hai. Kuch ansh (jaise rescued kanyaon ki sankhya aur Satyabhama ki bhoomika) alag-alag granthon mein thode alag milte hain.\nYe katha Bhagavata Purana ke anusar hai.\nनरक चतुर्दशी की कथा: श्री कृष्ण द्वारा नरकासुर का वध।\nमंत्र: ॐ नमो भगवते वासुदेवाय\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein.\n#NarakChaturdashi #ChotiDiwali #ShriKrishna #Diwali2026",
+  "youtube_tags": "Narak Chaturdashi ki katha, Choti Diwali katha, Narakasur vadh, Krishna Satyabhama katha, Diwali ki katha, नरक चतुर्दशी की कथा, छोटी दिवाली, नरकासुर वध, श्री कृष्ण और सत्यभामा, दिवाली की कथा, Bhagavata Purana katha, भागवत पुराण कथा"
+}

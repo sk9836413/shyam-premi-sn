@@ -19,3 +19,4 @@
 - 2026-11-03-evening-jeen-mata-darshan | youtube: https://youtube.com/shorts/eeciyk5LfIU (public at 2026-11-03T13:30:00.000Z) | make: hosted-only
 - 2026-11-03-noon-shakambhari-mata-sakrai-darshan | youtube: https://youtube.com/shorts/IuvXHP8iqEA | make: hosted-only | animated 4/4
 - 2026-11-04-morning-ganesh-mahabharat-lekhan | youtube: https://youtube.com/shorts/Pfb9ZZ0XLhM | make: hosted-only
+- 2026-11-04-long-naraka-chaturdashi-narakasur-vadh | youtube: https://youtu.be/doHiImPbjho (public at 12:30 IST) | long 5:05, 46 scenes, render 8 min, 1344 neurons
