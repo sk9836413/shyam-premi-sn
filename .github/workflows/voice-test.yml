@@ -1,0 +1,52 @@
+# One-off A/B: Indic Parler-TTS (gated model, needs the repo secret HF_TOKEN set by the owner) vs edge-tts on the
+# channel's key words, judged by Whisper large-v3. Manual only; nothing is published. Result: the run's artifact
+# (voice-ab-parler.mp3 + parler-ab.json) and the verdict in the run summary. CPU runner (7 short lines).
+name: Voice test (Parler vs edge)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -q git+https://github.com/huggingface/parler-tts.git edge-tts soundfile
+      - name: A/B
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          [ -n "$HF_TOKEN" ] || { echo "::error::The HF_TOKEN secret is not set (owner step)"; exit 1; }
+          mkdir -p out
+          set -o pipefail
+          python voice/parler_ab.py --out out | tee out/log.txt
+          python - >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          import json
+          r = json.load(open("out/parler-ab.json", encoding="utf-8"))
+          s = r["summary"]
+          print(f"### Parler vs edge-tts: **{r['verdict']}**\n")
+          print(f"Mean CER: edge {s['edge']['mean_cer']:.3f}, Parler {s['parler']['mean_cer']:.3f}. "
+                f"Names right: edge {s['edge']['names_ok']}/{s['edge']['lines']}, Parler {s['parler']['names_ok']}/{s['parler']['lines']}. "
+                f"Parler name regressions: {', '.join(r['name_regressions']) or 'none'}\n")
+          print("| Line | Engine | CER | Names ok | Whisper heard |\n|---|---|---|---|---|")
+          for x in r["rows"]:
+              print(f"| {x['line']} | {x['engine']} | {x['cer']:.3f} | {'yes' if x['names_ok'] else 'NO'} | {x['hyp']} |")
+          print("\nListen: artifact voice-ab-parler (voice-ab-parler.mp3: all edge lines, a beep, then Parler).")
+          EOF
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voice-ab-parler
+          path: out/
+          retention-days: 14

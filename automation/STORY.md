@@ -40,10 +40,8 @@ one idea per scene, no slow build-up, and an ending that flows back into the sta
   4-5 scenes (a darshan image, one line of bhav or a short fact/leela, the mantra or jaikara, end card),
   calm and beautiful rather than a full story. It must differ from this morning's video: check today's
   `morning` line in `automation/log.md`. On a big festival day both slots may cover the festival.
-- `noon` (an extra Short, only when dispatched; published as soon as it is ready): exactly like `evening`
-  (animated darshan, same length and rules, slug `<date>-noon-…`), but it must differ from today's `morning`
-  and `evening` lines in `automation/log.md`. Prefer the next temple in `automation/mandir-series.md` that has
-  not had a Short yet.
+- `noon` (daily since 5 Nov 2026, published as soon as it is ready, about 11:00-11:30 IST): the **"Dadi aur Chhotu"**
+  cartoon dialogue Short, 90-120 s. It has its own format and rules: **section 6**. Sections 3-4 do not apply to it.
 
 ## 2. Research the story
 
@@ -239,3 +237,84 @@ the most striking image and a short curiosity line that is true to the story (no
 Write it to `story/long/scenes.json` and run `node scripts/validate.mjs story/long/scenes.json` until
 it passes. Do not edit `automation/log.md` (the workflow records the long video). Do not render,
 upload, commit or push.
+
+## 6. "Dadi aur Chhotu" dialogue Short (slot `noon` only)
+
+Two cartoon characters talk: **Dadi Maa** (about 70, calm, tells the story) and her grandson **Chhotu** (8, curious).
+**Chhotu's questions drive the story**: he asks, Dadi answers, he reacts and asks the next thing. The characters, voices,
+music and layout are fixed (characters/library/shyam); you only write the dialogue and the story images. The owner
+approved this format on 4 Nov 2026 ("YES sahi h").
+
+**Subject (in this order).**
+1. A festival today or tomorrow (`automation/calendar.md`; Diwali week: Dhanteras, Choti Diwali, Diwali, Govardhan,
+   Bhai Dooj; Dev Uthani Ekadashi = Khatu Shyam Janmotsav): Chhotu asks why it is celebrated, Dadi tells the katha.
+2. Otherwise **the temple Chhotu asked about yesterday**: read the latest `| noon |` line in `automation/log.md`
+   (its summary ends with `agla: <temple>`). If there is none, take the next temple in `automation/mandir-series.md`
+   (Rajasthan list first, then the pan-India series and their calendar rotation) that has no noon Short yet
+   (Grep log.md for the temple's name).
+It must differ from today's `morning` and `evening` lines. Numbered series: in a pan-India series, set
+`kicker` to the series and number (`Jyotirlinga 3/12`) and use the series name as `playlist`; Rajasthan temples
+use `Dadi ki Kahani` and `Mandir Itihas`; festivals `Tyohar aur Vrat Kathayein`.
+
+**Accuracy (strict, as in mandir-series.md).** Every fact Dadi states (place, district, who built it, when, the main
+festival) needs **two independent sources** (WebSearch + WebFetch): list them in `facts`. Legends are always labelled
+in the line itself: "manyata hai…", "kehte hain…", "lok katha ke anusar…". Where sources differ, say so or leave it
+out; never guess a year. Images are AI illustrations: never call them real or "asli darshan". **Sati temples**: the
+sati rule in mandir-series.md applies in full: one neutral history sentence for the event, then a line where Dadi
+speaks the disclaimer ("Sati pratha Bharat mein kanoon dwara pratibandhit hai…"), no praise, no fire imagery, and
+the disclaimer in the description. Respectful tone, no fear or money promises (section 2).
+
+**Dialogue.**
+- 14-24 lines, about **90-120 seconds** spoken. Dadi speaks slowly (~10 Devanagari characters a second), Chhotu
+  faster (~14), with a short pause between turns; the validator estimates the length (about 1,000-1,300 characters
+  of tts in total).
+- Line 1: **Chhotu asks a curious question** that hooks in 2 seconds (the most surprising fact as a question, e.g.
+  "Dadi, Hanuman ji ki daadhi-moochh kyun hai?"). No greeting.
+- At least 4 of Chhotu's lines are questions ("Phir kya hua?", "Wo murti aayi kahan se?"). Nobody speaks more than
+  2 lines in a row. Dadi's lines are short and warm ("Suno beta…"), one idea each.
+- **Ending:** Chhotu asks about tomorrow ("Dadi, kal kis mandir ki kahani sunaogi?" or he names it), and Dadi
+  answers with tomorrow's temple and a gentle like/share/subscribe ask, e.g. tts `कल सुनाऊँगी जीण माता की कहानी।
+  देखने के लिए लाइक, शेयर और सब्सक्राइब करना, बेटा!`, sub `Kal sunaungi Jeen Mata ki kahani. Dekhne ke liye Like,
+  Share aur Subscribe karna, beta!`. Tomorrow's temple is the next one in the series order (put it in `next`), and
+  tomorrow's noon Short must then really be about it.
+- Each line: `who` (`dadi` or `chhotu`), `tts` (Hindi Devanagari, max 150 characters, numbers as words), `sub`
+  (the same in Roman Hinglish, max 140 characters), `top` (which story image shows above the characters: a key of
+  `visuals`, or `end` for the end card on the last line or two).
+
+**Story images (`visuals`).** 3-6 entries `{"prompt": "...", "real": true|false}`, each shown for one or more lines.
+FLUX-schnell, square, so describe one clear scene with the subject in the middle band (the top and bottom are cut),
+traditional iconography, never text or letters. `real: true` marks images of the temple itself (building, murti,
+darshan): when owner-supplied, licence-checked real footage exists in `footage/<temple>/`, the renderer shows it there
+instead and credits it in the description; otherwise the AI image is shown, labelled "AI chitra (sanketik)". Legend
+scenes (a farmer's plough, a dream, a cart) are `real: false`.
+
+```json
+{
+  "slug": "<yyyy-mm-dd>-noon-<short-english-slug>",
+  "format": "dialogue",
+  "title": "<Roman, max 45 characters, drawn on the video, e.g. Salasar Balaji Dham>",
+  "kicker": "<max 22 characters: Dadi ki Kahani, or the series and number>",
+  "playlist": "<one of the playlist names>",
+  "temple": "<lowercase slug for footage/, e.g. salasar-balaji; leave it out on a festival day>",
+  "next": "<tomorrow's temple or festival, Roman, max 30 characters>",
+  "deity": "<for the log line, max 60 characters>",
+  "summary": "<the story in a few words, max 160 characters, ending with 'agla: <next>'>",
+  "hook": "<Roman, max 38 characters, shown big for the first 2.5 s>",
+  "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "visuals": { "temple": { "prompt": "...", "real": true }, "field": { "prompt": "...", "real": false } },
+  "lines": [ { "who": "chhotu", "tts": "...", "sub": "...", "top": "temple" }, ... ],
+  "facts": [ { "claim": "...", "sources": ["https://...", "https://..."] }, ... at least 3 ],
+  "youtube_title": "<Roman keyword | Devanagari keyword #Shorts; in a series: <Temple> | <Series> n/total | <देवनागरी> #Shorts>",
+  "youtube_description": "...",
+  "youtube_tags": "...",
+  "instagram_caption": "...",
+  "facebook_caption": "..."
+}
+```
+
+YouTube and caption fields follow section 3's rules (title max 90 characters ending ` #Shorts`, 10-15 tags with
+Devanagari, captions in Roman). The description also carries `Chitra AI dwara banaye gaye hain (sanketik). Awaaz aur
+animation AI se.` and ends with a like/share/subscribe line; real-footage credits are added automatically.
+
+Run `node scripts/validate.mjs story/today/scenes.json` until it passes, then append the log line as in section 4
+(`<date> | noon | <slug> | <deity> | <summary>`). Do not render, upload, commit or push.

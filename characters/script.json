@@ -1,0 +1,32 @@
+{
+  "slug": "pilot-dadi-chhotu-salasar",
+  "title": "Salasar Balaji Dham",
+  "kicker": "Dadi ki Kahani",
+  "lang": "hi",
+  "speakers": {
+    "dadi": { "name": "Dadi Maa", "color": "FFC24A", "edge": "hi-IN-SwaraNeural", "edge_rate": "-8%", "edge_pitch": "-6Hz" },
+    "chhotu": { "name": "Chhotu", "color": "7FD8FF", "edge": "hi-IN-MadhurNeural", "edge_rate": "+6%", "edge_pitch": "+40Hz" }
+  },
+  "lines": [
+    { "who": "chhotu", "tts": "दादी माँ, क्या हनुमान जी की दाढ़ी-मूँछ भी होती है?", "sub": "Dadi Maa, kya Hanuman ji ki daadhi-moochh bhi hoti hai?", "top": "hook" },
+    { "who": "dadi", "tts": "हाँ बेटा! राजस्थान के चूरू ज़िले में, सालासर बालाजी धाम में।", "sub": "Haan beta! Rajasthan ke Churu zile mein, Salasar Balaji Dham mein.", "top": "temple" },
+    { "who": "chhotu", "tts": "पर वो मूर्ति वहाँ आई कैसे?", "sub": "Par wo murti wahan aayi kaise?", "top": "temple" },
+    { "who": "dadi", "tts": "मान्यता है, संवत अठारह सौ ग्यारह में, आसोटा गाँव में एक किसान का हल खेत में एक पत्थर से टकराया। मिट्टी हटाई, तो बालाजी की मूर्ति निकली।", "sub": "Manyata hai, Samvat 1811 mein Asota gaon mein ek kisan ka hal khet mein ek patthar se takraya. Mitti hatayi, to Balaji ki murti nikli.", "top": "field" },
+    { "who": "dadi", "tts": "उसी रात बालाजी ने सपने में आसोटा के ठाकुर को, और सालासर के भक्त मोहनदास जी को दर्शन दिए।", "sub": "Usi raat Balaji ne sapne mein Asota ke Thakur ko, aur Salasar ke bhakt Mohandas ji ko darshan diye.", "top": "dream" },
+    { "who": "chhotu", "tts": "फिर क्या हुआ, दादी?", "sub": "Phir kya hua, Dadi?", "top": "dream" },
+    { "who": "dadi", "tts": "मूर्ति बैलगाड़ी से सालासर लाई गई। कहते हैं, जहाँ बैल अपने आप रुक गए, वहीं मंदिर बना।", "sub": "Murti bailgaadi se Salasar laayi gayi. Kehte hain, jahan bail apne aap ruk gaye, wahin mandir bana.", "top": "cart" },
+    { "who": "chhotu", "tts": "और दाढ़ी-मूँछ?", "sub": "Aur daadhi-moochh?", "top": "temple" },
+    { "who": "dadi", "tts": "मान्यता है, मोहनदास जी को बालाजी ने दाढ़ी-मूँछ वाले रूप में दर्शन दिए थे। इसीलिए वहाँ बालाजी इसी रूप में पूजे जाते हैं।", "sub": "Manyata hai, Mohandas ji ko Balaji ne daadhi-moochh wale roop mein darshan diye the. Isliye wahan Balaji isi roop mein pooje jaate hain.", "top": "temple" },
+    { "who": "dadi", "tts": "चैत्र और आश्विन पूर्णिमा पर वहाँ बड़ा मेला लगता है।", "sub": "Chaitra aur Ashvin Purnima par wahan bada mela lagta hai.", "top": "mela" },
+    { "who": "chhotu", "tts": "जय श्री बालाजी!", "sub": "Jai Shree Balaji!", "top": "end" },
+    { "who": "dadi", "tts": "जय श्री बालाजी! लाइक, शेयर और सब्सक्राइब करें।", "sub": "Jai Shree Balaji! Like, Share aur Subscribe karein.", "top": "end" }
+  ],
+  "facts": [
+    { "claim": "Salasar Balaji Dham is in Salasar town, Churu district, Rajasthan", "sources": ["https://www.tourism.rajasthan.gov.in/salasar-balaji-temple.html", "https://en.wikipedia.org/wiki/Salasar_Balaji_Temple (cites the temple trust site salasarbalaji.org)"] },
+    { "claim": "Manyata: in Samvat 1811 a farmer of Asota village found the idol while ploughing", "label": "manyata hai", "sources": ["https://www.tourism.rajasthan.gov.in/salasar-balaji-temple.html (Shravan Shukla Navami, Samvat = 1754 AD)", "https://hindi.webdunia.com/religious-journey-articles/salasar-balaji-rajasthan-115033100020_1.html", "https://hi.wikipedia.org/wiki/सालासर_बालाजी (gives 1755 CE: AD year left out on purpose, only Samvat 1811 spoken)"] },
+    { "claim": "Manyata: Balaji appeared in dreams to the Thakur of Asota and to the devotee Mohandas ji of Salasar", "label": "manyata hai", "sources": ["https://www.tourism.rajasthan.gov.in/salasar-balaji-temple.html", "https://en.wikipedia.org/wiki/Salasar_Balaji_Temple"] },
+    { "claim": "Manyata: the idol came to Salasar by bullock cart; the temple was built where the bulls stopped", "label": "kehte hain", "sources": ["https://www.tourism.rajasthan.gov.in/salasar-balaji-temple.html", "https://hindi.webdunia.com/religious-journey-articles/salasar-balaji-rajasthan-115033100020_1.html"] },
+    { "claim": "Manyata: the bearded, moustached form is because Balaji appeared to Mohandas ji in that form", "label": "manyata hai", "sources": ["https://hi.wikipedia.org/wiki/सालासर_बालाजी", "https://www.amarujala.com/amp/photo-gallery/spirituality/religion/salasar-balaji-tirth-story"] },
+    { "claim": "Big fairs on Chaitra and Ashvin Purnima", "sources": ["https://www.tourism.rajasthan.gov.in/salasar-balaji-temple.html", "https://en.wikipedia.org/wiki/Salasar_Balaji_Temple (Chaitra and Ashwin fairs)"] }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+ "canonical_master": "master.png (FLUX.1-schnell, Workers AI via shyam-premi-media /ai/flux, 4 steps, 1024x1024)",
+ "master_prompt": "Cozy evening scene, grandmother and grandson sitting together on a charpai facing the camera, the grandmother on the left: Indian, about 70, silver-white hair in a low bun, round gold-rimmed glasses, small red bindi, warm smile, cream saree with maroon border, beige shawl; the boy on the right: Indian, 8 years old, short messy black hair, big round brown eyes, chubby cheeks, mustard-yellow kurta, curious expression; medium shot, both faces clearly visible, soft lamp light, painted Rajasthani haveli wall background",
+ "style": "stylized 3D animated feature film look, original character design, soft warm cinematic lighting, rich warm colours, highly detailed, sharp focus, no text, no letters, no writing, no watermark",
+ "seed_requested": 1813,
+ "seed_note": "The media Worker forwards only prompt+steps, so this seed was NOT applied by FLUX. The saved master.png and close-up PNGs are the source of truth: every future clip starts from these files (Wan image-to-video), never from a fresh text-to-image generation.",
+ "characters": {
+  "dadi": {
+   "name": "Dadi Maa (dadi, ~70)",
+   "description": "an elderly Indian grandmother around 70 with silver-white hair in a neat low bun, round thin gold-rimmed glasses, a small red bindi, kind brown eyes, gentle smile with soft laugh lines, wearing a cream cotton saree with a deep maroon border and a beige shawl over her shoulders",
+   "closeup": "dadi-closeup.png",
+   "crop_box_in_master": [
+    93,
+    285,
+    541,
+    733
+   ],
+   "subtitle_color": "#FFC24A",
+   "voice": "Chatterbox v3 hi, ref voice-ref-dadi.wav (our edge Swara clip), ex 0.55 cfg 0.4, seed 100+line"
+  },
+  "chhotu": {
+   "name": "Chhotu (pota, ~8 saal)",
+   "description": "a curious 8-year-old Indian boy with short messy black hair, big round brown eyes, chubby cheeks, wearing a mustard-yellow cotton kurta with white pyjama",
+   "closeup": "chhotu-closeup.png",
+   "crop_box_in_master": [
+    470,
+    265,
+    918,
+    713
+   ],
+   "subtitle_color": "#7FD8FF",
+   "voice": "Chatterbox v3 hi, ref voice-ref-chhotu.wav (our edge Madhur +40Hz clip), ex 0.7 cfg 0.45, seed 100+line"
+  }
+ },
+ "rejected_variants": [
+  "master-v1.png",
+  "master-v2.png"
+ ]
+}

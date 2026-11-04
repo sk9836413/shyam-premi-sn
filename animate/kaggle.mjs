@@ -3,6 +3,8 @@
 //        --voice: the kernel first narrates every scene with Chatterbox (voice/chatterbox_tts.py) and sizes the clips
 //        to that narration; SPS_SLOT=long with --voice --max 0 is narration only (kernel sps-tts-long)
 //        -> private dataset sps-animate-inputs (start images + jobs.json, a new version each run)
+//   node animate/kaggle.mjs upload                    -> sends animate/dataset as it is (SPS_SLOT=char-<channel>: built by
+//        characters/dialogue.py dataset) as a new version of the slot's private dataset
 //   node animate/kaggle.mjs push [--retry-minutes 20] -> private GPU kernel (animate/kaggle/animate.py), T4 x2; retries while
 //        Kaggle refuses because the account already runs 2 batch GPU sessions
 //   node animate/kaggle.mjs lock [--minutes 45]      -> waits while another sps-animate-* kernel runs; exit 1 on timeout
@@ -28,9 +30,15 @@ import { fileURLToPath } from 'node:url';
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const CLI = process.env.KAGGLE_CLI || 'kaggle';
 const SLOT = process.env.SPS_SLOT || 'daily';
-const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : `sps-animate-inputs-${SLOT}`;
-const KERNEL = SLOT === 'long' ? 'sps-tts-long' : `sps-animate-${SLOT}`;
-const ALL_KERNELS = [...['morning', 'evening', 'noon', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long'];
+// char-shyam / char-epifive: the daily two-character dialogue Short's lip-sync (characters/kaggle/lipsync_daily.py,
+// dataset built by characters/dialogue.py and sent with `upload`).
+const CHAR = SLOT.startsWith('char-');
+const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : CHAR ? `sps-char-inputs-${SLOT.slice(5)}` : `sps-animate-inputs-${SLOT}`;
+const KERNEL = SLOT === 'long' ? 'sps-tts-long' : CHAR ? `sps-${SLOT}` : `sps-animate-${SLOT}`;
+const CODE = CHAR ? path.join(DIR, '..', 'characters', 'kaggle', 'lipsync_daily.py') : path.join(DIR, 'kaggle', 'animate.py');
+// Every GPU kernel of both channels (one Kaggle account): `lock` waits while any other one runs.
+const ALL_KERNELS = [...['morning', 'evening', 'noon', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
+  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim'];
 const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);
 const cmd = args[0] || 'status';
@@ -108,6 +116,21 @@ async function prepare() {
   console.log(JSON.stringify({ stamp, jobs: jobs.map((j) => ({ id: j.id, frames: j.frames || 121 })) }));
 }
 
+// Sends a dataset folder that is already built (characters/dialogue.py dataset) as a new version of DATASET.
+async function upload() {
+  const out = path.join(DIR, 'dataset');
+  const { stamp } = JSON.parse(fs.readFileSync(STAMP_FILE, 'utf8'));
+  fs.writeFileSync(path.join(out, 'dataset-metadata.json'), JSON.stringify({ title: DATASET, id: `${user()}/${DATASET}`, licenses: [{ name: 'other' }] }, null, 2));
+  let r = kaggle('datasets', 'version', '-p', out, '-m', stamp, '-q');
+  if (!r.ok || /not found|does not exist/i.test(r.out)) r = kaggle('datasets', 'create', '-p', out, '-q');
+  if (!r.ok) throw new Error(`dataset upload failed: ${r.out.split('\n').pop()}`);
+  for (let t = 0; t < 20; t++) {
+    await sleep(15000);
+    if (/ready/i.test(kaggle('datasets', 'status', `${user()}/${DATASET}`).out)) break;
+  }
+  console.log(JSON.stringify({ dataset: DATASET, stamp }));
+}
+
 async function push() {
   const u = user();
   const stamp = JSON.parse(fs.readFileSync(STAMP_FILE, 'utf8')).stamp;
@@ -118,12 +141,12 @@ async function push() {
   // zoompan) exits at once instead of spending GPU hours on clips nobody will use.
   const write = () => {
     const startBy = Math.round(Date.now() / 1000 + 60 * (Number(opt('--queue-minutes', 20)) + 5));
-    fs.writeFileSync(path.join(dir, 'animate.py'), fs.readFileSync(path.join(DIR, 'kaggle', 'animate.py'), 'utf8')
+    fs.writeFileSync(path.join(dir, path.basename(CODE)), fs.readFileSync(CODE, 'utf8')
       .replace(/^EXPECT_STAMP = None.*$/m, `EXPECT_STAMP = ${JSON.stringify(stamp)}`)
       .replace(/^START_BY = None.*$/m, `START_BY = ${startBy}`));
   };
   fs.writeFileSync(path.join(dir, 'kernel-metadata.json'), JSON.stringify({
-    id: `${u}/${KERNEL}`, title: KERNEL, code_file: 'animate.py', language: 'python', kernel_type: 'script',
+    id: `${u}/${KERNEL}`, title: KERNEL, code_file: path.basename(CODE), language: 'python', kernel_type: 'script',
     is_private: true, enable_gpu: true, enable_internet: true, machine_shape: 'NvidiaTeslaT4',
     docker_image_pinning_type: 'latest', dataset_sources: [`${u}/${DATASET}`], competition_sources: [], kernel_sources: [],
   }, null, 2));
@@ -207,6 +230,7 @@ function quota() {
 }
 
 if (cmd === 'prepare') await prepare();
+else if (cmd === 'upload') await upload();
 else if (cmd === 'push') await push();
 else if (cmd === 'wait') await wait();
 else if (cmd === 'lock') await lock();

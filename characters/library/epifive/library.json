@@ -1,0 +1,108 @@
+{
+ "note": "Canonical identity = master.png (+ the two close-up crops). Never regenerate it: every clip starts from these images (Wan 2.2 TI2V-5B image-to-video). Boxes are face boxes in the 704 px clip frame (MuseTalk crop rule: jaw width, nose-(chin-nose) .. chin).",
+ "lang": "en",
+ "master": "master.png",
+ "logo": null,
+ "clip_size": 704,
+ "face_centre_master": {
+  "riya": [
+   341,
+   541
+  ],
+  "max": [
+   716,
+   506
+  ]
+ },
+ "speakers": {
+  "riya": {
+   "name": "Riya",
+   "color": "FF8FB1",
+   "side": "left",
+   "voice": {
+    "edge": "en-US-AvaMultilingualNeural",
+    "rate": "+4%",
+    "pitch": "+0Hz",
+    "kokoro": "af_heart",
+    "kokoro_speed": 1.0
+   }
+  },
+  "max": {
+   "name": "Max",
+   "color": "6FE3B4",
+   "side": "right",
+   "voice": {
+    "edge": "en-US-AndrewMultilingualNeural",
+    "rate": "+4%",
+    "pitch": "+0Hz",
+    "kokoro": "am_michael",
+    "kokoro_speed": 1.0
+   }
+  }
+ },
+ "pauses": {
+  "switch": 0.4,
+  "same": 0.22,
+  "end": 0.9
+ },
+ "style": {
+  "bg": "F5F6F4",
+  "bar": "FFFFFF",
+  "title": "14181D",
+  "kicker": "EpiFive",
+  "kicker_color": "0A7560",
+  "label": "Illustrated mock-up",
+  "music": "pad"
+ },
+ "clips": [
+  {
+   "id": "max-a",
+   "file": "clips/max-a.mp4",
+   "who": "max",
+   "box": [
+    180,
+    155,
+    505,
+    525
+   ]
+  },
+  {
+   "id": "riya-d",
+   "file": "clips/riya-d.mp4",
+   "who": "riya",
+   "box": [
+    200,
+    245,
+    500,
+    515
+   ],
+   "made": "4 Nov 2026 from riya-closeup.png (Wan 2.2 TI2V-5B, seed 157)"
+  },
+  {
+   "id": "two",
+   "file": "clips/two.mp4",
+   "who": "both",
+   "boxes": {
+    "riya": [
+     169,
+     313,
+     300,
+     432
+    ],
+    "max": [
+     421,
+     267,
+     563,
+     429
+    ]
+   }
+  }
+ ],
+ "rejected": {
+  "riya-a": "pilot clip: a white streak for a moment",
+  "riya-b": "pilot clip: a fist enters the frame",
+  "max-b": "pilot clip: the face changes",
+  "riya-c (4 Nov)": "head turns about 55 px (3/4 view): poor lip-sync tracking",
+  "max-c (4 Nov)": "a hand enters the frame in frames 8-32"
+ }
+}

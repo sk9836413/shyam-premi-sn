@@ -126,8 +126,8 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
 }
 
 // ---- "Dadi aur Chhotu" dialogue Short (noon slot, STORY.md section 6) -----------------------------
-// Speaking pace measured with edge-tts on 4 Nov 2026: Dadi (Swara, -12%) ~8.5 Devanagari characters a second,
-// Chhotu (Madhur, +4%) ~12.5; each turn adds its pause (~0.55 s when the speaker changes).
+// Speaking pace measured with edge-tts on 4 Nov 2026: Dadi (Swara, -15%) ~9.9 Devanagari characters a second,
+// Chhotu (Madhur, +4%, pitched up) ~14.2; each turn adds ~0.65-0.75 s of pause (longer when the speaker changes).
 if (s.format === 'dialogue') {
   need(/^\d{4}-\d{2}-\d{2}-noon-[a-z0-9-]+$/.test(s.slug || ''), 'slug must be <yyyy-mm-dd>-noon-<lowercase-english-slug>');
   need(s.title && s.title.length <= 45 && !DEVANAGARI.test(s.title), `title: Roman Hinglish, 1-45 characters (is ${s.title?.length ?? 0})`);
@@ -138,7 +138,7 @@ if (s.format === 'dialogue') {
   need(s.next && s.next.length <= 30 && !DEVANAGARI.test(s.next), 'next: tomorrow\'s temple or festival in Roman, max 30 characters (drawn on the end card)');
   need(s.temple === undefined || /^[a-z0-9-]+$/.test(s.temple), 'temple: lowercase slug (footage/<temple>/), or leave it out on festival days');
   need(s.deity && s.deity.length <= 60 && !/[|\n]/.test(s.deity), 'deity: 1-60 characters, no "|"');
-  need(s.summary && s.summary.length <= 160 && !/[|\n]/.test(s.summary), 'summary: max 160 characters, no "|"');
+  need(s.summary && s.summary.length <= 160 && !/[|\n]/.test(s.summary) && /agla:/i.test(s.summary), 'summary: max 160 characters, no "|", ending with "agla: <next>"');
   const vis = s.visuals && typeof s.visuals === 'object' ? s.visuals : {};
   const keys = Object.keys(vis);
   need(keys.length >= 3 && keys.length <= 6, `visuals: 3-6 story images (has ${keys.length}); each costs ~170 of the 10,000 free daily neurons`);
@@ -171,8 +171,8 @@ if (s.format === 'dialogue') {
   need(tail.some((l) => l.who === 'chhotu' && /\bkal\b/i.test(l.sub || '') && /\?/.test(l.sub || '')), 'one of the last 2 lines: Chhotu asks about tomorrow\'s temple ("Dadi, kal ... ?")');
   need(/subscribe/i.test(lines.at(-1)?.sub || '') && /like/i.test(lines.at(-1)?.sub || ''), 'the last line asks to like, share and subscribe');
   need(lines.at(-1)?.top === 'end', 'the last line shows the end card (top "end")');
-  const secs = lines.reduce((t, l) => t + (l.tts || '').length / (l.who === 'dadi' ? 8.5 : 12.5) + (l.who === 'dadi' ? 0.5 : 0.65), 0) + 1;
-  need(secs >= 85 && secs <= 125, `estimated length ${Math.round(secs)} s; must be 90-120 s (Dadi speaks ~8.5 characters a second, Chhotu ~12.5): adjust the lines`);
+  const secs = lines.reduce((t, l) => t + (l.tts || '').length / (l.who === 'dadi' ? 9.9 : 14.2) + (l.who === 'dadi' ? 0.63 : 0.76), 0);
+  need(secs >= 85 && secs <= 125, `estimated length ${Math.round(secs)} s; must be 90-120 s (Dadi speaks ~9.9 characters a second, Chhotu ~14.2): adjust the lines`);
   const facts = Array.isArray(s.facts) ? s.facts : [];
   need(facts.length >= 3, 'facts: at least 3 entries {claim, sources: [2+ URLs]} for what the dialogue states');
   facts.forEach((f, i) => need(f?.claim && Array.isArray(f.sources) && f.sources.filter((u) => /^https?:\/\//.test(u)).length >= 2, `fact ${i + 1}: needs a claim and 2 independent source URLs`));

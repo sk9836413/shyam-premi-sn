@@ -1,0 +1,127 @@
+{
+ "note": "Canonical identity = master.png (+ the two close-up crops). Never regenerate it: every clip starts from these images (Wan 2.2 TI2V-5B image-to-video). Boxes are face boxes in the 704 px clip frame (MuseTalk crop rule: jaw width, nose-(chin-nose) .. chin).",
+ "lang": "hi",
+ "master": "master.png",
+ "logo": "brand/logo.png",
+ "clip_size": 704,
+ "face_centre_master": {
+  "dadi": [
+   344,
+   476
+  ],
+  "chhotu": [
+   694,
+   487
+  ]
+ },
+ "speakers": {
+  "dadi": {
+   "name": "Dadi Maa",
+   "color": "FFC24A",
+   "side": "left",
+   "voice": {
+    "edge": "hi-IN-SwaraNeural",
+    "rate": "-15%",
+    "pitch": "-6Hz",
+    "kokoro": "hf_alpha",
+    "kokoro_speed": 0.85
+   }
+  },
+  "chhotu": {
+   "name": "Chhotu",
+   "color": "7FD8FF",
+   "side": "right",
+   "voice": {
+    "edge": "hi-IN-MadhurNeural",
+    "rate": "+4%",
+    "pitch": "+45Hz",
+    "kokoro": "hm_omega",
+    "kokoro_speed": 1.0
+   }
+  }
+ },
+ "pauses": {
+  "switch": 0.55,
+  "same": 0.3,
+  "end": 1.0
+ },
+ "style": {
+  "bg": "220C0A",
+  "bar": "180806",
+  "title": "FFE7A8",
+  "kicker": "Dadi ki Kahani",
+  "kicker_color": "FFC24A",
+  "label": "AI chitra (sanketik)",
+  "music": "drone"
+ },
+ "clips": [
+  {
+   "id": "dadi-a",
+   "file": "clips/dadi-a.mp4",
+   "who": "dadi",
+   "box": [
+    230,
+    130,
+    560,
+    470
+   ]
+  },
+  {
+   "id": "dadi-b",
+   "file": "clips/dadi-b.mp4",
+   "who": "dadi",
+   "box": [
+    230,
+    130,
+    560,
+    470
+   ]
+  },
+  {
+   "id": "chhotu-a",
+   "file": "clips/chhotu-a.mp4",
+   "who": "chhotu",
+   "box": [
+    175,
+    220,
+    530,
+    480
+   ]
+  },
+  {
+   "id": "chhotu-c",
+   "file": "clips/chhotu-c.mp4",
+   "who": "chhotu",
+   "box": [
+    175,
+    220,
+    530,
+    480
+   ],
+   "made": "4 Nov 2026 from chhotu-closeup.png (Wan 2.2 TI2V-5B, seed 131), frames 0-52 kept"
+  },
+  {
+   "id": "two",
+   "file": "clips/two.mp4",
+   "who": "both",
+   "boxes": {
+    "dadi": [
+     164,
+     253,
+     309,
+     401
+    ],
+    "chhotu": [
+     400,
+     278,
+     555,
+     392
+    ]
+   }
+  }
+ ],
+ "rejected": {
+  "chhotu-b": "pilot clip: eyes close and the face drifts (4 Nov 2026)",
+  "chhotu-c (frames 53-80)": "head jumps after frame 52"
+ }
+}

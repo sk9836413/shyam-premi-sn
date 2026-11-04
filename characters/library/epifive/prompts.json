@@ -1,0 +1,12 @@
+{
+  "style": "modern stylized 3D cartoon, original character design, clean soft studio lighting, vibrant friendly colours, highly detailed, sharp focus, no text, no letters, no logos, no writing, no watermark",
+  "characters": {
+    "max": "Max, a friendly IT admin in his early 30s with light-brown skin, short dark curly hair, a neat short beard, rectangular black glasses and a warm confident smile, wearing a teal zip hoodie over a grey t-shirt",
+    "riya": "Riya, a busy office worker in her late 20s with warm tan skin, long dark brown hair in a high ponytail, expressive eyebrows, wearing a mustard-yellow blazer over a white top"
+  },
+  "images": [
+    { "file": "master-v1.png", "seed": 365, "prompt": "Two characters side by side at a modern office desk facing the viewer: on the left Riya, a busy office worker in her late 20s with warm tan skin, long dark brown hair in a high ponytail, expressive eyebrows, mustard-yellow blazer over a white top, looking worried; on the right Max, a friendly IT admin in his early 30s with light-brown skin, short dark curly hair, neat short beard, rectangular black glasses, teal zip hoodie over a grey t-shirt, smiling reassuringly. Medium shot from the waist up, both faces large and clearly visible, bright modern office with plants and soft window light, laptop on the desk seen from behind" },
+    { "file": "master-v2.png", "seed": 366, "prompt": "Medium two-shot in a bright modern open office: a young woman office worker (late 20s, warm tan skin, long dark brown hair in a high ponytail, mustard-yellow blazer, white top) on the left holding a laptop and looking stressed, and a friendly IT admin man (early 30s, light-brown skin, short dark curly hair, neat short beard, rectangular black glasses, teal zip hoodie, grey t-shirt) on the right giving a reassuring smile and pointing helpfully, both facing the viewer at a slight angle, faces clear, potted plants, soft daylight" },
+    { "file": "master-v3.png", "seed": 367, "prompt": "Two coworkers sitting next to each other at a desk facing the camera, left: Riya, late 20s, warm tan skin, long dark brown hair in a high ponytail, mustard-yellow blazer over a white top, puzzled expression; right: Max, early 30s, light-brown skin, short dark curly hair, neat short beard, rectangular black glasses, teal zip hoodie, calm friendly smile; medium shot, both faces clearly visible, clean modern office background with plants and a window, soft light" }
+  ]
+}

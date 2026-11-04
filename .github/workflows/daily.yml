@@ -7,6 +7,9 @@
 # dispatches slot=evening at 10:43 IST and YouTube publishes it at 19:00 IST (publishAt); 18:46 IST is the retry.
 # An explicit slot works at any hour. If Kaggle fails, times out or has under 10 GPU hours left this week, the
 # scenes fall back to FLUX stills + zoompan: the post is never skipped.
+# slot=noon (dispatched by the scheduler at 10:13 IST, retry 18:46 IST) is the daily "Dadi aur Chhotu" cartoon dialogue
+# Short (STORY.md section 6, characters/): edge-tts voices, story images, lip-sync on Kaggle (~10-15 GPU-min), else the
+# still two-shot with a speaker highlight. dry_run=true renders everything and keeps the video as an artifact only.
 name: Daily story video
 
 on:
@@ -19,6 +22,10 @@ on:
         description: morning, evening, noon or long (empty = by time of day; long = only the long video; noon = an extra animated darshan Short, published straight away)
         required: false
         default: ''
+      dry_run:
+        description: Render only (no YouTube, no Instagram/Facebook, nothing logged); the video becomes the run's artifact
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -112,11 +119,12 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           claude_args: |
-            --max-turns 80
+            --max-turns 100
             --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(ls:*)"
           prompt: |
             Write today's Shyam Premi SN story video. Today's date (IST) is ${{ steps.date.outputs.today }}, slot: ${{ steps.date.outputs.slot }}.
-            Follow automation/STORY.md exactly. Write story/today/scenes.json, make scripts/validate.mjs pass,
+            Follow automation/STORY.md exactly${{ steps.date.outputs.slot == 'noon' && ' (the noon slot is the "Dadi aur Chhotu" dialogue Short: section 6)' || '' }}.
+            Write story/today/scenes.json, make scripts/validate.mjs pass,
             and append one line to automation/log.md. Change nothing else.
 
       - name: Validate
@@ -135,7 +143,7 @@ jobs:
       # left this week, evening/noon 3.
       - name: Animate (Kaggle GPU)
         id: anim
-        if: steps.date.outputs.done != 'true' && contains(fromJSON('["morning","evening","noon"]'), steps.date.outputs.slot)
+        if: steps.date.outputs.done != 'true' && contains(fromJSON('["morning","evening"]'), steps.date.outputs.slot)
         continue-on-error: true
         timeout-minutes: 170
         env:
@@ -161,6 +169,44 @@ jobs:
           echo "- Kaggle: $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min, quota before: $(cat "$RUNNER_TEMP/quota.json")" >> "$GITHUB_STEP_SUMMARY"
           node animate/check-clips.mjs story/today/scenes.json --clips story/today/clips --plan "$plan" --summary "$GITHUB_STEP_SUMMARY"
 
+      # Noon: the "Dadi aur Chhotu" dialogue Short (STORY.md section 6; characters/dialogue.py, characters/README.md).
+      # Voices (edge-tts, pauses between turns) and 3-6 FLUX story images are made here.
+      - name: Characters (voices, story images, shot plan)
+        if: steps.date.outputs.done != 'true' && steps.date.outputs.slot == 'noon'
+        env:
+          MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+        run: |
+          pip install -q pillow
+          c="python -I characters/dialogue.py"; d=story/today/char
+          $c voice --spec story/today/scenes.json --channel shyam --out $d/voice | tee -a "$GITHUB_STEP_SUMMARY"
+          $c images --spec story/today/scenes.json --out $d/images
+          $c plan --spec story/today/scenes.json --channel shyam --voice $d/voice --out $d/plan.json
+
+      # Lip-sync on Kaggle (private kernel sps-char-shyam, MuseTalk 1.5 on the canonical clip library, T4 x2, ~10-15 min),
+      # after the morning job's session (same lock: one sps kernel at a time). No secret, under 2 GPU hours left, a busy
+      # account or any failure: the renderer uses the still two-shot with a speaker highlight for the missing lines.
+      - name: Lip-sync (Kaggle GPU)
+        if: steps.date.outputs.done != 'true' && steps.date.outputs.slot == 'noon'
+        continue-on-error: true
+        timeout-minutes: 110
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: char-shyam
+        run: |
+          fail() { echo "::warning::Lip-sync skipped, using stills: $1"; echo "- Lip-sync skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
+          pip install -q 'kaggle>=2.2' six || fail "kaggle CLI install failed"
+          node animate/kaggle.mjs quota --min 2 > "$RUNNER_TEMP/quota.json" || fail "under 2 Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
+          python -I characters/dialogue.py dataset --plan story/today/char/plan.json --voice story/today/char/voice --out animate/dataset --max-minutes 30 || fail "dataset build failed"
+          node animate/kaggle.mjs upload || fail "dataset upload failed"
+          node animate/kaggle.mjs lock --minutes 40 || fail "another sps kernel was still running after 40 min"
+          node animate/kaggle.mjs push --queue-minutes 20 --retry-minutes 20 || fail "kernel push failed (Kaggle busy?)"
+          start=$(date +%s)
+          node animate/kaggle.mjs wait --minutes 45 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json"); using any lines it finished"
+          grep -q QUEUED_TOO_LONG "$RUNNER_TEMP/wait.json" && fail "the Kaggle GPU session was still queued after 20 min"
+          node animate/kaggle.mjs fetch --to story/today/char/lipsync > "$RUNNER_TEMP/fetch.json" || fail "could not download the lip-sync clips"
+          echo "- Lip-sync: $(node characters/summary.mjs "$RUNNER_TEMP/fetch.json") (waited $(( ($(date +%s) - start) / 60 )) min; quota before: $(cat "$RUNNER_TEMP/quota.json"))" >> "$GITHUB_STEP_SUMMARY"
+
       # Narration: edge-tts hi-IN-MadhurNeural. Only when the repo variable SHYAM_TTS is "chatterbox" does the Kaggle
       # session also narrate with Chatterbox (story/today/voice), used when every line succeeded. Off since the 4 Nov
       # A/B: Chatterbox said "Shaam" for Shyam and "Ganej" for Ganesh (animate/REPORT.md section 9).
@@ -169,12 +215,32 @@ jobs:
         env:
           MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
           VOICE_DIR: story/today/voice
-        run: node story/render-story.mjs story/today/scenes.json
+        run: |
+          if [ "${{ steps.date.outputs.slot }}" = noon ]; then
+            d=story/today/char; mkdir -p story/today/out
+            python -I characters/dialogue.py render --spec story/today/scenes.json --channel shyam --plan $d/plan.json --voice $d/voice \
+              --lipsync $d/lipsync --images $d/images --out "story/today/out/$SLUG.mp4" --meta $d/meta.json --credits | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            node story/render-story.mjs story/today/scenes.json
+          fi
+
+      - name: Keep the dry-run video (7 days)
+        if: inputs.dry_run && steps.date.outputs.done != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dry-run-${{ steps.date.outputs.slot }}
+          path: |
+            story/today/out/
+            story/today/scenes.json
+            story/today/char/meta.json
+            story/today/char/plan.json
+          retention-days: 7
+          compression-level: 0
 
       - name: YouTube
         id: yt
         continue-on-error: true
-        if: steps.date.outputs.done != 'true'
+        if: steps.date.outputs.done != 'true' && !inputs.dry_run
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
@@ -185,7 +251,7 @@ jobs:
       - name: Instagram and Facebook (Make)
         id: make
         continue-on-error: true
-        if: steps.date.outputs.done != 'true'
+        if: steps.date.outputs.done != 'true' && !inputs.dry_run
         env:
           MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
@@ -199,7 +265,7 @@ jobs:
           mkdir -p story/published
           cp story/today/scenes.json "story/published/$SLUG.json"
           yt=$(node -p "try{const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')).youtube;y.url+(y.publishAt?' (public at '+y.publishAt+')':'')}catch{''}")
-          anim=$(node -p "const s=require('./story/today/scenes.json').scenes;const n=s.filter(x=>x.video).length;n?' | animated '+n+'/'+s.filter(x=>!x.endcard).length:''")
+          anim=$(node characters/summary.mjs --record)
           echo "- $SLUG | youtube: ${yt:-failed} | make: $(node -p "try{JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/make.json','utf8')).status}catch{'failed'}")$anim" >> automation/published.md
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -220,7 +286,7 @@ jobs:
   # an error) the mp4 is parked on the media Worker and the next run retries it (scripts/long-pending.mjs).
   long:
     needs: story
-    if: always() && needs.story.outputs.long == 'true'
+    if: always() && needs.story.outputs.long == 'true' && !inputs.dry_run
     runs-on: ubuntu-latest
     timeout-minutes: 170
     env:

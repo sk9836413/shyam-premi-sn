@@ -1,0 +1,39 @@
+{
+ "canonical_master": "master.png (FLUX.1-schnell, Workers AI via shyam-premi-media /ai/flux, 4 steps, 1024x1024)",
+ "master_prompt": "Two coworkers sitting next to each other at a desk facing the camera, left: Riya, late 20s, warm tan skin, long dark brown hair in a high ponytail, mustard-yellow blazer over a white top, puzzled expression; right: Max, early 30s, light-brown skin, short dark curly hair, neat short beard, rectangular black glasses, teal zip hoodie, calm friendly smile; medium shot, both faces clearly visible, clean modern office background with plants and a window, soft light",
+ "style": "modern stylized 3D cartoon, original character design, clean soft studio lighting, vibrant friendly colours, highly detailed, sharp focus, no text, no letters, no logos, no writing, no watermark",
+ "seed_requested": 367,
+ "seed_note": "The media Worker forwards only prompt+steps, so this seed was NOT applied by FLUX. The saved master.png and close-up PNGs are the source of truth: every future clip starts from these files (Wan image-to-video), never from a fresh text-to-image generation.",
+ "characters": {
+  "riya": {
+   "name": "Riya (office worker, late 20s)",
+   "description": "Riya, a busy office worker in her late 20s with warm tan skin, long dark brown hair in a high ponytail, expressive eyebrows, wearing a mustard-yellow blazer over a white top",
+   "closeup": "riya-closeup.png",
+   "crop_box_in_master": [
+    118,
+    300,
+    566,
+    748
+   ],
+   "subtitle_color": "#FF8FB1",
+   "voice": "Chatterbox v3 en, ref voice-ref-riya.wav (Parler mini 'Laura', seed 2), ex 0.65 cfg 0.45, seed 100+line"
+  },
+  "max": {
+   "name": "Max (IT admin, early 30s)",
+   "description": "Max, a friendly IT admin in his early 30s with light-brown skin, short dark curly hair, a neat short beard, rectangular black glasses and a warm confident smile, wearing a teal zip hoodie over a grey t-shirt",
+   "closeup": "max-closeup.png",
+   "crop_box_in_master": [
+    498,
+    290,
+    946,
+    738
+   ],
+   "subtitle_color": "#6FE3B4",
+   "voice": "Chatterbox v3 en, ref voice-ref-max.wav (Parler mini 'Jon', seed 1), ex 0.5 cfg 0.5, seed 100+line"
+  }
+ },
+ "rejected_variants": [
+  "master-v1.png",
+  "master-v2.png"
+ ]
+}

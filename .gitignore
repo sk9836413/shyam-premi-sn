@@ -36,3 +36,15 @@ voice/kaggle2/
 voice/kaggle3/
 voice/asr/
 voice/out2/
+# character pilot media and Kaggle scratch (the production library is characters/library/)
+characters/audio/
+characters/build/
+characters/kaggle-out/
+characters/lipsync/
+characters/visuals/
+characters/sheet/
+characters/kaggle/dataset/
+characters/kaggle/push-*/
+characters/*.mp4
+characters/*.mp3
+story/today/char/
