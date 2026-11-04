@@ -128,6 +128,14 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
 // ---- "Dadi aur Chhotu" dialogue Short (noon slot, STORY.md section 6) -----------------------------
 // Speaking pace measured with edge-tts on 4 Nov 2026: Dadi (Swara, -15%) ~9.9 Devanagari characters a second,
 // Chhotu (Madhur, +4%, pitched up) ~14.2; each turn adds ~0.65-0.75 s of pause (longer when the speaker changes).
+// Sati temples (automation/mandir-series.md): no fair/mela/procession talk at all, and the legal disclaimer is required.
+if (/sati/i.test(`${s.slug || ''} ${s.temple || ''} ${s.title || ''}`)) {
+  const all = JSON.stringify(s);
+  need(!/(mela|yatra|juloos|jaloos|procession|bhado|bhadi|amavasya)|मेला|यात्रा|भादो|भादी|अमावस्या/i.test(all), 'sati temple: never mention a mela, yatra, procession or the Bhado/Bhadi amavasya gathering (mandir-series.md)');
+  need(/Sati Nivaran Adhiniyam 1987/.test(all), 'sati temple: the legal disclaimer (Sati Nivaran Adhiniyam 1987) must be spoken and in the description');
+  need(!/balidaan|amar tyag|mahima|chita|agni|aag/i.test(all), 'sati temple: no praise of the act and no fire imagery');
+}
+
 if (s.format === 'dialogue') {
   need(/^\d{4}-\d{2}-\d{2}-noon-[a-z0-9-]+$/.test(s.slug || ''), 'slug must be <yyyy-mm-dd>-noon-<lowercase-english-slug>');
   need(s.title && s.title.length <= 45 && !DEVANAGARI.test(s.title), `title: Roman Hinglish, 1-45 characters (is ${s.title?.length ?? 0})`);

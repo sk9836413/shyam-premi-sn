@@ -48,7 +48,10 @@ content that glorifies self-harm. So for these temples:
 - **Mandatory disclaimer**, spoken briefly right after the event sentence and also in the description:
   "Sati pratha Bharat mein kanoon (Sati Nivaran Adhiniyam 1987) dwara pratibandhit hai; yeh video sirf
   itihas aur aastha ki jaankari ke liye hai, is pratha ko badhava nahi deta."
-- Do not promote events the law restricts (for example any sati-related mela or procession).
+- **Never mention any fair, mela, yatra, procession or annual gathering at a sati temple** (e.g. the Bhado/Bhadi
+  Amavasya mela, chunari yatra), not even as a fact or a date. The Act counts holding such fairs or processions as
+  glorification, and courts have restricted them. No "mujhe bhi jana hai" or crowd numbers either. (4 Nov 2026: a
+  Rani Sati Short mentioned the Bhado Amavasya mela and was set to private.)
 
 ## Temples, in order
 
