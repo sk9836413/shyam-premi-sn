@@ -13,7 +13,9 @@ const need = (ok, msg) => { if (!ok) problems.push(msg); };
 const DEVANAGARI = /[ऀ-ॿ]/;
 const BAIT = /share\s*kar(o|ein|na)?\s*(warna|nahi\s*to)|paisa\s*aayega|dhan\s*varsha\s*hogi|guaranteed|100\s*%|bad\s*luck|ignore\s*mat|type\s*karo\s*jai|miracle|chamatkar\s*pakka/i;
 const PLAYLISTS = ['Khatu Shyam ji ki Kathayein', 'Shiv ji ki Kathayein', 'Hanuman ji ki Kathayein', 'Ganesh ji ki Kathayein',
-  'Vishnu ji aur Krishna ki Kathayein', 'Maa Durga aur Devi ki Kathayein', 'Shani Dev ki Kathayein', 'Surya Dev ki Kathayein', 'Tyohar aur Vrat Kathayein', 'Mandir Itihas'];
+  'Vishnu ji aur Krishna ki Kathayein', 'Maa Durga aur Devi ki Kathayein', 'Shani Dev ki Kathayein', 'Surya Dev ki Kathayein', 'Tyohar aur Vrat Kathayein', 'Mandir Itihas',
+  '12 Jyotirlinga', 'Char Dham', 'Shakti Peeth', 'Ashtavinayak', 'Panch Kedar', 'Sapta Puri', 'Pancha Bhoota Sthalam',
+  'Krishna Leela Dham', 'Hanuman ji ke Prasiddh Mandir', 'Navagraha Mandir', 'Prasiddh Mandir'];
 
 // ---- Long video (16:9, 5-10 min) ----------------------------------------------------------------
 // Narration runs at ~12 characters a second; each scene adds ~0.8 s and each chapter ~1 s of pause.
@@ -120,6 +122,84 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
     process.exit(1);
   }
   console.log(`OK: ${file} (${scenes.length} scenes, ${chapters.length} chapters, ${images.length} images, ~${Math.round(total)} s)`);
+  process.exit(0);
+}
+
+// ---- "Dadi aur Chhotu" dialogue Short (noon slot, STORY.md section 6) -----------------------------
+// Speaking pace measured with edge-tts on 4 Nov 2026: Dadi (Swara, -12%) ~8.5 Devanagari characters a second,
+// Chhotu (Madhur, +4%) ~12.5; each turn adds its pause (~0.55 s when the speaker changes).
+if (s.format === 'dialogue') {
+  need(/^\d{4}-\d{2}-\d{2}-noon-[a-z0-9-]+$/.test(s.slug || ''), 'slug must be <yyyy-mm-dd>-noon-<lowercase-english-slug>');
+  need(s.title && s.title.length <= 45 && !DEVANAGARI.test(s.title), `title: Roman Hinglish, 1-45 characters (is ${s.title?.length ?? 0})`);
+  need(s.kicker && s.kicker.length <= 22, `kicker must be 1-22 characters (is ${s.kicker?.length ?? 0})`);
+  need(PLAYLISTS.includes(s.playlist), `playlist must be one of: ${PLAYLISTS.join(', ')}`);
+  need(/no text/i.test(s.style || ''), 'style must include "no text"');
+  need(s.hook && s.hook.length <= 38 && !DEVANAGARI.test(s.hook), 'hook: Roman Hinglish, 1-38 characters');
+  need(s.next && s.next.length <= 30 && !DEVANAGARI.test(s.next), 'next: tomorrow\'s temple or festival in Roman, max 30 characters (drawn on the end card)');
+  need(s.temple === undefined || /^[a-z0-9-]+$/.test(s.temple), 'temple: lowercase slug (footage/<temple>/), or leave it out on festival days');
+  need(s.deity && s.deity.length <= 60 && !/[|\n]/.test(s.deity), 'deity: 1-60 characters, no "|"');
+  need(s.summary && s.summary.length <= 160 && !/[|\n]/.test(s.summary), 'summary: max 160 characters, no "|"');
+  const vis = s.visuals && typeof s.visuals === 'object' ? s.visuals : {};
+  const keys = Object.keys(vis);
+  need(keys.length >= 3 && keys.length <= 6, `visuals: 3-6 story images (has ${keys.length}); each costs ~170 of the 10,000 free daily neurons`);
+  keys.forEach((k) => {
+    need(/^[a-z][a-z0-9-]*$/.test(k) && k !== 'end', `visual "${k}": key must be a lowercase word (and not "end", which is the end card)`);
+    const pr = vis[k]?.prompt || '';
+    need(pr.length >= 40, `visual "${k}": prompt missing or too short`);
+    need(!/\b(text|letters|writing|sign|caption|words|logo)\b/i.test(pr.replace(/no (text|letters|writing)/gi, '')), `visual "${k}": prompt must not ask for text, signs or letters`);
+    need(vis[k]?.real === undefined || typeof vis[k].real === 'boolean', `visual "${k}": real must be true or false`);
+  });
+  const lines = Array.isArray(s.lines) ? s.lines : [];
+  need(lines.length >= 14 && lines.length <= 24, `14-24 lines needed (has ${lines.length})`);
+  const used = new Set();
+  lines.forEach((l, i) => {
+    const n = `line ${i + 1}`;
+    need(['dadi', 'chhotu'].includes(l.who), `${n}: who must be "dadi" or "chhotu"`);
+    need(l.tts && DEVANAGARI.test(l.tts), `${n}: tts must be Hindi in Devanagari`);
+    need(l.tts && l.tts.length <= 150, `${n}: tts over 150 characters (${l.tts?.length}); split the turn`);
+    need(l.tts && !/\d/.test(l.tts), `${n}: write numbers in tts as words`);
+    need(l.sub && !DEVANAGARI.test(l.sub) && l.sub.length <= 140, `${n}: sub must be Roman Hinglish, max 140 characters`);
+    need(l.top === 'end' || keys.includes(l.top), `${n}: top must be a key of visuals or "end"`);
+    used.add(l.top);
+  });
+  keys.forEach((k) => need(used.has(k), `visual "${k}" is never shown; remove it (it would waste neurons)`));
+  const chhotu = lines.filter((l) => l.who === 'chhotu');
+  need(lines[0]?.who === 'chhotu' && /\?\s*$/.test(lines[0]?.sub || ''), 'line 1: Chhotu opens with a curious question (ends with "?")');
+  need(chhotu.filter((l) => /\?\s*$/.test(l.sub || '')).length >= 4, 'Chhotu\'s questions drive the story: at least 4 Chhotu lines ending with "?"');
+  need(lines.every((l, i) => i < 2 || !(l.who === lines[i - 1].who && l.who === lines[i - 2].who)), 'no one speaks more than 2 lines in a row: let Chhotu react or ask');
+  const tail = lines.slice(-2);
+  need(tail.some((l) => l.who === 'chhotu' && /\bkal\b/i.test(l.sub || '') && /\?/.test(l.sub || '')), 'one of the last 2 lines: Chhotu asks about tomorrow\'s temple ("Dadi, kal ... ?")');
+  need(/subscribe/i.test(lines.at(-1)?.sub || '') && /like/i.test(lines.at(-1)?.sub || ''), 'the last line asks to like, share and subscribe');
+  need(lines.at(-1)?.top === 'end', 'the last line shows the end card (top "end")');
+  const secs = lines.reduce((t, l) => t + (l.tts || '').length / (l.who === 'dadi' ? 8.5 : 12.5) + (l.who === 'dadi' ? 0.5 : 0.65), 0) + 1;
+  need(secs >= 85 && secs <= 125, `estimated length ${Math.round(secs)} s; must be 90-120 s (Dadi speaks ~8.5 characters a second, Chhotu ~12.5): adjust the lines`);
+  const facts = Array.isArray(s.facts) ? s.facts : [];
+  need(facts.length >= 3, 'facts: at least 3 entries {claim, sources: [2+ URLs]} for what the dialogue states');
+  facts.forEach((f, i) => need(f?.claim && Array.isArray(f.sources) && f.sources.filter((u) => /^https?:\/\//.test(u)).length >= 2, `fact ${i + 1}: needs a claim and 2 independent source URLs`));
+  const desc = s.youtube_description || '';
+  need(/sanketik/i.test(desc) && /AI/.test(desc), 'youtube_description must say "Chitra AI dwara banaye gaye hain (sanketik)"');
+  need(/subscribe/i.test(desc), 'youtube_description must end with a like/share/subscribe line');
+  // Sati temples (automation/mandir-series.md): history only, a legal disclaimer, no fire imagery, no praise.
+  const sati = /sati/i.test(`${s.temple || ''} ${s.slug || ''} ${s.title || ''}`);
+  if (sati) {
+    need(/Sati Nivaran Adhiniyam/i.test(desc), 'sati temple: the description needs the Sati (Prevention) Act disclaimer from mandir-series.md');
+    need(lines.some((l) => /pratibandhit/i.test(l.sub || '')), 'sati temple: one line must speak the disclaimer (Sati pratha ... pratibandhit hai ...)');
+    need(!keys.some((k) => /\b(fire|flame|pyre|burn|blaze|cremat)/i.test(vis[k].prompt || '')), 'sati temple: no fire, pyre or burning in any image prompt');
+    need(!/(mahaan balidaan|amar tyag|sati ki mahima|punya)/i.test(lines.map((l) => l.sub).join(' ')), 'sati temple: no praise of the act');
+  }
+  const yt = s.youtube_title || '';
+  need(yt.length > 0 && yt.length <= 90 && yt.endsWith(' #Shorts') && DEVANAGARI.test(yt), 'youtube_title: max 90 characters, "Roman | देवनागरी #Shorts"');
+  need(!/[<>]/.test(yt + desc + (s.youtube_tags || '')), 'YouTube fields must not contain < or >');
+  const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
+  need(tags.length >= 10 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 10-15 tags with some Devanagari (has ${tags.length})`);
+  need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
+  need((s.facebook_caption || '').trim() && !DEVANAGARI.test(s.facebook_caption), 'facebook_caption: Roman, not empty');
+  need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
+  if (problems.length) {
+    console.log(problems.map((p) => `- ${p}`).join('\n'));
+    process.exit(1);
+  }
+  console.log(`OK: ${file} (dialogue, ${lines.length} lines, ~${Math.round(secs)} s)`);
   process.exit(0);
 }
 
