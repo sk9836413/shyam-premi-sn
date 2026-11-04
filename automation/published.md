@@ -21,3 +21,4 @@
 - 2026-11-04-morning-ganesh-mahabharat-lekhan | youtube: https://youtube.com/shorts/Pfb9ZZ0XLhM | make: hosted-only
 - 2026-11-04-long-naraka-chaturdashi-narakasur-vadh | youtube: https://youtu.be/doHiImPbjho (public at 12:30 IST) | long 5:05, 46 scenes, render 8 min, 1344 neurons
 - 2026-11-04-evening-shakambhari-mata-sambhar-darshan | youtube: https://youtube.com/shorts/clhbuJwYOwc (public at 2026-11-04T13:30:00.000Z) | make: hosted-only | animated 1/4
+- 2026-11-04-noon-rani-sati-dadi-jhunjhunu | youtube: https://youtube.com/shorts/xK2zoP3wNcc | make: error | dialogue lipsync, lip-synced 15/15, 109 s

@@ -1,0 +1,48 @@
+{
+  "slug": "2026-11-04-noon-rani-sati-dadi-jhunjhunu",
+  "format": "dialogue",
+  "title": "Rani Sati Dadi Mandir Jhunjhunu",
+  "kicker": "Dadi ki Kahani",
+  "playlist": "Mandir Itihas",
+  "temple": "rani-sati-dadi",
+  "next": "Dhandhan Sati Dadi Mandir",
+  "deity": "Rani Sati Dadi Mandir, Jhunjhunu (Mandir series)",
+  "summary": "Jhunjhunu ka Rani Sati Dadi Mandir: trishul ki pooja, Bhado amavasya ka mela, sati pratha par kanooni disclaimer; agla: Dhandhan Sati Dadi Mandir",
+  "hook": "Murti nahi, trishul ki pooja kyun?",
+  "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "visuals": {
+    "temple": {"prompt": "A grand white and cream Rajasthani temple complex with domes and arches in Jhunjhunu, Shekhawati, courtyard with devotees in colourful clothes, marigold garlands, warm golden hour light, peaceful devotional mood", "real": true},
+    "town": {"prompt": "A Shekhawati town in Rajasthan with old painted havelis, narrow lane, camels in the distance, warm evening light, peaceful village atmosphere", "real": false},
+    "trishul": {"prompt": "Inside a temple sanctum, a golden trident on a decorated altar with red cloth, marigold garlands and silver lamps, soft golden glow, calm devotional atmosphere, close view", "real": true},
+    "mela": {"prompt": "A large peaceful festival crowd of devotees in colourful Rajasthani clothes walking toward a white temple at dusk on a new moon night, garlands and lanterns, warm glow, joyful devotional mood", "real": false}
+  },
+  "lines": [
+    {"who": "chhotu", "tts": "दादी, रानी सती दादी के मंदिर में मूर्ति नहीं, त्रिशूल की पूजा क्यों होती है?", "sub": "Dadi, Rani Sati Dadi ke mandir mein murti nahi, trishul ki pooja kyun hoti hai?", "top": "temple"},
+    {"who": "dadi", "tts": "सुनो बेटा, ये राजस्थान के झुंझुनूं का रानी सती दादी मंदिर है। लोग प्यार से उन्हें दादी जी कहते हैं।", "sub": "Suno beta, ye Rajasthan ke Jhunjhunu ka Rani Sati Dadi Mandir hai. Log pyaar se unhe Dadi ji kehte hain.", "top": "temple"},
+    {"who": "chhotu", "tts": "झुंझुनूं कौन से इलाके में है दादी? और ये मंदिर कितना पुराना है?", "sub": "Jhunjhunu kaun se ilaake mein hai Dadi? Aur ye mandir kitna purana hai?", "top": "town"},
+    {"who": "dadi", "tts": "शेखावाटी इलाके में, बेटा। पुराना कितना है, इस पर स्रोत एक राय नहीं रखते; कोई चार सौ साल कहता है, कोई तेरहवीं सदी।", "sub": "Shekhawati ilaake mein, beta. Purana kitna hai, is par sources ek raay nahi rakhte; koi chaar sau saal kehta hai, koi terahvin sadi.", "top": "town"},
+    {"who": "chhotu", "tts": "अच्छा! तो ये दादी जी कौन थीं?", "sub": "Accha! To ye Dadi ji kaun thin?", "top": "temple"},
+    {"who": "dadi", "tts": "परंपरा के अनुसार वे एक महिला थीं, जो पति के निधन के बाद सती हुईं।", "sub": "Parampara ke anusar ve ek mahila thin, jo pati ke nidhan ke baad sati huin.", "top": "temple"},
+    {"who": "dadi", "tts": "बेटा, सती प्रथा भारत में कानून से प्रतिबंधित है। ये वीडियो सिर्फ इतिहास और आस्था की जानकारी के लिए है, बढ़ावा नहीं देता।", "sub": "Beta, sati pratha Bharat mein kanoon se pratibandhit hai. Ye video sirf itihas aur aastha ki jaankari ke liye hai, badhava nahi deta.", "top": "temple"},
+    {"who": "chhotu", "tts": "समझ गया दादी। तो फिर मंदिर में पूजा किसकी होती है?", "sub": "Samajh gaya Dadi. To phir mandir mein pooja kiski hoti hai?", "top": "trishul"},
+    {"who": "dadi", "tts": "दादी जी के प्रति श्रद्धा से, बेटा। यहाँ मूर्ति की जगह शक्ति के प्रतीक त्रिशूल की पूजा होती है।", "sub": "Dadi ji ke prati shraddha se, beta. Yahan murti ki jagah shakti ke prateek trishul ki pooja hoti hai.", "top": "trishul"},
+    {"who": "chhotu", "tts": "ओह, त्रिशूल! और यहाँ मेला कब लगता है?", "sub": "Oh, trishul! Aur yahan mela kab lagta hai?", "top": "trishul"},
+    {"who": "dadi", "tts": "हर साल भादो महीने की अमावस्या पर यहाँ बड़ा मेला लगता है।", "sub": "Har saal Bhado mahine ki amavasya par yahan bada mela lagta hai.", "top": "mela"},
+    {"who": "chhotu", "tts": "फिर तो वहाँ बहुत भीड़ होती होगी, है न दादी?", "sub": "Phir to wahan bahut bheed hoti hogi, hai na Dadi?", "top": "mela"},
+    {"who": "dadi", "tts": "हाँ बेटा, खबरों में आता है कि देश भर से लाखों भक्त पहुँचते हैं।", "sub": "Haan beta, khabron mein aata hai ki desh bhar se lakhon bhakt pahunchte hain.", "top": "mela"},
+    {"who": "chhotu", "tts": "मुझे भी जाना है! दादी, कल किस मंदिर की कहानी सुनाओगी?", "sub": "Mujhe bhi jana hai! Dadi, kal kis mandir ki kahani sunaogi?", "top": "mela"},
+    {"who": "dadi", "tts": "कल सुनाऊँगी धनधन सती दादी की कहानी। देखने के लिए लाइक, शेयर और सब्सक्राइब करना, बेटा!", "sub": "Kal sunaungi Dhandhan Sati Dadi ki kahani. Dekhne ke liye Like, Share aur Subscribe karna, beta!", "top": "end"}
+  ],
+  "facts": [
+    {"claim": "Rani Sati Mandir is in Jhunjhunu district (Shekhawati), Rajasthan", "sources": ["https://www.tourism.rajasthan.gov.in/shekhawati.html", "https://zeenews.india.com/hindi/india/rajasthan/web-stories/jhunjhunu-rajasthan-temple-jhunjhunu-rani-sati-mandir-where-worship-a-women-historical-place-to-visit/1753006203346"]},
+    {"claim": "Temple age differs by source: Rajasthan Tourism says 400+ years, Rajasthan Foundation says 13th century", "sources": ["https://www.tourism.rajasthan.gov.in/shekhawati.html", "https://foundation.rajasthan.gov.in/rf/jhunjhunun.html"]},
+    {"claim": "Worship is of a trident (trishul) as symbol of power rather than a murti", "sources": ["http://www.dadisati.in/festival.php", "https://zeenews.india.com/hindi/india/rajasthan/web-stories/jhunjhunu-rajasthan-temple-jhunjhunu-rani-sati-mandir-where-worship-a-women-historical-place-to-visit/1753006203346"]},
+    {"claim": "Big annual fair on Bhado (Bhadrapad) Amavasya drawing lakhs of devotees (press estimates)", "sources": ["http://www.dadisati.in/festival.php", "https://patrika.com/temples/rani-sati-dadi-mandir-bhado-amavasya-mahotsav-in-jhunjhunu-rajasthan-5029955"]},
+    {"claim": "Tradition: Rani Sati Dadi ji became sati after her husband died (labelled tradition; sati is prohibited by the Commission of Sati (Prevention) Act 1987)", "sources": ["https://zeenews.india.com/hindi/india/rajasthan/web-stories/jhunjhunu-rajasthan-temple-jhunjhunu-rani-sati-mandir-where-worship-a-women-historical-place-to-visit/1753006203346", "https://en.wikipedia.org/wiki/Rani_Sati_Temple"]}
+  ],
+  "youtube_title": "Rani Sati Dadi Mandir Jhunjhunu | रानी सती दादी मंदिर #Shorts",
+  "youtube_description": "Dadi aur Chhotu: Jhunjhunu (Rajasthan) ke Rani Sati Dadi Mandir ki jaankari: trishul ki pooja aur Bhado amavasya ka mela.\nरानी सती दादी मंदिर, झुंझुनूं, राजस्थान की कहानी।\nSati pratha Bharat mein kanoon (Sati Nivaran Adhiniyam 1987) dwara pratibandhit hai; yeh video sirf itihas aur aastha ki jaankari ke liye hai, is pratha ko badhava nahi deta.\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nKal Dhandhan Sati Dadi Mandir ki kahani: Like, Share aur Subscribe karein.\n#RaniSatiDadi #Jhunjhunu #MandirItihas #DadiAurChhotu #Shorts",
+  "youtube_tags": "Rani Sati Dadi Mandir, रानी सती दादी मंदिर, Jhunjhunu temple, झुंझुनूं मंदिर, Rani Sati Jhunjhunu, Bhado Amavasya mela, भादो अमावस्या मेला, Rajasthan ke mandir, राजस्थान के मंदिर, Dadi aur Chhotu, दादी और छोटू, Mandir Itihas, Shekhawati",
+  "instagram_caption": "Murti nahi, trishul ki pooja kyun? 🙏\nDadi aur Chhotu ki baatein: Jhunjhunu (Rajasthan) ke Rani Sati Dadi Mandir mein trishul ki pooja hoti hai aur Bhado amavasya par bada mela lagta hai.\nSati pratha Bharat mein kanoon (Sati Nivaran Adhiniyam 1987) dwara pratibandhit hai; yeh video sirf itihas aur aastha ki jaankari ke liye hai, is pratha ko badhava nahi deta.\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nKal Dhandhan Sati Dadi Mandir ki kahani: Like, Share aur Follow karein.\n#RaniSatiDadi #Jhunjhunu #Shekhawati #Rajasthan #MandirItihas #DadiAurChhotu #JaiShreeShyam #KhatuShyam",
+  "facebook_caption": "Dadi aur Chhotu: Jhunjhunu ke Rani Sati Dadi Mandir ki jaankari 🙏 Sati pratha Bharat mein kanoon (Sati Nivaran Adhiniyam 1987) dwara pratibandhit hai; yeh video sirf itihas aur aastha ke liye hai. Chitra AI dwara banaye gaye hain (sanketik). Kal Dhandhan Sati Dadi Mandir: Like, Share aur Follow karein.\n#RaniSatiDadi #Jhunjhunu #JaiShreeShyam"
+}
