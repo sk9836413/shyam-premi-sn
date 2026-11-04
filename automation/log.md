@@ -23,3 +23,4 @@
 2026-11-03 | noon | 2026-11-03-noon-shakambhari-mata-sakrai-darshan | Shakambhari Mata, Sakrai, Sikar (Mandir series, Maa Durga) | Aravalli ghati mein Sakrai ka Shakambhari Mata Dham, Durga ka roop, Navratri ki shraddha
 2026-11-04 | morning | 2026-11-04-morning-ganesh-mahabharat-lekhan | Ganesh ji (Budhvar) | Ved Vyas ke kehne par Ganesh ji ne Mahabharat likhi, kalam tooti to apna dant toda aur Ekdant kehlaye
 2026-11-04 | long | 2026-11-04-long-naraka-chaturdashi-narakasur-vadh | Shri Krishna / Satyabhama (Narak Chaturdashi) | Narak Chaturdashi ki katha: Narakasur ka atyachar, Indra ki pukar, Shri Krishna ka Pragjyotishpur par chadhai, Mur aur Narakasur ka ant, kanyaon ki mukti
+2026-11-04 | evening | 2026-11-04-evening-shakambhari-mata-sambhar-darshan | Shakambhari Mata, Sambhar, Jaipur (Mandir series, Maa Durga) | Sambhar jheel ke paas Shakambhari Mata Dham, Chauhan vansh ki kuldevi (manyata), bhakton par kripa

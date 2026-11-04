@@ -1,0 +1,53 @@
+{
+  "slug": "2026-11-04-evening-shakambhari-mata-sambhar-darshan",
+  "title": "Shakambhari Mata Sambhar",
+  "kicker": "Mandir Darshan",
+  "playlist": "Mandir Itihas",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Sambhar ki Shakambhari Mata",
+  "scenes": [
+    {
+      "prompt": "Goddess Shakambhari Mata in serene darshan form, green and red sari, gold crown, seated on a lotus, surrounded by fresh vegetables, fruits and flowers, lit diyas, warm golden glow inside a temple sanctum",
+      "tts": "जयपुर ज़िले की सांभर झील के पास शाकंभरी माता का धाम।",
+      "sub": "Jaipur zile ki Sambhar jheel ke paas Shakambhari Mata ka dham.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few petals drift in the foreground",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A vast calm salt lake in Rajasthan at golden hour with a small temple on the shore, pink sky reflected in still water, a few birds flying far away, peaceful atmosphere",
+      "tts": "सांभर की झील सुबह-शाम सुनहरी रोशनी में चमकती है।",
+      "sub": "Sambhar ki jheel subah-shaam sunehri roshni mein chamakti hai.",
+      "motion": "pan",
+      "animate": "the water shimmers softly and the camera pans very slowly across the lake"
+    },
+    {
+      "prompt": "Traditional Rajasthani temple courtyard with devotees offering fresh green vegetables and flowers with folded hands, aarti diya glowing, warm temple light, devotional mood",
+      "tts": "मान्यता है कि माँ चौहान वंश की कुलदेवी मानी जाती हैं।",
+      "sub": "Manyata hai ki Maa Chauhan vansh ki kuldevi maani jaati hain.",
+      "motion": "out",
+      "animate": "the diya flames flicker softly and the camera slowly pulls back"
+    },
+    {
+      "prompt": "Goddess Shakambhari Mata murti decorated with red chunri, garlands of marigold and green leaves, devotees' folded hands in foreground, aarti thali glowing, warm temple light",
+      "tts": "माँ की कृपा से भक्तों के घर में सुख-शांति बनी रहे।",
+      "sub": "Maa ki kripa se bhakton ke ghar mein sukh-shanti bani rahe.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly, a few petals drift in the foreground"
+    },
+    {
+      "endcard": true,
+      "tts": "जय शाकंभरी माता! कल अगले मंदिर के दर्शन के लिए सब्सक्राइब करें, लाइक और शेयर करें।",
+      "sub": "Jai Shakambhari Mata! Kal agle mandir ke darshan ke liye Subscribe karein, Like aur Share karein."
+    }
+  ],
+  "youtube_title": "Shakambhari Mata Sambhar Darshan | शाकंभरी माता सांभर #Shorts",
+  "youtube_description": "Shakambhari Mata Mandir (Sambhar, Jaipur, Rajasthan) ke darshan. Manyata ke anusar Maa Chauhan vansh ki kuldevi maani jaati hain.\nशाकंभरी माता मंदिर, सांभर, राजस्थान के दर्शन।\nChitra AI dwara banaye gaye hain (sanketik).\nMantra: ॐ शाकम्भर्यै नमः\nJai Shree Shyam 🙏\nKal agle mandir ke darshan: like, share aur subscribe karein.\n#ShakambhariMata #Sambhar #Rajasthan #MandirDarshan #Shorts",
+  "youtube_tags": "Shakambhari Mata, शाकंभरी माता, Sambhar Shakambhari Mata, सांभर शाकंभरी माता, Sambhar Lake, सांभर झील, Rajasthan temple, राजस्थान के मंदिर, Mandir darshan, मंदिर दर्शन, Chauhan kuldevi, चौहान कुलदेवी, Khatu Shyam, खाटू श्याम",
+  "instagram_caption": "Sambhar ki Shakambhari Mata ke darshan 🙏\nSambhar jheel ke paas basa Maa ka dham. Manyata hai ki Maa Chauhan vansh ki kuldevi maani jaati hain.\nChitra AI dwara banaye gaye hain (sanketik).\nOm Shakambharyai Namah\nKal agle mandir ke darshan: Like, Share aur Follow karein.\n#ShakambhariMata #Sambhar #Rajasthan #MandirDarshan #JaiMataDi #RajasthanTemples #Devotional #KhatuShyam",
+  "facebook_caption": "Sambhar ki Shakambhari Mata ke darshan 🙏 Manyata hai ki Maa Chauhan vansh ki kuldevi maani jaati hain. Chitra AI dwara banaye gaye hain (sanketik). Like, Share aur Follow karein.\n#ShakambhariMata #Sambhar #MandirDarshan"
+}
