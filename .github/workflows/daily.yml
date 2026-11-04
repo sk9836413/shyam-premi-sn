@@ -153,7 +153,7 @@ jobs:
           plan="story/today/build/$SLUG/plan.json"
           node animate/kaggle.mjs prepare story/today/scenes.json --plan "$plan" --max 4 || fail "dataset upload failed"
           node animate/kaggle.mjs lock --minutes "$LOCK_MINUTES" || fail "another sps-animate kernel is still running after $LOCK_MINUTES min"
-          node animate/kaggle.mjs push --queue-minutes 20 || fail "kernel push failed"
+          node animate/kaggle.mjs push --queue-minutes 20 --retry-minutes "$LOCK_MINUTES" || fail "kernel push failed (Kaggle busy?)"
           start=$(date +%s)
           node animate/kaggle.mjs wait --minutes 100 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json"); using any clips it finished"
           grep -q QUEUED_TOO_LONG "$RUNNER_TEMP/wait.json" && fail "the Kaggle GPU session was still queued after 20 min"

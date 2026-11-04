@@ -1,7 +1,8 @@
 // Runs the image-to-video kernel on Kaggle's free GPU (the heavy work never runs on the PC or the CI runner):
 //   node animate/kaggle.mjs prepare <scenes.json> [--plan plan.json] [--max 4] [--dry-run = jobs.json only, no upload]
 //        -> private dataset sps-animate-inputs (start images + jobs.json, a new version each run)
-//   node animate/kaggle.mjs push                     -> private GPU kernel (animate/kaggle/animate.py), T4 x2
+//   node animate/kaggle.mjs push [--retry-minutes 20] -> private GPU kernel (animate/kaggle/animate.py), T4 x2; retries while
+//        Kaggle refuses because the account already runs 2 batch GPU sessions
 //   node animate/kaggle.mjs lock [--minutes 45]      -> waits while another sps-animate-* kernel runs; exit 1 on timeout
 //   node animate/kaggle.mjs wait [--minutes 100] [--queue-minutes 20]
 //        -> polls until done; exit 0 only when COMPLETE; gives up if the session is still queued after --queue-minutes
@@ -91,7 +92,7 @@ async function prepare() {
   console.log(JSON.stringify({ stamp, jobs: jobs.map((j) => ({ id: j.id, frames: j.frames || 121 })) }));
 }
 
-function push() {
+async function push() {
   const u = user();
   const stamp = JSON.parse(fs.readFileSync(STAMP_FILE, 'utf8')).stamp;
   const dir = path.join(DIR, 'kaggle-push');
@@ -99,19 +100,27 @@ function push() {
   fs.mkdirSync(dir, { recursive: true });
   // START_BY: a session that only starts after this (queued too long, so the workflow has already fallen back to
   // zoompan) exits at once instead of spending GPU hours on clips nobody will use.
-  const startBy = Math.round(Date.now() / 1000 + 60 * (Number(opt('--queue-minutes', 20)) + 5));
-  const code = fs.readFileSync(path.join(DIR, 'kaggle', 'animate.py'), 'utf8')
-    .replace(/^EXPECT_STAMP = None.*$/m, `EXPECT_STAMP = ${JSON.stringify(stamp)}`)
-    .replace(/^START_BY = None.*$/m, `START_BY = ${startBy}`);
-  fs.writeFileSync(path.join(dir, 'animate.py'), code);
+  const write = () => {
+    const startBy = Math.round(Date.now() / 1000 + 60 * (Number(opt('--queue-minutes', 20)) + 5));
+    fs.writeFileSync(path.join(dir, 'animate.py'), fs.readFileSync(path.join(DIR, 'kaggle', 'animate.py'), 'utf8')
+      .replace(/^EXPECT_STAMP = None.*$/m, `EXPECT_STAMP = ${JSON.stringify(stamp)}`)
+      .replace(/^START_BY = None.*$/m, `START_BY = ${startBy}`));
+  };
   fs.writeFileSync(path.join(dir, 'kernel-metadata.json'), JSON.stringify({
     id: `${u}/${KERNEL}`, title: KERNEL, code_file: 'animate.py', language: 'python', kernel_type: 'script',
     is_private: true, enable_gpu: true, enable_internet: true, machine_shape: 'NvidiaTeslaT4',
     docker_image_pinning_type: 'latest', dataset_sources: [`${u}/${DATASET}`], competition_sources: [], kernel_sources: [],
   }, null, 2));
-  const r = kaggle('kernels', 'push', '-p', dir, '--accelerator', 'NvidiaTeslaT4');
-  console.log(r.out.split('\n').pop());
-  if (!r.ok || !/successfully pushed/i.test(r.out)) process.exit(1);
+  // Kaggle refuses a push while the account already runs 2 batch GPU sessions (any project): retry for a while.
+  const until = Date.now() + Number(opt('--retry-minutes', 20)) * 60e3;
+  for (;;) {
+    write();
+    const r = kaggle('kernels', 'push', '-p', dir, '--accelerator', 'NvidiaTeslaT4');
+    console.log(r.out.split('\n').pop());
+    if (r.ok && /successfully pushed/i.test(r.out)) return;
+    if (!/maximum batch GPU session/i.test(r.out) || Date.now() > until) process.exit(1);
+    await sleep(60e3);
+  }
 }
 
 // One sps-animate session at a time: wait while another slot's kernel is running or queued.
@@ -170,7 +179,7 @@ function quota() {
 }
 
 if (cmd === 'prepare') await prepare();
-else if (cmd === 'push') push();
+else if (cmd === 'push') await push();
 else if (cmd === 'wait') await wait();
 else if (cmd === 'lock') await lock();
 else if (cmd === 'fetch') fetch();
