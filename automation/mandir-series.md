@@ -71,6 +71,46 @@ content that glorifies self-harm. So for these temples:
 16. Moti Dungri Ganesh ji (Jaipur)
 17. Khatu Shyam ji Mandir itself (Sikar): the temple's history, separate from the Barbarik katha.
 
-**Rest of India (after Rajasthan)**: Kashi Vishwanath, Somnath, Mahakaleshwar Ujjain, Vaishno Devi,
-Kedarnath, Badrinath, Jagannath Puri, Tirupati Balaji, Siddhivinayak, Kamakhya, Dwarkadhish,
-Banke Bihari (Vrindavan), Ram Mandir (Ayodhya), Kalighat, Meenakshi (Madurai).
+## Pan-India series (owner, 4 Nov 2026: "India me bahut mandir h jo log janana chahte h, series chalao")
+
+Run these **alongside** the Rajasthan list. Each is a numbered series ("12 Jyotirlinga: 3/12"), so viewers
+follow it and subscribe. Rotate between series, and tie them to the calendar:
+- Shiv series in **Sawan, Kartik, Mahashivratri** and on Mondays
+- Shakti Peeth / Devi in **both Navratris** and on Fridays
+- Vishnu / Krishna in **Kartik, Janmashtami** and on Thursdays
+- Ganesh in **Ganesh Chaturthi** and on Wednesdays
+- Hanuman on Tuesdays and Saturdays
+
+Long videos run a temple in 2-4 parts. The Short and the Dadi-Chhotu Short cover one temple each.
+
+**Title pattern:** `<Temple> | <Series> <n>/<total> | <Devanagari name>`.
+**Playlists:** one per series, the same as the series name below (add each to PLAYLISTS in validate.mjs when it is first used).
+
+1. **12 Jyotirlinga** (order as in the Dwadash Jyotirlinga Stotram): Somnath, Mallikarjuna (Srisailam),
+   Mahakaleshwar (Ujjain), Omkareshwar, Kedarnath, Bhimashankar, Kashi Vishwanath, Trimbakeshwar,
+   Vaidyanath (Deoghar; note the Parli Vaijnath tradition too), Nageshwar (Dwarka; note the other
+   claimed sites), Rameshwaram, Grishneshwar (Ellora).
+2. **Char Dham** (Adi Shankaracharya): Badrinath, Dwarka, Puri Jagannath, Rameshwaram.
+   **Chhota Char Dham** (Uttarakhand): Yamunotri, Gangotri, Kedarnath, Badrinath.
+3. **Shakti Peeth.** Traditions count 51, 52 or 108, so say so plainly. Start with the widely agreed
+   ones: Kamakhya, Kalighat, Vaishno Devi (tradition), Jwala Ji, Naina Devi, Chintpurni, Hinglaj (Pakistan:
+   history only), Tarapith, Ambaji, Vindhyavasini, Jeen Mata / Shakambhari where tradition links them.
+4. **Ashtavinayak** (Maharashtra, traditional order): Moreshwar (Morgaon), Siddhivinayak (Siddhatek),
+   Ballaleshwar (Pali), Varadvinayak (Mahad), Chintamani (Theur), Girijatmaj (Lenyadri), Vighneshwar
+   (Ozar), Mahaganapati (Ranjangaon).
+5. **Panch Kedar**: Kedarnath, Tungnath, Rudranath, Madhyamaheshwar, Kalpeshwar.
+6. **Sapta Puri** (the seven moksha cities): Ayodhya, Mathura, Haridwar, Kashi, Kanchipuram, Ujjain, Dwarka.
+7. **Pancha Bhoota Sthalam** (Shiv as the 5 elements): Ekambareswarar (Kanchi), Jambukeswarar (Thiruvanaikaval),
+   Arunachaleswarar (Tiruvannamalai), Nataraja (Chidambaram), Srikalahasti.
+8. **Krishna Leela Dham**: Banke Bihari, Prem Mandir, ISKCON Vrindavan, Govardhan, Barsana, Nandgaon,
+   Krishna Janmabhoomi (Mathura), Dwarkadhish, Udupi, Guruvayur, Shrinathji.
+9. **Hanuman ji ke prasiddh mandir**: Salasar, Mehandipur, Sankat Mochan (Varanasi), Hanuman Garhi
+   (Ayodhya), Hanuman Dhara (Chitrakoot), Jakhu (Shimla), Bade Hanuman (Prayagraj), Kashtbhanjan (Sarangpur).
+10. **Navagraha mandir** (Tamil Nadu cluster near Kumbakonam) and Shani Shingnapur.
+11. **Other famous temples**: Tirupati Balaji, Siddhivinayak (Mumbai), Meenakshi, Padmanabhaswamy,
+   Sabarimala, Golden Temple is NOT ours (Sikh shrine; skip), Konark Sun Temple (history), Khajuraho
+   (history only, family-friendly framing), Ram Mandir (Ayodhya), Vaishno Devi, Kalighat, Dakshineswar,
+   Akshardham (modern; mention BAPS).
+
+Accuracy rules above apply to every series. For temples with competing claims (Jyotirlinga sites,
+Shakti Peeth lists), mention the other tradition in one neutral line. Never take sides or call any claim fake.
