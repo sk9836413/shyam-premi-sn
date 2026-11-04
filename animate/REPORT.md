@@ -92,3 +92,26 @@ Settings: 704x704, 121 frames @24 fps (5 s), 30 steps, guidance 5, weights fp8-s
 - **Dry run (4 Nov):** sample subah scenes.json (4 `animate` scenes) validate OK; 5+ marked, 0 marked, aur 90-akshar tts
   sahi tarah fail; `render-story.mjs --prepare` ne plan banaya; `kaggle.mjs prepare --dry-run` ne sirf marked scenes
   (0,1,2,6) chune, frames 93/117/101/121 (scene ki lambai ke hisaab se). Live lock/quota check OK (26.5 h bache).
+
+## 9. Chatterbox voice test (4 Nov 2026): abhi switch NAHI kiya
+- **Model:** Chatterbox Multilingual v3 (Resemble AI, MIT), Hindi. Narrator ki reference awaaz model-generated hai
+  (Kokoro-82M ke Apache-2.0 voices hm_omega / hf_alpha, `voice/ref-male.wav`, `voice/ref-female.wav`): kisi asli
+  insaan ya kathavachak ki nakal nahi. Seed 1234, exaggeration 0.4, cfg 0.5, temperature 0.7 fix.
+- **Speed:** CPU (4 core, GitHub runner jaisa) par RTF ~8.2: 60 s Short = ~8-9 min + install/model ~3 min = ~11 min,
+  long video (5-6 min) = ~45 min: dono target se bahar. Kaggle T4 par RTF ~1: ek Short (38 s awaaz) = 67 s generate +
+  33 s load + 20 s install = **~2.5 min GPU**; long video ~6-8 min. Isliye plan: animate kernel ke andar pehle awaaz,
+  phir clips (clip ki lambai asli awaaz se); long video ke liye chhota kernel `sps-tts-long`.
+- **A/B:** `animate/voice-ab.mp3` (pehle edge-tts MadhurNeural, phir Chatterbox; same 3 lines). Whisper large-v3 se
+  har line ka transcript nikal kar galti (CER) napi:
+  - edge-tts: 5 lines par ~4.8% CER; "श्याम", "खाटू", "बर्बरीक" sab sahi.
+  - Chatterbox: asli 50 s morning Short par ~8% CER. **"श्याम" ko baar-baar "शाम"** bola (5 mein se 4 baar, "Shyam Premi
+    SN" bhi "Shaam Premi"), **"गणेश" ko "गनेज"** (4/8 lines), aur mantra "ॐ श्री श्याम देवाय नमः" bigad gaya ("ओम सी शाम
+    देवाई नमा", 37% CER; ॐ ko "ओम्" likhne ke baad bhi). Naam theek: बर्बरीक, खाटू, सालासर.
+  - Female (hf_alpha ref): "खातुश्यान बाबा", "तोर" - aur kamzor.
+- **Faisla:** channel ka mukhya shabd "Shyam" hi galat bolta hai, isliye **switch nahi kiya**; edge-tts hi chal raha hai.
+  Code taiyaar hai par band hai: repo variable `SHYAM_TTS=chatterbox` se chalu hoga (Shorts: animate kernel mein awaaz;
+  long: `sps-tts-long`; koi bhi gadbad ho to edge-tts fallback). Chatterbox har clip mein Resemble ka inaudible PerTh
+  watermark daalta hai: use hataya nahi jayega.
+- **Agla vikalp: Indic Parler-TTS** (AI4Bharat, Apache-2.0, Hindi speakers Rohit/Divya, 0.9B). Repo "gated" (auto-approve)
+  hai: download ke liye Hugging Face account + token chahiye. Owner ka kaam: HF account banakar model page par terms
+  accept karein aur ek read token dein; tab wahi A/B (Whisper CER, Shyam/Ganesh/mantra) Parler par chalayenge.

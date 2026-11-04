@@ -20,10 +20,10 @@ NEG = ("text, letters, words, watermark, logo, subtitles, deformed face, distort
        "静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走")
 
 
-def sh(*cmd, check=True):
+def sh(*cmd, check=True, shell=False):
     print("+", " ".join(cmd), flush=True)
     try:
-        subprocess.run(cmd, check=check)
+        subprocess.run(cmd[0] if shell else cmd, check=check, shell=shell)
     except FileNotFoundError as e:
         if check:
             raise
@@ -67,7 +67,7 @@ def worker(gpu, ids, inp, cfg):
     import numpy as np, torch
     from diffusers import AutoencoderKLWan, WanImageToVideoPipeline, WanTransformer3DModel
     from diffusers.utils import export_to_video, load_image
-    jobs = {j["id"]: j for j in json.load(open(f"{inp}/jobs.json"))["jobs"]}
+    jobs = {j["id"]: j for j in json.load(open(f"{TMP}/jobs.json"))["jobs"]}  # main() may have set frames from the voice
     emb = torch.load(f"{TMP}/emb.pt")
     t0 = time.time()
     tr = WanTransformer3DModel.from_pretrained(MID, subfolder="transformer", torch_dtype=torch.float16)
@@ -118,6 +118,35 @@ def worker(gpu, ids, inp, cfg):
             f.write(json.dumps(rec) + "\n")
 
 
+def frames_for(seconds):
+    """Same rule as animate/kaggle.mjs framesFor: 4k+1 frames, at most a 1.1x slow-down fills the scene, 81-169."""
+    import math
+    return min(169, max(81, 4 * math.ceil((math.ceil(seconds / 1.1 * 24) - 1) / 4) + 1))
+
+
+def narrate(inp, spec):
+    """Chatterbox narration for every scene on GPU 0 (voice/chatterbox_tts.py), before Wan needs the GPUs. The clip
+    lengths then follow the real narration. Any failure leaves no voice.json: the renderer falls back to edge-tts."""
+    s = time.time()
+    try:
+        sh(f"{sys.executable} -m pip install -q --no-deps git+https://github.com/resemble-ai/chatterbox.git && "
+           f"{sys.executable} -m pip install -q librosa==0.11.0 s3tokenizer conformer==0.3.2 pyloudnorm omegaconf "
+           f"pykakasi==2.3.0 'git+https://github.com/resemble-ai/Perth.git@master'", shell=True)
+        subprocess.run([sys.executable, f"{inp}/chatterbox_tts.py", f"{inp}/{spec['voice']['lines']}", f"{WORK}/voice"],
+                       check=True, timeout=60 * spec["voice"].get("max_minutes", 20),
+                       env={**os.environ, "CUDA_VISIBLE_DEVICES": "0"})
+        lines = {str(l["i"]): l for l in json.load(open(f"{WORK}/voice/voice.json"))["lines"]}
+        for j in spec["jobs"]:
+            v = lines.get(j["id"])
+            if v and v.get("ok"):
+                j["frames"] = frames_for(v["seconds"] + spec["voice"].get("pad", 0.7))
+    except Exception as e:
+        print(f"narration failed (edge-tts fallback): {e}", flush=True)
+        if os.path.exists(f"{WORK}/voice/voice.json"):
+            os.remove(f"{WORK}/voice/voice.json")
+    return round(time.time() - s)
+
+
 def self_path():
     """This script's own path, so each GPU worker can be started as a separate process."""
     f = globals().get("__file__")
@@ -138,7 +167,7 @@ def main():
     if EXPECT_STAMP and spec.get("stamp") != EXPECT_STAMP:
         raise SystemExit(f"stale dataset: jobs.json is {spec.get('stamp')}, expected {EXPECT_STAMP}")
     cfg = {"size": 704, "frames": 121, "fps": 24, "steps": 30, "guidance": 5.0, **spec.get("settings", {})}
-    cfg["deadline"] = T0 + 60 * cfg.get("max_minutes", 88)
+    cfg["deadline"] = T0 + 60 * cfg.get("max_minutes", 95)
     sh("nvidia-smi", check=False)
     sh("df", "-h", TMP, WORK, check=False)
     import torch
@@ -151,6 +180,12 @@ def main():
         except Exception as e:
             print("internet: blocked", e, flush=True)
         raise SystemExit("no GPU in this session")
+    t_voice = narrate(inp, spec) if spec.get("voice") else None
+    json.dump(spec, open(f"{TMP}/jobs.json", "w"))
+    if not spec["jobs"]:  # narration only (the long video)
+        json.dump({"stamp": spec.get("stamp"), "voice_s": t_voice, "session_s": round(time.time() - T0), "clips": []},
+                  open(f"{WORK}/results.json", "w"), indent=2)
+        return
     sh(sys.executable, "-m", "pip", "install", "-q", "-U", "diffusers>=0.35.1", "transformers>=4.51", "accelerate", "ftfy", "imageio-ffmpeg")
     from huggingface_hub import snapshot_download
     s = time.time()
@@ -176,7 +211,7 @@ def main():
     for f in glob.glob(f"{WORK}/results-gpu*.jsonl"):
         results += [json.loads(l) for l in open(f)]
     summary = {"stamp": spec.get("stamp"), "model": MID, "gpus": n_gpu, "gpu_name": torch.cuda.get_device_name(0), "settings": cfg,
-               "download_s": round(t_dl), "text_encoder_s": round(t_te), "session_s": round(time.time() - T0),
+               "voice_s": t_voice, "download_s": round(t_dl), "text_encoder_s": round(t_te), "session_s": round(time.time() - T0),
                "exit_codes": codes, "clips": sorted(results, key=lambda r: r["id"])}
     json.dump(summary, open(f"{WORK}/results.json", "w"), indent=2)
     print(json.dumps(summary, indent=2))

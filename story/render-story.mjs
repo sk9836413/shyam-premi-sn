@@ -61,8 +61,8 @@ const EDGE_VOICES = { hm_omega: 'hi-IN-MadhurNeural', hf_alpha: 'hi-IN-SwaraNeur
 let voiceExt = 'wav';
 
 function ttsEdge() {
-  const voice = EDGE_VOICES[spec.voice || 'hm_omega'] || EDGE_VOICES.hm_omega;
   return spec.scenes.map((s, i) => {
+    const voice = EDGE_VOICES[s.voice || spec.voice || 'hm_omega'] || EDGE_VOICES.hm_omega;
     const out = path.join(work, `voice-${i}.mp3`);
     const r = spawnSync(PYTHON, ['-m', 'edge_tts', '--voice', voice, '--rate=+0%', '--text', s.tts, '--write-media', out], { encoding: 'utf8' });
     if (r.status !== 0 || !fs.existsSync(out)) throw new Error(`edge-tts line ${i}: ${(r.stderr || '').trim().split('\n').pop()}`);
@@ -71,7 +71,27 @@ function ttsEdge() {
   });
 }
 
+// Chatterbox narration made on the Kaggle GPU (voice/chatterbox_tts.py): used when VOICE_DIR holds a voice.json in
+// which every line succeeded; otherwise edge-tts (then Kokoro) makes the voice here.
+function ttsPremade() {
+  const dir = process.env.VOICE_DIR && path.resolve(process.env.VOICE_DIR);
+  const meta = dir && path.join(dir, 'voice.json');
+  if (!meta || !fs.existsSync(meta)) return null;
+  const lines = JSON.parse(fs.readFileSync(meta, 'utf8')).lines;
+  if (spec.scenes.some((_, i) => !lines.find((l) => l.i === i && l.ok) || !fs.existsSync(path.join(dir, `voice-${i}.wav`)))) return null;
+  return spec.scenes.map((_, i) => {
+    fs.copyFileSync(path.join(dir, `voice-${i}.wav`), path.join(work, `voice-${i}.wav`));
+    return lines.find((l) => l.i === i).seconds;
+  });
+}
+
 function tts() {
+  const premade = !process.argv.includes('--prepare') && ttsPremade();
+  if (premade) {
+    console.log('voice: Chatterbox (made on Kaggle)');
+    voiceExt = 'wav';
+    return premade;
+  }
   if (process.env.TTS_ENGINE !== 'kokoro') {
     try {
       const durations = ttsEdge();

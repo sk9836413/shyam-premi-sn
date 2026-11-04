@@ -87,6 +87,8 @@ Each scene:
   Write numbers as words.
 - `sub`: the same line in **Hinglish (Roman script)**, at most 120 characters.
 - `motion`: `in`, `out` or `pan`. Vary them.
+- `voice` (optional, rare): `hf_alpha` for a line that needs the female narrator (e.g. a goddess's or mother's words);
+  every other line uses the spec's `voice` (the channel's male narrator, `hm_omega`).
 - **Evening only (animated Short):** the evening scenes become real 5-7 s animated clips (image-to-video
   from the scene's image), so:
   - `tts` of each non-end-card scene at most **60 characters** (about 5 s of speech), and the end card at most

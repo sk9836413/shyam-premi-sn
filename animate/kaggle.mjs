@@ -1,12 +1,14 @@
 // Runs the image-to-video kernel on Kaggle's free GPU (the heavy work never runs on the PC or the CI runner):
-//   node animate/kaggle.mjs prepare <scenes.json> [--plan plan.json] [--max 4] [--dry-run = jobs.json only, no upload]
+//   node animate/kaggle.mjs prepare <scenes.json> [--plan plan.json] [--max 4] [--voice] [--dry-run = jobs.json only, no upload]
+//        --voice: the kernel first narrates every scene with Chatterbox (voice/chatterbox_tts.py) and sizes the clips
+//        to that narration; SPS_SLOT=long with --voice --max 0 is narration only (kernel sps-tts-long)
 //        -> private dataset sps-animate-inputs (start images + jobs.json, a new version each run)
 //   node animate/kaggle.mjs push [--retry-minutes 20] -> private GPU kernel (animate/kaggle/animate.py), T4 x2; retries while
 //        Kaggle refuses because the account already runs 2 batch GPU sessions
 //   node animate/kaggle.mjs lock [--minutes 45]      -> waits while another sps-animate-* kernel runs; exit 1 on timeout
 //   node animate/kaggle.mjs wait [--minutes 100] [--queue-minutes 20]
 //        -> polls until done; exit 0 only when COMPLETE; gives up if the session is still queued after --queue-minutes
-//   node animate/kaggle.mjs fetch [--to <dir>]       -> clips <scene>.mp4 + results.json
+//   node animate/kaggle.mjs fetch [--to <dir>] [--voice-to <dir>] -> clips <scene>.mp4, voice-<i>.wav + voice.json, results.json
 //   node animate/kaggle.mjs quota [--min 10]         -> GPU hours left this week; exit 2 when under --min
 //   node animate/kaggle.mjs status
 // Jobs: with --plan (from `render-story.mjs --prepare`), the scenes marked `animate` (else the first ones), at most
@@ -26,8 +28,9 @@ import { fileURLToPath } from 'node:url';
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const CLI = process.env.KAGGLE_CLI || 'kaggle';
 const SLOT = process.env.SPS_SLOT || 'daily';
-const DATASET = `sps-animate-inputs-${SLOT}`, KERNEL = `sps-animate-${SLOT}`;
-const ALL_KERNELS = ['morning', 'evening', 'noon', 'daily'].map((x) => `sps-animate-${x}`);
+const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : `sps-animate-inputs-${SLOT}`;
+const KERNEL = SLOT === 'long' ? 'sps-tts-long' : `sps-animate-${SLOT}`;
+const ALL_KERNELS = [...['morning', 'evening', 'noon', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long'];
 const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);
 const cmd = args[0] || 'status';
@@ -56,25 +59,38 @@ const framesFor = (seconds) => Math.min(169, Math.max(81, 4 * Math.ceil((Math.ce
 async function prepare() {
   const specFile = path.resolve(args[1]), base = path.dirname(specFile);
   const spec = JSON.parse(fs.readFileSync(specFile, 'utf8'));
+  // A long video keeps its scenes in chapters: flatten them in render-long.mjs order.
+  const all = spec.scenes || spec.chapters.flatMap((c) => c.scenes);
   const plan = opt('--plan') ? JSON.parse(fs.readFileSync(opt('--plan'), 'utf8')) : null;
   const out = path.join(DIR, 'dataset');
   fs.rmSync(out, { recursive: true, force: true });
   fs.mkdirSync(out, { recursive: true });
   const look = '3D animated devotional movie style, soft cinematic lighting, rich warm colours, smooth natural motion';
-  const usable = plan ? plan.scenes.filter((p) => spec.scenes[p.i]?.prompt && !spec.scenes[p.i].endcard) : [];
-  const marked = usable.filter((p) => spec.scenes[p.i].animate);
+  const usable = plan ? plan.scenes.filter((p) => all[p.i]?.prompt && !all[p.i].endcard) : [];
+  const marked = usable.filter((p) => all[p.i].animate);
   const picks = plan
     ? (marked.length ? marked : usable).slice(0, Number(opt('--max', 4)))
       .map((p) => ({ i: p.i, image: p.image, frames: framesFor(p.seconds) }))
-    : spec.scenes.flatMap((s, i) => (s.prompt && s.image && s.video ? [{ i, image: path.resolve(base, s.image) }] : []));
+    : all.flatMap((s, i) => (s.prompt && s.image && s.video ? [{ i, image: path.resolve(base, s.image) }] : []));
   const jobs = picks.map(({ i, image, frames }) => {
-    const s = spec.scenes[i];
+    const s = all[i];
     fs.copyFileSync(image, path.join(out, `${i}${path.extname(image)}`));
     return { id: String(i), image: `${i}${path.extname(image)}`, ...(frames ? { frames } : {}), seed: s.seed || 42,
       prompt: `${s.prompt}. ${s.animate || 'gentle natural motion, slow camera push-in, calm devotional mood'}. ${look}` };
   });
   const stamp = `${spec.slug}-${Date.now()}`;
-  fs.writeFileSync(path.join(out, 'jobs.json'), JSON.stringify({ stamp, settings: spec.animate_settings || {}, jobs }, null, 2));
+  // Narration lines for Chatterbox (flat files: Kaggle skips sub-folders of a dataset by default).
+  let voice;
+  if (args.includes('--voice')) {
+    const VOICE = path.join(DIR, '..', 'voice');
+    for (const f of ['chatterbox_tts.py', 'ref-male.wav', 'ref-female.wav']) fs.copyFileSync(path.join(VOICE, f), path.join(out, f));
+    fs.writeFileSync(path.join(out, 'voice-lines.json'), JSON.stringify({
+      refs: { hm_omega: 'ref-male.wav', hf_alpha: 'ref-female.wav' },
+      lines: all.map((s, i) => ({ i, text: s.tts, voice: s.voice || spec.voice || 'hm_omega' })),
+    }, null, 2));
+    voice = { lines: 'voice-lines.json', pad: 0.7, max_minutes: SLOT === 'long' ? 30 : 15 };
+  }
+  fs.writeFileSync(path.join(out, 'jobs.json'), JSON.stringify({ stamp, settings: spec.animate_settings || {}, ...(voice ? { voice } : {}), jobs }, null, 2));
   if (args.includes('--dry-run')) {
     console.log(JSON.stringify({ dryRun: true, kernel: KERNEL, dataset: DATASET, stamp, jobs: jobs.map((j) => ({ id: j.id, frames: j.frames || 121 })) }));
     return;
@@ -164,9 +180,21 @@ function fetch() {
   // Only this run's clips: while a kernel is still running, `kernels output` returns the previous run's files.
   const stamp = fs.existsSync(STAMP_FILE) ? JSON.parse(fs.readFileSync(STAMP_FILE, 'utf8')).stamp : null;
   const fresh = !stamp || results?.stamp === stamp;
+  // Chatterbox narration: copied only when every line succeeded (otherwise the renderer uses edge-tts for all).
+  const vj = path.join(out, 'voice', 'voice.json');
+  let voice = 'none';
+  if (fresh && opt('--voice-to') && fs.existsSync(vj)) {
+    const v = JSON.parse(fs.readFileSync(vj, 'utf8'));
+    voice = v.lines.every((l) => l.ok) ? 'chatterbox' : `incomplete (${v.lines.filter((l) => !l.ok).length} failed)`;
+    if (voice === 'chatterbox') {
+      const dst = path.resolve(opt('--voice-to'));
+      fs.mkdirSync(dst, { recursive: true });
+      for (const f of fs.readdirSync(path.join(out, 'voice'))) fs.copyFileSync(path.join(out, 'voice', f), path.join(dst, f));
+    }
+  }
   const clips = fresh && fs.existsSync(path.join(out, 'clips')) ? fs.readdirSync(path.join(out, 'clips')).filter((f) => f.endsWith('.mp4')) : [];
   for (const f of clips) fs.copyFileSync(path.join(out, 'clips', f), path.join(to, f));
-  console.log(JSON.stringify({ fresh, clips, session_s: results?.session_s, clip_s: results?.clips?.map((c) => [c.id, c.seconds, c.frames]) }));
+  console.log(JSON.stringify({ fresh, voice, voice_s: results?.voice_s, clips, session_s: results?.session_s, clip_s: results?.clips?.map((c) => [c.id, c.seconds, c.frames]) }));
 }
 
 function quota() {

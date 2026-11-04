@@ -151,20 +151,24 @@ jobs:
           node animate/kaggle.mjs quota --min "$MIN_HOURS" > "$RUNNER_TEMP/quota.json" || fail "under $MIN_HOURS Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
           node story/render-story.mjs story/today/scenes.json --prepare || fail "FLUX images / narration failed"
           plan="story/today/build/$SLUG/plan.json"
-          node animate/kaggle.mjs prepare story/today/scenes.json --plan "$plan" --max 4 || fail "dataset upload failed"
+          node animate/kaggle.mjs prepare story/today/scenes.json --plan "$plan" --max 4 ${{ vars.SHYAM_TTS == 'chatterbox' && '--voice' || '' }} || fail "dataset upload failed"
           node animate/kaggle.mjs lock --minutes "$LOCK_MINUTES" || fail "another sps-animate kernel is still running after $LOCK_MINUTES min"
           node animate/kaggle.mjs push --queue-minutes 20 --retry-minutes "$LOCK_MINUTES" || fail "kernel push failed (Kaggle busy?)"
           start=$(date +%s)
-          node animate/kaggle.mjs wait --minutes 100 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json"); using any clips it finished"
+          node animate/kaggle.mjs wait --minutes 108 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json"); using any clips it finished"
           grep -q QUEUED_TOO_LONG "$RUNNER_TEMP/wait.json" && fail "the Kaggle GPU session was still queued after 20 min"
-          node animate/kaggle.mjs fetch --to story/today/clips > "$RUNNER_TEMP/fetch.json" || fail "could not download the clips"
+          node animate/kaggle.mjs fetch --to story/today/clips --voice-to story/today/voice > "$RUNNER_TEMP/fetch.json" || fail "could not download the clips"
           echo "- Kaggle: $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min, quota before: $(cat "$RUNNER_TEMP/quota.json")" >> "$GITHUB_STEP_SUMMARY"
           node animate/check-clips.mjs story/today/scenes.json --clips story/today/clips --plan "$plan" --summary "$GITHUB_STEP_SUMMARY"
 
+      # Narration: edge-tts hi-IN-MadhurNeural. Only when the repo variable SHYAM_TTS is "chatterbox" does the Kaggle
+      # session also narrate with Chatterbox (story/today/voice), used when every line succeeded. Off since the 4 Nov
+      # A/B: Chatterbox said "Shaam" for Shyam and "Ganej" for Ganesh (animate/REPORT.md section 9).
       - name: Render
         if: steps.date.outputs.done != 'true'
         env:
           MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+          VOICE_DIR: story/today/voice
         run: node story/render-story.mjs story/today/scenes.json
 
       - name: YouTube
@@ -218,7 +222,7 @@ jobs:
     needs: story
     if: always() && needs.story.outputs.long == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 170
     env:
       FFMPEG_PATH: ffmpeg
       PYTHON: python
@@ -366,9 +370,33 @@ jobs:
           case "$slug" in "${{ steps.date.outputs.today }}-long-"*) ;; *) echo "::error::Unexpected slug $slug"; exit 1;; esac
           echo "SLUG=$slug" >> "$GITHUB_ENV"
 
+      # Chatterbox narration for the long video on the Kaggle GPU (kernel sps-tts-long, ~5 min for 5-6 min of speech),
+      # only when the repo variable SHYAM_TTS is "chatterbox" (off: see the Render note in the story job).
+      # Any failure, a busy Kaggle or under 3 GPU hours left: edge-tts makes the voice in the Render step instead.
+      - name: Voice (Kaggle GPU)
+        if: env.GO == '1' && vars.SHYAM_TTS == 'chatterbox'
+        continue-on-error: true
+        timeout-minutes: 60
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: long
+        run: |
+          fail() { echo "::warning::Chatterbox voice skipped, using edge-tts: $1"; exit 1; }
+          [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
+          pip install -q 'kaggle>=2.2' six || fail "kaggle CLI install failed"
+          node animate/kaggle.mjs quota --min 3 > "$RUNNER_TEMP/quota.json" || fail "under 3 Kaggle GPU hours left ($(cat "$RUNNER_TEMP/quota.json"))"
+          node animate/kaggle.mjs prepare story/long/scenes.json --voice --max 0 || fail "dataset upload failed"
+          node animate/kaggle.mjs lock --minutes 15 || fail "another sps kernel is still running"
+          node animate/kaggle.mjs push --queue-minutes 15 --retry-minutes 15 || fail "kernel push failed (Kaggle busy?)"
+          node animate/kaggle.mjs wait --minutes 40 --queue-minutes 15 > "$RUNNER_TEMP/wait.json" || fail "Kaggle: $(cat "$RUNNER_TEMP/wait.json")"
+          node animate/kaggle.mjs fetch --to story/long/clips --voice-to story/long/voice | tee "$RUNNER_TEMP/fetch.json"
+          echo "- Long voice: $(cat "$RUNNER_TEMP/fetch.json")" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Render
         id: render
         if: env.GO == '1'
+        env:
+          VOICE_DIR: story/long/voice
         run: node story/render-long.mjs story/long/scenes.json
 
       - name: Save today's story and images

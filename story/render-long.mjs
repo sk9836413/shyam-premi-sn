@@ -108,8 +108,8 @@ async function image(img, i) {
 // ---- Voice --------------------------------------------------------------------------------------
 const EDGE_VOICES = { hm_omega: 'hi-IN-MadhurNeural', hf_alpha: 'hi-IN-SwaraNeural' };
 async function ttsEdge() {
-  const voice = EDGE_VOICES[spec.voice || 'hm_omega'] || EDGE_VOICES.hm_omega;
   return pool(scenes, 6, async (s, i) => {
+    const voice = EDGE_VOICES[s.voice || spec.voice || 'hm_omega'] || EDGE_VOICES.hm_omega;
     const out = path.join(work, `voice-${i}.mp3`);
     for (let attempt = 1; attempt <= 3; attempt++) {
       const ok = await new Promise((resolve) => {
@@ -142,9 +142,21 @@ print(json.dumps(out))`;
 // TTS files start and end with silence; trimmed, the pause between lines is set by the scene timing.
 const TRIM = 'silenceremove=start_periods=1:start_threshold=-50dB:start_silence=0.05,areverse,' +
   'silenceremove=start_periods=1:start_threshold=-50dB:start_silence=0.12,areverse';
+// Chatterbox narration made on the Kaggle GPU (voice/chatterbox_tts.py), used when VOICE_DIR holds a voice.json in
+// which every line succeeded; otherwise edge-tts (then Kokoro) makes the voice here.
+function ttsPremade() {
+  const dir = process.env.VOICE_DIR && path.resolve(process.env.VOICE_DIR);
+  const meta = dir && path.join(dir, 'voice.json');
+  if (!meta || !fs.existsSync(meta)) return null;
+  const done = JSON.parse(fs.readFileSync(meta, 'utf8')).lines;
+  const files = scenes.map((_, i) => path.join(dir, `voice-${i}.wav`));
+  if (scenes.some((_, i) => !done.find((l) => l.i === i && l.ok) || !fs.existsSync(files[i]))) return null;
+  console.log('voice: Chatterbox (made on Kaggle)');
+  return files.map((file) => ({ file, seconds: duration(file) }));
+}
 async function tts() {
-  let lines;
-  if (process.env.TTS_ENGINE !== 'kokoro') {
+  let lines = ttsPremade();
+  if (!lines && process.env.TTS_ENGINE !== 'kokoro') {
     try { lines = await ttsEdge(); } catch (e) { console.log(`edge-tts failed, using Kokoro for every line: ${e.message}`); }
   }
   lines ||= ttsKokoro();

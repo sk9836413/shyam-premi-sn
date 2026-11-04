@@ -149,6 +149,7 @@ scenes.forEach((sc, i) => {
   need(sc.tts && !/\d/.test(sc.tts), `${n}: write numbers in tts as words`);
   need(sc.sub && !DEVANAGARI.test(sc.sub), `${n}: sub must be Roman-script Hinglish`);
   need(sc.sub && sc.sub.length <= 120, `${n}: sub over 120 characters (${sc.sub?.length})`);
+  need(sc.voice === undefined || ['hm_omega', 'hf_alpha'].includes(sc.voice), `${n}: voice (optional) must be hm_omega or hf_alpha`);
   if (last) {
     need(sc.endcard === true && !sc.prompt, `${n}: the last scene must be {"endcard": true, "tts", "sub"} with no prompt`);
     need(/subscribe/i.test(sc.sub || '') && /like/i.test(sc.sub || ''), `${n}: the end card must ask to like, share and subscribe`);
