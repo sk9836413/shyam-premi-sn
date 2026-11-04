@@ -21,8 +21,10 @@ jobs:
       - name: Tools
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
-          pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          # torch and torchaudio from the same CPU index and version (a PyPI torchaudio does not load with a CPU torch)
+          pip install -q torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu
           pip install -q git+https://github.com/huggingface/parler-tts.git edge-tts soundfile
+          python -c "import torch, torchaudio; print(torch.__version__, torchaudio.__version__)"
       - name: A/B
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
