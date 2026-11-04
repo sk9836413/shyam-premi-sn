@@ -28,3 +28,10 @@ animate/*.jpg
 animate/kaggle/kernel-metadata.json
 animate/clips-rejected/
 animate/kaggle-push/
+voice/kaggle/kernel-metadata.json
+voice/out/
+animate/voice-ab.mp3
+voice/kaggle-asr/kernel-metadata.json
+voice/kaggle2/
+voice/kaggle3/
+voice/asr/
