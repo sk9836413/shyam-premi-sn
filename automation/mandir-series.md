@@ -104,10 +104,10 @@ Long videos run a temple in 2-4 parts. The Short and the Dadi-Chhotu Short cover
    Arunachaleswarar (Tiruvannamalai), Nataraja (Chidambaram), Srikalahasti.
 8. **Krishna Leela Dham**: Banke Bihari, Prem Mandir, ISKCON Vrindavan, Govardhan, Barsana, Nandgaon,
    Krishna Janmabhoomi (Mathura), Dwarkadhish, Udupi, Guruvayur, Shrinathji.
-9. **Hanuman ji ke prasiddh mandir**: Salasar, Mehandipur, Sankat Mochan (Varanasi), Hanuman Garhi
+9. **Hanuman ji ke Prasiddh Mandir**: Salasar, Mehandipur, Sankat Mochan (Varanasi), Hanuman Garhi
    (Ayodhya), Hanuman Dhara (Chitrakoot), Jakhu (Shimla), Bade Hanuman (Prayagraj), Kashtbhanjan (Sarangpur).
-10. **Navagraha mandir** (Tamil Nadu cluster near Kumbakonam) and Shani Shingnapur.
-11. **Other famous temples**: Tirupati Balaji, Siddhivinayak (Mumbai), Meenakshi, Padmanabhaswamy,
+10. **Navagraha Mandir** (Tamil Nadu cluster near Kumbakonam) and Shani Shingnapur.
+11. **Prasiddh Mandir** (other famous temples): Tirupati Balaji, Siddhivinayak (Mumbai), Meenakshi, Padmanabhaswamy,
    Sabarimala, Golden Temple is NOT ours (Sikh shrine; skip), Konark Sun Temple (history), Khajuraho
    (history only, family-friendly framing), Ram Mandir (Ayodhya), Vaishno Devi, Kalighat, Dakshineswar,
    Akshardham (modern; mention BAPS).
