@@ -257,7 +257,10 @@ It must differ from today's `morning` and `evening` lines. Numbered series: in a
 use `Dadi ki Kahani` and `Mandir Itihas`; festivals `Tyohar aur Vrat Kathayein`.
 
 **Accuracy (strict, as in mandir-series.md).** Every fact Dadi states (place, district, who built it, when, the main
-festival) needs **two independent sources** (WebSearch + WebFetch): list them in `facts`. Legends are always labelled
+festival) needs **two independent sources** (WebSearch + WebFetch): list them in `facts`. At least one of the two must be
+the temple trust's site, a government page (tourism.rajasthan.gov.in, the district's *.gov.in / *.nic.in, ASI) or an
+established news site (Amar Ujala, Dainik Bhaskar, Times of India, Webdunia...): Wikipedia and travel or devotional blogs
+never count alone (the validator checks this). Legends are always labelled
 in the line itself: "manyata hai…", "kehte hain…", "lok katha ke anusar…". Where sources differ, say so or leave it
 out; never guess a year. Images are AI illustrations: never call them real or "asli darshan". **Sati temples**: the
 sati rule in mandir-series.md applies in full: one neutral history sentence for the event, then a line where Dadi

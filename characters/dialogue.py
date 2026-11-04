@@ -173,7 +173,9 @@ def cmd_images(a):
         try:
             req = urllib.request.Request(f"{os.environ['MEDIA_URL']}/ai/flux", method="POST",
                                          data=json.dumps({"prompt": f"{v['prompt']}. {spec.get('style', '')}", "steps": 4}).encode(),
-                                         headers={"Authorization": f"Bearer {os.environ['MEDIA_TOKEN']}", "Content-Type": "application/json"})
+                                         # Cloudflare answers Python's default User-Agent with 403 (error 1010)
+                                         headers={"Authorization": f"Bearer {os.environ['MEDIA_TOKEN']}", "Content-Type": "application/json",
+                                                  "User-Agent": "shyam-premi-sn/1.0 (+https://github.com/sk9836413/shyam-premi-sn)"})
             j = json.load(urllib.request.urlopen(req, timeout=120))
             if not j.get("success"):
                 raise RuntimeError(str(j.get("errors"))[:200])

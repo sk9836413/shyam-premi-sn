@@ -176,6 +176,10 @@ if (s.format === 'dialogue') {
   const facts = Array.isArray(s.facts) ? s.facts : [];
   need(facts.length >= 3, 'facts: at least 3 entries {claim, sources: [2+ URLs]} for what the dialogue states');
   facts.forEach((f, i) => need(f?.claim && Array.isArray(f.sources) && f.sources.filter((u) => /^https?:\/\//.test(u)).length >= 2, `fact ${i + 1}: needs a claim and 2 independent source URLs`));
+  // The 4 Nov dry run cited Wikipedia + travel/devotional blogs only: at least one source per fact must be stronger
+  // (temple trust, *.gov.in tourism/district, ASI, or a news site).
+  const WEAK = /wikipedia\.org|blogspot\.|wordpress\.|medium\.com|quora\.com|youtube\.com|facebook\.com|instagram\.com|bhaktibharat|myyatradiary|studycafe|tripadvisor|holidify|templepurohit|pinterest/i;
+  facts.forEach((f, i) => need((f?.sources || []).some((u) => /^https?:\/\//.test(u) && !WEAK.test(u)), `fact ${i + 1}: Wikipedia and blogs don't count alone; add the temple trust, a *.gov.in tourism/district page, ASI or a news site`));
   const desc = s.youtube_description || '';
   need(/sanketik/i.test(desc) && /AI/.test(desc), 'youtube_description must say "Chitra AI dwara banaye gaye hain (sanketik)"');
   need(/subscribe/i.test(desc), 'youtube_description must end with a like/share/subscribe line');
