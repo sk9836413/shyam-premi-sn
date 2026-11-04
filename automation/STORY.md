@@ -99,6 +99,12 @@ Each scene:
     face still, e.g. "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently
     pulses, a few petals drift in the foreground". An automatic check compares the face with the image and falls
     back to the still image if it changes.
+- **Morning (partly animated):** mark the **visually strongest 1-4 scenes** (ideally 3-4) with `animate`: the
+  deity/murti darshan, the temple, and the key moment of the katha. Those scenes become real animated clips (at most
+  7 s), so each marked scene's `tts` is at most **80 characters**; the other scenes stay as stills with a camera move
+  and keep the normal 110-character limit. `animate` and `deity` follow the evening rules above (gentle motion only,
+  `deity: true` for deity/murti images, face kept still). Prefer calm moments for the marked scenes: a battle or a
+  crowd scene animates badly.
 
 Structure: scene 1 is the hook: start in the middle of the most dramatic moment or with a question
 (never "Aaj suniye…" or a greeting), then the story in order, then the moral or blessing,

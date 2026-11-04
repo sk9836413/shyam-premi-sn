@@ -162,9 +162,18 @@ scenes.forEach((sc, i) => {
       need(sc.tts && sc.tts.length <= 60, `${n}: evening tts over 60 characters (${sc.tts?.length}); the animated clip is ~5-7 s`);
       need(typeof sc.animate === 'string' && sc.animate.length >= 20 && sc.animate.length <= 300, `${n}: evening scenes need "animate": one English sentence of gentle motion (20-300 characters)`);
       need(sc.deity === undefined || typeof sc.deity === 'boolean', `${n}: deity must be true or false`);
+    } else if (sc.animate !== undefined) {
+      // Morning: up to 4 marked scenes become animated clips (<= 7 s), so their lines stay short.
+      need(typeof sc.animate === 'string' && sc.animate.length >= 20 && sc.animate.length <= 300, `${n}: "animate" must be one English sentence of gentle motion (20-300 characters)`);
+      need(sc.tts && sc.tts.length <= 80, `${n}: an animated morning scene needs tts of at most 80 characters (${sc.tts?.length}); the clip is at most 7 s`);
+      need(sc.deity === undefined || typeof sc.deity === 'boolean', `${n}: deity must be true or false`);
     }
   }
 });
+if (!evening) {
+  const marked = scenes.filter((sc) => sc.animate !== undefined && !sc.endcard).length;
+  need(marked >= 1 && marked <= 4, `morning: mark 1-4 scenes with "animate" (has ${marked}); they become animated clips, the rest stay still`);
+}
 
 const yt = s.youtube_title || '';
 need(yt.length > 0 && yt.length <= 90 && yt.endsWith(' #Shorts'), 'youtube_title: max 90 characters, ending with " #Shorts"');

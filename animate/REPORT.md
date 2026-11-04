@@ -1,9 +1,8 @@
 # Animated Shorts pilot (Kaggle free GPU)
 
-**Status (3 Nov 2026):** pilot approve ho gaya ("haan animated kar do"). Ab roz ka **shaam ka darshan Short animated**
-hai, poora cloud mein (GitHub Actions + Kaggle). Pilot: `animate/pilot.mp4` (1080x1920, 33 s).
-**Live hone ke liye bas ek kaam baaki:** owner repo secret `KAGGLE_API_TOKEN` set karein. Jab tak secret nahi hai,
-shaam ka Short purane tarike (FLUX still + zoompan) se banta rahega: post kabhi nahi rukegi.
+**Status (4 Nov 2026):** teeno Shorts animated: **subah** (6-8 scenes mein se 1-4 `animate` wale scenes), **shaam** aur
+**noon** (4 scenes tak). 3 Nov data: animated Shakambhari noon Short 154 views / 17 likes (channel ka best), zoompan
+darshan 13 views. `KAGGLE_API_TOKEN` secret set hai. Pilot: `animate/pilot.mp4`.
 
 ## 1. Rukawat (hal ho gayi)
 - Pehle account phone-verified nahi tha, isliye GPU aur internet band the. Owner ne phone verify kiya, ab T4 x2 + internet chal raha hai.
@@ -76,3 +75,20 @@ Settings: 704x704, 121 frames @24 fps (5 s), 30 steps, guidance 5, weights fp8-s
 - **GPU kharcha:** ~66 min (~1.1 h) per shaam ka Short, yaani ~7.7 h/hafta. Kaggle 30 h/hafta; 10 h se kam bache to skip.
 - **Abhi bhi baaki:** Instagram/Facebook (Make) wala step evening Short ko turant (dopahar) bhejta hai, 19:00 ko nahi;
   Make abhi chalu nahi hai, chalu karte waqt ise 19:00 par shift karna hoga.
+
+## 8. Subah ka Short bhi animated (4 Nov 2026)
+- Claude subah ke 1-4 sabse sundar scenes (murti darshan, mandir, katha ka mukhya pal) par `animate` lagata hai; unka
+  tts <= 80 akshar (clip max 7 s). Baaki scenes zoompan. validate.mjs ye jaanchta hai; shaam ke niyam same hain.
+- Subah turant publish hota hai (publishAt nahi). Animation ki wajah se subah ka Short ~70-90 min der se aata hai
+  (09:13 IST dispatch -> ~10:30-10:45 IST), aur long video bhi utna baad mein banta hai (12:30 publish tab bhi theek).
+- **Kaggle concurrency:** ek account par ~2 batch GPU sessions ek saath (Kaggle forum ke anusaar). Isliye:
+  - har slot ka apna kernel (`sps-animate-morning/-evening/-noon`) aur apna dataset (`sps-animate-inputs-<slot>`):
+    ek run doosre ke inputs/outputs nahi bigaad sakta (dataset version race khatam);
+  - `lock`: ek waqt mein hamara ek hi session; shaam 45 min tak, subah/noon 15 min tak intezaar, phir zoompan;
+  - session 20 min se zyada queue mein raha to workflow zoompan par chala jata hai, aur kernel (START_BY) der se
+    shuru hone par turant band ho jata hai, taaki GPU hours bekaar na jaayein.
+- **Quota guard:** BlessVision apne account par ja raha hai, isliye ab: subah ko kam se kam 5 GPU-hour bache hon,
+  shaam/noon ko 3. Kharcha ~2 x 1.1-1.4 h/din = ~16-20 h/hafta (30 mein se).
+- **Dry run (4 Nov):** sample subah scenes.json (4 `animate` scenes) validate OK; 5+ marked, 0 marked, aur 90-akshar tts
+  sahi tarah fail; `render-story.mjs --prepare` ne plan banaya; `kaggle.mjs prepare --dry-run` ne sirf marked scenes
+  (0,1,2,6) chune, frames 93/117/101/121 (scene ki lambai ke hisaab se). Live lock/quota check OK (26.5 h bache).

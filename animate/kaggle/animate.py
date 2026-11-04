@@ -6,6 +6,7 @@ import glob, json, os, subprocess, sys, time
 
 SPS_ANIMATE_KERNEL = True  # marker used by self_path()
 EXPECT_STAMP = None  # set by animate/kaggle.mjs push: the dataset version this run must use
+START_BY = None  # set by push: epoch seconds; a session that was queued past this exits without using the GPU
 
 MID = "Wan-AI/Wan2.2-TI2V-5B-Diffusers"
 WORK = "/kaggle/working"
@@ -130,6 +131,8 @@ def self_path():
 
 def main():
     T0 = time.time()
+    if START_BY and T0 > START_BY:
+        raise SystemExit(f"session started {T0 - START_BY:.0f}s after START_BY: the workflow already fell back to zoompan")
     inp = find_input()
     spec = json.load(open(f"{inp}/jobs.json"))
     if EXPECT_STAMP and spec.get("stamp") != EXPECT_STAMP:

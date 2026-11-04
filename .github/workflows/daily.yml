@@ -3,7 +3,7 @@
 # Morning window 05:30-11:59 IST, evening window 17:30-22:59 IST. GitHub's schedule often fires hours
 # late, so it is polled every 30 minutes inside both windows; the first run in a window publishes and the
 # rest skip (slot already in automation/log.md). Runs outside a window do nothing, so nothing posts at night.
-# The evening darshan Short is animated (image-to-video on Kaggle's free GPU, ~66 min), so the scheduler Worker
+# Every Short is animated where Kaggle allows (morning: up to 4 marked scenes; see the Animate step). The evening darshan Short is animated (image-to-video on Kaggle's free GPU, ~66 min), so the scheduler Worker
 # dispatches slot=evening at 10:43 IST and YouTube publishes it at 19:00 IST (publishAt); 18:46 IST is the retry.
 # An explicit slot works at any hour. If Kaggle fails, times out or has under 10 GPU hours left this week, the
 # scenes fall back to FLUX stills + zoompan: the post is never skipped.
@@ -35,7 +35,7 @@ jobs:
     outputs:
       # The long video job runs after every morning-slot run (and for slot=long); it skips once done.
       long: ${{ steps.date.outputs.long }}
-    timeout-minutes: 160
+    timeout-minutes: 230
     env:
       FFMPEG_PATH: ffmpeg
       PYTHON: python
@@ -128,27 +128,35 @@ jobs:
           grep -q "^${{ steps.date.outputs.today }} | ${{ steps.date.outputs.slot }} |" automation/log.md || { echo "::error::log.md line missing"; exit 1; }
           echo "SLUG=$slug" >> "$GITHUB_ENV"
 
-      # Evening: up to 4 scenes become real 5-7 s clips (Wan 2.2 TI2V-5B on a private Kaggle kernel, T4 x2), then an
-      # automatic check rejects face drift, flicker and colour streaks. Any failure leaves the zoompan stills.
+      # Every Short is animated: evening/noon up to 4 scenes, morning the (up to 4) scenes marked `animate`, become
+      # real clips of their scene's length (Wan 2.2 TI2V-5B on the private Kaggle kernel sps-animate-<slot>, T4 x2), then
+      # an automatic check rejects face drift, flicker and colour streaks. One session at a time (lock); a session still
+      # queued after 20 min, a failure or a timeout leaves the zoompan stills. Quota guard: morning needs 5 GPU hours
+      # left this week, evening/noon 3.
       - name: Animate (Kaggle GPU)
         id: anim
-        if: steps.date.outputs.done != 'true' && (steps.date.outputs.slot == 'evening' || steps.date.outputs.slot == 'noon')
+        if: steps.date.outputs.done != 'true' && contains(fromJSON('["morning","evening","noon"]'), steps.date.outputs.slot)
         continue-on-error: true
-        timeout-minutes: 120
+        timeout-minutes: 170
         env:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: ${{ steps.date.outputs.slot }}
+          MIN_HOURS: ${{ steps.date.outputs.slot == 'morning' && '5' || '3' }}
+          LOCK_MINUTES: ${{ steps.date.outputs.slot == 'evening' && '45' || '15' }}
           MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
         run: |
           fail() { echo "::warning::Animation skipped, using zoompan: $1"; echo "- Animation skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 1; }
           [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
           pip install -q 'kaggle>=2.2' six || fail "kaggle CLI install failed"
-          node animate/kaggle.mjs quota --min 10 > "$RUNNER_TEMP/quota.json" || fail "under 10 Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
+          node animate/kaggle.mjs quota --min "$MIN_HOURS" > "$RUNNER_TEMP/quota.json" || fail "under $MIN_HOURS Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
           node story/render-story.mjs story/today/scenes.json --prepare || fail "FLUX images / narration failed"
           plan="story/today/build/$SLUG/plan.json"
           node animate/kaggle.mjs prepare story/today/scenes.json --plan "$plan" --max 4 || fail "dataset upload failed"
-          node animate/kaggle.mjs push || fail "kernel push failed"
+          node animate/kaggle.mjs lock --minutes "$LOCK_MINUTES" || fail "another sps-animate kernel is still running after $LOCK_MINUTES min"
+          node animate/kaggle.mjs push --queue-minutes 20 || fail "kernel push failed"
           start=$(date +%s)
-          node animate/kaggle.mjs wait --minutes 100 || echo "::warning::Kaggle did not complete in time; using any clips it finished"
+          node animate/kaggle.mjs wait --minutes 100 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json"); using any clips it finished"
+          grep -q QUEUED_TOO_LONG "$RUNNER_TEMP/wait.json" && fail "the Kaggle GPU session was still queued after 20 min"
           node animate/kaggle.mjs fetch --to story/today/clips > "$RUNNER_TEMP/fetch.json" || fail "could not download the clips"
           echo "- Kaggle: $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min, quota before: $(cat "$RUNNER_TEMP/quota.json")" >> "$GITHUB_STEP_SUMMARY"
           node animate/check-clips.mjs story/today/scenes.json --clips story/today/clips --plan "$plan" --summary "$GITHUB_STEP_SUMMARY"

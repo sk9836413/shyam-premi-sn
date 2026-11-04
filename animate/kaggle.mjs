@@ -1,17 +1,22 @@
 // Runs the image-to-video kernel on Kaggle's free GPU (the heavy work never runs on the PC or the CI runner):
-//   node animate/kaggle.mjs prepare <scenes.json> [--plan plan.json] [--max 4]
+//   node animate/kaggle.mjs prepare <scenes.json> [--plan plan.json] [--max 4] [--dry-run = jobs.json only, no upload]
 //        -> private dataset sps-animate-inputs (start images + jobs.json, a new version each run)
 //   node animate/kaggle.mjs push                     -> private GPU kernel (animate/kaggle/animate.py), T4 x2
-//   node animate/kaggle.mjs wait [--minutes 100]     -> polls until done; exit 0 only when COMPLETE
+//   node animate/kaggle.mjs lock [--minutes 45]      -> waits while another sps-animate-* kernel runs; exit 1 on timeout
+//   node animate/kaggle.mjs wait [--minutes 100] [--queue-minutes 20]
+//        -> polls until done; exit 0 only when COMPLETE; gives up if the session is still queued after --queue-minutes
 //   node animate/kaggle.mjs fetch [--to <dir>]       -> clips <scene>.mp4 + results.json
 //   node animate/kaggle.mjs quota [--min 10]         -> GPU hours left this week; exit 2 when under --min
 //   node animate/kaggle.mjs status
-// Jobs: with --plan (from `render-story.mjs --prepare`), the first --max non-end-card scenes, each clip as long
+// Jobs: with --plan (from `render-story.mjs --prepare`), the scenes marked `animate` (else the first ones), at most
+// --max, never the end card, each clip as long
 // as its scene (up to 169 frames = 7 s; the renderer may slow a clip by up to 1.1x). Without --plan (the
 // pilot), every scene with prompt + image + video. A scene's `animate` text describes the motion.
 // Login: the Kaggle CLI's own credentials (KAGGLE_API_TOKEN in CI, ~/.kaggle on the PC); never read here.
 // KAGGLE_CLI = path to the CLI if not on PATH; KAGGLE_USER = account name (else read from the kernel list);
-// SPS_KERNEL = kernel slug (default sps-animate-daily). Settings can be put in spec.animate_settings.
+// SPS_SLOT = morning | evening | noon: each slot has its own kernel sps-animate-<slot> and dataset
+// sps-animate-inputs-<slot>, so runs never overwrite each other's inputs or outputs, and `lock` keeps this channel to
+// one GPU session at a time (Kaggle allows only ~2 batch GPU sessions per account). Settings: spec.animate_settings.
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -19,7 +24,10 @@ import { fileURLToPath } from 'node:url';
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const CLI = process.env.KAGGLE_CLI || 'kaggle';
-const DATASET = 'sps-animate-inputs', KERNEL = process.env.SPS_KERNEL || 'sps-animate-daily';
+const SLOT = process.env.SPS_SLOT || 'daily';
+const DATASET = `sps-animate-inputs-${SLOT}`, KERNEL = `sps-animate-${SLOT}`;
+const ALL_KERNELS = ['morning', 'evening', 'noon', 'daily'].map((x) => `sps-animate-${x}`);
+const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);
 const cmd = args[0] || 'status';
 const opt = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);
@@ -52,8 +60,10 @@ async function prepare() {
   fs.rmSync(out, { recursive: true, force: true });
   fs.mkdirSync(out, { recursive: true });
   const look = '3D animated devotional movie style, soft cinematic lighting, rich warm colours, smooth natural motion';
+  const usable = plan ? plan.scenes.filter((p) => spec.scenes[p.i]?.prompt && !spec.scenes[p.i].endcard) : [];
+  const marked = usable.filter((p) => spec.scenes[p.i].animate);
   const picks = plan
-    ? plan.scenes.filter((p) => spec.scenes[p.i]?.prompt && !spec.scenes[p.i].endcard).slice(0, Number(opt('--max', 4)))
+    ? (marked.length ? marked : usable).slice(0, Number(opt('--max', 4)))
       .map((p) => ({ i: p.i, image: p.image, frames: framesFor(p.seconds) }))
     : spec.scenes.flatMap((s, i) => (s.prompt && s.image && s.video ? [{ i, image: path.resolve(base, s.image) }] : []));
   const jobs = picks.map(({ i, image, frames }) => {
@@ -64,6 +74,10 @@ async function prepare() {
   });
   const stamp = `${spec.slug}-${Date.now()}`;
   fs.writeFileSync(path.join(out, 'jobs.json'), JSON.stringify({ stamp, settings: spec.animate_settings || {}, jobs }, null, 2));
+  if (args.includes('--dry-run')) {
+    console.log(JSON.stringify({ dryRun: true, kernel: KERNEL, dataset: DATASET, stamp, jobs: jobs.map((j) => ({ id: j.id, frames: j.frames || 121 })) }));
+    return;
+  }
   fs.writeFileSync(path.join(out, 'dataset-metadata.json'), JSON.stringify({ title: DATASET, id: `${user()}/${DATASET}`, licenses: [{ name: 'other' }] }, null, 2));
   // New datasets are private unless --public is passed; later runs add a version.
   let r = kaggle('datasets', 'version', '-p', out, '-m', stamp, '-q');
@@ -83,7 +97,12 @@ function push() {
   const dir = path.join(DIR, 'kaggle-push');
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
-  const code = fs.readFileSync(path.join(DIR, 'kaggle', 'animate.py'), 'utf8').replace(/^EXPECT_STAMP = None.*$/m, `EXPECT_STAMP = ${JSON.stringify(stamp)}`);
+  // START_BY: a session that only starts after this (queued too long, so the workflow has already fallen back to
+  // zoompan) exits at once instead of spending GPU hours on clips nobody will use.
+  const startBy = Math.round(Date.now() / 1000 + 60 * (Number(opt('--queue-minutes', 20)) + 5));
+  const code = fs.readFileSync(path.join(DIR, 'kaggle', 'animate.py'), 'utf8')
+    .replace(/^EXPECT_STAMP = None.*$/m, `EXPECT_STAMP = ${JSON.stringify(stamp)}`)
+    .replace(/^START_BY = None.*$/m, `START_BY = ${startBy}`);
   fs.writeFileSync(path.join(dir, 'animate.py'), code);
   fs.writeFileSync(path.join(dir, 'kernel-metadata.json'), JSON.stringify({
     id: `${u}/${KERNEL}`, title: KERNEL, code_file: 'animate.py', language: 'python', kernel_type: 'script',
@@ -95,15 +114,30 @@ function push() {
   if (!r.ok || !/successfully pushed/i.test(r.out)) process.exit(1);
 }
 
+// One sps-animate session at a time: wait while another slot's kernel is running or queued.
+async function lock() {
+  const until = Date.now() + Number(opt('--minutes', 45)) * 60e3;
+  for (;;) {
+    const busy = ALL_KERNELS.filter((k) => k !== KERNEL)
+      .filter((k) => /RUNNING|QUEUED/.test(stateOf(kaggle('kernels', 'status', `${user()}/${k}`).out)));
+    if (!busy.length) { console.log(JSON.stringify({ lock: 'free' })); return; }
+    if (Date.now() > until) { console.log(JSON.stringify({ lock: 'timeout', busy })); process.exit(1); }
+    console.log(`waiting for ${busy.join(', ')}`);
+    await sleep(60e3);
+  }
+}
+
 async function wait() {
-  const until = Date.now() + Number(opt('--minutes', 100)) * 60e3;
-  let last = '';
+  const t0 = Date.now(), until = t0 + Number(opt('--minutes', 100)) * 60e3;
+  const queueLimit = t0 + Number(opt('--queue-minutes', 20)) * 60e3;
+  let last = '', started = false;
   await sleep(60e3);
   while (Date.now() < until) {
-    const r = kaggle('kernels', 'status', `${user()}/${KERNEL}`); // transient errors just retry
-    const m = r.out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i);
-    if (m) last = m[1].toUpperCase();
+    const st = stateOf(kaggle('kernels', 'status', `${user()}/${KERNEL}`).out); // transient errors just retry
+    if (st) last = st;
+    if (/RUNNING|COMPLETE|ERROR/.test(last)) started = true;
     if (/COMPLETE|ERROR|CANCEL/.test(last)) break;
+    if (!started && Date.now() > queueLimit) { last = 'QUEUED_TOO_LONG'; break; }
     await sleep(60e3);
   }
   console.log(JSON.stringify({ status: last || 'unknown' }));
@@ -138,6 +172,7 @@ function quota() {
 if (cmd === 'prepare') await prepare();
 else if (cmd === 'push') push();
 else if (cmd === 'wait') await wait();
+else if (cmd === 'lock') await lock();
 else if (cmd === 'fetch') fetch();
 else if (cmd === 'quota') quota();
 else if (cmd === 'status') console.log(kaggle('kernels', 'status', `${user()}/${KERNEL}`).out);
