@@ -1,0 +1,35 @@
+{
+  "slug": "2026-11-05-long-diwali-ram-ayodhya-vapsi",
+  "seconds": 326.3,
+  "scenes": 40,
+  "chapters": [
+    {
+      "title": "Ayodhya ke Deepak",
+      "start": 0
+    },
+    {
+      "title": "Ravan ka Ant",
+      "start": 21.23
+    },
+    {
+      "title": "Pushpak Vimaan ki Yatra",
+      "start": 67.83
+    },
+    {
+      "title": "Bharat Milap",
+      "start": 134.03
+    },
+    {
+      "title": "Ayodhya mein Rajyabhishek",
+      "start": 203.87
+    },
+    {
+      "title": "Deepavali ka Sandesh",
+      "start": 260.53
+    }
+  ],
+  "images": 12,
+  "images_generated": 12,
+  "neurons": 1152,
+  "render_seconds": 518
+}

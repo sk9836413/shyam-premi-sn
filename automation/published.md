@@ -24,3 +24,4 @@
 - 2026-11-04-noon-rani-sati-dadi-jhunjhunu | youtube: https://youtube.com/shorts/xK2zoP3wNcc | make: error | dialogue lipsync, lip-synced 15/15, 109 s
 - 2026-11-05-morning-vishnu-gajendra-moksha | youtube: https://youtube.com/shorts/bk1nDc7G5FU | make: hosted-only | animated 2/7
 - 2026-11-05-noon-dhanteras-dhanvantari-yamdeep | youtube: https://youtube.com/shorts/_Qa7uuxhZuo | make: error | dialogue lipsync, lip-synced 20/20, 114 s
+- 2026-11-05-long-diwali-ram-ayodhya-vapsi | youtube: https://youtu.be/YjhOmDgmYVs (public at 12:30 IST) | long 5:26, 40 scenes, render 9 min, 1152 neurons

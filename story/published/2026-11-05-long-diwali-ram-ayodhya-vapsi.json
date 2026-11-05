@@ -1,0 +1,86 @@
+{
+  "slug": "2026-11-05-long-diwali-ram-ayodhya-vapsi",
+  "format": "long",
+  "title": "Diwali ki Katha: Shri Ram ki Ayodhya Vapsi",
+  "kicker": "Diwali Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Ayodhya ne deepak kyun jalaye?",
+  "source": "Valmiki Ramayan ke anusar",
+  "deity": "Shri Ram (Diwali)",
+  "summary": "Diwali ki katha: Ravan ka ant, Vibhishan ka rajtilak, Pushpak Vimaan, Bharadwaj ashram, Bharat Milap, Ayodhya ka swagat, Rajyabhishek aur deepotsav ki parampara",
+  "thumbnail": { "image": 9, "focus": "center", "text": "Ayodhya ne deep kyun jalaye?" },
+  "images": [
+    { "prompt": "Wide cinematic night view of the holy city of Ayodhya glowing with thousands of small clay diyas on palaces, steps and the riverbank, joyful citizens in traditional dress waiting with folded hands, warm golden light, ancient Indian city, no text, no letters" },
+    { "prompt": "Wide epic scene in Lanka: Lord Shri Ram, blue-skinned, in a chariot-side stance drawing his divine bow, facing the ten-headed king Ravana on the opposite side, dramatic sky with golden clouds, vanara army in the distance, dignified and not gory, no text, no letters" },
+    { "prompt": "Lord Shri Ram, blue-skinned with a gentle smile, blessing Vibhishan who is being crowned in a grand golden hall of Lanka, Lakshman, Hanuman, Sugriv and vanara warriors standing joyfully around, warm light, no text, no letters" },
+    { "prompt": "The flying chariot Pushpak Vimaan, a golden celestial aircraft with a lotus-shaped canopy, flying over the blue ocean at sunrise, Shri Ram, Sita Mata and Lakshman seated inside with Hanuman, Sugriv and Vibhishan, soft clouds, peaceful and joyful, no text, no letters" },
+    { "prompt": "A serene forest ashram near the river at Prayag, old sage Maharishi Bharadwaj with white beard and saffron robes welcoming Shri Ram, Sita Mata and Lakshman with folded hands, huts and trees, warm evening light, no text, no letters" },
+    { "prompt": "Hanuman ji with a kind humble look standing before Bharat, who lives like an ascetic with matted hair and simple clothes at Nandigram village near Ayodhya, a pair of wooden sandals placed on a small seat, calm village setting, golden light, no text, no letters" },
+    { "prompt": "Bharat carrying Shri Ram's wooden sandals respectfully on his head, walking at the front of a procession with Shatrughna, the royal mothers and joyful citizens of Ayodhya, flower petals in the air, warm morning light, no text, no letters" },
+    { "prompt": "Emotional Bharat Milap: Shri Ram, blue-skinned in simple garments, lovingly embracing his brother Bharat, Lakshman and Sita Mata beside them, Pushpak Vimaan landed in a green meadow behind, tears of joy, soft golden light, no text, no letters" },
+    { "prompt": "Shri Ram bowing and touching the feet of the three royal mothers Kaushalya, Sumitra and Kaikeyi in a royal garden, the whole family together, emotional and warm reunion, soft light, no text, no letters" },
+    { "prompt": "Grand Rajyabhishek of Shri Ram: Ram Darbar with Shri Ram and Sita Mata seated on a golden throne, crowned, gentle blessing hands, Lakshman, Bharat, Shatrughna beside them, Hanuman ji kneeling with folded hands at their feet, Guru Vasishtha in saffron robes, rich colours, no text, no letters" },
+    { "prompt": "Wide festive view of Ayodhya on a new-moon night: every house, gate and street lined with glowing clay diyas, colourful rangoli at doorways, marigold garlands, happy citizens celebrating, golden warm light, no text, no letters" },
+    { "prompt": "A happy Indian family sitting together at home for Diwali, lighting rows of diyas, a small altar with Maa Lakshmi seated on a lotus and Shri Ram Darbar picture, rangoli on the floor, warm glow, devotional and peaceful, no text, no letters" }
+  ],
+  "chapters": [
+    { "title": "Ayodhya ke Deepak", "scenes": [
+      { "img": 0, "focus": "center", "motion": "in", "tts": "चौदह साल बाद जब श्री राम लौटे, तो पूरी अयोध्या ने दीपक क्यों जलाए?", "sub": "Chaudah saal baad jab Shri Ram laute, to poori Ayodhya ne deepak kyun jalaye?" },
+      { "img": 0, "focus": "bottom", "motion": "pan", "tts": "इस कथा में जानिए, रावण के अंत से लेकर राज्याभिषेक और दीपावली तक की पूरी कहानी।", "sub": "Is katha mein jaaniye, Ravan ke ant se lekar rajyabhishek aur Deepavali tak ki poori kahani." },
+      { "img": 4, "focus": "center", "motion": "out", "tts": "यह कथा वाल्मीकि रामायण के अनुसार है, और दीपों की परंपरा इसी कथा से जुड़ी मानी जाती है।", "sub": "Yah katha Valmiki Ramayan ke anusar hai, aur deepon ki parampara isi katha se judi maani jaati hai." }
+    ] },
+    { "title": "Ravan ka Ant", "scenes": [
+      { "img": 1, "focus": "center", "motion": "in", "tts": "लंका में श्री राम और रावण का भयंकर युद्ध चल रहा था। धर्म और अधर्म आमने-सामने थे।", "sub": "Lanka mein Shri Ram aur Ravan ka bhayankar yuddh chal raha tha. Dharm aur adharm aamne-saamne the." },
+      { "img": 1, "focus": "bottom", "motion": "pan", "tts": "वाल्मीकि रामायण के अनुसार श्री राम ने ब्रह्मास्त्र से रावण का अंत किया, और अधर्म पर धर्म की जीत हुई।", "sub": "Valmiki Ramayan ke anusar Shri Ram ne Brahmastra se Ravan ka ant kiya, aur adharm par dharm ki jeet hui." },
+      { "img": 2, "focus": "center", "motion": "out", "tts": "इसके बाद श्री राम ने रावण के भाई विभीषण को लंका का राजा बनाया, जिन्होंने धर्म का साथ दिया था।", "sub": "Iske baad Shri Ram ne Ravan ke bhai Vibhishan ko Lanka ka raja banaya, jinhone dharm ka saath diya tha." },
+      { "img": 2, "focus": "top", "motion": "panl", "tts": "सुग्रीव, हनुमान जी, लक्ष्मण जी और वानर सेना के चेहरों पर विजय की खुशी और संतोष था।", "sub": "Sugriv, Hanuman ji, Lakshman ji aur vanar sena ke chehron par vijay ki khushi aur santosh tha." },
+      { "img": 3, "focus": "center", "motion": "in", "tts": "अब चौदह वर्ष का वनवास पूरा होने वाला था, और अयोध्या लौटने का समय आ गया था।", "sub": "Ab chaudah varsh ka vanvas poora hone wala tha, aur Ayodhya lautne ka samay aa gaya tha." },
+      { "img": 3, "focus": "bottom", "motion": "pan", "tts": "आगे देखिए, पुष्पक विमान से चलते हुए श्री राम सबसे पहले कहाँ रुककर आशीर्वाद लेने गए।", "sub": "Aage dekhiye, Pushpak Vimaan se chalte hue Shri Ram sabse pehle kahan rukkar aashirwad lene gaye.", "teaser": true }
+    ] },
+    { "title": "Pushpak Vimaan ki Yatra", "scenes": [
+      { "img": 3, "focus": "top", "motion": "out", "tts": "विभीषण ने पुष्पक विमान प्रस्तुत किया। उसमें श्री राम, सीता माता, लक्ष्मण जी, सुग्रीव और विभीषण साथ बैठे।", "sub": "Vibhishan ne Pushpak Vimaan prastut kiya. Usmein Shri Ram, Sita Mata, Lakshman ji, Sugriv aur Vibhishan saath baithe." },
+      { "img": 3, "focus": "center", "motion": "panl", "tts": "आकाश से श्री राम सीता माता को वे स्थान दिखाते जा रहे थे, जहाँ वनवास के दिन बीते थे।", "sub": "Aakash se Shri Ram Sita Mata ko ve sthan dikhate ja rahe the, jahan vanvas ke din beete the." },
+      { "img": 4, "focus": "center", "motion": "in", "tts": "रास्ते में वे प्रयाग के पास महर्षि भारद्वाज के आश्रम पहुँचे और ऋषि को प्रणाम किया।", "sub": "Raaste mein ve Prayag ke paas Maharishi Bharadwaj ke ashram pahunche aur rishi ko pranam kiya." },
+      { "img": 4, "focus": "bottom", "motion": "pan", "tts": "महर्षि भारद्वाज ने सबका स्वागत किया और आग्रह किया कि आज रात आश्रम में विश्राम कीजिए।", "sub": "Maharishi Bharadwaj ne sabka swagat kiya aur aagrah kiya ki aaj raat ashram mein vishram kijiye." },
+      { "img": 5, "focus": "center", "motion": "in", "tts": "श्री राम ने सोचा, भरत कैसे होंगे? उन्होंने हनुमान जी को आगे भेजा कि वे जाकर भरत का हाल जानें।", "sub": "Shri Ram ne socha, Bharat kaise honge? Unhone Hanuman ji ko aage bheja ki ve jakar Bharat ka haal jaanein." },
+      { "img": 5, "focus": "top", "motion": "out", "tts": "हनुमान जी ने नंदीग्राम में भरत जी को देखा। वे जटाएँ धारण किए, सादे वस्त्रों में तपस्वी की तरह रह रहे थे।", "sub": "Hanuman ji ne Nandigram mein Bharat ji ko dekha. Ve jataayein dharan kiye, saade vastron mein tapasvi ki tarah reh rahe the." },
+      { "img": 5, "focus": "center", "motion": "pan", "tts": "हनुमान जी ने हाथ जोड़कर बताया कि श्री राम सीता माता और लक्ष्मण जी के साथ कुशल लौट रहे हैं।", "sub": "Hanuman ji ne haath jodkar bataya ki Shri Ram Sita Mata aur Lakshman ji ke saath kushal laut rahe hain." },
+      { "img": 6, "focus": "center", "motion": "in", "tts": "आगे देखिए, चौदह साल बाद जब भाई भाई से मिले, तो वह भरत मिलाप कैसा था।", "sub": "Aage dekhiye, chaudah saal baad jab bhai bhai se mile, to vah Bharat Milap kaisa tha.", "teaser": true }
+    ] },
+    { "title": "Bharat Milap", "scenes": [
+      { "img": 6, "focus": "bottom", "motion": "out", "tts": "भरत जी ने इन चौदह वर्षों में सिंहासन पर श्री राम की चरण पादुकाएँ रखी थीं और उन्हीं के नाम से राज्य संभाला।", "sub": "Bharat ji ne in chaudah varshon mein singhasan par Shri Ram ki charan paadukayein rakhi thi aur unhi ke naam se rajya sambhala." },
+      { "img": 6, "focus": "center", "motion": "panl", "tts": "स्वयं वे नंदीग्राम में तपस्वी की तरह रहे, और हर पल भाई के लौटने की राह देखते रहे।", "sub": "Swayam ve Nandigram mein tapasvi ki tarah rahe, aur har pal bhai ke lautne ki raah dekhte rahe." },
+      { "img": 6, "focus": "top", "motion": "pan", "tts": "खबर मिलते ही भरत जी, शत्रुघ्न जी, माताएँ और नगरवासी चल पड़े। भरत जी ने पादुकाएँ अपने सिर पर रखी थीं।", "sub": "Khabar milte hi Bharat ji, Shatrughna ji, mataayein aur nagarvaasi chal pade. Bharat ji ne paadukayein apne sir par rakhi thi." },
+      { "img": 7, "focus": "center", "motion": "in", "tts": "विमान उतरा, तो भरत जी दौड़कर श्री राम के चरणों में गिर पड़े। राम जी ने उन्हें उठाकर गले लगा लिया।", "sub": "Vimaan utra, to Bharat ji daudkar Shri Ram ke charanon mein gir pade. Ram ji ne unhe uthakar gale laga liya." },
+      { "img": 7, "focus": "bottom", "motion": "out", "tts": "भरत जी ने श्री राम के चरणों में उनकी पादुकाएँ रख दीं। फिर वे लक्ष्मण जी और सीता माता से भी प्रेम से मिले।", "sub": "Bharat ji ne Shri Ram ke charanon mein unki paadukayein rakh di. Phir ve Lakshman ji aur Sita Mata se bhi prem se mile." },
+      { "img": 8, "focus": "center", "motion": "pan", "tts": "फिर श्री राम माता कौशल्या, सुमित्रा और कैकेयी जी से मिले। उन्होंने सबके चरण छुए और सबको समान आदर दिया।", "sub": "Phir Shri Ram Mata Kaushalya, Sumitra aur Kaikeyi ji se mile. Unhone sabke charan chhue aur sabko samaan aadar diya." },
+      { "img": 8, "focus": "top", "motion": "in", "tts": "वर्षों के बिछोह के बाद पूरा परिवार फिर साथ था। सबकी आँखों में खुशी के आँसू थे।", "sub": "Varshon ke bichhoh ke baad poora parivar phir saath tha. Sabki aankhon mein khushi ke aansu the." },
+      { "img": 7, "focus": "top", "motion": "panl", "tts": "आगे देखिए, अयोध्या में श्री राम का राज्याभिषेक कैसे हुआ, और घर-घर दीपक क्यों जले।", "sub": "Aage dekhiye, Ayodhya mein Shri Ram ka rajyabhishek kaise hua, aur ghar-ghar deepak kyun jale.", "teaser": true }
+    ] },
+    { "title": "Ayodhya mein Rajyabhishek", "scenes": [
+      { "img": 10, "focus": "center", "motion": "in", "tts": "जब श्री राम अयोध्या पहुँचे, तो नगर सजाया गया था। लोग वर्षों से इसी दिन की राह देख रहे थे।", "sub": "Jab Shri Ram Ayodhya pahunche, to nagar sajaya gaya tha. Log varshon se isi din ki raah dekh rahe the." },
+      { "img": 10, "focus": "bottom", "motion": "pan", "tts": "मान्यता है कि अयोध्यावासियों ने खुशी में घर-घर दीपक जलाए, और यही दीपावली की परंपरा का आधार माना जाता है।", "sub": "Manyata hai ki Ayodhyavasiyon ne khushi mein ghar-ghar deepak jalaye, aur yahi Deepavali ki parampara ka aadhaar maana jaata hai." },
+      { "img": 10, "focus": "top", "motion": "panl", "tts": "द्वार पर रंगोली बनी, फूलों की मालाएँ सजीं, और हर तरफ श्री राम के जयकारे गूँज उठे।", "sub": "Dwaar par rangoli bani, phoolon ki malayein sajin, aur har taraf Shri Ram ke jaikare goonj uthe." },
+      { "img": 9, "focus": "center", "motion": "in", "tts": "गुरु वशिष्ठ ने शुभ घड़ी में श्री राम का राज्याभिषेक किया। सीता माता भी उनके साथ विराजीं।", "sub": "Guru Vasishtha ne shubh ghadi mein Shri Ram ka rajyabhishek kiya. Sita Mata bhi unke saath virajin." },
+      { "img": 9, "focus": "bottom", "motion": "out", "tts": "भरत, लक्ष्मण, शत्रुघ्न और हनुमान जी श्री राम की सेवा में हाथ जोड़े खड़े थे।", "sub": "Bharat, Lakshman, Shatrughna aur Hanuman ji Shri Ram ki seva mein haath jode khade the." },
+      { "img": 9, "focus": "top", "motion": "pan", "tts": "राज्याभिषेक के बाद श्री राम ने सुग्रीव, विभीषण और वानर सेना को उपहार देकर सम्मान सहित विदा किया।", "sub": "Rajyabhishek ke baad Shri Ram ne Sugriv, Vibhishan aur vanar sena ko uphaar dekar samman sahit vida kiya." },
+      { "img": 9, "focus": "center", "motion": "panl", "tts": "आगे चलकर श्री राम के शासन को रामराज्य कहा गया, जहाँ धर्म, न्याय और सबके सुख की बात होती थी।", "sub": "Aage chalkar Shri Ram ke shaasan ko Ramrajya kaha gaya, jahan dharm, nyay aur sabke sukh ki baat hoti thi." }
+    ] },
+    { "title": "Deepavali ka Sandesh", "scenes": [
+      { "img": 11, "focus": "center", "motion": "in", "tts": "कई परंपराओं में इसी रात घरों में माँ लक्ष्मी की पूजा भी की जाती है। अब इस कथा का संदेश सुनिए।", "sub": "Kai paramparaon mein isi raat gharon mein Maa Lakshmi ki pooja bhi ki jaati hai. Ab is katha ka sandesh suniye.", "teaser": true },
+      { "img": 11, "focus": "bottom", "motion": "pan", "tts": "दिवाली पर हम दीपक जलाते हैं, ताकि अंधकार दूर हो और मन में भी उजाला और अच्छाई बनी रहे।", "sub": "Diwali par hum deepak jalate hain, taaki andhkaar door ho aur man mein bhi ujaala aur achhaai bani rahe." },
+      { "img": 0, "focus": "center", "motion": "out", "tts": "श्री राम की कथा सिखाती है कि सत्य और धर्म का मार्ग कठिन हो सकता है, लेकिन अंत में जीत उसी की होती है।", "sub": "Shri Ram ki katha sikhati hai ki satya aur dharm ka marg kathin ho sakta hai, lekin ant mein jeet usi ki hoti hai." },
+      { "img": 8, "focus": "bottom", "motion": "out", "tts": "भरत जी का प्रेम सिखाता है कि रिश्तों में त्याग और सेवा से बड़ा कोई सुख नहीं।", "sub": "Bharat ji ka prem sikhata hai ki rishton mein tyag aur seva se bada koi sukh nahi." },
+      { "img": 7, "focus": "center", "motion": "out", "tts": "परिवार का मिलन, बड़ों का आदर और भाई का प्रेम, यही इस पर्व की असली रोशनी है।", "sub": "Parivar ka milan, badon ka aadar aur bhai ka prem, yahi is parv ki asli roshni hai." },
+      { "img": 11, "focus": "top", "motion": "in", "tts": "इस दीपावली अपने घर में दीपक जलाइए, परिवार के साथ बैठिए और श्री राम का नाम लीजिए।", "sub": "Is Deepavali apne ghar mein deepak jalaiye, parivar ke saath baithiye aur Shri Ram ka naam lijiye." },
+      { "img": 0, "focus": "bottom", "motion": "panl", "tts": "श्री राम जय राम जय जय राम। दीपावली से जुड़ी और कथाएँ भी आपके लिए आएँगी, जुड़े रहिए।", "sub": "Shri Ram Jai Ram Jai Jai Ram. Deepavali se judi aur kathayein bhi aapke liye aayengi, jude rahiye." },
+      { "endcard": true, "tts": "श्री राम जय राम जय जय राम! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।", "sub": "Shri Ram Jai Ram Jai Jai Ram! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN" }
+    ] }
+  ],
+  "youtube_title": "Diwali ki Katha: Shri Ram ki Ayodhya Vapsi | दिवाली की कथा | Sampoorn Katha",
+  "youtube_description": "Diwali kyun manayi jaati hai? Is sampoorn katha mein dekhiye Shri Ram ka Ravan ka ant karke Ayodhya lautna: Vibhishan ka rajtilak, Pushpak Vimaan ki yatra, Bharadwaj ashram, Hanuman ji ka Bharat ke paas jaana, Bharat Milap aur Rajyabhishek.\nAyodhyavasiyon ke deepak jalane ki parampara ko manyata ke roop mein bataya gaya hai.\nYe katha Valmiki Ramayan ke anusar hai.\nदिवाली की कथा: श्री राम की अयोध्या वापसी, भरत मिलाप और राज्याभिषेक।\nश्री राम जय राम जय जय राम।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein, Shyam Premi SN.\n#Diwali #ShriRam #Ramayan #Deepavali #JaiShreeShyam",
+  "youtube_tags": "Diwali ki katha, दिवाली की कथा, Shri Ram Ayodhya vapsi, श्री राम अयोध्या वापसी, Bharat Milap, भरत मिलाप, Deepavali katha, दीपावली की कथा, Ramayan katha, रामायण कथा, Diwali kyun manate hain, दिवाली क्यों मनाते हैं, Ram Rajyabhishek, Shyam Premi SN"
+}
