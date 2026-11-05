@@ -29,3 +29,4 @@
 2026-11-05 | noon | 2026-11-05-noon-dhanteras-dhanvantari-yamdeep | Dhanvantari / Maa Lakshmi (Dhanteras) | Dhanteras kyun manate hain: Samudra Manthan se Dhanvantari ka amrit kalash ke saath prakat hona, Prince Hima aur Yamdeep ki lok katha; agla: Choti Diwali
 2026-11-05 | long | 2026-11-05-long-diwali-ram-ayodhya-vapsi | Shri Ram (Diwali) | Diwali ki katha: Ravan ka ant, Vibhishan ka rajtilak, Pushpak Vimaan, Bharadwaj ashram, Bharat Milap, Ayodhya ka swagat, Rajyabhishek aur deepotsav ki parampara
 2026-11-05 | evening | 2026-11-05-evening-banke-bihari-vrindavan-darshan | Banke Bihari Mandir, Vrindavan (Krishna Leela Dham 1/11, Krishna) | Banke Bihari ji ki tribhangi mudra, Swami Haridas ji ki Nidhivan mein seva (manyata), Vrindavan darshan
+2026-11-06 | status | 2026-11-06-status-dhanteras | Dhanteras | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST

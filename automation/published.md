@@ -26,3 +26,4 @@
 - 2026-11-05-noon-dhanteras-dhanvantari-yamdeep | youtube: https://youtube.com/shorts/_Qa7uuxhZuo | make: error | dialogue lipsync, lip-synced 20/20, 114 s
 - 2026-11-05-long-diwali-ram-ayodhya-vapsi | youtube: https://youtu.be/YjhOmDgmYVs (public at 12:30 IST) | long 5:26, 40 scenes, render 9 min, 1152 neurons
 - 2026-11-05-evening-banke-bihari-vrindavan-darshan | youtube: https://youtube.com/shorts/UZ6Ha-CUOBk (public at 2026-11-05T13:30:00.000Z) | make: hosted-only | animated 2/4
+- 2026-11-06-status-dhanteras | youtube: https://youtube.com/shorts/8oLKZmQJiWQ (public at 2026-11-06T00:30:00.000Z) | status video, made 05 Nov 18:49 IST | social: fb: https://www.facebook.com/reel/1166935099231690 (scheduled 2026-11-06T00:30:00.000Z) | ig: pending 2026-11-06T00:30:00.000Z
