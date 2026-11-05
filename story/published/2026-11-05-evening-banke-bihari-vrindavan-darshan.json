@@ -1,0 +1,54 @@
+{
+  "slug": "2026-11-05-evening-banke-bihari-vrindavan-darshan",
+  "title": "Banke Bihari Mandir Vrindavan",
+  "kicker": "Krishna Leela 1/11",
+  "playlist": "Krishna Leela Dham",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Banke Bihari ka matlab kya hai?",
+  "scenes": [
+    {
+      "prompt": "Devotional darshan of Lord Krishna as a dark-complexioned child-like murti in graceful tribhanga pose, peacock feather crown, flute, yellow dhoti, garlands of flowers, glowing diyas, warm golden temple interior",
+      "tts": "वृंदावन के बाँके बिहारी जी! नाम का अर्थ जानते हैं?",
+      "sub": "Vrindavan ke Banke Bihari ji! Naam ka arth jaante hain?",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few marigold petals drift in the foreground"
+    },
+    {
+      "prompt": "Close view of Lord Krishna murti standing with body bent gracefully in three places, flute at his lips, peacock feather, surrounded by flower garlands and lamp light, serene devotional mood",
+      "tts": "बाँके यानी त्रिभंगी मुद्रा, तीन जगह से मुड़ी, मान्यता है।",
+      "sub": "Banke yaani teen jagah se mudi tribhangi mudra, aisa maana jaata hai.",
+      "motion": "pan",
+      "deity": true,
+      "animate": "the camera drifts very slowly sideways, the face stays still and serene, diya flames flicker softly, a few petals fall gently"
+    },
+    {
+      "prompt": "Saint Swami Haridas sitting in a peaceful sacred grove at dawn in Vrindavan, tulsi trees, singing devotional music with a tanpura, soft golden light through leaves, calm and devotional",
+      "tts": "मान्यता है स्वामी हरिदास जी ने निधिवन में सेवा की।",
+      "sub": "Manyata hai Swami Haridas ji ne Nidhivan mein seva ki.",
+      "motion": "out",
+      "animate": "sunlight filters gently through the leaves, the leaves sway softly and the camera slowly pulls back, the saint stays calm",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "Peaceful devotees with folded hands in a courtyard of a Vrindavan temple in the evening, warm lamp light, marigold garlands, soft glow, people seen from behind",
+      "tts": "मथुरा ज़िले का वृंदावन, श्रद्धा का धाम है।",
+      "sub": "Mathura zile ka Vrindavan, shraddha ka dham hai.",
+      "motion": "in",
+      "animate": "the lamp flames flicker softly, a few marigold petals drift down and the camera slowly pushes in",
+      "video": "clips/3.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "जय श्री राधे! कल धनतेरस की झलक के लिए लाइक, शेयर और सब्सक्राइब करें।",
+      "sub": "Jai Shree Radhe! Kal Dhanteras ki jhalak ke liye Like, Share aur Subscribe karein."
+    }
+  ],
+  "youtube_title": "Banke Bihari Mandir Vrindavan Darshan | बाँके बिहारी मंदिर वृंदावन #Shorts",
+  "youtube_description": "Vrindavan (Mathura) ke Banke Bihari ji ka darshan: Banke yaani tribhangi mudra, aur Swami Haridas ji ki Nidhivan mein seva ki manyata. Krishna Leela Dham series 1/11.\nबाँके बिहारी मंदिर वृंदावन, श्री कृष्ण के दर्शन।\nमंत्र: हरे कृष्ण हरे कृष्ण, कृष्ण कृष्ण हरे हरे। हरे राम हरे राम, राम राम हरे हरे।\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nJai Shree Shyam 🙏\nAgar achha laga to Like, Share aur Subscribe karein.\n#BankeBihari #Vrindavan #Krishna #KrishnaLeelaDham #Shorts",
+  "youtube_tags": "Banke Bihari, बाँके बिहारी, Banke Bihari mandir, बाँके बिहारी मंदिर वृंदावन, Vrindavan darshan, वृंदावन दर्शन, Swami Haridas, स्वामी हरिदास, Nidhivan, निधिवन, Krishna Leela Dham, Krishna mandir, कृष्ण मंदिर, Jai Shree Radhe",
+  "instagram_caption": "Banke Bihari ka matlab kya hai? 🙏\nVrindavan ke Banke Bihari ji ko tribhangi mudra ke kaaran Banke kaha jaata hai, aisa maana jaata hai.\nManyata hai ki Swami Haridas ji ne Nidhivan mein unki seva ki.\nHare Krishna Hare Krishna, Krishna Krishna Hare Hare.\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#BankeBihari #Vrindavan #Krishna #JaiShreeRadhe #KrishnaLeelaDham #Mathura #Bhakti #JaiShreeShyam",
+  "facebook_caption": "Vrindavan ke Banke Bihari ji ka darshan: Banke yaani tribhangi mudra, aur Swami Haridas ji ki Nidhivan mein seva ki manyata. Chitra AI dwara banaye gaye hain (sanketik). Like, Share aur Follow karein.\n#BankeBihari #Vrindavan #JaiShreeRadhe"
+}
