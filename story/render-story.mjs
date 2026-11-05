@@ -11,13 +11,20 @@
 // Status videos (spec.format "status", story/status/<date>.json): the festival "WhatsApp status" Short; each scene's
 // big Hindi blessing, mantra and the end line are drawn by story/status-overlays.mjs (headless Chrome, so Devanagari
 // and the emoji render correctly) and laid over the frame instead of the subtitles.
-// Voice: Kokoro Hindi (Devanagari input). Music: synthesized drone + bell. Output: out/<slug>.mp4
+// Voice: edge-tts (Kokoro fallback). Music: synthesized drone + bell. Ambience (Nov 2026): a synthesized bed picked
+// from the scenes (temple air, crowd murmur, diya crackle, distant bells at scene changes; no third-party audio),
+// ducked under the voice with a sidechain compressor, then the whole mix to -14 LUFS.
+// Look (Nov 2026, animate/REPORT.md section 10): a light warm grade + vignette, subtle temporal film grain and a
+// sharpen pass on every scene picture (SPS_LOOK=0 turns it off). Upscaled stills from the Kaggle kernel
+// (STILLS_DIR, default <spec dir>/stills/<scene>.jpg, Real-ESRGAN 2160 px) replace the 1024 px FLUX images, and
+// enhanced clips (30 fps, 1080 px, already at the scene's length) are used as they are. Output: out/<slug>.mp4
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creditLine, photosFor } from '../scripts/real-photos.mjs';
+import { framePrompt } from '../animate/kaggle.mjs';
 
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
 const FFPROBE = FF.replace(/ffmpeg(\.exe)?$/, 'ffprobe$1');
@@ -52,8 +59,17 @@ function cfToken() {
   return cfg.match(/oauth_token\s*=\s*"([^"]+)"/)[1];
 }
 
+const STILLS = process.env.STILLS_DIR ? path.resolve(process.env.STILLS_DIR) : path.join(base, 'stills');
+const LOOK_ON = process.env.SPS_LOOK !== '0';
+// Warm grade + soft vignette on the scene picture; grain is added last so it is not blurred by scaling.
+const LOOK = LOOK_ON ? ',eq=contrast=1.05:saturation=1.07:gamma=0.98,colorbalance=rs=0.015:bs=-0.02:rm=0.02:bm=-0.025:rh=0.02:bh=-0.02,vignette=angle=PI/7' : '';
+const GRAIN = LOOK_ON ? ',noise=c0s=5:c0f=t+u' : '';
+
 async function image(scene, i) {
   if (scene.image) return path.resolve(base, scene.image);
+  // Real-ESRGAN 2160 px still from the Kaggle kernel (same picture as the clip's start frame), not during --prepare.
+  const up = path.join(STILLS, `${i}.jpg`);
+  if (!process.argv.includes('--prepare') && fs.existsSync(up)) return up;
   const file = path.join(base, 'images', `${spec.slug}-${i}.jpg`);
   if (fs.existsSync(file)) return file;
   // In CI the media Worker runs FLUX through its AI binding (no Cloudflare API token needed);
@@ -63,7 +79,8 @@ async function image(scene, i) {
     : `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/@cf/black-forest-labs/flux-1-schnell`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${viaWorker ? process.env.MEDIA_TOKEN : cfToken()}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt: `${scene.prompt}. ${spec.style}`, steps: 4 }),
+    // Lighting, lens and composition added to every image prompt (same neurons); SPS_FRAME_PROMPT=0 = the old prompt.
+    body: JSON.stringify({ prompt: process.env.SPS_FRAME_PROMPT === '0' ? `${scene.prompt}. ${spec.style}` : framePrompt(scene, spec), steps: 4 }),
   });
   const j = await res.json();
   if (!j.success) throw new Error(`image ${i}: ${JSON.stringify(j.errors)}`);
@@ -226,12 +243,14 @@ for (const [i, scene] of spec.scenes.entries()) {
       // Animated clip: stretched up to 1.3x slower when it is shorter than the narration, then the last
       // frame is held; the same moving clip, blurred, fills the background.
       const slow = Math.min(1.3, Math.max(1, seconds / (probeSeconds(vid) || seconds)));
+      // An enhanced clip is already 1080 px (Real-ESRGAN): only a light sharpen; a raw 704 px clip keeps the old one.
+      const big = Number(spawnSync(FFPROBE, ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width', '-of', 'csv=p=0', vid], { encoding: 'utf8' }).stdout.trim()) >= 1000;
       try {
         run(['-i', vid, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, '-filter_complex', [
           `[0:v]setpts=${slow.toFixed(3)}*PTS,fps=${FPS},tpad=stop_mode=clone:stop_duration=${seconds.toFixed(2)},` +
             `trim=duration=${seconds.toFixed(2)},setpts=PTS-STARTPTS,format=yuv420p,split[a][b]`,
           `[a]scale=${H}:${H},crop=${W}:${H},boxblur=28:4,eq=brightness=-0.18[bgl]`,
-          `[b]scale=${W}:${W}:flags=lanczos,unsharp=5:5:0.6[fg]`,
+          `[b]scale=${W}:${W}:flags=lanczos,${big ? 'unsharp=3:3:0.3' : 'unsharp=5:5:0.6'}${LOOK}${GRAIN}[fg]`,
           ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
           `[bgl][fg]overlay=0:250${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
             `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}${withOverlay(LOGO ? 2 : 1)}[v]`,
@@ -256,7 +275,7 @@ for (const [i, scene] of spec.scenes.entries()) {
       }
       run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, '-filter_complex', [
         `[0:v]${cover(W, H)},boxblur=28:4,eq=brightness=-0.18[bg]`,
-        `[0:v]${photo ? cover(2160, 2160) : 'scale=2160:2160'},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}[fg]`,
+        `[0:v]${photo ? cover(2160, 2160) : 'scale=2160:2160:flags=lanczos'},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}${photo ? '' : `,unsharp=3:3:0.3${LOOK}${GRAIN}`}[fg]`,
         `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,
         ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
         `[bgl][fg]overlay=0:250:shortest=1${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
@@ -278,6 +297,26 @@ for (let i = 1; i < clips.length; i++) {
   prev = `x${i}`;
 }
 const n = clips.length;
+// Scene start times (the voice timing below uses the same arithmetic).
+const starts = clips.map((_, i) => clips.slice(0, i).reduce((a, c) => a + c.seconds - FADE, 0));
+// Ambience bed, all synthesized here: which layers depends on the scenes (spec.ambience overrides: temple | aarti |
+// nature | quiet | none).
+const words = spec.scenes.map((s) => `${s.prompt || ''} ${s.animate || ''}`).join(' ').toLowerCase();
+const PLACE = /temple|mandir|courtyard|devotee|darshan|murti/;
+const amb = spec.ambience || (/aarti|diya|lamp|flame/.test(words) && PLACE.test(words) ? 'aarti'
+  : PLACE.test(words) ? 'temple' : /forest|grove|river|mountain|field|village|sky|garden/.test(words) ? 'nature' : 'quiet');
+const T = total.toFixed(2);
+const layers = amb === 'none' ? [] : [
+  // temple air / wind: brown noise, low-passed, slowly breathing
+  `anoisesrc=color=brown:amplitude=0.6:seed=7:d=${T},lowpass=f=${amb === 'nature' ? 900 : 380},tremolo=f=0.11:d=0.55,volume=${amb === 'nature' ? 0.16 : 0.09}`,
+  // distant crowd murmur: band-passed pink noise with syllable-rate and phrase-rate modulation
+  ...(['temple', 'aarti'].includes(amb) ? [`anoisesrc=color=pink:amplitude=0.5:seed=11:d=${T},bandpass=f=520:width_type=h:w=520,tremolo=f=3.3:d=0.55,tremolo=f=0.31:d=0.6,lowpass=f=1400,volume=0.07`] : []),
+  // diya crackle: sparse random clicks, band-limited
+  ...(['aarti', 'temple'].includes(amb) ? [`aevalsrc='if(lt(random(0),${amb === 'aarti' ? 0.0009 : 0.0004}),(random(1)-0.5)*1.4,0)':s=48000:d=${T},highpass=f=1800,lowpass=f=7500,volume=${amb === 'aarti' ? 0.5 : 0.3}`] : []),
+];
+// Distant temple bell (inharmonic partials) at each later scene change.
+const bellAt = amb === 'quiet' || amb === 'none' ? [] : starts.slice(1).filter((t) => t > 1 && t < total - 2.5);
+const bell2 = `aevalsrc='0.20*sin(2*PI*587*t)*exp(-1.6*t)+0.12*sin(2*PI*1620*t)*exp(-2.4*t)+0.07*sin(2*PI*3170*t)*exp(-3.6*t)+0.04*sin(2*PI*5240*t)*exp(-5*t)':s=48000:d=4`;
 const drone = `aevalsrc='0.09*sin(2*PI*138.59*t)*(1+0.25*sin(2*PI*0.18*t))+0.06*sin(2*PI*207.65*t)*(1+0.25*sin(2*PI*0.23*t))+0.045*sin(2*PI*277.18*t)|0.09*sin(2*PI*138.59*t+0.4)*(1+0.25*sin(2*PI*0.21*t))+0.06*sin(2*PI*207.65*t+0.3)+0.045*sin(2*PI*277.18*t+0.2)':s=48000:d=${total.toFixed(2)}`;
 const bell = `aevalsrc='0.45*sin(2*PI*1046*t)*exp(-2.2*t)+0.25*sin(2*PI*2093*t)*exp(-3.5*t)+0.15*sin(2*PI*1568*t)*exp(-2.8*t)':s=48000:d=4`;
 let start = 0;
@@ -288,11 +327,21 @@ clips.forEach((c, i) => {
   f.push(`[${n + 2 + i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=1.7,adelay=${ms}|${ms}[v${i}]`);
   mix.push(`[v${i}]`);
 });
-f.push(`[${n}:a]volume=0.5[dr];[${n + 1}:a]aformat=channel_layouts=stereo[bl];[dr][bl]${mix.join('')}amix=inputs=${n + 2}:duration=first:normalize=0,afade=t=out:st=${(total - 2).toFixed(2)}:d=2,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]`);
+// Voice bus; music + ambience bus ducked under it (sidechain), then the whole mix normalised to -14 LUFS.
+const A0 = 2 * n + 2; // first ambience input
+f.push(`${mix.join('')}amix=inputs=${n}:duration=longest:normalize=0,apad=whole_dur=${T},asplit=2[vox][key]`);
+f.push(`[${n}:a]volume=0.5[dr]`, `[${n + 1}:a]aformat=channel_layouts=stereo[bl]`);
+layers.forEach((_, k) => f.push(`[${A0 + k}:a]aformat=sample_rates=48000:channel_layouts=stereo[am${k}]`));
+bellAt.forEach((t, k) => { const ms = Math.round(t * 1000); f.push(`[${A0 + layers.length + k}:a]aformat=channel_layouts=stereo,adelay=${ms}|${ms}[bb${k}]`); });
+const bedIns = ['[dr]', '[bl]', ...layers.map((_, k) => `[am${k}]`), ...bellAt.map((_, k) => `[bb${k}]`)];
+f.push(`${bedIns.join('')}amix=inputs=${bedIns.length}:duration=first:normalize=0[bed]`);
+f.push('[bed][key]sidechaincompress=threshold=0.02:ratio=5:attack=25:release=450:makeup=1[duck]');
+f.push(`[duck][vox]amix=inputs=2:duration=first:normalize=0,atrim=duration=${T},afade=t=out:st=${(total - 2).toFixed(2)}:d=2,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]`);
 fs.mkdirSync(path.join(base, 'out'), { recursive: true });
 const out = path.join(base, 'out', `${spec.slug}.mp4`);
 run([
   ...clips.flatMap((c) => ['-i', c.file]), '-f', 'lavfi', '-i', drone, '-f', 'lavfi', '-i', bell, ...clips.flatMap((c) => ['-i', c.voice]),
+  ...layers.flatMap((l) => ['-f', 'lavfi', '-i', l]), ...bellAt.flatMap(() => ['-f', 'lavfi', '-i', bell2]),
   '-filter_complex', f.join(';'), '-map', `[${prev}]`, '-map', '[a]',
   '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-crf', '23', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2',
   '-t', total.toFixed(2), '-movflags', '+faststart', out,
@@ -305,4 +354,4 @@ if (usedPhotos.length) {
   }
   fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
 }
-console.log(JSON.stringify({ out, seconds: Number(total.toFixed(1)), scenes: n, real_photos: usedPhotos.length }));
+console.log(JSON.stringify({ out, seconds: Number(total.toFixed(1)), scenes: n, real_photos: usedPhotos.length, ambience: amb, look: LOOK_ON }));

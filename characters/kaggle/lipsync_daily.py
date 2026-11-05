@@ -10,7 +10,8 @@
 #
 # Input (flat dataset, built by characters/dialogue.py dataset): jobs.json, clip-<id>.mp4 (library clips, cut from the
 # canonical character sheet by image-to-video), line-NN.wav (one padded voice line each).
-# Output: /kaggle/working/clips/<job>.mp4 (silent, 24 fps, as long as the line) + results.json (stamp, timings).
+# Output: /kaggle/working/clips/<job>.mp4 (silent, 24 fps, as long as the line; Real-ESRGAN-upscaled to 1080 px by
+# enhance.py when the dataset carries it, settings.upscale=false turns that off) + results.json (stamp, timings).
 # Both T4s work at once: one MuseTalk process per GPU, jobs split by audio length.
 import glob, json, os, subprocess, sys, time
 
@@ -47,6 +48,7 @@ whisper = WhisperModel.from_pretrained("models/whisper").to(device=dev, dtype=to
 ts = torch.tensor([0], device=dev)
 jobs = {j["id"]: j for j in json.load(open(f"{inp}/jobs.json"))["jobs"]}
 os.makedirs(f"{out}/clips", exist_ok=True)
+UP = [None]  # the Real-ESRGAN upscaler, loaded on first use
 
 def read(path):
     cap = cv2.VideoCapture(path); fr = []
@@ -142,6 +144,20 @@ for jid in ids:
         torch.cuda.synchronize()
         rec = {"id": jid, "ok": os.path.exists(f"{out}/clips/{jid}.mp4"), "gpu": gpu, "frames": len(outs), "fps": fps,
                "seconds": round(time.time() - t0, 1), "audio_s": round(n / 16000, 2), "track_match": round(match, 3)}
+        # Real-ESRGAN to 1080 px (enhance.py, BSD-3; no frame interpolation: a lip-synced mouth must not be blended).
+        # Any failure keeps the 704 px clip; the renderer scales it up as before.
+        if rec["ok"] and cfg.get("upscale", True) and os.path.exists(f"{inp}/enhance.py") and W < 1000:
+            try:
+                if UP[0] is None:
+                    sys.path.insert(0, inp)
+                    from enhance import Enhancer
+                    UP[0] = Enhancer(rife=False)
+                r = UP[0].process_file(f"{out}/clips/{jid}.mp4", f"{out}/clips/{jid}-up.mp4", size=1080, crf=17)
+                os.replace(f"{out}/clips/{jid}-up.mp4", f"{out}/clips/{jid}.mp4")
+                rec.update(upscaled=True, upscale_s=r["enhance_s"])
+            except Exception as e:
+                rec.update(upscaled=False, upscale_error=f"{type(e).__name__}: {str(e)[:200]}")
+                os.chdir(REPO)
     except Exception as e:  # one failed line must not lose the others (the renderer falls back for that line)
         rec = {"id": jid, "ok": False, "gpu": gpu, "error": f"{type(e).__name__}: {str(e)[:300]}"}
         torch.cuda.empty_cache()

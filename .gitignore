@@ -50,3 +50,7 @@ characters/*.mp4
 characters/*.mp3
 story/today/char/
 story/status/work/
+# quality A/B renders (local only)
+animate/ab-quality/
+story/today/stills/
+animate/.cache/

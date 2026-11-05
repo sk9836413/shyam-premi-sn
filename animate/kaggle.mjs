@@ -13,6 +13,12 @@
 //   node animate/kaggle.mjs fetch [--to <dir>] [--voice-to <dir>] -> clips <scene>.mp4, voice-<i>.wav + voice.json, results.json
 //   node animate/kaggle.mjs quota [--min 10]         -> GPU hours left this week; exit 2 when under --min
 //   node animate/kaggle.mjs status
+// Quality (animate/REPORT.md section 10): the dataset also carries enhance.py (RIFE 30 fps + Real-ESRGAN 1080 px for
+// every clip, Real-ESRGAN 2160 px for every still), hero14b.py (evening hero clip with Wan 2.2 I2V-A14B) and
+// flux_frames.py (start frames re-made on the GPU with FLUX.1-schnell, 1024 px / 8 steps; off unless SPS_FLUX=1);
+// `fetch --stills-to` brings back the upscaled stills. Defaults below; a spec's animate_settings or the env
+// SPS_ENHANCE=0 / SPS_HERO14B=0 turn parts off. Motion prompts follow one template:
+// camera move + subject micro-motion + (deity scenes) "the murti never moves".
 // Jobs: with --plan (from `render-story.mjs --prepare`), the scenes marked `animate` (else the first ones), at most
 // --max, never the end card, each clip as long
 // as its scene (up to 169 frames = 7 s; the renderer may slow a clip by up to 1.1x). Without --plan (the
@@ -61,8 +67,11 @@ function user() {
   return (account = row.split('/')[0]);
 }
 
-// Frames for a scene: 4k+1 (Wan's grid), long enough that at most a 1.1x slow-down fills the scene, 81-169.
-const framesFor = (seconds) => Math.min(169, Math.max(81, 4 * Math.ceil((Math.ceil((seconds / 1.1) * 24) - 1) / 4) + 1));
+// Frames for a scene: 4k+1 (Wan's grid), long enough that at most a 1.1x slow-down fills the scene, 81-169. With the
+// RIFE post-process on, the kernel stretches a clip smoothly by up to 1.25x (real in-between frames), so ~12% fewer
+// frames are generated (Wan's cost grows faster than linearly with frames).
+const SLOW = process.env.SPS_ENHANCE === '0' ? 1.1 : 1.25;
+const framesFor = (seconds) => Math.min(169, Math.max(81, 4 * Math.ceil((Math.ceil((seconds / SLOW) * 24) - 1) / 4) + 1));
 
 async function prepare() {
   const specFile = path.resolve(args[1]), base = path.dirname(specFile);
@@ -73,19 +82,33 @@ async function prepare() {
   const out = path.join(DIR, 'dataset');
   fs.rmSync(out, { recursive: true, force: true });
   fs.mkdirSync(out, { recursive: true });
-  const look = '3D animated devotional movie style, soft cinematic lighting, rich warm colours, smooth natural motion';
+  const settings = { ...DEFAULTS(), ...(spec.animate_settings || {}) };
   const usable = plan ? plan.scenes.filter((p) => all[p.i]?.prompt && !all[p.i].endcard) : [];
   const marked = usable.filter((p) => all[p.i].animate);
   const picks = plan
     ? (marked.length ? marked : usable).slice(0, Number(opt('--max', 4)))
-      .map((p) => ({ i: p.i, image: p.image, frames: framesFor(p.seconds) }))
+      .map((p) => ({ i: p.i, image: p.image, frames: framesFor(p.seconds), seconds: p.seconds }))
     : all.flatMap((s, i) => (s.prompt && s.image && s.video ? [{ i, image: path.resolve(base, s.image) }] : []));
-  const jobs = picks.map(({ i, image, frames }) => {
+  const jobs = picks.map(({ i, image, frames, seconds }) => {
     const s = all[i];
     fs.copyFileSync(image, path.join(out, `${i}${path.extname(image)}`));
-    return { id: String(i), image: `${i}${path.extname(image)}`, ...(frames ? { frames } : {}), seed: s.seed || 42,
-      prompt: `${s.prompt}. ${s.animate || 'gentle natural motion, slow camera push-in, calm devotional mood'}. ${look}` };
+    return { id: String(i), image: `${i}${path.extname(image)}`, ...(frames ? { frames } : {}), ...(seconds ? { seconds } : {}),
+      seed: s.seed || 42, prompt: motionPrompt(s), ...(settings.flux ? { flux_prompt: framePrompt(s, spec) } : {}),
+      ...(s.hero ? { hero: true } : {}) };
   });
+  // Hero clip: the scene marked `hero`, else the first deity/murti scene among the jobs.
+  if (settings.hero14b && jobs.length && !jobs.some((j) => j.hero)) {
+    const d = jobs.find((j) => DEITY(all[Number(j.id)]));
+    if (d) d.hero = true;
+  }
+  // The zoompan scenes' images too, so the kernel can upscale them (still-<i>.jpg -> stills/<i>.jpg, 2160 px).
+  if (plan && settings.stills) {
+    for (const p of plan.scenes) {
+      if (!picks.some((k) => k.i === p.i) && fs.existsSync(p.image)) fs.copyFileSync(p.image, path.join(out, `still-${p.i}.jpg`));
+    }
+  }
+  for (const f of ['enhance.py', 'flux_frames.py', 'hero14b.py']) fs.copyFileSync(path.join(DIR, 'kaggle', f), path.join(out, f));
+  await esrWeights(out);
   const stamp = `${spec.slug}-${Date.now()}`;
   // Narration lines for Chatterbox (flat files: Kaggle skips sub-folders of a dataset by default).
   let voice;
@@ -98,7 +121,7 @@ async function prepare() {
     }, null, 2));
     voice = { lines: 'voice-lines.json', pad: 0.7, max_minutes: SLOT === 'long' ? 30 : 15 };
   }
-  fs.writeFileSync(path.join(out, 'jobs.json'), JSON.stringify({ stamp, settings: spec.animate_settings || {}, ...(voice ? { voice } : {}), jobs }, null, 2));
+  fs.writeFileSync(path.join(out, 'jobs.json'), JSON.stringify({ stamp, settings, ...(voice ? { voice } : {}), jobs }, null, 2));
   if (args.includes('--dry-run')) {
     console.log(JSON.stringify({ dryRun: true, kernel: KERNEL, dataset: DATASET, stamp, jobs: jobs.map((j) => ({ id: j.id, frames: j.frames || 121 })) }));
     return;
@@ -116,9 +139,67 @@ async function prepare() {
   console.log(JSON.stringify({ stamp, jobs: jobs.map((j) => ({ id: j.id, frames: j.frames || 121 })) }));
 }
 
+// Real-ESRGAN weights (BSD-3-Clause, 4.9 MB) go into every dataset, so the kernel never depends on a GitHub download
+// (one 504'd on 5 Nov). Cached in animate/.cache; checked against the pinned SHA-256. Failure: the kernel downloads.
+async function esrWeights(out) {
+  const url = 'https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-x4v3.pth';
+  const sha = '8dc7edb9ac80ccdc30c3a5dca6616509367f05fbc184ad95b731f05bece96292';
+  const cache = path.join(DIR, '.cache', 'realesr-general-x4v3.pth');
+  const { createHash } = await import('node:crypto');
+  const ok = (f) => fs.existsSync(f) && createHash('sha256').update(fs.readFileSync(f)).digest('hex') === sha;
+  for (let k = 0; k < 3 && !ok(cache); k++) {
+    try {
+      const r = await globalThis.fetch(url);
+      if (r.ok) { fs.mkdirSync(path.dirname(cache), { recursive: true }); fs.writeFileSync(cache, Buffer.from(await r.arrayBuffer())); }
+    } catch (e) { console.log(`Real-ESRGAN weights: ${e.message}`); }
+    if (!ok(cache)) await sleep(5000);
+  }
+  if (ok(cache)) fs.copyFileSync(cache, path.join(out, 'realesr-general-x4v3.pth'));
+}
+
+// Default quality settings for every animated slot (each part falls back to the old path inside the kernel).
+const DEFAULTS = () => ({
+  enhance: process.env.SPS_ENHANCE !== '0', // RIFE 30 fps + Real-ESRGAN 1080 px per clip
+  stills: process.env.SPS_ENHANCE !== '0', // Real-ESRGAN 2160 px per still
+  // Off by default since the 5 Nov A/B (REPORT section 10): +7.7 GPU min per Short, more cinematic in 3 of 4 frames,
+  // but one Krishna murti came out fair-skinned. SPS_FLUX=1 turns it on; the better frame prompt is used on Workers AI.
+  flux: process.env.SPS_FLUX === '1' ? { size: 1024, steps: 8 } : false,
+  // Evening only: one hero darshan clip with Wan 2.2 I2V-A14B (GGUF Q4_K_S + Lightning 4-step LoRA, 640 px, ~23 min of
+  // the session); the workflow sets SPS_HERO14B=0 when under 6 GPU hours are left this week.
+  hero14b: SLOT === 'evening' && process.env.SPS_HERO14B !== '0' ? { quant: 'Q4_K_S', sizes: [640], steps: 4 } : false,
+});
+
+// Motion prompt template: subject + camera move + micro-motion + a stability guard + one cinematic look.
+const DEITY = (s) => s.deity === true || /(murti|idol|deity|darshan of)/i.test(s.prompt || '');
+const CAMERA = {
+  in: 'the camera slowly and smoothly dollies in', out: 'the camera slowly and smoothly pulls back',
+  pan: 'the camera slowly tracks sideways', still: 'locked-off camera on a tripod',
+};
+export function motionPrompt(s) {
+  const deity = DEITY(s);
+  // A murti is a sacred statue: only a straight push-in (or a still camera), so the face never slides or turns.
+  const cam = CAMERA[deity && s.motion !== 'still' ? 'in' : s.motion] || CAMERA.in;
+  const micro = s.animate || (deity ? 'diya flames flicker softly, thin incense smoke curls upward, warm light shimmers on the jewellery'
+    : 'gentle natural movement, cloth and leaves sway softly');
+  const guard = deity
+    ? 'The murti is a perfectly still sacred statue: its face, eyes, hands and ornaments do not move or change shape; only the light, flames, smoke and petals move'
+    : 'Faces stay the same person throughout, with subtle natural movement such as breathing and blinking';
+  return `${s.prompt}. ${cam}, steady and continuous, no cut, no shake. Motion: ${micro}. ${guard}. ` +
+    '3D animated devotional film, cinematic lighting with a warm key light and soft rim light, shallow depth of field, rich warm colours, smooth natural motion';
+}
+// Start-frame prompt (FLUX): the scene + the spec's style + lighting, lens and composition; iconography stays as written.
+export function framePrompt(s, spec) {
+  return `${s.prompt}. ${spec.style || '3D animated devotional movie style, no text'}. Cinematic composition with a clear main subject, ` +
+    '50mm lens, soft volumetric light rays, warm diya key light and gentle rim light, shallow depth of field, rich detail, ' +
+    'traditional Hindu iconography exactly as described, full-frame square image without black bars, no text, no letters, no watermark';
+}
+
 // Sends a dataset folder that is already built (characters/dialogue.py dataset) as a new version of DATASET.
 async function upload() {
   const out = path.join(DIR, 'dataset');
+  // The lip-sync kernel upscales its clips with the same enhance.py (Real-ESRGAN).
+  fs.copyFileSync(path.join(DIR, 'kaggle', 'enhance.py'), path.join(out, 'enhance.py'));
+  await esrWeights(out);
   const { stamp } = JSON.parse(fs.readFileSync(STAMP_FILE, 'utf8'));
   fs.writeFileSync(path.join(out, 'dataset-metadata.json'), JSON.stringify({ title: DATASET, id: `${user()}/${DATASET}`, licenses: [{ name: 'other' }] }, null, 2));
   let r = kaggle('datasets', 'version', '-p', out, '-m', stamp, '-q');
@@ -217,7 +298,16 @@ function fetch() {
   }
   const clips = fresh && fs.existsSync(path.join(out, 'clips')) ? fs.readdirSync(path.join(out, 'clips')).filter((f) => f.endsWith('.mp4')) : [];
   for (const f of clips) fs.copyFileSync(path.join(out, 'clips', f), path.join(to, f));
-  console.log(JSON.stringify({ fresh, voice, voice_s: results?.voice_s, clips, session_s: results?.session_s, clip_s: results?.clips?.map((c) => [c.id, c.seconds, c.frames]) }));
+  // Upscaled stills (2160 px) for the zoompan scenes and the clips' fallbacks.
+  let stills = [];
+  if (fresh && opt('--stills-to') && fs.existsSync(path.join(out, 'stills'))) {
+    const dst = path.resolve(opt('--stills-to'));
+    fs.mkdirSync(dst, { recursive: true });
+    stills = fs.readdirSync(path.join(out, 'stills')).filter((f) => /^\d+\.jpg$/.test(f));
+    for (const f of stills) fs.copyFileSync(path.join(out, 'stills', f), path.join(dst, f));
+  }
+  console.log(JSON.stringify({ fresh, voice, voice_s: results?.voice_s, clips, stills: stills.length, session_s: results?.session_s,
+    flux: results?.flux, clip_s: results?.clips?.map((c) => [c.id, c.seconds, c.frames, c.enhance_s ?? null]) }));
 }
 
 function quota() {
@@ -229,7 +319,9 @@ function quota() {
   if (left < Number(opt('--min', 0))) process.exit(2);
 }
 
-if (cmd === 'prepare') await prepare();
+// Run as a CLI only (other scripts import motionPrompt / framePrompt).
+const MAIN = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (!MAIN) { /* imported */ } else if (cmd === 'prepare') await prepare();
 else if (cmd === 'upload') await upload();
 else if (cmd === 'push') await push();
 else if (cmd === 'wait') await wait();

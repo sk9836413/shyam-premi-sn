@@ -143,6 +143,17 @@ Each scene:
     face still, e.g. "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently
     pulses, a few petals drift in the foreground". An automatic check compares the face with the image and falls
     back to the still image if it changes.
+  - Write `animate` as **subject micro-motion** (what moves: flames, smoke, petals, cloth, leaves, water, light,
+    breathing/blinking of a person) - the camera move comes from `motion` (`in` / `out` / `pan`), and the
+    renderer adds the camera, the cinematic look and the stability rules itself. Deity scenes always get a straight
+    push-in, never a sideways pan, and only the surroundings move: never ask the murti to move, turn,
+    smile, bless or blink. Avoid things that flash or cut (lightning, fireworks, a door bursting open), and a petal
+    or flame right in front of the lens: those look like a glitch and get the clip rejected.
+  - Deity `prompt`s state the skin colour and key iconography explicitly (e.g. "blue-skinned Lord Krishna",
+    "dark stone Banke Bihari murti", "orange-vermilion Hanuman ji"): the image model otherwise sometimes paints
+    Krishna or Shyam ji fair-skinned.
+  - `hero: true` (optional, at most one scene, evening only): the single most important darshan shot. When the
+    bigger 14B video model is on, that one scene is animated with it (animate/REPORT.md section 10).
 - **Morning (partly animated):** mark the **visually strongest 1-4 scenes** (ideally 3-4) with `animate`: the
   deity/murti darshan, the temple, and the key moment of the katha. Those scenes become real animated clips (at most
   7 s), so each marked scene's `tts` is at most **80 characters**; the other scenes stay as stills with a camera move

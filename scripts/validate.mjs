@@ -320,6 +320,7 @@ scenes.forEach((sc, i) => {
       need(sc.tts && sc.tts.length <= 60, `${n}: evening tts over 60 characters (${sc.tts?.length}); the animated clip is ~5-7 s`);
       need(typeof sc.animate === 'string' && sc.animate.length >= 20 && sc.animate.length <= 300, `${n}: evening scenes need "animate": one English sentence of gentle motion (20-300 characters)`);
       need(sc.deity === undefined || typeof sc.deity === 'boolean', `${n}: deity must be true or false`);
+      need(sc.hero === undefined || (sc.hero === true && i === scenes.findIndex((x) => x.hero)), `${n}: "hero": true on at most one scene`);
     } else if (sc.animate !== undefined) {
       // Morning: up to 4 marked scenes become animated clips (<= 7 s), so their lines stay short.
       need(typeof sc.animate === 'string' && sc.animate.length >= 20 && sc.animate.length <= 300, `${n}: "animate" must be one English sentence of gentle motion (20-300 characters)`);

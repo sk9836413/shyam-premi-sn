@@ -1,6 +1,6 @@
 # Animated Shorts pilot (Kaggle free GPU)
 
-**Status (4 Nov 2026):** teeno Shorts animated: **subah** (6-8 scenes mein se 1-4 `animate` wale scenes), **shaam** aur
+**Status (5 Nov 2026):** quality upgrade live (section 10: RIFE 30 fps, Real-ESRGAN, 14B hero, ambience). **Pehle (4 Nov):** teeno Shorts animated: **subah** (6-8 scenes mein se 1-4 `animate` wale scenes), **shaam** aur
 **noon** (4 scenes tak). 3 Nov data: animated Shakambhari noon Short 154 views / 17 likes (channel ka best), zoompan
 darshan 13 views. `KAGGLE_API_TOKEN` secret set hai. Pilot: `animate/pilot.mp4`.
 
@@ -115,3 +115,75 @@ Settings: 704x704, 121 frames @24 fps (5 s), 30 steps, guidance 5, weights fp8-s
 - **Agla vikalp: Indic Parler-TTS** (AI4Bharat, Apache-2.0, Hindi speakers Rohit/Divya, 0.9B). Repo "gated" (auto-approve)
   hai: download ke liye Hugging Face account + token chahiye. Owner ka kaam: HF account banakar model page par terms
   accept karein aur ek read token dein; tab wahi A/B (Whisper CER, Shyam/Ganesh/mantra) Parler par chalayenge.
+
+## 10. Quality upgrade, sirf free resources (5 Nov 2026)
+Lakshya: YouTube ke in-app Veo jaisa look, bina paid API ke. Sab kuch Kaggle ke free T4 x2 par ya CI/ffmpeg mein.
+**A/B (upload NAHI kiya):** `animate/ab-quality/before.mp4` (aaj ka evening Banke Bihari darshan, purani pipeline:
+wahi Wan 5B clips jo live hue, 2 deity clips reject hokar zoompan) aur `after.mp4` (wahi scenes, wahi Workers-AI start
+frames, nayi pipeline: 4/4 animated, scene 1 = 14B hero clip). `hero-14b.mp4` = 14B clip akela (1080 px, 30 fps),
+`after-kaggle-flux-frames.mp4` = Kaggle FLUX start frames wala variant. Dono 30.6 s, -14.2/-14.4 LUFS.
+
+### 10.1 Kya badla (har animated slot mein: subah, shaam, status, noon Dadi-Chhotu)
+1. **Post-processing har clip par** (`animate/kaggle/enhance.py`, kernel ke andar):
+   - RIFE 4.25 frame interpolation: Wan ke 24 fps (14B: 16 fps) se asli 30 fps, aur scene lambi ho to clip ko 1.3x tak
+     smooth slow karta hai (pehle renderer frames duplicate karta tha = jhatka). Har clip ~36-53 s GPU.
+   - Real-ESRGAN x4 (realesr-general-x4v3) -> 1080 px: detail (Laplacian variance) purane lanczos+unsharp se
+     **1.7-2.0x** (aaj ke 3 clips: 372->643, 221->441, 68->127). Stills (zoompan scenes + reject hui clip ka fallback)
+     2160 px tak upscale: 4 images 9-13 s.
+   - Renderer (`story/render-story.mjs`): halka warm grade + vignette, subtle temporal film grain, halka sharpen
+     (`SPS_LOOK=0` se band). Dadi-Chhotu: lip-sync clips Real-ESRGAN se 1080 px (mouth par interpolation nahi).
+   - RIFE ki wajah se Wan ab ~12% kam frames banata hai (1.1x ki jagah 1.25x stretch): yahi bachat baaki kharch bhar deti hai.
+2. **Start frames:** Kaggle par FLUX.1-schnell (GGUF Q6_K, 1024 px, 8 steps) test kiya: 4 frames = **7.7 min GPU**
+   (download 98 s, text 79 s, load 45 s, ~55 s/frame). 3/4 frames zyada cinematic (scene 4 mein Workers-AI wali kaali
+   patti bhi nahi), lekin 1 Krishna murti **gora (fair) ban gaya** = iconography galat. Faisla: default **OFF**
+   (`SPS_FLUX=1` se on); naya lighting/lens/composition prompt (`framePrompt`) ab Workers AI par hi lagta hai (neurons
+   utne hi), aur STORY.md mein niyam: deity prompt mein rang/iconography saaf likho ("blue-skinned Lord Krishna").
+   FLUX.1-dev kahin nahi (non-commercial). Q8_0 T4 par OOM hua, isliye Q6_K.
+3. **Bada model: Wan 2.2 I2V-A14B** (GGUF Q4_K_S, high-noise expert GPU0, low-noise + VAE GPU1, Lightning 4-step LoRA):
+   - 640x640 (480p ke barabar pixels), 81 frames (5 s): **17.3 min generation** + 2.8 min download + 1.3 min load
+     (text encoder 5B wala hi, same weights) = **~22 min per hero clip**. Peak VRAM 12.7/13.2 GB.
+   - 960x960 (720p): **T4 par OOM**. LoRA ke bina 40 steps: ~284 min/clip (andaza) = bekaar.
+   - Quality: wahi start frame par 5B clip mein haath ke paas petal/flame ka "burst" tha (isi se reject hua); 14B clip
+     saaf, murti stable (SSIM 0.86), camera smooth push-in.
+   - **Live:** sirf shaam, ek hero clip (scene `hero: true`, warna pehla deity scene), jab hafte mein >= 6 GPU-h bache hon
+     (`SPS_HERO14B=0` se band). Fail/budget kam = wahi scene 5B se banta hai.
+   - **TPU:** Kaggle ka v3-8 ab retired hai (CLI default TpuV5E8). API se 3 baar TPU kernel push kiya, har baar session
+     CPU par chala (jax `CpuDevice`, 4 core, 31 GB). MaxDiffusion (JAX, Apache-2.0) Wan 2.2 I2V chalata hai, par sirf
+     v5p/v6e/v7x par tested, aur 2x14B bf16 (54 GB) ko 16 GB/chip par shard karna padega: abhi **practical nahi**.
+4. **Sound:** render-story mein ambience bed, sab ffmpeg se synthesize (koi third-party audio nahi, credit ki zaroorat
+   nahi): mandir ki hawa (brown noise), door ki bhakt-bheed ki gunjan (band-pass pink noise + modulation), diye ki
+   chatak (random clicks), har scene badalne par door ki ghanti. Scene ke shabdon se chunav (aarti/temple/nature/quiet,
+   `spec.ambience` override). Music+ambience voice ke neeche **sidechain ducking**, poora mix **-14 LUFS**.
+   Dadi-Chhotu mein pehle se apna synthesized SFX + -14 LUFS hai.
+5. **Motion prompts + check:** `motionPrompt()` = subject + camera (motion se) + micro-motion + stability guard;
+   deity scene mein hamesha seedha push-in aur "murti bilkul sthir, sirf diye/dhuan/phool hilte hain". check-clips:
+   face check ab camera move dhundh kar (zoom 0.9-1.2x, shift 12% tak) SSIM nikalta hai, aur flicker tabhi jab frame ka
+   >= 25% ek saath badle. Aaj ke 4 clips: **purana check 2/4 accept, naya 4/4** (dono false reject the: ek sideways
+   drift SSIM 0.34 -> 0.77, ek petal "spike" 6.6x). Nakli cut (2 clip jode) aur rainbow-streak wali clip ab bhi reject.
+
+### 10.2 GPU minutes per Short (session time, Kaggle T4 x2)
+| Short | Pehle (asli) | Ab |
+|---|---|---|
+| Shaam (4 clips) | 77 min (aaj 4,625 s) | ~80 min (14B hero ~22 + 3 clips 5B ~52 + setup/enhance ~6); hero ke bina ~65 |
+| Subah (4 clips) | ~77 min | ~65 min (12% kam frames, +1.6 min enhance, +0.2 min stills) |
+| Status (3 clips) | ~77 min (2 clip ek GPU par) | ~65 min |
+| Noon Dadi-Chhotu | 6-7.5 min | ~8-9.5 min (Real-ESRGAN) |
+| Kaggle FLUX frames (optional) | - | +7.7 min |
+A/B session asli: purana 77.1 min, naya (FLUX on, frames purane jitne) 82.8 min; enhance test 3 clips = 2.7 min session.
+**Hafta (7 subah + 7 shaam + 7 noon + ~4 status):** pehle ~23.9 h (upper bound), ab ~22.3 h, 30 h quota mein.
+Guards wahi: subah >= 5 h, shaam/noon >= 3 h, hero sirf >= 6 h par. Is upgrade ke tests mein ~2.5 GPU-h lage (quota 16.2 h bacha, reset 7 Nov 00:00 UTC).
+
+### 10.3 Licence (sab commercial use OK)
+| Component | Licence |
+|---|---|
+| Wan 2.2 TI2V-5B, Wan 2.2 I2V-A14B (Wan-AI) | Apache-2.0 |
+| QuantStack/Wan2.2-I2V-A14B-GGUF | Apache-2.0 |
+| lightx2v/Wan2.2-Lightning (4-step LoRA) | Apache-2.0 |
+| FLUX.1-schnell (Workers AI; Kaggle: city96 GGUF + lzyvegetable mirror) | Apache-2.0 (FLUX.1-dev NC, use nahi) |
+| Real-ESRGAN code + realesr-general-x4v3 weights (xinntao, official release) | BSD-3-Clause (notice enhance.py mein) |
+| Practical-RIFE code + v4.25 weights (hzwer; README: downloads "same MIT license") | MIT; weights HF mirror Bash2X/RIFE-Models se, SHA-256 pinned |
+| MuseTalk 1.5 (lip-sync, pehle se) | MIT / weights commercial OK |
+| ffmpeg filters (grade, grain, ducking, loudnorm), synthesized ambience | tool; output hamara, koi credit nahi |
+| edge-tts awaaz (pehle se) | pehle jaisa |
+| MaxDiffusion (sirf TPU test) | Apache-2.0, use nahi |
+GFPGAN/CodeFormer (NC hisse) ab bhi kahin nahi. Freesound ka koi audio use nahi hua, isliye credits log khaali.
