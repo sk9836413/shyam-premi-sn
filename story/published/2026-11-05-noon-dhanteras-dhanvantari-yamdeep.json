@@ -1,0 +1,52 @@
+{
+  "slug": "2026-11-05-noon-dhanteras-dhanvantari-yamdeep",
+  "format": "dialogue",
+  "title": "Dhanteras ki Kahani",
+  "kicker": "Dhanteras Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "next": "Choti Diwali",
+  "deity": "Dhanvantari / Maa Lakshmi (Dhanteras)",
+  "summary": "Dhanteras kyun manate hain: Samudra Manthan se Dhanvantari ka amrit kalash ke saath prakat hona, Prince Hima aur Yamdeep ki lok katha; agla: Choti Diwali",
+  "hook": "Dhanteras par diya bahar kyun?",
+  "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "visuals": {
+    "diya": {"prompt": "A decorated Indian home entrance at dusk with rows of lit clay diyas, rangoli, marigold garlands and a new brass pot, warm golden glow, festive peaceful mood", "real": false},
+    "dhanvantari": {"prompt": "Lord Dhanvantari with a calm smiling face, four arms, holding a golden pot of amrit, a conch and healing herbs, emerging from a glowing ocean of milk at sunrise, traditional Indian iconography, divine soft light", "real": false},
+    "lakshmi": {"prompt": "Goddess Lakshmi seated on a pink lotus with golden coins falling softly around her, gentle smile, ornate gold jewellery, warm divine glow, traditional iconography", "real": false},
+    "bride": {"prompt": "A young Indian bride in a lamp-lit room at night, sitting awake near the doorway with many glowing diyas and silver and gold ornaments piled at the entrance, her young husband sleeping behind her, a large serpent shadow waiting far outside the door, gentle magical mood", "real": false},
+    "market": {"prompt": "A busy colourful Indian market lane before Diwali with shops of shining brass utensils, silver coins and lamps, families shopping happily, warm evening lights", "real": false}
+  },
+  "lines": [
+    {"who": "chhotu", "tts": "दादी, धनतेरस पर घर के बाहर दीया क्यों जलाते हैं?", "sub": "Dadi, Dhanteras par ghar ke bahar diya kyun jalate hain?", "top": "diya"},
+    {"who": "dadi", "tts": "सुनो बेटा, आज धनतेरस है। दिवाली के पाँच दिनों का पहला दिन।", "sub": "Suno beta, aaj Dhanteras hai. Diwali ke paanch dinon ka pehla din.", "top": "diya"},
+    {"who": "chhotu", "tts": "तो इस दिन किसकी पूजा होती है, दादी?", "sub": "To is din kiski pooja hoti hai, Dadi?", "top": "diya"},
+    {"who": "dadi", "tts": "भगवान धन्वंतरि की, बेटा। वे देवताओं के वैद्य माने जाते हैं।", "sub": "Bhagwan Dhanvantari ki, beta. Ve devtaon ke vaidya mane jaate hain.", "top": "dhanvantari"},
+    {"who": "chhotu", "tts": "वैद्य? वे कहाँ से आए थे?", "sub": "Vaidya? Ve kahan se aaye the?", "top": "dhanvantari"},
+    {"who": "dadi", "tts": "कथा के अनुसार समुद्र मंथन में वे अमृत का कलश लेकर प्रकट हुए थे।", "sub": "Katha ke anusar Samudra Manthan mein ve amrit ka kalash lekar prakat hue the.", "top": "dhanvantari"},
+    {"who": "chhotu", "tts": "वाह! और लक्ष्मी माँ का क्या?", "sub": "Wah! Aur Lakshmi Maa ka kya?", "top": "lakshmi"},
+    {"who": "dadi", "tts": "मान्यता है कि उसी मंथन से माँ लक्ष्मी भी प्रकट हुईं, इसलिए दोनों को याद करते हैं।", "sub": "Manyata hai ki usi manthan se Maa Lakshmi bhi prakat hui, isliye dono ko yaad karte hain.", "top": "lakshmi"},
+    {"who": "chhotu", "tts": "पर दीया बाहर क्यों रखते हैं, दादी?", "sub": "Par diya bahar kyun rakhte hain, Dadi?", "top": "diya"},
+    {"who": "dadi", "tts": "इसके पीछे एक लोक कथा है, बेटा। एक राजकुमार था, हिम।", "sub": "Iske peeche ek lok katha hai, beta. Ek rajkumar tha, Hima.", "top": "bride"},
+    {"who": "chhotu", "tts": "फिर उसका क्या हुआ?", "sub": "Phir uska kya hua?", "top": "bride"},
+    {"who": "dadi", "tts": "कहते हैं, भविष्यवाणी थी कि विवाह के चौथे दिन उसे यमराज ले जाएँगे।", "sub": "Kehte hain, bhavishyavani thi ki vivah ke chauthe din use Yamraj le jayenge.", "top": "bride"},
+    {"who": "chhotu", "tts": "अरे! तो उसकी पत्नी ने क्या किया?", "sub": "Are! To uski patni ne kya kiya?", "top": "bride"},
+    {"who": "dadi", "tts": "वह रात भर जागी। दरवाज़े पर दीये जलाए, गहने रखे और कहानियाँ सुनाती रही।", "sub": "Wah raat bhar jaagi. Darwaze par diye jalaye, gehne rakhe aur kahaniyan sunati rahi.", "top": "bride"},
+    {"who": "chhotu", "tts": "फिर यमराज अंदर आ गए?", "sub": "Phir Yamraj andar aa gaye?", "top": "bride"},
+    {"who": "dadi", "tts": "कथा कहती है, रोशनी देखकर वे बाहर ही रुके रहे और सुबह लौट गए। इसी की याद में यमदीप जलाते हैं।", "sub": "Katha kehti hai, roshni dekhkar ve bahar hi ruke rahe aur subah laut gaye. Isi ki yaad mein Yamdeep jalate hain.", "top": "bride"},
+    {"who": "chhotu", "tts": "तो इसीलिए लोग बर्तन भी खरीदते हैं?", "sub": "To isiliye log bartan bhi kharidte hain?", "top": "market"},
+    {"who": "dadi", "tts": "हाँ बेटा, इस दिन कुछ नया लेना शुभ माना जाता है। जितना सामर्थ्य हो, उतना ही।", "sub": "Haan beta, is din kuchh naya lena shubh mana jaata hai. Jitna samarthya ho, utna hi.", "top": "market"},
+    {"who": "chhotu", "tts": "दादी, कल किस त्योहार की कहानी सुनाओगी?", "sub": "Dadi, kal kis tyohar ki kahani sunaogi?", "top": "end"},
+    {"who": "dadi", "tts": "कल छोटी दिवाली की कहानी सुनाऊँगी। देखने के लिए लाइक, शेयर और सब्सक्राइब करना, बेटा!", "sub": "Kal Choti Diwali ki kahani sunaungi. Dekhne ke liye Like, Share aur Subscribe karna, beta!", "top": "end"}
+  ],
+  "facts": [
+    {"claim": "Dhanteras 2026 falls on Friday 6 November (Trayodashi, Krishna Paksha, Kartik), first of the five Diwali days", "sources": ["https://www.outlookindia.com/brand-studio/dhanteras-2026-date-puja-muhurat-significance-and-traditions", "https://shubhpanchang.com/festivals/dhanteras"]},
+    {"claim": "Dhanvantari, physician of the gods, rose from the Samudra Manthan with a pot of amrit; Lakshmi is said to have emerged from the same churning (tradition)", "sources": ["https://eastmojo.com/national/2022/10/21/dhanteras-2022-date-history-and-significance/", "https://en.wikipedia.org/wiki/Dhanteras"]},
+    {"claim": "Lok katha of Prince Hima: wife's lamps and ornaments at the door keep Yama out; basis of Yamdeep lamp outside the home", "sources": ["https://www.bollywoodshaadis.com/articles/dhanteras-legends-unveiled-69848", "https://www.outlookindia.com/brand-studio/dhanteras-2026-date-puja-muhurat-significance-and-traditions"]},
+    {"claim": "Buying something new (metal items, utensils) on Dhanteras is a custom, within one's means", "sources": ["https://www.outlookindia.com/brand-studio/dhanteras-2026-date-puja-muhurat-significance-and-traditions", "https://eastmojo.com/national/2022/10/21/dhanteras-2022-date-history-and-significance/"]}
+  ],
+  "youtube_title": "Dhanteras ki Kahani | धनतेरस की कथा #Shorts",
+  "youtube_description": "Dhanteras kyun manate hain? Dadi aur Chhotu ki baat: Samudra Manthan se Dhanvantari ka prakat hona aur Prince Hima ki Yamdeep lok katha.\nधनतेरस की कथा, भगवान धन्वंतरि और यमदीप, दादी और छोटू की ज़ुबानी।\nMantra: ॐ नमो भगवते वासुदेवाय धन्वंतरये नमः\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nPasand aaye to Like, Share aur Subscribe karein.\n#Dhanteras #Dhanvantari #DadiAurChhotu #JaiShreeShyam",
+  "youtube_tags": "Dhanteras ki katha, धनतेरस की कथा, Dhanteras kyun manate hain, धनतेरस क्यों मनाते हैं, Dhanvantari, धन्वंतरि, Yamdeep, यमदीप, Diwali 2026, Dadi aur Chhotu, दादी और छोटू, Dhanteras 2026",
+  "instagram_caption": "Dhanteras par diya bahar kyun jalate hain? 🪔\nDadi ne Chhotu ko sunayi Dhanvantari aur Yamdeep ki katha (lok manyata ke anusar).\nOm Namo Bhagavate Vasudevaya Dhanvantaraye Namah\nChitra AI dwara banaye gaye hain (sanketik).\nKal: Choti Diwali. Like, Share aur Follow karein.\n#Dhanteras #Dhanvantari #Diwali2026 #DadiAurChhotu #JaiShreeShyam #Yamdeep #HinduFestival #Diwali",
+  "facebook_caption": "Dhanteras ki kahani Dadi aur Chhotu ke saath: Dhanvantari ka prakat hona aur Yamdeep ki lok katha. Kal Choti Diwali ki kahani. Like, Share aur Follow karein 🙏\n#Dhanteras #Diwali2026 #JaiShreeShyam"
+}

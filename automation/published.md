@@ -23,3 +23,4 @@
 - 2026-11-04-evening-shakambhari-mata-sambhar-darshan | youtube: https://youtube.com/shorts/clhbuJwYOwc (public at 2026-11-04T13:30:00.000Z) | make: hosted-only | animated 1/4
 - 2026-11-04-noon-rani-sati-dadi-jhunjhunu | youtube: https://youtube.com/shorts/xK2zoP3wNcc | make: error | dialogue lipsync, lip-synced 15/15, 109 s
 - 2026-11-05-morning-vishnu-gajendra-moksha | youtube: https://youtube.com/shorts/bk1nDc7G5FU | make: hosted-only | animated 2/7
+- 2026-11-05-noon-dhanteras-dhanvantari-yamdeep | youtube: https://youtube.com/shorts/_Qa7uuxhZuo | make: error | dialogue lipsync, lip-synced 20/20, 114 s
