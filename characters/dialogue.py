@@ -141,14 +141,27 @@ def cmd_voice(a):
 
 
 # --------------------------------------------------------------- images ----
+def temple_slug(temple):
+    """The registry slug for a temple (footage/temples.json aliases), as scripts/real-photos.mjs resolves it."""
+    try:
+        reg = load_json(os.path.join(ROOT, "footage", "temples.json"))
+    except Exception:
+        return temple
+    if temple in reg:
+        return temple
+    return next((k for k, v in reg.items() if isinstance(v, dict) and temple in v.get("aliases", [])), temple)
+
+
 def footage_for(temple, root=None):
-    """Real temple clips with a valid licence sidecar: footage/<temple>/<name>.mp4 + <name>.licence.json."""
+    """Real temple clips and photos with a valid licence sidecar: footage/<temple>/<name>.mp4|.jpg + <name>.licence.json.
+    Photos come from scripts/real-photos.mjs (Wikimedia Commons, CC0 / PD / CC BY only) and get a slow Ken Burns move."""
     if not temple:
         return []
     ok = re.compile(r"^(own|permission|pixabay|pexels|cc0|public domain|cc by( [\d.]+)?)", re.I)
     out = []
-    for clip in sorted(glob.glob(os.path.join(root or os.path.join(ROOT, "footage"), temple, "*.mp4"))):
-        side = clip[:-4] + ".licence.json"
+    folder = os.path.join(root or os.path.join(ROOT, "footage"), temple_slug(temple))
+    for clip in sorted(glob.glob(os.path.join(folder, "*.mp4")) + glob.glob(os.path.join(folder, "*.jpg"))):
+        side = os.path.splitext(clip)[0] + ".licence.json"
         if not os.path.exists(side):
             print(f"footage: {clip} has no licence file, skipped", flush=True); continue
         lic = load_json(side)
@@ -157,7 +170,7 @@ def footage_for(temple, root=None):
             print(f"footage: {clip} licence '{name}' not allowed, skipped", flush=True); continue
         if not lic.get("author") or not lic.get("source"):
             print(f"footage: {clip} needs source and author, skipped", flush=True); continue
-        out.append({"file": clip, **lic})
+        out.append({"file": clip, "kind": "photo" if clip.endswith(".jpg") else "video", **{k: v for k, v in lic.items() if k != "kind"}})
     return out
 
 
@@ -449,6 +462,8 @@ class Renderer:
             clip = self.footage[i % len(self.footage)]
             if clip not in self.used_footage:
                 self.used_footage.append(clip)
+            if clip["kind"] == "photo":
+                return "photo", clip["file"], f"Asli photo: {clip['author']}"[:44]
             return "video", clip["file"], f"Asli drishya: {clip['author']}"[:44]
         img = os.path.join(self.a.images or "", f"{key}.jpg")
         if not os.path.exists(img):  # FLUX failed: a blurred, darkened master as a calm background
@@ -477,7 +492,13 @@ class Renderer:
             span = speech * len(ptxt) / total
             ovs.append((f, t, t + span if k < len(parts) - 1 else dur + 1)); self.srt.append((self.t0 + t + 0.09, self.t0 + min(dur, t + span + 0.09), ptxt, line["who"])); t += span
         inputs = ["-f", "lavfi", "-i", f"color=c=0x{self.st['bg']}:s={W}x{H}:r={FPS}:d={dur:.3f}"]
-        if kind == "video":
+        if kind == "photo":  # real temple photo: cover the panel, then a slow Ken Burns move (zoom in or out, drifting)
+            inputs += ["-loop", "1", "-framerate", str(FPS), "-t", f"{dur:.3f}", "-i", story_file]
+            n = max(1, round(dur * FPS))
+            z = f"1+0.10*on/{n}" if i % 2 == 0 else f"1.10-0.10*on/{n}"
+            sf = (f"[1:v]scale={W * 3 // 2}:{STORY_H * 3 // 2}:force_original_aspect_ratio=increase,crop={W * 3 // 2}:{STORY_H * 3 // 2},setsar=1,"
+                  f"zoompan=z='{z}':x='(iw-iw/zoom)*({0.3 if i % 3 else 0.7}+0.2*on/{n})':y='(ih-ih/zoom)/2':d=1:s={W}x{STORY_H}:fps={FPS}[st]")
+        elif kind == "video":
             inputs += ["-stream_loop", "-1", "-ss", f"{(i * 3.7) % 4:.2f}", "-t", f"{dur:.3f}", "-i", story_file]
             sf = f"[1:v]fps={FPS},scale={W}:{STORY_H}:force_original_aspect_ratio=increase,crop={W}:{STORY_H},setsar=1,trim=duration={dur:.3f},setpts=PTS-STARTPTS[st]"
         else:
@@ -571,6 +592,9 @@ class Renderer:
         """Real footage was shown: credit every clip in the YouTube description and the captions (in the spec file)."""
         lines = []
         for c in self.used_footage:
+            if c.get("kind") == "photo":  # "Photo: <author>, <licence>, via Wikimedia Commons (<file page>)"
+                lines.append(f"{c.get('attribution') or 'Photo: ' + c.get('author', '')}{' (' + c['url'] + ')' if c.get('url') else ''}")
+                continue
             who = c.get("attribution") or c.get("author")
             lines.append(f"Asli mandir drishya: {who} ({c.get('licence')}{', ' + c['url'] if c.get('url') else ''})")
         credit = "\n".join(lines)

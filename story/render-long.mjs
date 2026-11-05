@@ -8,12 +8,17 @@
 // scenes.json) skips generation, for local tests.
 // Voice: edge-tts hi-IN-MadhurNeural (Kokoro fallback). Music: synthesized drone, a bell per chapter.
 // Within a chapter scenes crossfade; chapters dip through black and get a "Adhyay N" label.
+// Real temple photos: images marked `real: true` (temple exterior/interior) use the licence-checked photos in
+// footage/<spec.temple>/ (scripts/real-photos.mjs) instead of FLUX when there are any: no neurons spent, a 16:9
+// cover crop with the scene's camera move, a small "Asli photo: <author>" label, and a credit line per photo
+// ("Photo: <author>, <licence>, via Wikimedia Commons (<url>)") appended to the description (the spec is updated).
 // Output: out/<slug>.mp4, out/<slug>-thumb.jpg (1280x720), out/<slug>.json (chapters, duration, neurons).
 import { spawn, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { creditLine, photosFor } from '../scripts/real-photos.mjs';
 
 const started = Date.now();
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
@@ -79,7 +84,12 @@ const duration = (file) => Number(spawnSync(FFPROBE, ['-v', 'error', '-show_entr
 
 // ---- Images -------------------------------------------------------------------------------------
 let generated = 0;
+const photos = photosFor(spec.temple);
+const realImages = spec.images.map((im, i) => (im.real ? i : -1)).filter((i) => i >= 0);
+const photoOf = new Map(photos.length ? realImages.map((i, k) => [i, photos[k % photos.length]]) : []);
+const usedPhotos = new Set();
 async function image(img, i) {
+  if (photoOf.has(i)) return photoOf.get(i).file;
   if (img.file) return path.resolve(base, img.file);
   const file = path.join(base, 'images', `${spec.slug}-img${i}.jpg`);
   if (fs.existsSync(file)) return file;
@@ -206,8 +216,15 @@ async function clip(scene, i, img, voice) {
         `alpha='if(lt(t,0.5),t/0.5,if(lt(t,3.6),1,max(0,(4.1-t)/0.5)))':enable='lt(t,4.1)'`));
     }
     const y = FOCUS_Y[scene.focus] ?? FOCUS_Y.center;
+    const photo = photoOf.get(scene.img);
+    if (photo) {
+      usedPhotos.add(photo);
+      label.push(draw(textFile(`photo-${i}.txt`, `Asli photo: ${photo.author}`.slice(0, 70)), 'fontsize=28:fontcolor=white@0.9:box=1:boxcolor=0x000000@0.45:boxborderw=8:x=w-text_w-30:y=30'));
+    }
+    // A real photo (any aspect) is cover-cropped to 16:9; a FLUX image is square and cropped at its focus band.
+    const frame = photo ? 'scale=2880:1620:force_original_aspect_ratio=increase:flags=lanczos,crop=2880:1620,setsar=1' : `scale=2880:2880:flags=lanczos,crop=2880:1620:0:${y}`;
     await ff(['-i', img, '-i', LOGO, '-filter_complex', [
-      `[0:v]scale=2880:2880:flags=lanczos,crop=2880:1620:0:${y},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${H}:fps=${FPS}[bg]`,
+      `[0:v]${frame},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${H}:fps=${FPS}[bg]`,
       `[1:v]scale=96:96[lg]`,
       `[bg][lg]overlay=40:30,` +
         draw(titleFile, `fontsize=${titleSize}:fontcolor=0xFFE7A8:shadowcolor=0x000000@0.8:shadowx=2:shadowy=2:box=1:boxcolor=0x000000@0.35:boxborderw=10:x=152:y=78-text_h/2`) +
@@ -304,7 +321,7 @@ const thText = textFile('thumb.txt', thLines.join('\n'));
 const thSize = Math.max(56, Math.min(110, Math.floor(1180 / (0.68 * Math.max(...thLines.map((l) => l.length)))), Math.floor(300 / (1.18 * thLines.length))));
 const thY = Math.round((FOCUS_Y[th.focus] ?? FOCUS_Y.center) * 1280 / 2880);
 await ff(['-i', imageFiles[th.image ?? 0], '-i', LOGO, '-filter_complex', [
-  `[0:v]scale=1280:1280:flags=lanczos,crop=1280:720:0:${thY},eq=saturation=1.15:contrast=1.05[bg]`,
+  `[0:v]${photoOf.has(th.image ?? 0) ? 'scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720' : `scale=1280:1280:flags=lanczos,crop=1280:720:0:${thY}`},eq=saturation=1.15:contrast=1.05[bg]`,
   `[1:v]scale=150:150[lg]`,
   `[bg][lg]overlay=28:24,${draw(thText, `fontsize=${thSize}:fontcolor=0xFFD54A:borderw=6:bordercolor=0x2a0f00:line_spacing=10:` +
     `box=1:boxcolor=0x000000@0.45:boxborderw=24:x=(w-text_w)/2:y=h-text_h-44`)}[v]`,
@@ -322,5 +339,11 @@ const meta = {
   neurons: Math.round(generated * NEURONS_PER_IMAGE),
   render_seconds: Math.round((Date.now() - started) / 1000),
 };
+meta.real_photos = usedPhotos.size;
 fs.writeFileSync(path.join(base, 'out', `${spec.slug}.json`), JSON.stringify(meta, null, 2));
+if (usedPhotos.size) {
+  const credit = [...usedPhotos].map(creditLine).join('\n');
+  if (!spec.youtube_description.includes(credit)) spec.youtube_description = `${spec.youtube_description.trimEnd()}\n\n${credit}`;
+  fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
+}
 console.log(JSON.stringify(meta));

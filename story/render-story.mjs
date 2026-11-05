@@ -4,12 +4,20 @@
 // Animated mode: a scene with "video" (an image-to-video clip, see animate/) uses that real motion,
 // upscaled to the same 1080 px square, instead of the zoompan camera move; if the clip is missing or
 // ANIMATED=0 is set, the scene falls back to the still image + zoompan.
+// Real temple photos: when the spec names a `temple` and footage/<temple>/ holds licence-checked photos
+// (scripts/real-photos.mjs: Wikimedia Commons, CC0 / PD / CC BY), scenes marked `real: true` (temple exterior or
+// interior) show those photos with a gentle Ken Burns move instead of the AI image or clip, labelled "Asli photo:
+// <author>", and every photo shown is credited at the end of the description and captions (the spec is updated).
+// Status videos (spec.format "status", story/status/<date>.json): the festival "WhatsApp status" Short; each scene's
+// big Hindi blessing, mantra and the end line are drawn by story/status-overlays.mjs (headless Chrome, so Devanagari
+// and the emoji render correctly) and laid over the frame instead of the subtitles.
 // Voice: Kokoro Hindi (Devanagari input). Music: synthesized drone + bell. Output: out/<slug>.mp4
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { creditLine, photosFor } from '../scripts/real-photos.mjs';
 
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
 const FFPROBE = FF.replace(/ffmpeg(\.exe)?$/, 'ffprobe$1');
@@ -29,6 +37,14 @@ const spec = JSON.parse(fs.readFileSync(specFile, 'utf8'));
 const work = path.join(base, 'build', spec.slug);
 fs.mkdirSync(path.join(base, 'images'), { recursive: true });
 fs.mkdirSync(work, { recursive: true });
+const STATUS = spec.format === 'status';
+
+// Real photos for the `real: true` scenes, in turn (none: those scenes keep the AI image).
+const photos = photosFor(spec.temple);
+const realIdx = spec.scenes.map((s, i) => (s.real && !s.endcard ? i : -1)).filter((i) => i >= 0);
+const photoFor = (i) => (photos.length && realIdx.includes(i) ? photos[realIdx.indexOf(i) % photos.length] : null);
+const usedPhotos = [];
+if (spec.temple) console.log(`real photos for ${spec.temple}: ${photos.length}${photos.length ? `, used on scenes ${realIdx.map((i) => i + 1).join(', ')}` : ''}`);
 
 function cfToken() {
   if (process.env.CF_API_TOKEN) return process.env.CF_API_TOKEN;
@@ -150,14 +166,15 @@ const videoFor = (scene) => {
 const probeSeconds = (file) => Number(spawnSync(FFPROBE, ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', file], { encoding: 'utf8' }).stdout.trim());
 
 const durations = tts();
-const sceneSeconds = (i) => Math.max(2.6, durations[i] + 0.7);
+// `hold` (status videos) keeps a scene on screen longer than its narration.
+const sceneSeconds = (i) => Math.max(2.6, spec.scenes[i].hold || 0, durations[i] + 0.7);
 
 // --prepare: only make the FLUX images and measure each scene's length, for the image-to-video step
 // (animate/kaggle.mjs prepare --plan). Writes build/<slug>/plan.json; the full render runs later.
 if (process.argv.includes('--prepare')) {
   const plan = { slug: spec.slug, scenes: [] };
   for (const [i, scene] of spec.scenes.entries()) {
-    if (scene.endcard) continue;
+    if (scene.endcard || photoFor(i)) continue; // a real photo is shown as it is: no AI image, no animation
     plan.scenes.push({ i, image: await image(scene, i), seconds: Number(sceneSeconds(i).toFixed(2)) });
   }
   fs.writeFileSync(path.join(work, 'plan.json'), JSON.stringify(plan, null, 2));
@@ -165,9 +182,15 @@ if (process.argv.includes('--prepare')) {
   process.exit(0);
 }
 
+const overlays = STATUS ? (await import('./status-overlays.mjs')).makeOverlays(spec, work) : [];
 const clips = [];
 for (const [i, scene] of spec.scenes.entries()) {
-  const vid = scene.endcard ? null : videoFor(scene);
+  const photo = scene.endcard ? null : photoFor(i);
+  const vid = scene.endcard || photo ? null : videoFor(scene);
+  // Status: the scene's overlay (big blessing / mantra / end line) fades in over the finished frame.
+  const ov = overlays[i] && fs.existsSync(overlays[i]) ? overlays[i] : null;
+  const ovIn = ov ? ['-loop', '1', '-framerate', String(FPS), '-t', String(30), '-i', ov] : [];
+  const withOverlay = (n) => (ov ? `[vpre];[${n}:v]format=rgba,fade=t=in:st=0.25:d=0.6:alpha=1[ovl];[vpre][ovl]overlay=0:0:shortest=1` : '');
   let animated = false;
   // Tight pacing keeps Shorts short (viewers who finish and replay are what YouTube rewards).
   const seconds = sceneSeconds(i);
@@ -178,12 +201,12 @@ for (const [i, scene] of spec.scenes.entries()) {
   fs.writeFileSync(titleFile, `${spec.kicker}  |  ${spec.title}`);
   const esc = (p) => p.replace(/\\/g, '/').replace(/:/g, '\\:');
   const clip = path.join(work, `clip-${i}.mp4`);
-  const subtitle = `drawtext=fontfile='${FONT}':textfile='${esc(subFile)}':fontsize=50:fontcolor=white:line_spacing=12:` +
+  const subtitle = STATUS ? 'null' : `drawtext=fontfile='${FONT}':textfile='${esc(subFile)}':fontsize=50:fontcolor=white:line_spacing=12:` +
     `box=1:boxcolor=0x000000@0.55:boxborderw=22:x=(w-text_w)/2:y=1385`;
   // Hook: big text over the first scene for 2.5 s, the moment viewers decide whether to keep watching.
   const hookFile = path.join(work, 'hook.txt');
   if (i === 0 && spec.hook) fs.writeFileSync(hookFile, wrap(spec.hook, 18));
-  const hook = i === 0 && spec.hook
+  const hook = i === 0 && spec.hook && !STATUS
     ? `,drawtext=fontfile='${FONT}':textfile='${esc(hookFile)}':fontsize=84:fontcolor=0xFFE27A:line_spacing=14:` +
       `box=1:boxcolor=0x1a0b00@0.72:boxborderw=34:x=(w-text_w)/2:y=860:enable='lt(t,2.5)'`
     : '';
@@ -193,10 +216,10 @@ for (const [i, scene] of spec.scenes.entries()) {
     const signFile = path.join(work, 'signoff.txt');
     fs.writeFileSync(signFile, spec.signoff || 'Jai Shree Shyam');
     run(['-f', 'lavfi', '-i', `color=c=0x0b1430:s=${W}x${H}:r=${FPS}:d=${seconds.toFixed(2)}`,
-      '-loop', '1', '-framerate', String(FPS), '-t', seconds.toFixed(2), '-i', LOGO, '-filter_complex', [
+      '-loop', '1', '-framerate', String(FPS), '-t', seconds.toFixed(2), '-i', LOGO, ...ovIn, '-filter_complex', [
       `[1:v]scale=820:820,format=rgba,fade=t=in:st=0:d=0.9:alpha=1[lg]`,
-      `[0:v][lg]overlay=(W-w)/2:330,` +
-        `drawtext=fontfile='${FONT}':textfile='${esc(signFile)}':fontsize=76:fontcolor=0xFFD877:x=(w-text_w)/2:y=1210,${subtitle}[v]`,
+      `[0:v][lg]overlay=(W-w)/2:${STATUS ? 220 : 330},` +
+        `drawtext=fontfile='${FONT}':textfile='${esc(signFile)}':fontsize=76:fontcolor=0xFFD877:x=(w-text_w)/2:y=${STATUS ? 1090 : 1210},${subtitle}${withOverlay(2)}[v]`,
     ].join(';'), ...encode]);
   } else {
     if (vid) {
@@ -204,14 +227,14 @@ for (const [i, scene] of spec.scenes.entries()) {
       // frame is held; the same moving clip, blurred, fills the background.
       const slow = Math.min(1.3, Math.max(1, seconds / (probeSeconds(vid) || seconds)));
       try {
-        run(['-i', vid, ...(LOGO ? ['-i', LOGO] : []), '-filter_complex', [
+        run(['-i', vid, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, '-filter_complex', [
           `[0:v]setpts=${slow.toFixed(3)}*PTS,fps=${FPS},tpad=stop_mode=clone:stop_duration=${seconds.toFixed(2)},` +
             `trim=duration=${seconds.toFixed(2)},setpts=PTS-STARTPTS,format=yuv420p,split[a][b]`,
           `[a]scale=${H}:${H},crop=${W}:${H},boxblur=28:4,eq=brightness=-0.18[bgl]`,
           `[b]scale=${W}:${W}:flags=lanczos,unsharp=5:5:0.6[fg]`,
           ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
           `[bgl][fg]overlay=0:250${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
-            `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}[v]`,
+            `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}${withOverlay(LOGO ? 2 : 1)}[v]`,
         ].join(';'), ...encode]);
         animated = true;
       } catch (e) {
@@ -221,19 +244,28 @@ for (const [i, scene] of spec.scenes.entries()) {
     // Still path (and fallback): blurred cover background + the square scene image with a slow camera
     // move + subtitles, with the channel logo as a small watermark next to the title.
     if (!animated) {
-      const img = await image(scene, i);
-      run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), '-filter_complex', [
-        `[0:v]scale=${H}:${H},crop=${W}:${H},boxblur=28:4,eq=brightness=-0.18[bg]`,
-        `[0:v]scale=2160:2160,zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}[fg]`,
+      // A real photo (any aspect) is cover-cropped to the square; an AI image is already square.
+      const img = photo ? photo.file : await image(scene, i);
+      const cover = (w, h) => (photo ? `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h},setsar=1` : `scale=${h}:${h},crop=${w}:${h}`);
+      let credit = '';
+      if (photo) {
+        if (!usedPhotos.includes(photo)) usedPhotos.push(photo);
+        const cf = path.join(work, `photo-${i}.txt`);
+        fs.writeFileSync(cf, `Asli photo: ${photo.author}`.slice(0, 60));
+        credit = `,drawtext=fontfile='${FONT}':textfile='${esc(cf)}':fontsize=26:fontcolor=white@0.9:box=1:boxcolor=0x000000@0.45:boxborderw=8:x=w-text_w-24:y=1290`;
+      }
+      run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, '-filter_complex', [
+        `[0:v]${cover(W, H)},boxblur=28:4,eq=brightness=-0.18[bg]`,
+        `[0:v]${photo ? cover(2160, 2160) : 'scale=2160:2160'},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}[fg]`,
         `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,
         ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
         `[bgl][fg]overlay=0:250:shortest=1${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
-          `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}[v]`,
+          `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152${credit},${subtitle}${hook}${withOverlay(LOGO ? 2 : 1)}[v]`,
       ].join(';'), ...encode]);
     }
   }
   clips.push({ file: clip, seconds, voice: path.join(work, `voice-${i}.${voiceExt}`) });
-  console.log(`scene ${i + 1}/${spec.scenes.length}: ${seconds.toFixed(1)}s${animated ? ' (animated)' : ''}`);
+  console.log(`scene ${i + 1}/${spec.scenes.length}: ${seconds.toFixed(1)}s${animated ? ' (animated)' : photo ? ' (real photo)' : ''}`);
 }
 
 // Join with crossfades; place each narration line at its scene's start; add music.
@@ -265,4 +297,12 @@ run([
   '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-crf', '23', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2',
   '-t', total.toFixed(2), '-movflags', '+faststart', out,
 ]);
-console.log(JSON.stringify({ out, seconds: Number(total.toFixed(1)), scenes: n }));
+// Credit every real photo shown: "Photo: <author>, <licence>, via Wikimedia Commons (<file page>)".
+if (usedPhotos.length) {
+  const credit = usedPhotos.map(creditLine).join('\n');
+  for (const k of ['youtube_description', 'instagram_caption', 'facebook_caption']) {
+    if (spec[k] && !spec[k].includes(credit)) spec[k] = `${spec[k].trimEnd()}\n\n${credit}`;
+  }
+  fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
+}
+console.log(JSON.stringify({ out, seconds: Number(total.toFixed(1)), scenes: n, real_photos: usedPhotos.length }));

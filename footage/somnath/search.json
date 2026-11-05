@@ -1,0 +1,23 @@
+{
+  "temple": "somnath",
+  "name": "Somnath Jyotirlinga, Gujarat",
+  "searched": "2026-11-05",
+  "candidates": 128,
+  "usable": 5,
+  "saved": 5,
+  "rejected": {
+    "not a photo": 4,
+    "unknown licence: GODL-India": 12,
+    "under 1000 px": 16,
+    "licence not allowed (SA/NC/ND/GFDL...)": 87,
+    "another place with a similar name": 3,
+    "not a JPEG photo": 1
+  },
+  "files": [
+    "commons-aerial-view-of-somnath-temple-01-prabhas-01ec47.jpg (CC0, Ms Sarah Welch)",
+    "commons-somnath-temple-jyotirlinga-7df36d.jpg (CC0, YAKSH75)",
+    "commons-aerial-view-of-somnath-temple-02-prabhas-ae04b6.jpg (CC0, Ms Sarah Welch)",
+    "commons-somanatha-view-ii-609b4e.jpg (Public Domain, Bharath12345 at English Wikipedia)",
+    "commons-somanath-from-the-beach-edit-75531c.jpg (Public Domain, Ambuj.Saxena at English Wikipedia)"
+  ]
+}

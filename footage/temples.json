@@ -1,0 +1,240 @@
+{
+  "_about": "Temples that scripts/real-photos.mjs knows: Wikimedia Commons categories that hold photos of exactly this temple, a 'must' regex that every file's title or categories must match, and a 'not' regex for other temples with similar names. The slug is the spec's `temple` field and the folder footage/<slug>/. Add a temple: find its category with `node scripts/real-photos.mjs --find \"<name>\"`.",
+  "salasar-balaji": {
+    "name": "Salasar Balaji Dham, Churu",
+    "categories": [
+      "Salasar Balaji Temple"
+    ],
+    "must": "salasar",
+    "not": "pakuria"
+  },
+  "jeen-mata": {
+    "name": "Jeen Mata Mandir, Sikar",
+    "categories": [
+      "Jeenmata"
+    ],
+    "must": "jeen ?mata",
+    "search": "Jeen Mata temple Sikar"
+  },
+  "shakambhari-mata-sakrai": {
+    "name": "Shakambhari Mata, Sakrai",
+    "categories": [],
+    "must": "sakrai",
+    "search": "Shakambhari Sakrai"
+  },
+  "shakambhari-mata-sambhar": {
+    "name": "Shakambhari Mata, Sambhar",
+    "categories": [
+      "Shakambhari Mata Temple"
+    ],
+    "must": "shakambhari|sakambhari",
+    "not": "sakrai|saharanpur|bijolia|bisaldeo|chahamana"
+  },
+  "rani-sati-dadi": {
+    "name": "Rani Sati Dadi Mandir, Jhunjhunu",
+    "aliases": [
+      "rani-sati"
+    ],
+    "categories": [
+      "Rani Sati Temple"
+    ],
+    "must": "rani sati"
+  },
+  "dhandhan-sati-dadi": {
+    "name": "Dhandhan Sati Dadi Mandir",
+    "aliases": [
+      "dhandhan-sati"
+    ],
+    "categories": [],
+    "must": "dhandhan",
+    "search": "Dhandhan Sati temple"
+  },
+  "mehandipur-balaji": {
+    "name": "Mehandipur Balaji, Dausa",
+    "categories": [
+      "Mehandipur Balaji Temple"
+    ],
+    "must": "mehandipur|mehndipur",
+    "skip": [
+      "File:Mehandipur Bhairavji.jpg"
+    ]
+  },
+  "karni-mata": {
+    "name": "Karni Mata Mandir, Deshnoke",
+    "aliases": [
+      "karni-mata-deshnoke"
+    ],
+    "categories": [
+      "Karni Mata Temple"
+    ],
+    "must": "karni ?mata|deshnok|desnok|deśnok|karni maty"
+  },
+  "shrinathji-nathdwara": {
+    "name": "Shrinathji, Nathdwara",
+    "aliases": [
+      "shrinathji"
+    ],
+    "categories": [],
+    "must": "nathdwara",
+    "not": "dungarpur|mandvi|jain|pichwai|pichhwai|painting|manama",
+    "search": "Nathdwara temple",
+    "require": "temple|haveli|mandir"
+  },
+  "brahma-mandir-pushkar": {
+    "name": "Brahma Mandir, Pushkar",
+    "aliases": [
+      "brahma-temple-pushkar",
+      "pushkar-brahma"
+    ],
+    "categories": [
+      "Brahma Temple, Pushkar",
+      "Brahma Temple at Pushkar"
+    ],
+    "must": "pushkar"
+  },
+  "eklingji": {
+    "name": "Eklingji, Udaipur",
+    "categories": [
+      "Eklingji"
+    ],
+    "must": "eklingji|ekling",
+    "not": "meera|mira"
+  },
+  "kaila-devi": {
+    "name": "Kaila Devi, Karauli",
+    "categories": [
+      "Kaila Devi Temple"
+    ],
+    "must": "kaila ?devi",
+    "not": "gwalior"
+  },
+  "tanot-mata": {
+    "name": "Tanot Mata, Jaisalmer",
+    "categories": [
+      "Mateshwari Tanot Rai Mandir"
+    ],
+    "must": "tanot",
+    "not": "wat |bangkok|thailand"
+  },
+  "ramdevra": {
+    "name": "Baba Ramdev ji, Ramdevra",
+    "aliases": [
+      "baba-ramdev-ramdevra",
+      "ramdev-ji"
+    ],
+    "categories": [
+      "Ramdevra"
+    ],
+    "must": "ramdev",
+    "require": "temple|mandir|samadhi|shrine",
+    "not": "sachiya|osian"
+  },
+  "govind-dev-ji": {
+    "name": "Govind Dev ji, Jaipur",
+    "categories": [
+      "Govind Dev Ji Temple"
+    ],
+    "must": "govind ?dev",
+    "skip": [
+      "File:Old govind devji mandir.jpg"
+    ]
+  },
+  "trinetra-ganesh": {
+    "name": "Trinetra Ganesh, Ranthambore",
+    "categories": [
+      "Trinetra Ganesh Temple, Ranthambore"
+    ],
+    "must": "ganesh"
+  },
+  "moti-dungri-ganesh": {
+    "name": "Moti Dungri Ganesh ji, Jaipur",
+    "aliases": [
+      "moti-dungri"
+    ],
+    "categories": [
+      "Moti Dungri temple"
+    ],
+    "must": "moti d(u|oo)ngri",
+    "not": "fort|palace|birla"
+  },
+  "khatu-shyam-mandir": {
+    "name": "Khatu Shyam ji Mandir, Sikar",
+    "aliases": [
+      "khatu-shyam",
+      "khatushyam"
+    ],
+    "categories": [
+      "Khatushyam Temple"
+    ],
+    "must": "khatu ?shyam",
+    "require": "temple|mandir|shyam ?ji|shrine",
+    "not": "reengus|hyderabad|bhajan|bengal|islampur",
+    "place": "sikar|rajasthan"
+  },
+  "somnath": {
+    "name": "Somnath Jyotirlinga, Gujarat",
+    "aliases": [
+      "somnath-jyotirlinga"
+    ],
+    "categories": [
+      "Somnath Temple",
+      "Interior of Somnath Temple"
+    ],
+    "must": "somnath",
+    "not": "dungarpur|omkareshwar|surya|ruins|19th century|gauri|ahilya"
+  },
+  "mallikarjuna": {
+    "name": "Mallikarjuna Jyotirlinga, Srisailam",
+    "aliases": [
+      "mallikarjuna-srisailam",
+      "srisailam"
+    ],
+    "categories": [
+      "Mallikarjuna Jyotirlinga",
+      "Sri Bhramaramba Mallikarjuna Swamy Varla Devasthanam"
+    ],
+    "must": "mallikarjun|srisailam|bhramaramba",
+    "not": "mallamma|pattadakal|aihole|kalgi|karnataka"
+  },
+  "mahakaleshwar": {
+    "name": "Mahakaleshwar Jyotirlinga, Ujjain",
+    "aliases": [
+      "mahakaleshwar-ujjain",
+      "mahakal-ujjain"
+    ],
+    "categories": [
+      "Mahakal Temple, Ujjain"
+    ],
+    "must": "mahakal",
+    "not": "kolkata|kidderpore|un\\b|, un|mahakal lok",
+    "skip": [
+      "File:Mahakaleshwar Ujjain.jpeg",
+      "File:Shri Mahakaleshwar Temple Ujjain - panoramio (1).jpg"
+    ]
+  },
+  "omkareshwar": {
+    "name": "Omkareshwar Jyotirlinga",
+    "aliases": [
+      "omkareshwar-jyotirlinga"
+    ],
+    "categories": [
+      "Omkareshwar Temple"
+    ],
+    "must": "omkareshwar",
+    "not": "pune|ghat|mamleshwar|gauri somnath|siddheshwar|chaubis|govinda|gaya sheela"
+  },
+  "kedarnath": {
+    "name": "Kedarnath, Uttarakhand",
+    "aliases": [
+      "kedarnath-jyotirlinga"
+    ],
+    "categories": [
+      "Kedarnath Temple"
+    ],
+    "must": "kedarnath",
+    "not": "panauti|bhaktapur|nepal|earthquake",
+    "skip": [
+      "File:Jai sambu kedarnath.jpg"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "temple": "mahakaleshwar",
+  "name": "Mahakaleshwar Jyotirlinga, Ujjain",
+  "searched": "2026-11-05",
+  "candidates": 45,
+  "usable": 8,
+  "saved": 5,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 18,
+    "under 1000 px": 15,
+    "another place with a similar name": 2,
+    "skipped by hand (temples.json)": 2
+  },
+  "files": [
+    "commons-ujjain-mahadev-mandir-7f7dd8.jpg (CC0, YAKSH75)",
+    "commons-shri-mahakaleshwar-temple-ujjain-panoram-ea94ca.jpg (CC BY 3.0, Gyanendra_Singh_Chau…)",
+    "commons-shri-mahakaleshwar-temple-ujjain-panoram-9f2375.jpg (CC BY 3.0, Gyanendra_Singh_Chau…)",
+    "commons-mahakaleshwar-mandir-in-ujjain-57faff.jpg (Public Domain, Sandeepkr04)",
+    "commons-mahabelshwar-ujjain-167943.jpg (Public Domain, Ssriram mt at English Wikipedia)"
+  ]
+}

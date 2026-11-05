@@ -66,3 +66,19 @@ ko mat daalein, owner ko batayein (private storage ka intezaam alag se karna hog
   Kahani wale drishya (sapna, khet, bailgaadi) AI chitra hi rehte hain, label "AI chitra (sanketik)".
 - Description aur captions ke end mein credit apne aap judta hai: `Asli mandir drishya: <attribution> (<licence>, <url>)`.
 - Folder khaali ho ya licence galat ho: video AI chitra se banta hai, post kabhi nahi rukta.
+
+## 5. Asli photos apne aap (Wikimedia Commons, 5 Nov 2026 se)
+
+`scripts/real-photos.mjs` har mandir ke liye Wikimedia Commons se **sirf CC0, Public Domain ya CC BY** photos laata hai
+(licence file ke apne extmetadata se padha jata hai; CC BY-SA, NC, ND, GFDL, "fair use", anjaan licence, ya bina author
+naam wali file: sab reject). Sirf **usi mandir** ki file: mandir ki apni Commons category (`footage/temples.json`) mein ho,
+aur title/category mein mandir ka naam ho; milte-julte naam wale doosre mandir (`not`) hata diye jaate hain. Photo
+`footage/<mandir>/commons-<naam>.jpg` (1600 px, ~q80, 500 KB se kam) + `.licence.json` (source, author, licence,
+licence_url, attribution, url) mein aati hai, `search.json` mein likha rehta hai kya mila aur kyun chhoda.
+
+- Daily workflow: video ke `temple` ka folder khaali ho to render se pehle apne aap fetch (30 din mein ek baar search).
+- Renderer: `real: true` wale mandir ke scenes par asli photo, dheere zoom/pan (Ken Burns) ke saath, label "Asli photo:
+  <author>". Katha/legend wale scenes AI chitra hi rehte hain.
+- Description mein apne aap: `Photo: <author>, <licence>, via Wikimedia Commons (<file ka page>)`.
+- Galat photo dikhe: uska Commons title `footage/temples.json` mein us mandir ke `skip` mein daalein aur file hata dein.
+- Naya mandir: `node scripts/real-photos.mjs --find "<naam>"` se category dhoondhein, temples.json mein jodein.

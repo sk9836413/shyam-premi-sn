@@ -1,0 +1,57 @@
+{
+  "slug": "2026-11-13-status-chhath-nahay-khay",
+  "format": "status",
+  "date": "2026-11-13",
+  "festival": "Chhath Puja (Nahay Khay)",
+  "publish_at": "06:00",
+  "title": "Shyam Premi SN",
+  "kicker": "Chhath Puja",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hf_alpha",
+  "signoff": "Jai Chhathi Maiya",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing",
+  "endline": "Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN",
+  "mantra_source": "Surya dev ka mantra (Surya Namaskar ke dwadash mantron mein se)",
+  "scenes": [
+    {
+      "prompt": "A serene river ghat at sunrise, devotees in yellow and orange clothes standing in the water facing the rising sun with bamboo baskets of fruits, sugarcane and lit diyas, golden reflections on the calm water, peaceful devotional mood",
+      "animate": "the water ripples gently, the diya flames flicker and the golden sunlight slowly brightens while the camera glides forward",
+      "motion": "in",
+      "hold": 6,
+      "big": "छठ महापर्व",
+      "line": "छठी मैया का आशीर्वाद सब पर बना रहे",
+      "tts": "छठ महापर्व की शुभकामनाएँ! छठी मैया का आशीर्वाद सब पर बना रहे।",
+      "sub": "Chhath Mahaparv ki shubhkamnayein! Chhathi Maiya ka aashirwad sab par bana rahe."
+    },
+    {
+      "prompt": "A clean traditional village kitchen with a clay stove, a simple sattvik meal of rice, chana dal and lauki on a banana leaf, a lit diya, morning light through a window, peaceful festive mood",
+      "animate": "soft steam rises from the food, the diya flame flickers and the camera slowly pushes in",
+      "motion": "out",
+      "hold": 6,
+      "big": "नहाय-खाय",
+      "line": "पावन छठ पर्व का शुभारंभ",
+      "tts": "नहाय खाय के साथ पावन छठ पर्व का शुभारंभ।",
+      "sub": "Nahay Khay ke saath paavan Chhath parv ka shubhaarambh."
+    },
+    {
+      "prompt": "The rising sun over a wide calm river with a decorated bamboo soop basket of fruits and thekua and a lit diya on the bank, sugarcane stalks, golden morning sky",
+      "motion": "pan",
+      "hold": 5.5,
+      "big": "जय छठी मैया",
+      "mantra": "ॐ सूर्याय नमः",
+      "tts": "ॐ सूर्याय नमः। जय छठी मैया!",
+      "sub": "Om Suryaya Namah. Jai Chhathi Maiya!"
+    },
+    {
+      "endcard": true,
+      "hold": 5,
+      "tts": "अपने परिवार को भेजें। जय श्री श्याम!",
+      "sub": "Apne parivaar ko bhejein. Subscribe: Shyam Premi SN. Jai Shree Shyam!"
+    }
+  ],
+  "youtube_title": "Chhath Puja Status 2026 | छठ पूजा नहाय खाय स्टेटस #Shorts",
+  "youtube_description": "Chhath Mahaparv ki shubhkamnayein! Aaj Nahay Khay ke saath chaar din ka Chhath parv shuru hota hai. Surya dev aur Chhathi Maiya ki aaradhana, WhatsApp status ke liye.\nछठ महापर्व की शुभकामनाएँ! छठी मैया का आशीर्वाद सब पर बना रहे।\nMantra: ॐ सूर्याय नमः (Om Suryaya Namah)\n(Surya dev ka mantra (Surya Namaskar ke dwadash mantron mein se))\n\nIs status video ko download karke apne WhatsApp / Instagram status par lagayein.\n\nShyam Premi SN ki taraf se aapko aur aapke parivaar ko dher saari shubhkamnayein. Jai Shree Shyam 🙏\nAchha lage to Like karein, apno ko bhejein aur channel Subscribe karein.\n#ChhathPuja #NahayKhay #ChhathStatus #ChhathiMaiya #JaiShreeShyam\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.",
+  "youtube_tags": "Chhath Puja status, Chhath Puja status video, Chhath Puja 2026, Nahay Khay, छठ पूजा स्टेटस, छठ महापर्व, नहाय खाय, छठी मैया, Chhathi Maiya, Surya Dev, सूर्य देव, Chhath whatsapp status, Shyam Premi SN",
+  "instagram_caption": "Chhath Mahaparv ki shubhkamnayein! 🌅\nNahay Khay ke saath paavan Chhath parv shuru. Chhathi Maiya ka aashirwad sab par bana rahe.\nOm Suryaya Namah 🙏\nApne parivaar ko bhejein, status par lagayein.\n#ChhathPuja #NahayKhay #ChhathiMaiya #SuryaDev #Chhath2026 #JaiShreeShyam",
+  "facebook_caption": "Chhath Mahaparv ki shubhkamnayein! 🌅\nNahay Khay ke saath paavan Chhath parv shuru. Chhathi Maiya ka aashirwad sab par bana rahe.\nOm Suryaya Namah 🙏\n#ChhathPuja #NahayKhay #ChhathStatus"
+}

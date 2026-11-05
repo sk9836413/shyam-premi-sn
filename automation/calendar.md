@@ -15,3 +15,5 @@ Confirmed with at least two sources. Add new dates the same way.
 | 2026-11-13 | Chhath Puja begins (Nahay Khay) |
 | 2026-11-15 | Chhath Puja: Sandhya Arghya |
 | 2026-11-16 | Chhath Puja: Usha Arghya |
+| 2026-11-20 | Dev Uthani (Prabodhini) Ekadashi; **Khatu Shyam Baba Janmotsav** (Kartik Shukla Ekadashi; tithi 20 Nov ~07:16 to 21 Nov ~06:32 IST; some Vaishnava calendars: 21 Nov). Sources: khatu.in (Shyam Janmotsav 2026), navbharatlive.com, vistaarnews.com (2 Nov 2026) |
+| 2026-11-21 | Tulsi Vivah (Dwadashi) |

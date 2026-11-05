@@ -1,0 +1,57 @@
+{
+  "slug": "2026-11-10-status-govardhan-puja",
+  "format": "status",
+  "date": "2026-11-10",
+  "festival": "Govardhan Puja",
+  "publish_at": "06:00",
+  "title": "Shyam Premi SN",
+  "kicker": "Govardhan Puja",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hf_alpha",
+  "signoff": "Jai Shri Krishna",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing",
+  "endline": "Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN",
+  "scenes": [
+    {
+      "prompt": "Little Shri Krishna with a peacock feather crown and blue skin, calm gentle smile, lifting the green Govardhan hill on the little finger of his left hand, villagers of Gokul and white cows safely sheltered beneath it, soft rain outside and golden light inside, peaceful devotional mood",
+      "animate": "gentle rain falls softly at the edges, the golden light glows and the camera slowly pushes in; Krishna and the faces stay still and serene",
+      "deity": true,
+      "motion": "in",
+      "hold": 6,
+      "big": "शुभ गोवर्धन पूजा",
+      "line": "गिरिराज जी सबकी रक्षा करें",
+      "tts": "शुभ गोवर्धन पूजा! गिरिराज महाराज आप सबकी रक्षा करें।",
+      "sub": "Shubh Govardhan Puja! Giriraj Maharaj aap sabki raksha karein."
+    },
+    {
+      "prompt": "An Annakoot offering: a small mountain of many traditional sweets and dishes arranged in front of a decorated Shri Krishna altar with marigold flowers and lit clay diyas, festive temple courtyard, warm golden light",
+      "animate": "the diya flames flicker softly, a few flower petals drift down and the camera slowly glides closer",
+      "motion": "out",
+      "hold": 6,
+      "big": "अन्नकूट महोत्सव",
+      "line": "आपका घर सदा भरा-पूरा रहे",
+      "tts": "अन्नकूट के पावन दिन आपका घर सदा भरा पूरा रहे।",
+      "sub": "Annakoot ke paavan din aapka ghar sada bhara poora rahe."
+    },
+    {
+      "prompt": "Peaceful green Govardhan hill at sunrise with grazing white cows decorated with garlands, a small shrine with lit diyas at its foot, golden morning light, Braj countryside",
+      "motion": "pan",
+      "hold": 5.5,
+      "big": "जय श्री कृष्ण",
+      "line": "श्री गिरिराज धरण की जय",
+      "tts": "श्री गिरिराज धरण की जय! जय श्री कृष्ण।",
+      "sub": "Shri Giriraj Dharan ki jai! Jai Shri Krishna."
+    },
+    {
+      "endcard": true,
+      "hold": 5,
+      "tts": "अपने परिवार को भेजें। जय श्री श्याम!",
+      "sub": "Apne parivaar ko bhejein. Subscribe: Shyam Premi SN. Jai Shree Shyam!"
+    }
+  ],
+  "youtube_title": "Govardhan Puja Status 2026 | गोवर्धन पूजा स्टेटस वीडियो #Shorts",
+  "youtube_description": "Shubh Govardhan Puja aur Annakoot! Shri Krishna ne Govardhan parvat uthakar Gokul ki raksha ki thi. Sundar darshan, WhatsApp status ke liye.\nशुभ गोवर्धन पूजा! गिरिराज महाराज आप सबकी रक्षा करें।\nJaikara: श्री गिरिराज धरण की जय\n\nIs status video ko download karke apne WhatsApp / Instagram status par lagayein.\n\nShyam Premi SN ki taraf se aapko aur aapke parivaar ko dher saari shubhkamnayein. Jai Shree Shyam 🙏\nAchha lage to Like karein, apno ko bhejein aur channel Subscribe karein.\n#GovardhanPuja #Annakoot #GovardhanStatus #JaiShriKrishna #JaiShreeShyam\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.",
+  "youtube_tags": "Govardhan Puja status, Govardhan Puja status video, Happy Govardhan Puja 2026, Annakoot, गोवर्धन पूजा स्टेटस, शुभ गोवर्धन पूजा, अन्नकूट, गिरिराज धरण, Giriraj ji, Shri Krishna, श्री कृष्ण, Govardhan Parvat, Shyam Premi SN",
+  "instagram_caption": "Shubh Govardhan Puja! 🙏\nGiriraj Maharaj aap sabki raksha karein, aur Annakoot ke paavan din aapka ghar sada bhara-poora rahe.\nShri Giriraj Dharan ki jai!\nApne parivaar ko bhejein, status par lagayein.\n#GovardhanPuja #Annakoot #Govardhan #JaiShriKrishna #KrishnaBhakti #JaiShreeShyam",
+  "facebook_caption": "Shubh Govardhan Puja! 🙏\nGiriraj Maharaj aap sabki raksha karein, aur Annakoot ke paavan din aapka ghar sada bhara-poora rahe.\nShri Giriraj Dharan ki jai!\n#GovardhanPuja #Annakoot #GovardhanStatus"
+}

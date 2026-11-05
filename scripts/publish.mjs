@@ -2,6 +2,7 @@
 // Hosts the rendered video + thumbnail on the shyam-premi-media Worker (KV, kept 7 days), then sends
 // the post to the Make scenario "Shyam Premi SN publisher" (Instagram + Facebook).
 //   node scripts/publish.mjs --video <mp4> --scenes story/today/scenes.json [--dry-run]
+//   ... --host-only   only host the mp4 + jpg on the Worker (status videos: the download link for the description)
 // Env: MEDIA_URL, MEDIA_TOKEN, MAKE_WEBHOOK_URL, MAKE_API_KEY (locally: %USERPROFILE%\.shyampremisk\
 // make.env and media-token.txt). Prints one JSON line.
 import { spawnSync } from 'node:child_process';
@@ -56,6 +57,7 @@ async function main() {
 
   await put(video, `${spec.slug}.mp4`);
   await put(thumb, `${spec.slug}.jpg`);
+  if (args.includes('--host-only')) return { status: 'hosted', video_url: payload.video_url, thumbnail_url: payload.thumbnail_url };
   if (!env.MAKE_WEBHOOK_URL) return { status: 'hosted-only', video_url: payload.video_url };
 
   const res = await fetch(env.MAKE_WEBHOOK_URL, {

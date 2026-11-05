@@ -1,0 +1,20 @@
+{
+  "temple": "kedarnath",
+  "name": "Kedarnath, Uttarakhand",
+  "searched": "2026-11-05",
+  "candidates": 108,
+  "usable": 2,
+  "saved": 2,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 60,
+    "under 1000 px": 30,
+    "skipped by hand (temples.json)": 1,
+    "not a JPEG photo": 3,
+    "unknown licence: GODL-India": 9,
+    "not a photo": 3
+  },
+  "files": [
+    "commons-kedarnath-temple-e62eb3.jpg (Public Domain, Shaq774 at en.wikipedia)",
+    "commons-majestic-and-serene-kedarnath-temple-fc7b1c.jpg (CC0, Photos Worldwide)"
+  ]
+}

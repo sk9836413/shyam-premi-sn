@@ -1,0 +1,14 @@
+{
+  "temple": "ramdevra",
+  "name": "Baba Ramdev ji, Ramdevra",
+  "searched": "2026-11-05",
+  "candidates": 17,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "not clearly the temple": 14,
+    "licence not allowed (SA/NC/ND/GFDL...)": 1,
+    "another place with a similar name": 2
+  },
+  "files": []
+}

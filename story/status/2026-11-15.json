@@ -1,0 +1,57 @@
+{
+  "slug": "2026-11-15-status-chhath-sandhya-arghya",
+  "format": "status",
+  "date": "2026-11-15",
+  "festival": "Chhath Puja (Sandhya Arghya)",
+  "publish_at": "06:00",
+  "title": "Shyam Premi SN",
+  "kicker": "Chhath Puja",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hf_alpha",
+  "signoff": "Jai Chhathi Maiya",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing",
+  "endline": "Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN",
+  "mantra_source": "Surya dev ka mantra (Surya Namaskar ke dwadash mantron mein se)",
+  "scenes": [
+    {
+      "prompt": "Golden sunset over a wide calm river, devotees in yellow and red saris standing waist-deep in the water offering arghya to the setting sun with bamboo soop baskets of fruits, thekua and lit diyas, sugarcane on the decorated ghat, peaceful devotional mood",
+      "animate": "the water ripples gently, the diya flames flicker and the warm sunset light softly glows while the camera slowly pushes in",
+      "motion": "in",
+      "hold": 6,
+      "big": "संध्या अर्घ्य",
+      "line": "डूबते सूर्य को प्रणाम",
+      "tts": "छठ पूजा का संध्या अर्घ्य। डूबते सूर्य देव को प्रणाम।",
+      "sub": "Chhath Puja ka Sandhya Arghya. Doobte Surya dev ko pranam."
+    },
+    {
+      "prompt": "A river ghat at dusk glowing with hundreds of lit clay diyas, decorated bamboo baskets with fruits and sugarcane arches, families in festive clothes, orange and purple sky",
+      "animate": "the diya flames flicker softly and their reflections shimmer on the gently moving water",
+      "motion": "out",
+      "hold": 6,
+      "big": "छठ पूजा की शुभकामनाएँ",
+      "line": "छठी मैया का आशीर्वाद सब पर बना रहे",
+      "tts": "छठी मैया का आशीर्वाद आप सब पर बना रहे।",
+      "sub": "Chhathi Maiya ka aashirwad aap sab par bana rahe."
+    },
+    {
+      "prompt": "Close view of a decorated bamboo soop basket with bananas, coconut, thekua and a lit diya on the river bank at sunset, sugarcane stalks behind, golden light",
+      "motion": "pan",
+      "hold": 5.5,
+      "big": "जय छठी मैया",
+      "mantra": "ॐ सूर्याय नमः",
+      "tts": "ॐ सूर्याय नमः। जय छठी मैया!",
+      "sub": "Om Suryaya Namah. Jai Chhathi Maiya!"
+    },
+    {
+      "endcard": true,
+      "hold": 5,
+      "tts": "अपने परिवार को भेजें। जय श्री श्याम!",
+      "sub": "Apne parivaar ko bhejein. Subscribe: Shyam Premi SN. Jai Shree Shyam!"
+    }
+  ],
+  "youtube_title": "Chhath Puja Sandhya Arghya Status 2026 | छठ पूजा संध्या अर्घ्य #Shorts",
+  "youtube_description": "Chhath Puja ka Sandhya Arghya: aaj shaam doobte Surya dev ko arghya diya jata hai. Sundar darshan, WhatsApp status ke liye.\nछठी मैया का आशीर्वाद आप सब पर बना रहे।\nMantra: ॐ सूर्याय नमः (Om Suryaya Namah)\n(Surya dev ka mantra (Surya Namaskar ke dwadash mantron mein se))\n\nIs status video ko download karke apne WhatsApp / Instagram status par lagayein.\n\nShyam Premi SN ki taraf se aapko aur aapke parivaar ko dher saari shubhkamnayein. Jai Shree Shyam 🙏\nAchha lage to Like karein, apno ko bhejein aur channel Subscribe karein.\n#ChhathPuja #SandhyaArghya #ChhathStatus #ChhathiMaiya #JaiShreeShyam\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.",
+  "youtube_tags": "Chhath Puja status, Sandhya Arghya, Chhath Puja 2026, Chhath status video, छठ पूजा स्टेटस, संध्या अर्घ्य, छठी मैया, छठ महापर्व, Chhathi Maiya, Surya Dev, सूर्य देव, Chhath whatsapp status, Shyam Premi SN",
+  "instagram_caption": "Chhath Puja: Sandhya Arghya 🌅\nDoobte Surya dev ko pranam. Chhathi Maiya ka aashirwad aap sab par bana rahe.\nOm Suryaya Namah 🙏\nApne parivaar ko bhejein, status par lagayein.\n#ChhathPuja #SandhyaArghya #ChhathiMaiya #SuryaDev #Chhath2026 #JaiShreeShyam",
+  "facebook_caption": "Chhath Puja: Sandhya Arghya 🌅\nDoobte Surya dev ko pranam. Chhathi Maiya ka aashirwad aap sab par bana rahe.\nOm Suryaya Namah 🙏\n#ChhathPuja #SandhyaArghya #ChhathStatus"
+}

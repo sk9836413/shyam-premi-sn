@@ -1,0 +1,58 @@
+{
+  "slug": "2026-11-07-status-choti-diwali",
+  "format": "status",
+  "date": "2026-11-07",
+  "festival": "Choti Diwali",
+  "publish_at": "06:00",
+  "title": "Shyam Premi SN",
+  "kicker": "Shubh Choti Diwali",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hf_alpha",
+  "signoff": "Shubh Choti Diwali",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing",
+  "endline": "Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN",
+  "mantra_source": "Shri Krishna ka dwadashakshar mantra (Shrimad Bhagwat parampara)",
+  "scenes": [
+    {
+      "prompt": "Shri Krishna with a peacock feather crown, blue skin, yellow dhoti, gentle smile, standing calmly with Satyabhama in a palace courtyard glowing with hundreds of lit clay diyas at night, soft golden aura, peaceful devotional mood",
+      "animate": "the diya flames flicker softly, the golden aura gently glows and the camera slowly pushes in; the faces stay still and serene",
+      "deity": true,
+      "motion": "in",
+      "hold": 6,
+      "big": "शुभ छोटी दिवाली",
+      "line": "हर अंधेरा दूर हो, जीवन रोशन हो",
+      "tts": "शुभ छोटी दिवाली! आपके जीवन से हर अंधेरा दूर हो।",
+      "sub": "Shubh Choti Diwali! Aapke jeevan se har andhera door ho."
+    },
+    {
+      "prompt": "A single large clay diya glowing at the doorstep of a traditional Indian home at dusk, rangoli around it, rows of small diyas along the steps, marigold torans on the door, calm warm evening light",
+      "animate": "the diya flames flicker gently and the warm light softly breathes while the camera slowly pushes in",
+      "motion": "out",
+      "hold": 6,
+      "big": "नरक चतुर्दशी",
+      "line": "श्री कृष्ण की कृपा से घर में सुख-शांति रहे",
+      "tts": "श्री कृष्ण की कृपा से आपके घर में सुख और शांति रहे।",
+      "sub": "Shri Krishna ki kripa se aapke ghar mein sukh aur shanti rahe."
+    },
+    {
+      "prompt": "A row of glowing clay diyas on a balcony railing of a decorated Indian home at night, fairy lights, marigold garlands, a beautiful festive town glowing in the background",
+      "motion": "pan",
+      "hold": 5.5,
+      "big": "रूप चौदस की शुभकामनाएँ",
+      "mantra": "ॐ नमो भगवते वासुदेवाय",
+      "tts": "ॐ नमो भगवते वासुदेवाय। छोटी दिवाली की शुभकामनाएँ।",
+      "sub": "Om Namo Bhagavate Vasudevaya. Choti Diwali ki shubhkamnayein."
+    },
+    {
+      "endcard": true,
+      "hold": 5,
+      "tts": "अपने परिवार को भेजें। जय श्री श्याम!",
+      "sub": "Apne parivaar ko bhejein. Subscribe: Shyam Premi SN. Jai Shree Shyam!"
+    }
+  ],
+  "youtube_title": "Choti Diwali Status 2026 | छोटी दिवाली स्टेटस वीडियो #Shorts",
+  "youtube_description": "Shubh Choti Diwali (Narak Chaturdashi / Roop Chaudas)! Shri Krishna ka sundar darshan aur diyon ki roshni, WhatsApp status ke liye.\nशुभ छोटी दिवाली! श्री कृष्ण की कृपा से आपके घर में सुख और शांति रहे।\nMantra: ॐ नमो भगवते वासुदेवाय (Om Namo Bhagavate Vasudevaya)\n(Shri Krishna ka dwadashakshar mantra (Shrimad Bhagwat parampara))\n\nIs status video ko download karke apne WhatsApp / Instagram status par lagayein.\n\nShyam Premi SN ki taraf se aapko aur aapke parivaar ko dher saari shubhkamnayein. Jai Shree Shyam 🙏\nAchha lage to Like karein, apno ko bhejein aur channel Subscribe karein.\n#ChotiDiwali #NarakChaturdashi #RoopChaudas #Diwali2026 #JaiShreeShyam\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.",
+  "youtube_tags": "Choti Diwali status, Choti Diwali status video, Happy Choti Diwali 2026, Narak Chaturdashi, छोटी दिवाली स्टेटस, शुभ छोटी दिवाली, नरक चतुर्दशी, रूप चौदस, Roop Chaudas, Shri Krishna, श्री कृष्ण, Diwali 2026, Shyam Premi SN",
+  "instagram_caption": "Shubh Choti Diwali! 🪔\nAapke jeevan se har andhera door ho, aur Shri Krishna ki kripa se ghar mein sukh-shanti rahe.\nOm Namo Bhagavate Vasudevaya 🙏\nApne parivaar ko bhejein, status par lagayein.\n#ChotiDiwali #NarakChaturdashi #RoopChaudas #Diwali #Diwali2026 #ShriKrishna #JaiShreeShyam",
+  "facebook_caption": "Shubh Choti Diwali! 🪔\nAapke jeevan se har andhera door ho, aur Shri Krishna ki kripa se ghar mein sukh-shanti rahe.\nOm Namo Bhagavate Vasudevaya 🙏\n#ChotiDiwali #NarakChaturdashi #RoopChaudas"
+}

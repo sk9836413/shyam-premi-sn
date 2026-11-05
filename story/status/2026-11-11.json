@@ -1,0 +1,56 @@
+{
+  "slug": "2026-11-11-status-bhai-dooj",
+  "format": "status",
+  "date": "2026-11-11",
+  "festival": "Bhai Dooj",
+  "publish_at": "06:00",
+  "title": "Shyam Premi SN",
+  "kicker": "Shubh Bhai Dooj",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hf_alpha",
+  "signoff": "Shubh Bhai Dooj",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing",
+  "endline": "Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN",
+  "scenes": [
+    {
+      "prompt": "A smiling young Indian sister in a festive saree applying a red tilak on her brother's forehead, an aarti thali with a lit diya, rice, roli and sweets in her hand, a decorated home with marigold garlands and diyas, warm loving family mood",
+      "animate": "the diya flame on the thali flickers softly, a gentle warm glow and the camera slowly pushes in; the faces stay still",
+      "motion": "in",
+      "hold": 6,
+      "big": "शुभ भाई दूज",
+      "line": "भाई-बहन का प्यार सदा बना रहे",
+      "tts": "शुभ भाई दूज! भाई बहन का यह प्यार सदा बना रहे।",
+      "sub": "Shubh Bhai Dooj! Bhai behen ka yeh pyaar sada bana rahe."
+    },
+    {
+      "prompt": "The calm Yamuna river at golden sunset with small leaf boats carrying lit diyas floating on the water, ghats with marigold flowers, peaceful devotional mood",
+      "animate": "the diyas float slowly on the gently rippling water and the flames flicker softly",
+      "motion": "out",
+      "hold": 6,
+      "big": "यम द्वितीया",
+      "line": "यमुना जी और यमराज जी के स्नेह का पर्व",
+      "tts": "यह पर्व यमुना जी और उनके भाई यमराज जी के स्नेह की याद दिलाता है।",
+      "sub": "Yeh parv Yamuna ji aur unke bhai Yamraj ji ke sneh ki yaad dilata hai."
+    },
+    {
+      "prompt": "A decorated Bhai Dooj aarti thali with a lit diya, roli, rice, a coconut and Indian sweets on a festive red cloth, marigold petals around, soft golden bokeh",
+      "motion": "pan",
+      "hold": 5.5,
+      "big": "भाई दूज की शुभकामनाएँ",
+      "line": "हर भाई-बहन की जोड़ी खुश रहे",
+      "tts": "हर भाई बहन की जोड़ी हमेशा खुश रहे। भाई दूज की शुभकामनाएँ।",
+      "sub": "Har bhai behen ki jodi hamesha khush rahe. Bhai Dooj ki shubhkamnayein."
+    },
+    {
+      "endcard": true,
+      "hold": 5,
+      "tts": "अपने परिवार को भेजें। जय श्री श्याम!",
+      "sub": "Apne parivaar ko bhejein. Subscribe: Shyam Premi SN. Jai Shree Shyam!"
+    }
+  ],
+  "youtube_title": "Bhai Dooj Status 2026 | भाई दूज स्टेटस वीडियो #Shorts",
+  "youtube_description": "Shubh Bhai Dooj (Yam Dwitiya)! Bhai-behen ke pyaar ka parv. Lok parampara ke anusar Yamuna ji ne apne bhai Yamraj ji ka tilak karke swagat kiya tha. WhatsApp status ke liye.\nशुभ भाई दूज! भाई बहन का यह प्यार सदा बना रहे।\n\nIs status video ko download karke apne WhatsApp / Instagram status par lagayein.\n\nShyam Premi SN ki taraf se aapko aur aapke parivaar ko dher saari shubhkamnayein. Jai Shree Shyam 🙏\nAchha lage to Like karein, apno ko bhejein aur channel Subscribe karein.\n#BhaiDooj #BhaiDoojStatus #YamDwitiya #BhaiDooj2026 #JaiShreeShyam\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.",
+  "youtube_tags": "Bhai Dooj status, Bhai Dooj status video, Happy Bhai Dooj 2026, Bhaiya Dooj, भाई दूज स्टेटस, शुभ भाई दूज, भाई दूज की शुभकामनाएं, यम द्वितीया, Yam Dwitiya, भैया दूज, brother sister status, Shyam Premi SN",
+  "instagram_caption": "Shubh Bhai Dooj! 🪔\nBhai-behen ka yeh pyaar sada bana rahe, har jodi hamesha khush rahe.\nApne bhai ya behen ko bhejein, status par lagayein 🙏\n#BhaiDooj #BhaiyaDooj #YamDwitiya #BhaiDooj2026 #Diwali2026 #JaiShreeShyam",
+  "facebook_caption": "Shubh Bhai Dooj! 🪔\nBhai-behen ka yeh pyaar sada bana rahe, har jodi hamesha khush rahe.\nApne bhai ya behen ko bhejein, status par lagayein 🙏\n#BhaiDooj #BhaiDoojStatus #YamDwitiya"
+}

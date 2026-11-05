@@ -19,7 +19,7 @@
 // pilot), every scene with prompt + image + video. A scene's `animate` text describes the motion.
 // Login: the Kaggle CLI's own credentials (KAGGLE_API_TOKEN in CI, ~/.kaggle on the PC); never read here.
 // KAGGLE_CLI = path to the CLI if not on PATH; KAGGLE_USER = account name (else read from the kernel list);
-// SPS_SLOT = morning | evening | noon: each slot has its own kernel sps-animate-<slot> and dataset
+// SPS_SLOT = morning | evening | noon | status (festival status Short): each slot has its own kernel sps-animate-<slot> and dataset
 // sps-animate-inputs-<slot>, so runs never overwrite each other's inputs or outputs, and `lock` keeps this channel to
 // one GPU session at a time (Kaggle allows only ~2 batch GPU sessions per account). Settings: spec.animate_settings.
 import { spawnSync } from 'node:child_process';
@@ -37,7 +37,7 @@ const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : CHAR ? `sps-char-input
 const KERNEL = SLOT === 'long' ? 'sps-tts-long' : CHAR ? `sps-${SLOT}` : `sps-animate-${SLOT}`;
 const CODE = CHAR ? path.join(DIR, '..', 'characters', 'kaggle', 'lipsync_daily.py') : path.join(DIR, 'kaggle', 'animate.py');
 // Every GPU kernel of both channels (one Kaggle account): `lock` waits while any other one runs.
-const ALL_KERNELS = [...['morning', 'evening', 'noon', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
+const ALL_KERNELS = [...['morning', 'evening', 'noon', 'status', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
   'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim'];
 const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);

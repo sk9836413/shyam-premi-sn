@@ -39,7 +39,10 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
   images.forEach((im, i) => {
     need(im && typeof im.prompt === 'string' && im.prompt.length >= 40, `image ${i}: prompt missing or too short`);
     need(!/\b(text|letters|writing|sign|caption|words|logo|title)\b/i.test((im?.prompt || '').replace(/no (text|letters|writing)/gi, '')), `image ${i}: prompt must not ask for text, signs or letters`);
+    need(im?.real === undefined || typeof im.real === 'boolean', `image ${i}: real must be true or false`);
   });
+  need(s.temple === undefined || /^[a-z0-9-]+$/.test(s.temple), 'temple: lowercase slug from footage/temples.json');
+  need(!images.some((im) => im?.real) || s.temple, '"real" images need the "temple" slug');
 
   const chapters = Array.isArray(s.chapters) ? s.chapters : [];
   need(chapters.length >= 4 && chapters.length <= 8, `chapters: 4-8 including the opening hook chapter (has ${chapters.length})`);
@@ -122,6 +125,68 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
     process.exit(1);
   }
   console.log(`OK: ${file} (${scenes.length} scenes, ${chapters.length} chapters, ${images.length} images, ~${Math.round(total)} s)`);
+  process.exit(0);
+}
+
+// ---- Festival "WhatsApp status" Short (story/status/<date>.json, published 06:00 IST on the day) ----------------
+// 15-30 s vertical: 2-3 darshan scenes with a big Hindi blessing (Devanagari overlay), an optional well-known mantra,
+// then the end card with the fixed share/subscribe line. Written in advance, so this check is strict.
+if (s.format === 'status') {
+  need(/^\d{4}-\d{2}-\d{2}-status-[a-z0-9-]+$/.test(s.slug || ''), 'slug must be <yyyy-mm-dd>-status-<lowercase-english-slug>');
+  need(s.date && (s.slug || '').startsWith(s.date), 'date must be the festival day (YYYY-MM-DD) and start the slug');
+  need(/^\d{2}:\d{2}$/.test(s.publish_at || ''), 'publish_at: IST time on the festival day, e.g. "06:00"');
+  need(s.kicker && s.kicker.length <= 22 && !DEVANAGARI.test(s.kicker), 'kicker: Roman, 1-22 characters (drawn beside the logo)');
+  need(s.title && s.title.length <= 30 && !DEVANAGARI.test(s.title), 'title: Roman, max 30 characters (the channel name watermark)');
+  need(['hm_omega', 'hf_alpha'].includes(s.voice), 'voice must be hm_omega or hf_alpha');
+  need(PLAYLISTS.includes(s.playlist), `playlist must be one of: ${PLAYLISTS.join(', ')}`);
+  need(/no text/i.test(s.style || ''), 'style must include "no text"');
+  const end = s.endline || 'Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN';
+  need(/bhejein/i.test(end) && /Subscribe: Shyam Premi SN/.test(end), 'endline must be "Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN"');
+  const scenes = Array.isArray(s.scenes) ? s.scenes : [];
+  need(scenes.length >= 3 && scenes.length <= 4, `2-3 darshan scenes plus the end card (has ${scenes.length} scenes)`);
+  let secs = 0, animated = 0;
+  scenes.forEach((sc, i) => {
+    const n = `scene ${i + 1}`;
+    const last = i === scenes.length - 1;
+    need(sc.tts && DEVANAGARI.test(sc.tts) && sc.tts.length <= 110 && !/\d/.test(sc.tts), `${n}: tts Devanagari, max 110 characters, numbers as words`);
+    need(sc.sub && !DEVANAGARI.test(sc.sub), `${n}: sub must be Roman Hinglish`);
+    need(sc.hold === undefined || (sc.hold >= 3 && sc.hold <= 9), `${n}: hold 3-9 seconds`);
+    secs += Math.max(2.6, sc.hold || 0, (sc.tts || '').length / 12 + 0.7);
+    if (last) {
+      need(sc.endcard === true && !sc.prompt, `${n}: the last scene must be the end card (no prompt)`);
+      return;
+    }
+    need(!sc.endcard, `${n}: only the last scene can be the end card`);
+    need(sc.prompt && sc.prompt.length >= 40 && !/\b(text|letters|writing|sign|caption|words|logo)\b/i.test(sc.prompt), `${n}: prompt missing, too short, or asks for text`);
+    need(sc.big && DEVANAGARI.test(sc.big) && sc.big.length <= 26, `${n}: big: the Hindi blessing in Devanagari, max 26 characters (drawn ~118 px)`);
+    need(sc.line === undefined || (DEVANAGARI.test(sc.line) && sc.line.length <= 48), `${n}: line: Devanagari, max 48 characters`);
+    need(sc.mantra === undefined || (DEVANAGARI.test(sc.mantra) && sc.mantra.length <= 90), `${n}: mantra: Devanagari, max 90 characters`);
+    need(['in', 'out', 'pan'].includes(sc.motion), `${n}: motion must be in, out or pan`);
+    if (sc.animate !== undefined) {
+      animated++;
+      need(typeof sc.animate === 'string' && sc.animate.length >= 20 && sc.animate.length <= 300, `${n}: animate: one English sentence of gentle motion`);
+    }
+  });
+  secs -= 0.4 * Math.max(0, scenes.length - 1);
+  need(secs >= 15 && secs <= 30, `estimated length ${Math.round(secs)} s; a status video is 15-30 s`);
+  need(animated >= 1 && animated <= 3, `mark 1-3 scenes with "animate" (has ${animated})`);
+  // A mantra or shloka is shown only with its tradition named in the description (and it must be the standard text).
+  if (scenes.some((sc) => sc.mantra)) need(s.mantra_source && (s.youtube_description || '').includes(s.mantra_source), 'mantra_source: name the mantra\'s tradition, and put the same text in youtube_description');
+  const yt = s.youtube_title || '';
+  need(yt.length > 0 && yt.length <= 90 && yt.endsWith(' #Shorts') && DEVANAGARI.test(yt), 'youtube_title: max 90 characters, "Roman | देवनागरी #Shorts"');
+  const desc = s.youtube_description || '';
+  need(desc.length <= 4200 && /subscribe/i.test(desc) && /sanketik/i.test(desc), 'youtube_description: max 4200 characters (the download link is added on upload), a subscribe line and "Chitra AI dwara banaye gaye hain (sanketik)"');
+  need(!/[<>]/.test(yt + desc + (s.youtube_tags || '')), 'YouTube fields must not contain < or >');
+  const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
+  need(tags.length >= 10 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 10-15 tags with some Devanagari (has ${tags.length})`);
+  need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
+  need((s.facebook_caption || '').trim() && !DEVANAGARI.test(s.facebook_caption), 'facebook_caption: Roman, not empty');
+  need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
+  if (problems.length) {
+    console.log(problems.map((p) => `- ${p}`).join('\n'));
+    process.exit(1);
+  }
+  console.log(`OK: ${file} (status, ${scenes.length} scenes, ~${Math.round(secs)} s)`);
   process.exit(0);
 }
 
@@ -282,6 +347,10 @@ need(DEVANAGARI.test(s.youtube_tags || ''), 'youtube_tags need some Devanagari s
 for (const k of ['title', 'instagram_caption', 'facebook_caption']) {
   need(!DEVANAGARI.test(s[k] || ''), `${k} must be Roman-script Hinglish`);
 }
+// Real temple photos (footage/<temple>/, scripts/real-photos.mjs): `temple` names the folder, `real` marks temple scenes.
+need(s.temple === undefined || /^[a-z0-9-]+$/.test(s.temple), 'temple: lowercase slug from footage/temples.json');
+scenes.forEach((sc, i) => need(sc.real === undefined || (typeof sc.real === 'boolean' && !sc.endcard), `scene ${i + 1}: real must be true or false (not on the end card)`));
+need(!scenes.some((sc) => sc.real) || s.temple, '"real" scenes need the "temple" slug');
 const all = JSON.stringify(s);
 need(!BAIT.test(all), 'remove engagement bait, fear or money/miracle promises');
 

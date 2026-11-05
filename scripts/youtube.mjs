@@ -3,7 +3,7 @@
 //
 //   node scripts/youtube.mjs auth [--client <client_secret.json>]   one-time, on the PC (pick the Shyam Premi SN channel)
 //   node scripts/youtube.mjs check
-//   node scripts/youtube.mjs upload --video <mp4> --scenes story/today/scenes.json [--publish-at 19:00] [--dry-run]
+//   node scripts/youtube.mjs upload --video <mp4> --scenes story/today/scenes.json [--publish-at 19:00 | 2026-11-06T06:00] [--dry-run]
 //   node scripts/youtube.mjs upload --long --video <mp4> --scenes story/long/scenes.json --meta <out/slug.json>
 //        [--thumbnail <jpg>] [--publish-at 12:30]   regular video, chapters from --meta, scheduled at that IST time
 //
@@ -99,11 +99,14 @@ function metaFromScenes(file, metaFile) {
 
 // The long video (and the evening Short, made early) is uploaded private with publishAt (today at the given IST time); when that time is under
 // 15 minutes away or already past, it is published straight away.
+// "YYYY-MM-DDTHH:MM" (IST) sets another day, e.g. a festival status Short made the evening before for 06:00.
 function publishAt(hhmm) {
   if (!hhmm) return null;
-  const [h, m] = hhmm.split(':').map(Number);
+  const day = hhmm.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}:\d{2})$/);
+  const [h, m] = (day ? day[4] : hhmm).split(':').map(Number);
   const ist = new Date(Date.now() + 5.5 * 3600e3);
-  const at = Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate(), h, m) - 5.5 * 3600e3;
+  const at = (day ? Date.UTC(Number(day[1]), Number(day[2]) - 1, Number(day[3]), h, m)
+    : Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate(), h, m)) - 5.5 * 3600e3;
   return at - Date.now() > 15 * 60e3 ? new Date(at).toISOString() : null;
 }
 

@@ -10,6 +10,13 @@
 # slot=noon (dispatched by the scheduler at 10:13 IST, retry 18:46 IST) is the daily "Dadi aur Chhotu" cartoon dialogue
 # Short (STORY.md section 6, characters/): edge-tts voices, story images, lip-sync on Kaggle (~10-15 GPU-min), else the
 # still two-shot with a speaker highlight. dry_run=true renders everything and keeps the video as an artifact only.
+# Festival "WhatsApp status" Shorts (job `status`, story/status/<date>.json, written in advance): after every evening-slot
+# run (10:43 IST dispatch, 18:46 IST retry) the video for TOMORROW's festival is animated on Kaggle, rendered, hosted on
+# the media Worker (download link in the description) and uploaded private with publishAt 06:00 IST on the festival day.
+# slot=status (+ status_date) runs only that job; with dry_run it renders and hosts but never uploads or logs. The
+# images and clips are cached per festival day, so a dry run's clips are reused by the real run.
+# Real temple photos: before rendering, scripts/real-photos.mjs fetches licence-safe Wikimedia Commons photos for the
+# spec's `temple` when footage/<temple>/ has none; the renderers show them on `real` scenes and credit them.
 name: Daily story video
 
 on:
@@ -19,13 +26,17 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning, evening, noon or long (empty = by time of day; long = only the long video; noon = an extra animated darshan Short, published straight away)
+        description: morning, evening, noon, long or status (empty = by time of day; long = only the long video; noon = the Dadi aur Chhotu Short; status = only tomorrow's festival status Short)
         required: false
         default: ''
       dry_run:
         description: Render only (no YouTube, no Instagram/Facebook, nothing logged); the video becomes the run's artifact
         type: boolean
         default: false
+      status_date:
+        description: status slot only - festival day YYYY-MM-DD (empty = tomorrow in IST)
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -33,7 +44,7 @@ permissions:
 # Evening runs have their own queue, so the long animated evening job can run beside the morning one; within a
 # slot, runs queue and the later one skips once the slot is in log.md. log.md and published.md merge as unions.
 concurrency:
-  group: ${{ inputs.slot == 'noon' && 'daily-story-noon' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
+  group: ${{ inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
   cancel-in-progress: false
 
 jobs:
@@ -42,6 +53,8 @@ jobs:
     outputs:
       # The long video job runs after every morning-slot run (and for slot=long); it skips once done.
       long: ${{ steps.date.outputs.long }}
+      # The festival status job runs after every evening-slot run (and for slot=status); it skips once scheduled.
+      status: ${{ steps.date.outputs.status }}
     timeout-minutes: 230
     env:
       FFMPEG_PATH: ffmpeg
@@ -64,6 +77,10 @@ jobs:
             echo "long=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Long video only"; exit 0
           fi
+          if [ "$slot" = status ]; then
+            echo "status=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Festival status video only"; exit 0
+          fi
           if [ -z "$slot" ]; then
             hm=$((10#$(TZ=Asia/Kolkata date +%H%M)))
             if [ $hm -ge 530 ] && [ $hm -lt 1200 ]; then slot=morning
@@ -76,6 +93,7 @@ jobs:
           echo "today=$today" >> "$GITHUB_OUTPUT"
           echo "slot=$slot" >> "$GITHUB_OUTPUT"
           if [ "$slot" = morning ]; then echo "long=true" >> "$GITHUB_OUTPUT"; fi
+          if [ "$slot" = evening ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
           if grep -q "^$today | $slot |" automation/log.md; then
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today $slot already published"
@@ -135,6 +153,13 @@ jobs:
           case "$slug" in "${{ steps.date.outputs.today }}-${{ steps.date.outputs.slot }}-"*) ;; *) echo "::error::Unexpected slug $slug"; exit 1;; esac
           grep -q "^${{ steps.date.outputs.today }} | ${{ steps.date.outputs.slot }} |" automation/log.md || { echo "::error::log.md line missing"; exit 1; }
           echo "SLUG=$slug" >> "$GITHUB_ENV"
+
+      # Real temple photos (Wikimedia Commons, CC0 / PD / CC BY only, exact temple only) for the spec's `temple`, fetched
+      # once when footage/<temple>/ has none (searched at most every 30 days); committed with the Record step.
+      - name: Real temple photos
+        if: steps.date.outputs.done != 'true'
+        continue-on-error: true
+        run: node scripts/real-photos.mjs --spec story/today/scenes.json | tee -a "$GITHUB_STEP_SUMMARY"
 
       # Every Short is animated: evening/noon up to 4 scenes, morning the (up to 4) scenes marked `animate`, become
       # real clips of their scene's length (Wan 2.2 TI2V-5B on the private Kaggle kernel sps-animate-<slot>, T4 x2), then
@@ -237,6 +262,11 @@ jobs:
           retention-days: 7
           compression-level: 0
 
+      - name: Festival links
+        if: steps.date.outputs.done != 'true'
+        continue-on-error: true
+        run: node scripts/festival-links.mjs story/today/scenes.json
+
       - name: YouTube
         id: yt
         continue-on-error: true
@@ -269,7 +299,7 @@ jobs:
           echo "- $SLUG | youtube: ${yt:-failed} | make: $(node -p "try{JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/make.json','utf8')).status}catch{'failed'}")$anim" >> automation/published.md
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add automation/log.md automation/calendar.md automation/published.md "story/published/$SLUG.json"
+          git add automation/log.md automation/calendar.md automation/published.md "story/published/$SLUG.json" footage
           git commit -qm "Story $SLUG"
           git pull -q --rebase && git push -q
 
@@ -436,6 +466,11 @@ jobs:
           case "$slug" in "${{ steps.date.outputs.today }}-long-"*) ;; *) echo "::error::Unexpected slug $slug"; exit 1;; esac
           echo "SLUG=$slug" >> "$GITHUB_ENV"
 
+      - name: Real temple photos
+        if: env.GO == '1'
+        continue-on-error: true
+        run: node scripts/real-photos.mjs --spec story/long/scenes.json | tee -a "$GITHUB_STEP_SUMMARY"
+
       # Chatterbox narration for the long video on the Kaggle GPU (kernel sps-tts-long, ~5 min for 5-6 min of speech),
       # only when the repo variable SHYAM_TTS is "chatterbox" (off: see the Render note in the story job).
       # Any failure, a busy Kaggle or under 3 GPU hours left: edge-tts makes the voice in the Render step instead.
@@ -516,7 +551,7 @@ jobs:
             fs.writeFileSync(process.env.RUNNER_TEMP+'/sum.md', out.sum); console.log(JSON.stringify(out));")
           echo "$line" | node -e "const o=JSON.parse(require('fs').readFileSync(0,'utf8'));require('fs').appendFileSync('automation/log.md',o.log+'\n');require('fs').appendFileSync('automation/published.md',o.pub+'\n')"
           cat "$RUNNER_TEMP/sum.md" >> "$GITHUB_STEP_SUMMARY"
-          git add automation "story/published/$SLUG.json" "story/published/$SLUG.meta.json"
+          git add automation "story/published/$SLUG.json" "story/published/$SLUG.meta.json" footage
           git commit -qm "Long $SLUG"
           git pull -q --rebase && git push -q
 
@@ -528,3 +563,204 @@ jobs:
           else
             echo "::error::YouTube upload failed: $(cat "$RUNNER_TEMP/yt.json" 2>/dev/null)"; exit 1
           fi
+
+  # Festival "WhatsApp status" Short (story/status/<date>.json; checked by scripts/validate.mjs): 15-30 s vertical darshan
+  # with a big Hindi blessing, a well-known mantra where there is one, the logo and the end line "Apne parivaar ko
+  # bhejein 🙏 | Subscribe: Shyam Premi SN". No 06:00 IST trigger exists (the scheduler's crons are fixed), so it is made
+  # the evening BEFORE the festival, after the evening slot's run, and YouTube publishes it at 06:00 IST (publishAt),
+  # when people set their morning status. The mp4 is also hosted on the media Worker (7 days) and its direct link goes
+  # into the description so viewers can download it and set it as their status.
+  status:
+    needs: story
+    if: always() && needs.story.outputs.status == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    env:
+      FFMPEG_PATH: ffmpeg
+      PYTHON: python
+      KOKORO_DIR: ${{ github.workspace }}/.kokoro
+      SUB_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      W: story/status/work
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Festival day
+        id: d
+        run: |
+          git fetch -q origin main && git checkout -q origin/main -- automation/log.md
+          day="${{ inputs.status_date }}"
+          [ -n "$day" ] || day=$(TZ=Asia/Kolkata date -d tomorrow +%F)
+          f="story/status/$day.json"
+          [ -f "$f" ] || { echo "::notice::No festival status video planned for $day"; exit 0; }
+          if grep -q "^$day | status |" automation/log.md && [ "${{ inputs.dry_run }}" != true ]; then
+            echo "::notice::The $day status video is already scheduled"; exit 0
+          fi
+          echo "day=$day" >> "$GITHUB_OUTPUT"
+          echo "GO=1" >> "$GITHUB_ENV"
+          echo "SLUG=$(node -p "require('./$f').slug")" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-node@v4
+        if: env.GO == '1'
+        with:
+          node-version: 22
+
+      - name: Restore the day's images and clips
+        if: env.GO == '1'
+        uses: actions/cache/restore@v4
+        with:
+          path: story/status/work
+          key: status-${{ steps.d.outputs.day }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: status-${{ steps.d.outputs.day }}-
+
+      # The checked-in spec is the source of truth; accepted clips from an earlier run (e.g. the dry run) are kept when
+      # their scene's prompt is unchanged.
+      - name: Spec
+        if: env.GO == '1'
+        run: |
+          mkdir -p "$W"
+          node -e '
+            const fs = require("fs"), [src, dst] = process.argv.slice(1);
+            const spec = JSON.parse(fs.readFileSync(src, "utf8"));
+            let old = null; try { old = JSON.parse(fs.readFileSync(dst, "utf8")); } catch {}
+            let kept = 0;
+            if (old && old.slug === spec.slug) spec.scenes.forEach((sc, i) => {
+              const o = old.scenes[i];
+              if (o && o.video && o.prompt === sc.prompt && fs.existsSync(require("path").join(require("path").dirname(dst), o.video))) { sc.video = o.video; kept++; }
+            });
+            fs.writeFileSync(dst, JSON.stringify(spec, null, 2) + "\n");
+            console.log(JSON.stringify({ slug: spec.slug, clips_kept: kept }));
+            if (kept) fs.appendFileSync(process.env.GITHUB_ENV, "HAVE_CLIPS=1\n");' "story/status/${{ steps.d.outputs.day }}.json" "$W/scenes.json"
+          node scripts/validate.mjs "$W/scenes.json"
+
+      - uses: actions/setup-python@v5
+        if: env.GO == '1'
+        with:
+          python-version: '3.12'
+
+      - name: Tools
+        if: env.GO == '1'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core fonts-noto-color-emoji > /dev/null
+          pip install -q kokoro-onnx==0.6.1 soundfile==0.14.0 edge-tts
+          echo "CHROME=$(command -v google-chrome || command -v chromium || command -v chromium-browser)" >> "$GITHUB_ENV"
+
+      - name: Cache Kokoro model
+        if: env.GO == '1'
+        uses: actions/cache@v4
+        with:
+          path: .kokoro
+          key: kokoro-v1.0
+
+      - name: Download Kokoro model
+        if: env.GO == '1'
+        run: |
+          mkdir -p .kokoro
+          base=https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0
+          [ -f .kokoro/kokoro-v1.0.onnx ] || curl -sSL -o .kokoro/kokoro-v1.0.onnx $base/kokoro-v1.0.onnx
+          [ -f .kokoro/voices-v1.0.bin ] || curl -sSL -o .kokoro/voices-v1.0.bin $base/voices-v1.0.bin
+
+      # Same Kaggle path as the evening Short (Wan 2.2 TI2V-5B, private kernel sps-animate-status, T4 x2), only for the
+      # scenes marked `animate` and only when no accepted clips are cached yet. Any failure: FLUX still + zoompan.
+      - name: Animate (Kaggle GPU)
+        if: env.GO == '1' && env.HAVE_CLIPS != '1'
+        continue-on-error: true
+        timeout-minutes: 150
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: status
+        run: |
+          fail() { echo "::warning::Animation skipped, using zoompan: $1"; echo "- Animation skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
+          pip install -q 'kaggle>=2.2' six || fail "kaggle CLI install failed"
+          node animate/kaggle.mjs quota --min 3 > "$RUNNER_TEMP/quota.json" || fail "under 3 Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
+          node story/render-story.mjs "$W/scenes.json" --prepare || fail "FLUX images / narration failed"
+          plan="$W/build/$SLUG/plan.json"
+          node animate/kaggle.mjs prepare "$W/scenes.json" --plan "$plan" --max 3 || fail "dataset upload failed"
+          node animate/kaggle.mjs lock --minutes 60 || fail "another sps kernel is still running after 60 min"
+          node animate/kaggle.mjs push --queue-minutes 20 --retry-minutes 30 || fail "kernel push failed (Kaggle busy?)"
+          start=$(date +%s)
+          node animate/kaggle.mjs wait --minutes 100 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json"); using any clips it finished"
+          grep -q QUEUED_TOO_LONG "$RUNNER_TEMP/wait.json" && fail "the Kaggle GPU session was still queued after 20 min"
+          node animate/kaggle.mjs fetch --to "$W/clips" > "$RUNNER_TEMP/fetch.json" || fail "could not download the clips"
+          echo "- Kaggle: $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min, quota before: $(cat "$RUNNER_TEMP/quota.json")" >> "$GITHUB_STEP_SUMMARY"
+          node animate/check-clips.mjs "$W/scenes.json" --clips "$W/clips" --plan "$plan" --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Render
+        id: render
+        if: env.GO == '1'
+        run: |
+          node story/render-story.mjs "$W/scenes.json" | tee "$RUNNER_TEMP/render.txt"
+          ffprobe -v error -show_entries format=duration:stream=width,height -of compact "$W/out/$SLUG.mp4" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Save the day's images and clips
+        if: always() && env.GO == '1'
+        uses: actions/cache/save@v4
+        with:
+          path: story/status/work
+          key: status-${{ steps.d.outputs.day }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Keep the video as an artifact (7 days)
+        if: steps.render.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: status-${{ env.SLUG }}
+          path: |
+            story/status/work/out/
+            story/status/work/scenes.json
+          retention-days: 7
+          compression-level: 0
+
+      # Download link: the mp4 on the media Worker (KV, 7 days). Then the festival card link (only once that page is live).
+      - name: Host the download and add links
+        id: host
+        if: steps.render.outcome == 'success'
+        run: |
+          node scripts/publish.mjs --host-only --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" | tee "$RUNNER_TEMP/host.json"
+          url=$(node -p "JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/host.json','utf8')).video_url||''")
+          [ -n "$url" ] || { echo "::error::media upload failed"; exit 1; }
+          node -e '
+            const fs = require("fs"), [f, url] = process.argv.slice(1), s = JSON.parse(fs.readFileSync(f, "utf8"));
+            const line = `Status video download karein (7 din tak, free): ${url}`;
+            for (const k of ["youtube_description", "instagram_caption", "facebook_caption"])
+              if (s[k] && !s[k].includes(url)) s[k] = s[k].replace(/\n\n/, `\n\n${line}\n\n`);
+            fs.writeFileSync(f, JSON.stringify(s, null, 2) + "\n");' "$W/scenes.json" "$url"
+          node scripts/festival-links.mjs "$W/scenes.json"
+          echo "- Download link: $url" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: YouTube (public at 06:00 IST on the festival day)
+        id: yt
+        if: steps.host.outcome == 'success' && !inputs.dry_run
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          at="${{ steps.d.outputs.day }}T$(node -p "require('./$W/scenes.json').publish_at || '06:00'")"
+          node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --publish-at "$at" | tee "$RUNNER_TEMP/yt.json"
+          grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"
+
+      - name: Dry run summary
+        if: inputs.dry_run && steps.render.outcome == 'success'
+        run: |
+          at="${{ steps.d.outputs.day }}T$(node -p "require('./$W/scenes.json').publish_at || '06:00'")"
+          node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --publish-at "$at" --dry-run > "$RUNNER_TEMP/yt-dry.json"
+          node -e 'const j=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log(`- Dry run: would upload "${j.title}" with publishAt ${j.publishAt}\n\n\`\`\`\n${j.description}\n\`\`\``)' "$RUNNER_TEMP/yt-dry.json" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Record
+        if: steps.yt.outcome == 'success'
+        run: |
+          mkdir -p story/published
+          cp "$W/scenes.json" "story/published/$SLUG.json"
+          yt=$(node -p "const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')).youtube; y.url+' (public at '+y.publishAt+')'")
+          fest=$(node -p "require('./$W/scenes.json').festival")
+          echo "${{ steps.d.outputs.day }} | status | $SLUG | $fest | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST" >> automation/log.md
+          echo "- $SLUG | youtube: $yt | status video, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/log.md automation/published.md "story/published/$SLUG.json"
+          git commit -qm "Status $SLUG"
+          git pull -q --rebase && git push -q

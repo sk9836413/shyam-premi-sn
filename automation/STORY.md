@@ -27,12 +27,40 @@ Work out today's date in India (IST) and pick the subject in this order:
 
 **Growth data (3 Nov 2026):** the first temple Short (Salasar Balaji Dham) got 123 views and 19 likes overnight, the channel's best in weeks, and short darshan clips beat long kathas. Favour temple and darshan Shorts, and use **festival weeks** (Dhanteras, Diwali, Govardhan, Bhai Dooj, Dev Uthani Ekadashi = Khatu Shyam Janmotsav) with the festival name first in the title, because search volume peaks then. The owner's goal is mass subscribers: end every Short with a clear subscribe ask tied to the next video ("kal [temple/katha] dekhne ke liye subscribe karein").
 
+**Khatu Shyam Baba Janmotsav countdown (15-19 Nov 2026).** The Janmotsav is on Dev Uthani Ekadashi, **20 Nov 2026**
+(calendar.md), the channel's biggest day. On the 5 days before it the `evening` darshan Short and the `noon` Dadi-Chhotu
+Short count down to it (this overrides the temple rotation and, for these two slots, the Chhath days; the `morning` slot
+keeps the festival). Put the countdown in `kicker` (`Janmotsav: 5 din`, ... `Janmotsav: kal`) and end with "Janmotsav
+tak roz dekhiye". One angle per day, each different from what log.md already has (tell a new part, not a repeat):
+- 15 Nov: who Barbarik was (Ghatotkach and Maurvi's son, the three arrows boon), as Mahabharat lok katha.
+- 16 Nov: Barbarik's vow to side with the losing side and the sheesh daan to Shri Krishna (new details, not the 27 Oct / 3 Nov lines).
+- 17 Nov: how the sheesh was found at Khatu and the first temple (tradition; give years only with two sources).
+- 18 Nov: Khatu Shyam ji temple history and architecture (the rebuilding, the town, Shyam Kund), from the trust,
+  Rajasthan Tourism or the Sikar district site plus one more source.
+- 19 Nov: why the Janmotsav is on Dev Uthani Ekadashi, and how it is celebrated (shringar, nishan, kirtan): sourced, no
+  crowd numbers or timings. Dadi ends with "kal Baba ka Janmotsav hai". 20 Nov: morning and long video on the
+  Janmotsav and Dev Uthani Ekadashi; the status Short (story/status/2026-11-20.json) goes out at 06:00 IST.
+Accuracy rules (section 2 and mandir-series.md) apply in full: legends labelled as tradition, every fact with two sources.
+
 Do not repeat a story already listed in `automation/log.md` within the last 60 days. Before choosing, search log.md (Grep) for the story's key words, e.g. "sheesh", "barbarik", "sanjeevani", in both slugs and titles: on 3 Nov 2026 "Barbarik ka Sheesh Daan" repeated a 27 Oct Short because only the exact slug was checked.
 
 **Shorts algorithm (why videos are short now).** YouTube pushes a Short to more people only when viewers
 watch most of it and replay it. Our 65-90 s kathas got 8-35 views, while the channel's own 15-30 s clips
 got 100+. So: **morning kathas 50-60 s, evening darshan Shorts 25-35 s** (owner, 3 Nov 2026: "shorts bahut chote aa rhe h time badhao"), a hook in the first 2 seconds,
 one idea per scene, no slow build-up, and an ending that flows back into the start.
+
+**Real temple photos.** When a Short is about one temple, set `"temple"` to its slug from `footage/temples.json`
+(e.g. `karni-mata`, `somnath`, `moti-dungri-ganesh`; aliases work) and mark the scenes that show the temple's exterior or
+interior with `"real": true`. If licence-safe photos exist in `footage/<temple>/` (Wikimedia Commons, CC0 / PD / CC BY,
+fetched automatically by scripts/real-photos.mjs), those scenes show the real photo with a slow camera move and the
+renderer adds the credit lines to the description; otherwise the AI image is used. Never mark a legend, dream or
+katha scene as real, and never call an AI image real. A `real` scene with a photo is not animated, so mark `animate` on
+other scenes (darshan, katha). For a temple not in temples.json, still set `temple`; the photo search is strict and
+usually finds nothing, which is fine.
+
+**Festival status Shorts (no action needed).** For Dhanteras to Chhath and the Khatu Shyam Janmotsav, a separate 15-30 s
+"WhatsApp status" Short is pre-written in `story/status/<date>.json` and published at 06:00 IST by the workflow's
+`status` job. It does not use a slot or a log line of yours; do not duplicate it.
 
 **Slot.** The prompt tells you the slot. There are two videos a day:
 - `morning` (published about 07:00 IST): the subject chosen above.
@@ -191,6 +219,11 @@ right-to-left). Use each image 1-4 times; never the same img + focus + motion tw
 image prompts as wide scenes with the main subject in the middle band (the top and bottom get cut),
 traditional iconography, and never any text, signs or letters (the `style` must include "no text").
 
+**Real temple photos (Mandir Itihas parts).** Set `"temple"` (slug from `footage/temples.json`) and add `"real": true` to
+the `images` entries that show the temple building or its interior (2-5 of them). When licence-safe photos exist in
+`footage/<temple>/`, those images become the real photos (no FLUX cost) and their credits are added to the description;
+keep the "Chitra AI dwara banaye gaye hain (sanketik)" line for the rest. Legend scenes stay AI images.
+
 **Thumbnail.** `thumbnail`: `{"image": <index>, "focus": "center", "text": "<Roman, max 30 characters>"}`:
 the most striking image and a short curiosity line that is true to the story (no clickbait lies).
 
@@ -287,8 +320,10 @@ the disclaimer in the description. Respectful tone, no fear or money promises (s
 **Story images (`visuals`).** 3-6 entries `{"prompt": "...", "real": true|false}`, each shown for one or more lines.
 FLUX-schnell, square, so describe one clear scene with the subject in the middle band (the top and bottom are cut),
 traditional iconography, never text or letters. `real: true` marks images of the temple itself (building, murti,
-darshan): when owner-supplied, licence-checked real footage exists in `footage/<temple>/`, the renderer shows it there
-instead and credits it in the description; otherwise the AI image is shown, labelled "AI chitra (sanketik)". Legend
+darshan): when licence-checked real footage or photos exist in `footage/<temple>/` (owner clips, or Wikimedia Commons
+photos fetched automatically: set `temple` to the slug in `footage/temples.json`), the renderer shows them there instead
+(photos with a slow Ken Burns move) and credits them in the description; otherwise the AI image is shown, labelled
+"AI chitra (sanketik)". Legend
 scenes (a farmer's plough, a dream, a cart) are `real: false`.
 
 ```json

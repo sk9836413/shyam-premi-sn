@@ -1,0 +1,21 @@
+{
+  "temple": "omkareshwar",
+  "name": "Omkareshwar Jyotirlinga",
+  "searched": "2026-11-05",
+  "candidates": 54,
+  "usable": 9,
+  "saved": 5,
+  "rejected": {
+    "not a JPEG photo": 1,
+    "another place with a similar name": 6,
+    "licence not allowed (SA/NC/ND/GFDL...)": 22,
+    "under 1000 px": 16
+  },
+  "files": [
+    "commons-omkareshwar-temple-is-a-hindu-temple-8b4811.jpg (CC0, YAKSH75)",
+    "commons-hindu-mandir-f01be4.jpg (CC BY 4.0, Sannjuu)",
+    "commons-mandire-view-760707.jpg (CC BY 4.0, Sannjuu)",
+    "commons-omkareshwar-shri-omkar-mandhata-98405951-fd0c83.jpg (CC BY 2.0, Arian Zwegers from Brussels, Belgium)",
+    "commons-omkareswar-jyotirlinga-38c615.jpg (CC BY 4.0, Deveshc92)"
+  ]
+}
