@@ -11,7 +11,7 @@
 # Short (STORY.md section 6, characters/): edge-tts voices, story images, lip-sync on Kaggle (~10-15 GPU-min), else the
 # still two-shot with a speaker highlight. dry_run=true renders everything and keeps the video as an artifact only.
 # Festival "WhatsApp status" Shorts (job `status`, story/status/<date>.json, written in advance): after every evening-slot
-# run (10:43 IST dispatch, 18:46 IST retry) the video for TOMORROW's festival is animated on Kaggle, rendered, hosted on
+# run from 15:00 IST (the 18:46 IST retry dispatch, the evening schedule) the video for TOMORROW's festival is animated on Kaggle, rendered, hosted on
 # the media Worker (download link in the description) and uploaded private with publishAt 06:00 IST on the festival day.
 # slot=status (+ status_date) runs only that job; with dry_run it renders and hosts but never uploads or logs. The
 # images and clips are cached per festival day, so a dry run's clips are reused by the real run.
@@ -93,7 +93,10 @@ jobs:
           echo "today=$today" >> "$GITHUB_OUTPUT"
           echo "slot=$slot" >> "$GITHUB_OUTPUT"
           if [ "$slot" = morning ]; then echo "long=true" >> "$GITHUB_OUTPUT"; fi
-          if [ "$slot" = evening ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
+          # Tomorrow's festival status Short: only on evening runs from 15:00 IST (the 18:46 IST retry dispatch and the
+          # evening schedule), so it never competes with the evening Short for the Kaggle GPU (10:43 IST dispatch) and
+          # can be dry-run during the day first.
+          if [ "$slot" = evening ] && [ $((10#$(TZ=Asia/Kolkata date +%H))) -ge 15 ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
           if grep -q "^$today | $slot |" automation/log.md; then
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today $slot already published"
