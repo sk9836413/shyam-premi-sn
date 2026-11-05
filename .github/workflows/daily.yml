@@ -17,6 +17,16 @@
 # images and clips are cached per festival day, so a dry run's clips are reused by the real run.
 # Real temple photos: before rendering, scripts/real-photos.mjs fetches licence-safe Wikimedia Commons photos for the
 # spec's `temple` when footage/<temple>/ has none; the renderers show them on `real` scenes and credit them.
+# Facebook + Instagram (scripts/meta.mjs, Graph API, never-expiring Page token in the META_PAGE_ID / META_PAGE_TOKEN / IG_USER_ID
+# secrets; without them, or when Meta rejects the token, scripts/publish.mjs falls back to Make as before). Facebook Reels
+# stop at 90 s, so a longer Short (Dadi aur Chhotu) is a normal Page video; Instagram Reels via the API take up to 15 min.
+# Timing follows YouTube: morning and noon Shorts go out at once; the evening Short (19:00 IST) and the festival status
+# Short (06:00 IST) are SCHEDULED on Facebook, and because Instagram has no scheduled publishing they are queued
+# ("ig: pending <time>" in automation/published.md) and the `instagram` job, which runs on every trigger (no new cron),
+# publishes them within 20 minutes of that time: the 18:46 IST evening dispatch waits for 19:00, the status Short goes
+# out with the first run after 06:00 IST (the 05:47 IST schedule poll or the 09:13 IST morning dispatch), and a slot
+# missed by over 6 hours is skipped. The long katha video is a normal Facebook Page video scheduled for 12:30 IST
+# (in-stream ads later); it is not posted to Instagram.
 name: Daily story video
 
 on:
@@ -302,7 +312,7 @@ jobs:
         # The evening Short is made hours early, so YouTube publishes it at 19:00 IST (straight away if later).
         run: node scripts/youtube.mjs upload --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || '' }} | tee "$RUNNER_TEMP/yt.json"
 
-      - name: Instagram and Facebook (Make)
+      - name: Instagram and Facebook (Graph API, Make fallback)
         id: make
         continue-on-error: true
         if: steps.date.outputs.done != 'true' && !inputs.dry_run
@@ -310,7 +320,11 @@ jobs:
           MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
           MAKE_API_KEY: ${{ secrets.MAKE_API_KEY }}
-        run: node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json | tee "$RUNNER_TEMP/make.json"
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        # Evening: Facebook scheduled for 19:00 IST like YouTube, Instagram queued for the `instagram` job.
+        run: node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || '' }} | tee "$RUNNER_TEMP/make.json"
 
       - name: Record
         # Only once something was published, so a failed render is retried by the next slot run.
@@ -320,7 +334,7 @@ jobs:
           cp story/today/scenes.json "story/published/$SLUG.json"
           yt=$(node -p "try{const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')).youtube;y.url+(y.publishAt?' (public at '+y.publishAt+')':'')}catch{''}")
           anim=$(node characters/summary.mjs --record)
-          echo "- $SLUG | youtube: ${yt:-failed} | make: $(node -p "try{JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/make.json','utf8')).status}catch{'failed'}")$anim" >> automation/published.md
+          echo "- $SLUG | youtube: ${yt:-failed} | social: $(node -p "try{const j=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/make.json','utf8'));j.summary||j.status}catch{'failed'}")$anim" >> automation/published.md
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/log.md automation/calendar.md automation/published.md "story/published/$SLUG.json" footage
@@ -554,6 +568,21 @@ jobs:
           node scripts/youtube.mjs upload --long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json \
             --meta "story/long/out/$SLUG.json" --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/yt.json"
 
+      # The same video as a normal Facebook Page video (not a Reel), scheduled for 12:30 IST like YouTube; its line in
+      # published.md is committed by Record. Never fails the job; skipped without the META_* secrets.
+      - name: Facebook Page video (Graph API)
+        if: steps.render.outcome == 'success'
+        continue-on-error: true
+        env:
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+        run: |
+          [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; no Facebook copy"; exit 0; }
+          node scripts/meta.mjs long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json --meta "story/long/out/$SLUG.json" \
+            --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/fb.json" || true
+          echo "- $SLUG | facebook: $(node -p "try{const j=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/fb.json','utf8'));j.facebook?j.facebook.url+(j.facebook.scheduled?' (scheduled '+j.facebook.scheduled+')':''):'error '+(j.error||j.status)}catch{'failed'}")" >> automation/published.md
+          grep -q '"status":"ok"' "$RUNNER_TEMP/fb.json" || echo "::warning::Facebook Page video failed: $(head -c 300 "$RUNNER_TEMP/fb.json")"
+
       - name: Park the video for a retry
         if: steps.yt.outcome == 'failure'
         continue-on-error: true
@@ -770,6 +799,21 @@ jobs:
           node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --publish-at "$at" | tee "$RUNNER_TEMP/yt.json"
           grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"
 
+      # Facebook Reel scheduled for the same time; Instagram queued ("ig: pending") for the `instagram` job.
+      - name: Facebook and Instagram (Graph API)
+        id: meta
+        if: steps.yt.outcome == 'success'
+        continue-on-error: true
+        env:
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
+          at="${{ steps.d.outputs.day }}T$(node -p "require('./$W/scenes.json').publish_at || '06:00'")"
+          node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" \
+            --video-url "$MEDIA_URL/m/$SLUG.mp4" --publish-at "$at" | tee "$RUNNER_TEMP/meta.json" || true
+
       - name: Dry run summary
         if: inputs.dry_run && steps.render.outcome == 'success'
         run: |
@@ -785,9 +829,46 @@ jobs:
           yt=$(node -p "const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')).youtube; y.url+' (public at '+y.publishAt+')'")
           fest=$(node -p "require('./$W/scenes.json').festival")
           echo "${{ steps.d.outputs.day }} | status | $SLUG | $fest | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST" >> automation/log.md
-          echo "- $SLUG | youtube: $yt | status video, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST" >> automation/published.md
+          social=$(node -p "try{' | social: '+JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/meta.json','utf8')).summary}catch{''}")
+          echo "- $SLUG | youtube: $yt | status video, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/log.md automation/published.md "story/published/$SLUG.json"
           git commit -qm "Status $SLUG"
           git pull -q --rebase && git push -q
+
+  # Instagram has no scheduled publishing: queued Reels ("ig: pending <time>" in automation/published.md, written for the
+  # evening and festival status Shorts) are published here within 20 minutes of their time (see the header). Runs on every
+  # trigger beside the other jobs, takes seconds when nothing is due, and never fails the workflow.
+  instagram:
+    if: ${{ !inputs.dry_run }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    concurrency:
+      group: shyam-instagram-queue
+      cancel-in-progress: false
+    env:
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+      META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Publish queued Instagram Reels
+        continue-on-error: true
+        run: |
+          [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set"; exit 0; }
+          node scripts/meta.mjs flush | tee "$RUNNER_TEMP/flush.json" || echo "::warning::An Instagram Reel failed; see the result (retried once on the next run)."
+          git diff --quiet -- automation/published.md && exit 0
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/published.md
+          git commit -qm "Instagram queue"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
