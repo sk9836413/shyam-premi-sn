@@ -1,0 +1,72 @@
+{
+  "slug": "2026-11-05-morning-vishnu-gajendra-moksha",
+  "title": "Gajendra Moksha ki Katha",
+  "kicker": "Guruvar · Vishnu ji",
+  "playlist": "Vishnu ji aur Krishna ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Hathi ne kise pukara?",
+  "scenes": [
+    {
+      "prompt": "A mighty elephant standing in a calm lotus lake near a green mountain, a crocodile's snout rising from the water gripping the elephant's foot, dramatic but gentle, golden morning light",
+      "tts": "तालाब में मगरमच्छ ने हाथी गजेंद्र का पैर जकड़ लिया!",
+      "sub": "Talaab mein magarmachh ne hathi Gajendra ka pair jakad liya!",
+      "motion": "in",
+      "animate": "the lake water ripples softly and the camera slowly pushes in",
+      "deity": false,
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A herd of elephants led by a majestic elephant coming down from a lush green mountain to drink at a large lotus-filled lake, warm sunrise light, peaceful forest",
+      "tts": "त्रिकूट पर्वत का गजेंद्र अपने झुंड के साथ प्यास बुझाने सरोवर आया था।",
+      "sub": "Trikoot parvat ka Gajendra apne jhund ke saath pyaas bujhane sarovar aaya tha.",
+      "motion": "pan"
+    },
+    {
+      "prompt": "The great elephant straining with all his strength in shallow lake water, pulling against a crocodile, other elephants watching helplessly from the shore, sad and tense mood, soft light",
+      "tts": "बहुत ज़ोर लगाया, पर पकड़ ढीली न हुई। साथी भी कुछ न कर सके।",
+      "sub": "Bahut zor lagaya, par pakad dheeli na hui. Saathi bhi kuch na kar sake.",
+      "motion": "out"
+    },
+    {
+      "prompt": "The tired elephant raising a pink lotus flower high in his trunk towards the sky in prayer, standing in the lake at dusk, glowing golden sky, devotional emotion",
+      "tts": "तब गजेंद्र ने सूँड़ में कमल उठाकर सच्चे मन से श्री हरि को पुकारा।",
+      "sub": "Tab Gajendra ne soond mein kamal uthakar sachche man se Shri Hari ko pukara.",
+      "motion": "in",
+      "animate": "the lotus petals sway slightly and the golden sky glows softly while the camera slowly pushes in",
+      "deity": false,
+      "video": "clips/3.mp4"
+    },
+    {
+      "prompt": "Lord Vishnu with blue skin, four arms holding conch, discus, mace and lotus, yellow dhoti and golden crown, arriving in the sky riding Garuda, divine golden light, serene face",
+      "tts": "पुकार सुनते ही भगवान विष्णु गरुड़ पर सवार होकर पहुँच गए।",
+      "sub": "Pukaar sunte hi Bhagwan Vishnu Garud par sawar hokar pahunch gaye.",
+      "motion": "in",
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few petals drift in the foreground",
+      "deity": true
+    },
+    {
+      "prompt": "Lord Vishnu's glowing golden discus Sudarshan Chakra spinning in the air over the lake, the elephant free and safe on the shore, Vishnu's gentle blessing hand, warm divine light, no violence shown",
+      "tts": "प्रभु ने सुदर्शन चक्र से गजेंद्र को छुड़ाया और उसे अपनी शरण दी।",
+      "sub": "Prabhu ne Sudarshan Chakra se Gajendra ko chhudaya aur use apni sharan di.",
+      "motion": "pan"
+    },
+    {
+      "prompt": "The grateful elephant bowing his head at Lord Vishnu's lotus feet beside a lotus lake, Vishnu smiling with a blessing hand raised, glowing sunrise sky, flower petals in the air",
+      "tts": "सच्चे मन की पुकार प्रभु तक पहुँचती है। यही गजेंद्र मोक्ष की सीख है।",
+      "sub": "Sachche man ki pukaar Prabhu tak pahunchti hai. Yahi Gajendra Moksha ki seekh hai.",
+      "motion": "out"
+    },
+    {
+      "endcard": true,
+      "tts": "ॐ नमो भगवते वासुदेवाय! कल धनतेरस की कथा देखने के लिए लाइक, शेयर और सब्सक्राइब करें।",
+      "sub": "Om Namo Bhagavate Vasudevaya! Kal Dhanteras ki katha dekhne ke liye Like, Share aur Subscribe karein."
+    }
+  ],
+  "youtube_title": "Gajendra Moksha ki Katha | गजेंद्र मोक्ष की कथा #Shorts",
+  "youtube_description": "Bhagwan Vishnu aur hathi Gajendra ki Gajendra Moksha katha (Bhagavat Puran ke anusar): sachche man se ki gayi pukaar.\nगजेंद्र मोक्ष की कथा, भगवान विष्णु और हाथी गजेंद्र की कहानी।\nॐ नमो भगवते वासुदेवाय\nJai Shree Shyam 🙏\nKal Dhanteras ki katha: video pasand aaye to Like, Share aur Subscribe karein.\n#Vishnu #GajendraMoksha #JaiShreeShyam #Guruvar",
+  "youtube_tags": "Gajendra Moksha, गजेंद्र मोक्ष, Vishnu ji ki katha, विष्णु भगवान की कथा, Bhagavat Puran, भागवत पुराण, Hathi aur magarmachh ki katha, हाथी और मगरमच्छ की कहानी, Guruvar Vishnu, Shri Hari, श्री हरि, Om Namo Bhagavate Vasudevaya, Jai Shree Shyam",
+  "instagram_caption": "Hathi ne kise pukara? 🐘🙏\nGajendra ko magarmachh ne jakad liya, tab usne sachche man se Shri Hari ko pukara aur Bhagwan Vishnu Garud par aaye.\nSeekh: sachche man ki pukaar Prabhu tak pahunchti hai.\nOm Namo Bhagavate Vasudevaya\nKal Dhanteras ki katha: Like, Share aur Follow karein.\n#Vishnu #GajendraMoksha #ShriHari #Guruvar #JaiShreeShyam #BhagavatPuran #Bhakti #Hindu",
+  "facebook_caption": "Gajendra Moksha ki katha: sachche man se ki gayi pukaar Prabhu tak pahunchti hai. Om Namo Bhagavate Vasudevaya 🙏\nKal Dhanteras ki katha: Like, Share aur Follow karein.\n#GajendraMoksha #Vishnu #JaiShreeShyam"
+}
