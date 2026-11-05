@@ -188,6 +188,21 @@ jobs:
           grep -q "^${{ steps.date.outputs.today }} | ${{ steps.date.outputs.slot }} |" automation/log.md || { echo "::error::log.md line missing"; exit 1; }
           echo "SLUG=$slug" >> "$GITHUB_ENV"
 
+      # Daily Veo kit (scripts/veo-kit.mjs): YouTube's own AI video tool (Veo in the YouTube app) has no API, so a person
+      # makes 1-2 hero Shorts by hand. 2 ideas (festival, then today's trends file, then Khatu Shyam ji; never one of today's
+      # slots, so it runs after the morning story is in log.md, even if that failed), 3 FLUX / licence-safe real photos
+      # each (6 images), Veo prompts, titles and captions -> /kit/<date>.html on the media Worker, an email (RESEND_API_KEY),
+      # a CRM task (INGEST_TOKEN) and this run's summary. Once a day (skips if the kit exists); never blocks the post.
+      - name: Veo kit
+        if: ${{ !cancelled() && steps.date.outputs.done != 'true' && steps.date.outputs.slot == 'morning' }}
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+        run: node scripts/veo-kit.mjs --date "${{ steps.date.outputs.today }}"
+
       # Real temple photos (Wikimedia Commons, CC0 / PD / CC BY only, exact temple only) for the spec's `temple`, fetched
       # once when footage/<temple>/ has none (searched at most every 30 days); committed with the Record step.
       - name: Real temple photos
