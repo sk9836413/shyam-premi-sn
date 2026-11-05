@@ -14,13 +14,29 @@ Work out today's date in India (IST) and pick the subject in this order:
    Amavasya, Navratri day, Diwali days, Janmashtami, Shivratri, Holi, Hanuman Jayanti, Khatu Shyam
    Baba's Janmotsav on Dev Uthani Ekadashi, Phalgun Mela at Khatu, and so on). Use two independent
    sources (for example a Panchang site and a news site) and add what you confirmed to
-   `automation/calendar.md`.
-2. **Otherwise the weekday deity:** Monday Shiv ji, Tuesday Hanuman ji, Wednesday Ganesh ji,
+   `automation/calendar.md`. Festival and calendar rules (this item and the Janmotsav countdown below) always come first.
+2. **Then what people search right now: today's trend research.** `automation/trends/<today>.md` is made every
+   morning by `scripts/trend-signals.mjs` from YouTube autocomplete (Roman and Devanagari), Google Trends India and our
+   own channel numbers (if today's file is missing, use the newest one in that folder). Read its first 100 lines: the
+   **Recommended topics** list is ranked, and each item names a format, the exact search phrase in Roman and
+   Devanagari, and the evidence. Take the highest-ranked item whose format fits this slot (`morning katha` = morning,
+   `evening darshan` = evening, `noon Dadi-Chhotu` = noon, `long part` = long) and that passes every rule in this file.
+   On a festival day the festival stays the subject: use the file to pick its angle and search phrase.
+   - **Title:** use the item's search phrase naturally: in `youtube_title` the Roman phrase first, ` | `, then the
+     Devanagari phrase (e.g. `Dhanteras ki Katha | धनतेरस की कथा #Shorts`; write chat spellings out, "h" as "hai"), and
+     put both forms in `youtube_tags`. `title` and `hook` may echo it too.
+   - The **accuracy rules (section 2, mandir-series.md), the sati-temple rules and the no-repeat rule below stay
+     absolute**: a trend never overrides them. An item marked "already a <slot> video on it" is used only with a clearly
+     new angle; otherwise take the next item.
+   - **Never chase** a trend that is off-topic (film or bhajan songs, aarti or chalisa singing, rangoli, ringtones,
+     cricket, films), political, communal or controversial, or that would need a claim you cannot source twice (muhurat
+     timings, crowd numbers, miracles or benefits, dates not in calendar.md). Skip it and take the next item.
+3. **Then the weekday deity:** Monday Shiv ji, Tuesday Hanuman ji, Wednesday Ganesh ji,
    Thursday Vishnu ji / Sai Baba, Friday Maa Lakshmi / Maa Santoshi / Maa Durga, Saturday Shani dev /
    Hanuman ji, Sunday Surya dev. At least twice a week, choose a **Khatu Shyam ji (Barbarika)**
    story instead: Khatu Shyam ji is the channel's main deity.
 
-3. **Famous temples (Mandir series).** On 4 days a week, when there is no festival, make the `evening`
+4. **Famous temples (Mandir series).** On 4 days a week, when there is no festival, make the `evening`
    darshan Short about a temple from `automation/mandir-series.md` instead of Khatu Shyam ji: its name,
    place and one well-sourced fact, following that file's accuracy and **sati-temple rules**. People
    search for these temples by name, so put the temple name first in the title, in Roman and Devanagari.
@@ -179,7 +195,8 @@ Only when the prompt says the slot is `long`. Once a day, after the morning Shor
 at 12:30 IST. Sections 3-4 do not apply to it; everything else below does.
 
 **Subject.** Same order as section 1: a festival or vrat today or in the next 3 days (tell the story
-behind it, e.g. why Dhanteras is celebrated), otherwise the weekday deity, and at least twice a week a
+behind it, e.g. why Dhanteras is celebrated), then a `long part` item from today's trend research (section 1, item 2;
+same title rule: Roman search phrase ` | ` Devanagari), otherwise the weekday deity, and at least twice a week a
 Khatu Shyam ji / Barbarik katha. Tell the **full** katha, beginning to end, not one scene of it. **Mandir Itihas series:** on days with no festival in the next 3 days and no Khatu Shyam katha
 due, write the next part of the temple series in `automation/mandir-series.md`. Aim for about 3 days a week.
 That file sets the part order, slug pattern, sources, the AI-image disclaimer and the legal rule for sati temples. It may
@@ -285,6 +302,11 @@ approved this format on 4 Nov 2026 ("YES sahi h").
    (its summary ends with `agla: <temple>`). If there is none, take the next temple in `automation/mandir-series.md`
    (Rajasthan list first, then the pan-India series and their calendar rotation) that has no noon Short yet
    (Grep log.md for the temple's name).
+3. **Trend research** (section 1, item 2) shapes both: use the `noon Dadi-Chhotu` item for today's subject as the
+   search phrase in the title (Roman ` | ` Devanagari) and in Chhotu's first question when it fits (e.g. "Dadi, Choti
+   Diwali kyun manate hain?"), and when you choose tomorrow's temple (`next`), prefer one that the file's Recommended
+   topics or autocomplete show people searching for, among the next 3 in the series order. A promised `next` is
+   never dropped for a trend.
 It must differ from today's `morning` and `evening` lines. Numbered series: in a pan-India series, set
 `kicker` to the series and number (`Jyotirlinga 3/12`) and use the series name as `playlist`; Rajasthan temples
 use `Dadi ki Kahani` and `Mandir Itihas`; festivals `Tyohar aur Vrat Kathayein`.
@@ -311,8 +333,8 @@ the disclaimer in the description. Respectful tone, no fear or money promises (s
 - **Ending:** Chhotu asks about tomorrow ("Dadi, kal kis mandir ki kahani sunaogi?" or he names it), and Dadi
   answers with tomorrow's temple and a gentle like/share/subscribe ask, e.g. tts `कल सुनाऊँगी जीण माता की कहानी।
   देखने के लिए लाइक, शेयर और सब्सक्राइब करना, बेटा!`, sub `Kal sunaungi Jeen Mata ki kahani. Dekhne ke liye Like,
-  Share aur Subscribe karna, beta!`. Tomorrow's temple is the next one in the series order (put it in `next`), and
-  tomorrow's noon Short must then really be about it.
+  Share aur Subscribe karna, beta!`. Tomorrow's temple is the next one in the series order, or one of the next 3 that
+  people search for (subject item 3); put it in `next`, and tomorrow's noon Short must then really be about it.
 - Each line: `who` (`dadi` or `chhotu`), `tts` (Hindi Devanagari, max 150 characters, numbers as words), `sub`
   (the same in Roman Hinglish, max 140 characters), `top` (which story image shows above the characters: a key of
   `visuals`, or `end` for the end card on the last line or two).

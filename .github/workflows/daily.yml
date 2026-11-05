@@ -133,6 +133,25 @@ jobs:
           [ -f .kokoro/kokoro-v1.0.onnx ] || curl -sSL -o .kokoro/kokoro-v1.0.onnx $base/kokoro-v1.0.onnx
           [ -f .kokoro/voices-v1.0.bin ] || curl -sSL -o .kokoro/voices-v1.0.bin $base/voices-v1.0.bin
 
+      # Daily trend research (scripts/trend-signals.mjs): YouTube autocomplete (Roman + Devanagari seeds), Google Trends
+      # India and the channel's own numbers -> automation/trends/<date>.md with ranked topics for the next 3 days, read by
+      # every slot's story prompt (STORY.md section 1). Once a day, on the morning run only; a file already committed
+      # today is reused. Committed by the Record step. Free endpoints; any failure leaves the story as before.
+      - name: Trend research
+        if: steps.date.outputs.done != 'true' && steps.date.outputs.slot == 'morning'
+        continue-on-error: true
+        timeout-minutes: 10
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          SHYAM_YT_CLIENT_ID: ${{ secrets.SHYAM_YT_CLIENT_ID }}
+          SHYAM_YT_CLIENT_SECRET: ${{ secrets.SHYAM_YT_CLIENT_SECRET }}
+          SHYAM_YT_REFRESH_TOKEN: ${{ secrets.SHYAM_YT_REFRESH_TOKEN }}
+        run: |
+          git checkout -q origin/main -- automation/trends 2>/dev/null || true
+          node scripts/trend-signals.mjs --date "${{ steps.date.outputs.today }}" | tee -a "$GITHUB_STEP_SUMMARY"
+
       - name: Write the story
         if: steps.date.outputs.done != 'true'
         uses: anthropics/claude-code-action@v1
@@ -145,6 +164,8 @@ jobs:
           prompt: |
             Write today's Shyam Premi SN story video. Today's date (IST) is ${{ steps.date.outputs.today }}, slot: ${{ steps.date.outputs.slot }}.
             Follow automation/STORY.md exactly${{ steps.date.outputs.slot == 'noon' && ' (the noon slot is the "Dadi aur Chhotu" dialogue Short: section 6)' || '' }}.
+            Today's trend research is automation/trends/${{ steps.date.outputs.today }}.md (if it is missing, the newest file in
+            automation/trends/): read its first 100 lines and use it as STORY.md section 1 says.
             Write story/today/scenes.json, make scripts/validate.mjs pass,
             and append one line to automation/log.md. Change nothing else.
 
@@ -303,6 +324,7 @@ jobs:
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/log.md automation/calendar.md automation/published.md "story/published/$SLUG.json" footage
+          [ -d automation/trends ] && git add automation/trends
           git commit -qm "Story $SLUG"
           git pull -q --rebase && git push -q
 
@@ -437,7 +459,9 @@ jobs:
           prompt: |
             Write today's Shyam Premi SN LONG katha video. Today's date (IST) is ${{ steps.date.outputs.today }}, slot: long.
             Follow automation/STORY.md exactly: sections 1-2 for choosing and researching the subject, and section 5
-            "Long video" for everything else. Write story/long/scenes.json and make
+            "Long video" for everything else. Today's trend research is automation/trends/${{ steps.date.outputs.today }}.md
+            (if it is missing, the newest file in automation/trends/): read its first 100 lines and prefer a "long part" topic
+            from it when it fits the section 5 subject order. Write story/long/scenes.json and make
             `node scripts/validate.mjs story/long/scenes.json` pass. You may add confirmed festivals to
             automation/calendar.md. Change nothing else (do not edit automation/log.md: the workflow records it).
             Use the Write tool for the file (the directory story/long already exists); shell commands other than

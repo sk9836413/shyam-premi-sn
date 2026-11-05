@@ -28,11 +28,13 @@ import path from 'node:path';
 const ENV_FILE = path.join(os.homedir(), '.shyampremisk', 'youtube.env');
 const DEFAULT_CLIENT = path.join(os.homedir(), '.epifive', 'youtube-client.json');
 const KEYS = ['YT_CLIENT_ID', 'YT_CLIENT_SECRET', 'YT_REFRESH_TOKEN'];
-// upload: post Shorts; readonly: stats; force-ssl: read and reply to comments.
+// upload: post Shorts; readonly: stats; force-ssl: read and reply to comments; yt-analytics.readonly: watch-time and
+// the search terms that bring viewers (scripts/trend-signals.mjs; until a re-auth it falls back to view counts).
 const SCOPES = [
   'https://www.googleapis.com/auth/youtube.upload',
   'https://www.googleapis.com/auth/youtube.readonly',
   'https://www.googleapis.com/auth/youtube.force-ssl',
+  'https://www.googleapis.com/auth/yt-analytics.readonly',
 ].join(' ');
 const CATEGORY_PEOPLE_BLOGS = '22';
 
