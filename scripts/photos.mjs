@@ -431,7 +431,9 @@ export async function build(date, { noFlux = false, log = console.log } = {}) {
     if (entry.bank && fs.existsSync(abs(entry.bank))) { image = abs(entry.bank); ai = true; }
     else if (entry.flux) {
       const f = path.join(out, `flux-${entry.n}.jpg`);
-      try {
+      // Made earlier in this run by animate/frames.mjs (photos.yml "AI pictures" step: Workers AI, else Kaggle FLUX).
+      const pre = path.join(workDir(date), `kaggle-${entry.n}.jpg`);
+      if (fs.existsSync(pre)) { fs.copyFileSync(pre, f); image = f; ai = true; } else try {
         if (noFlux) throw new Error('--no-flux');
         await flux(entry.flux, f); neurons += 170; image = f; ai = true;
       } catch (e) {
@@ -664,6 +666,14 @@ async function main() {
     try { posts = readJson(file).posts || {}; } catch (e) { return { status: 'error', problems: [`posts.json: ${e.message}`] }; }
     const problems = p.posts.flatMap((entry) => (posts[String(entry.n)] ? checkPost(posts[String(entry.n)], entry) : ['not written']).map((m) => `post ${entry.n} (${entry.kind}): ${m}`));
     return { status: problems.length ? 'error' : 'ok', problems };
+  }
+  if (cmd === 'flux-jobs') { // the AI pictures build needs, for animate/frames.mjs --jobs (Workers AI, else Kaggle FLUX)
+    const p = readJson(path.join(workDir(date), 'plan.json'));
+    const abs = (f) => path.join(ROOT, f);
+    const jobs = p.posts.filter((e) => e.flux && !(e.bank && fs.existsSync(abs(e.bank))))
+      .map((e) => ({ id: `post${e.n}`, out: path.join(workDir(date), `kaggle-${e.n}.jpg`), prompt: `${e.flux}. ${STYLE}` }));
+    fs.writeFileSync(path.join(workDir(date), 'flux-jobs.json'), JSON.stringify(jobs, null, 2));
+    return { status: 'ok', jobs: jobs.length, file: rel(path.join(workDir(date), 'flux-jobs.json')) };
   }
   if (cmd === 'build') return build(date, { noFlux: flag('no-flux') });
   if (cmd === 'publish') return publish(date, { dryRun: flag('dry-run') });

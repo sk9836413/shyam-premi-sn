@@ -152,7 +152,8 @@ async function kaggleFrames(jobs, { waitMin, slot }) {
     if (!got.fresh || !fs.existsSync(png)) continue;
     fs.mkdirSync(path.dirname(j.out), { recursive: true });
     const r = spawnSync(FF, ['-y', '-v', 'error', '-i', png, '-q:v', '2', j.out], { encoding: 'utf8' });
-    if (r.status === 0 && fs.existsSync(j.out)) { made++; j.source = 'kaggle'; }
+    if (r.status !== 0 || !fs.existsSync(j.out)) fs.copyFileSync(png, j.out); // no ffmpeg: PNG bytes (readers sniff the content)
+    if (fs.existsSync(j.out)) { made++; j.source = 'kaggle'; }
   }
   return { made, wait: w.out.split('\n').pop(), session_s: got.session_s, flux: got.flux };
 }

@@ -25,6 +25,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { fallbackImage } from '../animate/frames.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const argv = process.argv.slice(2);
@@ -727,7 +728,16 @@ async function main() {
       } else {
         const prompt = m.images[k] || m.images[2];
         const raw = path.join(OUT, `${name}.raw.jpg`);
-        toPortrait(raw, local, await flux(prompt, raw));
+        try {
+          toPortrait(raw, local, await flux(prompt, raw));
+        } catch (e) {
+          // Workers AI out of neurons (4006) or down: a picture-bank / real-photo stand-in, so the kit is never skipped
+          // (animate/frames.mjs fallbackImage; Khatu Shyam ji = the sheesh bank pictures).
+          const fb = fallbackImage({ temple: p.e.temple || p.ctx?.temple }, prompt, k, OUT);
+          console.log(`::warning::Veo kit image ${k + 1}: ${e.message.slice(0, 120)}; using ${fb.source}`);
+          toPortrait(fb.file, local, false);
+          if (fb.photo) credits.push(`Photo ${k + 1}: ${fb.photo.attribution || `${fb.photo.author}, ${fb.photo.licence}`} (${fb.photo.url || fb.photo.source})`);
+        }
         fs.rmSync(raw, { force: true });
       }
       images.push({ url: await put(`m/${name}`, fs.readFileSync(local), 'image/jpeg'), name, label: photo ? `${labels[k]} (asli photo)` : labels[k], prompt: m.images[k] || null });

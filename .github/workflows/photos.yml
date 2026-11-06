@@ -35,7 +35,7 @@ concurrency:
 jobs:
   photos:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     env:
       MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
       MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
@@ -84,6 +84,25 @@ jobs:
         run: |
           for x in $DATES; do node scripts/photos.mjs plan --date "${x%%:*}" --slots "${x#*:}"; done
           echo "- Building: $DATES" >> "$GITHUB_STEP_SUMMARY"
+
+      # AI pictures (festival cards) through animate/frames.mjs: Workers AI FLUX, else FLUX.1-schnell on the Kaggle GPU
+      # (sps-frames-photos) when the daily neurons are used up (4006); still nothing = the greeting / real-photo fallback.
+      - name: AI pictures (Workers AI, else Kaggle FLUX)
+        if: steps.due.outputs.dates != ''
+        continue-on-error: true
+        timeout-minutes: 35
+        env:
+          DATES: ${{ steps.due.outputs.dates }}
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: photos
+          FFMPEG_PATH: ffmpeg
+        run: |
+          [ -n "$KAGGLE_API_TOKEN" ] && pip install -q 'kaggle>=2.2' six
+          for x in $DATES; do
+            d="${x%%:*}"
+            node scripts/photos.mjs flux-jobs --date "$d"
+            [ "$(node -p "require('./story/photos/$d/flux-jobs.json').length")" = 0 ] || node animate/frames.mjs --jobs "story/photos/$d/flux-jobs.json" --wait 25
+          done
 
       - name: Write the texts (Claude)
         if: steps.due.outputs.dates != '' && env.HAS_CLAUDE == 'true'
