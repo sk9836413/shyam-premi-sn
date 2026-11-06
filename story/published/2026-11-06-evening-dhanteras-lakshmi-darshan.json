@@ -1,0 +1,55 @@
+{
+  "slug": "2026-11-06-evening-dhanteras-lakshmi-darshan",
+  "title": "Shubh Dhanteras Lakshmi Darshan",
+  "kicker": "Dhanteras Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Shubh Dhanteras! Maa Lakshmi darshan",
+  "cover": "शुभ धनतेरस",
+  "scenes": [
+    {
+      "prompt": "Close-up devotional darshan of Maa Lakshmi, golden-fair goddess with four arms seated on a pink lotus, red saree with gold border, gold crown and jewels, serene gentle face in the middle of the frame, golden coins falling softly from her hand, rows of lit clay diyas, warm festive evening",
+      "tts": "शुभ धनतेरस! माँ लक्ष्मी के दर्शन कीजिए।",
+      "sub": "Shubh Dhanteras! Maa Lakshmi ke darshan kijiye.",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly and the golden glow gently pulses"
+    },
+    {
+      "prompt": "Bhagwan Dhanvantari, four-armed form of Vishnu, blue-green skin, holding a golden kalash of amrit, a conch, a chakra and herbs, rising from a shining ocean of milk, soft golden aura, serene face",
+      "tts": "मान्यता है, इसी दिन धन्वंतरि जी अमृत कलश लेकर प्रकट हुए।",
+      "sub": "Manyata hai, isi din Dhanvantari ji amrit kalash lekar prakat hue.",
+      "motion": "out",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, soft mist drifts over the milky ocean and the golden glow gently pulses"
+    },
+    {
+      "prompt": "A home doorway in the evening with a colourful rangoli and a row of lit clay diyas, a shining brass kalash and marigold garlands, warm golden light, no people",
+      "tts": "शाम को घर के द्वार पर दीपक जलाने की परंपरा है।",
+      "sub": "Shaam ko ghar ke dwar par deepak jalane ki parampara hai.",
+      "motion": "pan",
+      "animate": "the diya flames flicker softly and a few marigold petals drift down in the warm light"
+    },
+    {
+      "prompt": "Maa Lakshmi and Shri Ganesh ji together on a decorated altar with marigold garlands, brass kalash and many lit diyas, Maa Lakshmi golden-fair on a pink lotus, Ganesh ji red-orange with his mouse, warm festive glow",
+      "tts": "ॐ श्री महालक्ष्म्यै नमः। सबके घर सुख-समृद्धि रहे।",
+      "sub": "Om Shri Mahalakshmyai Namah. Sabke ghar sukh-samriddhi rahe.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the faces stay still and serene, the diya flames flicker and a few petals drift in the foreground"
+    },
+    {
+      "endcard": true,
+      "tts": "कल छोटी दिवाली के दर्शन के लिए लाइक, शेयर, सब्सक्राइब करें। जय माँ लक्ष्मी!",
+      "sub": "Kal Choti Diwali ke darshan ke liye Like, Share, Subscribe karein. Jai Maa Lakshmi!"
+    }
+  ],
+  "youtube_title": "Shubh Dhanteras Maa Lakshmi Darshan | शुभ धनतेरस माँ लक्ष्मी दर्शन #Shorts",
+  "youtube_description": "Shubh Dhanteras! Maa Lakshmi ka darshan, manyata ke anusar Dhanvantari ji ka amrit kalash ke saath prakat hona, aur shaam ko dwar par deepak jalane ki parampara.\nशुभ धनतेरस! माँ लक्ष्मी के दर्शन।\nMantra: ॐ श्री महालक्ष्म्यै नमः\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nAchha laga to Like, Share aur Subscribe karein.\n#Dhanteras #ShubhDhanteras #MaaLakshmi #Diwali2026 #Shorts",
+  "youtube_tags": "Shubh Dhanteras, शुभ धनतेरस, Dhanteras 2026, धनतेरस दर्शन, Maa Lakshmi darshan, माँ लक्ष्मी दर्शन, Dhanvantari, धन्वंतरि, Dhanteras ki shubhkamnayein, धनतेरस की शुभकामनाएं, Lakshmi Ganesh, लक्ष्मी गणेश, Diwali 2026",
+  "instagram_caption": "Shubh Dhanteras! Maa Lakshmi ke darshan 🪔\nManyata hai ki isi din Bhagwan Dhanvantari amrit kalash lekar prakat hue.\nShaam ko ghar ke dwar par deepak jalane ki parampara hai.\nOm Shri Mahalakshmyai Namah 🙏\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#Dhanteras #ShubhDhanteras #MaaLakshmi #Diwali2026 #Dhanvantari #LakshmiGanesh #Bhakti #JaiShreeShyam",
+  "facebook_caption": "Shubh Dhanteras! Maa Lakshmi ke darshan aur Dhanvantari ji ki manyata. Chitra AI dwara banaye gaye hain (sanketik). Like, Share aur Follow karein.\n#Dhanteras #ShubhDhanteras #MaaLakshmi"
+}
