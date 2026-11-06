@@ -1,0 +1,141 @@
+# Daily photo posts on the Instagram feed and the Facebook Page (scripts/photos.mjs, rules: automation/PHOTOS.md):
+# 4 a day = Suprabhat darshan (real temple photo; festival greeting on festival days), Aaj ka vichar, a temple carousel
+# with sourced facts, and the Sandhya aarti darshan of Khatu Shyam ji with a genuine question.
+# No schedule of its own (no new cron anywhere): the scheduler Worker (E:\epifive\scheduler) dispatches this workflow on
+# each of its crons, 09:13, 10:13, 10:43, 18:46 and 19:46 IST. Every run
+#   1. publishes the Instagram post that is due (Instagram has no scheduled publishing: IG times are these triggers),
+#   2. on the morning runs adds at most 2 AI pictures to brand/photo-bank (FLUX on the media Worker, ~170 neurons each),
+#   3. builds what is missing: tomorrow's 4 posts from 17:00 IST (18:46, retry 19:46), and today's remaining slots when
+#      today was never built. plan -> Claude writes the texts -> validate (fallback texts when they fail) -> render
+#      -> host on the media Worker -> Facebook SCHEDULED (07:30, 11:00, 17:30, 19:30 IST) -> Instagram queued,
+#   4. publishes again when something became due, then commits automation/photos/<date>.json.
+# Separate from daily.yml on purpose: a failed photo post never touches the video pipeline. The repo is public, so the
+# Actions minutes are free. dry_run = plan, write and render (the cards are the run's artifact), publish nothing.
+name: Photo posts
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Plan, write and render only; the cards become the run's artifact and nothing is posted or committed
+        type: boolean
+        default: false
+      date:
+        description: Build this date (YYYY-MM-DD, all 4 posts) instead of what is due; for dry runs
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shyam-photos
+  cancel-in-progress: false
+
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+      META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
+      DRY: ${{ inputs.dry_run && '1' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Publish the Instagram post that is due
+        if: ${{ !inputs.dry_run }}
+        continue-on-error: true
+        run: node scripts/photos.mjs flush | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Picture bank (morning runs)
+        if: ${{ !inputs.dry_run }}
+        continue-on-error: true
+        run: |
+          h=$((10#$(TZ=Asia/Kolkata date +%H)))
+          if [ $h -ge 9 ] && [ $h -lt 12 ]; then node scripts/photos.mjs topup | tee -a "$GITHUB_STEP_SUMMARY"; fi
+
+      - name: What to build
+        id: due
+        env:
+          DATE: ${{ inputs.date }}
+        run: |
+          if [ -n "$DATE" ]; then
+            [[ "$DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] || { echo "::error::Bad date $DATE"; exit 1; }
+            echo "dates=$DATE:1,2,3,4" >> "$GITHUB_OUTPUT"
+          else
+            node scripts/photos.mjs due
+          fi
+
+      - name: Plan
+        if: steps.due.outputs.dates != ''
+        env:
+          DATES: ${{ steps.due.outputs.dates }}
+        run: |
+          for x in $DATES; do node scripts/photos.mjs plan --date "${x%%:*}" --slots "${x#*:}"; done
+          echo "- Building: $DATES" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Write the texts (Claude)
+        if: steps.due.outputs.dates != '' && env.HAS_CLAUDE == 'true'
+        continue-on-error: true
+        timeout-minutes: 25
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --max-turns 45
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/photos.mjs validate:*)"
+          prompt: |
+            Write the texts of the Shyam Premi SN photo posts for these dates and post numbers (date:posts): ${{ steps.due.outputs.dates }}.
+            Follow automation/PHOTOS.md exactly. For each date read story/photos/<date>/plan.json and write
+            story/photos/<date>/posts.json, then run `node scripts/photos.mjs validate --date <date>` and fix every problem
+            until it passes. Facts on the temple carousel need two independent sources you actually opened (WebSearch/WebFetch).
+            Do not edit any other file, do not commit and do not publish anything.
+
+      - name: Render, host, schedule Facebook, queue Instagram
+        if: steps.due.outputs.dates != ''
+        env:
+          DATES: ${{ steps.due.outputs.dates }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-color-emoji > /dev/null || true
+          for x in $DATES; do
+            d="${x%%:*}"
+            node scripts/photos.mjs validate --date "$d" | tee -a "$GITHUB_STEP_SUMMARY" || echo "::warning::$d: fallback texts for the posts above"
+            node scripts/photos.mjs build --date "$d" | tail -n 3 | cut -c1-400
+            if [ -n "$DRY" ]; then node scripts/photos.mjs publish --date "$d" --dry-run; else node scripts/photos.mjs publish --date "$d" | tail -n 1 | cut -c1-300; fi
+          done
+
+      - name: Publish the Instagram post that became due
+        if: ${{ !inputs.dry_run && steps.due.outputs.dates != '' }}
+        continue-on-error: true
+        run: node scripts/photos.mjs flush | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.due.outputs.dates != ''
+        with:
+          name: photo-cards
+          path: story/photos/*/out/*.jpg
+          retention-days: 5
+          if-no-files-found: ignore
+
+      - name: Commit
+        if: ${{ always() && !inputs.dry_run }}
+        run: |
+          for p in automation/photos brand/photo-bank; do [ -e "$p" ] && git add -A "$p"; done
+          for p in story/photos/*/plan.json story/photos/*/posts.json; do [ -e "$p" ] && git add "$p"; done
+          git diff --cached --quiet && exit 0
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -qm "Photo posts $(TZ=Asia/Kolkata date '+%F %H:%M') IST"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
