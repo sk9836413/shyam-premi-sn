@@ -32,3 +32,4 @@
 2026-11-06 | status | 2026-11-06-status-dhanteras | Dhanteras | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
 2026-11-06 | noon | 2026-11-06-noon-choti-diwali-narakasur | Shri Krishna / Satyabhama (Choti Diwali) | Choti Diwali kyun: Krishna aur Satyabhama ka Narakasur se yudh, Sudarshan chakra, kaidi kanyaon ki mukti, diye ki parampara; agla: Diwali
 2026-11-06 | evening | 2026-11-06-evening-dhanteras-lakshmi-darshan | Maa Lakshmi / Dhanvantari (Dhanteras) | Shubh Dhanteras Maa Lakshmi darshan, Dhanvantari ka amrit kalash ke saath prakat hona (manyata), shaam ko dwar par deepak ki parampara, Lakshmi-Ganesh darshan
+2026-11-07 | status | 2026-11-07-status-choti-diwali | Choti Diwali | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
