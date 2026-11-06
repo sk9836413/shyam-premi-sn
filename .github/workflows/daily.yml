@@ -301,8 +301,10 @@ jobs:
         run: |
           if [ "${{ steps.date.outputs.slot }}" = noon ]; then
             d=story/today/char; mkdir -p story/today/out
+            # Cover frame: 2-4 big Devanagari words over the first 0.4 s (story/cover.mjs); skipped if Chrome fails.
+            node story/cover.mjs story/today/scenes.json $d/cover.png --dialogue || echo "::warning::cover frame skipped"
             python -I characters/dialogue.py render --spec story/today/scenes.json --channel shyam --plan $d/plan.json --voice $d/voice \
-              --lipsync $d/lipsync --images $d/images --out "story/today/out/$SLUG.mp4" --meta $d/meta.json --credits | tee -a "$GITHUB_STEP_SUMMARY"
+              --lipsync $d/lipsync --images $d/images --out "story/today/out/$SLUG.mp4" --meta $d/meta.json --credits --cover $d/cover.png | tee -a "$GITHUB_STEP_SUMMARY"
           else
             node story/render-story.mjs story/today/scenes.json
           fi

@@ -19,6 +19,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creditLine, photosFor } from '../scripts/real-photos.mjs';
+import { coverWords, longThumbs } from './cover.mjs';
 
 const started = Date.now();
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
@@ -191,7 +192,7 @@ const titleFile = textFile('title.txt', titleText);
 
 async function clip(scene, i, img, voice) {
   // Voice starts as the crossfade ends; lines are ~0.9 s apart (longer, with a bell, between chapters).
-  const lead = i === 0 ? 0.3 : scene.firstInChapter ? 0.5 : FADE + 0.05;
+  const lead = i === 0 ? 0.1 : scene.firstInChapter ? 0.5 : FADE + 0.05;
   const tail = scene.lastInChapter ? 0.9 : 0.35;
   const minimum = scene.endcard ? 6 : 3;
   const frames = Math.round(Math.max(minimum, lead + voice.seconds + tail + FADE) * FPS);
@@ -209,7 +210,7 @@ async function clip(scene, i, img, voice) {
     const label = [];
     if (i === 0 && spec.hook) {
       const hook = textFile('hook.txt', wrap(spec.hook, 22));
-      label.push(draw(hook, `fontsize=100:fontcolor=0xFFE27A:line_spacing=16:box=1:boxcolor=0x1a0b00@0.72:boxborderw=40:x=(w-text_w)/2:y=(h-text_h)/2-60:enable='lt(t,3.2)'`));
+      label.push(draw(hook, `fontsize=100:fontcolor=0xFFE27A:line_spacing=16:box=1:boxcolor=0x1a0b00@0.72:boxborderw=40:x=(w-text_w)/2:y=h-text_h-190:enable='lt(t,3.2)'`));
     } else if (scene.firstInChapter) {
       const ch = textFile(`chapter-${scene.chapter}.txt`, `Adhyay ${scene.chapter}  ·  ${spec.chapters[scene.chapter].title}`);
       label.push(draw(ch, `fontsize=46:fontcolor=0xFFE27A:box=1:boxcolor=0x1a0b00@0.72:boxborderw=22:x=70:y=170:` +
@@ -327,6 +328,18 @@ await ff(['-i', imageFiles[th.image ?? 0], '-i', LOGO, '-filter_complex', [
     `box=1:boxcolor=0x000000@0.45:boxborderw=24:x=(w-text_w)/2:y=h-text_h-44`)}[v]`,
 ].join(';'), '-map', '[v]', '-frames:v', '1', '-q:v', '2', thumb]);
 
+// Two Chrome-drawn variants (story/cover.mjs): 3-5 huge Hindi words (thumbnail.hi), saffron/gold, a clean border,
+// readable at phone size. The better-scoring one (contrast at 168x94 + deity face size) replaces the thumbnail above,
+// which stays as the fallback when Chrome fails. Both variants stay in out/ for YouTube Studio's "Test & compare".
+let thumbVariants = null;
+try {
+  thumbVariants = longThumbs({ image: imageFiles[th.image ?? 0], hi: th.hi || coverWords(spec), roman: th.text || '',
+    outBase: thumb.replace(/\.jpg$/, ''), focus: th.focus || 'center' });
+  console.log(`thumbnail: variant ${thumbVariants.winner} (${thumbVariants.variants.map((v) => `${v.kind} ${v.score}`).join(', ')})`);
+} catch (e) {
+  console.log(`thumbnail variants skipped, using the plain one: ${e.message}`);
+}
+
 const meta = {
   slug: spec.slug,
   video: out,
@@ -340,6 +353,7 @@ const meta = {
   render_seconds: Math.round((Date.now() - started) / 1000),
 };
 meta.real_photos = usedPhotos.size;
+if (thumbVariants) meta.thumbnail_variants = { winner: thumbVariants.winner, scores: thumbVariants.variants.map(({ kind, score, contrast, face }) => ({ kind, score, contrast, face })) };
 fs.writeFileSync(path.join(base, 'out', `${spec.slug}.json`), JSON.stringify(meta, null, 2));
 if (usedPhotos.size) {
   const credit = [...usedPhotos].map(creditLine).join('\n');

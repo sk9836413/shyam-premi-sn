@@ -18,6 +18,9 @@
 // sharpen pass on every scene picture (SPS_LOOK=0 turns it off). Upscaled stills from the Kaggle kernel
 // (STILLS_DIR, default <spec dir>/stills/<scene>.jpg, Real-ESRGAN 2160 px) replace the 1024 px FLUX images, and
 // enhanced clips (30 fps, 1080 px, already at the scene's length) are used as they are. Output: out/<slug>.mp4
+// Cover frame (Nov 2026 hook study, story/cover.mjs): the first ~0.4 s carries 2-4 huge Devanagari words (spec.cover)
+// over the moving scene-1 close-up, so the opening frame is thumbnail-grade; the hook text follows until 2.6 s, the
+// voice starts at 0.12 s (no dead air) and long subtitles change every ~2-3 s instead of once per scene.
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -25,6 +28,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creditLine, photosFor } from '../scripts/real-photos.mjs';
 import { framePrompt } from '../animate/kaggle.mjs';
+import { makeCover } from './cover.mjs';
 
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
 const FFPROBE = FF.replace(/ffmpeg(\.exe)?$/, 'ffprobe$1');
@@ -163,6 +167,27 @@ const wrap = (text, n = 30) => text.split(' ').reduce((lines, word) => {
   return lines;
 }, []).join('\n');
 
+// Splits a subtitle into 2-3 parts when it is long and spoken for more than ~4.5 s, preferring breaks after punctuation;
+// each part gets the share of the voice time its characters take ({ text, from: 0-1 }).
+function subParts(sub, seconds) {
+  const words = String(sub || '').split(' ').filter(Boolean);
+  const n = words.length < 7 || seconds < 4.5 ? 1 : Math.min(3, Math.round(seconds / 2.6));
+  if (n <= 1) return [{ text: sub || '', from: 0 }];
+  const total = words.join(' ').length;
+  const at = (k) => words.slice(0, k).join(' ').length; // characters before word k
+  const cuts = [];
+  for (let j = 1; j < n; j++) {
+    let best = 0, cost = Infinity;
+    for (let k = (cuts.at(-1) || 0) + 2; k <= words.length - 2; k++) {
+      const c = Math.abs(at(k) - (total * j) / n) - (/[,.!?;:।]$/.test(words[k - 1]) ? total * 0.15 : 0);
+      if (c < cost) { cost = c; best = k; }
+    }
+    if (best) cuts.push(best);
+  }
+  const bounds = [0, ...cuts, words.length];
+  return bounds.slice(0, -1).map((k, j) => ({ text: words.slice(k, bounds[j + 1]).join(' '), from: k ? (at(k) + 1) / total : 0 }));
+}
+
 const motion = (kind, frames) => ({
   in: `z='1+0.14*on/${frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`,
   out: `z='1.14-0.14*on/${frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'`,
@@ -200,6 +225,13 @@ if (process.argv.includes('--prepare')) {
 }
 
 const overlays = STATUS ? (await import('./status-overlays.mjs')).makeOverlays(spec, work) : [];
+// Status Shorts already open on the big blessing (shown from frame one below), so they need no extra cover.
+let COVER = null;
+if (!STATUS) {
+  try { COVER = makeCover(spec, path.join(work, 'cover.png')); } catch (e) { console.log(`cover frame skipped: ${e.message}`); }
+}
+const COVER_END = 0.4; // seconds the cover words stay before they fade out (0.08 s)
+const VOICE_START = 0.12; // the first line starts almost at once: no dead air
 const clips = [];
 for (const [i, scene] of spec.scenes.entries()) {
   const photo = scene.endcard ? null : photoFor(i);
@@ -207,25 +239,38 @@ for (const [i, scene] of spec.scenes.entries()) {
   // Status: the scene's overlay (big blessing / mantra / end line) fades in over the finished frame.
   const ov = overlays[i] && fs.existsSync(overlays[i]) ? overlays[i] : null;
   const ovIn = ov ? ['-loop', '1', '-framerate', String(FPS), '-t', String(30), '-i', ov] : [];
-  const withOverlay = (n) => (ov ? `[vpre];[${n}:v]format=rgba,fade=t=in:st=0.25:d=0.6:alpha=1[ovl];[vpre][ovl]overlay=0:0:shortest=1` : '');
+  // Scene 1 of a status Short shows its blessing from the first frame (that frame is the cover); later scenes fade it in.
+  const withOverlay = (n) => (ov ? `[vpre];[${n}:v]format=rgba${i === 0 ? '' : ',fade=t=in:st=0.25:d=0.6:alpha=1'}[ovl];[vpre][ovl]overlay=0:0:shortest=1` : '');
+  const cover = i === 0 && COVER && !scene.endcard;
+  const coverIn = cover ? ['-loop', '1', '-framerate', String(FPS), '-t', '1', '-i', COVER] : [];
+  const withCover = (n) => (cover ? `[vcov];[${n}:v]format=rgba,fade=t=out:st=${COVER_END}:d=0.08:alpha=1[cov];[vcov][cov]overlay=0:0:eof_action=pass` : '');
+  const coverAt = (LOGO ? 2 : 1) + (ov ? 1 : 0);
   let animated = false;
   // Tight pacing keeps Shorts short (viewers who finish and replay are what YouTube rewards).
   const seconds = sceneSeconds(i);
   const frames = Math.round(seconds * FPS);
-  const subFile = path.join(work, `sub-${i}.txt`);
   const titleFile = path.join(work, 'title.txt');
-  fs.writeFileSync(subFile, wrap(scene.sub));
   fs.writeFileSync(titleFile, `${spec.kicker}  |  ${spec.title}`);
   const esc = (p) => p.replace(/\\/g, '/').replace(/:/g, '\\:');
   const clip = path.join(work, `clip-${i}.mp4`);
-  const subtitle = STATUS ? 'null' : `drawtext=fontfile='${FONT}':textfile='${esc(subFile)}':fontsize=50:fontcolor=white:line_spacing=12:` +
-    `box=1:boxcolor=0x000000@0.55:boxborderw=22:x=(w-text_w)/2:y=1385`;
-  // Hook: big text over the first scene for 2.5 s, the moment viewers decide whether to keep watching.
+  // Subtitles: a long line is split into 2-3 parts timed to the voice, so the on-screen text changes every ~2-3 s.
+  const voiceAt = i === 0 ? VOICE_START : FADE + 0.15;
+  const parts = subParts(scene.sub, durations[i]);
+  const subtitle = STATUS ? 'null' : parts.map((p, k) => {
+    const file = path.join(work, `sub-${i}-${k}.txt`);
+    fs.writeFileSync(file, wrap(p.text));
+    const a = k === 0 ? (cover ? COVER_END : 0) : voiceAt + p.from * durations[i];
+    const b = k === parts.length - 1 ? 999 : voiceAt + parts[k + 1].from * durations[i];
+    return `drawtext=fontfile='${FONT}':textfile='${esc(file)}':fontsize=50:fontcolor=white:line_spacing=12:` +
+      `box=1:boxcolor=0x000000@0.55:boxborderw=22:x=(w-text_w)/2:y=1385:enable='between(t,${a.toFixed(2)},${b.toFixed(2)})'`;
+  }).join(',');
+  // Hook: big text over the first scene until 2.6 s (after the cover words), the moment viewers decide whether to keep
+  // watching. It sits on the lower part of the picture so the deity's face stays clear.
   const hookFile = path.join(work, 'hook.txt');
   if (i === 0 && spec.hook) fs.writeFileSync(hookFile, wrap(spec.hook, 18));
   const hook = i === 0 && spec.hook && !STATUS
     ? `,drawtext=fontfile='${FONT}':textfile='${esc(hookFile)}':fontsize=84:fontcolor=0xFFE27A:line_spacing=14:` +
-      `box=1:boxcolor=0x1a0b00@0.72:boxborderw=34:x=(w-text_w)/2:y=860:enable='lt(t,2.5)'`
+      `box=1:boxcolor=0x1a0b00@0.72:boxborderw=34:x=(w-text_w)/2:y=1075:enable='between(t,${cover ? COVER_END - 0.04 : 0},2.6)'`
     : '';
   const encode = ['-map', '[v]', '-frames:v', String(frames), '-r', String(FPS), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', clip];
   if (scene.endcard && LOGO) {
@@ -246,14 +291,14 @@ for (const [i, scene] of spec.scenes.entries()) {
       // An enhanced clip is already 1080 px (Real-ESRGAN): only a light sharpen; a raw 704 px clip keeps the old one.
       const big = Number(spawnSync(FFPROBE, ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width', '-of', 'csv=p=0', vid], { encoding: 'utf8' }).stdout.trim()) >= 1000;
       try {
-        run(['-i', vid, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, '-filter_complex', [
+        run(['-i', vid, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, ...coverIn, '-filter_complex', [
           `[0:v]setpts=${slow.toFixed(3)}*PTS,fps=${FPS},tpad=stop_mode=clone:stop_duration=${seconds.toFixed(2)},` +
             `trim=duration=${seconds.toFixed(2)},setpts=PTS-STARTPTS,format=yuv420p,split[a][b]`,
           `[a]scale=${H}:${H},crop=${W}:${H},boxblur=28:4,eq=brightness=-0.18[bgl]`,
           `[b]scale=${W}:${W}:flags=lanczos,${big ? 'unsharp=3:3:0.3' : 'unsharp=5:5:0.6'}${LOOK}${GRAIN}[fg]`,
           ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
           `[bgl][fg]overlay=0:250${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
-            `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}${withOverlay(LOGO ? 2 : 1)}[v]`,
+            `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}${withOverlay(LOGO ? 2 : 1)}${withCover(coverAt)}[v]`,
         ].join(';'), ...encode]);
         animated = true;
       } catch (e) {
@@ -273,13 +318,13 @@ for (const [i, scene] of spec.scenes.entries()) {
         fs.writeFileSync(cf, `Asli photo: ${photo.author}`.slice(0, 60));
         credit = `,drawtext=fontfile='${FONT}':textfile='${esc(cf)}':fontsize=26:fontcolor=white@0.9:box=1:boxcolor=0x000000@0.45:boxborderw=8:x=w-text_w-24:y=1290`;
       }
-      run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, '-filter_complex', [
+      run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, ...coverIn, '-filter_complex', [
         `[0:v]${cover(W, H)},boxblur=28:4,eq=brightness=-0.18[bg]`,
         `[0:v]${photo ? cover(2160, 2160) : 'scale=2160:2160:flags=lanczos'},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}${photo ? '' : `,unsharp=3:3:0.3${LOOK}${GRAIN}`}[fg]`,
         `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,
         ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
         `[bgl][fg]overlay=0:250:shortest=1${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
-          `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152${credit},${subtitle}${hook}${withOverlay(LOGO ? 2 : 1)}[v]`,
+          `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152${credit},${subtitle}${hook}${withOverlay(LOGO ? 2 : 1)}${withCover(coverAt)}[v]`,
       ].join(';'), ...encode]);
     }
   }
@@ -323,7 +368,7 @@ let start = 0;
 const mix = [];
 clips.forEach((c, i) => {
   if (i > 0) start += clips[i - 1].seconds - FADE;
-  const ms = Math.round((start + (i === 0 ? 0.5 : FADE + 0.15)) * 1000);
+  const ms = Math.round((start + (i === 0 ? VOICE_START : FADE + 0.15)) * 1000);
   f.push(`[${n + 2 + i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=1.7,adelay=${ms}|${ms}[v${i}]`);
   mix.push(`[v${i}]`);
 });

@@ -17,6 +17,73 @@ const PLAYLISTS = ['Khatu Shyam ji ki Kathayein', 'Shiv ji ki Kathayein', 'Hanum
   '12 Jyotirlinga', 'Char Dham', 'Shakti Peeth', 'Ashtavinayak', 'Panch Kedar', 'Sapta Puri', 'Pancha Bhoota Sthalam',
   'Krishna Leela Dham', 'Hanuman ji ke Prasiddh Mandir', 'Navagraha Mandir', 'Prasiddh Mandir'];
 
+// ---- Hook, title and cover formulas (STORY.md "Hook, title and cover formulas"; channel data of 6 Nov 2026) ---------
+// Winners name the deity, temple or festival in the first 2 seconds, in the title's first words and on the opening
+// frame (Dhanteras Status 280 views in 5 h, Moravinandan Khatu Shyam 173, Shakambhari Mata Sakrai 159, Salasar Balaji
+// 133); slow intros ("Aaj suniye...", "Aaj somvar hai", "Dadi, ...") sat at 0-16 views.
+const NAMES = new RegExp('\\b(' + [
+  'khatu', 'shyam', 'barbarik', 'moravi', 'shiv', 'shiva', 'mahadev', 'bholenath', 'shankar', 'neelkanth', 'hanuman', 'bajrang',
+  'balaji', 'sankat ?mochan', 'ganesh', 'ganpati', 'ganesha', 'vinayak', 'gajanan', 'vishnu', 'narayan', 'hari', 'krishna',
+  'kanha', 'kanhaiya', 'govind', 'gopal', 'bihari', 'radha', 'ram', 'rama', 'raghunath', 'sita', 'lakshman', 'lakshmi',
+  'durga', 'maa', 'mata', 'devi', 'ambe', 'kali', 'santoshi', 'saraswati', 'parvati', 'gauri', 'shani', 'surya', 'sai',
+  'ganga', 'yamuna', 'tulsi', 'dhanvantari', 'kuber', 'yamraj', 'chhathi', 'gajendra', 'markandeya', 'prahlad', 'narsimha',
+  'narasimha', 'dhruv', 'sudama', 'savitri', 'nachiketa', 'bhagirath', 'parshuram', 'vaman', 'jagannath', 'vitthal',
+  'dhanteras', 'diwali', 'deepawali', 'dipawali', 'deepotsav', 'narak', 'govardhan', 'annakut', 'bhai ?dooj', 'chhath',
+  'ekadashi', 'purnima', 'amavasya', 'navratri', 'dussehra', 'janmashtami', 'shivratri', 'holi', 'karwa', 'ahoi',
+  'janmotsav', 'sawan', 'kartik', 'jyotirlinga', 'shakti ?peeth', 'kedarnath', 'badrinath', 'somnath', 'mahakal',
+  'mahakaleshwar', 'omkareshwar', 'mallikarjun', 'kashi', 'vishwanath', 'vrindavan', 'ayodhya', 'mathura', 'salasar',
+  'mehandipur', 'jeen', 'shakambhari', 'karni', 'rani sati', 'dadi', 'pushkar', 'brahma', 'kaila', 'eklingji', 'nathdwara',
+  'shrinathji', 'sanwaliya', 'tirupati', 'vaishno', 'kamakhya', 'char dham', 'ashtavinayak',
+].join('|') + ')', 'i');
+const GENERIC = new Set(['ki', 'ka', 'ke', 'aur', 'mein', 'me', 'se', 'ko', 'hai', 'ji', 'jai', 'shree', 'shri', 'katha', 'kahani',
+  'darshan', 'status', 'video', 'shorts', 'sampoorn', 'mandir', 'dham', 'temple', 'kyun', 'kya', 'kaise', 'baba', 'part', 'the']);
+const words = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9\s-]/g, ' ').split(/[\s-]+/).filter((w) => w.length >= 3 && !GENERIC.has(w));
+// Weak openers: greetings, "today" intros and slow build-ups, in Roman (hook, sub) and Devanagari (tts).
+const WEAK_OPENER = /^(aaj\s+(suniye|sunte|hum|ham|ki\s+katha|ke\s+video|main|mai|mein|ka\s+din)|aaj\s+(somvar|mangalvar|budhvar|guruvar|shukravar|shanivar|ravivar)|namaste|namaskar|pranam|ram\s+ram\s+(ji|sa)|jai\s+shree\s+(shyam|ram|krishna)\s+(doston|bhakto|dosto)|doston|dosto|bhakto|bhaktjan|pyare|swagat|welcome|hello|hi\b|chaliye|aaiye|aaye|aaj\s+hum|is\s+video|iss\s+video|ek\s+baar\s+ki\s+baat|bahut\s+(samay|pehle|purani)|suniye|dekhiye|dadi\s*(maa)?\s*,)/i;
+const WEAK_OPENER_DEV = /^(आज\s+(सुनिए|सुनते|हम|की\s+कथा|का\s+दिन|सोमवार|मंगलवार|बुधवार|गुरुवार|शुक्रवार|शनिवार|रविवार)|नमस्ते|नमस्कार|प्रणाम|दोस्तों|भक्तों|स्वागत|चलिए|आइए|एक\s+बार\s+की\s+बात|बहुत\s+समय\s+पहले|सुनिए|दादी\s*(माँ)?\s*,)/;
+const VALUE = /\b(darshan|status|katha|kahani|rahasya|itihas|shubh|divya|adbhut|anokh[ia]|pavan|prachin|sampoorn|sachchi|sacchi|vrat|puja|pooja|aarti|vishesh|mahatva|kyun|kaise|shubhkamnayein|janmotsav|2026|2027)\b|दर्शन|स्टेटस|कथा|कहानी|रहस्य|इतिहास|शुभ|दिव्य|अद्भुत|अनोख|पावन|प्राचीन|संपूर्ण|सम्पूर्ण|व्रत|पूजा|आरती|विशेष|महत्व|क्यों|कैसे|शुभकामना/i;
+const romanTitle = (yt) => String(yt || '').replace(/#shorts/gi, '').split('|')[0].trim();
+const devTitle = (yt) => (String(yt || '').replace(/#shorts/gi, '').split('|').map((p) => p.trim()).find((p) => DEVANAGARI.test(p)) || '');
+const titleKeys = words(romanTitle(s.youtube_title)).concat(words(s.temple), words(s.deity));
+const named = (t) => NAMES.test(t || '') || words(t).some((w) => titleKeys.includes(w));
+// Today's searched phrases (automation/trends/<date>.md, Recommended topics): `roman` | `देवनागरी`.
+const trendPhrases = (() => {
+  const day = (s.slug || '').slice(0, 10);
+  const dir = 'automation/trends';
+  if (!fs.existsSync(dir)) return [];
+  const f = fs.readdirSync(dir).filter((x) => x.endsWith('.md') && x.slice(0, 10) <= day).sort().pop();
+  if (!f) return [];
+  return [...fs.readFileSync(`${dir}/${f}`, 'utf8').matchAll(/`([^`]+)`\s*\|\s*`([^`]+)`/g)].map((m) => m[1].toLowerCase());
+})();
+const notes = [];
+
+function checkHook(hook, what = 'hook') {
+  need(!WEAK_OPENER.test(String(hook || '').trim()), `${what}: no greeting or slow intro ("Aaj suniye", "Namaste", "Dadi, ..."): open with the name or the question`);
+  need(named(hook), `${what}: name the deity, temple or festival (formula: "<Name>: <blessing or curiosity>", e.g. "Salasar Balaji ki daadhi kyun?" or "Shubh Dhanteras! Dhanvantari ka ashirwad")`);
+}
+function checkOpening(sub, tts, what = 'scene 1') {
+  need(!WEAK_OPENER.test(String(sub || '').trim()) && !WEAK_OPENER_DEV.test(String(tts || '').trim()), `${what}: the first spoken words must not be a greeting or slow intro (see the banned openers in STORY.md)`);
+  need(named(String(sub || '').slice(0, 55)), `${what}: say the deity, temple or festival name in the first ~2 seconds (within the first 55 characters of sub)`);
+}
+function checkTitle(maxRoman) {
+  const yt = s.youtube_title || '';
+  const roman = romanTitle(yt);
+  const first = roman.split(/\s+/).slice(0, 3).join(' ');
+  const trendFirst = trendPhrases.some((p) => roman.toLowerCase().startsWith(p.split(' ').slice(0, 2).join(' ')));
+  need(roman.length >= 8 && roman.length <= maxRoman, `youtube_title: the Roman part (before " | ") is ${roman.length} characters; keep it 8-${maxRoman} so the searched phrase is not cut off in search`);
+  need(NAMES.test(first) || words(first).some((w) => words(`${s.temple || ''} ${s.deity || ''}`).includes(w)) || trendFirst,
+    `youtube_title: start with the searched name (deity, temple or festival) in the first 3 words, e.g. "Salasar Balaji Dham, Churu | सालासर बालाजी धाम #Shorts" (is "${first}")`);
+  need(VALUE.test(yt), 'youtube_title: add one value or emotional word (Darshan, Katha, Status, Rahasya, Itihas, Shubh, Divya, Adbhut, Sampoorn...)');
+  if (trendPhrases.length && !trendPhrases.some((p) => yt.toLowerCase().includes(p))) notes.push(`note: no searched phrase from automation/trends is in the title (e.g. "${trendPhrases.slice(0, 3).join('", "')}"); use one if it fits the subject`);
+}
+function checkCover() {
+  const c = String(s.cover || '').trim();
+  const n = c.split(/\s+/).filter(Boolean).length;
+  need(c && DEVANAGARI.test(c) && n >= 2 && n <= 4 && c.length <= 24, `cover: 2-4 big Devanagari words, max 24 characters, drawn huge on the first 0.4 s (the frame YouTube shows as the Short's thumbnail), e.g. "सालासर बालाजी धाम" (is "${c}")`);
+  const dev = devTitle(s.youtube_title).split(/\s+/).filter((w) => w.length >= 2 && !['की', 'का', 'के', 'और', 'में', 'से', 'जी'].includes(w));
+  need(!c || dev.some((w) => c.includes(w)), 'cover: use the deity/temple/festival word of the Devanagari title keyword');
+}
+
 // ---- Long video (16:9, 5-10 min) ----------------------------------------------------------------
 // Narration runs at ~12 characters a second; each scene adds ~0.8 s and each chapter ~1 s of pause.
 const CHARS_PER_SECOND = 12;
@@ -87,6 +154,9 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
     need(u <= 4, `image ${i} is used ${u} times; max 4`);
   });
   need(!/^(aaj suniye|namaste|namaskar|jai shree shyam|swagat)/i.test(scenes[0]?.sub || ''), 'scene 1 must open with the dramatic moment or a question, not a greeting');
+  checkHook(s.hook);
+  checkOpening(scenes[0]?.sub, scenes[0]?.tts);
+  checkTitle(60);
 
   // Duration 5-10 min, and a teaser scene ("Aage dekhiye...") at least every ~2.5 min until the last stretch.
   const total = scenes.reduce((t, sc) => t + sceneSeconds(sc), 0) + chapters.length;
@@ -104,6 +174,8 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
   const th = s.thumbnail || {};
   need(Number.isInteger(th.image) && th.image >= 0 && th.image < images.length, 'thumbnail.image must be an index into images');
   need(th.text && th.text.length <= 30 && !DEVANAGARI.test(th.text), 'thumbnail.text: Roman Hinglish, 1-30 characters');
+  const hiN = String(th.hi || '').trim().split(/\s+/).filter(Boolean).length;
+  need(th.hi && DEVANAGARI.test(th.hi) && hiN >= 3 && hiN <= 5 && th.hi.length <= 30, 'thumbnail.hi: 3-5 huge Hindi words in Devanagari, max 30 characters, with the deity/temple/festival name (e.g. "सालासर बालाजी का इतिहास")');
   need(!th.focus || ['top', 'center', 'bottom'].includes(th.focus), 'thumbnail.focus must be top, center or bottom');
 
   const yt = s.youtube_title || '';
@@ -124,6 +196,7 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
     console.log(problems.map((p) => `- ${p}`).join('\n'));
     process.exit(1);
   }
+  if (notes.length) console.log(notes.join('\n'));
   console.log(`OK: ${file} (${scenes.length} scenes, ${chapters.length} chapters, ${images.length} images, ~${Math.round(total)} s)`);
   process.exit(0);
 }
@@ -174,6 +247,7 @@ if (s.format === 'status') {
   if (scenes.some((sc) => sc.mantra)) need(s.mantra_source && (s.youtube_description || '').includes(s.mantra_source), 'mantra_source: name the mantra\'s tradition, and put the same text in youtube_description');
   const yt = s.youtube_title || '';
   need(yt.length > 0 && yt.length <= 90 && yt.endsWith(' #Shorts') && DEVANAGARI.test(yt), 'youtube_title: max 90 characters, "Roman | देवनागरी #Shorts"');
+  checkTitle(48);
   const desc = s.youtube_description || '';
   need(desc.length <= 4200 && /subscribe/i.test(desc) && /sanketik/i.test(desc), 'youtube_description: max 4200 characters (the download link is added on upload), a subscribe line and "Chitra AI dwara banaye gaye hain (sanketik)"');
   need(!/[<>]/.test(yt + desc + (s.youtube_tags || '')), 'YouTube fields must not contain < or >');
@@ -238,6 +312,12 @@ if (s.format === 'dialogue') {
   keys.forEach((k) => need(used.has(k), `visual "${k}" is never shown; remove it (it would waste neurons)`));
   const chhotu = lines.filter((l) => l.who === 'chhotu');
   need(lines[0]?.who === 'chhotu' && /\?\s*$/.test(lines[0]?.sub || ''), 'line 1: Chhotu opens with a curious question (ends with "?")');
+  checkHook(s.hook);
+  checkOpening(lines[0]?.sub, lines[0]?.tts, 'line 1');
+  checkCover();
+  // Darshan first: line 1 shows the temple or deity picture (the cover frame), not a legend scene.
+  const v0 = vis[lines[0]?.top] || {};
+  need(v0.real === true || /\b(murti|idol|deity|temple|mandir|shrine|darshan|lord|goddess|god|ji)\b/i.test(v0.prompt || ''), 'line 1: show the temple or deity picture first (top = a temple/murti visual): it is the cover frame');
   need(chhotu.filter((l) => /\?\s*$/.test(l.sub || '')).length >= 4, 'Chhotu\'s questions drive the story: at least 4 Chhotu lines ending with "?"');
   need(lines.every((l, i) => i < 2 || !(l.who === lines[i - 1].who && l.who === lines[i - 2].who)), 'no one speaks more than 2 lines in a row: let Chhotu react or ask');
   const tail = lines.slice(-2);
@@ -266,6 +346,7 @@ if (s.format === 'dialogue') {
   }
   const yt = s.youtube_title || '';
   need(yt.length > 0 && yt.length <= 90 && yt.endsWith(' #Shorts') && DEVANAGARI.test(yt), 'youtube_title: max 90 characters, "Roman | देवनागरी #Shorts"');
+  checkTitle(48);
   need(!/[<>]/.test(yt + desc + (s.youtube_tags || '')), 'YouTube fields must not contain < or >');
   const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
   need(tags.length >= 10 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 10-15 tags with some Devanagari (has ${tags.length})`);
@@ -276,6 +357,7 @@ if (s.format === 'dialogue') {
     console.log(problems.map((p) => `- ${p}`).join('\n'));
     process.exit(1);
   }
+  if (notes.length) console.log(notes.join('\n'));
   console.log(`OK: ${file} (dialogue, ${lines.length} lines, ~${Math.round(secs)} s)`);
   process.exit(0);
 }
@@ -297,6 +379,16 @@ const totalTts = scenes.reduce((n, sc) => n + (sc.tts || '').length, 0);
 need(totalTts <= maxChars, `total narration ${totalTts} characters; keep it under ${maxChars} so the Short stays short`);
 need(s.hook && s.hook.length <= 38 && !DEVANAGARI.test(s.hook), 'hook: Roman Hinglish, 1-38 characters');
 need(!/^(aaj suniye|namaste|jai shree shyam)/i.test(scenes[0]?.sub || ''), 'scene 1 must open with the dramatic moment or a question, not a greeting');
+checkHook(s.hook);
+checkOpening(scenes[0]?.sub, scenes[0]?.tts);
+checkCover();
+checkTitle(48);
+// Darshan first: scene 1 is the deity/temple close-up (its first frame is the cover YouTube shows as the thumbnail).
+need(scenes[0] && !scenes[0].endcard && (scenes[0].real === true || (scenes[0].deity === true && /close[- ]?up|portrait|face/i.test(scenes[0].prompt || ''))),
+  'scene 1: the deity or temple close-up first ("deity": true with "close-up" in the prompt, or a real temple photo "real": true); the story starts at scene 2');
+// Loop ending: the end card's last words name the same deity/temple as the hook, so the replay flows into scene 1.
+const endSub = String(scenes.at(-1)?.sub || '');
+need(words(endSub.slice(-70)).some((w) => words(`${s.hook} ${scenes[0]?.sub || ''}`).includes(w)), 'end card: finish with a jaikara that names the same deity/temple as the hook (e.g. "Jai Salasar Balaji!"), so the loop flows back into scene 1');
 scenes.forEach((sc, i) => {
   const n = `scene ${i + 1}`;
   const last = i === scenes.length - 1;
@@ -359,4 +451,5 @@ if (problems.length) {
   console.log(problems.map((p) => `- ${p}`).join('\n'));
   process.exit(1);
 }
+if (notes.length) console.log(notes.join('\n'));
 console.log(`OK: ${file} (${scenes.length} scenes)`);

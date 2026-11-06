@@ -65,6 +65,45 @@ watch most of it and replay it. Our 65-90 s kathas got 8-35 views, while the cha
 got 100+. So: **morning kathas 50-60 s, evening darshan Shorts 25-35 s** (owner, 3 Nov 2026: "shorts bahut chote aa rhe h time badhao"), a hook in the first 2 seconds,
 one idea per scene, no slow build-up, and an ending that flows back into the start.
 
+**Hook, title and cover formulas (channel data, 6 Nov 2026; `scripts/validate.mjs` enforces them).**
+Winners: "Dhanteras Status 2026 | शुभ धनतेरस स्टेटस वीडियो" (280 views in 5 h, opens on "शुभ धनतेरस!" over a Dhanvantari
+close-up), "Moravinandan Khatu Shyam ji Darshan" (173, 76% viewed), "Shakambhari Mata Mandir Sakrai Darshan" (159,
+animated), "Salasar Balaji Dham, Churu" (133, opens "दाढ़ी-मूँछ वाले हनुमान जी, सालासर बालाजी धाम"). All 21-31 s, the
+name in the first words of the title AND of the narration, a darshan picture first. Losers: kathas that open "आज
+सोमवार है। आज सुनिए…" (8-9 views), temple Shorts that open on geography and say the name late ("जयपुर ज़िले की सांभर
+झील के पास…": 7 views), riddles without a name ("Wo chaand nahi tha…": 9), Dadi-Chhotu Shorts that open "दादी, …"
+(0-4 views), titles without a searched name ("Gajendra Moksha ki Katha": 8).
+- **Hook (first 2 s, spoken and on screen).** `hook` (max 38 characters) and the first spoken line both **name the
+  deity, temple or festival** in their first words (the first ~55 characters of the first `sub`). Three formulas:
+  1. **Name + blessing:** "Shubh Dhanteras! Dhanvantari ka ashirwad" / tts "शुभ धनतेरस! भगवान धन्वंतरि आपको…".
+  2. **Name + curiosity:** "Salasar Balaji ki daadhi-moochh kyun?", "Kya aap jaante hain? Khatu Shyam ka sheesh…",
+     "Shyam Kund mein kya hai khaas?".
+  3. **Name + the most striking true fact:** "Somnath: pehla Jyotirlinga" (only facts with two sources).
+  No slow intros: never a greeting, a weekday intro or an address before the name.
+- **Banned weak openers** (hook, first `sub`, first `tts`): Aaj suniye / Aaj hum / Aaj ki katha / Aaj somvar (any
+  weekday) hai, Namaste, Namaskar, Pranam, Doston, Bhakto, Swagat, Welcome, Hello, Chaliye, Aaiye, Suniye, Dekhiye,
+  Is video mein, Ek baar ki baat hai, Bahut samay pehle, "Dadi, …" / "Dadi maa, …" (put "Dadi" at the end of
+  Chhotu's question instead), and the same in Devanagari (आज सुनिए, नमस्ते, दोस्तों, चलिए, आइए, एक बार की बात,
+  बहुत समय पहले, दादी, …).
+- **Darshan first.** Scene 1 is the deity or temple **close-up** (`deity: true` and "close-up" in the prompt, face in
+  the middle third, or a real temple photo `real: true`), animated/moving from frame one; the hook line is spoken over
+  it and the katha's dramatic moment starts at scene 2. (Noon: line 1 shows the temple/murti visual.)
+- **Cover frame.** `cover`: 2-4 huge Devanagari words (max 24 characters) with the name, e.g. `सालासर बालाजी धाम`,
+  `खाटू श्याम दर्शन`, `शुभ धनतेरस`. The renderer draws them over the first 0.4 s of scene 1 (below the face,
+  inside the safe area) and fades them out while the picture already moves: that first frame is also uploaded as the
+  Short's custom thumbnail (YouTube shows it in search and suggestions) and used as the FB/IG cover.
+- **Title.** `youtube_title` = the **searched phrase first** (the Roman phrase from today's trend file when one fits,
+  otherwise the deity/temple/festival name), ` | ` the Devanagari version, then ` #Shorts`; the Roman part 8-48
+  characters (60 for the long video), the name within its first 3 words, plus **one value or emotional word**
+  (Darshan, Katha, Status, Rahasya, Itihas, Shubh, Divya, Adbhut, Sampoorn, Vishesh…). E.g. `Salasar Balaji Dham
+  Darshan, Churu | सालासर बालाजी धाम दर्शन #Shorts`, `Choti Diwali ki Katha | छोटी दिवाली की कथा #Shorts`.
+- **Retention.** The voice starts at once (0.12 s, no dead air); long subtitles are split so the on-screen text changes
+  every 2-3 s (automatic); the **end card's last words are a jaikara naming the same deity/temple as the hook**
+  ("…Subscribe karein. Jai Salasar Balaji!"), so the loop flows back into scene 1.
+- **Long video thumbnail.** `thumbnail.hi`: 3-5 huge Hindi words with the name (`सालासर बालाजी का इतिहास`, `खाटू
+  श्याम की सम्पूर्ण कथा`); the renderer makes two variants (deity close-up + saffron/gold, clean border), uploads the
+  better-scoring one and keeps both in `out/` for YouTube Studio's "Test & compare".
+
 **Real temple photos.** When a Short is about one temple, set `"temple"` to its slug from `footage/temples.json`
 (e.g. `karni-mata`, `somnath`, `moti-dungri-ganesh`; aliases work) and mark the scenes that show the temple's exterior or
 interior with `"real": true`. If licence-safe photos exist in `footage/<temple>/` (Wikimedia Commons, CC0 / PD / CC BY,
@@ -109,8 +148,9 @@ usually finds nothing, which is fine.
   "voice": "hm_omega",
   "signoff": "Jai Shree Shyam",
   "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
-  "hook": "<Hinglish, max 38 characters, shown big on screen for the first 2.5 s, e.g. Barbarik ne sheesh kyun diya?>",
-  "scenes": [ ... morning 6-8 scenes, evening 4-5 scenes ... ],
+  "hook": "<Hinglish, max 38 characters, names the deity/temple/festival, shown big from 0.4 to 2.6 s, e.g. Barbarik ne Shri Krishna ko sheesh kyun diya?>",
+  "cover": "<2-4 Devanagari words with the name, max 24 characters, drawn huge on the first 0.4 s, e.g. खाटू श्याम दर्शन>",
+  "scenes": [ ... morning 6-8 scenes, evening 4-5 scenes; scene 1 = the deity/temple close-up ... ],
   "youtube_title": "...",
   "youtube_description": "...",
   "youtube_tags": "...",
@@ -161,14 +201,16 @@ Each scene:
   `deity: true` for deity/murti images, face kept still). Prefer calm moments for the marked scenes: a battle or a
   crowd scene animates badly.
 
-Structure: scene 1 is the hook: start in the middle of the most dramatic moment or with a question
-(never "Aaj suniye…" or a greeting), then the story in order, then the moral or blessing,
+Structure: scene 1 is the hook: the deity/temple **close-up** with the hook line naming it (a blessing, a "kya aap
+jaante hain…" question or the most striking true fact; see "Hook, title and cover formulas"; never "Aaj suniye…" or a
+greeting), then the story from its most dramatic moment, then the moral or blessing,
 then the **last scene** must be `{"endcard": true, "tts": "<mantra or jaikara in Devanagari>
 <a warm one-line request to like, share and subscribe>", "sub": "<same in Roman>"}`, with no prompt.
 The request is gentle and positive, never a threat or a promise. Vary its wording day to day, e.g.
 tts `जय श्री श्याम! कथा अच्छी लगी हो तो लाइक करें, अपनों से शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।`,
 sub `Jai Shree Shyam! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN`.
-The endcard tts may be up to 140 characters: keep the request short.
+The endcard tts may be up to 140 characters: keep the request short, and **end it with a jaikara naming the hook's
+deity/temple** (`… सब्सक्राइब करें। जय सालासर बालाजी!`) so the replay loops into scene 1.
 Also end `youtube_description`, `instagram_caption` and `facebook_caption` with one short line asking
 viewers to like, share and follow/subscribe (Hinglish).
 
@@ -181,8 +223,9 @@ Captions: Hinglish in Roman script, respectful, no engagement bait like "share k
 bhakts search YouTube in Hindi, so the YouTube fields also carry the main keyword in Devanagari
 (`title` stays Roman: it is drawn on the video with a Latin-only font):
 
-- `youtube_title`: max 90 characters: the Roman keyword first, then ` | ` and the same keyword in
-  Devanagari, ending with ` #Shorts`. Example: `Hanuman ji aur Sanjeevani ki Katha | हनुमान जी की कथा #Shorts`.
+- `youtube_title`: max 90 characters: the Roman keyword first (8-48 characters, the name in its first 3 words, one
+  value word), then ` | ` and the same keyword in Devanagari, ending with ` #Shorts`. Example:
+  `Hanuman ji aur Sanjeevani ki Katha | हनुमान जी की कथा #Shorts`.
 - `youtube_description`: 2–4 lines: what the story is (Hinglish), one line in Devanagari Hindi with
   the deity and story name, the mantra, then `Jai Shree Shyam 🙏`, then 3–5 hashtags.
 - `youtube_tags`: 10–15 comma-separated search phrases, about half Roman and half Devanagari
@@ -252,8 +295,11 @@ the `images` entries that show the temple building or its interior (2-5 of them)
 `footage/<temple>/`, those images become the real photos (no FLUX cost) and their credits are added to the description;
 keep the "Chitra AI dwara banaye gaye hain (sanketik)" line for the rest. Legend scenes stay AI images.
 
-**Thumbnail.** `thumbnail`: `{"image": <index>, "focus": "center", "text": "<Roman, max 30 characters>"}`:
-the most striking image and a short curiosity line that is true to the story (no clickbait lies).
+**Thumbnail.** `thumbnail`: `{"image": <index>, "focus": "center", "text": "<Roman, max 30 characters>", "hi": "<3-5
+Devanagari words, max 30 characters>"}`: the most striking **deity/temple close-up** image (make one image prompt a
+close-up portrait for this), `hi` = the huge Hindi words with the name (`सालासर बालाजी का इतिहास`) and `text` a short
+Roman line that is true to the story (no clickbait lies). The hook (`hook`) names the deity, temple or festival, and
+chapter 1's first line says the name within its first words.
 
 **YouTube fields.**
 - `youtube_title`: max 100 characters, Roman keyword ` | ` Devanagari keyword, may end with
@@ -280,7 +326,7 @@ the most striking image and a short curiosity line that is true to the story (no
   "source": "<e.g. Skanda Purana ke anusar>",
   "deity": "...",
   "summary": "...",
-  "thumbnail": { "image": 0, "focus": "center", "text": "..." },
+  "thumbnail": { "image": 0, "focus": "center", "text": "...", "hi": "<3-5 Hindi words>" },
   "images": [ { "prompt": "..." }, ... 12-24 ],
   "chapters": [
     { "title": "<Roman chapter title>", "scenes": [
@@ -337,8 +383,10 @@ the disclaimer in the description. Respectful tone, no fear or money promises (s
 - 14-24 lines, about **90-120 seconds** spoken. Dadi speaks slowly (~10 Devanagari characters a second), Chhotu
   faster (~14), with a short pause between turns; the validator estimates the length (about 1,000-1,300 characters
   of tts in total).
-- Line 1: **Chhotu asks a curious question** that hooks in 2 seconds (the most surprising fact as a question, e.g.
-  "Dadi, Hanuman ji ki daadhi-moochh kyun hai?"). No greeting.
+- Line 1: **Chhotu asks a curious question** that hooks in 2 seconds and **starts with the temple/deity/festival
+  name** (the most surprising fact as a question, e.g. "Salasar Balaji ki daadhi-moochh kyun hai, Dadi?"). Never
+  open with "Dadi, …" or a greeting (those Shorts got 0-4 views); its `top` is the temple/murti picture.
+- `cover`: 2-4 Devanagari words with the name (e.g. `सालासर बालाजी धाम`), drawn huge over the first 0.4 s.
 - At least 4 of Chhotu's lines are questions ("Phir kya hua?", "Wo murti aayi kahan se?"). Nobody speaks more than
   2 lines in a row. Dadi's lines are short and warm ("Suno beta…"), one idea each.
 - **Ending:** Chhotu asks about tomorrow ("Dadi, kal kis mandir ki kahani sunaogi?" or he names it), and Dadi
@@ -370,7 +418,8 @@ scenes (a farmer's plough, a dream, a cart) are `real: false`.
   "next": "<tomorrow's temple or festival, Roman, max 30 characters>",
   "deity": "<for the log line, max 60 characters>",
   "summary": "<the story in a few words, max 160 characters, ending with 'agla: <next>'>",
-  "hook": "<Roman, max 38 characters, shown big for the first 2.5 s>",
+  "hook": "<Roman, max 38 characters, names the temple/festival, shown big from 0.4 to 2.6 s>",
+  "cover": "<2-4 Devanagari words with the name, max 24 characters>",
   "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
   "visuals": { "temple": { "prompt": "...", "real": true }, "field": { "prompt": "...", "real": false } },
   "lines": [ { "who": "chhotu", "tts": "...", "sub": "...", "top": "temple" }, ... ],

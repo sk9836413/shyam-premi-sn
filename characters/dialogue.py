@@ -533,6 +533,12 @@ class Renderer:
         if hook_txt:
             hp = f"{self.build}/hook.png"; self.hook_overlay(hook_txt).save(hp)
             inputs += ["-loop", "1", "-framerate", str(FPS), "-t", f"{dur:.3f}", "-i", hp]; hook_in = n_in; n_in += 1
+        # Cover frame (story/cover.mjs --dialogue): 2-4 huge Devanagari words over the first 0.4 s, so the opening
+        # frame is thumbnail-grade; everything under it already moves.
+        cover = getattr(self.a, "cover", None) if i == 0 else None
+        cover = cover if cover and os.path.exists(cover) else None
+        if cover:
+            inputs += ["-loop", "1", "-framerate", str(FPS), "-t", "1", "-i", cover]; cover_in = n_in; n_in += 1
         inputs += ["-i", audio]
         fg = [sf, cf, f"[0:v][st]overlay=0:{STORY_Y}[v0]", f"[v0][ch]overlay=0:{CHAR_Y}[v1]"]
         last = "v1"
@@ -547,7 +553,10 @@ class Renderer:
         for k, (_, a0, b0) in enumerate(ovs):
             fg.append(f"[{last}][{first_ov + k}:v]overlay=0:0:enable='between(t,{a0:.3f},{b0:.3f})'[o{k}]"); last = f"o{k}"
         if hook_txt:
-            fg.append(f"[{last}][{hook_in}:v]overlay=0:0:enable='lt(t,2.5)'[hk]"); last = "hk"
+            fg.append(f"[{last}][{hook_in}:v]overlay=0:0:enable='between(t,{0.36 if cover else 0},2.6)'[hk]"); last = "hk"
+        if cover:
+            fg.append(f"[{cover_in}:v]format=rgba,fade=t=out:st=0.4:d=0.08:alpha=1[cov]")
+            fg.append(f"[{last}][cov]overlay=0:0:eof_action=pass[cv]"); last = "cv"
         fg.append(f"[{last}]format=yuv420p[vout]")
         seg = f"{self.build}/seg-{i:02d}.mp4"
         ff(*inputs, "-filter_complex", ";".join(fg), "-map", "[vout]", "-map", amap, "-c:v", "libx264", "-preset", "veryfast",
@@ -652,6 +661,7 @@ def main():
     p.add_argument("--voice"); p.add_argument("--plan"); p.add_argument("--lipsync"); p.add_argument("--images")
     p.add_argument("--visuals"); p.add_argument("--srt"); p.add_argument("--meta"); p.add_argument("--footage")
     p.add_argument("--max-minutes", default=30); p.add_argument("--keep-build", action="store_true")
+    p.add_argument("--cover", help="render: transparent 1080x1920 PNG shown over the first 0.4 s (story/cover.mjs --dialogue)")
     p.add_argument("--credits", action="store_true", help="render: add real-footage credits to the spec's description/captions")
     a = p.parse_args()
     {"voice": cmd_voice, "images": cmd_images, "plan": cmd_plan, "dataset": cmd_dataset, "render": cmd_render}[a.cmd](a)

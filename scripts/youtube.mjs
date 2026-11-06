@@ -18,8 +18,12 @@
 // set up on this PC (%USERPROFILE%\.epifive\youtube-client.json); only its id/secret are reused.
 // Dormant override: SHYAM_YT_CLIENT_ID / SHYAM_YT_CLIENT_SECRET / SHYAM_YT_REFRESH_TOKEN, when all three are
 // set, replace the YT_* values (for a separate Google project later; `auth --client <json>` makes them).
+// Shorts also get their cover frame (the thumbnail-grade first frame, story/cover.mjs) as the custom thumbnail. Tested
+// 6 Nov 2026 on a Short of this channel: thumbnails.set returns 200 and YouTube serves the image as hqdefault /
+// maxresdefault (search results, the watch page, suggestions); the portrait Shorts-feed frame (oar2) stays YouTube's
+// own pick, which is why the frame itself must be strong too. --no-cover-thumbnail turns it off.
 // Prints one JSON line. Exit code 0 = done (or not configured), 1 = failure.
-import { exec } from 'node:child_process';
+import { exec, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
@@ -208,6 +212,15 @@ async function auth(clientFile) {
   return { status: 'ok', channel: ch, wrote: ENV_FILE };
 }
 
+// The Short's first frame (0.1 s, after the cover words are drawn) as a JPEG next to the video; null if ffmpeg fails.
+function coverFrame(video) {
+  const out = video.replace(/\.mp4$/i, '') + '-cover.jpg';
+  if (fs.existsSync(out)) return out;
+  const ff = process.env.FFMPEG_PATH || (fs.existsSync('E:/tools/ffmpeg/bin/ffmpeg.exe') ? 'E:/tools/ffmpeg/bin/ffmpeg.exe' : 'ffmpeg');
+  const r = spawnSync(ff, ['-v', 'error', '-y', '-ss', '0.1', '-i', video, '-frames:v', '1', '-q:v', '3', out], { encoding: 'utf8' });
+  return r.status === 0 && fs.existsSync(out) && fs.statSync(out).size < 2e6 ? out : null;
+}
+
 async function main() {
   const command = args[0];
   if (command === 'auth') return auth(option('--client') ?? DEFAULT_CLIENT);
@@ -232,7 +245,7 @@ async function main() {
       return { status: 'quota', error: e.message };
     }
     let units = 52; // playlists.list 1 + playlistItems.insert 50 + token/misc; videos.insert uses its own bucket
-    const thumb = option('--thumbnail');
+    const thumb = option('--thumbnail') || (!long && !args.includes('--no-cover-thumbnail') ? coverFrame(video) : null);
     if (thumb) {
       units += 50;
       try { youtube.thumbnail = await setThumbnail(env, youtube.id, thumb); } catch (e) { youtube.thumbnailError = e.message; }

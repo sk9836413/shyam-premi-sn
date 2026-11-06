@@ -43,7 +43,8 @@ async function main() {
   const video = option('--video');
   const spec = JSON.parse(fs.readFileSync(option('--scenes'), 'utf8'));
   const thumb = path.join(os.tmpdir(), `${spec.slug}.jpg`);
-  const r = spawnSync(FF, ['-y', '-loglevel', 'error', '-ss', '3', '-i', video, '-frames:v', '1', '-q:v', '3', thumb], { encoding: 'utf8' });
+  // 0.1 s = the cover frame (story/cover.mjs): thumbnail-grade, with the big Devanagari words.
+  const r = spawnSync(FF, ['-y', '-loglevel', 'error', '-ss', '0.1', '-i', video, '-frames:v', '1', '-q:v', '3', thumb], { encoding: 'utf8' });
   if (r.status !== 0) throw new Error(`thumbnail: ${r.stderr}`);
 
   const payload = {

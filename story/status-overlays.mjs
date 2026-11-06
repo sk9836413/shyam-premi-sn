@@ -15,7 +15,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const FONTS = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../brand/fonts');
 export const END_LINE = 'Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN';
 
-function chrome() {
+export function chrome() {
   const list = [process.env.CHROME, 'C:/Program Files/Google/Chrome/Application/chrome.exe',
     'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', '/usr/bin/google-chrome', '/usr/bin/google-chrome-stable',
     '/usr/bin/chromium', '/usr/bin/chromium-browser'];
