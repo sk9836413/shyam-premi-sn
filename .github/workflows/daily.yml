@@ -1066,7 +1066,9 @@ jobs:
           node animate/kaggle.mjs quota > "$RUNNER_TEMP/quota.json" || true
           python -I story/movie.py tier --spec "$F" --quota "$RUNNER_TEMP/quota.json" --force "${{ vars.MOVIE_TIER }}" | tee "$RUNNER_TEMP/tier.json"
           tier=$(node -p "require(process.env.RUNNER_TEMP + '/tier.json').tier")
-          [ "$tier" != none ] || { echo "::warning::Not enough Kaggle GPU hours left before the weekly reset; trying again on the next trigger"; exit 1; }
+          # "none": too few GPU hours before the weekly reset, or inside / too close to the daily jobs' windows (09:00-11:30 and
+          # 18:30-21:00 IST, story/movie.py fit_window): the next evening trigger (e.g. 21:17 IST) tries again.
+          [ "$tier" != none ] || { echo "::warning::No Kaggle slot for the movie now ($(cat "$RUNNER_TEMP/tier.json")); the next trigger tries again"; exit 1; }
           python -I story/movie.py dataset --spec "$F" --voice "$W/voice" --tier "$tier" --out animate/dataset --max-minutes 170
           node animate/kaggle.mjs upload
           node animate/kaggle.mjs lock --minutes 90

@@ -159,13 +159,41 @@ def pick_tier(q, hero_ok, now=None):
     return "none", round(spare, 2), days
 
 
+# The daily jobs' Kaggle windows (IST): morning/noon/evening production 09:00-11:30, festival status + photo + evening
+# retries 18:30-21:00 (coordinator, 6 Nov 2026). A movie session never starts inside one, and only with a tier whose
+# session (queue included) ends before the next window opens. Override: MOVIE_WINDOWS="HH:MM-HH:MM,..." ("" = none).
+WINDOWS = os.environ.get("MOVIE_WINDOWS", "09:00-11:30,18:30-21:00")
+TIER_MINUTES = {"full": 165, "standard": 120, "lite": 80, "stills": 40}
+
+
+def fit_window(tier, now=None):
+    """The biggest tier (<= the quota's) that finishes before the next blocked window; 'wait' inside a window."""
+    now = now or datetime.datetime.now(datetime.timezone.utc)
+    ist = now + datetime.timedelta(hours=5, minutes=30)
+    m = ist.hour * 60 + ist.minute
+    spans = []
+    for w in filter(None, WINDOWS.split(",")):
+        a_, b_ = w.split("-")
+        spans.append((int(a_[:2]) * 60 + int(a_[3:]), int(b_[:2]) * 60 + int(b_[3:])))
+    if any(a_ <= m < b_ for a_, b_ in spans):
+        return "wait"
+    nxt = min([a_ - m for a_, _ in spans if a_ > m] + [a_ + 1440 - m for a_, _ in spans] or [10 ** 6])
+    order = ["full", "standard", "lite", "stills"]
+    for t in order[order.index(tier):] if tier in order else []:
+        if TIER_MINUTES[t] <= nxt:
+            return t
+    return "wait"
+
+
 def cmd_tier(a):
     spec = load(a.spec)
     q = load(a.quota)
     tier, spare, days = pick_tier(q, bool(spec.get("hero_clip")))
     if a.force:
         tier = a.force
-    print(json.dumps({"tier": tier, "spare_h": spare, "days_to_reset": days, "left_h": q.get("left")}))
+    timed = fit_window(tier) if tier != "none" else "none"
+    print(json.dumps({"tier": "none" if timed == "wait" else timed, "quota_tier": tier, "window": timed == "wait",
+                      "spare_h": spare, "days_to_reset": days, "left_h": q.get("left")}))
 
 
 # -------------------------------------------------------------- dataset ----

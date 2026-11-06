@@ -224,11 +224,12 @@ def stills(inp, out, size=2160):
     for f in sorted(glob.glob(f"{inp}/*.jpg")):
         name = os.path.basename(f)
         i = name[6:-4] if name.startswith("still-") else name[:-4]
-        if not i.isdigit():
+        # Scene numbers for the Shorts; the movie kernel names its stills s<n> / teaser (story/movie_kernel.py).
+        if not (i.isdigit() or (i.replace("-", "").isalnum() and i.islower())):
             continue
         e.still(f, f"{out}/{i}.jpg", size)
-        done.append(int(i))
-    rec = {"stills": sorted(done), "stills_s": round(time.time() - t0, 1)}
+        done.append(int(i) if i.isdigit() else i)
+    rec = {"stills": sorted(done, key=str), "stills_s": round(time.time() - t0, 1)}
     print(json.dumps(rec), flush=True)
     return rec
 
