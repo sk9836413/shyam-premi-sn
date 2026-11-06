@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-07",
+  "weekday": "Shanivar",
+  "festival": "दीपों का प्रकाश आपके घर में खुशियां लाए",
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-07T02:00:00.000Z",
+      "igAt": "2026-11-07T03:43:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "choti-diwali",
+        "name": "Choti Diwali (Naraka Chaturdashi) (some calendars: 8 Nov)",
+        "big": "छोटी दिवाली",
+        "line": "की शुभकामनाएं 🙏",
+        "blessing": "दीपों का प्रकाश आपके घर में खुशियां लाए",
+        "tags": [
+          "#ChotiDiwali",
+          "#NarakChaturdashi"
+        ]
+      },
+      "bank": "brand/photo-bank/choti-diwali/kaggle-flux-2026-11-06-1.jpg",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 2,
+      "fbAt": "2026-11-07T05:30:00.000Z",
+      "igAt": "2026-11-07T05:13:00.000Z",
+      "kind": "vichar",
+      "quote": 6,
+      "quoteText": {
+        "dev": "ऐसी वाणी बोलिए, मन का आपा खोय।\nऔरन को शीतल करे, आपहुं शीतल होय॥",
+        "source": "संत कबीर",
+        "roman": "Aisi vaani boliye, man ka aapa khoy",
+        "meaning": "Aisa bolein jisse doosron ko shanti mile, aur hamara mann bhi shant rahe."
+      },
+      "write": [
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 3,
+      "fbAt": "2026-11-07T12:00:00.000Z",
+      "igAt": "2026-11-07T13:16:00.000Z",
+      "kind": "facts",
+      "temple": "jakhu",
+      "templeName": "Jakhu Hanuman, Shimla",
+      "category": "hanuman",
+      "photos": [
+        {
+          "file": "footage/jakhu/commons-pavanputra-hanuman-7c03f3.jpg",
+          "credit": "Photo: Prasundaram, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Pavanputra_Hanuman.jpg",
+          "licence": "CC BY 4.0",
+          "author": "Prasundaram",
+          "title": "File:Pavanputra Hanuman.jpg"
+        },
+        {
+          "file": "footage/jakhu/commons-hanuman-statue-jakhoo-shimla-2014-05-07-6bdd4c.jpg",
+          "credit": "Photo: Biswarup Ganguly, CC BY 3.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Hanuman_Statue_-_Jakhoo_-_Shimla_2014-05-07_1272.JPG",
+          "licence": "CC BY 3.0",
+          "author": "Biswarup Ganguly",
+          "title": "File:Hanuman Statue - Jakhoo - Shimla 2014-05-07 1272.JPG"
+        },
+        {
+          "file": "footage/jakhu/commons-sdhp-3521-hanuman-statue-near-jakhu-temp-a169ae.jpg",
+          "credit": "Photo: VasuVR, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:SDHP-3521_Hanuman_statue_near_Jakhu_temple_Shimla.jpg",
+          "licence": "CC BY 4.0",
+          "author": "VasuVR",
+          "title": "File:SDHP-3521 Hanuman statue near Jakhu temple Shimla.jpg"
+        }
+      ],
+      "write": [
+        "title",
+        "line",
+        "facts",
+        "sources",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 4,
+      "fbAt": "2026-11-07T14:00:00.000Z",
+      "igAt": "2026-11-07T14:16:00.000Z",
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "templeName": "Khatu Shyam ji Mandir, Sikar",
+      "bank": "brand/photo-bank/khatu/kaggle-cast-1.jpg",
+      "write": [
+        "big",
+        "line",
+        "question",
+        "caption",
+        "hashtags"
+      ]
+    }
+  ]
+}

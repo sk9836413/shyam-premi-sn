@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-07",
+  "posts": {
+    "1": {
+      "big": "छोटी दिवाली",
+      "line": "की शुभकामनाएं 🙏",
+      "place": "नरक चतुर्दशी का पावन पर्व",
+      "text": "दीपों का प्रकाश आपके घर में खुशियां लाए",
+      "caption": "छोटी दिवाली की हार्दिक शुभकामनाएं 🪔\nDeepon ka prakash aapke ghar mein khushiyan laye.\nAaj ghar-angan mein diye jalane ki taiyari hoti hai.\nChitra AI dwara banaya gaya hai (sanketik).\nAapke yahan Choti Diwali par sabse pehla diya kaun jalata hai?",
+      "hashtags": ["#JaiShreeShyam", "#ChotiDiwali", "#NarakChaturdashi", "#Diwali2026", "#Deepotsav", "#KhatuShyam"]
+    },
+    "2": {
+      "caption": "आज का विचार 🙏\n\"ऐसी वाणी बोलिए, मन का आपा खोय।\nऔरन को शीतल करे, आपहुं शीतल होय॥\" - संत कबीर\nAisa bolein jisse doosron ko shanti mile, aur hamara mann bhi shant rahe.\nAaj ki baat-cheet mein kaun si baat aapne pyaar se kahi?",
+      "hashtags": ["#JaiShreeShyam", "#AajKaVichar", "#Kabir", "#KabirKeDohe", "#SantKabir", "#Suvichar"]
+    },
+    "3": {
+      "title": "जाखू हनुमान, शिमला",
+      "line": "3 बातें जो शायद आप नहीं जानते",
+      "facts": [
+        { "dev": "जाखू मंदिर शिमला की जाखू पहाड़ी पर है और भगवान हनुमान को समर्पित है।", "roman": "Jakhu mandir Shimla ki Jakhu pahadi par hai aur Bhagwan Hanuman ko samarpit hai." },
+        { "dev": "यहाँ हनुमान जी की लगभग 108 फीट ऊँची प्रतिमा 2010 में स्थापित हुई, जो शिमला में दूर से दिखती है।", "roman": "Yahan Hanuman ji ki lagbhag 108 foot unchi pratima 2010 mein sthapit hui, jo Shimla mein door se dikhti hai." },
+        { "dev": "मान्यता है कि संजीवनी लाते समय हनुमान जी यहाँ रुके और यक्ष ऋषि ने उनकी स्मृति में मंदिर बनवाया।", "roman": "Manyata hai ki Sanjeevani laate samay Hanuman ji yahan ruke aur Yaku Rishi ne unki smriti mein mandir banwaya." }
+      ],
+      "sources": ["https://shimla.hptours.org/temples/jakhu-temple-shimla", "https://bhaktibharat.com/en/mandir/jakhu-hanuman-mandir"],
+      "caption": "Aaj ka mandir: Jakhu Hanuman, Shimla 🙏\nIs carousel mein teen baatein hain jo shayad aap nahi jaante.\nजाखू पहाड़ी पर हनुमान जी के दर्शन का अपना ही आनंद है।\nSanjeevani aur Yaku Rishi wali baat manyata hai, isliye manyata ke roop mein likhi gayi hai.\nAapne Jakhu Hanuman ya Himachal ke kisi mandir ke darshan kiye hain?",
+      "hashtags": ["#JaiShreeShyam", "#JakhuTemple", "#JakhuHanuman", "#Shimla", "#Hanuman", "#JaiBajrangbali", "#HimachalPradesh", "#MandirDarshan"]
+    },
+    "4": {
+      "big": "शुभ संध्या",
+      "line": "संध्या आरती 🪔 जय श्री श्याम",
+      "question": "छोटी दिवाली की शाम आपके घर कौन सा दीया जला?",
+      "caption": "शुभ संध्या 🙏\nChoti Diwali ki sham, sandhya aarti ka samay.\nBaba Khatu Shyam ji (sheesh ke roop mein pujit) ko pranam, jai shree shyam.\nChitra AI dwara banaya gaya hai (sanketik).\nAapke ghar mein aaj sandhya aarti ke saath kaun sa diya jalaya gaya?",
+      "hashtags": ["#JaiShreeShyam", "#KhatuShyam", "#KhatuShyamJi", "#SandhyaAarti", "#ChotiDiwali", "#Shyambaba"]
+    }
+  }
+}

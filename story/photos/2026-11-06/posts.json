@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-06",
+  "posts": {
+    "3": {
+      "title": "तारापीठ, बीरभूम",
+      "line": "3 बातें जो शायद आप नहीं जानते",
+      "facts": [
+        { "dev": "तारापीठ पश्चिम बंगाल के बीरभूम जिले में, रामपुरहाट के पास है और माँ तारा को समर्पित है।", "roman": "Tarapith Pashchim Bengal ke Birbhum zile mein, Rampurhat ke paas hai aur Maa Tara ko samarpit hai." },
+        { "dev": "मान्यता है कि यहाँ सती की आँख की पुतली गिरी थी; बंगला में 'तारा' का अर्थ पुतली है।", "roman": "Manyata hai ki yahan Sati ki aankh ki putli giri thi; Bangla mein 'tara' ka matlab putli hota hai." },
+        { "dev": "गर्भगृह की प्राचीन प्रतिमा में माँ तारा शिव जी को शिशु रूप में दूध पिलाती दिखती हैं।", "roman": "Garbhgriha ki prachin pratima mein Maa Tara Shiv ji ko shishu roop mein doodh pilati dikhti hain." }
+      ],
+      "sources": ["https://ecoheritage.cpreec.org/?p=6470", "https://www.bhaktibharat.com/en/mandir/tarapith"],
+      "caption": "Aaj ka mandir: Tarapith, Birbhum (Pashchim Bengal) 🙏\nIs carousel mein teen baatein hain jo shayad aap nahi jaante.\nतारापीठ में माँ तारा की अनोखी प्रतिमा के दर्शन होते हैं।\nYahan ki kai baatein manyata par aadharit hain, isliye unhe manyata ke roop mein hi likha gaya hai.\nAapne Maa Tara ya Bengal ke kisi mandir ke darshan kiye hain? Kaisa laga tha?",
+      "hashtags": ["#JaiShreeShyam", "#Tarapith", "#MaaTara", "#Birbhum", "#WestBengal", "#ShaktiPeeth", "#MandirDarshan", "#IncredibleIndia"]
+    },
+    "4": {
+      "big": "शुभ संध्या",
+      "line": "संध्या आरती 🪔 जय श्री श्याम",
+      "question": "आज आपके घर में संध्या आरती कब हुई?",
+      "caption": "शुभ संध्या 🙏\nसंध्या आरती का समय मन को शांति देता है।\nBaba Khatu Shyam ji (sheesh ke roop mein pujit) ko pranam, jai shree shyam.\nChitra AI dwara banaya gaya hai (sanketik).\nAapke ghar mein aaj sandhya aarti kis samay hui?",
+      "hashtags": ["#JaiShreeShyam", "#KhatuShyam", "#KhatuShyamJi", "#SandhyaAarti", "#Shyambaba", "#Sikar"]
+    }
+  }
+}

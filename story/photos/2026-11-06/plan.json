@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-06",
+  "weekday": "Shukravar",
+  "festival": "आपके घर सुख, आरोग्य और समृद्धि बनी रहे",
+  "posts": [
+    {
+      "n": 3,
+      "fbAt": "2026-11-06T12:00:00.000Z",
+      "igAt": "2026-11-06T13:16:00.000Z",
+      "kind": "facts",
+      "temple": "tarapith",
+      "templeName": "Tarapith, Birbhum",
+      "category": "devi",
+      "photos": [
+        {
+          "file": "footage/tarapith/commons--3fab7b.jpg",
+          "credit": "Photo: Munita Prasad, Public Domain, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:%E0%A4%A4%E0%A4%BE%E0%A4%B0%E0%A4%BE%E0%A4%AA%E0%A5%80%E0%A4%A0.jpg",
+          "licence": "Public Domain",
+          "author": "Munita Prasad",
+          "title": "File:तारापीठ.jpg"
+        },
+        {
+          "file": "footage/tarapith/commons-tarapith-tarama-temple-9963c1.jpg",
+          "credit": "Photo: Apurv013, CC0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Tarapith_Tarama_Temple.jpg",
+          "licence": "CC0",
+          "author": "Apurv013",
+          "title": "File:Tarapith Tarama Temple.jpg"
+        },
+        {
+          "file": "footage/tarapith/commons-tarapith-aarti-f67ddf.jpg",
+          "credit": "Photo: Amrendrakumar12, CC0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Tarapith_Aarti.jpg",
+          "licence": "CC0",
+          "author": "Amrendrakumar12",
+          "title": "File:Tarapith Aarti.jpg"
+        }
+      ],
+      "write": [
+        "title",
+        "line",
+        "facts",
+        "sources",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 4,
+      "fbAt": "2026-11-06T14:00:00.000Z",
+      "igAt": "2026-11-06T14:16:00.000Z",
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "templeName": "Khatu Shyam ji Mandir, Sikar",
+      "bank": "brand/photo-bank/khatu/kaggle-cast-0.jpg",
+      "write": [
+        "big",
+        "line",
+        "question",
+        "caption",
+        "hashtags"
+      ]
+    }
+  ]
+}

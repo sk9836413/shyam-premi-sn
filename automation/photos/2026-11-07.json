@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-07",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": "brand/photo-bank/choti-diwali/kaggle-flux-2026-11-06-1.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-07T02:00:00.000Z",
+      "igAt": "2026-11-07T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-07-1-1.jpg"
+      ],
+      "caption": "छोटी दिवाली की हार्दिक शुभकामनाएं 🪔\nDeepon ka prakash aapke ghar mein khushiyan laye.\nAaj ghar-angan mein diye jalane ki taiyari hoti hai.\nChitra AI dwara banaya gaya hai (sanketik).\nAapke yahan Choti Diwali par sabse pehla diya kaun jalata hai?\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#JaiShreeShyam #ChotiDiwali #NarakChaturdashi #Diwali2026 #Deepotsav #KhatuShyam",
+      "fb": {
+        "id": "1596974459112185",
+        "scheduled": "2026-11-07T02:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-07T03:43:00.000Z"
+      }
+    },
+    {
+      "n": 2,
+      "kind": "vichar",
+      "temple": null,
+      "quote": 6,
+      "ai": false,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-07T05:30:00.000Z",
+      "igAt": "2026-11-07T05:13:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-07-2-1.jpg"
+      ],
+      "caption": "आज का विचार 🙏\n\"ऐसी वाणी बोलिए, मन का आपा खोय।\nऔरन को शीतल करे, आपहुं शीतल होय॥\" - संत कबीर\nAisa bolein jisse doosron ko shanti mile, aur hamara mann bhi shant rahe.\nAaj ki baat-cheet mein kaun si baat aapne pyaar se kahi?\n\n#JaiShreeShyam #AajKaVichar #Kabir #KabirKeDohe #SantKabir #Suvichar",
+      "fb": {
+        "id": "1596974529112178",
+        "scheduled": "2026-11-07T05:30:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-07T05:13:00.000Z"
+      }
+    },
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "jakhu",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/jakhu/commons-pavanputra-hanuman-7c03f3.jpg",
+        "footage/jakhu/commons-hanuman-statue-jakhoo-shimla-2014-05-07-6bdd4c.jpg",
+        "footage/jakhu/commons-sdhp-3521-hanuman-statue-near-jakhu-temp-a169ae.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-07T12:00:00.000Z",
+      "igAt": "2026-11-07T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-07-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-07-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-07-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-07-3-4.jpg"
+      ],
+      "caption": "Aaj ka mandir: Jakhu Hanuman, Shimla 🙏\nIs carousel mein teen baatein hain jo shayad aap nahi jaante.\nजाखू पहाड़ी पर हनुमान जी के दर्शन का अपना ही आनंद है।\nSanjeevani aur Yaku Rishi wali baat manyata hai, isliye manyata ke roop mein likhi gayi hai.\nAapne Jakhu Hanuman ya Himachal ke kisi mandir ke darshan kiye hain?\n\n📷 Photo: Prasundaram, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Pavanputra_Hanuman.jpg\n📷 Photo: Biswarup Ganguly, CC BY 3.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Hanuman_Statue_-_Jakhoo_-_Shimla_2014-05-07_1272.JPG\n📷 Photo: VasuVR, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:SDHP-3521_Hanuman_statue_near_Jakhu_temple_Shimla.jpg\n\n#JaiShreeShyam #JakhuTemple #JakhuHanuman #Shimla #Hanuman #JaiBajrangbali #HimachalPradesh #MandirDarshan",
+      "fb": {
+        "id": "388779648425633_1596974789112152",
+        "scheduled": "2026-11-07T12:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-07T13:16:00.000Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "ai": true,
+      "bank": "brand/photo-bank/khatu/kaggle-cast-1.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-07T14:00:00.000Z",
+      "igAt": "2026-11-07T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-07-4-1.jpg"
+      ],
+      "caption": "शुभ संध्या 🙏\nChoti Diwali ki sham, sandhya aarti ka samay.\nBaba Khatu Shyam ji (sheesh ke roop mein pujit) ko pranam, jai shree shyam.\nChitra AI dwara banaya gaya hai (sanketik).\nAapke ghar mein aaj sandhya aarti ke saath kaun sa diya jalaya gaya?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#JaiShreeShyam #KhatuShyam #KhatuShyamJi #SandhyaAarti #ChotiDiwali #Shyambaba",
+      "fb": {
+        "id": "1596974889112142",
+        "scheduled": "2026-11-07T14:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-07T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

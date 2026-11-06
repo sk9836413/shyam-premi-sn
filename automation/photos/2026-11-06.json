@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-06",
+  "posts": [
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "tarapith",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/tarapith/commons--3fab7b.jpg",
+        "footage/tarapith/commons-tarapith-tarama-temple-9963c1.jpg",
+        "footage/tarapith/commons-tarapith-aarti-f67ddf.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-06T12:00:00.000Z",
+      "igAt": "2026-11-06T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-06-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-06-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-06-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-06-3-4.jpg"
+      ],
+      "caption": "Aaj ka mandir: Tarapith, Birbhum (Pashchim Bengal) 🙏\nIs carousel mein teen baatein hain jo shayad aap nahi jaante.\nतारापीठ में माँ तारा की अनोखी प्रतिमा के दर्शन होते हैं।\nYahan ki kai baatein manyata par aadharit hain, isliye unhe manyata ke roop mein hi likha gaya hai.\nAapne Maa Tara ya Bengal ke kisi mandir ke darshan kiye hain? Kaisa laga tha?\n\n📷 Photo: Munita Prasad, Public Domain, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:%E0%A4%A4%E0%A4%BE%E0%A4%B0%E0%A4%BE%E0%A4%AA%E0%A5%80%E0%A4%A0.jpg\n📷 Photo: Apurv013, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Tarapith_Tarama_Temple.jpg\n📷 Photo: Amrendrakumar12, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Tarapith_Aarti.jpg\n\n#JaiShreeShyam #Tarapith #MaaTara #Birbhum #WestBengal #ShaktiPeeth #MandirDarshan #IncredibleIndia",
+      "fb": {
+        "id": "388779648425633_1596974149112216"
+      },
+      "ig": {
+        "id": "17976587523169752",
+        "url": "https://www.instagram.com/p/DfZswSbj2R9/",
+        "at": "2026-11-06T13:20:15.162Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "ai": true,
+      "bank": "brand/photo-bank/khatu/kaggle-cast-0.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-06T14:00:00.000Z",
+      "igAt": "2026-11-06T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-06-4-1.jpg"
+      ],
+      "caption": "शुभ संध्या 🙏\nसंध्या आरती का समय मन को शांति देता है।\nBaba Khatu Shyam ji (sheesh ke roop mein pujit) ko pranam, jai shree shyam.\nChitra AI dwara banaya gaya hai (sanketik).\nAapke ghar mein aaj sandhya aarti kis samay hui?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#JaiShreeShyam #KhatuShyam #KhatuShyamJi #SandhyaAarti #Shyambaba #Sikar",
+      "fb": {
+        "id": "1596974212445543",
+        "scheduled": "2026-11-06T14:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-06T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}
