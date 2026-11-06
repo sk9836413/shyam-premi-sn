@@ -6,7 +6,7 @@
   "deity": "Khatu Shyam ji (Barbarik)",
   "source": "Lok katha (Khatu Shyam parampara) ke anusar; Barbarik ka prasang Skanda Purana (Kaumarika Khand) ki parampara mein bhi milta hai",
   "status": "scheduled",
-  "approved": false,
+  "approved": true,
   "approval_note": "Owner reviews the pilot (E:\\SK\\movie-pilot\\part-1.mp4) first. Until \"approved\" is true the movie job renders each part and parks it for review (media Worker link + artifact) but uploads nothing.",
   "hero_clip": true,
   "cast": [
