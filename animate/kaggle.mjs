@@ -39,18 +39,21 @@ const SLOT = process.env.SPS_SLOT || 'daily';
 // char-shyam / char-epifive: the daily two-character dialogue Short's lip-sync (characters/kaggle/lipsync_daily.py,
 // dataset built by characters/dialogue.py and sent with `upload`).
 const CHAR = SLOT.startsWith('char-');
-const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : CHAR ? `sps-char-inputs-${SLOT.slice(5)}` : `sps-animate-inputs-${SLOT}`;
-const KERNEL = SLOT === 'long' ? 'sps-tts-long' : CHAR ? `sps-${SLOT}` : `sps-animate-${SLOT}`;
-const CODE = CHAR ? path.join(DIR, '..', 'characters', 'kaggle', 'lipsync_daily.py') : path.join(DIR, 'kaggle', 'animate.py');
+// movie: one part of a mini-movie series (story/movie.py dataset -> story/movie_kernel.py: FLUX frames, Wan clips,
+// lip-sync and a Whisper pronunciation check in one session; STORY.md section 7).
+const MOVIE = SLOT === 'movie';
+const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : MOVIE ? 'sps-movie-inputs' : CHAR ? `sps-char-inputs-${SLOT.slice(5)}` : `sps-animate-inputs-${SLOT}`;
+const KERNEL = SLOT === 'long' ? 'sps-tts-long' : MOVIE ? 'sps-movie' : CHAR ? `sps-${SLOT}` : `sps-animate-${SLOT}`;
+const CODE = MOVIE ? path.join(DIR, '..', 'story', 'movie_kernel.py') : CHAR ? path.join(DIR, '..', 'characters', 'kaggle', 'lipsync_daily.py') : path.join(DIR, 'kaggle', 'animate.py');
 // Every GPU kernel of both channels (one Kaggle account): `lock` waits while any other one runs.
 const ALL_KERNELS = [...['morning', 'evening', 'noon', 'status', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
-  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim'];
+  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie'];
 const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);
 const cmd = args[0] || 'status';
 const opt = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const STAMP_FILE = path.join(DIR, 'dataset', 'jobs.json');
+const STAMP_FILE = path.join(DIR, 'dataset', MOVIE ? 'movie.json' : 'jobs.json');
 
 function kaggle(...a) {
   const r = spawnSync(CLI, a, { encoding: 'utf8' });
@@ -284,6 +287,13 @@ function fetch() {
   // Only this run's clips: while a kernel is still running, `kernels output` returns the previous run's files.
   const stamp = fs.existsSync(STAMP_FILE) ? JSON.parse(fs.readFileSync(STAMP_FILE, 'utf8')).stamp : null;
   const fresh = !stamp || results?.stamp === stamp;
+  if (MOVIE) { // the whole output tree (frames, stills, clips, lip, qa.json, results*.json) for story/movie.py render
+    if (fresh) fs.cpSync(out, to, { recursive: true });
+    console.log(JSON.stringify({ fresh, session_s: results?.session_s, tier: results?.tier, images: results?.images,
+      clips: results?.clips && { made: results.clips.made?.length, asked: results.clips.asked?.length, seconds: results.clips.seconds },
+      lips: results?.lips && { made: results.lips.made, asked: results.lips.asked, seconds: results.lips.seconds }, qa: results?.qa }));
+    return;
+  }
   // Chatterbox narration: copied only when every line succeeded (otherwise the renderer uses edge-tts for all).
   const vj = path.join(out, 'voice', 'voice.json');
   let voice = 'none';
@@ -312,10 +322,11 @@ function fetch() {
 
 function quota() {
   const r = kaggle('quota');
-  const m = r.out.match(/^GPU\s+([\d.]+)h\s+([\d.]+)h\s+([\d.]+)h/m);
+  const m = r.out.match(/^GPU\s+([\d.]+)h\s+([\d.]+)h\s+([\d.]+)h(?:\s+(\S+))?/m);
   if (!m) { console.log(JSON.stringify({ error: r.out.split('\n').pop() })); process.exit(2); }
   const left = Number(m[2]);
-  console.log(JSON.stringify({ used: Number(m[1]), left, total: Number(m[3]) }));
+  // refreshAt: when the weekly quota resets (story/movie.py tier keeps the daily Shorts' hours until then).
+  console.log(JSON.stringify({ used: Number(m[1]), left, total: Number(m[3]), ...(m[4] ? { refreshAt: m[4] } : {}) }));
   if (left < Number(opt('--min', 0))) process.exit(2);
 }
 

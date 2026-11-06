@@ -1,0 +1,222 @@
+{
+  "format": "movie",
+  "series": "khatu-shyam-amar-katha",
+  "series_title": "Khatu Shyam ji ki Amar Katha",
+  "part": 2,
+  "parts": 4,
+  "slug": "2026-11-18-movie-khatu-shyam-amar-katha-part-2",
+  "release": "2026-11-18",
+  "publish_at": "07:00",
+  "title": "Brahmin ki Pariksha",
+  "hook": "Barbarik ki pariksha: ek baan",
+  "playlist": "Khatu Shyam ji ki Amar Katha",
+  "deity": "Khatu Shyam ji (Barbarik)",
+  "summary": "Movie Part 2/4: Brahmin vesh mein Shri Krishna, ek hi baan kaafi, peepal ke patton ki pariksha, chhupa patta, daan ka vachan, sheesh ki maang",
+  "source": "Lok katha (Khatu Shyam parampara) ke anusar; Barbarik ka prasang Skanda Purana (Kaumarika Khand) ki parampara mein bhi milta hai",
+  "music": "epic",
+  "style": "stylized 3D animated feature film look, Indian mythological epic, soft warm cinematic lighting, rich warm colours, highly detailed, no text, no letters, no writing, no watermark",
+  "cast": [
+    "narrator",
+    "barbarik",
+    "brahmin"
+  ],
+  "names": [
+    "बर्बरीक",
+    "ब्राह्मण",
+    "कृष्ण",
+    "कौरव",
+    "पीपल"
+  ],
+  "scenes": [
+    {
+      "prompt": "A huge old peepal tree at sunrise seen from below, thousands of heart-shaped leaves glowing in golden light, one golden arrow hangs in the air among the branches with a soft trail of light, epic and mysterious",
+      "motion": "in",
+      "animate": "the peepal leaves flutter gently in the breeze, golden light rays shimmer through the branches, dust motes float",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "बर्बरीक का एक बाण, और पीपल का हर पत्ता छिद गया। पर एक पत्ता कहाँ छिपा था?",
+          "sub": "Barbarik ka ek baan, aur peepal ka har patta chhid gaya. Par ek patta kahan chhipa tha?"
+        }
+      ]
+    },
+    {
+      "prompt": "A forest path beside a huge peepal tree at sunrise, the elderly Brahmin sage with his staff faces the young warrior Barbarik who has stepped down from his horse, the two talk calmly, golden light",
+      "cast": [
+        "brahmin",
+        "barbarik"
+      ],
+      "motion": "in",
+      "animate": "leaves of the peepal tree flutter softly, light rays shift, the horse in the background flicks its tail",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "पिछले भाग में, बर्बरीक माँ को वचन देकर कुरुक्षेत्र की ओर चले थे। रास्ते में एक ब्राह्मण ने उन्हें रोका।",
+          "sub": "Pichhle bhaag mein, Barbarik maa ko vachan dekar Kurukshetra ki or chale the. Raaste mein ek Brahmin ne unhe roka."
+        },
+        {
+          "who": "brahmin",
+          "tts": "वीर, केवल तीन बाण लेकर महायुद्ध में जा रहे हो?",
+          "sub": "Veer, keval teen baan lekar mahayudh mein ja rahe ho?"
+        },
+        {
+          "who": "barbarik",
+          "tts": "ब्राह्मण देव, इस युद्ध के लिए मेरा एक ही बाण काफी है।",
+          "sub": "Brahmin dev, is yudh ke liye mera ek hi baan kaafi hai."
+        },
+        {
+          "who": "barbarik",
+          "tts": "मेरे तीनों बाण शिव जी का आशीर्वाद हैं, ब्राह्मण देव।",
+          "sub": "Mere teenon baan Shiv ji ka aashirvaad hain, Brahmin dev."
+        },
+        {
+          "who": "brahmin",
+          "tts": "और तुम किस पक्ष से लड़ोगे?",
+          "sub": "Aur tum kis paksh se ladoge?"
+        },
+        {
+          "who": "barbarik",
+          "tts": "जो पक्ष हारेगा, उसी का साथ दूँगा। यह मेरी माँ को दिया वचन है।",
+          "sub": "Jo paksh haarega, usi ka saath doonga. Yeh meri maa ko diya vachan hai."
+        }
+      ]
+    },
+    {
+      "prompt": "Close view of the elderly Brahmin sage under the peepal tree, a faint soft blue divine glow around him that only the viewer can notice, a knowing gentle smile, golden morning light",
+      "cast": [
+        "brahmin"
+      ],
+      "motion": "in",
+      "animate": "a faint soft blue glow pulses gently around the sage, leaves drift down slowly behind him",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "ब्राह्मण के वेश में स्वयं श्री कृष्ण थे। वे बर्बरीक की शक्ति परखना चाहते थे।",
+          "sub": "Brahmin ke vesh mein swayam Shri Krishna the. Ve Barbarik ki shakti parakhna chahte the."
+        },
+        {
+          "who": "brahmin",
+          "tts": "तो दिखाओ। इस पीपल के सारे पत्ते एक ही बाण से छेद कर दिखाओ।",
+          "sub": "To dikhao. Is peepal ke saare patte ek hi baan se chhed kar dikhao."
+        },
+        {
+          "who": "barbarik",
+          "tts": "जैसी आपकी इच्छा, ब्राह्मण देव।",
+          "sub": "Jaisi aapki ichchha, Brahmin dev."
+        }
+      ]
+    },
+    {
+      "prompt": "At the foot of the peepal tree, one fallen heart-shaped peepal leaf lies hidden under the bare foot of the elderly Brahmin sage, close-up of the foot and the leaf on the earth, soft golden light, the hem of his white dhoti",
+      "motion": "in",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "बर्बरीक ने बाण चढ़ाया। उसी समय ब्राह्मण ने चुपके से एक पत्ता अपने पैर के नीचे दबा लिया।",
+          "sub": "Barbarik ne baan chadhaya. Usi samay Brahmin ne chupke se ek patta apne pair ke neeche daba liya."
+        }
+      ]
+    },
+    {
+      "prompt": "The young warrior Barbarik draws his tall bow and releases one golden arrow towards the huge peepal tree, the arrow glows with golden light as it flies into the branches, dramatic low angle, sunrise",
+      "cast": [
+        "barbarik"
+      ],
+      "motion": "pan",
+      "animate": "the golden arrow's light trail shimmers through the branches, leaves flutter, the bowstring settles slowly",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "बाण ने पेड़ के सारे पत्ते छेद दिए, और फिर ब्राह्मण के पैर के चारों ओर घूमने लगा।",
+          "sub": "Baan ne ped ke saare patte chhed diye, aur phir Brahmin ke pair ke chaaron or ghoomne laga."
+        },
+        {
+          "who": "narrator",
+          "tts": "बाण एक-एक कर पत्तों को छेदता गया।",
+          "sub": "Baan ek-ek kar patton ko chhedta gaya."
+        },
+        {
+          "who": "barbarik",
+          "tts": "ब्राह्मण देव, अपना पैर हटा लीजिए, वरना बाण उसे भी भेद देगा।",
+          "sub": "Brahmin dev, apna pair hata lijiye, varna baan use bhi bhed dega."
+        }
+      ]
+    },
+    {
+      "prompt": "The elderly Brahmin sage stands thoughtfully under the peepal tree, looking far away towards a misty plain where two great armies camp, his face calm and serious, evening golden light",
+      "cast": [
+        "brahmin"
+      ],
+      "motion": "out",
+      "animate": "mist drifts over the far plain, the sage's angavastram stirs in the breeze, light slowly warms",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "श्री कृष्ण समझ गए। कौरवों की हार निश्चित थी, और वचन के कारण बर्बरीक उन्हीं का साथ देते।",
+          "sub": "Shri Krishna samajh gaye. Kauravon ki haar nishchit thi, aur vachan ke kaaran Barbarik unhi ka saath dete."
+        },
+        {
+          "who": "brahmin",
+          "tts": "वीर, क्या तुम एक ब्राह्मण को दान दोगे?",
+          "sub": "Veer, kya tum ek Brahmin ko daan doge?"
+        },
+        {
+          "who": "barbarik",
+          "tts": "माँगिए ब्राह्मण देव। जो माँगेंगे, वही मिलेगा।",
+          "sub": "Maangiye Brahmin dev. Jo maangenge, wahi milega."
+        },
+        {
+          "who": "brahmin",
+          "tts": "वचन दे रहे हो, सोच लो वीर।",
+          "sub": "Vachan de rahe ho, soch lo veer."
+        },
+        {
+          "who": "barbarik",
+          "tts": "बर्बरीक का वचन, अटल वचन है।",
+          "sub": "Barbarik ka vachan, atal vachan hai."
+        }
+      ]
+    },
+    {
+      "prompt": "Dramatic close view of the elderly Brahmin sage under the peepal tree at sunset, his face serious and calm, the sky behind turns deep orange, a single leaf falls slowly",
+      "cast": [
+        "brahmin"
+      ],
+      "motion": "in",
+      "lines": [
+        {
+          "who": "brahmin",
+          "tts": "तो मुझे दान में, तुम्हारा शीश चाहिए।",
+          "sub": "To mujhe daan mein, tumhara sheesh chahiye."
+        },
+        {
+          "who": "narrator",
+          "tts": "यह सुनकर बर्बरीक स्तब्ध रह गए।",
+          "sub": "Yeh sunkar Barbarik stabdh reh gaye."
+        },
+        {
+          "who": "narrator",
+          "tts": "पीपल के नीचे सन्नाटा छा गया।",
+          "sub": "Peepal ke neeche sannata chha gaya."
+        }
+      ]
+    }
+  ],
+  "teaser": {
+    "prompt": "A radiant divine blue-and-golden light shines from behind the silhouette of the elderly Brahmin sage under the peepal tree at dusk, the light hints at the divine form within, no face visible, awe-inspiring",
+    "motion": "in",
+    "tts": "अगले भाग में: क्या बर्बरीक अपना शीश देंगे? और ब्राह्मण के वेश में छिपे भगवान का दर्शन।",
+    "sub": "Agle bhaag mein: kya Barbarik apna sheesh denge? Aur Brahmin ke vesh mein chhipe Bhagwan ka darshan."
+  },
+  "endcard": {
+    "tts": "जय श्री श्याम! भाग तीन कल सुबह सात बजे। कथा अच्छी लगी हो तो लाइक, शेयर और सब्सक्राइब ज़रूर करें।",
+    "sub": "Jai Shree Shyam! Part 3 kal subah 7 baje. Katha achhi lagi ho to Like, Share aur Subscribe zaroor karein."
+  },
+  "next_label": "Part 3/4: kal subah 7 baje",
+  "facts_ref": "series.json",
+  "youtube_title": "Khatu Shyam ji ki Amar Katha Part 2 | खाटू श्याम जी की कथा भाग 2 #Shorts",
+  "youtube_description": "Khatu Shyam ji ki Amar Katha, mini movie series ka Part 2: Brahmin vesh mein Shri Krishna ne Barbarik ki pariksha li: peepal ke patte aur ek chhupa patta.\nYe katha lok katha (Khatu Shyam parampara) ke anusar hai; Barbarik ka prasang Skanda Purana (Kaumarika Khand) ki parampara mein bhi milta hai.\nबर्बरीक की परीक्षा: खाटू श्याम जी की अमर कथा, भाग 2।\nPart 3 kal subah 7 baje: Sheesh ka daan.\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN\n#KhatuShyam #Barbarik #JaiShreeShyam #KhatuShyamJanmotsav #Shorts",
+  "youtube_tags": "Khatu Shyam ji ki katha, खाटू श्याम जी की कथा, Barbarik Krishna pariksha, बर्बरीक की परीक्षा, peepal patte ki katha, पीपल के पत्ते, Khatu Shyam story, Haare ka sahara, हारे का सहारा, Khatu Shyam Janmotsav, खाटू श्याम जन्मोत्सव, Shyam Baba",
+  "instagram_caption": "Ek baan, aur peepal ka har patta chhid gaya. Par ek patta kahan chhipa tha? 🙏\nKhatu Shyam ji ki Amar Katha, Part 2/4: Brahmin ki pariksha.\nPart 3 kal subah 7 baje.\nJai Shree Shyam 🙏\nAchhi lage to Like, Share aur Follow karein\n#KhatuShyam #JaiShreeShyam #Barbarik #ShriKrishna #ShyamBaba #KhatuShyamJanmotsav",
+  "facebook_caption": "Khatu Shyam ji ki Amar Katha, Part 2/4: Brahmin ki pariksha. Part 3 kal subah 7 baje.\nJai Shree Shyam 🙏 Achhi lage to Like, Share aur Follow karein.\n#KhatuShyam #JaiShreeShyam"
+}

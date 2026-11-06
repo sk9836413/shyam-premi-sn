@@ -84,6 +84,25 @@ function checkCover() {
   need(!c || dev.some((w) => c.includes(w)), 'cover: use the deity/temple/festival word of the Devanagari title keyword');
 }
 
+// ---- Khatu Shyam ji iconography (STORY.md, all formats) ------------------------------------------------------------
+// After the sheesh daan Khatu Shyam ji is worshipped as the SHEESH only: a big divine face with large wide eyes and a
+// moustache, a tall golden mukut (peacock-feather and sun-ray motifs), an oval of layered white/pink/blue/orange flower
+// garlands and jewels, in a decorated sanctum. Never a full body or a flute (that is Shri Krishna). Barbarik as the
+// young warrior BEFORE the sheesh daan is fine; a temple building alone is fine.
+const allPrompts = [
+  ...(s.scenes || []).map((x) => x?.prompt), ...(s.images || []).map((x) => x?.prompt),
+  ...Object.values(s.visuals || {}).map((x) => x?.prompt), ...(s.chapters || []).flatMap((c) => (c.scenes || []).map((x) => x?.prompt)),
+  s.teaser?.prompt,
+].filter((p) => typeof p === 'string');
+for (const p of allPrompts) {
+  const shows = /(khatu\s*shyam|shyam\s*baba|shyam\s*ji)/i.test(p) && /(darshan|murti|idol|face|deity|sheesh|head of|mukut|crown|shringar)/i.test(p)
+    && !/\b(young|warrior|prince)\b[^.]*barbari|barbari[a-z]*[^.]*\b(young|warrior|prince)\b/i.test(p);
+  if (!shows) continue;
+  const bad = p.replace(/\bno (body|flute|hands|arms)\b/gi, '');
+  need(/(sheesh|head only|divine head)/i.test(p) && /(mukut|crown)/i.test(p) && /garland/i.test(p) && !/\b(flute|bansuri|full[- ]body|full[- ]length|whole body|torso|his body|his hands|his arms)\b/i.test(bad),
+    `Khatu Shyam ji image: show only the SHEESH (head): "the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum" (prompt: "${p.slice(0, 80)}...")`);
+}
+
 // ---- Long video (16:9, 5-10 min) ----------------------------------------------------------------
 // Narration runs at ~12 characters a second; each scene adds ~0.8 s and each chapter ~1 s of pause.
 const CHARS_PER_SECOND = 12;
@@ -261,6 +280,106 @@ if (s.format === 'status') {
     process.exit(1);
   }
   console.log(`OK: ${file} (status, ${scenes.length} scenes, ~${Math.round(secs)} s)`);
+  process.exit(0);
+}
+
+// ---- Movie part (story/movies/<series>/part-<n>.json, STORY.md section 7) ------------------------------------------
+// Speaking pace: edge-tts hi-IN Madhur ~13.6 Devanagari characters a second at +0%, Swara ~11.6 (measured 4 Nov 2026),
+// scaled by each character's rate; +0.3-0.75 s pause per line, +2 s title beat. A part is a vertical Short: <= 175 s.
+if (s.format === 'movie') {
+  const castLib = JSON.parse(fs.readFileSync('characters/cast/cast.json', 'utf8')).characters;
+  need(/^\d{4}-\d{2}-\d{2}-movie-[a-z0-9-]+-part-\d$/.test(s.slug || '') && (s.slug || '').startsWith(s.release || '#'), 'slug: <release yyyy-mm-dd>-movie-<series>-part-<n>');
+  need(s.slug?.endsWith(`-part-${s.part}`) && s.slug?.includes(`-movie-${s.series}-`), 'slug must carry the series and part number');
+  const seriesFile = `story/movies/${s.series}/series.json`;
+  const series = fs.existsSync(seriesFile) ? JSON.parse(fs.readFileSync(seriesFile, 'utf8')) : null;
+  need(series, `series plan ${seriesFile} missing`);
+  need(Number.isInteger(s.part) && Number.isInteger(s.parts) && s.parts >= 2 && s.parts <= 4 && s.part >= 1 && s.part <= s.parts, 'part/parts: 2-4 parts, part 1..parts');
+  if (series) {
+    need(series.parts?.length === s.parts, `parts (${s.parts}) must match ${seriesFile} (${series.parts?.length})`);
+    const row = series.parts?.find((p) => p.part === s.part);
+    need(row && row.release === s.release, `release ${s.release} must match the series plan (${row?.release})`);
+    const facts = series.facts || [];
+    need(facts.length >= 3, 'series.json facts: at least 3 {claim, sources: [2+ URLs]}');
+    facts.forEach((f, i) => need(f?.claim && (f.sources || []).filter((u) => /^https?:\/\//.test(u)).length >= 2, `series fact ${i + 1}: a claim and 2 independent source URLs`));
+  }
+  need(/^\d{2}:\d{2}$/.test(s.publish_at || ''), 'publish_at: IST time on the release day, e.g. "07:00"');
+  need(s.title && s.title.length <= 40 && !DEVANAGARI.test(s.title), 'title: the part title, Roman, max 40 characters (drawn on the title card)');
+  need(s.series_title && s.series_title.length <= 40 && !DEVANAGARI.test(s.series_title), 'series_title: Roman, max 40 characters');
+  need(s.hook && s.hook.length <= 38 && !DEVANAGARI.test(s.hook), 'hook: Roman, max 38 characters');
+  checkHook(s.hook);
+  need(s.playlist && s.playlist.length <= 60, 'playlist: the series playlist (created on first upload)');
+  need(/no text/i.test(s.style || ''), 'style must include "no text"');
+  need(s.source && (s.youtube_description || '').toLowerCase().includes(s.source.split(';')[0].trim().toLowerCase()), 'source: the tradition, and the same words in youtube_description');
+  need(s.deity && !/[|\n]/.test(s.deity) && s.summary && s.summary.length <= 160 && !/[|\n]/.test(s.summary), 'deity and summary (max 160 characters, no "|") for the log line');
+  const cast = Array.isArray(s.cast) ? s.cast : [];
+  cast.forEach((c) => need(castLib[c], `cast "${c}" is not in characters/cast/cast.json (add the character with a sheet and a voice first)`));
+  const scenes = Array.isArray(s.scenes) ? s.scenes : [];
+  need(scenes.length >= 5 && scenes.length <= 9, `5-9 scenes (has ${scenes.length})`);
+  let secs = 2, nLines = 0, animated = 0, heroes = 0;
+  const spoken = (l) => {
+    const v = castLib[l.who]?.voice || {};
+    const rate = 1 + parseInt(v.rate || '0', 10) / 100;
+    return (l.tts || '').length / ((/Swara/.test(v.edge || '') ? 11.6 : 13.6) * rate) + 0.55;
+  };
+  const checkLine = (l, n) => {
+    need(castLib[l.who] && (cast.includes(l.who) || l.who === 'narrator'), `${n}: who "${l.who}" must be in the spec's cast`);
+    need(l.tts && DEVANAGARI.test(l.tts) && l.tts.length <= 110 && !/\d/.test(l.tts), `${n}: tts Devanagari, max 110 characters, numbers as words`);
+    need(l.sub && !DEVANAGARI.test(l.sub) && l.sub.length <= 120, `${n}: sub Roman Hinglish, max 120 characters`);
+    need(l.shot === undefined || ['wide', 'close'].includes(l.shot), `${n}: shot must be "wide" or "close"`);
+    secs += spoken(l); nLines++;
+  };
+  scenes.forEach((sc, i) => {
+    const n = `scene ${i + 1}`;
+    need(sc.prompt && sc.prompt.length >= 40 && !/\b(text|letters|writing|sign|caption|words|logo)\b/i.test(sc.prompt.replace(/no (text|letters|writing)/gi, '')), `${n}: prompt missing, too short, or asks for text`);
+    need(!/\b(blood|gore|beheaded|severed|decapitat|corpse|dead body|wound|killing)/i.test((sc.prompt || '').replace(/\bno (blood|gore|violence)\b/gi, '')),`${n}: no gore or violence in images (the sheesh daan is shown with light and petals, never a cut)`);
+    (sc.cast || []).forEach((c) => need(cast.includes(c), `${n}: cast "${c}" is not in the spec's cast`));
+    need(['in', 'out', 'pan', undefined].includes(sc.motion), `${n}: motion in, out or pan`);
+    if (sc.animate !== undefined) {
+      animated++;
+      need(typeof sc.animate === 'string' && sc.animate.length >= 20 && sc.animate.length <= 300 && !/\b(run|running|fight|fighting|dance|dancing|battle|explod|lightning|fast)\b/i.test(sc.animate), `${n}: animate: one sentence of GENTLE motion (no running, fighting, dancing, lightning)`);
+    }
+    if (sc.hero) heroes++;
+    const lines = Array.isArray(sc.lines) ? sc.lines : [];
+    need(lines.length >= 1 && lines.length <= 6, `${n}: 1-6 lines`);
+    lines.forEach((l, k) => checkLine(l, `${n} line ${k + 1}`));
+    // Deities never lip-sync, Khatu Shyam ji speaks only as the sheesh (cast "khatu-shyam").
+    lines.forEach((l, k) => need(!(castLib[l.who]?.kind === 'deity' && l.shot === 'close' && castLib[l.who]?.lipsync), `${n} line ${k + 1}: deities have no lip-sync`));
+  });
+  const first = scenes[0]?.lines?.[0];
+  if (first) checkOpening(first.sub, first.tts, 'scene 1 line 1');
+  need(animated >= 2 && animated <= 6, `mark 2-6 scenes with "animate" (has ${animated}); the GPU tier decides how many become clips`);
+  need(heroes <= 1, 'at most one scene with "hero": true');
+  need(s.teaser?.prompt && s.teaser.prompt.length >= 40, 'teaser.prompt: the "Agle part mein..." image (next part\'s key moment, or the next series on the last part)');
+  if (s.teaser) checkLine({ who: 'narrator', ...s.teaser }, 'teaser');
+  need(/(agle|agli|aakhiri)/i.test(s.teaser?.sub || ''), 'teaser.sub must start the cliffhanger ("Agle bhaag mein..." / "Agli series mein...")');
+  if (s.endcard) checkLine({ who: 'narrator', ...s.endcard }, 'endcard');
+  need(/subscribe/i.test(s.endcard?.sub || '') && /like/i.test(s.endcard?.sub || ''), 'endcard.sub: a gentle like/share/subscribe ask');
+  if (s.part < s.parts) need(/kal|7 baje/i.test(s.endcard?.sub || ''), 'endcard.sub: say when the next part comes ("Part 2 kal subah 7 baje")');
+  need(secs >= 100 && secs <= 175, `estimated length ${Math.round(secs)} s; a part is 100-175 s (a Short stays under 3 min)`);
+  need(nLines >= 12 && nLines <= 32, `12-32 spoken lines (has ${nLines})`);
+  // Sati series (mandir-series.md): the full sati rule, plus no fire imagery in any prompt.
+  if (/sati/i.test(`${s.series || ''} ${s.title || ''} ${s.temple || ''}`)) {
+    const txt = scenes.flatMap((sc) => sc.lines.map((l) => l.sub)).join(' ');
+    need(/pratibandhit/i.test(txt) && /Sati Nivaran Adhiniyam 1987/.test(s.youtube_description || ''), 'sati series: the disclaimer must be spoken ("...pratibandhit hai...") and in the description (Sati Nivaran Adhiniyam 1987)');
+    need(!scenes.some((sc) => /\b(fire|flame|pyre|burn|blaze|cremat|smoke)\b/i.test(sc.prompt || '')) && !/\b(fire|flame|pyre|burn)\b/i.test(s.teaser?.prompt || ''), 'sati series: no fire, pyre, smoke or burning in any image prompt');
+  }
+  const yt = s.youtube_title || '';
+  need(yt.length > 0 && yt.length <= 90 && yt.endsWith(' #Shorts') && DEVANAGARI.test(yt) && /part\s*\d|भाग/i.test(yt), 'youtube_title: max 90 characters, "Roman ... Part n | देवनागरी #Shorts"');
+  checkTitle(60);
+  const desc = s.youtube_description || '';
+  need(/sanketik/i.test(desc) && /subscribe/i.test(desc) && DEVANAGARI.test(desc), 'youtube_description: the AI line ("Chitra AI dwara banaye gaye hain (sanketik)"), a Devanagari line and a subscribe line');
+  need(!/[<>]/.test(yt + desc + (s.youtube_tags || '')), 'YouTube fields must not contain < or >');
+  const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
+  need(tags.length >= 10 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 10-15 tags with some Devanagari (has ${tags.length})`);
+  need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
+  need((s.facebook_caption || '').trim() && !DEVANAGARI.test(s.facebook_caption), 'facebook_caption: Roman, not empty');
+  need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
+  if (problems.length) {
+    console.log(problems.map((p) => `- ${p}`).join('\n'));
+    process.exit(1);
+  }
+  for (const n of notes) console.log(n);
+  console.log(`OK: ${file} (movie part ${s.part}/${s.parts}, ${scenes.length} scenes, ${nLines} lines, ~${Math.round(secs)} s)`);
   process.exit(0);
 }
 

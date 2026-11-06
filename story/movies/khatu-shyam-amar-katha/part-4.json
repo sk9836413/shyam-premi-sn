@@ -1,0 +1,191 @@
+{
+  "format": "movie",
+  "series": "khatu-shyam-amar-katha",
+  "series_title": "Khatu Shyam ji ki Amar Katha",
+  "part": 4,
+  "parts": 4,
+  "slug": "2026-11-20-movie-khatu-shyam-amar-katha-part-4",
+  "release": "2026-11-20",
+  "publish_at": "07:00",
+  "title": "Shyam Naam ka Vardan",
+  "hook": "Khatu Shyam: jeet ka shrey kiska?",
+  "playlist": "Khatu Shyam ji ki Amar Katha",
+  "deity": "Khatu Shyam ji (Barbarik)",
+  "summary": "Movie Part 4/4 (Janmotsav): shrey ka vivaad, sheesh ne sirf Sudarshan chakra dekha, Shyam naam ka vardan, Khatu mein sheesh (lok katha), Shyam Kund",
+  "source": "Lok katha (Khatu Shyam parampara) ke anusar; Barbarik ka prasang Skanda Purana (Kaumarika Khand) ki parampara mein bhi milta hai",
+  "music": "devotional",
+  "style": "stylized 3D animated feature film look, Indian mythological epic, soft warm cinematic lighting, rich warm colours, highly detailed, no text, no letters, no writing, no watermark",
+  "cast": [
+    "narrator",
+    "bheem",
+    "krishna",
+    "khatu-shyam"
+  ],
+  "names": [
+    "भीम",
+    "कृष्ण",
+    "सुदर्शन",
+    "श्याम",
+    "खाटू",
+    "रूप सिंह चौहान",
+    "श्याम कुंड",
+    "देवउठनी"
+  ],
+  "scenes": [
+    {
+      "prompt": "A Pandava war camp at sunset after the great war, tents and banners, the mighty Bheem stands proudly holding his golden mace, other warriors as silhouettes around a fire, warm dusty golden light, no blood, no violence",
+      "cast": [
+        "bheem"
+      ],
+      "motion": "in",
+      "animate": "the camp fire flickers, banners flutter in the evening wind, dust drifts in the golden light",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "बर्बरीक का शीश सब देख रहा था। युद्ध के बाद पांडवों में बहस होने लगी, विजय का श्रेय किसे जाता है।",
+          "sub": "Barbarik ka sheesh sab dekh raha tha. Yudh ke baad Pandavon mein behas hone lagi, vijay ka shrey kise jata hai."
+        },
+        {
+          "who": "bheem",
+          "tts": "यह विजय मेरी गदा के बल से मिली है!",
+          "sub": "Yeh vijay meri gada ke bal se mili hai!"
+        },
+        {
+          "who": "krishna",
+          "tts": "बर्बरीक का शीश पूरे युद्ध का साक्षी है। चलो, उसी से पूछते हैं।",
+          "sub": "Barbarik ka sheesh poore yudh ka saakshi hai. Chalo, usi se poochhte hain."
+        }
+      ]
+    },
+    {
+      "prompt": "On a hilltop at dusk, the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji rests on a decorated pedestal: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, the Pandava warriors stand below looking up with folded hands",
+      "cast": [
+        "khatu-shyam"
+      ],
+      "deity": true,
+      "hero": true,
+      "motion": "in",
+      "animate": "a very slow push-in, the soft divine glow gently pulses, the flower garlands stir slightly, dusk clouds drift, the face stays perfectly still",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "पांडव उस पहाड़ी पर पहुँचे, जहाँ बर्बरीक का शीश था।",
+          "sub": "Pandav us pahadi par pahunche, jahan Barbarik ka sheesh tha."
+        },
+        {
+          "who": "khatu-shyam",
+          "tts": "मुझे तो पूरे युद्ध में केवल श्री कृष्ण का सुदर्शन चक्र घूमता दिखाई दिया।",
+          "sub": "Mujhe to poore yudh mein keval Shri Krishna ka Sudarshan chakra ghoomta dikhai diya."
+        },
+        {
+          "who": "narrator",
+          "tts": "शीश ने बताया कि विजय के पीछे श्री कृष्ण ही थे।",
+          "sub": "Sheesh ne bataya ki vijay ke peechhe Shri Krishna hi the."
+        },
+        {
+          "who": "narrator",
+          "tts": "यह सुनकर सब मौन हो गए।",
+          "sub": "Yeh sunkar sab maun ho gaye."
+        }
+      ]
+    },
+    {
+      "prompt": "Divine moment at dusk on the hilltop, the blue-skinned Lord Shri Krishna in a soft golden aura raises his hand in blessing towards the glowing hilltop shrine of the divine Sheesh, flower petals floating, warm sacred light",
+      "cast": [
+        "krishna"
+      ],
+      "deity": true,
+      "motion": "in",
+      "animate": "a very slow push-in, the golden aura gently pulses, flower petals drift slowly through the light, the figures stay perfectly still",
+      "lines": [
+        {
+          "who": "krishna",
+          "tts": "बर्बरीक, कलयुग में तुम मेरे नाम श्याम से पूजे जाओगे।",
+          "sub": "Barbarik, Kalyug mein tum mere naam Shyam se pooje jaoge."
+        },
+        {
+          "who": "krishna",
+          "tts": "खाटू गाँव में प्रकट होने से तुम खाटू श्याम कहलाओगे।",
+          "sub": "Khatu gaanv mein prakat hone se tum Khatu Shyam kehlaoge."
+        },
+        {
+          "who": "narrator",
+          "tts": "मान्यता है कि इसी वरदान से बर्बरीक श्याम बाबा कहलाए, और भक्त उन्हें हारे का सहारा कहते हैं।",
+          "sub": "Manyata hai ki isi vardaan se Barbarik Shyam Baba kehlaye, aur bhakt unhe Haare ka Sahara kehte hain."
+        }
+      ]
+    },
+    {
+      "prompt": "Early morning in a Rajasthani village field near Khatu, a calm white cow stands at one spot on the bare earth, soft golden light on the sand, a small glow on the ground where she stands, a cowherd boy watches from a distance, peaceful rural scene",
+      "motion": "pan",
+      "animate": "the cow's tail swishes slowly, dust and light shimmer over the field, the cowherd's turban cloth stirs in the breeze",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "लोक कथा के अनुसार, सदियों बाद खाटू गाँव में एक गाय रोज़ एक जगह अपने आप दूध बहाने लगी।",
+          "sub": "Lok katha ke anusar, sadiyon baad Khatu gaanv mein ek gaay roz ek jagah apne aap doodh bahane lagi."
+        },
+        {
+          "who": "narrator",
+          "tts": "वहाँ खुदाई हुई, और शीश प्रकट हुआ। उसी स्थान को आज श्याम कुंड कहते हैं।",
+          "sub": "Wahan khudai hui, aur sheesh prakat hua. Usi sthaan ko aaj Shyam Kund kehte hain."
+        }
+      ]
+    },
+    {
+      "prompt": "A traditional white Rajasthani temple with carved domes at Khatu at golden sunrise, saffron flags on top, a calm sacred pond with stone steps (Shyam Kund) in front, devotees with folded hands, peaceful",
+      "motion": "out",
+      "animate": "the saffron flags flutter gently, light ripples move across the pond, birds drift across the sky",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "परंपरा के अनुसार, खाटू के शासक रूप सिंह चौहान ने स्वप्न के संकेत के बाद वहाँ मंदिर बनवाया।",
+          "sub": "Parampara ke anusar, Khatu ke shaasak Roop Singh Chauhan ne swapn ke sanket ke baad wahan mandir banwaya."
+        },
+        {
+          "who": "narrator",
+          "tts": "आज वहाँ खाटू श्याम जी का भव्य मंदिर है, राजस्थान के सीकर ज़िले में।",
+          "sub": "Aaj wahan Khatu Shyam ji ka bhavya mandir hai, Rajasthan ke Sikar zile mein."
+        }
+      ]
+    },
+    {
+      "prompt": "Grand darshan in the decorated temple sanctum at Khatu during a festival: the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji, a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, many diyas glowing, rose petals",
+      "cast": [
+        "khatu-shyam"
+      ],
+      "deity": true,
+      "motion": "in",
+      "animate": "a very slow gentle push-in, the diya flames flicker, rose petals drift slowly, the soft glow pulses, the face stays perfectly still",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "आज देवउठनी एकादशी पर बाबा श्याम का जन्मोत्सव मनाया जाता है।",
+          "sub": "Aaj Dev Uthani Ekadashi par Baba Shyam ka Janmotsav manaya jata hai."
+        },
+        {
+          "who": "narrator",
+          "tts": "हारे का सहारा, बाबा श्याम हमारा।",
+          "sub": "Haare ka sahara, Baba Shyam hamara."
+        }
+      ]
+    }
+  ],
+  "teaser": {
+    "prompt": "A grand temple of Salasar Balaji in a Rajasthani desert town at golden dawn, saffron flags, devotees walking towards it, peaceful, epic wide shot",
+    "motion": "in",
+    "tts": "अगली मूवी सीरीज़ में: सालासर बालाजी की कथा। देखते रहिए।",
+    "sub": "Agli movie series mein: Salasar Balaji ki katha. Dekhte rahiye."
+  },
+  "endcard": {
+    "tts": "खाटू श्याम जन्मोत्सव की शुभकामनाएँ! जय श्री श्याम! कथा अच्छी लगी हो तो लाइक, शेयर और सब्सक्राइब करें।",
+    "sub": "Khatu Shyam Janmotsav ki shubhkaamnayein! Jai Shree Shyam! Like, Share aur Subscribe karein."
+  },
+  "next_label": "Agli series: Salasar Balaji",
+  "facts_ref": "series.json",
+  "youtube_title": "Khatu Shyam ji ki Amar Katha Part 4 | खाटू श्याम जन्मोत्सव कथा #Shorts",
+  "youtube_description": "Khatu Shyam Janmotsav par mini movie series ka aakhiri Part 4: sheesh ne kya dekha, Shri Krishna ka vardan (Kalyug mein mere naam Shyam se pooje jaoge) aur Khatu mein sheesh ka prakat hona.\nYe katha lok katha (Khatu Shyam parampara) ke anusar hai; Barbarik ka prasang Skanda Purana (Kaumarika Khand) ki parampara mein bhi milta hai. Gaay aur Shyam Kund ki katha lok parampara hai; mandir ke itihas par Rajasthan Devasthan Vibhag ki jaankari dekhein.\nखाटू श्याम जन्मोत्सव (देवउठनी एकादशी) की हार्दिक शुभकामनाएँ।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN\n#KhatuShyam #KhatuShyamJanmotsav #DevUthaniEkadashi #JaiShreeShyam #Shorts",
+  "youtube_tags": "Khatu Shyam Janmotsav, खाटू श्याम जन्मोत्सव, Khatu Shyam ji ki katha, खाटू श्याम जी की कथा, Dev Uthani Ekadashi, देवउठनी एकादशी, Shyam naam ka vardan, श्याम नाम का वरदान, Shyam Kund, श्याम कुंड, Haare ka sahara, Shyam Baba",
+  "instagram_caption": "Jeet ka shrey kiska? Sheesh ne jo dekha, usne sabko maun kar diya 🙏\nKhatu Shyam ji ki Amar Katha, Part 4/4: Shyam naam ka vardan aur Khatu Dham.\nKhatu Shyam Janmotsav ki haardik shubhkaamnayein!\nJai Shree Shyam 🙏\nAchhi lage to Like, Share aur Follow karein\n#KhatuShyam #KhatuShyamJanmotsav #DevUthaniEkadashi #JaiShreeShyam #ShyamBaba #HaareKaSahara",
+  "facebook_caption": "Khatu Shyam Janmotsav par Amar Katha ka aakhiri Part 4/4: Shyam naam ka vardan aur Khatu Dham.\nJai Shree Shyam 🙏 Achhi lage to Like, Share aur Follow karein.\n#KhatuShyam #KhatuShyamJanmotsav"
+}

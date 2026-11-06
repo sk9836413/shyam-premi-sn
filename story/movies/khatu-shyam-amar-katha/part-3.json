@@ -1,0 +1,195 @@
+{
+  "format": "movie",
+  "series": "khatu-shyam-amar-katha",
+  "series_title": "Khatu Shyam ji ki Amar Katha",
+  "part": 3,
+  "parts": 4,
+  "slug": "2026-11-19-movie-khatu-shyam-amar-katha-part-3",
+  "release": "2026-11-19",
+  "publish_at": "07:00",
+  "title": "Sheesh ka Daan",
+  "hook": "Barbarik ka sheesh daan",
+  "playlist": "Khatu Shyam ji ki Amar Katha",
+  "deity": "Khatu Shyam ji (Barbarik)",
+  "summary": "Movie Part 3/4: asli roop ki maang, Shri Krishna ka darshan, yudh dekhne ki ichchha, Phalgun Shukla Dwadashi ko sheesh daan (parampara), sheesh pahadi par",
+  "source": "Lok katha (Khatu Shyam parampara) ke anusar; Barbarik ka prasang Skanda Purana (Kaumarika Khand) ki parampara mein bhi milta hai",
+  "music": "devotional",
+  "style": "stylized 3D animated feature film look, Indian mythological epic, soft warm cinematic lighting, rich warm colours, highly detailed, no text, no letters, no writing, no watermark",
+  "cast": [
+    "narrator",
+    "barbarik",
+    "brahmin",
+    "krishna",
+    "khatu-shyam"
+  ],
+  "names": [
+    "बर्बरीक",
+    "कृष्ण",
+    "शिव",
+    "फाल्गुन",
+    "द्वादशी",
+    "शीश"
+  ],
+  "scenes": [
+    {
+      "prompt": "The young warrior Barbarik kneels with folded hands under a huge peepal tree at dusk, facing a radiant figure of light, his bow and three arrows laid on the ground beside him, calm and devoted",
+      "cast": [
+        "barbarik"
+      ],
+      "motion": "in",
+      "animate": "golden light rays shimmer through the peepal leaves, a few leaves drift down, Barbarik breathes calmly",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "पिछले भाग में, ब्राह्मण ने बर्बरीक से दान में उनका शीश माँग लिया था।",
+          "sub": "Pichhle bhaag mein, Brahmin ne Barbarik se daan mein unka sheesh maang liya tha."
+        },
+        {
+          "who": "narrator",
+          "tts": "बर्बरीक जानते थे, यह कोई साधारण ब्राह्मण नहीं हैं।",
+          "sub": "Barbarik jaante the, yeh koi saadharan Brahmin nahin hain."
+        },
+        {
+          "who": "barbarik",
+          "tts": "कोई ब्राह्मण ऐसा दान नहीं माँगता। कृपया अपना असली रूप दिखाइए।",
+          "sub": "Koi Brahmin aisa daan nahin maangta. Kripya apna asli roop dikhaiye."
+        }
+      ]
+    },
+    {
+      "prompt": "Divine darshan under the peepal tree at dusk, the blue-skinned Lord Shri Krishna stands in a soft radiant golden aura, gentle compassionate smile, the elderly Brahmin's staff resting against the tree, flower petals floating in the air",
+      "cast": [
+        "krishna"
+      ],
+      "deity": true,
+      "hero": true,
+      "motion": "in",
+      "animate": "a very slow gentle push-in, the soft golden aura gently pulses, flower petals drift slowly through the warm light, the face stays perfectly still",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "तब ब्राह्मण ने अपना असली रूप दिखाया। वे स्वयं श्री कृष्ण थे।",
+          "sub": "Tab Brahmin ne apna asli roop dikhaya. Ve swayam Shri Krishna the."
+        },
+        {
+          "who": "barbarik",
+          "tts": "प्रभु, आपके दर्शन हो गए। इससे बड़ा सौभाग्य क्या होगा।",
+          "sub": "Prabhu, aapke darshan ho gaye. Isse bada saubhagya kya hoga."
+        },
+        {
+          "who": "krishna",
+          "tts": "बर्बरीक, युद्ध से पहले रणभूमि की पूजा के लिए सबसे वीर क्षत्रिय का शीश चाहिए।",
+          "sub": "Barbarik, yudh se pehle ranbhoomi ki pooja ke liye sabse veer kshatriya ka sheesh chahiye."
+        },
+        {
+          "who": "barbarik",
+          "tts": "प्रभु, मेरा शीश आपके चरणों में है। बस मेरी एक इच्छा है।",
+          "sub": "Prabhu, mera sheesh aapke charnon mein hai. Bas meri ek ichchha hai."
+        },
+        {
+          "who": "barbarik",
+          "tts": "मैं यह पूरा महाभारत युद्ध अपनी आँखों से देखना चाहता हूँ।",
+          "sub": "Main yeh poora Mahabharat yudh apni aankhon se dekhna chahta hoon."
+        },
+        {
+          "who": "krishna",
+          "tts": "तथास्तु। तुम पूरा युद्ध देखोगे।",
+          "sub": "Tathastu. Tum poora yudh dekhoge."
+        }
+      ]
+    },
+    {
+      "prompt": "Night in a forest shrine, a stone Shivling decorated with bel leaves glows softly among many oil lamps, the young warrior Barbarik sits in quiet prayer with folded hands, stars above, peaceful and devotional",
+      "cast": [
+        "barbarik"
+      ],
+      "deity": true,
+      "motion": "in",
+      "animate": "the oil lamp flames flicker softly, incense smoke curls upward, stars twinkle faintly",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "मान्यता है कि बर्बरीक ने रात भर अपने आराध्य शिव जी की पूजा की।",
+          "sub": "Manyata hai ki Barbarik ne raat bhar apne aaradhya Shiv ji ki pooja ki."
+        },
+        {
+          "who": "narrator",
+          "tts": "और फाल्गुन शुक्ल द्वादशी को उन्होंने अपना शीश श्री कृष्ण को दान कर दिया।",
+          "sub": "Aur Phalgun Shukla Dwadashi ko unhone apna sheesh Shri Krishna ko daan kar diya."
+        }
+      ]
+    },
+    {
+      "prompt": "A pure soft golden light fills the forest at dawn, rose and marigold petals float gently down through the light rays, the bow and the three golden arrows rest on a folded saffron cloth on the ground, peaceful, sacred, no people",
+      "motion": "in",
+      "animate": "rose and marigold petals float down slowly through soft golden light rays, the light gently brightens",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "बर्बरीक ने माँ का वचन भी निभाया, और प्रभु को दिया दान भी।",
+          "sub": "Barbarik ne maa ka vachan bhi nibhaya, aur Prabhu ko diya daan bhi."
+        },
+        {
+          "who": "narrator",
+          "tts": "इसीलिए भक्त उन्हें प्रेम से शीश के दानी कहते हैं।",
+          "sub": "Isiliye bhakt unhe prem se Sheesh ke Daani kehte hain."
+        }
+      ]
+    },
+    {
+      "prompt": "At dawn on a high hilltop shrine overlooking a vast misty plain, the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji rests on a decorated pedestal: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, soft divine glow",
+      "cast": [
+        "khatu-shyam"
+      ],
+      "deity": true,
+      "motion": "in",
+      "animate": "a very slow push-in, the soft divine glow gently pulses, the flower garlands stir slightly in the wind, mist drifts over the plain far below, the face stays perfectly still",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "श्री कृष्ण ने शीश को एक ऊँची पहाड़ी पर स्थापित किया, जहाँ से पूरा युद्ध दिखता था।",
+          "sub": "Shri Krishna ne sheesh ko ek oonchi pahadi par sthapit kiya, jahan se poora yudh dikhta tha."
+        },
+        {
+          "who": "krishna",
+          "tts": "तुम यहीं से पूरा युद्ध देखोगे, बर्बरीक।",
+          "sub": "Tum yahin se poora yudh dekhoge, Barbarik."
+        }
+      ]
+    },
+    {
+      "prompt": "Seen from very far away on a hilltop, two vast armies with colourful banners face each other on a misty plain at sunrise, conch shells and chariots tiny in the distance, epic scale, no violence, no blood",
+      "motion": "pan",
+      "animate": "banners flutter in the wind far below, mist drifts slowly across the plain, the sun rises gently",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "अठारह दिन तक महाभारत का युद्ध चला, और शीश सब कुछ देखता रहा।",
+          "sub": "Atharah din tak Mahabharat ka yudh chala, aur sheesh sab kuch dekhta raha."
+        },
+        {
+          "who": "narrator",
+          "tts": "युद्ध खत्म हुआ, पांडव जीते। पर जीत का श्रेय किसका? इसका उत्तर सिर्फ़ एक शीश के पास था।",
+          "sub": "Yudh khatm hua, Pandav jeete. Par jeet ka shrey kiska? Iska uttar sirf ek sheesh ke paas tha."
+        }
+      ]
+    }
+  ],
+  "teaser": {
+    "prompt": "The divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji glowing on the hilltop at sunset, a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, an oval of layered white, pink, blue and orange flower garlands, below it the silhouettes of Pandava warriors look up in awe",
+    "motion": "in",
+    "tts": "अगले और आखिरी भाग में: शीश ने क्या देखा? और श्री कृष्ण ने कौन-सा वरदान दिया?",
+    "sub": "Agle aur aakhiri bhaag mein: sheesh ne kya dekha? Aur Shri Krishna ne kaun-sa vardaan diya?"
+  },
+  "endcard": {
+    "tts": "जय श्री श्याम! आखिरी भाग कल सुबह सात बजे, बाबा के जन्मोत्सव पर। लाइक, शेयर और सब्सक्राइब ज़रूर करें।",
+    "sub": "Jai Shree Shyam! Aakhiri part kal subah 7 baje, Baba ke Janmotsav par. Like, Share aur Subscribe zaroor karein."
+  },
+  "next_label": "Part 4/4: kal, Janmotsav par",
+  "facts_ref": "series.json",
+  "youtube_title": "Khatu Shyam ji ki Amar Katha Part 3 | बर्बरीक का शीश दान #Shorts",
+  "youtube_description": "Khatu Shyam ji ki Amar Katha, mini movie series ka Part 3: Barbarik ne Shri Krishna ko apna sheesh daan kiya aur poora Mahabharat yudh dekhne ki ichchha rakhi.\nYe katha lok katha (Khatu Shyam parampara) ke anusar hai; Barbarik ka prasang Skanda Purana (Kaumarika Khand) ki parampara mein bhi milta hai. Sheesh daan ki tithi (Phalgun Shukla Dwadashi) parampara ke anusar hai.\nशीश के दानी: खाटू श्याम जी की अमर कथा, भाग 3।\nAakhiri Part 4 kal subah 7 baje, Khatu Shyam Janmotsav par.\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN\n#KhatuShyam #SheeshKeDaani #JaiShreeShyam #KhatuShyamJanmotsav #Shorts",
+  "youtube_tags": "Barbarik ka sheesh daan, बर्बरीक का शीश दान, Sheesh ke daani, शीश के दानी, Khatu Shyam ji ki katha, खाटू श्याम जी की कथा, Khatu Shyam story, Shri Krishna Barbarik, श्री कृष्ण बर्बरीक, Khatu Shyam Janmotsav, खाटू श्याम जन्मोत्सव, Shyam Baba",
+  "instagram_caption": "Daan mein apna sheesh? 🙏\nKhatu Shyam ji ki Amar Katha, Part 3/4: Sheesh ka daan.\nAakhiri part kal subah 7 baje, Janmotsav par.\nJai Shree Shyam 🙏\nAchhi lage to Like, Share aur Follow karein\n#KhatuShyam #JaiShreeShyam #SheeshKeDaani #Barbarik #ShyamBaba #KhatuShyamJanmotsav",
+  "facebook_caption": "Khatu Shyam ji ki Amar Katha, Part 3/4: Sheesh ka daan. Aakhiri part kal subah 7 baje, Janmotsav par.\nJai Shree Shyam 🙏 Achhi lage to Like, Share aur Follow karein.\n#KhatuShyam #JaiShreeShyam"
+}

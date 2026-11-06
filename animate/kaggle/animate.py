@@ -37,6 +37,8 @@ def sh(*cmd, check=True, shell=False):
 
 
 def find_input():
+    if os.environ.get("SPS_INPUT"):  # story/movie_kernel.py runs this script on a prepared folder
+        return os.environ["SPS_INPUT"]
     hits = glob.glob("/kaggle/input/**/jobs.json", recursive=True)
     if not hits:
         raise SystemExit("jobs.json not found under /kaggle/input")
@@ -100,13 +102,15 @@ def worker(gpu, ids, inp, cfg):
         if time.time() + est > cfg["deadline"]:
             print(f"[gpu{gpu}] time budget: skipping {cid} (~{est / 60:.0f} min)", flush=True)
             continue
-        img = load_image(j.get("start") or f"{inp}/{j['image']}").convert("RGB").resize((cfg["size"], cfg["size"]))
+        # Square by default; settings.width/height (multiples of 32) for the vertical movie clips (576x1024).
+        cw, ch = int(cfg.get("width", cfg["size"])), int(cfg.get("height", cfg["size"]))
+        img = load_image(j.get("start") or f"{inp}/{j['image']}").convert("RGB").resize((cw, ch))
         torch.cuda.reset_peak_memory_stats()
         torch.cuda.synchronize(); s = time.time()
         try:
             frames = pipe(image=img, prompt_embeds=emb[cid]["pos"].to("cuda", torch.float16),
                           negative_prompt_embeds=emb[cid]["neg"].to("cuda", torch.float16),
-                          height=cfg["size"], width=cfg["size"], num_frames=frames_n,
+                          height=ch, width=cw, num_frames=frames_n,
                           num_inference_steps=cfg["steps"], guidance_scale=cfg["guidance"],
                           generator=torch.Generator("cuda").manual_seed(j.get("seed", 42)), output_type="np").frames[0]
         except Exception as e:  # one failed clip must not lose the others

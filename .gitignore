@@ -54,3 +54,7 @@ story/status/work/
 animate/ab-quality/
 story/today/stills/
 animate/.cache/
+# mini-movie work folder (voices, Kaggle outputs, renders) and the downloaded cast portrait candidates
+story/movies/work/
+characters/cast/candidates/
+__pycache__/

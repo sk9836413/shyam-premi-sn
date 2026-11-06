@@ -36,7 +36,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning, evening, noon, long or status (empty = by time of day; long = only the long video; noon = the Dadi aur Chhotu Short; status = only tomorrow's festival status Short)
+        description: morning, evening, noon, long, status or movie (empty = by time of day; long = only the long video; noon = the Dadi aur Chhotu Short; status = only tomorrow's festival status Short; movie = only the next due mini-movie part)
         required: false
         default: ''
       dry_run:
@@ -47,6 +47,14 @@ on:
         description: status slot only - festival day YYYY-MM-DD (empty = tomorrow in IST)
         required: false
         default: ''
+      movie_part:
+        description: movie slot only - a part file, e.g. story/movies/khatu-shyam-amar-katha/part-1.json (empty = the next due part)
+        required: false
+        default: ''
+      kaggle_reuse:
+        description: movie slot only - render from the last finished sps-movie Kaggle session (no new GPU session)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -54,7 +62,7 @@ permissions:
 # Evening runs have their own queue, so the long animated evening job can run beside the morning one; within a
 # slot, runs queue and the later one skips once the slot is in log.md. log.md and published.md merge as unions.
 concurrency:
-  group: ${{ inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
+  group: ${{ inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
   cancel-in-progress: false
 
 jobs:
@@ -65,6 +73,8 @@ jobs:
       long: ${{ steps.date.outputs.long }}
       # The festival status job runs after every evening-slot run (and for slot=status); it skips once scheduled.
       status: ${{ steps.date.outputs.status }}
+      # The mini-movie job runs after every evening-slot run (and for slot=movie): it makes the next due part.
+      movie: ${{ steps.date.outputs.movie }}
     timeout-minutes: 230
     env:
       FFMPEG_PATH: ffmpeg
@@ -91,6 +101,10 @@ jobs:
             echo "status=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Festival status video only"; exit 0
           fi
+          if [ "$slot" = movie ]; then
+            echo "movie=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Mini-movie part only"; exit 0
+          fi
           if [ -z "$slot" ]; then
             hm=$((10#$(TZ=Asia/Kolkata date +%H%M)))
             if [ $hm -ge 530 ] && [ $hm -lt 1200 ]; then slot=morning
@@ -107,13 +121,21 @@ jobs:
           # evening schedule), so it never competes with the evening Short for the Kaggle GPU (10:43 IST dispatch) and
           # can be dry-run during the day first.
           if [ "$slot" = evening ] && [ $((10#$(TZ=Asia/Kolkata date +%H))) -ge 15 ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
+          # Mini-movies (STORY.md section 7) are made a day or more ahead by the `movie` job, which runs after evening runs.
+          if [ "$slot" = evening ]; then echo "movie=true" >> "$GITHUB_OUTPUT"; fi
           if grep -q "^$today | $slot |" automation/log.md; then
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today $slot already published"
+          elif [ "$slot" = morning ] && grep -q "^$today | movie |" automation/log.md; then
+            # A movie part is scheduled for 07:00 today: it IS the morning Short. Only the trend research and the Veo kit
+            # run, then "Movie morning" records the slot.
+            echo "movie_day=$(grep -m1 "^$today | movie |" automation/log.md | cut -d'|' -f3 | xargs)" >> "$GITHUB_OUTPUT"
+            echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::$today morning = the scheduled movie part"
           fi
 
       - uses: actions/setup-node@v4
-        if: steps.date.outputs.done != 'true'
+        if: steps.date.outputs.done != 'true' || steps.date.outputs.movie_day != ''
         with:
           node-version: 22
 
@@ -148,7 +170,7 @@ jobs:
       # every slot's story prompt (STORY.md section 1). Once a day, on the morning run only; a file already committed
       # today is reused. Committed by the Record step. Free endpoints; any failure leaves the story as before.
       - name: Trend research
-        if: steps.date.outputs.done != 'true' && steps.date.outputs.slot == 'morning'
+        if: (steps.date.outputs.done != 'true' || steps.date.outputs.movie_day != '') && steps.date.outputs.slot == 'morning'
         continue-on-error: true
         timeout-minutes: 10
         env:
@@ -194,7 +216,7 @@ jobs:
       # each (6 images), Veo prompts, titles and captions -> /kit/<date>.html on the media Worker, an email (RESEND_API_KEY),
       # a CRM task (INGEST_TOKEN) and this run's summary. Once a day (skips if the kit exists); never blocks the post.
       - name: Veo kit
-        if: ${{ !cancelled() && steps.date.outputs.done != 'true' && steps.date.outputs.slot == 'morning' }}
+        if: ${{ !cancelled() && (steps.date.outputs.done != 'true' || steps.date.outputs.movie_day != '') && steps.date.outputs.slot == 'morning' }}
         continue-on-error: true
         timeout-minutes: 10
         env:
@@ -202,6 +224,21 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
         run: node scripts/veo-kit.mjs --date "${{ steps.date.outputs.today }}"
+
+      # On a movie day the scheduled part (YouTube publishAt 07:00, Facebook scheduled, Instagram queued) is the morning
+      # Short: record the slot so later morning triggers skip, and commit today's trend research for the other slots.
+      - name: Movie morning
+        if: ${{ !cancelled() && steps.date.outputs.movie_day != '' && !inputs.dry_run }}
+        run: |
+          today="${{ steps.date.outputs.today }}"; slug="${{ steps.date.outputs.movie_day }}"
+          line=$(grep -m1 "^$today | movie | $slug |" automation/log.md)
+          echo "$today | morning | $slug | $(echo "$line" | cut -d'|' -f4 | xargs) | mini-movie part (scheduled 07:00, replaces the katha Short)" >> automation/log.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/log.md
+          [ -d automation/trends ] && git add automation/trends
+          git commit -qm "Morning $today: movie part $slug"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
       # Real temple photos (Wikimedia Commons, CC0 / PD / CC BY only, exact temple only) for the spec's `temple`, fetched
       # once when footage/<temple>/ has none (searched at most every 30 days); committed with the Record step.
@@ -864,6 +901,212 @@ jobs:
           git add automation/log.md automation/published.md "story/published/$SLUG.json"
           git commit -qm "Status $SLUG"
           git pull -q --rebase && git push -q
+
+  # Mini-movie series (STORY.md section 7, story/movies/<series>/, automation/movie-series.md): after every evening-slot
+  # run (and alone with slot=movie) the next due part is made a day or more before its release: edge-tts voices per
+  # character, ONE Kaggle session (story/movie_kernel.py: FLUX frames, Wan clips, lip-sync, Whisper pronunciation check;
+  # the GPU tier from the quota keeps the daily Shorts' hours, animate/REPORT.md section 11), render, then YouTube private
+  # with publishAt <release> 07:00, Facebook scheduled, Instagram queued. That part is the morning Short of its release
+  # day ("Movie morning" in the story job). A series the owner has not approved ("approved": false in series.json) is
+  # rendered and parked for review only (artifact + media Worker link in published.md), never uploaded.
+  movie:
+    needs: story
+    if: always() && needs.story.outputs.movie == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    concurrency:
+      group: shyam-movie
+      cancel-in-progress: false
+    env:
+      FFMPEG_PATH: ffmpeg
+      KOKORO_DIR: ${{ github.workspace }}/.kokoro
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      W: story/movies/work
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Due part
+        id: d
+        run: |
+          git fetch -q origin main && git checkout -q origin/main -- automation/log.md automation/published.md
+          node scripts/movie-due.mjs --part "${{ inputs.movie_part }}" --daily "${{ vars.MOVIE_DAILY }}" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/setup-python@v5
+        if: steps.d.outputs.mode == 'produce' || steps.d.outputs.mode == 'write'
+        with:
+          python-version: '3.12'
+
+      # Daily pipeline (repo variable MOVIE_DAILY=on, after the owner approved the format): Claude writes tomorrow's part
+      # of the active series in automation/movie-series.md, or starts the next series there.
+      - name: Write the movie part
+        id: write
+        if: steps.d.outputs.mode == 'write'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --max-turns 140
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(ls:*)"
+          prompt: |
+            Write the next Shyam Premi SN mini-movie part. Its release day (IST) is ${{ steps.d.outputs.release }} at 07:00.
+            Follow automation/STORY.md section 7 exactly (and sections 1-2 for research and accuracy), with the queue in
+            automation/movie-series.md and the characters in characters/cast/cast.json. Write story/movies/<series>/series.json
+            (when the series starts) and story/movies/<series>/part-<n>.json, make `node scripts/validate.mjs <that file>` pass,
+            and update the series' row in automation/movie-series.md. Change nothing else.
+
+      - name: Spec
+        id: spec
+        if: steps.d.outputs.mode == 'produce' || steps.write.outcome == 'success'
+        run: |
+          f="${{ steps.d.outputs.file }}"
+          [ -n "$f" ] || f=$(node scripts/movie-due.mjs --today "${{ steps.d.outputs.release }}" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>console.log(JSON.parse(s).file||""))')
+          [ -n "$f" ] && [ -f "$f" ] || { echo "::error::No movie part file for ${{ steps.d.outputs.release }}"; exit 1; }
+          node scripts/validate.mjs "$f"
+          node scripts/movie-due.mjs --part "$f" > "$RUNNER_TEMP/due.json"
+          for k in slug release publish_at approved; do echo "$k=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').$k")" >> "$GITHUB_OUTPUT"; done
+          echo "SLUG=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').slug")" >> "$GITHUB_ENV"
+          echo "F=$f" >> "$GITHUB_ENV"
+
+      - name: Tools
+        if: steps.spec.outcome == 'success'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libfribidi0 libraqm0 > /dev/null
+          pip install -q edge-tts pillow kokoro-onnx==0.6.1 soundfile==0.14.0 'kaggle>=2.2' six
+          python -c "from PIL import features; print('raqm (Devanagari subtitles):', features.check('raqm'))"
+
+      - name: Voices
+        if: steps.spec.outcome == 'success'
+        run: python -I story/movie.py voice --spec "$F" --out "$W/voice" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      # One Kaggle session per part. Tier from the quota (story/movie.py pick_tier): full (4 clips + a 14B hero clip),
+      # standard (4 clips), lite (2 clips), stills (frames + lip-sync only); "none" = no GPU this time, the next evening
+      # trigger tries again. Never under the daily Shorts' reserve. Repo variable MOVIE_TIER forces a tier.
+      - name: Kaggle (frames, clips, lip-sync, pronunciation check)
+        id: kaggle
+        if: steps.spec.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 220
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: movie
+        run: |
+          [ -n "$KAGGLE_API_TOKEN" ] || { echo "::error::no KAGGLE_API_TOKEN secret"; exit 1; }
+          if [ "${{ inputs.kaggle_reuse }}" = true ]; then  # re-render a finished session (e.g. after a renderer fix)
+            node animate/kaggle.mjs fetch --to "$W/kaggle" | tee -a "$GITHUB_STEP_SUMMARY"
+            node scripts/movie-qa.mjs "$W/kaggle/qa.json" >> "$GITHUB_STEP_SUMMARY" || true
+            exit 0
+          fi
+          node animate/kaggle.mjs quota > "$RUNNER_TEMP/quota.json" || true
+          python -I story/movie.py tier --spec "$F" --quota "$RUNNER_TEMP/quota.json" --force "${{ vars.MOVIE_TIER }}" | tee "$RUNNER_TEMP/tier.json"
+          tier=$(node -p "require(process.env.RUNNER_TEMP + '/tier.json').tier")
+          [ "$tier" != none ] || { echo "::warning::Not enough Kaggle GPU hours left before the weekly reset; trying again on the next trigger"; exit 1; }
+          python -I story/movie.py dataset --spec "$F" --voice "$W/voice" --tier "$tier" --out animate/dataset --max-minutes 170
+          node animate/kaggle.mjs upload
+          node animate/kaggle.mjs lock --minutes 90
+          node animate/kaggle.mjs push --queue-minutes 30 --retry-minutes 30
+          start=$(date +%s)
+          node animate/kaggle.mjs wait --minutes 200 --queue-minutes 30 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json")"
+          node animate/kaggle.mjs fetch --to "$W/kaggle" | tee "$RUNNER_TEMP/fetch.json"
+          echo "- Kaggle ($tier): $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min, quota before: $(cat "$RUNNER_TEMP/quota.json")" >> "$GITHUB_STEP_SUMMARY"
+          node scripts/movie-qa.mjs "$W/kaggle/qa.json" >> "$GITHUB_STEP_SUMMARY" || true
+          ls "$W/kaggle/frames" | grep -q '^s0' || { echo "::error::Kaggle made no frames"; exit 1; }
+
+      - name: Render
+        id: render
+        if: steps.kaggle.outcome == 'success'
+        run: |
+          mkdir -p "$W/out/small"
+          python -I story/movie.py keep --kaggle "$W/kaggle"
+          # The lip-sync was made from the voice lines sent to Kaggle: render with exactly those.
+          v="$W/voice"; [ -f "$W/kaggle/voice/voice.json" ] && v="$W/kaggle/voice"
+          python -I story/movie.py render --spec "$F" --voice "$v" --kaggle "$W/kaggle" --out "$W/out/$SLUG.mp4" \
+            --meta "$W/out/meta.json" --srt "$W/out/$SLUG.srt" --small "$W/out/small/$SLUG.mp4" | tee -a "$GITHUB_STEP_SUMMARY"
+          ffprobe -v error -show_entries format=duration:stream=width,height -of compact "$W/out/$SLUG.mp4" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the video as an artifact (7 days)
+        if: steps.render.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: movie-${{ env.SLUG }}
+          path: |
+            story/movies/work/out/
+            story/movies/work/kaggle/qa.json
+            story/movies/work/kaggle/results*.json
+          retention-days: 7
+          compression-level: 0
+
+      # The 720p copy under 25 MB goes on the media Worker (7 days): Instagram publishes from that URL, and it is the
+      # owner's review link while the series is not approved.
+      - name: Host
+        id: host
+        if: steps.render.outcome == 'success'
+        run: node scripts/publish.mjs --host-only --video "$W/out/small/$SLUG.mp4" --scenes "$F" | tee "$RUNNER_TEMP/host.json"
+
+      - name: Park for review (series not approved yet)
+        if: steps.render.outcome == 'success' && (steps.spec.outputs.approved != 'true' || inputs.dry_run)
+        run: |
+          url=$(node -p "JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/host.json', 'utf8')).video_url || ''")
+          echo "- Review copy: ${url:-not hosted}; full quality in the run's artifact. Not uploaded (series not approved, or dry run)." >> "$GITHUB_STEP_SUMMARY"
+          [ "${{ inputs.dry_run }}" = true ] && exit 0
+          echo "- $SLUG | review: ${url:-artifact only} (not uploaded: series not approved; made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST)" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/published.md characters/cast/clips
+          git commit -qm "Movie $SLUG rendered for review"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+      - name: YouTube (public at 07:00 IST on the release day)
+        id: yt
+        if: steps.render.outcome == 'success' && steps.spec.outputs.approved == 'true' && !inputs.dry_run
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$F" --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" | tee "$RUNNER_TEMP/yt.json"
+          grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"
+
+      # Facebook: a Page video (parts are over Meta's 90 s Reel limit), scheduled for the same time; Instagram: a Reel
+      # queued ("ig: pending") for the `instagram` job, published from the hosted 720p copy.
+      - name: Facebook and Instagram (Graph API)
+        id: meta
+        if: steps.yt.outcome == 'success'
+        continue-on-error: true
+        env:
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
+          node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$F" --video-url "$MEDIA_URL/m/$SLUG.mp4" \
+            --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" | tee "$RUNNER_TEMP/meta.json" || true
+
+      - name: Record
+        if: steps.yt.outcome == 'success'
+        run: |
+          mkdir -p story/published
+          cp "$F" "story/published/$SLUG.json"
+          rel="${{ steps.spec.outputs.release }}"
+          yt=$(node -p "const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/yt.json', 'utf8')).youtube; y.url + ' (public at ' + y.publishAt + ')'")
+          deity=$(node -p "require('./' + process.env.F).deity"); summary=$(node -p "require('./' + process.env.F).summary")
+          echo "$rel | movie | $SLUG | $deity | $summary" >> automation/log.md
+          social=$(node -p "try { ' | social: ' + JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/meta.json', 'utf8')).summary } catch { '' }")
+          made=$(node -p "const m = require('./' + process.env.W + '/out/meta.json'); m.seconds + ' s, clips ' + m.animated_scenes.length + ', lip-sync ' + m.lip_lines")
+          echo "- $SLUG | youtube: $yt | movie part ($made), made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/log.md automation/published.md "story/published/$SLUG.json" characters/cast/clips
+          git add automation/movie-series.md story/movies/*/series.json story/movies/*/part-*.json 2>/dev/null || true
+          git commit -qm "Movie $SLUG scheduled for $rel 07:00"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
   # Instagram has no scheduled publishing: queued Reels ("ig: pending <time>" in automation/published.md, written for the
   # evening and festival status Shorts) are published here within 20 minutes of their time (see the header). Runs on every

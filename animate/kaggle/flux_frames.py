@@ -66,11 +66,12 @@ def main(inp, out, cfg):
     for j in jobs:
         s = time.time()
         pe, pooled = emb[j["id"]]
+        w, h = int(j.get("w", size)), int(j.get("h", size))  # per-job size (vertical movie frames 576x1024), else square
         with torch.no_grad():
-            lat = pipe(prompt_embeds=pe, pooled_prompt_embeds=pooled, width=size, height=size, num_inference_steps=steps,
+            lat = pipe(prompt_embeds=pe, pooled_prompt_embeds=pooled, width=w, height=h, num_inference_steps=steps,
                        guidance_scale=0.0, max_sequence_length=256, output_type="latent",
                        generator=torch.Generator("cuda:0").manual_seed(int(j.get("seed", 42)))).images
-            lat = pipe._unpack_latents(lat, size, size, pipe.vae_scale_factor).to("cuda:1", torch.float32)
+            lat = pipe._unpack_latents(lat, h, w, pipe.vae_scale_factor).to("cuda:1", torch.float32)
             lat = lat / vae.config.scaling_factor + vae.config.shift_factor
             img = vae.decode(lat, return_dict=False)[0][0]
         if not torch.isfinite(img).all() or img.float().std() < 0.02:

@@ -124,18 +124,20 @@ def run(inp, ids, cfg):
     for cid in ids:
         j = jobs[cid]
         for size in cfg.get("sizes", [640]):
-            est = {640: 20, 720: 28, 960: 60}.get(size, 40) * 60
+            # A size is square (640) or [width, height] (the vertical movie clips, e.g. [480, 832]: 640x640's pixels).
+            sw, sh_ = (size, size) if isinstance(size, int) else (int(size[0]), int(size[1]))
+            est = ({640: 20, 720: 28, 960: 60}.get(size, 40) if isinstance(size, int) else 20 if sw * sh_ <= 420000 else 40) * 60
             if time.time() + est > deadline or time.time() + est > cfg.get("hard_deadline", 1e12):
                 print(f"time budget: skipping {cid}@{size}", flush=True)
                 continue
-            img = load_image(f"{inp}/{j['image']}").convert("RGB").resize((size, size))
+            img = load_image(f"{inp}/{j['image']}").convert("RGB").resize((sw, sh_))
             for g in (0, 1):
                 torch.cuda.reset_peak_memory_stats(g)
             torch.cuda.synchronize(0); torch.cuda.synchronize(1)
             s = time.time()
             try:
                 fr = pipe(image=img, prompt_embeds=emb[cid]["pos"].to("cuda:1", torch.float16),
-                          negative_prompt_embeds=emb[cid]["neg"].to("cuda:1", torch.float16), height=size, width=size,
+                          negative_prompt_embeds=emb[cid]["neg"].to("cuda:1", torch.float16), height=sh_, width=sw,
                           num_frames=cfg.get("frames", 81), num_inference_steps=steps, guidance_scale=guidance, guidance_scale_2=guidance,
                           generator=torch.Generator("cpu").manual_seed(j.get("seed", 42)), output_type="np").frames[0]
             except Exception as e:
@@ -144,14 +146,14 @@ def run(inp, ids, cfg):
                 rec["clips"].append({"id": cid, "size": size, "error": f"{type(e).__name__}: {str(e)[:200]}"})
                 continue
             secs = time.time() - s
-            name = cid if len(cfg.get("sizes", [640])) == 1 else f"{cid}-{size}"
+            name = cid if len(cfg.get("sizes", [640])) == 1 else f"{cid}-{sw}x{sh_}"
             export_to_video(list(np.nan_to_num(fr)), f"{WORK}/raw/{name}.mp4", fps=16)
             r = {"id": cid, "size": size, "frames": len(fr), "steps": steps, "lora": rec["lora"], "seconds": round(secs, 1),
                  "bad_output": bool(np.isnan(fr).any() or fr.max() < 0.02),
                  "peak_vram_gb": [round(torch.cuda.max_memory_allocated(g) / 2**30, 2) for g in (0, 1)]}
             try:
                 enh = enh or Enhancer("cuda:0")
-                r.update(enh.process(fr, 16, f"{WORK}/clips/{name}.mp4", seconds=j.get("seconds"), fps=30, size=1080))
+                r.update(enh.process(fr, 16, f"{WORK}/clips/{name}.mp4", seconds=j.get("seconds"), fps=30, size=cfg.get("out_size", 1080)))
             except Exception as e:
                 print(f"enhance failed: {e}", flush=True)
                 os.replace(f"{WORK}/raw/{name}.mp4", f"{WORK}/clips/{name}.mp4")

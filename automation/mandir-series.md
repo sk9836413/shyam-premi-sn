@@ -117,3 +117,7 @@ Long videos run a temple in 2-4 parts. The Short and the Dadi-Chhotu Short cover
 
 Accuracy rules above apply to every series. For temples with competing claims (Jyotirlinga sites,
 Shakti Peeth lists), mention the other tradition in one neutral line. Never take sides or call any claim fake.
+
+## Mini-movie series (owner, 6 Nov 2026)
+The same temples are also told as 2-4 part mini films in the morning slot (automation/movie-series.md, STORY.md section 7).
+Every rule in this file (2 sources per fact, legends labelled, the AI-image line, the sati rules) applies to them in full.

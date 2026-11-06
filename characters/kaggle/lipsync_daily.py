@@ -168,6 +168,8 @@ for jid in ids:
 
 
 def find_input():
+    if os.environ.get("SPS_INPUT"):  # story/movie_kernel.py runs this script on a prepared folder
+        return os.environ["SPS_INPUT"]
     hits = glob.glob("/kaggle/input/**/jobs.json", recursive=True)
     if not hits:
         raise SystemExit("jobs.json not found under /kaggle/input")

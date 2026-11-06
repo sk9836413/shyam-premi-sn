@@ -54,8 +54,12 @@ tak roz dekhiye". One angle per day, each different from what log.md already has
 - 18 Nov: Khatu Shyam ji temple history and architecture (the rebuilding, the town, Shyam Kund), from the trust,
   Rajasthan Tourism or the Sikar district site plus one more source.
 - 19 Nov: why the Janmotsav is on Dev Uthani Ekadashi, and how it is celebrated (shringar, nishan, kirtan): sourced, no
-  crowd numbers or timings. Dadi ends with "kal Baba ka Janmotsav hai". 20 Nov: morning and long video on the
+  crowd numbers or timings. Dadi ends with "kal Baba ka Janmotsav hai". 20 Nov: the long video on the
   Janmotsav and Dev Uthani Ekadashi; the status Short (story/status/2026-11-20.json) goes out at 06:00 IST.
+- **17-20 Nov mornings are the mini-movie "Khatu Shyam ji ki Amar Katha" (section 7), Parts 1-4 at 07:00 IST**, made
+  ahead by the `movie` job. On those days the morning run writes nothing (log.md already has `<date> | movie |`), and the
+  evening/noon countdown must not retell the same scene: Part 1 = birth, vow, three arrows; Part 2 = the Brahmin's peepal
+  test; Part 3 = the sheesh daan; Part 4 = the Shyam boon, Khatu and the Janmotsav.
 Accuracy rules (section 2 and mandir-series.md) apply in full: legends labelled as tradition, every fact with two sources.
 
 Do not repeat a story already listed in `automation/log.md` within the last 60 days. Before choosing, search log.md (Grep) for the story's key words, e.g. "sheesh", "barbarik", "sanjeevani", in both slugs and titles: on 3 Nov 2026 "Barbarik ka Sheesh Daan" repeated a 27 Oct Short because only the exact slug was checked.
@@ -135,6 +139,14 @@ usually finds nothing, which is fine.
 - Respectful tone always. No mockery, no fear-mongering ("share this or bad luck"), no promises of
   money, cures or miracles ("ye mantra bolo, paisa aayega"), no caste or political content, no
   comparisons that put down any deity or community.
+- **Khatu Shyam ji iconography (owner, 6 Nov 2026; every format: Shorts, long, status, dialogue, movie).** After the
+  sheesh daan, Khatu Shyam ji is worshipped as the **SHEESH (head) only**. Every image of Khatu Shyam ji (darshan, murti,
+  shringar) uses this description and nothing that contradicts it: `the divine Sheesh (head only, no body, no flute) of
+  Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with
+  peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and
+  jewels, in a decorated sanctum`. Never a full body, hands or a flute (those belong to Shri Krishna). Barbarik as the
+  young warrior *before* the sheesh daan, and the temple building, are not affected. The validator checks every prompt
+  that shows Khatu Shyam ji; the movie cast entry `khatu-shyam` carries the same description.
 - Mantras must be the standard, widely used text. Copy them exactly from a reliable source.
 
 ## 3. Write `story/today/scenes.json`
@@ -438,3 +450,57 @@ animation AI se.` and ends with a like/share/subscribe line; real-footage credit
 
 Run `node scripts/validate.mjs story/today/scenes.json` until it passes, then append the log line as in section 4
 (`<date> | noon | <slug> | <deity> | <summary>`). Do not render, upload, commit or push.
+
+## 7. Mini-movie series (morning slot on movie days; job `movie`)
+
+A temple's or a deity's katha told as a **2-4 part mini film**: each part is a vertical Short of ~100-175 s with
+characters, dialogue, animated scenes and a cliffhanger, so viewers binge and subscribe. A part is made a day or more
+ahead by the `movie` job (after the evening run) and goes out at **07:00 IST on its release day as that day's morning
+Short** (YouTube publishAt, Facebook scheduled Page video, Instagram queued Reel). Owner, 6 Nov 2026: first series
+"Khatu Shyam ji ki Amar Katha" on 17-20 Nov; then movies for all temples, one part a day, replacing the morning katha
+(only once the owner approved the pilot and the repo variable `MOVIE_DAILY=on` is set). Evening darshan, status, noon
+Dadi-Chhotu and the long video stay as they are.
+
+**Queue.** `automation/movie-series.md`: series in order (mandir-series.md order; a festival in the next 7 days or a
+`trends` topic may jump the queue), each with its parts, sources and status. Finish a series before starting the next.
+
+**Files.** `story/movies/<series>/series.json` (title, playlist, source, `approved`, cast, parts with `release` and
+`produce_from`, and `facts`: every fact the series states, each with 2 independent sources) and one
+`story/movies/<series>/part-<n>.json` per part. Slug `<release>-movie-<series>-part-<n>`. Copy the shape of
+`story/movies/khatu-shyam-amar-katha/part-1.json`:
+- `format: "movie"`, `series`, `series_title`, `part`, `parts`, `release`, `publish_at: "07:00"`, `title` (the part,
+  Roman, max 40), `hook` (Roman, max 38, names the deity/temple), `playlist` (the series name), `deity`, `summary`
+  (max 160, no "|"), `source` (the tradition, also in the description), `music` (`epic` or `devotional`), `style`
+  (with "no text"), `cast` (ids from `characters/cast/cast.json`, plus `narrator`), `names` (Devanagari names the
+  pronunciation check listens for).
+- `scenes` (5-9): `prompt` (one vertical moment; name the characters, their look is added from cast.json; traditional
+  iconography; no text; **no gore or violence**: a war is distant banners, a sacrifice is light and petals), `cast` (who
+  is in the picture), `motion` (`in`/`out`/`pan`), `animate` (GENTLE micro-motion for 2-6 key scenes; the GPU tier
+  decides how many become Wan clips), optional `hero: true` (one scene, the 14B model), `deity: true` for a deity or
+  murti in the picture, and `lines` (1-6): `{who, tts (Devanagari, max 110, numbers as words), sub (Roman, max 120),
+  shot?}`. A narrator line shows the scene; a character's line cuts to their close-up (lip-synced for humans; deities
+  get gentle motion only, never lip-sync; Khatu Shyam ji speaks only as the sheesh, cast `khatu-shyam`).
+- `teaser` `{prompt, tts, sub}`: "Agle bhaag mein: ..." over the next part's key image (the last part: "Agli movie series
+  mein: ..."); `endcard` `{tts, sub}`: jaikara + when the next part comes ("Part 2 kal subah 7 baje") + a gentle
+  like/share/subscribe ask; `next_label` (drawn on the end card).
+- YouTube fields as section 3 (`youtube_title` `<Name> ... Part n | देवनागरी ... #Shorts`), the description with the source
+  line, "Chitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se." and a subscribe line.
+
+**Writing a part.** Open on the most dramatic moment with the deity/temple name in the first words (no greeting); from
+Part 2 on, one recap line ("Pichhle bhaag mein, ..."). Narrator lines carry the facts; dialogue dramatises only what the
+sources say (emotion, the known exchange): **never a new event, miracle, date, number or promise**. Legends are labelled
+("manyata hai", "lok katha ke anusar"); where traditions differ, say so in one neutral line. End on a real cliffhanger
+that the next part pays off. The validator estimates the length from each character's voice (100-175 s).
+
+**Characters.** Only characters in `characters/cast/cast.json` (canonical portrait, base clip, fixed edge-tts voice):
+Krishna, Hanuman, Shiv, Parvati, Ganesh, Lakshmi, Ram, Sita, the Khatu Shyam cast, and more as series need them. A new
+human character (a temple's saint, a king, a devotee) may be added to cast.json with `description`, `wide`, `bg`, a
+distinct `voice` (Madhur/Swara with its own pitch/rate) and `color`; its portrait is drawn on Kaggle and must be picked
+by a person (`story/movie.py cast`) before the first part that needs it. New deities are added only by a person.
+
+**Sati temples** (Rani Sati Dadi, Dhandhan Sati Dadi): the sati rules in mandir-series.md in full: neutral history,
+the event in at most 1-2 plain sentences, the spoken and written disclaimer, no fire, pyre or smoke in any image, no
+praise, never a mela/yatra/procession. **Real photos**: set `temple` for licence-safe establishing shots where
+footage/<temple>/ has them; never call an AI image real.
+
+Validate with `node scripts/validate.mjs story/movies/<series>/part-<n>.json`. Do not render, upload, commit or push.

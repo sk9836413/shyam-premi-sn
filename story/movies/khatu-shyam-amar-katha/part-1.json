@@ -1,0 +1,232 @@
+{
+  "format": "movie",
+  "series": "khatu-shyam-amar-katha",
+  "series_title": "Khatu Shyam ji ki Amar Katha",
+  "part": 1,
+  "parts": 4,
+  "slug": "2026-11-17-movie-khatu-shyam-amar-katha-part-1",
+  "release": "2026-11-17",
+  "publish_at": "07:00",
+  "title": "Barbarik ka Janm aur Vachan",
+  "hook": "Barbarik: ek yoddha, teen baan",
+  "playlist": "Khatu Shyam ji ki Amar Katha",
+  "deity": "Khatu Shyam ji (Barbarik)",
+  "summary": "Movie Part 1/4: Barbarik ka janm, maa Morvi se yudh-kala, teen baan (manyata: Shiv ji), haare ka sahara banne ka vachan, raaste mein Brahmin",
+  "source": "Lok katha (Khatu Shyam parampara) ke anusar; Barbarik ka prasang Skanda Purana (Kaumarika Khand) ki parampara mein bhi milta hai",
+  "music": "epic",
+  "style": "stylized 3D animated feature film look, Indian mythological epic, soft warm cinematic lighting, rich warm colours, highly detailed, no text, no letters, no writing, no watermark",
+  "cast": [
+    "narrator",
+    "ghatotkach",
+    "morvi",
+    "barbarik",
+    "brahmin"
+  ],
+  "names": [
+    "बर्बरीक",
+    "घटोत्कच",
+    "मोरवी",
+    "भीम",
+    "कुरुक्षेत्र",
+    "शिव",
+    "श्याम",
+    "खाटू"
+  ],
+  "scenes": [
+    {
+      "prompt": "Dawn on a high rocky ridge above a vast misty plain, the young warrior Barbarik stands calmly with his tall bow, the three golden-tipped arrows in his quiver catch the first sunlight, far below the tents and banners of two great armies fade into the mist, epic wide shot",
+      "cast": [
+        "barbarik"
+      ],
+      "motion": "in",
+      "animate": "his saffron angavastram and long hair stir gently in the dawn wind, mist drifts slowly across the plain, the golden arrow tips glint softly",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "एक योद्धा, तीन बाण, और माँ को दिया एक वचन।",
+          "sub": "Ek yoddha, teen baan, aur maa ko diya ek vachan."
+        },
+        {
+          "who": "narrator",
+          "tts": "जिन्हें आज कलयुग में खाटू श्याम जी के नाम से पूजा जाता है।",
+          "sub": "Jinhe aaj Kalyug mein Khatu Shyam ji ke naam se pooja jata hai."
+        }
+      ]
+    },
+    {
+      "prompt": "Inside a warm lamp-lit hall of a forest mountain palace at night, Ghatotkach and Maa Morvi sit side by side looking with love at a newborn baby wrapped in a soft saffron cloth in Morvi's arms, oil lamps glow on carved wooden pillars",
+      "cast": [
+        "ghatotkach",
+        "morvi"
+      ],
+      "motion": "in",
+      "animate": "the oil lamp flames flicker softly, warm light shimmers on the carved pillars, the parents breathe calmly",
+      "hero": true,
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "महाभारत काल की बात है। भीम के पुत्र घटोत्कच और माता मोरवी के घर एक तेजस्वी बालक ने जन्म लिया।",
+          "sub": "Mahabharat kaal ki baat hai. Bheem ke putra Ghatotkach aur Mata Morvi ke ghar ek tejasvi baalak ne janm liya."
+        },
+        {
+          "who": "ghatotkach",
+          "tts": "मोरवी, देखो इसकी आँखों का तेज। यह हमारे कुल का नाम रोशन करेगा।",
+          "sub": "Morvi, dekho iski aankhon ka tej. Yeh hamare kul ka naam roshan karega."
+        },
+        {
+          "who": "morvi",
+          "tts": "हाँ स्वामी। हमारा बर्बरीक धर्म के मार्ग पर चलेगा।",
+          "sub": "Haan swami. Hamara Barbarik dharm ke maarg par chalega."
+        },
+        {
+          "who": "narrator",
+          "tts": "कुछ कथाओं में माता का नाम अहिलावती भी मिलता है।",
+          "sub": "Kuch kathaon mein Mata ka naam Ahilavati bhi milta hai."
+        }
+      ]
+    },
+    {
+      "prompt": "A sunlit forest clearing, Maa Morvi patiently teaches a boy of about twelve (the young Barbarik, warm brown skin, long dark hair tied back, saffron dhoti) to hold a small bow and aim at a distant target on a tree, golden morning light through tall trees",
+      "cast": [
+        "morvi"
+      ],
+      "motion": "pan",
+      "animate": "sunbeams shift through the leaves, a few leaves drift down slowly, the mother's saree edge sways gently, the boy holds the bow steadily",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "बर्बरीक की पहली गुरु उनकी माँ थीं। माँ मोरवी ने ही उन्हें युद्ध-कला सिखाई।",
+          "sub": "Barbarik ki pehli guru unki maa thin. Maa Morvi ne hi unhe yudh-kala sikhayi."
+        },
+        {
+          "who": "morvi",
+          "tts": "बेटा, सच्चा वीर वही है जो कमज़ोर का साथ दे।",
+          "sub": "Beta, sachcha veer wahi hai jo kamzor ka saath de."
+        },
+        {
+          "who": "barbarik",
+          "tts": "जैसी आपकी आज्ञा, माँ। मैं यह बात कभी नहीं भूलूँगा।",
+          "sub": "Jaisi aapki aagya, maa. Main yeh baat kabhi nahin bhoolunga."
+        }
+      ]
+    },
+    {
+      "prompt": "A quiet forest cave shrine at night, a stone Shivling decorated with bel leaves and white flowers glows softly, oil lamps around it, the young warrior Barbarik sits in deep meditation with folded hands before it, three golden arrows rest on a cloth in front of the Shivling in a gentle golden light",
+      "cast": [
+        "barbarik"
+      ],
+      "deity": true,
+      "motion": "in",
+      "animate": "the diya flames flicker, thin incense smoke curls upward, a soft golden glow pulses gently around the Shivling",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "बड़े होकर बर्बरीक ने कठोर तपस्या की।",
+          "sub": "Bade hokar Barbarik ne kathor tapasya ki."
+        },
+        {
+          "who": "narrator",
+          "tts": "मान्यता है कि शिव जी ने प्रसन्न होकर उन्हें तीन अजेय बाण दिए।",
+          "sub": "Manyata hai ki Shiv ji ne prasann hokar unhe teen ajeya baan diye."
+        },
+        {
+          "who": "narrator",
+          "tts": "कुछ कथाओं में यह वरदान देवी का बताया जाता है।",
+          "sub": "Kuch kathaon mein yeh vardaan Devi ka bataya jata hai."
+        },
+        {
+          "who": "narrator",
+          "tts": "कहते हैं, बाण लक्ष्य भेदकर तरकश में लौट आता था। इसलिए वे तीन बाणधारी कहलाए।",
+          "sub": "Kehte hain, baan lakshya bhedkar tarkash mein laut aata tha. Isliye ve Teen Baandhari kehlaye."
+        }
+      ]
+    },
+    {
+      "prompt": "Evening in the palace courtyard, the young warrior Barbarik with his bow and three arrows stands before Maa Morvi, a distant red sky glows over the hills, a conch shell rests on a stone ledge, the mood is serious and emotional",
+      "cast": [
+        "barbarik",
+        "morvi"
+      ],
+      "motion": "in",
+      "animate": "the evening sky glows and clouds drift slowly, the lamp flames flicker, cloth stirs in a light breeze",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "फिर खबर आई, कुरुक्षेत्र में कौरवों और पांडवों का महायुद्ध होने वाला है।",
+          "sub": "Phir khabar aayi, Kurukshetra mein Kauravon aur Pandavon ka mahayudh hone wala hai."
+        },
+        {
+          "who": "barbarik",
+          "tts": "माँ, मुझे उस युद्ध में जाने की आज्ञा दीजिए।",
+          "sub": "Maa, mujhe us yudh mein jaane ki aagya dijiye."
+        },
+        {
+          "who": "morvi",
+          "tts": "जा बेटा, पर एक वचन दे। तू हारे का सहारा बनेगा।",
+          "sub": "Ja beta, par ek vachan de. Tu haare ka sahara banega."
+        },
+        {
+          "who": "barbarik",
+          "tts": "वचन देता हूँ माँ, जो पक्ष हारेगा, मैं उसी का साथ दूँगा।",
+          "sub": "Vachan deta hoon maa, jo paksh haarega, main usi ka saath doonga."
+        },
+        {
+          "who": "narrator",
+          "tts": "यही वचन आगे चलकर उनकी पहचान बना: हारे का सहारा।",
+          "sub": "Yahi vachan aage chalkar unki pehchaan bana: Haare ka Sahara."
+        }
+      ]
+    },
+    {
+      "prompt": "Early morning on a long dusty road through green fields, the young warrior Barbarik sits calmly on a tall horse that stands still on a small rise, he looks towards the far horizon where the plain of Kurukshetra lies, soft golden sunrise, wide cinematic shot",
+      "cast": [
+        "barbarik"
+      ],
+      "motion": "out",
+      "animate": "the horse's mane and Barbarik's angavastram stir in the wind, dust drifts slowly across the road, clouds move gently",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "माँ का आशीर्वाद लेकर बर्बरीक कुरुक्षेत्र की ओर चल पड़े।",
+          "sub": "Maa ka aashirvaad lekar Barbarik Kurukshetra ki or chal pade."
+        }
+      ]
+    },
+    {
+      "prompt": "A forest path beside a huge old peepal tree with heart-shaped leaves at sunrise, an elderly Brahmin sage stands calmly under the tree leaning on his wooden staff, waiting, golden light rays through the leaves",
+      "cast": [
+        "brahmin"
+      ],
+      "motion": "in",
+      "lines": [
+        {
+          "who": "narrator",
+          "tts": "पर रास्ते में, एक पीपल के पेड़ के नीचे, एक ब्राह्मण उनकी राह देख रहे थे।",
+          "sub": "Par raaste mein, ek peepal ke ped ke neeche, ek Brahmin unki raah dekh rahe the."
+        },
+        {
+          "who": "brahmin",
+          "tts": "रुको वीर! इतनी जल्दी में कहाँ जा रहे हो?",
+          "sub": "Ruko veer! Itni jaldi mein kahan ja rahe ho?"
+        }
+      ]
+    }
+  ],
+  "teaser": {
+    "prompt": "Close view of the leaves of a huge peepal tree at sunrise, a single golden arrow flies through the branches leaving a soft trail of golden light, mysterious and dramatic",
+    "motion": "in",
+    "tts": "अगले भाग में: कौन थे ये ब्राह्मण? और कैसी थी वह परीक्षा, जिसने सब बदल दिया?",
+    "sub": "Agle bhaag mein: kaun the ye Brahmin? Aur kaisi thi wah pariksha, jisne sab badal diya?"
+  },
+  "endcard": {
+    "tts": "जय श्री श्याम! भाग दो कल सुबह सात बजे। कथा अच्छी लगी हो तो लाइक, शेयर और सब्सक्राइब ज़रूर करें।",
+    "sub": "Jai Shree Shyam! Part 2 kal subah 7 baje. Katha achhi lagi ho to Like, Share aur Subscribe zaroor karein."
+  },
+  "next_label": "Part 2/4: kal subah 7 baje",
+  "facts_ref": "series.json",
+  "youtube_title": "Khatu Shyam ji ki Amar Katha Part 1 | खाटू श्याम जी की कथा भाग 1 #Shorts",
+  "youtube_description": "Khatu Shyam ji ki Amar Katha, ek mini movie series (4 parts). Part 1: Barbarik ka janm, maa Morvi ki seekh, teen baan aur 'haare ka sahara' banne ka vachan.\nYe katha lok katha (Khatu Shyam parampara) ke anusar hai; Barbarik ka prasang Skanda Purana (Kaumarika Khand) ki parampara mein bhi milta hai. Jahan kathaon mein antar hai, wahan bataya gaya hai.\nबर्बरीक से खाटू श्याम तक: खाटू श्याम जी की अमर कथा, भाग 1।\nPart 2 kal subah 7 baje: Brahmin ki pariksha.\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN\n#KhatuShyam #Barbarik #JaiShreeShyam #KhatuShyamJanmotsav #Shorts",
+  "youtube_tags": "Khatu Shyam ji ki katha, खाटू श्याम जी की कथा, Barbarik ki kahani, बर्बरीक की कहानी, Khatu Shyam story, Haare ka sahara, हारे का सहारा, teen baan dhari, तीन बाण धारी, Khatu Shyam Janmotsav, खाटू श्याम जन्मोत्सव, Shyam Baba, श्याम बाबा",
+  "instagram_caption": "Ek yoddha, teen baan aur maa ko diya ek vachan 🙏\nKhatu Shyam ji ki Amar Katha, Part 1/4: Barbarik ka janm aur 'haare ka sahara' banne ka vachan.\nPart 2 kal subah 7 baje.\nJai Shree Shyam 🙏\nAchhi lage to Like, Share aur Follow karein\n#KhatuShyam #JaiShreeShyam #Barbarik #HaareKaSahara #ShyamBaba #KhatuShyamJanmotsav #Bhakti",
+  "facebook_caption": "Khatu Shyam ji ki Amar Katha, Part 1/4: Barbarik ka janm aur maa ko diya vachan. Part 2 kal subah 7 baje.\nJai Shree Shyam 🙏 Achhi lage to Like, Share aur Follow karein.\n#KhatuShyam #JaiShreeShyam #Barbarik"
+}
