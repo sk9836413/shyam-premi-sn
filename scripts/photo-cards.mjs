@@ -39,9 +39,9 @@ body{position:relative;font-family:'Tiro',${EMOJI},serif;color:#fff}
 .text{font-size:46px;line-height:1.38;color:#fff;margin-top:16px;text-shadow:0 2px 10px rgba(0,0,0,.95)}
 .q{display:inline-block;margin-top:22px;padding:18px 30px;border:3px solid #FFD54A;border-radius:22px;background:rgba(90,31,0,.55);
   font-size:44px;line-height:1.35;color:#fff}
-.credit{position:absolute;left:24px;right:24px;bottom:22px;font-family:Arial,sans-serif;font-size:21px;line-height:1.25;color:rgba(255,255,255,.82);
+.credit{position:absolute;left:24px;right:24px;bottom:22px;font-family:Arial,'Tiro',sans-serif;font-size:21px;line-height:1.25;color:rgba(255,255,255,.82);
   text-align:center;text-shadow:0 1px 4px #000}
-.brand{position:absolute;right:30px;top:24px;font-family:Arial,sans-serif;font-size:24px;letter-spacing:1px;color:rgba(255,255,255,.85);text-shadow:0 1px 4px #000}
+.brand{position:absolute;right:30px;top:24px;font-family:Arial,'Tiro',sans-serif;font-size:24px;letter-spacing:1px;color:rgba(255,255,255,.85);text-shadow:0 1px 4px #000}
 .ai{position:absolute;left:28px;top:22px;padding:6px 14px;border-radius:12px;background:rgba(0,0,0,.55);font-size:26px;color:#fff}
 .frame{position:absolute;inset:16px;border:3px solid rgba(255,213,74,.75);border-radius:26px;pointer-events:none}`;
 
@@ -83,7 +83,7 @@ body{background:radial-gradient(circle at 50% 38%,#fff6df 0%,#ffe2a8 45%,#f6b45c
 .src{font-family:'Yatra',${EMOJI},sans-serif;font-size:44px;color:#9c3a00;margin-top:30px}
 .mean{font-size:38px;line-height:1.4;color:#5a2300;margin-top:36px;padding-top:30px;border-top:3px solid rgba(138,28,0,.35)}
 .frame{border-color:rgba(138,28,0,.55)}
-.brand2{position:absolute;left:0;right:0;bottom:56px;text-align:center;font-family:Arial,sans-serif;font-size:28px;letter-spacing:2px;color:#7a2a00}`, `
+.brand2{position:absolute;left:0;right:0;bottom:56px;text-align:center;font-family:Arial,'Tiro',sans-serif;font-size:28px;letter-spacing:2px;color:#7a2a00}`, `
 <div class="mandala"></div>
 <div class="card fit" data-fixed><div class="title">${esc(card.big || 'आज का विचार')}</div><div class="diya">🪔</div>
 <div class="quote" data-lines>${String(card.quote).split('\n').map((l) => `<div class="ql">${esc(l)}</div>`).join('')}</div>${card.source ? `<div class="src">— ${esc(card.source)}</div>` : ''}
@@ -97,7 +97,7 @@ function factCover(card) {
 .kick{display:inline-block;padding:10px 26px;border-radius:40px;background:#FFD54A;color:#5a1f00;font-family:'Yatra',${EMOJI},sans-serif;font-size:40px}
 .name{font-family:'Yatra',${EMOJI},sans-serif;font-size:96px;line-height:1.12;color:#fff;margin-top:22px;text-shadow:0 4px 16px #000}
 .sub{font-size:46px;line-height:1.3;color:#FFD54A;margin-top:14px;text-shadow:0 2px 10px #000}
-.swipe{position:absolute;right:40px;top:50%;font-family:Arial,sans-serif;font-size:30px;color:#fff;background:rgba(0,0,0,.45);padding:10px 18px;border-radius:30px}`, `
+.swipe{position:absolute;right:40px;top:50%;font-family:Arial,'Tiro',sans-serif;font-size:30px;color:#fff;background:rgba(0,0,0,.45);padding:10px 18px;border-radius:30px}`, `
 <img class="photo" src="${url(card.image)}"><div class="bottom" style="height:760px"></div>
 <div class="ttl fit"><div class="kick">${esc(card.kicker || 'मंदिर दर्शन')}</div><div class="name">${esc(card.big)}</div>${card.line ? `<div class="sub">${esc(card.line)}</div>` : ''}</div>
 <div class="swipe">स्वाइप करें →</div>
@@ -109,7 +109,7 @@ function fact(card) {
 .box{position:absolute;left:70px;right:70px;top:150px;bottom:150px;display:flex;flex-direction:column;justify-content:center;text-align:center}
 .num{width:132px;height:132px;margin:0 auto;border-radius:50%;background:#FFD54A;color:#5a1f00;font-family:'Yatra',${EMOJI},sans-serif;font-size:76px;line-height:140px}
 .dev{font-size:60px;line-height:1.42;margin-top:44px;text-shadow:0 2px 12px #000}
-.rom{font-family:Arial,sans-serif;font-size:34px;line-height:1.4;color:#FFE08A;margin-top:34px;text-shadow:0 2px 8px #000}
+.rom{font-family:Arial,'Tiro',sans-serif;font-size:34px;line-height:1.4;color:#FFE08A;margin-top:34px;text-shadow:0 2px 8px #000}
 .of{position:absolute;left:0;right:0;top:64px;text-align:center;font-family:'Yatra',${EMOJI},sans-serif;font-size:40px;color:#FFD54A}`, `
 <img class="photo" src="${url(card.image)}">
 <div class="of">${esc(card.title || '')}</div>
