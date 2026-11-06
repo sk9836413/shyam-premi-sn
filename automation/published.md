@@ -28,3 +28,4 @@
 - 2026-11-05-evening-banke-bihari-vrindavan-darshan | youtube: https://youtube.com/shorts/UZ6Ha-CUOBk (public at 2026-11-05T13:30:00.000Z) | make: hosted-only | animated 2/4
 - 2026-11-06-status-dhanteras | youtube: https://youtube.com/shorts/8oLKZmQJiWQ (public at 2026-11-06T00:30:00.000Z) | status video, made 05 Nov 18:49 IST | social: fb: https://www.facebook.com/reel/1166935099231690 (scheduled 2026-11-06T00:30:00.000Z) | ig: pending 2026-11-06T00:30:00.000Z
 - 2026-11-06-status-dhanteras | instagram: https://www.instagram.com/reel/DfYq0QmKjo-/
+- 2026-11-06-noon-choti-diwali-narakasur | youtube: https://youtube.com/shorts/Xe7wZXYXqp0 | social: fb: https://www.facebook.com/388779648425633/videos/994441376459429 | ig: error upload failed: Request processing failed | dialogue lipsync, lip-synced 18/18, 115 s

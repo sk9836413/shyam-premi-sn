@@ -30,3 +30,4 @@
 2026-11-05 | long | 2026-11-05-long-diwali-ram-ayodhya-vapsi | Shri Ram (Diwali) | Diwali ki katha: Ravan ka ant, Vibhishan ka rajtilak, Pushpak Vimaan, Bharadwaj ashram, Bharat Milap, Ayodhya ka swagat, Rajyabhishek aur deepotsav ki parampara
 2026-11-05 | evening | 2026-11-05-evening-banke-bihari-vrindavan-darshan | Banke Bihari Mandir, Vrindavan (Krishna Leela Dham 1/11, Krishna) | Banke Bihari ji ki tribhangi mudra, Swami Haridas ji ki Nidhivan mein seva (manyata), Vrindavan darshan
 2026-11-06 | status | 2026-11-06-status-dhanteras | Dhanteras | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
+2026-11-06 | noon | 2026-11-06-noon-choti-diwali-narakasur | Shri Krishna / Satyabhama (Choti Diwali) | Choti Diwali kyun: Krishna aur Satyabhama ka Narakasur se yudh, Sudarshan chakra, kaidi kanyaon ki mukti, diye ki parampara; agla: Diwali

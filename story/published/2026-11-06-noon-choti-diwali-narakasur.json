@@ -1,0 +1,179 @@
+{
+  "slug": "2026-11-06-noon-choti-diwali-narakasur",
+  "format": "dialogue",
+  "title": "Choti Diwali ki Kahani",
+  "kicker": "Choti Diwali Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "next": "Diwali",
+  "deity": "Shri Krishna / Satyabhama (Choti Diwali)",
+  "summary": "Choti Diwali kyun: Krishna aur Satyabhama ka Narakasur se yudh, Sudarshan chakra, kaidi kanyaon ki mukti, diye ki parampara; agla: Diwali",
+  "hook": "Choti Diwali kyun manate hain?",
+  "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "visuals": {
+    "diya": {
+      "prompt": "A decorated Indian home courtyard at dusk with many small lit clay diyas in rows, marigold garlands and rangoli patterns, warm golden glow, festive peaceful mood",
+      "real": false
+    },
+    "indra": {
+      "prompt": "Lord Indra, the king of the gods, with a golden crown, folding his hands in request before blue-skinned Lord Krishna in yellow dhoti and peacock feather crown, heavenly clouds and soft golden light, traditional Indian iconography",
+      "real": false
+    },
+    "chariot": {
+      "prompt": "Blue-skinned Lord Krishna in yellow dhoti with peacock feather crown flying on the great eagle Garuda together with Satyabhama in royal attire, towards a dark hilltop fort in the sky, dramatic but gentle cinematic light",
+      "real": false
+    },
+    "battle": {
+      "prompt": "Lord Krishna holding the glowing Sudarshan Chakra with Satyabhama standing bravely beside him, facing a dark horned demon king Narakasura in front of a fort, heroic mood, not gory, soft glowing light",
+      "real": false
+    },
+    "freed": {
+      "prompt": "Many gracefully dressed princesses stepping out of a fort gate into golden morning light with joyful faces, blue-skinned Lord Krishna standing kindly at the gate, peaceful celebratory mood",
+      "real": false
+    }
+  },
+  "lines": [
+    {
+      "who": "chhotu",
+      "tts": "दादी, छोटी दिवाली क्यों मनाते हैं?",
+      "sub": "Dadi, Choti Diwali kyun manate hain?",
+      "top": "diya"
+    },
+    {
+      "who": "dadi",
+      "tts": "सुनो बेटा, इसे नरक चतुर्दशी भी कहते हैं। यह दिवाली से एक दिन पहले आती है।",
+      "sub": "Suno beta, ise Narak Chaturdashi bhi kehte hain. Ye Diwali se ek din pehle aati hai.",
+      "top": "diya"
+    },
+    {
+      "who": "chhotu",
+      "tts": "नरक? यह नाम क्यों है, दादी?",
+      "sub": "Narak? Ye naam kyun hai, Dadi?",
+      "top": "diya"
+    },
+    {
+      "who": "dadi",
+      "tts": "कथा के अनुसार नरकासुर नाम का एक अत्याचारी असुर था। उसने देवताओं को बहुत सताया।",
+      "sub": "Katha ke anusar Narakasur naam ka ek atyachari asur tha. Usne devtaon ko bahut sataya.",
+      "top": "indra"
+    },
+    {
+      "who": "chhotu",
+      "tts": "तो देवताओं ने क्या किया?",
+      "sub": "To devtaon ne kya kiya?",
+      "top": "indra"
+    },
+    {
+      "who": "dadi",
+      "tts": "कहते हैं, उसने देवमाता अदिति के कुंडल छीन लिए थे। तब इंद्र देव ने श्री कृष्ण से सहायता माँगी।",
+      "sub": "Kehte hain, usne devmata Aditi ke kundal chheen liye the. Tab Indra dev ne Shri Krishna se sahayata maangi.",
+      "top": "indra"
+    },
+    {
+      "who": "chhotu",
+      "tts": "फिर कृष्ण जी अकेले गए?",
+      "sub": "Phir Krishna ji akele gaye?",
+      "top": "chariot"
+    },
+    {
+      "who": "dadi",
+      "tts": "नहीं बेटा, सत्यभामा जी भी साथ चलीं। दोनों गरुड़ पर सवार होकर गए।",
+      "sub": "Nahin beta, Satyabhama ji bhi saath chali. Dono Garud par savar hokar gaye.",
+      "top": "chariot"
+    },
+    {
+      "who": "chhotu",
+      "tts": "नरकासुर तो बहुत ताकतवर होगा! फिर क्या हुआ?",
+      "sub": "Narakasur to bahut taqatwar hoga! Phir kya hua?",
+      "top": "battle"
+    },
+    {
+      "who": "dadi",
+      "tts": "कथा कहती है कि भयंकर युद्ध हुआ। श्री कृष्ण ने सुदर्शन चक्र से नरकासुर का अंत किया।",
+      "sub": "Katha kehti hai ki bhayankar yudh hua. Shri Krishna ne Sudarshan Chakra se Narakasur ka ant kiya.",
+      "top": "battle"
+    },
+    {
+      "who": "chhotu",
+      "tts": "वाह! सत्यभामा जी ने भी कुछ किया था?",
+      "sub": "Wah! Satyabhama ji ne bhi kuchh kiya tha?",
+      "top": "battle"
+    },
+    {
+      "who": "dadi",
+      "tts": "कई कथाओं में है कि युद्ध में वे श्री कृष्ण के साथ डटी रहीं। कथाएँ थोड़ी अलग-अलग मिलती हैं।",
+      "sub": "Kai kathaon mein hai ki yudh mein ve Shri Krishna ke saath datee rahin. Kathayein thodi alag-alag milti hain.",
+      "top": "battle"
+    },
+    {
+      "who": "chhotu",
+      "tts": "और जो लोग उसकी कैद में थे, उनका क्या हुआ?",
+      "sub": "Aur jo log uski kaid mein the, unka kya hua?",
+      "top": "freed"
+    },
+    {
+      "who": "dadi",
+      "tts": "मान्यता है कि श्री कृष्ण ने सोलह हज़ार से अधिक कन्याओं को कैद से मुक्त कराया।",
+      "sub": "Manyata hai ki Shri Krishna ne solah hazaar se adhik kanyaon ko kaid se mukt karaya.",
+      "top": "freed"
+    },
+    {
+      "who": "chhotu",
+      "tts": "तभी तो खुशी में दिए जलाते हैं, है ना दादी?",
+      "sub": "Tabhi to khushi mein diye jalate hain, hai na Dadi?",
+      "top": "diya"
+    },
+    {
+      "who": "dadi",
+      "tts": "हाँ बेटा, अँधेरे पर रोशनी की जीत की याद में। इस दिन सुबह जल्दी स्नान करने की भी परंपरा है।",
+      "sub": "Haan beta, andhere par roshni ki jeet ki yaad mein. Is din subah jaldi snan karne ki bhi parampara hai.",
+      "top": "diya"
+    },
+    {
+      "who": "chhotu",
+      "tts": "दादी, कल किस त्योहार की कहानी सुनाओगी?",
+      "sub": "Dadi, kal kis tyohar ki kahani sunaogi?",
+      "top": "end"
+    },
+    {
+      "who": "dadi",
+      "tts": "फिर दिवाली आती है। कल दिवाली की कहानी सुनाऊँगी। लाइक, शेयर और सब्सक्राइब करना, बेटा!",
+      "sub": "Phir Diwali aati hai. Kal Diwali ki kahani sunaungi. Like, Share aur Subscribe karna, beta!",
+      "top": "end"
+    }
+  ],
+  "facts": [
+    {
+      "claim": "Naraka Chaturdashi (Choti Diwali) is the day before Diwali and marks Krishna's victory over Narakasura on Kartik Krishna Chaturdashi (date varies by panchang, so the video gives none)",
+      "sources": [
+        "https://www.outlookindia.com/brand-studio/naraka-chaturdashi-2026-date-story-and-choti-diwali-celebrations",
+        "https://www.srimandir.com/articles/vrat-prav-tyohar/narak-chaturdashi?lang=en"
+      ]
+    },
+    {
+      "claim": "Narakasura took Aditi's earrings; Indra sought Krishna's help; Satyabhama accompanied Krishna on Garuda; Krishna slew him with the Sudarshan Chakra (tradition, versions differ on Satyabhama's role)",
+      "sources": [
+        "https://www.srimandir.com/articles/vrat-prav-tyohar/narak-chaturdashi?lang=en",
+        "https://hindutone.com/festivals/naraka-chaturdashi-2026/"
+      ]
+    },
+    {
+      "claim": "Krishna freed the princesses held captive by Narakasura (about 16,100 in the common telling; video says more than sixteen thousand)",
+      "sources": [
+        "https://www.srimandir.com/articles/vrat-prav-tyohar/narak-chaturdashi?lang=en",
+        "https://www.outlookindia.com/brand-studio/naraka-chaturdashi-2026-date-story-and-choti-diwali-celebrations"
+      ]
+    },
+    {
+      "claim": "Customs: early-morning oil bath (abhyanga snan) and evening lamps on Narak Chaturdashi",
+      "sources": [
+        "https://www.outlookindia.com/brand-studio/naraka-chaturdashi-2026-date-story-and-choti-diwali-celebrations",
+        "https://hindutone.com/festivals/naraka-chaturdashi-2026/"
+      ]
+    }
+  ],
+  "youtube_title": "Choti Diwali ki Kahani | छोटी दिवाली की कहानी #Shorts",
+  "youtube_description": "Choti Diwali (Narak Chaturdashi) kyun manate hain? Dadi aur Chhotu ki baat: Shri Krishna, Satyabhama aur Narakasur ki katha (manyata ke anusar).\nछोटी दिवाली की कहानी, नरक चतुर्दशी और श्री कृष्ण, दादी और छोटू की ज़ुबानी।\nMantra: ॐ नमो भगवते वासुदेवाय\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nPasand aaye to Like, Share aur Subscribe karein.\n#ChotiDiwali #NarakChaturdashi #DadiAurChhotu #JaiShreeShyam\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam",
+  "youtube_tags": "Choti Diwali ki kahani, छोटी दिवाली की कहानी, Choti Diwali kyun manate hain, छोटी दिवाली क्यों मनाते हैं, Narak Chaturdashi, नरक चतुर्दशी, Narakasur, नरकासुर, Shri Krishna Satyabhama, Diwali 2026, Dadi aur Chhotu, दादी और छोटू",
+  "instagram_caption": "Choti Diwali kyun manate hain? 🪔\nDadi ne Chhotu ko sunayi Shri Krishna, Satyabhama aur Narakasur ki katha (manyata ke anusar).\nOm Namo Bhagavate Vasudevaya\nChitra AI dwara banaye gaye hain (sanketik).\nKal: Diwali ki kahani. Like, Share aur Follow karein.\n#ChotiDiwali #NarakChaturdashi #Diwali2026 #DadiAurChhotu #JaiShreeShyam #ShriKrishna #HinduFestival #Diwali\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam",
+  "facebook_caption": "Choti Diwali ki kahani Dadi aur Chhotu ke saath: Shri Krishna, Satyabhama aur Narakasur ki katha. Kal Diwali ki kahani. Like, Share aur Follow karein 🙏\n#ChotiDiwali #Diwali2026 #JaiShreeShyam\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam"
+}
