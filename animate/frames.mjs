@@ -9,7 +9,9 @@
 //   node animate/frames.mjs <scenes.json> --long          long video (render-long.mjs): images/<slug>-img<i>.jpg
 //   node animate/frames.mjs <scenes.json> --visuals <dir> noon dialogue Short (characters/dialogue.py): <dir>/<key>.jpg
 //   node animate/frames.mjs --jobs <jobs.json>            any list [{ out, prompt, w?, h?, seed? }] (photo posts, Veo kit)
-//   options: --kaggle (skip Workers AI: pilots, experiments, a forced fallback test), --no-kaggle, --wait <min> (default 40),
+//   options: --kaggle (skip Workers AI: pilots, experiments, a forced fallback test), --kaggle-first (Kaggle, then Workers AI
+//            for anything Kaggle did not make: the long video, so its ~12 images leave the neurons to the Shorts),
+//            --no-kaggle, --wait <min> (default 40),
 //            --dry-run (list what would be made; no Workers AI, no Kaggle)
 // Env: SPS_SLOT (kernel sps-frames-<slot>), SPS_WORKERS_AI=0 (= --kaggle), MEDIA_URL + MEDIA_TOKEN, KAGGLE_API_TOKEN
 // (or the PC's ~/.kaggle), FFMPEG_PATH. Neuron ledger: one line per run in $GITHUB_STEP_SUMMARY (images per source,
@@ -159,7 +161,7 @@ async function kaggleFrames(jobs, { waitMin, slot }) {
 }
 
 // ---- main ---------------------------------------------------------------------------------------------------------
-export async function ensureImages(jobs, { kaggleFirst = false, kaggle = true, waitMin = 40, slot = 'pilot', dryRun = false, log = console.log } = {}) {
+export async function ensureImages(jobs, { kaggleFirst = false, workersAfter = false, kaggle = true, waitMin = 40, slot = 'pilot', dryRun = false, log = console.log } = {}) {
   const todo = jobs.filter((j) => !fs.existsSync(j.out));
   const ledger = { asked: jobs.length, cached: jobs.length - todo.length, workers_ai: 0, workers_ai_neurons: 0, kaggle: 0, missing: 0, exhausted: false };
   if (dryRun) { log(JSON.stringify({ dryRun: true, todo: todo.map((j) => ({ id: j.id, out: path.relative(ROOT, j.out) })) })); return ledger; }
@@ -183,7 +185,15 @@ export async function ensureImages(jobs, { kaggleFirst = false, kaggle = true, w
     ledger.kaggle = k.made || 0;
     ledger.kaggle_detail = k;
   }
-  ledger.missing = left.filter((j) => j.source !== 'kaggle').length;
+  // --kaggle-first: Workers AI for whatever Kaggle did not make (never for pilots: they pass --kaggle only).
+  if (kaggleFirst && workersAfter && process.env.MEDIA_URL && process.env.MEDIA_TOKEN && process.env.SPS_WORKERS_AI !== '0') {
+    for (const j of left.filter((x) => x.source !== 'kaggle')) {
+      if (ledger.exhausted) break;
+      try { await workersAi(j); ledger.workers_ai++; j.source = 'workers-ai'; } catch (e) { log(`image ${j.id}: ${e.message}`); if (e.exhausted) ledger.exhausted = true; }
+    }
+    ledger.workers_ai_neurons = ledger.workers_ai * NEURONS_PER_IMAGE;
+  }
+  ledger.missing = left.filter((j) => !j.source).length;
   ledger.sources = Object.fromEntries(jobs.map((j) => [j.id, j.source || (fs.existsSync(j.out) ? 'cached' : 'fallback')]));
   return ledger;
 }
@@ -201,7 +211,7 @@ if (MAIN) {
     jobs = await wanted(specFile, args.includes('--long') ? 'long' : opt('--visuals') ? 'visuals' : 'story', opt('--visuals') && path.resolve(opt('--visuals')));
   }
   const ledger = await ensureImages(jobs, {
-    kaggleFirst: args.includes('--kaggle'), kaggle: !args.includes('--no-kaggle'), waitMin: Number(opt('--wait', 40)), slot, dryRun: args.includes('--dry-run'),
+    kaggleFirst: args.includes('--kaggle') || args.includes('--kaggle-first'), workersAfter: args.includes('--kaggle-first'), kaggle: !args.includes('--no-kaggle'), waitMin: Number(opt('--wait', 40)), slot, dryRun: args.includes('--dry-run'),
   });
   const line = `- Images (${slot}): ${ledger.asked} needed, ${ledger.cached} cached, Workers AI ${ledger.workers_ai} (~${ledger.workers_ai_neurons} neurons)` +
     `${ledger.exhausted ? ' then 4006 (daily neurons used up)' : ''}, Kaggle FLUX ${ledger.kaggle}` +

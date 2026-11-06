@@ -84,7 +84,8 @@ jobs:
       status: ${{ steps.date.outputs.status }}
       # The mini-movie job runs after every evening-slot run (and for slot=movie): it makes the next due part.
       movie: ${{ steps.date.outputs.movie }}
-    timeout-minutes: 230
+    # 230 + up to 40 min for the Kaggle FLUX images when Workers AI is out of neurons
+    timeout-minutes: 270
     env:
       FFMPEG_PATH: ffmpeg
       PYTHON: python
@@ -448,7 +449,7 @@ jobs:
     needs: story
     if: always() && needs.story.outputs.long == 'true' && !inputs.dry_run
     runs-on: ubuntu-latest
-    timeout-minutes: 170
+    timeout-minutes: 210
     env:
       FFMPEG_PATH: ffmpeg
       PYTHON: python
@@ -626,8 +627,10 @@ jobs:
           node animate/kaggle.mjs fetch --to story/long/clips --voice-to story/long/voice | tee "$RUNNER_TEMP/fetch.json"
           echo "- Long voice: $(cat "$RUNNER_TEMP/fetch.json")" >> "$GITHUB_STEP_SUMMARY"
 
-      # Images (animate/frames.mjs --long): cached per day; else Workers AI, else FLUX.1-schnell on the Kaggle GPU
-      # (sps-frames-long, ~6 min + ~1 min per image); the renderer covers anything left with a bank / photo stand-in.
+      # Images (animate/frames.mjs --long --kaggle-first): cached per day; else FLUX.1-schnell on the Kaggle GPU
+      # (sps-frames-long, ~6 min + ~1 min per image), then Workers AI for anything Kaggle did not make. Kaggle first because
+      # the long video's ~12 images (~4k of the 10k daily neurons) would otherwise starve the evening/status Shorts.
+      # The renderer covers anything left with a bank / photo stand-in.
       - name: Images (Workers AI, else Kaggle FLUX)
         if: env.GO == '1'
         continue-on-error: true
@@ -637,7 +640,7 @@ jobs:
           SPS_SLOT: long
         run: |
           [ -n "$KAGGLE_API_TOKEN" ] && pip install -q 'kaggle>=2.2' six
-          node animate/frames.mjs story/long/scenes.json --long --wait 45
+          node animate/frames.mjs story/long/scenes.json --long --kaggle-first --wait 45
 
       - name: Render
         id: render
@@ -735,7 +738,7 @@ jobs:
     needs: story
     if: always() && needs.story.outputs.status == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 200
+    timeout-minutes: 240
     env:
       FFMPEG_PATH: ffmpeg
       PYTHON: python

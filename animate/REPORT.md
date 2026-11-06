@@ -187,3 +187,28 @@ Guards wahi: subah >= 5 h, shaam/noon >= 3 h, hero sirf >= 6 h par. Is upgrade k
 | edge-tts awaaz (pehle se) | pehle jaisa |
 | MaxDiffusion (sirf TPU test) | Apache-2.0, use nahi |
 GFPGAN/CodeFormer (NC hisse) ab bhi kahin nahi. Freesound ka koi audio use nahi hua, isliye credits log khaali.
+
+## 12. Workers AI neurons khatam (4006): Kaggle FLUX fallback + neuron budget (6 Nov 2026)
+- **Kya hua:** 6 Nov ko Workers AI ke 10,000 free neurons 09:15 IST se pehle hi khatam (`4006: daily free allocation`);
+  subah ka Short, long video aur pehla shaam ka try image banate hi fail hue. Asli kharcha ~326 neurons/image (4 steps),
+  yaani din mein sirf ~30 images, jabki production ko ~38 chahiye (subah 8, long ~12, noon ~6, shaam ~6, status 3,
+  photos 1-2, Veo 3). Quota 00:00 UTC (05:30 IST) par reset hota hai.
+- **Ab har image ka rasta** (`animate/frames.mjs`, workflow mein Animate/Render se pehle "Images" step: subah, shaam,
+  noon visuals, status, long, photo posts):
+  1. Workers AI FLUX.1-schnell (pehle jaisa) jab tak chale;
+  2. 4006/koi bhi error: bachi images ek chhote Kaggle session mein FLUX.1-schnell se (Apache-2.0, GGUF Q6_K, 1024 px,
+     8 steps; private kernel `sps-frames-<slot>`, `animate/kaggle/frames_kernel.py` + `flux_frames.py`), ~6 min setup +
+     ~1 min/image;
+  3. phir bhi kuch na mile: renderer khud stand-in lagata hai: Khatu Shyam ji = `brand/photo-bank/khatu` (sheesh roop),
+     tyohar = `brand/photo-bank/<festival>`, warna spec ke mandir ki licence-safe asli photo (credit ke saath), warna saada
+     garam rang ka background. **Post kabhi skip nahi hota.** Veo kit mein bhi yahi stand-in.
+- **Iconography:** prompt mein Khatu Shyam ji ho aur "sheesh/head only" na ho to STORY.md wala sheesh description apne aap
+  judta hai (`iconography()`); Barbarik (sheesh daan se pehle) par nahi.
+- **Neuron budget:** scheduled production ko Workers AI pehle. Long video ab `--kaggle-first` (Kaggle pehle, phir Workers
+  AI), taaki uske ~12 images (~4k neurons) shaam/status ke liye bachen. Har run ke summary mein ledger line:
+  "Images (<slot>): N needed, Workers AI x (~y neurons), Kaggle FLUX z, stand-ins w". `force_fallback` workflow input
+  Workers AI ko chhod kar fallback test karta hai.
+- **Pilots / experiments (movie aur character agent ke liye request):** Workers AI mat use karo. `characters/gen-images.mjs`
+  aur koi bhi naya pilot script `animate/frames.mjs --kaggle` (ya `ensureImages(jobs, { kaggleFirst: true, slot: 'pilot' })`)
+  se images banaye: kernel `sps-frames-pilot`, Workers AI ka ek bhi neuron nahi. `animate/gen-images.mjs` ab default yahi
+  karta hai (`--workers-ai` sirf owner ke kehne par).
