@@ -57,7 +57,7 @@ story/today/stills/
 animate/.cache/
 # mini-movie work folder (voices, Kaggle outputs, renders) and the downloaded cast portrait candidates
 story/movies/work/
-characters/cast/candidates/
+characters/cast/candidates*/
 __pycache__/
 # daily photo posts: rendered cards (hosted on the media Worker; dry runs keep them as the artifact)
 story/photos/*/out/

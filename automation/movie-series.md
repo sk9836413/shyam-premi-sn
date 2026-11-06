@@ -19,7 +19,7 @@ Status: `scheduled` (parts written, release days set), `active` (the daily pipel
 
 | # | Series (slug) | Parts | Status | Start sources | Notes |
 |---|---|---|---|---|---|
-| 1 | khatu-shyam-amar-katha: Khatu Shyam ji ki Amar Katha | 4 | scheduled 17-20 Nov 2026 (Janmotsav on 20 Nov) | series.json (aajtak, hi/en Wikipedia, Amar Ujala, devasthan.rajasthan.gov.in) | Pilot = Part 1. Not approved yet. |
+| 1 | khatu-shyam-amar-katha: Khatu Shyam ji ki Amar Katha | 4 | scheduled 17-20 Nov 2026 (Janmotsav on 20 Nov) | series.json (aajtak, hi/en Wikipedia, Amar Ujala, devasthan.rajasthan.gov.in) | Pilot = Part 1, rendered 6 Nov (E:\SK\movie-pilot\part-1.mp4, 136 s, 144.5 GPU min incl. one-time cast clips). Not approved yet. |
 | 2 | salasar-balaji: Salasar Balaji ki Katha | 3 | queued | salasarbalaji.org, tourism.rajasthan.gov.in, Churu district site, Dainik Bhaskar | Mohandas ji ki bhakti; the murti found while ploughing at Asota (Samvat 1811: give the AD year only with 2 sources); Salasar Dham. Part 4 of the Khatu series teases it. New cast: Mohandas ji, the Asota farmer. |
 | 3 | mehandipur-balaji: Mehandipur Balaji ki Katha | 2-3 | queued | Dausa district site, news | The swayambhu murti legend (manyata), Pretraj Sarkar and Bhairav ji as worshipped there. No fear content, no "bhoot" sensationalism. |
 | 4 | jeen-mata: Jeen Mata ki Katha | 2-3 | queued | Sikar district site, Rajasthan Tourism | Jeen and her brother Harsh (lok katha), Harshnath. |

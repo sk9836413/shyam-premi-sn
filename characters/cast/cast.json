@@ -45,7 +45,8 @@
         "edge": "hi-IN-SwaraNeural",
         "rate": "-8%",
         "pitch": "-4Hz"
-      }
+      },
+      "lipsync_note": "Pilot 6 Nov 2026: lips came out blurred (ratio 0.24): base clip used; retry with a tighter mouth box."
     },
     "ghatotkach": {
       "name": "Ghatotkach",
@@ -63,7 +64,8 @@
         "rate": "-8%",
         "pitch": "-36Hz",
         "fx": "deep"
-      }
+      },
+      "lipsync_note": "Pilot 6 Nov 2026: MuseTalk smears the beard/moustache (mouth-sharpness ratio 0.40 < 0.5): the renderer's gate falls back to the base clip."
     },
     "bheem": {
       "name": "Bheem",
@@ -104,7 +106,7 @@
       "kind": "deity",
       "lipsync": false,
       "color": "7FD8FF",
-      "description": "Shri Krishna of the Mahabharata, a divine ADULT man in his early thirties (not a child), a calm noble face, blue-skinned (deep sky-blue complexion), a gentle compassionate smile, large lotus-shaped eyes, a golden crown (mukut) with a single peacock feather, golden earrings, a yellow pitambar silk garment, a garland of fresh flowers (vaijayanti mala), a bamboo flute held near the chest, a soft divine golden glow",
+      "description": "Lord Shri Krishna of the Mahabharata as a grown man of about thirty, a mature handsome adult face with a strong jawline, broad shoulders, tall and regal, blue-skinned (deep sky-blue complexion), a calm compassionate smile, large lotus-shaped eyes, a golden crown (mukut) with a single peacock feather, golden earrings, a yellow pitambar silk garment, a garland of fresh flowers (vaijayanti mala), a bamboo flute held near the chest, a soft divine golden glow",
       "wide": "blue-skinned Lord Shri Krishna as an adult (deep sky-blue complexion, golden crown with a single peacock feather, yellow pitambar, flower garland, a bamboo flute, soft divine glow)",
       "bg": "soft golden divine light",
       "voice": {
@@ -134,14 +136,15 @@
       "kind": "deity",
       "lipsync": false,
       "color": "FF7043",
-      "description": "Shri Hanuman ji, an orange-vermilion (sindoor coloured) vanara face, clean-shaven with NO beard and NO moustache, a soft muzzle, a gentle devoted expression, a golden crown, golden earrings, a red and gold garland, a golden mace resting on his shoulder, chest-up portrait",
+      "description": "Shri Hanuman ji in classic Indian calendar-art style, an orange-vermilion (sindoor coloured) vanara face with a smooth rounded muzzle and a smooth chin, a gentle devoted expression, a golden crown, golden earrings, a red and gold garland, a golden mace resting on his shoulder, chest-up portrait",
       "wide": "Shri Hanuman ji (orange-vermilion sindoor-coloured vanara form, golden crown, red-gold garland, golden mace, devoted gentle expression)",
       "bg": "soft saffron morning light",
       "voice": {
         "edge": "hi-IN-MadhurNeural",
         "rate": "-4%",
         "pitch": "-16Hz"
-      }
+      },
+      "portrait_note": "Not picked yet: FLUX.1-schnell drew a beard in 7 of 7 tries (6 Nov 2026). A person picks or a reference-image model draws it."
     },
     "shiv": {
       "name": "Bhagwan Shiv",

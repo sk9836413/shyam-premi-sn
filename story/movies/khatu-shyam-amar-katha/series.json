@@ -9,31 +9,160 @@
   "approved": false,
   "approval_note": "Owner reviews the pilot (E:\\SK\\movie-pilot\\part-1.mp4) first. Until \"approved\" is true the movie job renders each part and parks it for review (media Worker link + artifact) but uploads nothing.",
   "hero_clip": true,
-  "cast": ["narrator", "barbarik", "morvi", "ghatotkach", "brahmin", "krishna", "bheem", "khatu-shyam"],
+  "cast": [
+    "narrator",
+    "barbarik",
+    "morvi",
+    "ghatotkach",
+    "brahmin",
+    "krishna",
+    "bheem",
+    "khatu-shyam"
+  ],
   "parts": [
-    { "part": 1, "file": "part-1.json", "title": "Barbarik ka Janm aur Vachan", "release": "2026-11-17", "produce_from": "2026-11-13",
-      "synopsis": "Ghatotkach aur Maa Morvi ke putra Barbarik, maa se yudh-kala, tapasya aur teen baan (manyata: Shiv ji ka vardan), 'haare ka sahara' banne ka vachan, Kurukshetra ki or prasthan; raaste mein ek Brahmin." },
-    { "part": 2, "file": "part-2.json", "title": "Brahmin ki Pariksha", "release": "2026-11-18", "produce_from": "2026-11-14",
-      "synopsis": "Brahmin vesh mein Shri Krishna, 'ek hi baan kaafi hai', peepal ke patton ki pariksha, pair ke neeche chhupa patta, Krishna samajh gaye ki vachan ke kaaran Barbarik haarne wale Kauravon ka saath denge, daan ka vachan, 'mujhe tumhara sheesh chahiye'." },
-    { "part": 3, "file": "part-3.json", "title": "Sheesh ka Daan", "release": "2026-11-19", "produce_from": "2026-11-15",
-      "synopsis": "Asli roop ki maang, Shri Krishna ka darshan, ranbhoomi ki pooja ke liye veer ka sheesh, yudh dekhne ki ichchha, Phalgun Shukla Dwadashi ko sheesh daan (parampara), sheesh ko pahadi par sthapit kiya, atharah din ka yudh." },
-    { "part": 4, "file": "part-4.json", "title": "Shyam Naam ka Vardan", "release": "2026-11-20", "produce_from": "2026-11-16",
-      "synopsis": "Vijay ke shrey ka vivaad, sheesh ka uttar (sirf Sudarshan chakra dikha), vardan: Kalyug mein mere naam Shyam se pooje jaoge, Khatu mein sheesh ka prakat hona (lok katha: gaay ka doodh), Shyam Kund, mandir, aaj Dev Uthani Ekadashi par Janmotsav." }
+    {
+      "part": 1,
+      "file": "part-1.json",
+      "title": "Barbarik ka Janm aur Vachan",
+      "release": "2026-11-17",
+      "produce_from": "2026-11-13",
+      "synopsis": "Ghatotkach aur Maa Morvi ke putra Barbarik, maa se yudh-kala, tapasya aur teen baan (manyata: Shiv ji ka vardan), 'haare ka sahara' banne ka vachan, Kurukshetra ki or prasthan; raaste mein ek Brahmin."
+    },
+    {
+      "part": 2,
+      "file": "part-2.json",
+      "title": "Brahmin ki Pariksha",
+      "release": "2026-11-18",
+      "produce_from": "2026-11-14",
+      "synopsis": "Brahmin vesh mein Shri Krishna, 'ek hi baan kaafi hai', peepal ke patton ki pariksha, pair ke neeche chhupa patta, Krishna samajh gaye ki vachan ke kaaran Barbarik haarne wale Kauravon ka saath denge, daan ka vachan, 'mujhe tumhara sheesh chahiye'."
+    },
+    {
+      "part": 3,
+      "file": "part-3.json",
+      "title": "Sheesh ka Daan",
+      "release": "2026-11-19",
+      "produce_from": "2026-11-15",
+      "synopsis": "Asli roop ki maang, Shri Krishna ka darshan, ranbhoomi ki pooja ke liye veer ka sheesh, yudh dekhne ki ichchha, Phalgun Shukla Dwadashi ko sheesh daan (parampara), sheesh ko pahadi par sthapit kiya, atharah din ka yudh."
+    },
+    {
+      "part": 4,
+      "file": "part-4.json",
+      "title": "Shyam Naam ka Vardan",
+      "release": "2026-11-20",
+      "produce_from": "2026-11-16",
+      "synopsis": "Vijay ke shrey ka vivaad, sheesh ka uttar (sirf Sudarshan chakra dikha), vardan: Kalyug mein mere naam Shyam se pooje jaoge, Khatu mein sheesh ka prakat hona (lok katha: gaay ka doodh), Shyam Kund, mandir, aaj Dev Uthani Ekadashi par Janmotsav."
+    }
   ],
   "facts": [
-    { "claim": "Barbarik Ghatotkach aur Maurvi (Morvi) ke putra aur Bheem ke pautra the", "sources": ["https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28", "https://en.wikipedia.org/wiki/Barbarika"] },
-    { "claim": "Kuch kathaon mein maata ka naam Ahilavati milta hai", "sources": ["https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95", "https://khatuwalebaba.in/blog/barbarik-parivar-ghatotkach-maurvi/"] },
-    { "claim": "Maa ne hi Barbarik ko yudh-kala sikhayi", "sources": ["https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28", "https://en.wikipedia.org/wiki/Barbarika"] },
-    { "claim": "Teen ajeya baan: manyata Shiv ji ka vardan; kuch kathaon mein Devi/Bhagwati ka", "sources": ["https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28", "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95", "https://www.india.com/hindi-news/faith-hindi/why-is-baba-khatu-shyam-called-the-one-with-three-arrows-know-their-relationship-with-pandavas-7005321/", "https://en.wikipedia.org/wiki/Barbarika"] },
-    { "claim": "Maa ko vachan: haarne wale paksh ka saath ('haare ka sahara')", "sources": ["https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28", "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95"] },
-    { "claim": "Brahmin vesh mein Krishna ne peepal ke saare patte ek baan se chhedne ko kaha; ek patta pair ke neeche chhupaya; baan pair ke paas ghoomne laga", "sources": ["https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28", "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95"] },
-    { "claim": "Krishna ne sheesh daan maanga; Barbarik ne asli roop dekhne aur poora yudh dekhne ki ichchha rakhi", "sources": ["https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28", "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95"] },
-    { "claim": "Sheesh daan Phalgun (Shukla) Dwadashi ko (parampara)", "sources": ["https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95", "https://www.amarujala.com/amp/spirituality/religion/khatu-shyam-why-is-famous-khatu-shyam-temple"] },
-    { "claim": "Sheesh ko Kurukshetra ke paas ek oonchi pahadi par rakha gaya", "sources": ["https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28", "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95"] },
-    { "claim": "Mahabharat yudh atharah din chala", "sources": ["https://en.wikipedia.org/wiki/Kurukshetra_War", "https://www.britannica.com/topic/Mahabharata"] },
-    { "claim": "Yudh ke baad shrey ka vivaad; sheesh ne kaha use sirf Sudarshan chakra dikha", "sources": ["https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95", "https://www.jeevanjali.com/mythology/mahabharat/mahabharat-mythological-story-yuddh-se-pahle-barbarik-ne-kyon-kiya-shish-dan-shri-krishna-ki-pauranik-katha-2026-07-09"] },
-    { "claim": "Vardan: mere naam Shyam se pooje jaoge (Kalyug), Khatu mein prakat hone se Khatu Shyam", "sources": ["https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95", "https://www.amarujala.com/amp/spirituality/religion/khatu-shyam-why-is-famous-khatu-shyam-temple", "https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28"] },
-    { "claim": "Lok katha: ek gaay ek sthan par doodh bahati thi; wahan khudai mein sheesh mila (Shyam Kund); Roop Singh Chauhan ne swapn ke baad mandir banwaya", "sources": ["https://devasthan.rajasthan.gov.in/images/Sikar/khatushyamji.htm", "https://en.wikipedia.org/wiki/Khatu_Shyam_Temple", "https://www.khatu.in/en/history"] },
-    { "claim": "Khatu Shyam Janmotsav Kartik Shukla (Dev Uthani) Ekadashi par, 2026 mein 20 Nov", "sources": ["https://www.khatu.in", "https://www.navbharatlive.com", "https://vistaarnews.com"] }
-  ]
+    {
+      "claim": "Barbarik Ghatotkach aur Maurvi (Morvi) ke putra aur Bheem ke pautra the",
+      "sources": [
+        "https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28",
+        "https://en.wikipedia.org/wiki/Barbarika"
+      ]
+    },
+    {
+      "claim": "Kuch kathaon mein maata ka naam Ahilavati milta hai",
+      "sources": [
+        "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95",
+        "https://khatuwalebaba.in/blog/barbarik-parivar-ghatotkach-maurvi/"
+      ]
+    },
+    {
+      "claim": "Maa ne hi Barbarik ko yudh-kala sikhayi",
+      "sources": [
+        "https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28",
+        "https://en.wikipedia.org/wiki/Barbarika"
+      ]
+    },
+    {
+      "claim": "Teen ajeya baan: manyata Shiv ji ka vardan; kuch kathaon mein Devi/Bhagwati ka",
+      "sources": [
+        "https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28",
+        "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95",
+        "https://www.india.com/hindi-news/faith-hindi/why-is-baba-khatu-shyam-called-the-one-with-three-arrows-know-their-relationship-with-pandavas-7005321/",
+        "https://en.wikipedia.org/wiki/Barbarika"
+      ]
+    },
+    {
+      "claim": "Maa ko vachan: haarne wale paksh ka saath ('haare ka sahara')",
+      "sources": [
+        "https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28",
+        "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95"
+      ]
+    },
+    {
+      "claim": "Brahmin vesh mein Krishna ne peepal ke saare patte ek baan se chhedne ko kaha; ek patta pair ke neeche chhupaya; baan pair ke paas ghoomne laga",
+      "sources": [
+        "https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28",
+        "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95"
+      ]
+    },
+    {
+      "claim": "Krishna ne sheesh daan maanga; Barbarik ne asli roop dekhne aur poora yudh dekhne ki ichchha rakhi",
+      "sources": [
+        "https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28",
+        "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95"
+      ]
+    },
+    {
+      "claim": "Sheesh daan Phalgun (Shukla) Dwadashi ko (parampara)",
+      "sources": [
+        "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95",
+        "https://www.amarujala.com/amp/spirituality/religion/khatu-shyam-why-is-famous-khatu-shyam-temple"
+      ]
+    },
+    {
+      "claim": "Sheesh ko Kurukshetra ke paas ek oonchi pahadi par rakha gaya",
+      "sources": [
+        "https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28",
+        "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95"
+      ]
+    },
+    {
+      "claim": "Mahabharat yudh atharah din chala",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Kurukshetra_War",
+        "https://www.britannica.com/topic/Mahabharata"
+      ]
+    },
+    {
+      "claim": "Yudh ke baad shrey ka vivaad; sheesh ne kaha use sirf Sudarshan chakra dikha",
+      "sources": [
+        "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95",
+        "https://www.jeevanjali.com/mythology/mahabharat/mahabharat-mythological-story-yuddh-se-pahle-barbarik-ne-kyon-kiya-shish-dan-shri-krishna-ki-pauranik-katha-2026-07-09"
+      ]
+    },
+    {
+      "claim": "Vardan: mere naam Shyam se pooje jaoge (Kalyug), Khatu mein prakat hone se Khatu Shyam",
+      "sources": [
+        "https://hi.wikipedia.org/wiki/%E0%A4%AC%E0%A4%B0%E0%A5%8D%E0%A4%AC%E0%A4%B0%E0%A5%80%E0%A4%95",
+        "https://www.amarujala.com/amp/spirituality/religion/khatu-shyam-why-is-famous-khatu-shyam-temple",
+        "https://www.aajtak.in/religion/festivals/story/khatu-wale-shyam-barbreek-sheesh-ka-daan-know-story-mahabharat-lord-krishna-history-ntcpvp-dskc-2177723-2025-02-28"
+      ]
+    },
+    {
+      "claim": "Lok katha: ek gaay ek sthan par doodh bahati thi; wahan khudai mein sheesh mila (Shyam Kund); Roop Singh Chauhan ne swapn ke baad mandir banwaya",
+      "sources": [
+        "https://devasthan.rajasthan.gov.in/images/Sikar/khatushyamji.htm",
+        "https://en.wikipedia.org/wiki/Khatu_Shyam_Temple",
+        "https://www.khatu.in/en/history"
+      ]
+    },
+    {
+      "claim": "Khatu Shyam Janmotsav Kartik Shukla (Dev Uthani) Ekadashi par, 2026 mein 20 Nov",
+      "sources": [
+        "https://www.khatu.in",
+        "https://www.navbharatlive.com",
+        "https://vistaarnews.com"
+      ]
+    }
+  ],
+  "pilot": {
+    "file": "E:/SK/movie-pilot/part-1.mp4",
+    "run": "https://github.com/sk9836413/shyam-premi-sn/actions/runs/42196331112",
+    "made": "2026-11-06",
+    "gpu_minutes": 144.5,
+    "note": "If the owner approves Part 1 as it is, upload this file with publishAt 2026-11-17 07:00 instead of a new 13 Nov session (saves ~1.7 GPU h)."
+  }
 }

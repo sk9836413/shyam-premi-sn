@@ -212,3 +212,63 @@ GFPGAN/CodeFormer (NC hisse) ab bhi kahin nahi. Freesound ka koi audio use nahi 
   aur koi bhi naya pilot script `animate/frames.mjs --kaggle` (ya `ensureImages(jobs, { kaggleFirst: true, slot: 'pilot' })`)
   se images banaye: kernel `sps-frames-pilot`, Workers AI ka ek bhi neuron nahi. `animate/gen-images.mjs` ab default yahi
   karta hai (`--workers-ai` sirf owner ke kehne par).
+
+## 13. Mini-movies (6 Nov 2026): multi-part katha films, GPU per part, weekly math
+Code: `story/movie.py` (CI: voices, tier, dataset, render), `story/movie_kernel.py` (ONE Kaggle session per part, kernel
+`sps-movie`: FLUX.1-schnell frames 576x1024 -> Wan 2.2 TI2V-5B clips 576x1024 (+1 hero clip Wan 2.2 I2V-A14B 480x832) ->
+RIFE 30 fps + Real-ESRGAN 1080x1920 -> MuseTalk lip-sync -> Whisper large-v3-turbo pronunciation check). Workers AI
+neurons: zero. Cast library `characters/cast/` (portraits picked by a person, base clips reused by every series).
+Spec/rules: STORY.md section 7, queue `automation/movie-series.md`.
+
+### 13.1 Pilot = Part 1 of "Khatu Shyam ji ki Amar Katha" (E:\SK\movie-pilot\part-1.mp4, NOT uploaded)
+136 s, 1080x1920 30 fps, 23 lines, 7 scenes (4 animated incl. the 14B hero), 8 close-ups. Session **8,671 s = 144.5 min**:
+| Stage | Seconds | Note |
+|---|---|---|
+| FLUX frames | 614 | 14 images (8 scene/teaser + 6 Krishna/Hanuman portrait retries), ~3.5 min setup, ~33 s/image |
+| Wan setup | ~300 | download 154 s, text encoder 68 s, load |
+| 14B hero clip (s1) | 1,523 | 480x832, 81 frames, 4 steps + Lightning; generation 1,257 s, enhance 42 s |
+| Wan 5B, 3 scene clips | 1,472-1,622 each | 576x1024, 97 frames, 25 steps (~15.5 s/frame on one T4) |
+| Wan 5B, 4 cast base clips (one-time) | 1,140-1,253 each | 81 frames; GPU0 68 min vs GPU1 90 min (7 clips = unbalanced) |
+| Lip-sync | 412 | 8 lines, setup 72 s |
+| Whisper check | 50 | mean CER 5.1 % (same as the 4 Nov edge-tts baseline); Shyam, Khatu, Kurukshetra right |
+One-time costs in that session: 4 base clips (~21 min of session) + 6 portraits. Earlier the same day: 37 cast portraits,
+1,353 s (22.5 min).
+
+### 13.2 GPU minutes per part (session time, Kaggle T4 x2), from the pilot's measured stage times
+| Tier (story/movie.py) | What | Minutes |
+|---|---|---|
+| full | 8 frames + hero 14B + 3 Wan clips + lip-sync + check | ~100 |
+| standard | 8 frames + 4 Wan clips + lip-sync + check | ~76 |
+| lite | 8 frames + 2 Wan clips + lip-sync + check | ~49 |
+| stills | 8 frames + lip-sync + check (stills with camera moves) | ~18 |
+| + new character | one base clip (81 frames) | +~21 per pair, once |
+Wan clips run in pairs (one per T4), so 4 clips cost the same wall time as 3: tiers use even counts.
+Khatu series: Part 1 = the pilot (if the owner approves it as is, upload that file and skip the 13 Nov session: -1.7 h);
+Part 2 full ~100; Part 3 full + Krishna and Khatu Shyam base clips ~120; Part 4 full + Bheem base clip ~115. Total ~5.6 h
+over the weeks of 7-13 and 14-20 Nov.
+
+### 13.3 Weekly math (30 GPU h)
+- Before movies (section 10.2): morning 7 x ~65 min = 7.6 h, evening 7 x ~80 = 9.3 h, noon 7 x ~9 = 1.05 h, status ~4 x 65 =
+  4.3 h -> **~22.3 h**.
+- Daily movies (owner: a part every morning instead of the katha): morning becomes 7 x ~76 min (standard) = 8.9 h ->
+  **~23.6 h/week** (+1.3 h), ~6 h buffer. New characters ~0.35 h per pair, once.
+- Full tier every day would be 7 x ~100 = 11.7 h -> ~26.4 h: too tight, so `full` (14B hero) only for series with
+  `"hero_clip": true` (Khatu Janmotsav), everything else standard.
+- **Guards (never starve the daily Shorts):** `pick_tier` keeps 2.4 h per day until the weekly reset + 1 h (evening ~1.33,
+  status ~0.5, noon ~0.15) and only spends what is above that; a smaller tier when short (lite, then stills with lip-sync),
+  "none" = try at the next trigger. `fit_window`: no movie session starts in 09:00-11:30 or 18:30-21:00 IST (morning/noon/
+  evening and status/photo production), and only a tier that ends before the next window (full 165, standard 120, lite 80,
+  stills 40 min incl. queue). `animate/kaggle.mjs lock` includes `sps-movie`, so the daily kernels never run in parallel with it.
+
+### 13.4 Quality verdict (pilot)
+- Good: characters look the same everywhere they matter (close-ups come from the canonical portraits), 4 real animated
+  scenes (the 14B hero clip of the birth scene is the best), Devanagari + Roman subtitles in each speaker's colour, Part 1/4
+  title card, "Agle part mein..." teaser, subscribe end card, synthesized score, 136 s.
+- Lip-sync: Barbarik (3 lines) and the Brahmin pass; **Ghatotkach (beard: mouth smeared, ratio 0.40) and Morvi (lips blurred,
+  0.24) fail** the new mouth-sharpness gate and fall back to their breathing base clip (no mouth movement). Fix later: a
+  tighter mouth box for bearded faces, or a beardless redesign of Ghatotkach.
+- Wide shots: FLUX draws Barbarik from the text each time, so his face varies a little between scenes (costume consistent).
+  Next step: FLUX.2 [klein] 4B (Apache-2.0) with the portrait as a reference image on Kaggle.
+- Stills in this pilot were not upscaled (enhance.py skipped non-numeric ids; fixed for the next run).
+- Krishna came out as a child and Hanuman with a beard in two portrait runs (FLUX ignores "no beard"); stronger prompts are
+  being redrawn; until a person picks a portrait, those characters' lines play over the scene (no close-up).
