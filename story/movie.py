@@ -82,7 +82,7 @@ def cmd_cast(a):
             images.append({"id": f"cast-{k}-{s}", "prompt": portrait_prompt(chars[k], lib), "seed": 1000 + 97 * s + len(k), "w": FW, "h": FH})
     stamp = f"cast-{int(time.time())}"
     json.dump({"stamp": stamp, "settings": {"tier": "cast", "max_minutes": 60, "flux": {"size": 1024, "steps": 6}}, "images": images},
-              open(f"{a.out}/movie.json", "w"), indent=1)
+              open(f"{a.out}/movie.json", "w", encoding="utf-8"), indent=1)
     helpers(a.out)
     print(json.dumps({"stamp": stamp, "characters": ids, "images": len(images)}))
 
@@ -254,7 +254,7 @@ def cmd_dataset(a):
                          "hero14b": {"quant": "Q4_K_S", "sizes": [[480, 832]], "steps": 4, "out_size": [1920, 1080]} if tier["hero"] else False}}
     stamp = f"{spec['slug']}-{int(time.time())}"
     json.dump({"stamp": stamp, "settings": settings, "images": images, "clips": clips, "stills": stills, "lips": lips, "qa": qa},
-              open(f"{a.out}/movie.json", "w"), ensure_ascii=False, indent=1)
+              open(f"{a.out}/movie.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     helpers(a.out)
     print(json.dumps({"stamp": stamp, "tier": a.tier, "images": len(images), "clips": [c["id"] for c in clips], "lips": len(lips), "qa": len(qa)}))
 
