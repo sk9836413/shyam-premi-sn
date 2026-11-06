@@ -20,6 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creditLine, photosFor } from '../scripts/real-photos.mjs';
 import { coverWords, longThumbs } from './cover.mjs';
+import { fallbackImage, iconography } from '../animate/frames.mjs';
 
 const started = Date.now();
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
@@ -89,19 +90,29 @@ const photos = photosFor(spec.temple);
 const realImages = spec.images.map((im, i) => (im.real ? i : -1)).filter((i) => i >= 0);
 const photoOf = new Map(photos.length ? realImages.map((i, k) => [i, photos[k % photos.length]]) : []);
 const usedPhotos = new Set();
+const fbOf = new Map(); // image index -> stand-in { file, photo?, source }
+let workersAiDown = false;
 async function image(img, i) {
   if (photoOf.has(i)) return photoOf.get(i).file;
   if (img.file) return path.resolve(base, img.file);
   const file = path.join(base, 'images', `${spec.slug}-img${i}.jpg`);
   if (fs.existsSync(file)) return file;
-  if (!process.env.MEDIA_URL || !process.env.MEDIA_TOKEN) throw new Error('MEDIA_URL and MEDIA_TOKEN are needed to generate images');
+  // Workers AI out of neurons (4006): animate/frames.mjs --long normally made the image on the Kaggle GPU first; whatever
+  // is still missing gets a bank picture / real photo / plain background (animate/frames.mjs fallbackImage), never a failure.
+  const standIn = (why) => {
+    const fb = fallbackImage(spec, img.prompt, i, work);
+    console.log(`::warning::image ${i}: ${String(why).slice(0, 160)}; using ${fb.source}`);
+    fbOf.set(i, fb);
+    return fb.file;
+  };
+  if (!process.env.MEDIA_URL || !process.env.MEDIA_TOKEN || workersAiDown || process.env.SPS_WORKERS_AI === '0') return standIn('Workers AI not used');
   let last;
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
       const res = await fetch(`${process.env.MEDIA_URL}/ai/flux`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${process.env.MEDIA_TOKEN}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: `${img.prompt}. Wide cinematic composition with the main subject in the middle band. ${spec.style}`, steps: 4 }),
+        body: JSON.stringify({ prompt: `${iconography(img.prompt)}. Wide cinematic composition with the main subject in the middle band. ${spec.style}`, steps: 4 }),
       });
       const j = await res.json();
       if (!j.success) throw new Error(JSON.stringify(j.errors));
@@ -110,10 +121,11 @@ async function image(img, i) {
       return file;
     } catch (e) {
       last = e;
+      if (/4006|allocation|neurons/i.test(e.message)) { workersAiDown = true; break; }
       await new Promise((r) => setTimeout(r, 4000 * attempt));
     }
   }
-  throw new Error(`image ${i}: ${last.message}`);
+  return standIn(last.message);
 }
 
 // ---- Voice --------------------------------------------------------------------------------------
@@ -217,13 +229,14 @@ async function clip(scene, i, img, voice) {
         `alpha='if(lt(t,0.5),t/0.5,if(lt(t,3.6),1,max(0,(4.1-t)/0.5)))':enable='lt(t,4.1)'`));
     }
     const y = FOCUS_Y[scene.focus] ?? FOCUS_Y.center;
-    const photo = photoOf.get(scene.img);
+    const photo = photoOf.get(scene.img) || fbOf.get(scene.img)?.photo;
+    const anyAspect = Boolean(photo || fbOf.has(scene.img));
     if (photo) {
       usedPhotos.add(photo);
       label.push(draw(textFile(`photo-${i}.txt`, `Asli photo: ${photo.author}`.slice(0, 70)), 'fontsize=28:fontcolor=white@0.9:box=1:boxcolor=0x000000@0.45:boxborderw=8:x=w-text_w-30:y=30'));
     }
     // A real photo (any aspect) is cover-cropped to 16:9; a FLUX image is square and cropped at its focus band.
-    const frame = photo ? 'scale=2880:1620:force_original_aspect_ratio=increase:flags=lanczos,crop=2880:1620,setsar=1' : `scale=2880:2880:flags=lanczos,crop=2880:1620:0:${y}`;
+    const frame = anyAspect ? 'scale=2880:1620:force_original_aspect_ratio=increase:flags=lanczos,crop=2880:1620,setsar=1' : `scale=2880:2880:flags=lanczos,crop=2880:1620:0:${y}`;
     await ff(['-i', img, '-i', LOGO, '-filter_complex', [
       `[0:v]${frame},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${H}:fps=${FPS}[bg]`,
       `[1:v]scale=96:96[lg]`,
@@ -239,7 +252,9 @@ async function clip(scene, i, img, voice) {
 const voices = await tts();
 console.log(`voice: ${voices.length} lines, ${voices.reduce((n, v) => n + v.seconds, 0).toFixed(0)} s of narration`);
 const imageFiles = await pool(spec.images, 3, image);
-console.log(`images: ${spec.images.length} (${generated} generated, ~${Math.round(generated * NEURONS_PER_IMAGE)} neurons)`);
+console.log(`images: ${spec.images.length} (${generated} generated, ~${Math.round(generated * NEURONS_PER_IMAGE)} neurons, ${fbOf.size} stand-ins)`);
+if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `- Images (render-long): Workers AI ${generated} (~${generated * 326} neurons), stand-ins ${fbOf.size}
+`);
 let done = 0;
 const clips = await pool(scenes, JOBS, async (s, i) => {
   const c = await clip(s, i, s.endcard ? null : imageFiles[s.img], voices[i]);
@@ -322,7 +337,7 @@ const thText = textFile('thumb.txt', thLines.join('\n'));
 const thSize = Math.max(56, Math.min(110, Math.floor(1180 / (0.68 * Math.max(...thLines.map((l) => l.length)))), Math.floor(300 / (1.18 * thLines.length))));
 const thY = Math.round((FOCUS_Y[th.focus] ?? FOCUS_Y.center) * 1280 / 2880);
 await ff(['-i', imageFiles[th.image ?? 0], '-i', LOGO, '-filter_complex', [
-  `[0:v]${photoOf.has(th.image ?? 0) ? 'scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720' : `scale=1280:1280:flags=lanczos,crop=1280:720:0:${thY}`},eq=saturation=1.15:contrast=1.05[bg]`,
+  `[0:v]${photoOf.has(th.image ?? 0) || fbOf.has(th.image ?? 0) ? 'scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720' : `scale=1280:1280:flags=lanczos,crop=1280:720:0:${thY}`},eq=saturation=1.15:contrast=1.05[bg]`,
   `[1:v]scale=150:150[lg]`,
   `[bg][lg]overlay=28:24,${draw(thText, `fontsize=${thSize}:fontcolor=0xFFD54A:borderw=6:bordercolor=0x2a0f00:line_spacing=10:` +
     `box=1:boxcolor=0x000000@0.45:boxborderw=24:x=(w-text_w)/2:y=h-text_h-44`)}[v]`,

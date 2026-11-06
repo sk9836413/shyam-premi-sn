@@ -42,12 +42,18 @@ const CHAR = SLOT.startsWith('char-');
 // movie: one part of a mini-movie series (story/movie.py dataset -> story/movie_kernel.py: FLUX frames, Wan clips,
 // lip-sync and a Whisper pronunciation check in one session; STORY.md section 7).
 const MOVIE = SLOT === 'movie';
-const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : MOVIE ? 'sps-movie-inputs' : CHAR ? `sps-char-inputs-${SLOT.slice(5)}` : `sps-animate-inputs-${SLOT}`;
-const KERNEL = SLOT === 'long' ? 'sps-tts-long' : MOVIE ? 'sps-movie' : CHAR ? `sps-${SLOT}` : `sps-animate-${SLOT}`;
-const CODE = MOVIE ? path.join(DIR, '..', 'story', 'movie_kernel.py') : CHAR ? path.join(DIR, '..', 'characters', 'kaggle', 'lipsync_daily.py') : path.join(DIR, 'kaggle', 'animate.py');
+// frames-<slot>: FLUX.1-schnell start frames / story images on the GPU when Workers AI is out of neurons (animate/frames.mjs,
+// kernel animate/kaggle/frames_kernel.py, dataset built by frames.mjs and sent with `upload`).
+const FRAMES = SLOT.startsWith('frames-');
+const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : MOVIE ? 'sps-movie-inputs' : CHAR ? `sps-char-inputs-${SLOT.slice(5)}`
+  : FRAMES ? `sps-frames-inputs-${SLOT.slice(7)}` : `sps-animate-inputs-${SLOT}`;
+const KERNEL = SLOT === 'long' ? 'sps-tts-long' : MOVIE ? 'sps-movie' : CHAR ? `sps-${SLOT}` : FRAMES ? `sps-${SLOT}` : `sps-animate-${SLOT}`;
+const CODE = MOVIE ? path.join(DIR, '..', 'story', 'movie_kernel.py') : CHAR ? path.join(DIR, '..', 'characters', 'kaggle', 'lipsync_daily.py')
+  : FRAMES ? path.join(DIR, 'kaggle', 'frames_kernel.py') : path.join(DIR, 'kaggle', 'animate.py');
 // Every GPU kernel of both channels (one Kaggle account): `lock` waits while any other one runs.
 const ALL_KERNELS = [...['morning', 'evening', 'noon', 'status', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
-  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie'];
+  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie',
+  ...['morning', 'evening', 'noon', 'status', 'long', 'photos', 'veo', 'pilot'].map((x) => `sps-frames-${x}`)];
 const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);
 const cmd = args[0] || 'status';
@@ -200,9 +206,11 @@ export function framePrompt(s, spec) {
 // Sends a dataset folder that is already built (characters/dialogue.py dataset) as a new version of DATASET.
 async function upload() {
   const out = path.join(DIR, 'dataset');
-  // The lip-sync kernel upscales its clips with the same enhance.py (Real-ESRGAN).
-  fs.copyFileSync(path.join(DIR, 'kaggle', 'enhance.py'), path.join(out, 'enhance.py'));
-  await esrWeights(out);
+  // The lip-sync kernel upscales its clips with the same enhance.py (Real-ESRGAN); the frames kernel needs neither.
+  if (!FRAMES) {
+    fs.copyFileSync(path.join(DIR, 'kaggle', 'enhance.py'), path.join(out, 'enhance.py'));
+    await esrWeights(out);
+  }
   const { stamp } = JSON.parse(fs.readFileSync(STAMP_FILE, 'utf8'));
   fs.writeFileSync(path.join(out, 'dataset-metadata.json'), JSON.stringify({ title: DATASET, id: `${user()}/${DATASET}`, licenses: [{ name: 'other' }] }, null, 2));
   let r = kaggle('datasets', 'version', '-p', out, '-m', stamp, '-q');
@@ -287,6 +295,12 @@ function fetch() {
   // Only this run's clips: while a kernel is still running, `kernels output` returns the previous run's files.
   const stamp = fs.existsSync(STAMP_FILE) ? JSON.parse(fs.readFileSync(STAMP_FILE, 'utf8')).stamp : null;
   const fresh = !stamp || results?.stamp === stamp;
+  if (FRAMES) { // FLUX frames <id>.png of this run only
+    const got = fresh && fs.existsSync(path.join(out, 'frames')) ? fs.readdirSync(path.join(out, 'frames')).filter((f) => f.endsWith('.png')) : [];
+    for (const f of got) fs.copyFileSync(path.join(out, 'frames', f), path.join(to, f));
+    console.log(JSON.stringify({ fresh, frames: got.map((f) => f.slice(0, -4)), asked: results?.asked, session_s: results?.session_s, flux: results?.flux && { download_s: results.flux.download_s, text_s: results.flux.text_s, load_s: results.flux.load_s, flux_s: results.flux.flux_s } }));
+    return;
+  }
   if (MOVIE) { // the whole output tree (frames, stills, clips, lip, qa.json, results*.json) for story/movie.py render
     if (fresh) fs.cpSync(out, to, { recursive: true });
     console.log(JSON.stringify({ fresh, session_s: results?.session_s, tier: results?.tier, images: results?.images,

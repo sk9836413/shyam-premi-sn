@@ -29,6 +29,7 @@ import { fileURLToPath } from 'node:url';
 import { creditLine, photosFor } from '../scripts/real-photos.mjs';
 import { framePrompt } from '../animate/kaggle.mjs';
 import { makeCover } from './cover.mjs';
+import { fallbackImage, iconography } from '../animate/frames.mjs';
 
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
 const FFPROBE = FF.replace(/ffmpeg(\.exe)?$/, 'ffprobe$1');
@@ -69,13 +70,31 @@ const LOOK_ON = process.env.SPS_LOOK !== '0';
 const LOOK = LOOK_ON ? ',eq=contrast=1.05:saturation=1.07:gamma=0.98,colorbalance=rs=0.015:bs=-0.02:rm=0.02:bm=-0.025:rh=0.02:bh=-0.02,vignette=angle=PI/7' : '';
 const GRAIN = LOOK_ON ? ',noise=c0s=5:c0f=t+u' : '';
 
+// Workers AI out of neurons (4006) or down: animate/frames.mjs normally made the image on the Kaggle GPU already (the
+// workflow runs it first); if not, a bank picture / real photo / plain background stands in (never a failed post).
+const fellBack = new Map(); // scene index -> { file, photo?, source }
+let workersAiDown = false;
+let workersAiImages = 0;
 async function image(scene, i) {
   if (scene.image) return path.resolve(base, scene.image);
+  if (fellBack.has(i)) return fellBack.get(i).file;
+  try {
+    return await workersImage(scene, i);
+  } catch (e) {
+    workersAiDown = workersAiDown || /4006|allocation|neurons/i.test(e.message);
+    const fb = fallbackImage(spec, scene.prompt, i, work);
+    console.log(`::warning::${e.message.slice(0, 200)}; scene ${i + 1} uses ${fb.source}`);
+    fellBack.set(i, fb);
+    return fb.file;
+  }
+}
+async function workersImage(scene, i) {
   // Real-ESRGAN 2160 px still from the Kaggle kernel (same picture as the clip's start frame), not during --prepare.
   const up = path.join(STILLS, `${i}.jpg`);
   if (!process.argv.includes('--prepare') && fs.existsSync(up)) return up;
   const file = path.join(base, 'images', `${spec.slug}-${i}.jpg`);
   if (fs.existsSync(file)) return file;
+  if (workersAiDown || process.env.SPS_WORKERS_AI === '0') throw new Error('Workers AI skipped (4006 earlier in this run or SPS_WORKERS_AI=0)');
   // In CI the media Worker runs FLUX through its AI binding (no Cloudflare API token needed);
   // locally the Workers AI REST API is called with the wrangler login.
   const viaWorker = process.env.MEDIA_URL && process.env.MEDIA_TOKEN;
@@ -84,11 +103,12 @@ async function image(scene, i) {
     method: 'POST',
     headers: { Authorization: `Bearer ${viaWorker ? process.env.MEDIA_TOKEN : cfToken()}`, 'Content-Type': 'application/json' },
     // Lighting, lens and composition added to every image prompt (same neurons); SPS_FRAME_PROMPT=0 = the old prompt.
-    body: JSON.stringify({ prompt: process.env.SPS_FRAME_PROMPT === '0' ? `${scene.prompt}. ${spec.style}` : framePrompt(scene, spec), steps: 4 }),
+    body: JSON.stringify({ prompt: process.env.SPS_FRAME_PROMPT === '0' ? `${iconography(scene.prompt)}. ${spec.style}` : framePrompt({ ...scene, prompt: iconography(scene.prompt) }, spec), steps: 4 }),
   });
-  const j = await res.json();
+  const j = await res.json().catch(() => ({ errors: [`HTTP ${res.status}`] }));
   if (!j.success) throw new Error(`image ${i}: ${JSON.stringify(j.errors)}`);
   fs.writeFileSync(file, Buffer.from(j.result.image, 'base64'));
+  workersAiImages++;
   return file;
 }
 
@@ -217,8 +237,11 @@ if (process.argv.includes('--prepare')) {
   const plan = { slug: spec.slug, scenes: [] };
   for (const [i, scene] of spec.scenes.entries()) {
     if (scene.endcard || photoFor(i)) continue; // a real photo is shown as it is: no AI image, no animation
-    plan.scenes.push({ i, image: await image(scene, i), seconds: Number(sceneSeconds(i).toFixed(2)) });
+    const img = await image(scene, i);
+    if (fellBack.has(i)) continue; // a bank picture / real photo stand-in is not animated (zoompan in the render)
+    plan.scenes.push({ i, image: img, seconds: Number(sceneSeconds(i).toFixed(2)) });
   }
+  console.log(`- Images (render-story --prepare): Workers AI ${workersAiImages} (~${workersAiImages * 326} neurons), fallback ${fellBack.size}${fellBack.size ? ` (${[...fellBack.values()].map((f) => f.source).join(', ')})` : ''}`);
   fs.writeFileSync(path.join(work, 'plan.json'), JSON.stringify(plan, null, 2));
   console.log(JSON.stringify({ plan: path.join(work, 'plan.json'), scenes: plan.scenes.length }));
   process.exit(0);
@@ -308,19 +331,23 @@ for (const [i, scene] of spec.scenes.entries()) {
     // Still path (and fallback): blurred cover background + the square scene image with a slow camera
     // move + subtitles, with the channel logo as a small watermark next to the title.
     if (!animated) {
-      // A real photo (any aspect) is cover-cropped to the square; an AI image is already square.
+      // A real photo (any aspect) is cover-cropped to the square; an AI image is already square. A stand-in picture
+      // (fellBack: bank / real photo / plain) may have any aspect too; a real photo stand-in is credited like `real`.
       const img = photo ? photo.file : await image(scene, i);
-      const cover = (w, h) => (photo ? `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h},setsar=1` : `scale=${h}:${h},crop=${w}:${h}`);
+      const fb = photo ? null : fellBack.get(i);
+      const shot = photo || fb?.photo || null;
+      const anyAspect = Boolean(photo || fb);
+      const cover = (w, h) => (anyAspect ? `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h},setsar=1` : `scale=${h}:${h},crop=${w}:${h}`);
       let credit = '';
-      if (photo) {
-        if (!usedPhotos.includes(photo)) usedPhotos.push(photo);
+      if (shot) {
+        if (!usedPhotos.includes(shot)) usedPhotos.push(shot);
         const cf = path.join(work, `photo-${i}.txt`);
-        fs.writeFileSync(cf, `Asli photo: ${photo.author}`.slice(0, 60));
+        fs.writeFileSync(cf, `Asli photo: ${shot.author}`.slice(0, 60));
         credit = `,drawtext=fontfile='${FONT}':textfile='${esc(cf)}':fontsize=26:fontcolor=white@0.9:box=1:boxcolor=0x000000@0.45:boxborderw=8:x=w-text_w-24:y=1290`;
       }
       run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, ...coverIn, '-filter_complex', [
         `[0:v]${cover(W, H)},boxblur=28:4,eq=brightness=-0.18[bg]`,
-        `[0:v]${photo ? cover(2160, 2160) : 'scale=2160:2160:flags=lanczos'},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}${photo ? '' : `,unsharp=3:3:0.3${LOOK}${GRAIN}`}[fg]`,
+        `[0:v]${anyAspect ? cover(2160, 2160) : 'scale=2160:2160:flags=lanczos'},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}${shot ? '' : `,unsharp=3:3:0.3${LOOK}${GRAIN}`}[fg]`,
         `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,
         ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
         `[bgl][fg]overlay=0:250:shortest=1${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
@@ -329,7 +356,7 @@ for (const [i, scene] of spec.scenes.entries()) {
     }
   }
   clips.push({ file: clip, seconds, voice: path.join(work, `voice-${i}.${voiceExt}`) });
-  console.log(`scene ${i + 1}/${spec.scenes.length}: ${seconds.toFixed(1)}s${animated ? ' (animated)' : photo ? ' (real photo)' : ''}`);
+  console.log(`scene ${i + 1}/${spec.scenes.length}: ${seconds.toFixed(1)}s${animated ? ' (animated)' : photo ? ' (real photo)' : fellBack.has(i) ? ` (stand-in: ${fellBack.get(i).source})` : ''}`);
 }
 
 // Join with crossfades; place each narration line at its scene's start; add music.
@@ -399,4 +426,9 @@ if (usedPhotos.length) {
   }
   fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
 }
-console.log(JSON.stringify({ out, seconds: Number(total.toFixed(1)), scenes: n, real_photos: usedPhotos.length, ambience: amb, look: LOOK_ON }));
+console.log(JSON.stringify({ out, seconds: Number(total.toFixed(1)), scenes: n, real_photos: usedPhotos.length, ambience: amb, look: LOOK_ON,
+  workers_ai_images: workersAiImages, neurons: workersAiImages * 326, stand_ins: [...fellBack.values()].map((f) => f.source) }));
+if (process.env.GITHUB_STEP_SUMMARY) {
+  fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `- Images (render): Workers AI ${workersAiImages} (~${workersAiImages * 326} neurons), stand-ins ${fellBack.size}${fellBack.size ? ` (${[...fellBack.values()].map((f) => f.source).join(', ')})` : ''}
+`);
+}

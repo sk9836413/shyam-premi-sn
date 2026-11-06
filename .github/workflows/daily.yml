@@ -7,6 +7,11 @@
 # dispatches slot=evening at 10:43 IST and YouTube publishes it at 19:00 IST (publishAt); 18:46 IST is the retry.
 # An explicit slot works at any hour. If Kaggle fails, times out or has under 10 GPU hours left this week, the
 # scenes fall back to FLUX stills + zoompan: the post is never skipped.
+# Images (animate/frames.mjs, 6 Nov 2026): every image consumer (morning, evening, noon, status, long) first asks Workers AI
+# FLUX (10,000 free neurons a day, ~326 per image, resets 05:30 IST); on 4006 / any failure the missing images are made
+# with FLUX.1-schnell on the Kaggle GPU (one short sps-frames-<slot> session), and anything still missing gets a picture
+# bank / real temple photo / plain stand-in in the renderer. Each run's summary has the image ledger (images per source,
+# neurons). force_fallback=true skips Workers AI for a test run.
 # slot=noon (dispatched by the scheduler at 10:13 IST, retry 18:46 IST) is the daily "Dadi aur Chhotu" cartoon dialogue
 # Short (STORY.md section 6, characters/): edge-tts voices, story images, lip-sync on Kaggle (~10-15 GPU-min), else the
 # still two-shot with a speaker highlight. dry_run=true renders everything and keeps the video as an artifact only.
@@ -55,6 +60,10 @@ on:
         description: movie slot only - render from the last finished sps-movie Kaggle session (no new GPU session)
         type: boolean
         default: false
+      force_fallback:
+        description: Skip Workers AI FLUX for this run (test the Kaggle FLUX / picture-bank fallback, animate/frames.mjs)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -83,6 +92,7 @@ jobs:
       SUB_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
       # The media Worker runs FLUX and hosts the videos, so no Cloudflare API token is needed.
       MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      SPS_WORKERS_AI: ${{ inputs.force_fallback && '0' || '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -256,6 +266,24 @@ jobs:
       # I2V-A14B (only while >= 6 GPU hours are left), RIFE-interpolates every clip to 30 fps and upscales clips (1080 px)
       # and stills (2160 px) with Real-ESRGAN. Every part falls back to the old path; repo variables SPS_ENHANCE=0 /
       # SPS_HERO14B=0 switch one off, SPS_FLUX=1 also re-makes the start frames with FLUX.1-schnell on the GPU (+7.7 min).
+      # Images first (animate/frames.mjs): Workers AI FLUX, else FLUX.1-schnell on the Kaggle GPU (sps-frames-<slot>,
+      # ~6 min + ~1 min per image), so the Animate and Render steps find every image cached. Never fails the run.
+      - name: Images (Workers AI, else Kaggle FLUX)
+        if: steps.date.outputs.done != 'true' && contains(fromJSON('["morning","evening","noon"]'), steps.date.outputs.slot)
+        continue-on-error: true
+        timeout-minutes: 50
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+          SPS_SLOT: ${{ steps.date.outputs.slot }}
+        run: |
+          [ -n "$KAGGLE_API_TOKEN" ] && pip install -q 'kaggle>=2.2' six
+          if [ "${{ steps.date.outputs.slot }}" = noon ]; then
+            node animate/frames.mjs story/today/scenes.json --visuals story/today/char/images --wait 35
+          else
+            node animate/frames.mjs story/today/scenes.json --wait 40
+          fi
+
       - name: Animate (Kaggle GPU)
         id: anim
         if: steps.date.outputs.done != 'true' && contains(fromJSON('["morning","evening"]'), steps.date.outputs.slot)
@@ -428,6 +456,7 @@ jobs:
       SUB_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
       MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
       MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      SPS_WORKERS_AI: ${{ inputs.force_fallback && '0' || '' }}
       YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
       YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
       YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
@@ -597,6 +626,19 @@ jobs:
           node animate/kaggle.mjs fetch --to story/long/clips --voice-to story/long/voice | tee "$RUNNER_TEMP/fetch.json"
           echo "- Long voice: $(cat "$RUNNER_TEMP/fetch.json")" >> "$GITHUB_STEP_SUMMARY"
 
+      # Images (animate/frames.mjs --long): cached per day; else Workers AI, else FLUX.1-schnell on the Kaggle GPU
+      # (sps-frames-long, ~6 min + ~1 min per image); the renderer covers anything left with a bank / photo stand-in.
+      - name: Images (Workers AI, else Kaggle FLUX)
+        if: env.GO == '1'
+        continue-on-error: true
+        timeout-minutes: 50
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: long
+        run: |
+          [ -n "$KAGGLE_API_TOKEN" ] && pip install -q 'kaggle>=2.2' six
+          node animate/frames.mjs story/long/scenes.json --long --wait 45
+
       - name: Render
         id: render
         if: env.GO == '1'
@@ -702,6 +744,7 @@ jobs:
       MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
       MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
       W: story/status/work
+      SPS_WORKERS_AI: ${{ inputs.force_fallback && '0' || '' }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -781,6 +824,19 @@ jobs:
           base=https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0
           [ -f .kokoro/kokoro-v1.0.onnx ] || curl -sSL -o .kokoro/kokoro-v1.0.onnx $base/kokoro-v1.0.onnx
           [ -f .kokoro/voices-v1.0.bin ] || curl -sSL -o .kokoro/voices-v1.0.bin $base/voices-v1.0.bin
+
+      # Images (animate/frames.mjs): cached per festival day; else Workers AI, else FLUX.1-schnell on the Kaggle GPU
+      # (sps-frames-status). Whatever is still missing gets a bank / real photo / plain stand-in in the renderer.
+      - name: Images (Workers AI, else Kaggle FLUX)
+        if: env.GO == '1'
+        continue-on-error: true
+        timeout-minutes: 50
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: status
+        run: |
+          [ -n "$KAGGLE_API_TOKEN" ] && pip install -q 'kaggle>=2.2' six
+          node animate/frames.mjs "$W/scenes.json" --wait 40
 
       # Same Kaggle path as the evening Short (Wan 2.2 TI2V-5B, private kernel sps-animate-status, T4 x2), only for the
       # scenes marked `animate` and only when no accepted clips are cached yet. Any failure: FLUX still + zoompan.
