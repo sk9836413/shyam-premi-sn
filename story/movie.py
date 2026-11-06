@@ -390,6 +390,7 @@ class Movie:
         os.makedirs(self.build, exist_ok=True)
         self.used = {"clips": [], "lip": 0, "stills": 0, "closeups": 0}
         self.photos = []  # real temple photos shown (credited in the spec's description and captions)
+        self.lip_verdict, self.lip_scores = {}, {}
 
     # ---- assets ----
     def kfile(self, *parts):
@@ -557,10 +558,43 @@ class Movie:
         self.used["stills"] += 1
         return out
 
+    def lip_ok(self, lip, who):
+        """Mouth check: MuseTalk smears beards and moustaches and blurs some faces (pilot, 6 Nov 2026: Ghatotkach 0.40,
+        Morvi 0.24-0.28 vs Barbarik 0.57-0.77, Brahmin 0.87). The edge variance of the lower face in 3 frames of the
+        lip clip must be at least LIP_MIN (0.5) of the base clip's; else the base clip (gentle motion) is used."""
+        if self.lip_verdict.get(who) is False:
+            return False
+        return self.lip_score(lip, who)
+
+    def lip_score(self, lip, who):
+        import numpy as np
+        from PIL import Image, ImageFilter
+        try:
+            box = load(os.path.join(self.k, "results.json"))["lips"]["boxes"][who]
+            base = self.base_clip(who)
+
+            def sharp(path, t):
+                f = f"{self.build}/lipchk.png"
+                ff("-ss", f"{t:.2f}", "-i", path, "-frames:v", "1", f)
+                x1, y1, x2, y2 = box
+                reg = Image.open(f).convert("L").crop((x1 + (x2 - x1) // 5, y1 + int(0.45 * (y2 - y1)), x2 - (x2 - x1) // 5, y2))
+                return float(np.asarray(reg.filter(ImageFilter.FIND_EDGES), dtype=np.float32).var())
+            ratio = min(sharp(lip, t) for t in (0.6, 1.4, 2.2)) / max(1.0, sharp(base, 0.5))
+        except Exception as e:
+            print(f"lip check {who}: {e}", flush=True)
+            return True
+        ok = ratio >= float(os.environ.get("LIP_MIN", "0.5"))
+        self.lip_scores.setdefault(who, []).append(round(ratio, 2))
+        if not ok:
+            self.lip_verdict[who] = False  # one smeared line = that face does not lip-sync well: base clip for all its lines
+        return ok
+
     def close_shot(self, i, who, dur):
-        """Lip-synced clip > base clip (gentle motion) > portrait with a slow push-in."""
+        """Lip-synced clip (if its mouth passes the check) > base clip (gentle motion) > portrait with a slow push-in."""
         out = f"{self.build}/close-{i:02d}.mp4"
         lip = self.kfile("lip", f"lip-{i:02d}.mp4")
+        if lip and not self.lip_ok(lip, who):
+            lip = None
         src, kind = (lip, "lip") if lip else ((self.base_clip(who), "base") if self.base_clip(who) else (self.portrait(who), "still"))
         n = max(1, round(dur * FPS))
         push = f"zoompan=z='1.04+0.06*on/{n}':x='iw/2-(iw/zoom/2)':y='ih*0.42-(ih/zoom*0.42)':d=1:s={W}x{H}:fps={FPS}"
@@ -641,7 +675,8 @@ class Movie:
             open(self.a.srt, "w", encoding="utf-8").write("".join(
                 f"{k + 1}\n{ts(a0)} --> {ts(b0)}\n{(n + ': ') if n else ''}{txt}\n\n" for k, (a0, b0, txt, n) in enumerate(srt)))
         meta = {"seconds": round(t0, 2), "shots": len(plan), "animated_scenes": sorted(set(self.used["clips"])), "lip_lines": self.used["lip"],
-                "closeups_no_lip": self.used["closeups"], "still_tracks": self.used["stills"], "devanagari_subtitles": self.f.raqm}
+                "closeups_no_lip": self.used["closeups"], "still_tracks": self.used["stills"], "devanagari_subtitles": self.f.raqm,
+                "lip_check": self.lip_scores}
         if self.a.meta:
             json.dump(meta, open(self.a.meta, "w"), indent=1)
         if self.a.small:
