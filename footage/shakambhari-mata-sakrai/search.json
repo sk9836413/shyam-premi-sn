@@ -1,10 +1,18 @@
 {
   "temple": "shakambhari-mata-sakrai",
   "name": "Shakambhari Mata, Sakrai",
-  "searched": "2026-11-05",
+  "searched": "2026-11-06",
   "candidates": 0,
   "usable": 0,
   "saved": 0,
   "rejected": {},
+  "openverse": {
+    "query": "Shakambhari Mata",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
   "files": []
 }

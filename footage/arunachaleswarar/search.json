@@ -1,0 +1,22 @@
+{
+  "temple": "arunachaleswarar",
+  "name": "Arunachaleswarar (Annamalaiyar), Tiruvannamalai",
+  "searched": "2026-11-06",
+  "candidates": 804,
+  "usable": 37,
+  "saved": 6,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 725,
+    "under 1000 px": 39,
+    "not a JPEG photo": 2,
+    "historical scan, photographer unclear": 1
+  },
+  "files": [
+    "commons-tnt26-15-tiruvannamalai-arunachaleshvara-9f99c4.jpg (CC BY 4.0, VasuVR)",
+    "commons-tnt26-11-tiruvannamalai-arunachaleshvara-867715.jpg (CC BY 4.0, VasuVR)",
+    "commons-tiruvannamalai-arunachaleswar-temple-684-494e9a.jpg (CC BY 2.0, Arian Zwegers)",
+    "commons-arunchala-temple-4f5912.jpg (CC BY 4.0, Lallis77)",
+    "commons-arulmigu-arunachaleswarar-temple-thiruva-399702.jpg (CC BY 2.0, Nithi Anand from Paris, France)",
+    "commons-tiruvannamalai-temple-panoramio-1-88dc6c.jpg (CC BY 3.0, raguleo)"
+  ]
+}

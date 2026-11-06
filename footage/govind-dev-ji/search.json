@@ -1,7 +1,7 @@
 {
   "temple": "govind-dev-ji",
   "name": "Govind Dev ji, Jaipur",
-  "searched": "2026-11-05",
+  "searched": "2026-11-06",
   "candidates": 19,
   "usable": 4,
   "saved": 2,
@@ -10,6 +10,17 @@
     "licence not allowed (SA/NC/ND/GFDL...)": 12,
     "under 1000 px": 1,
     "skipped by hand (temples.json)": 1
+  },
+  "openverse": {
+    "query": "Govind Dev",
+    "results": 5,
+    "result_count": 5,
+    "usable": 0,
+    "rejected": {
+      "title does not name a temple building": 1,
+      "title does not name the temple": 4
+    },
+    "saved": 0
   },
   "files": [
     "commons-govind-dev-ji-temple-inner-side-2-eb487c.jpg (CC0, Anildiggiwal)",

@@ -1,7 +1,7 @@
 {
   "temple": "rani-sati-dadi",
   "name": "Rani Sati Dadi Mandir, Jhunjhunu",
-  "searched": "2026-11-05",
+  "searched": "2026-11-06",
   "candidates": 52,
   "usable": 0,
   "saved": 0,
@@ -9,6 +9,14 @@
     "under 1000 px": 5,
     "licence not allowed (SA/NC/ND/GFDL...)": 46,
     "not a JPEG photo": 1
+  },
+  "openverse": {
+    "query": "Rani Sati",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
   },
   "files": []
 }

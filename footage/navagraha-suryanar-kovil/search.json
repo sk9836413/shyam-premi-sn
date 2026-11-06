@@ -1,0 +1,20 @@
+{
+  "temple": "navagraha-suryanar-kovil",
+  "name": "Suryanar Kovil (Surya), Kumbakonam",
+  "searched": "2026-11-06",
+  "candidates": 1,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 1
+  },
+  "openverse": {
+    "query": "Suryanar Kovil",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": []
+}

@@ -1,0 +1,21 @@
+{
+  "temple": "trimbakeshwar",
+  "name": "Trimbakeshwar Jyotirlinga, Nashik",
+  "searched": "2026-11-06",
+  "candidates": 168,
+  "usable": 14,
+  "saved": 4,
+  "rejected": {
+    "not a photo": 1,
+    "licence not allowed (SA/NC/ND/GFDL...)": 124,
+    "under 1000 px": 23,
+    "another place with a similar name": 5,
+    "skipped by hand (temples.json)": 1
+  },
+  "files": [
+    "commons-trimbakeshwar-shiva-temple-trimbak-nashi-57655e.jpg (CC0, K.Venkataramana)",
+    "commons-trimbakeshwar-shiva-temple-trimbak-nashi-450500.jpg (CC0, K.Venkataramana)",
+    "commons-trimbakeshwar-jyotirling-temple-9-june-2-e59128.jpg (CC BY 4.0, Arkesh.mantri)",
+    "commons-trimbak-nashik-256ee5.jpg (CC BY 4.0, Prashant Kharote)"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "temple": "sabarimala",
+  "name": "Sabarimala Ayyappa, Kerala",
+  "searched": "2026-11-06",
+  "candidates": 62,
+  "usable": 1,
+  "saved": 1,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 31,
+    "another place with a similar name": 12,
+    "title does not name the temple (mixed category)": 17,
+    "under 1000 px": 1
+  },
+  "openverse": {
+    "query": "Sabarimala Ayyappa",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": [
+    "commons-idol-of-lord-ayyappa-in-a-hall-at-sabari-c62186.jpg (CC BY 4.0, Chinnareddy435)"
+  ]
+}

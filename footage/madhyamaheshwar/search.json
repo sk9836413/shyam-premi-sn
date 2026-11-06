@@ -1,0 +1,22 @@
+{
+  "temple": "madhyamaheshwar",
+  "name": "Madhyamaheshwar, Uttarakhand",
+  "searched": "2026-11-06",
+  "candidates": 10,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "under 1000 px": 2,
+    "licence not allowed (SA/NC/ND/GFDL...)": 7,
+    "another place with a similar name": 1
+  },
+  "openverse": {
+    "query": "Madhyamaheshwar",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": []
+}

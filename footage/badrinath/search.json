@@ -1,0 +1,31 @@
+{
+  "temple": "badrinath",
+  "name": "Badrinath Dham, Uttarakhand",
+  "searched": "2026-11-06",
+  "candidates": 147,
+  "usable": 2,
+  "saved": 2,
+  "rejected": {
+    "under 1000 px": 11,
+    "licence not allowed (SA/NC/ND/GFDL...)": 132,
+    "no named author": 1,
+    "not a photo": 1
+  },
+  "openverse": {
+    "query": "Badrinath",
+    "results": 20,
+    "result_count": 67,
+    "usable": 0,
+    "rejected": {
+      "title does not name a temple building": 15,
+      "under 1000 px": 3,
+      "view, trek, nature or hashtag post, not the temple": 1,
+      "title does not name the temple": 1
+    },
+    "saved": 0
+  },
+  "files": [
+    "commons-badrinath-temple-tapt-kund-hot-springs-42e2ee.jpg (CC0, Shobhit Gosain)",
+    "commons-badrinath-temple-uttarakhand-photo-vishw-5f09d0.jpg (CC BY 4.0, Vishwanath Negi)"
+  ]
+}

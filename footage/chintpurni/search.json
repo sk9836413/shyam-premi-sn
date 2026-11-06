@@ -1,0 +1,16 @@
+{
+  "temple": "chintpurni",
+  "name": "Chintpurni Mata, Una",
+  "searched": "2026-11-06",
+  "candidates": 42,
+  "usable": 2,
+  "saved": 2,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 39,
+    "skipped by hand (temples.json)": 1
+  },
+  "files": [
+    "commons-jai-mata-di-maa-chintpurni-s-durbar-as-s-72dcd0.jpg (CC BY 2.0, Gopal Aggarwal from India)",
+    "commons-devotees-tie-red-crimson-threads-on-maki-71eb90.jpg (CC BY 2.0, Gopal Aggarwal from India)"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "_about": "Temples that scripts/real-photos.mjs knows: Wikimedia Commons categories that hold photos of exactly this temple, a 'must' regex that every file's title or categories must match, and a 'not' regex for other temples with similar names. The slug is the spec's `temple` field and the folder footage/<slug>/. Add a temple: find its category with `node scripts/real-photos.mjs --find \"<name>\"`.",
+  "_about": "Temples that scripts/real-photos.mjs knows: Wikimedia Commons categories that hold photos of exactly this temple, a 'must' regex that every file's title or categories must match, and a 'not' regex for other temples with similar names. Optional: 'place' (town/state must be named), 'require', 'title' (the file's own title must match: for mixed categories that also hold lakes, trails, towns), 'skip' (Commons titles, Openverse landing URLs or 'openverse:<id>' a person rejected), 'search' (Commons free-text search, only when there is no category; the title must then name the temple), 'openverse_q' / 'openverse': false. The slug is the spec's `temple` field and the folder footage/<slug>/. Add a temple: find its category with `node scripts/real-photos.mjs --find \"<name>\"`.",
   "salasar-balaji": {
     "name": "Salasar Balaji Dham, Churu",
     "categories": [
@@ -235,6 +235,999 @@
     "not": "panauti|bhaktapur|nepal|earthquake",
     "skip": [
       "File:Jai sambu kedarnath.jpg"
+    ]
+  },
+  "bhimashankar": {
+    "name": "Bhimashankar Jyotirlinga, Pune",
+    "aliases": [
+      "bhimashankar-jyotirlinga"
+    ],
+    "categories": [
+      "Bhimashankar temple"
+    ],
+    "must": "bhimashank",
+    "not": "assam|guwahati|kamrup|pamohi|uttarakhand"
+  },
+  "kashi-vishwanath": {
+    "name": "Kashi Vishwanath Jyotirlinga, Varanasi",
+    "aliases": [
+      "kashi-vishwanath-jyotirlinga",
+      "vishwanath-varanasi"
+    ],
+    "categories": [
+      "Kashi Vishwanath Temple"
+    ],
+    "must": "kashi vish?w?a?nath|vish?v?w?anath|visvanath|bisheshwar|beseshor|golden temple",
+    "not": "maheshwar|uttarkashi|mehsana|banaras hindu|\\bbhu\\b|new vishwanath|birla|amritsar|harmandir|modi|khajuraho|express|food|prasad",
+    "place": "varanasi|benares|banaras|kashi"
+  },
+  "trimbakeshwar": {
+    "name": "Trimbakeshwar Jyotirlinga, Nashik",
+    "aliases": [
+      "trimbakeshwar-jyotirlinga"
+    ],
+    "categories": [
+      "Trimbakeshwar Shiva Temple"
+    ],
+    "must": "trimbak|tryambak|triambak|trambak",
+    "not": "pune|valmiki|kedareswara|kedareshwar|near trimbak",
+    "skip": [
+      "File:Triambhkeshwar temple (6132475483).jpg"
+    ]
+  },
+  "baidyanath-dham": {
+    "name": "Baidyanath Jyotirlinga, Deoghar",
+    "aliases": [
+      "vaidyanath",
+      "baidyanath",
+      "vaidyanath-deoghar",
+      "baba-baidyanath"
+    ],
+    "categories": [
+      "Baidyanath Jyotirlinga, Deoghar"
+    ],
+    "must": "baidyanath|vaidyanath|baidynath|deoghar|baba dham",
+    "not": "parli|baijnath|kangra|himachal"
+  },
+  "parli-vaijnath": {
+    "name": "Parli Vaijnath, Beed",
+    "aliases": [
+      "vaijnath-parli"
+    ],
+    "categories": [
+      "Parli Vaijnath Temple"
+    ],
+    "must": "vaijnath|vaidyanath|parli",
+    "not": "railway|station|ambedkar"
+  },
+  "nageshwar": {
+    "name": "Nageshwar Jyotirlinga, Dwarka",
+    "aliases": [
+      "nageshwar-jyotirlinga"
+    ],
+    "categories": [
+      "Nageshvara Jyotirlinga"
+    ],
+    "must": "nage(s|sh)va?w?a?r|nagnath",
+    "not": "aundha|almora|jageshwar|hingoli"
+  },
+  "rameshwaram": {
+    "name": "Ramanathaswamy Jyotirlinga, Rameswaram",
+    "aliases": [
+      "ramanathaswamy",
+      "rameshwaram-jyotirlinga",
+      "rameswaram"
+    ],
+    "categories": [
+      "Ramanathaswamy Temple",
+      "Ramanathaswamy Temple corridor",
+      "Gopurams of the Ramanathaswamy Temple"
+    ],
+    "must": "ramanatha|rameswaram|rameshwaram|ramnath",
+    "not": "thirunarayur"
+  },
+  "grishneshwar": {
+    "name": "Grishneshwar Jyotirlinga, Ellora",
+    "aliases": [
+      "grishneshwar-jyotirlinga",
+      "ghrishneshwar"
+    ],
+    "categories": [
+      "Grishneshwar Temple"
+    ],
+    "must": "gh?ri?u?sh?n|ghushmesh",
+    "not": "kailasa|cave|ellora - panoramio",
+    "skip": [
+      "File:Grishneshwar, Ellora - panoramio (1).jpg",
+      "File:Grishneshwar, Ellora - panoramio (10).jpg",
+      "File:Grishneshwar Temple ( Jyotirlinga temple).jpg",
+      "File:Grishneshwar, Ellora - panoramio (12).jpg",
+      "File:Grishneshwar, Ellora - panoramio (20).jpg"
+    ]
+  },
+  "badrinath": {
+    "name": "Badrinath Dham, Uttarakhand",
+    "aliases": [
+      "badrinath-dham",
+      "badrinath-temple"
+    ],
+    "categories": [
+      "Badrinath Temple",
+      "Badrinath Temple, Uttarakhand"
+    ],
+    "must": "badrinath|badari",
+    "not": "bhaktapur|panauti|dwarahat|nepal|adi badri|pandukeshwar|panch badri"
+  },
+  "dwarkadhish": {
+    "name": "Dwarkadhish Mandir, Dwarka",
+    "aliases": [
+      "dwarka",
+      "dwarkadhish-dwarka",
+      "dwarkadhish-temple"
+    ],
+    "categories": [
+      "Dwarakadheesh Temple",
+      "Remote views of the Dwarakadheesh Temple"
+    ],
+    "must": "dwa?ra?ka|jagat ?mandir",
+    "title": "dwa?ra?ka|jagat ?mandir|temple",
+    "not": "kalbadevi|mumbai|mathura|kankroli|beach|camel|okha|bet dwarka|illustrated london|silhou?tte",
+    "skip": [
+      "File:Dwarakadheesh temple in Dwarka - Gujarat, India (5933600499).jpg",
+      "File:Dwarakadheesh temple in Dwarka - Gujarat, India (5934156348).jpg"
+    ]
+  },
+  "jagannath-puri": {
+    "name": "Jagannath Mandir, Puri",
+    "aliases": [
+      "puri-jagannath",
+      "jagannath",
+      "jagannath-temple-puri"
+    ],
+    "categories": [
+      "Jagannath Temple, Puri"
+    ],
+    "must": "jagann?ath|puri",
+    "not": "ranchi|delhi|hyderabad|ahmedabad|dhaka|kolkata|corridor|bhoga|mahaprasad|sakhigopal|chandan|deities|morgenstierne|peja",
+    "place": "puri|odisha|orissa"
+  },
+  "yamunotri": {
+    "name": "Yamunotri Dham, Uttarakhand",
+    "aliases": [
+      "yamunotri-dham"
+    ],
+    "categories": [
+      "Yamunotri"
+    ],
+    "must": "yamunotri",
+    "title": "yamunotri",
+    "require": "temple|mandir|shrine|dham",
+    "not": "barkot|divya shila|devotees"
+  },
+  "gangotri": {
+    "name": "Gangotri Dham, Uttarakhand",
+    "aliases": [
+      "gangotri-dham"
+    ],
+    "categories": [
+      "Gangotri Temple",
+      "Gangotri temple"
+    ],
+    "must": "gangotri",
+    "not": "glacier|gaumukh|gomukh|national park",
+    "title": "temple|mandir"
+  },
+  "kamakhya": {
+    "name": "Kamakhya Devi, Guwahati",
+    "aliases": [
+      "kamakhya-devi",
+      "kamakhya-temple"
+    ],
+    "categories": [
+      "Kamakhya Temple"
+    ],
+    "must": "kamakhya",
+    "not": "devotees|photowalk|sacrific|\\bbali\\b|goat|boli ghor|offering|rock-cut|mela|road to|let there be|goddess sculptures"
+  },
+  "kalighat": {
+    "name": "Kalighat Kali Mandir, Kolkata",
+    "aliases": [
+      "kalighat-kali",
+      "kalighat-temple"
+    ],
+    "categories": [
+      "Kalighat Kali Temple"
+    ],
+    "must": "kalighat",
+    "not": "painting|patachitra|\\bart\\b|sacrific|goat|ludger|kühnhardt|kuhnhardt"
+  },
+  "vaishno-devi": {
+    "name": "Mata Vaishno Devi, Katra",
+    "aliases": [
+      "vaishno-devi-katra",
+      "mata-vaishno-devi"
+    ],
+    "categories": [
+      "Vaishno Devi",
+      "Remote views of Vaishno Devi"
+    ],
+    "must": "vaishno|vaishnav",
+    "title": "vaishno|bhawan|bhavan|temple|mandir",
+    "not": "university|railway|express|hospital|kahani|serial|monkey|sunrise|snow|bhairav|trail|views from|view from|katra view",
+    "skip": [
+      "File:Jammu VaishnoDevi Dham.JPG"
+    ]
+  },
+  "jwala-ji": {
+    "name": "Jwala Ji, Kangra",
+    "aliases": [
+      "jwalamukhi",
+      "jwala-devi",
+      "jwala-mukhi"
+    ],
+    "categories": [
+      "Jwalamukhi Devi Temple",
+      "Maa Jwalamukhi Devi Temple"
+    ],
+    "must": "jwala|jawala",
+    "not": "views from"
+  },
+  "naina-devi": {
+    "name": "Naina Devi, Bilaspur (Himachal)",
+    "aliases": [
+      "naina-devi-bilaspur",
+      "mata-naina-devi"
+    ],
+    "categories": [
+      "Naina Devi Temple, Naina Devi"
+    ],
+    "must": "naina ?devi",
+    "title": "naina|temple|mandir",
+    "not": "nainital|rewalsar|naini lake|bhakra|pigeon|lake"
+  },
+  "chintpurni": {
+    "name": "Chintpurni Mata, Una",
+    "aliases": [
+      "chintpurni-devi",
+      "chintpurni-mata"
+    ],
+    "categories": [
+      "Chintpurni Devi Temple"
+    ],
+    "must": "chintpurni",
+    "skip": [
+      "File:Praying and wanting Maa's Blessings at the Maa Chintpurni Temple...Jai Mata Di.JPG"
+    ]
+  },
+  "hinglaj-mata": {
+    "name": "Hinglaj Mata, Balochistan",
+    "aliases": [
+      "hinglaj"
+    ],
+    "categories": [
+      "Hinglaj Mata"
+    ],
+    "must": "hinglaj",
+    "title": "hinglaj|mandir|temple",
+    "not": "canyon|volcano|bridge|hawan|yatra|devotees|festival"
+  },
+  "tarapith": {
+    "name": "Tarapith, Birbhum",
+    "aliases": [
+      "tara-peeth",
+      "tarapith-temple"
+    ],
+    "categories": [
+      "Tarapith temple"
+    ],
+    "must": "tarapi?e?th|tara temple|maa tara",
+    "not": "burning|ghat|railway|iskcon|cremat|baba|sadguru|devotees|busy",
+    "skip": [
+      "File:Tarapith Aarti gathering.jpg"
+    ]
+  },
+  "ambaji": {
+    "name": "Ambaji Mata, Banaskantha",
+    "aliases": [
+      "ambaji-mata",
+      "arasuri-ambaji"
+    ],
+    "categories": [
+      "Arasuri Amba Temple, Ambaji"
+    ],
+    "must": "ambaji|arasuri",
+    "not": "kumbharia|kumbheshwar|kamakshi|girnar"
+  },
+  "vindhyavasini": {
+    "name": "Maa Vindhyavasini, Mirzapur",
+    "aliases": [
+      "vindhyachal",
+      "vindhyavasini-devi"
+    ],
+    "categories": [
+      "Vindhyachal Temple",
+      "Maa Vindhyavasini Temple"
+    ],
+    "must": "vindhya",
+    "not": "tumen|bindhayawasini|pokhara|nepal",
+    "skip": [
+      "File:माॅ विन्ध्यवासिनी मंदिर तूमैन.jpg"
+    ]
+  },
+  "ashtavinayak-morgaon": {
+    "name": "Mayureshwar (Moreshwar), Morgaon",
+    "aliases": [
+      "moreshwar-morgaon",
+      "mayureshwar-morgaon"
+    ],
+    "categories": [
+      "Morgaon temple"
+    ],
+    "must": "morgaon|moregaon|moreshwar|mayureshwar|moraya"
+  },
+  "ashtavinayak-siddhatek": {
+    "name": "Siddhivinayak, Siddhatek",
+    "aliases": [
+      "siddhivinayak-siddhatek"
+    ],
+    "categories": [
+      "Siddhivinayak Temple, Siddhatek",
+      "Siddhivinayak temple, Siddhatek"
+    ],
+    "must": "siddhatek|siddhivinayak",
+    "not": "mumbai|prabhadevi|dadar"
+  },
+  "ashtavinayak-pali": {
+    "name": "Ballaleshwar, Pali",
+    "aliases": [
+      "ballaleshwar-pali",
+      "ballaleshwar"
+    ],
+    "categories": [],
+    "search": "Ballaleshwar Pali",
+    "must": "ballaleshwar|ballaleswar",
+    "not": "\\bun\\b|, un|gujarat"
+  },
+  "ashtavinayak-mahad": {
+    "name": "Varadvinayak, Mahad",
+    "aliases": [
+      "varadvinayak-mahad",
+      "varadvinayak"
+    ],
+    "categories": [],
+    "search": "Varadvinayak Mahad",
+    "must": "varad ?a?vinayak",
+    "not": "chennai|karnataka"
+  },
+  "ashtavinayak-theur": {
+    "name": "Chintamani, Theur",
+    "aliases": [
+      "chintamani-theur"
+    ],
+    "categories": [
+      "Chintamani Temple, Theur"
+    ],
+    "must": "theur|chintamani"
+  },
+  "ashtavinayak-lenyadri": {
+    "name": "Girijatmaj, Lenyadri",
+    "aliases": [
+      "girijatmaj-lenyadri",
+      "lenyadri"
+    ],
+    "categories": [
+      "Lenyadri"
+    ],
+    "must": "lenyadri|girijatmaj",
+    "title": "ganapati|ganesh|girijatmaj|cave 7|ashtavinayak|mandir",
+    "not": "macaque|monkey|junnar"
+  },
+  "ashtavinayak-ozar": {
+    "name": "Vighneshwar, Ozar",
+    "aliases": [
+      "vighneshwar-ozar",
+      "vighnahar-ozar"
+    ],
+    "categories": [
+      "Vigneshwara Temple, Ozar"
+    ],
+    "must": "ozh?ar|vighn|vign",
+    "not": "banner"
+  },
+  "ashtavinayak-ranjangaon": {
+    "name": "Mahaganapati, Ranjangaon",
+    "aliases": [
+      "mahaganapati-ranjangaon"
+    ],
+    "categories": [
+      "Mahaganapati Temple, Ranjangaon"
+    ],
+    "must": "ranjangaon|mahaganapati"
+  },
+  "tungnath": {
+    "name": "Tungnath, Uttarakhand",
+    "aliases": [
+      "tungnath-temple"
+    ],
+    "categories": [
+      "Tungnath temple"
+    ],
+    "must": "tungnaa?th|tunganath",
+    "title": "tungn|tungan|temple|mandir",
+    "not": "chandrashila|anasuya|ansuya|trek|beauty"
+  },
+  "rudranath": {
+    "name": "Rudranath, Uttarakhand",
+    "aliases": [
+      "rudranath-temple"
+    ],
+    "categories": [
+      "Rudranath Temple",
+      "Rudranath Mahadev Temple, Uttarakhand"
+    ],
+    "must": "rudrana?a?th|rudra mahadev",
+    "not": "capildeo|bugyal"
+  },
+  "madhyamaheshwar": {
+    "name": "Madhyamaheshwar, Uttarakhand",
+    "aliases": [
+      "madmaheshwar"
+    ],
+    "categories": [
+      "Madhyamaheshwar Temple"
+    ],
+    "must": "madhyamahes|madmahes",
+    "not": "guest house"
+  },
+  "kalpeshwar": {
+    "name": "Kalpeshwar, Uttarakhand",
+    "categories": [
+      "Kalpeshwar Temple, Uttarakhand"
+    ],
+    "must": "kalpe?h?s?h?war|kalpnath",
+    "skip": [
+      "File:Kalpeshwar Uttarakhand.jpg"
+    ]
+  },
+  "ram-mandir-ayodhya": {
+    "name": "Shri Ram Janmabhoomi Mandir, Ayodhya",
+    "aliases": [
+      "ram-mandir",
+      "ram-janmabhoomi",
+      "ayodhya-ram-mandir"
+    ],
+    "categories": [
+      "Ram Mandir, Ayodhya"
+    ],
+    "must": "ram ?mandir|ram janm?a?bh?oomi|janambhoomi|ram temple|rama temple",
+    "not": "model|floor plan|modi|consecration|babri|masjid|dispute|board|illustration|map",
+    "place": "ayodhya"
+  },
+  "krishna-janmabhoomi": {
+    "name": "Shri Krishna Janmabhoomi, Mathura",
+    "aliases": [
+      "krishna-janmasthan",
+      "janmabhoomi-mathura"
+    ],
+    "categories": [
+      "Krishna Janmasthan Temple Complex"
+    ],
+    "must": "janma?-? ?sthan|janma?-? ?bh?oomi|janma?bhumi|keshav ?dev|mathura temple",
+    "not": "mosque|masjid|idgah|eidgah|potra"
+  },
+  "har-ki-pauri": {
+    "name": "Har Ki Pauri, Haridwar",
+    "aliases": [
+      "haridwar",
+      "har-ki-paudi"
+    ],
+    "categories": [
+      "Har Ki Pauri"
+    ],
+    "must": "har ?ki ?pau?d?ri|hari ?ki ?pau?ri|har-ki-pauri",
+    "not": "barrage|bhimgoda",
+    "skip": [
+      "File:Temple at Har Ki Pauri, Haridwar.jpg"
+    ]
+  },
+  "ekambareswarar": {
+    "name": "Ekambareswarar, Kanchipuram",
+    "aliases": [
+      "ekambareswarar-kanchipuram",
+      "ekambaranathar"
+    ],
+    "categories": [
+      "Ekambareswarar Temple",
+      "Gopurams of the Ekambareswarar Temple"
+    ],
+    "must": "ekamb|ekamr",
+    "not": "mylapore|thiruvalluvar|people|eichmann|1976"
+  },
+  "kamakshi-amman": {
+    "name": "Kamakshi Amman, Kanchipuram",
+    "aliases": [
+      "kamakshi-kanchipuram"
+    ],
+    "categories": [
+      "Kamakshi Amman Temple",
+      "Gopurams of the Kamakshi Amman Temple"
+    ],
+    "must": "kamakshi",
+    "not": "mangadu|ambaji|eichmann"
+  },
+  "jambukeswarar": {
+    "name": "Jambukeswarar, Thiruvanaikaval",
+    "aliases": [
+      "jambukeswarar-thiruvanaikaval",
+      "thiruvanaikaval"
+    ],
+    "categories": [
+      "Jambukeswarar Temple",
+      "Sri Jambukeshwara Temple"
+    ],
+    "must": "jambuke|thiruvanaika|tiruvanaika|thiruvanaikoil"
+  },
+  "arunachaleswarar": {
+    "name": "Arunachaleswarar (Annamalaiyar), Tiruvannamalai",
+    "aliases": [
+      "annamalaiyar",
+      "tiruvannamalai"
+    ],
+    "categories": [
+      "Annamalaiyar Temple",
+      "Arunachaleshvara Temple"
+    ],
+    "must": "annamalaiyar|arunachales|arunachaleshvar|ti?ruvannamalai|thiruvannamalai",
+    "not": "thalaisolai|adi annamalai"
+  },
+  "nataraja-chidambaram": {
+    "name": "Thillai Nataraja, Chidambaram",
+    "aliases": [
+      "chidambaram",
+      "thillai-nataraja"
+    ],
+    "categories": [
+      "Thillai Nataraja Temple, Chidambaram",
+      "Gopurams of Thillai Nataraja Temple"
+    ],
+    "must": "chidambaram|thillai|nataraja",
+    "not": "painting|mudra|history of|eichmann"
+  },
+  "srikalahasti": {
+    "name": "Srikalahasti, Andhra Pradesh",
+    "aliases": [
+      "kalahasti",
+      "srikalahasteeswara"
+    ],
+    "categories": [
+      "Srikalahasti Temple",
+      "Srikalahasteeswara Temple",
+      "Gopurams of the Srikalahasti Temple"
+    ],
+    "must": "kalaha?sti|kalahasth",
+    "not": "elephant|\\bbus\\b"
+  },
+  "banke-bihari": {
+    "name": "Banke Bihari, Vrindavan",
+    "aliases": [
+      "banke-bihari-vrindavan",
+      "bankey-bihari"
+    ],
+    "categories": [
+      "Banke Bihari Temple"
+    ],
+    "must": "banke?y? ?bihari",
+    "not": "ludhiana|bareilly"
+  },
+  "prem-mandir": {
+    "name": "Prem Mandir, Vrindavan",
+    "aliases": [
+      "prem-mandir-vrindavan"
+    ],
+    "categories": [
+      "Prem Mandir, Vrindavan",
+      "Prem Mandir Vrindavan"
+    ],
+    "must": "prem ?mandir",
+    "not": "canteen",
+    "skip": [
+      "File:Directional Signage - Prem Mandir Complex - Vrindaban 2013-02-22 4807.JPG"
+    ]
+  },
+  "iskcon-vrindavan": {
+    "name": "ISKCON Krishna Balaram Mandir, Vrindavan",
+    "aliases": [
+      "krishna-balaram-mandir"
+    ],
+    "categories": [
+      "ISKCON Temple, Vrindavan"
+    ],
+    "must": "iskcon|krishna.?bala?ram",
+    "not": "prabhupada|aindra|kartik 20|gaura",
+    "place": "vrindavan|vrindaban|brindavan"
+  },
+  "govardhan": {
+    "name": "Govardhan Parvat (Giriraj ji), Mathura",
+    "aliases": [
+      "govardhan-parvat",
+      "giriraj-ji"
+    ],
+    "categories": [
+      "Govardhan Hill"
+    ],
+    "must": "govardh|goverdh|giriraj",
+    "not": "lifts|painting|krishna lifting|dau ?ji|shri nath temple"
+  },
+  "barsana": {
+    "name": "Shri Radha Rani (Shriji) Mandir, Barsana",
+    "aliases": [
+      "radha-rani-barsana",
+      "shriji-barsana"
+    ],
+    "categories": [
+      "Śrī Rādhā Rānī Temple"
+    ],
+    "must": "r[aā]dh[aā][ -]?r[aā]n[iī]|barsana|shriji|ladli",
+    "title": "temple|mandir|radha|shriji|ladli",
+    "not": "chhatri|view from"
+  },
+  "nandgaon": {
+    "name": "Nand Bhavan, Nandgaon",
+    "aliases": [
+      "nand-bhavan",
+      "nand-baba-nandgaon"
+    ],
+    "categories": [
+      "Shri Nand Baba Temple, Nandgaon"
+    ],
+    "must": "nand"
+  },
+  "udupi-krishna": {
+    "name": "Udupi Sri Krishna Matha",
+    "aliases": [
+      "udupi",
+      "udupi-krishna-matha"
+    ],
+    "categories": [
+      "Udupi Sri Krishna Matha",
+      "Udupi Krishna Temple"
+    ],
+    "must": "udupi",
+    "not": "vishwesha|tirtha|swamiji|drummers|fireworks|bull",
+    "skip": [
+      "File:Krishnapura Math Udupi.JPG"
+    ]
+  },
+  "guruvayur": {
+    "name": "Guruvayur Sri Krishna, Kerala",
+    "aliases": [
+      "guruvayur-temple",
+      "guruvayurappan"
+    ],
+    "categories": [
+      "Guruvayur Temple",
+      "Gopurams of the Guruvayur Temple"
+    ],
+    "must": "guruvay",
+    "not": "thekkan|keshavan|elephant|people|mammiyoor|punnathur",
+    "skip": [
+      "File:Guruvayur Temple Quee line row bars.JPG"
+    ]
+  },
+  "sankat-mochan-varanasi": {
+    "name": "Sankat Mochan Hanuman, Varanasi",
+    "aliases": [
+      "sankat-mochan"
+    ],
+    "categories": [
+      "Sankat Mochan Hanuman Temple, Varanasi"
+    ],
+    "must": "sankat ?mochan"
+  },
+  "hanuman-garhi": {
+    "name": "Hanuman Garhi, Ayodhya",
+    "aliases": [
+      "hanumangarhi",
+      "hanuman-garhi-ayodhya"
+    ],
+    "categories": [
+      "Hanuman Garhi Temple"
+    ],
+    "must": "hanuman ?garhi",
+    "title": "hanuman|garhi",
+    "not": "arthuna"
+  },
+  "hanuman-dhara": {
+    "name": "Hanuman Dhara, Chitrakoot",
+    "aliases": [
+      "hanuman-dhara-chitrakoot"
+    ],
+    "categories": [],
+    "search": "Hanuman Dhara Chitrakoot",
+    "must": "hanuman ?dhara"
+  },
+  "jakhu": {
+    "name": "Jakhu Hanuman, Shimla",
+    "aliases": [
+      "jakhoo",
+      "jakhu-temple",
+      "jakhu-hanuman"
+    ],
+    "categories": [
+      "Jakhu Temple",
+      "Shri Hanuman Jakhu (statue)"
+    ],
+    "must": "jakh(u|oo)",
+    "not": "monkey|engrave|flowers|board|mayor|ridge|office",
+    "title": "jakh|hanuman|temple|mandir"
+  },
+  "bade-hanuman-prayagraj": {
+    "name": "Bade (Lete) Hanuman, Prayagraj",
+    "aliases": [
+      "lete-hanuman",
+      "bade-hanuman"
+    ],
+    "categories": [
+      "Hanuman Mandir Prayagraj"
+    ],
+    "search": "Lete Hanuman Prayagraj",
+    "must": "lete hanuman|bade hanuman|bandh(wa)? hanuman|hanuman mandir",
+    "place": "prayagraj|allahabad|sangam"
+  },
+  "kashtbhanjan-sarangpur": {
+    "name": "Kashtbhanjan Hanuman, Sarangpur (Gujarat)",
+    "aliases": [
+      "sarangpur-hanuman",
+      "kashtabhanjan"
+    ],
+    "categories": [],
+    "search": "Kashtabhanjan Hanuman Sarangpur",
+    "must": "kasht.?a?.?bhanjan|sarangpur",
+    "require": "hanuman|temple|mandir",
+    "not": "rajgarh|madhya pradesh|darwaja|mosque"
+  },
+  "navagraha-suryanar-kovil": {
+    "name": "Suryanar Kovil (Surya), Kumbakonam",
+    "aliases": [
+      "suryanar-kovil"
+    ],
+    "categories": [
+      "Suryanar Koil"
+    ],
+    "must": "suryanar"
+  },
+  "navagraha-thingalur": {
+    "name": "Thingalur Kailasanathar (Chandra)",
+    "aliases": [
+      "thingalur"
+    ],
+    "categories": [
+      "Kailasanathar Temple, Thingalur"
+    ],
+    "must": "thingalur|tingalur",
+    "not": "kanchipuram|kanchi"
+  },
+  "navagraha-vaitheeswaran-koil": {
+    "name": "Vaitheeswaran Koil (Angaraka/Mangal)",
+    "aliases": [
+      "vaitheeswaran-koil"
+    ],
+    "categories": [
+      "Vaitheeswaran Koil",
+      "Vaitheeswaran Temple"
+    ],
+    "must": "vai[td]h?eesw?v?aran|vaidyanatha"
+  },
+  "navagraha-thiruvenkadu": {
+    "name": "Thiruvenkadu Swetharanyeswarar (Budha)",
+    "aliases": [
+      "thiruvenkadu"
+    ],
+    "categories": [
+      "Swetharanyeswarar Temple"
+    ],
+    "must": "swetharany|thiruvenkadu|tiruvenkadu",
+    "not": "raja raja|kalyanasundar|gallery|bronze"
+  },
+  "navagraha-alangudi": {
+    "name": "Alangudi Apatsahayesvarar (Guru)",
+    "aliases": [
+      "alangudi"
+    ],
+    "categories": [
+      "Apatsahayesvarar Temple, Alangudi"
+    ],
+    "must": "alangudi|apatsahay",
+    "not": "anniyur"
+  },
+  "navagraha-kanjanur": {
+    "name": "Kanjanur Agneeswarar (Shukra)",
+    "aliases": [
+      "kanjanur"
+    ],
+    "categories": [
+      "Agneeswarar temple, Kanjanur"
+    ],
+    "must": "kanjanur|agneeswar"
+  },
+  "navagraha-thirunallar": {
+    "name": "Thirunallar Saneeswaran (Shani)",
+    "aliases": [
+      "thirunallar",
+      "tirunallar"
+    ],
+    "categories": [
+      "Tirunallar Saniswaran Temple",
+      "Thirunallar"
+    ],
+    "must": "ti?h?irunallar|sanee?s(h)?waran|darbaranyes",
+    "require": "temple|koil|kovil|gopuram|tank|sani"
+  },
+  "navagraha-thirunageswaram": {
+    "name": "Thirunageswaram Naganathaswamy (Rahu)",
+    "aliases": [
+      "thirunageswaram"
+    ],
+    "categories": [],
+    "search": "Thirunageswaram temple",
+    "must": "ti?h?irunageswaram|tirunageshwaram"
+  },
+  "navagraha-keezhperumpallam": {
+    "name": "Keezhperumpallam Naganathaswamy (Ketu)",
+    "aliases": [
+      "keezhperumpallam"
+    ],
+    "categories": [],
+    "search": "Keezhperumpallam temple",
+    "must": "perumpallam"
+  },
+  "shani-shingnapur": {
+    "name": "Shani Shingnapur, Ahilyanagar",
+    "aliases": [
+      "shani-shinganapur",
+      "shingnapur"
+    ],
+    "categories": [
+      "Shani Shingnapur",
+      "Shanidev Temple",
+      "Shani Shrine"
+    ],
+    "must": "shi?n?ga?napur|shani|shanidev",
+    "not": "renuka|sonai|navagraha mandapam|graha \\(",
+    "place": "shingnapur|shinganapur|ahmednagar|ahilyanagar|maharash"
+  },
+  "tirupati-balaji": {
+    "name": "Tirumala Venkateswara (Tirupati Balaji)",
+    "aliases": [
+      "tirupati",
+      "tirumala",
+      "venkateswara-tirumala"
+    ],
+    "categories": [
+      "Tirumala Venkateswara Temple",
+      "Gopurams of the Tirumala Venkateswara Temple",
+      "Tirumala Venkateswara Temple illuminated"
+    ],
+    "must": "tirumala|tirupati|venkateswara|venkatesw|ananda nilayam",
+    "not": "dwaraka|people at|malayappa|hathiram|pushkarini|plaque|information|akasha ganga"
+  },
+  "siddhivinayak-mumbai": {
+    "name": "Siddhivinayak, Mumbai",
+    "aliases": [
+      "siddhivinayak",
+      "siddhivinayak-temple-mumbai"
+    ],
+    "categories": [
+      "Siddhivinayak Temple, Mumbai"
+    ],
+    "must": "siddhi ?vinayak",
+    "not": "siddhatek",
+    "place": "mumbai|prabhadevi|bombay|dadar"
+  },
+  "meenakshi-amman": {
+    "name": "Meenakshi Amman, Madurai",
+    "aliases": [
+      "meenakshi",
+      "madurai-meenakshi"
+    ],
+    "categories": [
+      "Madurai Meenakshi Temple",
+      "Shikhara of the Madurai Meenakshi Temple"
+    ],
+    "must": "meenakshi|minakshi|madurai",
+    "not": "eichmann|painting|1976|1970",
+    "skip": [
+      "File:Near the Meenakshi Temple in Madurai (1) (36857431683).jpg"
+    ]
+  },
+  "padmanabhaswamy": {
+    "name": "Sree Padmanabhaswamy, Thiruvananthapuram",
+    "aliases": [
+      "padmanabhaswamy-temple",
+      "padmanabha"
+    ],
+    "categories": [
+      "Padmanabhaswamy Temple",
+      "Main gopuram of the Padmanabhaswamy Temple",
+      "Gopurams of the Padmanabhaswamy Temple"
+    ],
+    "must": "padmanabha",
+    "not": "history|people|east fort"
+  },
+  "sabarimala": {
+    "name": "Sabarimala Ayyappa, Kerala",
+    "aliases": [
+      "sabarimala-ayyappa"
+    ],
+    "categories": [
+      "Sabarimala temple complex",
+      "Sabarimala"
+    ],
+    "must": "sabarimala|sannidhanam",
+    "title": "temple|sannidhanam|sabarimala|ayyappa|pathinettam|18 steps|holy steps",
+    "not": "women|lepidoptera|flora|nature|nilackal|chengannur|pilgrims|forest|palace|aravana|pamba|aareshwaram"
+  },
+  "konark-sun-temple": {
+    "name": "Konark Sun Temple, Odisha",
+    "aliases": [
+      "konark",
+      "konark-surya-mandir"
+    ],
+    "categories": [
+      "Konark Sun Temple"
+    ],
+    "must": "konark|konarak",
+    "not": "erotic|mayadevi|vaishnava|gwalior|people|maithuna|mithuna|nude|couple|amorous"
+  },
+  "khajuraho": {
+    "name": "Khajuraho (Kandariya Mahadev), Madhya Pradesh",
+    "aliases": [
+      "kandariya-mahadev",
+      "khajuraho-temples"
+    ],
+    "categories": [
+      "Kandariya Mahadeva Temple",
+      "Distance views of Kandariyā Mahādeva temple",
+      "Lakshmana Temple"
+    ],
+    "must": "khajuraho|kandariy|lakshmana|laksmana",
+    "title": "temple|mandir",
+    "not": "erotic|mithuna|maithuna|kama|nude|couple|amorous|apsara|surasundari|sculpt|relief|panel|frieze|figure|statue|detail|close|engraving|poster"
+  },
+  "dakshineswar": {
+    "name": "Dakshineswar Kali Mandir, Kolkata",
+    "aliases": [
+      "dakshineswar-kali",
+      "dakshineswar-temple"
+    ],
+    "categories": [
+      "Dakshineswar Kali Temple",
+      "Views of Dakshineswar Kali Temple",
+      "Dakshineswar Kali Temple illuminated"
+    ],
+    "must": "dakshine(s|sh)war",
+    "not": "statue|interior|black and white|metro|skywalk|howrah|dinanta|bally",
+    "skip": [
+      "File:Dakshineswar Kali Temple (7169293893).jpg",
+      "File:Dakshineswar Kali Temple - 7354721618.jpg"
+    ]
+  },
+  "akshardham-delhi": {
+    "name": "Swaminarayan Akshardham, Delhi (BAPS)",
+    "aliases": [
+      "akshardham"
+    ],
+    "categories": [
+      "Swaminarayan Akshardham (Delhi)",
+      "Remote views of Swaminarayan Akshardham (Delhi)",
+      "Swaminarayan Akshardham (Delhi) illuminated"
+    ],
+    "must": "akshardham",
+    "not": "metro|gandhinagar|robbinsville|new jersey|station|interior|boris|prime minister|tour",
+    "skip": [
+      "File:Swaminarayan Akshardham Temple-Delhi-96.jpg",
+      "File:Swaminarayan Akshardham Temple-Delhi-97.jpg",
+      "File:2020-01-24 Visita Oficial à Índia.jpg"
     ]
   }
 }

@@ -1,0 +1,25 @@
+{
+  "temple": "govardhan",
+  "name": "Govardhan Parvat (Giriraj ji), Mathura",
+  "searched": "2026-11-06",
+  "candidates": 40,
+  "usable": 25,
+  "saved": 2,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 8,
+    "under 1000 px": 3,
+    "another place with a similar name": 4
+  },
+  "openverse": {
+    "query": "Govardhan Parvat",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": [
+    "commons-kund-at-goverdhan-dham-panoramio-6f1bcd.jpg (CC BY 3.0, Gyanendrasinghchauha…)",
+    "commons-shri-govardhan-dham-panoramio-e00da5.jpg (CC BY 3.0, Gyanendrasinghchauha…)"
+  ]
+}

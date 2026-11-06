@@ -1,0 +1,26 @@
+{
+  "temple": "hanuman-garhi",
+  "name": "Hanuman Garhi, Ayodhya",
+  "searched": "2026-11-06",
+  "candidates": 24,
+  "usable": 7,
+  "saved": 2,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 2,
+    "title does not name the temple (mixed category)": 12,
+    "not a JPEG photo": 2,
+    "unknown licence: GODL-India": 1
+  },
+  "openverse": {
+    "query": "Hanuman Garhi",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": [
+    "commons-hanuman-garhi-temple-19-4df990.jpg (CC BY 4.0, Immanuelle)",
+    "commons-hanuman-garhi-temple-20-c27d21.jpg (CC BY 4.0, Immanuelle)"
+  ]
+}

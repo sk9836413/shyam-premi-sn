@@ -1,0 +1,19 @@
+{
+  "temple": "tarapith",
+  "name": "Tarapith, Birbhum",
+  "searched": "2026-11-06",
+  "candidates": 46,
+  "usable": 3,
+  "saved": 3,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 37,
+    "under 1000 px": 2,
+    "another place with a similar name": 3,
+    "skipped by hand (temples.json)": 1
+  },
+  "files": [
+    "commons-tarapith-tarama-temple-9963c1.jpg (CC0, Apurv013)",
+    "commons-tarapith-aarti-f67ddf.jpg (CC0, Amrendrakumar12)",
+    "commons--3fab7b.jpg (Public Domain, Munita Prasad)"
+  ]
+}

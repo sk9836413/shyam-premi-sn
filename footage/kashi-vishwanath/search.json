@@ -1,0 +1,24 @@
+{
+  "temple": "kashi-vishwanath",
+  "name": "Kashi Vishwanath Jyotirlinga, Varanasi",
+  "searched": "2026-11-06",
+  "candidates": 168,
+  "usable": 12,
+  "saved": 4,
+  "rejected": {
+    "under 1000 px": 15,
+    "licence not allowed (SA/NC/ND/GFDL...)": 108,
+    "historical scan, photographer unclear": 11,
+    "not a photo": 12,
+    "people, event or object, not the temple": 1,
+    "not a JPEG photo": 4,
+    "another place with a similar name": 4,
+    "unknown licence: No restrictions": 1
+  },
+  "files": [
+    "commons-shree-kashi-vishwanath-temple-860af6.jpg (CC BY 4.0, Thenerdatul)",
+    "commons-kashi-vishwanath-temple-walkways-and-pro-565698.jpg (CC BY 4.0, Immanuelle)",
+    "commons-kashi-vishwanath-temple-walkways-and-pro-ea7d2b.jpg (CC BY 4.0, Immanuelle)",
+    "commons-kashi-vishwanath-temple-in-2025-0cb8e4.jpg (CC BY 4.0, Pradum Shukla)"
+  ]
+}

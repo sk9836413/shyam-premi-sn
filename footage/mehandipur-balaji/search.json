@@ -1,7 +1,7 @@
 {
   "temple": "mehandipur-balaji",
   "name": "Mehandipur Balaji, Dausa",
-  "searched": "2026-11-05",
+  "searched": "2026-11-06",
   "candidates": 9,
   "usable": 0,
   "saved": 0,
@@ -11,6 +11,14 @@
     "not a JPEG photo": 1,
     "no named author": 2,
     "skipped by hand (temples.json)": 1
+  },
+  "openverse": {
+    "query": "Mehandipur Balaji",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
   },
   "files": []
 }

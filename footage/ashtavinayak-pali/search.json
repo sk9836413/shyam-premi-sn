@@ -1,0 +1,27 @@
+{
+  "temple": "ashtavinayak-pali",
+  "name": "Ballaleshwar, Pali",
+  "searched": "2026-11-06",
+  "candidates": 15,
+  "usable": 2,
+  "saved": 2,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 12,
+    "not this temple (title/categories)": 1
+  },
+  "openverse": {
+    "query": "Ballaleshwar",
+    "results": 4,
+    "result_count": 4,
+    "usable": 0,
+    "rejected": {
+      "title does not name a temple building": 2,
+      "under 1000 px": 2
+    },
+    "saved": 0
+  },
+  "files": [
+    "commons-shri-ballaleshwar-ganpati-ff5710.jpg (CC0, Ankursoni003)",
+    "commons-pali-shri-ballaleshwar-31f2d4.jpg (CC BY 2.0, Borayin Maitreya Larios)"
+  ]
+}

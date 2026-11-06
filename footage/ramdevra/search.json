@@ -1,7 +1,7 @@
 {
   "temple": "ramdevra",
   "name": "Baba Ramdev ji, Ramdevra",
-  "searched": "2026-11-05",
+  "searched": "2026-11-06",
   "candidates": 17,
   "usable": 0,
   "saved": 0,
@@ -9,6 +9,16 @@
     "not clearly the temple": 14,
     "licence not allowed (SA/NC/ND/GFDL...)": 1,
     "another place with a similar name": 2
+  },
+  "openverse": {
+    "query": "Baba Ramdev",
+    "results": 2,
+    "result_count": 2,
+    "usable": 0,
+    "rejected": {
+      "title does not name a temple building": 2
+    },
+    "saved": 0
   },
   "files": []
 }

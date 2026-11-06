@@ -1,0 +1,28 @@
+{
+  "temple": "meenakshi-amman",
+  "name": "Meenakshi Amman, Madurai",
+  "searched": "2026-11-06",
+  "candidates": 693,
+  "usable": 184,
+  "saved": 6,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 283,
+    "under 1000 px": 134,
+    "not a JPEG photo": 33,
+    "not a photo": 6,
+    "another place with a similar name": 30,
+    "historical scan, photographer unclear": 15,
+    "no named author": 1,
+    "unknown licence: No restrictions": 3,
+    "people, event or object, not the temple": 3,
+    "skipped by hand (temples.json)": 1
+  },
+  "files": [
+    "commons-meenakshi-temple-at-madurai-seen-from-th-2cf2c3.jpg (CC BY 2.0, Richard Mortel from Riyadh, Saudi Arabia)",
+    "commons-a-gopuram-of-the-meenakshi-temple-madura-691341.jpg (CC BY 2.0, Richard Mortel from Riyadh, Saudi Arabia)",
+    "commons-madurai-sri-meenakshi-temple-6863145452-2e1160.jpg (CC BY 2.0, Arian Zwegers)",
+    "commons-madurai-sri-meenakshi-temple-6863216736-830ad1.jpg (CC BY 2.0, Arian Zwegers)",
+    "commons-meenakshi-temple-6357534075-68557a.jpg (CC BY 2.0, BOMBMAN)",
+    "commons-meenakshi-temple-6357530069-5ba916.jpg (CC BY 2.0, BOMBMAN)"
+  ]
+}

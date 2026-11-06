@@ -1,0 +1,25 @@
+{
+  "temple": "ashtavinayak-ozar",
+  "name": "Vighneshwar, Ozar",
+  "searched": "2026-11-06",
+  "candidates": 5,
+  "usable": 1,
+  "saved": 1,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 3,
+    "another place with a similar name": 1
+  },
+  "openverse": {
+    "query": "Vighneshwar",
+    "results": 2,
+    "result_count": 2,
+    "usable": 0,
+    "rejected": {
+      "title does not name a temple building": 2
+    },
+    "saved": 0
+  },
+  "files": [
+    "commons-ozhar-shri-vighnahar-b78d53.jpg (CC BY 2.0, Borayin Maitreya Larios)"
+  ]
+}

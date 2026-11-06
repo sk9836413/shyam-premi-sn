@@ -1,0 +1,27 @@
+{
+  "source": "Openverse/WordPress Photo Directory",
+  "kind": "photo",
+  "author": "Selja Bhalala",
+  "licence": "CC0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution": "Photo: Selja Bhalala, CC0, via WordPress Photo Directory",
+  "url": "https://wordpress.org/photos/photo/9206869259/",
+  "title": "Bhimashankar Temple, one of five Jyotirlingas of Maharashtra, dedicated to Mahadev. Conical shaped, covered in carvings, under a blue sky.",
+  "openverse_id": "79ada50b-4879-4ce7-876d-7f7e76d70284",
+  "creator_url": "https://wordpress.org/photos/author/seljabhalala/",
+  "tags": [
+    "Bhimashankar",
+    "Jyotirlingas",
+    "Mahadev",
+    "Maharashtra",
+    "india",
+    "shiva",
+    "temple"
+  ],
+  "original_size": [
+    1674,
+    2048
+  ],
+  "changes": "resized and recompressed; may be cropped and slowly zoomed in the video",
+  "fetched": "2026-11-06"
+}

@@ -1,0 +1,15 @@
+{
+  "temple": "kalpeshwar",
+  "name": "Kalpeshwar, Uttarakhand",
+  "searched": "2026-11-06",
+  "candidates": 3,
+  "usable": 1,
+  "saved": 1,
+  "rejected": {
+    "under 1000 px": 1,
+    "skipped by hand (temples.json)": 1
+  },
+  "files": [
+    "commons-kalpeshwar-mahadev-kalpnath-temple-panch-577094.jpg (CC0, Ms Sarah Welch)"
+  ]
+}

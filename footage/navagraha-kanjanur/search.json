@@ -1,0 +1,20 @@
+{
+  "temple": "navagraha-kanjanur",
+  "name": "Kanjanur Agneeswarar (Shukra)",
+  "searched": "2026-11-06",
+  "candidates": 4,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "under 1000 px": 4
+  },
+  "openverse": {
+    "query": "Kanjanur Agneeswarar",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": []
+}

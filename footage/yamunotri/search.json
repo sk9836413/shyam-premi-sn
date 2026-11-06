@@ -1,0 +1,25 @@
+{
+  "temple": "yamunotri",
+  "name": "Yamunotri Dham, Uttarakhand",
+  "searched": "2026-11-06",
+  "candidates": 49,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "not clearly the temple": 23,
+    "another place with a similar name": 22,
+    "licence not allowed (SA/NC/ND/GFDL...)": 4
+  },
+  "openverse": {
+    "query": "Yamunotri",
+    "results": 9,
+    "result_count": 9,
+    "usable": 0,
+    "rejected": {
+      "title does not name a temple building": 8,
+      "title does not name the temple": 1
+    },
+    "saved": 0
+  },
+  "files": []
+}

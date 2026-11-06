@@ -1,0 +1,27 @@
+{
+  "temple": "shani-shingnapur",
+  "name": "Shani Shingnapur, Ahilyanagar",
+  "searched": "2026-11-06",
+  "candidates": 34,
+  "usable": 6,
+  "saved": 2,
+  "rejected": {
+    "under 1000 px": 4,
+    "licence not allowed (SA/NC/ND/GFDL...)": 11,
+    "place not confirmed (title/categories/description)": 2,
+    "not a JPEG photo": 2,
+    "another place with a similar name": 9
+  },
+  "openverse": {
+    "query": "Shani Shingnapur",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": [
+    "commons-shani-temple-at-shani-shignapur-maharash-e2ae61.jpg (CC0, K.Venkataramana)",
+    "commons-interior-view-of-shani-temple-shani-shin-7cec7b.jpg (CC0, K.Venkataramana)"
+  ]
+}

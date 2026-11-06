@@ -1,0 +1,29 @@
+{
+  "temple": "barsana",
+  "name": "Shri Radha Rani (Shriji) Mandir, Barsana",
+  "searched": "2026-11-06",
+  "candidates": 19,
+  "usable": 2,
+  "saved": 2,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 8,
+    "another place with a similar name": 5,
+    "under 1000 px": 3,
+    "title does not name the temple (mixed category)": 1
+  },
+  "openverse": {
+    "query": "Radha Rani",
+    "results": 7,
+    "result_count": 7,
+    "usable": 0,
+    "rejected": {
+      "under 1000 px": 1,
+      "title does not name the temple": 6
+    },
+    "saved": 0
+  },
+  "files": [
+    "commons-evening-at-radha-rani-temple-barsane-up-ae480d.jpg (CC BY 2.0, Abhijit Kar Gupta from Kolkata, India)",
+    "commons-shri-radha-rani-temple-barsana-panoramio-c5bff9.jpg (CC BY 3.0, Gyanendrasinghchauha…)"
+  ]
+}

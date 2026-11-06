@@ -1,0 +1,24 @@
+{
+  "temple": "jwala-ji",
+  "name": "Jwala Ji, Kangra",
+  "searched": "2026-11-06",
+  "candidates": 7,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "under 1000 px": 1,
+    "licence not allowed (SA/NC/ND/GFDL...)": 6
+  },
+  "openverse": {
+    "query": "Jwala",
+    "results": 9,
+    "result_count": 9,
+    "usable": 0,
+    "rejected": {
+      "title does not name the temple": 8,
+      "under 1000 px": 1
+    },
+    "saved": 0
+  },
+  "files": []
+}

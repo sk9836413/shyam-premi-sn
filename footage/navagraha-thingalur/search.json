@@ -1,0 +1,21 @@
+{
+  "temple": "navagraha-thingalur",
+  "name": "Thingalur Kailasanathar (Chandra)",
+  "searched": "2026-11-06",
+  "candidates": 19,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 12,
+    "another place with a similar name": 7
+  },
+  "openverse": {
+    "query": "Thingalur Kailasanathar",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": []
+}

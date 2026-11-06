@@ -1,0 +1,19 @@
+{
+  "temple": "grishneshwar",
+  "name": "Grishneshwar Jyotirlinga, Ellora",
+  "searched": "2026-11-06",
+  "candidates": 60,
+  "usable": 37,
+  "saved": 3,
+  "rejected": {
+    "under 1000 px": 5,
+    "licence not allowed (SA/NC/ND/GFDL...)": 13,
+    "another place with a similar name": 2,
+    "skipped by hand (temples.json)": 3
+  },
+  "files": [
+    "commons-grishneshwar-temple-sive-view-in-auranga-73438a.jpg (CC0, K.Venkataramana)",
+    "commons-grishneshwar-ellora-panoramio-12-2165ab.jpg (CC BY 3.0, Udaykumar PR)",
+    "commons-grishneshwar-ellora-panoramio-20-71ca8d.jpg (CC BY 3.0, Udaykumar PR)"
+  ]
+}

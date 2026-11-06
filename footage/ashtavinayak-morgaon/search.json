@@ -1,0 +1,24 @@
+{
+  "temple": "ashtavinayak-morgaon",
+  "name": "Mayureshwar (Moreshwar), Morgaon",
+  "searched": "2026-11-06",
+  "candidates": 12,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 5,
+    "under 1000 px": 6,
+    "not a JPEG photo": 1
+  },
+  "openverse": {
+    "query": "Mayureshwar",
+    "results": 2,
+    "result_count": 2,
+    "usable": 0,
+    "rejected": {
+      "title does not name the temple": 2
+    },
+    "saved": 0
+  },
+  "files": []
+}

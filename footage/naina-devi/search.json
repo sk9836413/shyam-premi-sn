@@ -1,0 +1,27 @@
+{
+  "temple": "naina-devi",
+  "name": "Naina Devi, Bilaspur (Himachal)",
+  "searched": "2026-11-06",
+  "candidates": 42,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "under 1000 px": 2,
+    "licence not allowed (SA/NC/ND/GFDL...)": 36,
+    "another place with a similar name": 3,
+    "title does not name the temple (mixed category)": 1
+  },
+  "openverse": {
+    "query": "Naina Devi",
+    "results": 6,
+    "result_count": 6,
+    "usable": 0,
+    "rejected": {
+      "under 1000 px": 2,
+      "title does not name a temple building": 1,
+      "title does not name the temple": 3
+    },
+    "saved": 0
+  },
+  "files": []
+}

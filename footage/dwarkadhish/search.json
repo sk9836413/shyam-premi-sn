@@ -1,0 +1,25 @@
+{
+  "temple": "dwarkadhish",
+  "name": "Dwarkadhish Mandir, Dwarka",
+  "searched": "2026-11-06",
+  "candidates": 156,
+  "usable": 20,
+  "saved": 5,
+  "rejected": {
+    "under 1000 px": 5,
+    "licence not allowed (SA/NC/ND/GFDL...)": 116,
+    "another place with a similar name": 5,
+    "skipped by hand (temples.json)": 1,
+    "title does not name the temple (mixed category)": 4,
+    "no named author": 2,
+    "unknown licence: No restrictions": 1,
+    "people, event or object, not the temple": 2
+  },
+  "files": [
+    "commons-dwarakadheesh-temple-in-dwarka-gujarat-i-8a8cb0.jpg (CC BY 2.0, Emmanuel DYAN from Paris, France)",
+    "commons-dwarakadheesh-temple-in-dwarka-gujarat-i-e8b6ee.jpg (CC BY 2.0, Emmanuel DYAN from Paris, France)",
+    "commons-dwarkadhish-temple-gujarat-2d92f0.jpg (CC0, YAKSH75 , Vaibhav Santosh Naik)",
+    "commons-dwarkadeeshtemple-552c89.jpg (CC BY 3.0, Poonam.agarwal,s)",
+    "commons-city-towered-by-a-temple-dwarka-from-2-k-909437.jpg (CC BY 2.0, Poonam Agarwal)"
+  ]
+}

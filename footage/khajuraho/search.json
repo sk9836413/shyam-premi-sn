@@ -1,0 +1,26 @@
+{
+  "temple": "khajuraho",
+  "name": "Khajuraho (Kandariya Mahadev), Madhya Pradesh",
+  "searched": "2026-11-06",
+  "candidates": 676,
+  "usable": 40,
+  "saved": 6,
+  "rejected": {
+    "not a photo": 2,
+    "title does not name the temple (mixed category)": 171,
+    "another place with a similar name": 221,
+    "licence not allowed (SA/NC/ND/GFDL...)": 186,
+    "no named author": 1,
+    "under 1000 px": 45,
+    "unknown licence: CC BY 3.0 pl": 9,
+    "not a JPEG photo": 1
+  },
+  "files": [
+    "commons-kandariya-mahadeva-temple-in-khajuharo-f23941.jpg (CC0, Dudva)",
+    "commons-lakshmana-temple-in-khajuraho-10-2025-a7140e.jpg (CC0, Dudva)",
+    "commons-a-view-of-multiple-khajuraho-temples-ind-e0e9ea.jpg (CC BY 2.0, Stefan Krasowski from New York, NY, USA)",
+    "commons-khajuraho-temples-6b2afe.jpg (CC BY 4.0, Rituraj4)",
+    "commons-temple-khajuraodkd-95fab2.jpg (Public Domain, G. Simpson)",
+    "commons-a-temple-from-western-group-of-khajuraho-0c0696.jpg (CC BY 2.0, Felix Dance)"
+  ]
+}

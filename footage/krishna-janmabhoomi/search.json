@@ -1,0 +1,24 @@
+{
+  "temple": "krishna-janmabhoomi",
+  "name": "Shri Krishna Janmabhoomi, Mathura",
+  "searched": "2026-11-06",
+  "candidates": 7,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 4,
+    "under 1000 px": 1,
+    "another place with a similar name": 2
+  },
+  "openverse": {
+    "query": "Krishna Janmabhoomi",
+    "results": 1,
+    "result_count": 1,
+    "usable": 0,
+    "rejected": {
+      "title does not name a temple building": 1
+    },
+    "saved": 0
+  },
+  "files": []
+}

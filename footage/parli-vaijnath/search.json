@@ -1,0 +1,23 @@
+{
+  "temple": "parli-vaijnath",
+  "name": "Parli Vaijnath, Beed",
+  "searched": "2026-11-06",
+  "candidates": 3,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "under 1000 px": 2,
+    "licence not allowed (SA/NC/ND/GFDL...)": 1
+  },
+  "openverse": {
+    "query": "Parli Vaijnath",
+    "results": 1,
+    "result_count": 1,
+    "usable": 0,
+    "rejected": {
+      "title does not name the temple": 1
+    },
+    "saved": 0
+  },
+  "files": []
+}

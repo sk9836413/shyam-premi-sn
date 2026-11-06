@@ -1,0 +1,30 @@
+{
+  "temple": "baidyanath-dham",
+  "name": "Baidyanath Jyotirlinga, Deoghar",
+  "searched": "2026-11-06",
+  "candidates": 38,
+  "usable": 22,
+  "saved": 2,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 5,
+    "not a photo": 1,
+    "under 1000 px": 2,
+    "unknown licence: GODL-India": 5,
+    "another place with a similar name": 1,
+    "people, event or object, not the temple": 2
+  },
+  "openverse": {
+    "query": "Baidyanath",
+    "results": 20,
+    "result_count": 240,
+    "usable": 0,
+    "rejected": {
+      "title does not name a temple building": 20
+    },
+    "saved": 0
+  },
+  "files": [
+    "commons-baidyanath-temple-and-temple-complex-deo-4183de.jpg (CC BY 4.0, Pinakpani)",
+    "commons-baidyanath-temple-and-temple-complex-deo-9e687a.jpg (CC BY 4.0, Pinakpani)"
+  ]
+}

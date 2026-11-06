@@ -1,0 +1,20 @@
+{
+  "temple": "kalighat",
+  "name": "Kalighat Kali Mandir, Kolkata",
+  "searched": "2026-11-06",
+  "candidates": 41,
+  "usable": 10,
+  "saved": 5,
+  "rejected": {
+    "under 1000 px": 8,
+    "licence not allowed (SA/NC/ND/GFDL...)": 21,
+    "another place with a similar name": 2
+  },
+  "files": [
+    "commons-kalighat-temple-kolkata-3130f1.jpg (CC0, Wikivarsha)",
+    "commons-kalighat-temple-kolkata-38325616481-85042e.jpg (CC BY 2.0, Ankur P from Pune, India)",
+    "commons-kalighat-temple-kolkata-38325615391-881ae4.jpg (CC BY 2.0, Ankur P from Pune, India)",
+    "commons-kalighat-kali-temple-7169298723-aa8e69.jpg (CC BY 2.0, shankar s. from Dubai, united arab emirates)",
+    "commons-kalighat-temple-kolkata-india-panoramio-d25251.jpg (CC BY 3.0, Hiroki Ogawa)"
+  ]
+}

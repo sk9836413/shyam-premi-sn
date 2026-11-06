@@ -1,0 +1,24 @@
+{
+  "temple": "navagraha-thirunallar",
+  "name": "Thirunallar Saneeswaran (Shani)",
+  "searched": "2026-11-06",
+  "candidates": 8,
+  "usable": 1,
+  "saved": 1,
+  "rejected": {
+    "not clearly the temple": 2,
+    "licence not allowed (SA/NC/ND/GFDL...)": 3,
+    "under 1000 px": 2
+  },
+  "openverse": {
+    "query": "Thirunallar Saneeswaran",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": [
+    "commons-sun-on-saturn-temple-karikal-tn-panorami-014283.jpg (CC BY 3.0, rajaraman sundaram)"
+  ]
+}

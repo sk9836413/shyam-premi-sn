@@ -1,0 +1,22 @@
+{
+  "temple": "bade-hanuman-prayagraj",
+  "name": "Bade (Lete) Hanuman, Prayagraj",
+  "searched": "2026-11-06",
+  "candidates": 2,
+  "usable": 1,
+  "saved": 1,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 1
+  },
+  "openverse": {
+    "query": "Bade Hanuman",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": [
+    "commons-lete-hanuman-ji-mandir-ccdcf1.jpg (CC0, Dsrprj)"
+  ]
+}

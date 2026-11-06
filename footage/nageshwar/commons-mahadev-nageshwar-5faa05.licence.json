@@ -1,0 +1,19 @@
+{
+  "source": "Wikimedia Commons",
+  "kind": "photo",
+  "author": "R.Natraj",
+  "licence": "CC BY 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by/3.0",
+  "attribution": "Photo: R.Natraj, CC BY 3.0, via Wikimedia Commons",
+  "url": "https://commons.wikimedia.org/wiki/File:Mahadev-Nageshwar.jpg",
+  "title": "File:Mahadev-Nageshwar.jpg",
+  "original_size": [
+    1728,
+    2592
+  ],
+  "changes": "resized and recompressed; may be cropped and slowly zoomed in the video",
+  "matched_categories": [
+    "Nageshvara Jyotirlinga"
+  ],
+  "fetched": "2026-11-06"
+}

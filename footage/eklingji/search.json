@@ -1,13 +1,21 @@
 {
   "temple": "eklingji",
   "name": "Eklingji, Udaipur",
-  "searched": "2026-11-05",
+  "searched": "2026-11-06",
   "candidates": 21,
   "usable": 0,
   "saved": 0,
   "rejected": {
     "licence not allowed (SA/NC/ND/GFDL...)": 17,
     "under 1000 px": 4
+  },
+  "openverse": {
+    "query": "Eklingji",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
   },
   "files": []
 }

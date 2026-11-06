@@ -1,0 +1,25 @@
+{
+  "temple": "sankat-mochan-varanasi",
+  "name": "Sankat Mochan Hanuman, Varanasi",
+  "searched": "2026-11-06",
+  "candidates": 6,
+  "usable": 1,
+  "saved": 1,
+  "rejected": {
+    "under 1000 px": 2,
+    "licence not allowed (SA/NC/ND/GFDL...)": 3
+  },
+  "openverse": {
+    "query": "Sankat Mochan Hanuman",
+    "results": 8,
+    "result_count": 8,
+    "usable": 0,
+    "rejected": {
+      "under 1000 px": 8
+    },
+    "saved": 0
+  },
+  "files": [
+    "commons-sankat-mochan-temple-in-varanasi-8527226-6afed2.jpg (CC BY 2.0, Matt Zimmerman)"
+  ]
+}

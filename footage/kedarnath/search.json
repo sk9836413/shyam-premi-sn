@@ -1,7 +1,7 @@
 {
   "temple": "kedarnath",
   "name": "Kedarnath, Uttarakhand",
-  "searched": "2026-11-05",
+  "searched": "2026-11-06",
   "candidates": 108,
   "usable": 2,
   "saved": 2,
@@ -10,8 +10,22 @@
     "under 1000 px": 30,
     "skipped by hand (temples.json)": 1,
     "not a JPEG photo": 3,
-    "unknown licence: GODL-India": 9,
-    "not a photo": 3
+    "people, event or object, not the temple": 8,
+    "not a photo": 3,
+    "unknown licence: GODL-India": 1
+  },
+  "openverse": {
+    "query": "Kedarnath",
+    "results": 20,
+    "result_count": 46,
+    "usable": 0,
+    "rejected": {
+      "under 1000 px": 3,
+      "title does not name a temple building": 11,
+      "view, trek, nature or hashtag post, not the temple": 1,
+      "title does not name the temple": 5
+    },
+    "saved": 0
   },
   "files": [
     "commons-kedarnath-temple-e62eb3.jpg (Public Domain, Shaq774 at en.wikipedia)",

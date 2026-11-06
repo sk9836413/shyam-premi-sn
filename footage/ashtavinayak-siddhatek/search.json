@@ -1,0 +1,27 @@
+{
+  "temple": "ashtavinayak-siddhatek",
+  "name": "Siddhivinayak, Siddhatek",
+  "searched": "2026-11-06",
+  "candidates": 2,
+  "usable": 1,
+  "saved": 1,
+  "rejected": {
+    "under 1000 px": 1
+  },
+  "openverse": {
+    "query": "Siddhivinayak",
+    "results": 17,
+    "result_count": 17,
+    "usable": 0,
+    "rejected": {
+      "another place with a similar name": 5,
+      "under 1000 px": 6,
+      "title does not name a temple building": 1,
+      "title does not name the temple": 5
+    },
+    "saved": 0
+  },
+  "files": [
+    "commons-siddhi-vinayak-at-siddhatek-2312ee.jpg (CC BY 2.0, Borayin Maitreya Larios)"
+  ]
+}

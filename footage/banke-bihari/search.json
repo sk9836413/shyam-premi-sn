@@ -1,0 +1,25 @@
+{
+  "temple": "banke-bihari",
+  "name": "Banke Bihari, Vrindavan",
+  "searched": "2026-11-06",
+  "candidates": 412,
+  "usable": 1,
+  "saved": 1,
+  "rejected": {
+    "licence not allowed (SA/NC/ND/GFDL...)": 410,
+    "under 1000 px": 1
+  },
+  "openverse": {
+    "query": "Banke Bihari",
+    "results": 2,
+    "result_count": 2,
+    "usable": 0,
+    "rejected": {
+      "title does not name a temple building": 2
+    },
+    "saved": 0
+  },
+  "files": [
+    "commons-holi-at-banke-bihari-temple-d398cb.jpg (CC BY 2.0, J.S. Jaimohan from Delhi, India)"
+  ]
+}

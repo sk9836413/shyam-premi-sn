@@ -1,0 +1,28 @@
+{
+  "temple": "iskcon-vrindavan",
+  "name": "ISKCON Krishna Balaram Mandir, Vrindavan",
+  "searched": "2026-11-06",
+  "candidates": 126,
+  "usable": 3,
+  "saved": 3,
+  "rejected": {
+    "another place with a similar name": 3,
+    "licence not allowed (SA/NC/ND/GFDL...)": 104,
+    "under 1000 px": 12,
+    "people, event or object, not the temple": 2,
+    "no named author": 2
+  },
+  "openverse": {
+    "query": "ISKCON Krishna Balaram",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": [
+    "commons-krishna-balaram-mandir-iskcon-bhaktiveda-0c995e.jpg (CC BY 3.0, Biswarup Ganguly)",
+    "commons-krishna-balaram-mandir-iskcon-bhaktiveda-b06178.jpg (CC BY 3.0, Biswarup Ganguly)",
+    "commons-radha-syamasundar-at-krishna-balaram-man-18a0fd.jpg (CC BY 2.0, Barry Silver from Tokyo)"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "source": "Wikimedia Commons",
+  "kind": "photo",
+  "author": "Thenerdatul",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0",
+  "attribution": "Photo: Thenerdatul, CC BY 4.0, via Wikimedia Commons",
+  "url": "https://commons.wikimedia.org/wiki/File:Sun_Temple_odisha.jpg",
+  "title": "File:Sun Temple odisha.jpg",
+  "original_size": [
+    3072,
+    4096
+  ],
+  "changes": "resized and recompressed; may be cropped and slowly zoomed in the video",
+  "matched_categories": [
+    "Konark Sun Temple"
+  ],
+  "fetched": "2026-11-06"
+}

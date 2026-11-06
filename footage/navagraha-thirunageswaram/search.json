@@ -1,0 +1,25 @@
+{
+  "temple": "navagraha-thirunageswaram",
+  "name": "Thirunageswaram Naganathaswamy (Rahu)",
+  "searched": "2026-11-06",
+  "candidates": 34,
+  "usable": 2,
+  "saved": 2,
+  "rejected": {
+    "not this temple (title/categories)": 1,
+    "licence not allowed (SA/NC/ND/GFDL...)": 30,
+    "search hit without the temple in its title": 1
+  },
+  "openverse": {
+    "query": "Thirunageswaram Naganathaswamy",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": [
+    "commons-thirunageswaram-tamil-nadu-612204-india-0b0eb4.jpg (CC BY 3.0, Shankaran Murugan)",
+    "commons-thirunageswaram-tamil-nadu-612204-india-2c1f6c.jpg (CC BY 3.0, Shankaran Murugan)"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "temple": "ashtavinayak-lenyadri",
+  "name": "Girijatmaj, Lenyadri",
+  "searched": "2026-11-06",
+  "candidates": 38,
+  "usable": 3,
+  "saved": 2,
+  "rejected": {
+    "title does not name the temple (mixed category)": 22,
+    "licence not allowed (SA/NC/ND/GFDL...)": 2,
+    "another place with a similar name": 10,
+    "under 1000 px": 1
+  },
+  "openverse": {
+    "query": "Girijatmaj",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": [
+    "commons-lenyadri-caves-ganapati-mandir-03-0daf4f.jpg (CC0, Srph2116)",
+    "commons-lenyadri-caves-ganapati-mandir-02-47bbf6.jpg (CC0, Srph2116)"
+  ]
+}
