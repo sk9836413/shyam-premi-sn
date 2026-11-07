@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-08",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-08T02:00:00.000Z",
+      "igAt": "2026-11-08T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-08-1-1.jpg"
+      ],
+      "caption": "Aap sabhi ko Diwali aur Lakshmi Puja ki hardik shubhkamnayein.\nआज हर घर में दीप जलें और मन में उजाला रहे।\nShyam Premi SN parivar ki taraf se aapko aur aapke parivar ko pyaar aur ashirwad.\nJai Shree Shyam 🙏\nAapke ghar mein aaj Lakshmi Puja kaise hoti hai?\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#JaiShreeShyam #Diwali #HappyDiwali #LakshmiPuja #Deepawali #Diwali2026",
+      "fb": {
+        "id": "1598021639007467",
+        "scheduled": "2026-11-08T02:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-08T03:43:00.000Z"
+      }
+    },
+    {
+      "n": 2,
+      "kind": "vichar",
+      "temple": null,
+      "quote": 7,
+      "ai": false,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-08T05:30:00.000Z",
+      "igAt": "2026-11-08T05:13:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-08-2-1.jpg"
+      ],
+      "caption": "आज का विचार 🙏\nयदा यदा हि धर्मस्य ग्लानिर्भवति भारत।\nअभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥\n— श्रीमद्भगवद्गीता 4.7\nMatlab: Jab-jab dharm kamzor hota hai, tab-tab Bhagwan dharm ki raksha ke liye aate hain.\nGeeta ka kaun sa shlok aapko mushkil samay mein himmat deta hai?\n\n#JaiShreeShyam #BhagavadGita #GeetaGyan #AajKaVichar #Sanatan #KrishnaVani",
+      "fb": {
+        "id": "1598021725674125",
+        "scheduled": "2026-11-08T05:30:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-08T05:13:00.000Z"
+      }
+    },
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "akshardham-delhi",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/akshardham-delhi/commons-akshardham-temple-delhi-ef5f64.jpg",
+        "footage/akshardham-delhi/commons-akshardam-temple-july-2009-42cf24.jpg",
+        "footage/akshardham-delhi/commons-akshardham-delhi-f637b5.jpg",
+        "footage/akshardham-delhi/commons-akshardham-temple-gardens-delhi-panorami-7de029.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-08T12:00:00.000Z",
+      "igAt": "2026-11-08T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-08-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-08-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-08-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-08-3-4.jpg"
+      ],
+      "caption": "Swaminarayan Akshardham, Delhi ke baare mein 3 baatein.\nIska aadhar Gajendra Peeth hai, jismein patthar ke 148 haathi taraashe gaye hain.\nMandir bina steel aur concrete ke bana hai, aur 6 November 2005 ko khula tha.\nअक्षरधाम की नक्काशी देखकर मन शांत हो जाता है।\nAap Akshardham kab gaye the, aur aapko sabse zyada kya pasand aaya?\n\n📷 Photo: Daniel Echeverri from Medellin, Colombia, CC BY 2.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Akshardham_temple,_Delhi.jpg\n📷 Photo: Rameshng, Public Domain, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Akshardam_temple_July_2009.jpg\n📷 Photo: World8115, CC BY 3.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Akshardham,Delhi.JPG\n📷 Photo: rajaraman sundaram, CC BY 3.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Akshardham_temple_gardens,delhi_-_panoramio.jpg\n\n#Akshardham #SwaminarayanAkshardham #DelhiTemples #BAPS #MandirDarshan #JaiShreeShyam",
+      "fb": {
+        "id": "388779648425633_1598021912340773",
+        "scheduled": "2026-11-08T12:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-08T13:16:00.000Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "ai": true,
+      "bank": "brand/photo-bank/khatu/kaggle-cast-2.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-08T14:00:00.000Z",
+      "igAt": "2026-11-08T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-08-4-1.jpg"
+      ],
+      "caption": "शुभ संध्या, Shyam premiyon 🪔\nSandhya aarti ke samay Khatu Shyam ji ke darshan ka bhaav mann mein rakhiye.\nJai Shree Shyam 🙏\nShyam Baba ke Sheesh ke darshan se mann ko shanti milti hai.\nAaj shaam aapke ghar mein kaunsi aarti hui?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#JaiShreeShyam #KhatuShyam #KhatuShyamJi #SandhyaAarti #BabaShyam #Sikar",
+      "fb": {
+        "id": "1598021959007435",
+        "scheduled": "2026-11-08T14:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-08T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

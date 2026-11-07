@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-08",
+  "posts": {
+    "1": {
+      "big": "शुभ दीपावली",
+      "line": "जय श्री श्याम 🙏",
+      "place": "लक्ष्मी पूजन की हार्दिक शुभकामनाएँ",
+      "text": "माँ लक्ष्मी की कृपा से आपका घर रोशन रहे",
+      "caption": "Aap sabhi ko Diwali aur Lakshmi Puja ki hardik shubhkamnayein.\nआज हर घर में दीप जलें और मन में उजाला रहे।\nShyam Premi SN parivar ki taraf se aapko aur aapke parivar ko pyaar aur ashirwad.\nJai Shree Shyam 🙏\nAapke ghar mein aaj Lakshmi Puja kaise hoti hai?",
+      "hashtags": ["#JaiShreeShyam", "#Diwali", "#HappyDiwali", "#LakshmiPuja", "#Deepawali", "#Diwali2026"]
+    },
+    "2": {
+      "caption": "आज का विचार 🙏\nयदा यदा हि धर्मस्य ग्लानिर्भवति भारत।\nअभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम्॥\n— श्रीमद्भगवद्गीता 4.7\nMatlab: Jab-jab dharm kamzor hota hai, tab-tab Bhagwan dharm ki raksha ke liye aate hain.\nGeeta ka kaun sa shlok aapko mushkil samay mein himmat deta hai?",
+      "hashtags": ["#JaiShreeShyam", "#BhagavadGita", "#GeetaGyan", "#AajKaVichar", "#Sanatan", "#KrishnaVani"]
+    },
+    "3": {
+      "title": "अक्षरधाम, दिल्ली",
+      "line": "3 बातें जो शायद आप नहीं जानते",
+      "facts": [
+        {
+          "dev": "मंदिर के आधार पर गजेन्द्र पीठ में पत्थर के 148 हाथी तराशे गए हैं।",
+          "roman": "Mandir ke aadhar par Gajendra Peeth mein patthar ke 148 haathi taraashe gaye hain."
+        },
+        {
+          "dev": "इसे शिल्प शास्त्र के अनुसार बिना स्टील और कंक्रीट के बनाया गया है।",
+          "roman": "Ise Shilp Shastra ke anusar bina steel aur concrete ke banaya gaya hai."
+        },
+        {
+          "dev": "इस मंदिर का उद्घाटन 6 नवंबर 2005 को हुआ था।",
+          "roman": "Is mandir ka udghatan 6 November 2005 ko hua tha."
+        }
+      ],
+      "sources": [
+        "https://www.vedadhara.com/akshardham-temple-delhi",
+        "https://artsandculture.google.com/story/cQXRe4g07uplJQ",
+        "https://www.holidify.com/places/old-delhi/akshardham-temple-delhi-sightseeing-1732.html"
+      ],
+      "caption": "Swaminarayan Akshardham, Delhi ke baare mein 3 baatein.\nIska aadhar Gajendra Peeth hai, jismein patthar ke 148 haathi taraashe gaye hain.\nMandir bina steel aur concrete ke bana hai, aur 6 November 2005 ko khula tha.\nअक्षरधाम की नक्काशी देखकर मन शांत हो जाता है।\nAap Akshardham kab gaye the, aur aapko sabse zyada kya pasand aaya?",
+      "hashtags": ["#Akshardham", "#SwaminarayanAkshardham", "#DelhiTemples", "#BAPS", "#MandirDarshan", "#JaiShreeShyam"]
+    },
+    "4": {
+      "big": "शुभ संध्या",
+      "line": "संध्या आरती 🪔 जय श्री श्याम",
+      "question": "आज शाम आपके घर में कौन सी आरती हुई?",
+      "caption": "शुभ संध्या, Shyam premiyon 🪔\nSandhya aarti ke samay Khatu Shyam ji ke darshan ka bhaav mann mein rakhiye.\nJai Shree Shyam 🙏\nShyam Baba ke Sheesh ke darshan se mann ko shanti milti hai.\nAaj shaam aapke ghar mein kaunsi aarti hui?",
+      "hashtags": ["#JaiShreeShyam", "#KhatuShyam", "#KhatuShyamJi", "#SandhyaAarti", "#BabaShyam", "#Sikar"]
+    }
+  }
+}
