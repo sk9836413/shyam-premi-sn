@@ -37,3 +37,4 @@
 2026-11-07 | noon | 2026-11-07-noon-diwali-ram-ayodhya-deep | Shri Ram / Maa Lakshmi / Ganesh ji (Diwali) | Diwali par diye kyun: Shri Ram ka 14 varsh baad Ayodhya lautna aur deepotsav ki manyata, Lakshmi-Ganesh puja ki alag parampara; agla: Govardhan Puja
 2026-11-07 | long | 2026-11-07-long-govardhan-puja-katha | Shri Krishna (Govardhan Puja) | Govardhan Puja ki katha: Indra yajna par Krishna ka prashn, Govardhan pooja aur annakut, Indra ka krodh, saat din Govardhan dharan aur Indra ki kshama
 2026-11-07 | evening | 2026-11-07-evening-choti-diwali-krishna-darshan | Shri Krishna / Satyabhama (Choti Diwali) | Choti Diwali Shri Krishna darshan, Narakasur par vijay ki manyata, deepak se andhkaar par prakash ki jeet, Om Namo Bhagavate Vasudevaya
+2026-11-08 | status | 2026-11-08-status-diwali | Diwali | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
