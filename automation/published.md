@@ -34,3 +34,5 @@
 - 2026-11-07-status-choti-diwali | instagram: https://www.instagram.com/reel/DfbPnXXzMA3/
 - 2026-11-07-morning-choti-diwali-yam-deepak | youtube: https://youtube.com/shorts/mEih2iskzV4 | social: fb: https://www.facebook.com/reel/1644267940759216 | ig: error upload failed: Request processing failed | animated 4/6
 - 2026-11-07-noon-diwali-ram-ayodhya-deep | youtube: https://youtube.com/shorts/YA9NXenVN1E | social: fb: https://www.facebook.com/388779648425633/videos/28311095528563236 | ig: error upload failed: Request processing failed | dialogue lipsync, lip-synced 16/16, 105 s
+- 2026-11-07-long-govardhan-puja-katha | facebook: error POST /videos: Request Entity Too Large (code 413)
+- 2026-11-07-long-govardhan-puja-katha | youtube: https://youtu.be/4CRYLp1ULhk (public at 12:30 IST) | long 7:38, 53 scenes, render 10 min, 0 neurons

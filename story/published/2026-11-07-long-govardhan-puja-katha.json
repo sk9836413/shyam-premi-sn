@@ -1,0 +1,128 @@
+{
+  "slug": "2026-11-07-long-govardhan-puja-katha",
+  "format": "long",
+  "title": "Govardhan Puja ki Katha",
+  "kicker": "Govardhan Puja Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Govardhan Puja: Shri Krishna ki leela",
+  "source": "Shrimad Bhagavat Mahapuran (dasham skandh) ke anusar",
+  "deity": "Shri Krishna (Govardhan Puja)",
+  "summary": "Govardhan Puja ki katha: Indra yajna par Krishna ka prashn, Govardhan pooja aur annakut, Indra ka krodh, saat din Govardhan dharan aur Indra ki kshama",
+  "thumbnail": { "image": 0, "focus": "center", "text": "Govardhan ki sampoorn katha", "hi": "गोवर्धन पूजा की कथा" },
+  "images": [
+    { "prompt": "Close-up portrait of blue-skinned young Lord Krishna with a gentle smile, peacock feather in his golden crown, flower garland, glowing warm golden light behind him, Govardhan hill softly visible in the background, face in the middle of the frame, wide cinematic scene" },
+    { "prompt": "Wide scene of the peaceful village of Vrindavan with thatched huts, green fields, many cows and cowherds, and the Govardhan hill rising in the middle under a golden morning sky" },
+    { "prompt": "Wide scene of old Nanda Baba and cowherd elders in a village courtyard preparing a big yajna with ghee pots, grains, fruits and a sacred fire for Lord Indra, busy and joyful atmosphere, young blue-skinned Krishna standing nearby" },
+    { "prompt": "Young blue-skinned boy Krishna with peacock feather speaking calmly to Nanda Baba and the cowherd elders under a big tree, elders listening with curious faces, village in the background" },
+    { "prompt": "Wide scene of cows and calves grazing peacefully on green meadows at the foot of the Govardhan hill, trees and forest streams, cowherd boys with flutes, soft golden light" },
+    { "prompt": "Wide scene of villagers of Vrindavan with decorated cows performing worship at the foot of Govardhan hill, huge heaps of food offerings of rice, sweets and fruits arranged like small mountains, flowers and garlands, joyful faces" },
+    { "prompt": "Blue-skinned Lord Krishna glowing with a soft divine golden aura standing beside the Govardhan hill while the villagers bow with folded hands and offer food, peaceful and reverent mood" },
+    { "prompt": "Lord Indra with a golden crown and thunderbolt in his hand sitting on his white elephant Airavat high among dark storm clouds, angry expression, dramatic sky, no violence" },
+    { "prompt": "Wide scene of heavy dark storm clouds and pouring rain over Vrindavan, frightened villagers and cows rushing together toward young Krishna, rivers of water on the ground" },
+    { "prompt": "Wide scene of young blue-skinned Krishna lifting the whole Govardhan hill on the little finger of his left hand like a giant umbrella, calm smile, villagers, cows and cowherds sheltering safely beneath the hill, rain clouds above" },
+    { "prompt": "Wide scene under the lifted Govardhan hill: villagers, mothers, children and cows resting safely and calmly in dry shelter, young Krishna smiling and holding the hill above with one finger, cowherd boys helping with their sticks" },
+    { "prompt": "Lord Indra with folded hands bowing humbly before young blue-skinned Krishna, the divine cow Surabhi beside them, the sky clearing with a golden sunrise, soft peaceful mood" },
+    { "prompt": "Evening celebration in Vrindavan: villagers, decorated cows, rows of glowing diyas, annakut offerings and flowers near Govardhan hill, young Krishna smiling among them, warm festive light" },
+    { "prompt": "Young blue-skinned Krishna with a peacock feather sitting among cowherd boys and cows on a green meadow, talking thoughtfully and gesturing toward the Govardhan hill behind them, golden afternoon light" }  ],
+  "chapters": [
+    {
+      "title": "Govardhan ka Chamatkar",
+      "scenes": [
+        { "img": 9, "focus": "center", "motion": "in", "tts": "गोवर्धन पूजा: जब सात साल के श्री कृष्ण ने पूरा पर्वत अपनी छोटी उँगली पर उठा लिया!", "sub": "Govardhan Puja: jab saat saal ke Shri Krishna ne poora parvat apni chhoti ungli par utha liya!" },
+        { "img": 0, "focus": "center", "motion": "out", "tts": "गोवर्धन पूजा की इस कथा में जानिए, इंद्र का क्रोध क्यों हुआ और अन्नकूट की शुरुआत कैसे हुई।", "sub": "Govardhan Puja ki is katha mein jaaniye, Indra ka krodh kyun hua aur annakut ki shuruaat kaise hui." },
+        { "img": 1, "focus": "center", "motion": "pan", "tts": "यह कथा श्रीमद्भागवत महापुराण के दशम स्कंध के अनुसार है। आइए, शुरू से देखते हैं।", "sub": "Ye katha Shrimad Bhagavat Mahapuran ke dasham skandh ke anusar hai. Shuru se dekhte hain." }
+      ]
+    },
+    {
+      "title": "Vrindavan aur Indra ka Yajna",
+      "scenes": [
+        { "img": 1, "focus": "top", "motion": "in", "tts": "बहुत सुंदर था वृंदावन। हरे-भरे मैदान, गायों के झुंड और बीच में खड़ा विशाल गोवर्धन पर्वत।", "sub": "Bahut sundar tha Vrindavan. Hare-bhare maidaan, gaayon ke jhund aur beech mein khada vishal Govardhan parvat." },
+        { "img": 4, "focus": "center", "motion": "panl", "tts": "ब्रजवासियों का जीवन गायों पर निर्भर था। गायें इसी पर्वत की हरी घास चरकर दूध देती थीं।", "sub": "Brajwasiyon ka jeevan gaayon par nirbhar tha. Gaayen isi parvat ki hari ghaas charkar doodh deti thin." },
+        { "img": 2, "focus": "center", "motion": "in", "tts": "एक दिन नंद बाबा और सभी गोप देवराज इंद्र की पूजा के लिए बड़ा यज्ञ करने की तैयारी में लगे थे।", "sub": "Ek din Nanda Baba aur sabhi gop Devraj Indra ki pooja ke liye bada yajna karne ki taiyari mein lage the." },
+        { "img": 2, "focus": "bottom", "motion": "pan", "tts": "घी, अनाज, फल और मिठाइयाँ इकट्ठी की जा रही थीं। हर साल यह यज्ञ वर्षा की कामना से होता था।", "sub": "Ghee, anaaj, phal aur mithaiyan ikatthi ki ja rahi thin. Har saal ye yajna varsha ki kaamna se hota tha." },
+        { "img": 3, "focus": "center", "motion": "in", "tts": "नन्हे कृष्ण यह सब देख रहे थे। उन्होंने बड़ी विनम्रता से नंद बाबा से पूछा, बाबा, यह कौन सा यज्ञ है?", "sub": "Nanhe Krishna ye sab dekh rahe the. Unhone badi vinamrata se Nanda Baba se poochha, Baba, ye kaun sa yajna hai?" },
+        { "img": 3, "focus": "top", "motion": "out", "tts": "नंद बाबा बोले, बेटा, इंद्र देव वर्षा के स्वामी हैं। उनकी कृपा से बादल बरसते हैं और अन्न उपजता है।", "sub": "Nanda Baba bole, beta, Indra Dev varsha ke swami hain. Unki kripa se baadal barsate hain aur ann upajta hai." },
+        { "img": 3, "focus": "bottom", "motion": "pan", "tts": "इसलिए हम उन्हें प्रसन्न रखने के लिए हर साल यह पूजा करते आए हैं। यही हमारी परंपरा है।", "sub": "Isliye hum unhein prasann rakhne ke liye har saal ye pooja karte aaye hain. Yahi hamari parampara hai." },
+        { "img": 4, "focus": "top", "motion": "in", "tts": "लेकिन कृष्ण के मन में कुछ और ही बात थी। आगे देखिए, उन्होंने ब्रजवासियों को कौन सी सीख दी।", "sub": "Lekin Krishna ke man mein kuchh aur hi baat thi. Aage dekhiye, unhone brajwasiyon ko kaun si seekh di.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Shri Krishna ka Sujhav",
+      "scenes": [
+        { "img": 3, "focus": "center", "motion": "panl", "tts": "श्री कृष्ण ने कहा, बाबा, हर प्राणी अपने कर्म से जीता है। कर्म ही हमारा सबसे बड़ा आधार है।", "sub": "Shri Krishna ne kaha, Baba, har prani apne karm se jeeta hai. Karm hi hamara sabse bada aadhar hai." },
+        { "img": 13, "focus": "top", "motion": "in", "tts": "भागवत के अनुसार उन्होंने कहा, हम वनवासी हैं, हमारी आजीविका गायों और पहाड़ों से चलती है।", "sub": "Bhagavat ke anusar unhone kaha, hum vanvasi hain, hamari aajeevika gaayon aur pahaadon se chalti hai." },
+        { "img": 4, "focus": "bottom", "motion": "out", "tts": "इसलिए हमें उस गोवर्धन पर्वत की पूजा करनी चाहिए, जो हमारी गायों को चारा और हमें छाया देता है।", "sub": "Isliye hamein us Govardhan parvat ki pooja karni chahiye, jo hamari gaayon ko chaara aur hamein chhaya deta hai." },
+        { "img": 1, "focus": "bottom", "motion": "panl", "tts": "गायों की सेवा करो, ब्राह्मणों का सम्मान करो और पर्वत को भोजन अर्पित करो। यही सच्ची पूजा है।", "sub": "Gaayon ki seva karo, Brahmanon ka sammaan karo aur parvat ko bhojan arpit karo. Yahi sacchi pooja hai." },
+        { "img": 2, "focus": "top", "motion": "in", "tts": "गोपों ने कृष्ण की बात ध्यान से सुनी। सबको यह बात सरल और सच्ची लगी।", "sub": "Gopon ne Krishna ki baat dhyan se suni. Sabko ye baat saral aur sachchi lagi." },
+        { "img": 13, "focus": "bottom", "motion": "pan", "tts": "नंद बाबा मुस्कुराए और बोले, बेटा, तुम्हारी बात हमारे हृदय को छू गई है। ऐसा ही करेंगे।", "sub": "Nanda Baba muskuraye aur bole, beta, tumhari baat hamare hriday ko chhoo gayi hai. Aisa hi karenge." },
+        { "img": 6, "focus": "center", "motion": "in", "tts": "इंद्र की पूजा की सामग्री अब गोवर्धन के चरणों की ओर चल पड़ी। लेकिन आगे क्या होगा, यह अभी कोई नहीं जानता था।", "sub": "Indra ki pooja ki samagri ab Govardhan ke charanon ki or chal padi. Lekin aage kya hoga, ye abhi koi nahin jaanta tha.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Pehli Govardhan Puja aur Annakut",
+      "scenes": [
+        { "img": 5, "focus": "center", "motion": "pan", "tts": "सुबह होते ही ब्रजवासी नए वस्त्र पहनकर निकले। गायों को सजाया गया, उनके गले में फूलों की मालाएँ डाली गईं।", "sub": "Subah hote hi brajwasi naye vastra pehankar nikle. Gaayon ko sajaya gaya, unke gale mein phoolon ki malayen daali gayin." },
+        { "img": 5, "focus": "bottom", "motion": "in", "tts": "तरह-तरह के पकवान बने। चावल, मिठाइयाँ और पकवानों का इतना बड़ा ढेर लगा कि वह एक छोटे पर्वत जैसा दिखता था।", "sub": "Tarah-tarah ke pakwaan bane. Chawal, mithaiyan aur pakwaanon ka itna bada dher laga ki wo ek chhote parvat jaisa dikhta tha." },
+        { "img": 5, "focus": "top", "motion": "panl", "tts": "इसी को अन्नकूट कहते हैं, यानी अन्न का पर्वत। इसी कथा से अन्नकूट की परंपरा मानी जाती है।", "sub": "Isi ko annakut kehte hain, yaani ann ka parvat. Isi katha se annakut ki parampara maani jaati hai." },
+        { "img": 6, "focus": "center", "motion": "out", "tts": "ब्रजवासियों ने गोवर्धन की परिक्रमा की और गायों की पूजा की। चारों ओर जयकारे गूँज रहे थे।", "sub": "Brajwasiyon ne Govardhan ki parikrama ki aur gaayon ki pooja ki. Charon or jaikare goonj rahe the." },
+        { "img": 6, "focus": "bottom", "motion": "in", "tts": "भागवत में आता है कि भगवान ने स्वयं विशाल रूप में प्रकट होकर भोग स्वीकार किया, और कहा कि मैं ही गोवर्धन हूँ।", "sub": "Bhagavat mein aata hai ki Bhagwan ne swayam vishal roop mein prakat hokar bhog sweekar kiya, aur kaha ki main hi Govardhan hoon." },
+        { "img": 12, "focus": "center", "motion": "pan", "tts": "सब ने मिलकर प्रसाद पाया। वृंदावन में उस दिन बहुत आनंद था। पर स्वर्ग में कोई और ही नाराज़ बैठा था।", "sub": "Sab ne milkar prasad paya. Vrindavan mein us din bahut anand tha. Par swarg mein koi aur hi naraz baitha tha." }
+      ]
+    },
+    {
+      "title": "Indra ka Krodh",
+      "scenes": [
+        { "img": 7, "focus": "center", "motion": "in", "tts": "जब इंद्र को पता चला कि ब्रजवासियों ने उनकी पूजा छोड़ दी है, तो उन्हें बहुत क्रोध आया।", "sub": "Jab Indra ko pata chala ki brajwasiyon ne unki pooja chhod di hai, to unhein bahut krodh aaya." },
+        { "img": 7, "focus": "top", "motion": "out", "tts": "अपने ऐश्वर्य के अहंकार में उन्होंने कहा, एक साधारण बालक की बातों में आकर ये गोप मेरा अपमान कर रहे हैं।", "sub": "Apne aishwarya ke ahankar mein unhone kaha, ek saadharan baalak ki baaton mein aakar ye gop mera apmaan kar rahe hain." },
+        { "img": 7, "focus": "bottom", "motion": "pan", "tts": "इंद्र ने संवर्तक नाम के प्रलयकारी बादलों को आदेश दिया कि जाओ, पूरे ब्रज पर मूसलाधार वर्षा करो।", "sub": "Indra ne Samvartak naam ke pralaykari baadalon ko aadesh diya ki jao, poore Braj par moosladhar varsha karo." },
+        { "img": 8, "focus": "center", "motion": "in", "tts": "देखते ही देखते आकाश काला हो गया। बिजली चमकी, बादल गरजे और भारी बारिश शुरू हो गई।", "sub": "Dekhte hi dekhte aakash kaala ho gaya. Bijli chamki, baadal garje aur bhaari baarish shuru ho gayi." },
+        { "img": 8, "focus": "bottom", "motion": "panl", "tts": "खेतों और रास्तों में पानी भर गया। गायें और बछड़े ठंड से काँपने लगे, बच्चे माताओं से लिपट गए।", "sub": "Kheton aur raston mein paani bhar gaya. Gaayen aur bachhde thand se kaanpne lage, bachche mataon se lipat gaye." },
+        { "img": 8, "focus": "top", "motion": "out", "tts": "घबराए हुए ब्रजवासी दौड़ते हुए श्री कृष्ण के पास पहुँचे और बोले, कन्हैया, हमारी रक्षा करो!", "sub": "Ghabraye hue brajwasi daudte hue Shri Krishna ke paas pahunche aur bole, Kanhaiya, hamari raksha karo!" },
+        { "img": 9, "focus": "top", "motion": "in", "tts": "तब श्री कृष्ण मुस्कुराए। अब जो हुआ, वही गोवर्धन लीला का सबसे अद्भुत क्षण है।", "sub": "Tab Shri Krishna muskuraye. Ab jo hua, wahi Govardhan leela ka sabse adbhut kshan hai.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Govardhan Dharan",
+      "scenes": [
+        { "img": 0, "focus": "bottom", "motion": "out", "tts": "श्री कृष्ण ने कहा, डरो मत। गोवर्धन पर्वत हमारा रक्षक है, आओ, उसी की शरण में चलें।", "sub": "Shri Krishna ne kaha, daro mat. Govardhan parvat hamara rakshak hai, aao, usi ki sharan mein chalein." },
+        { "img": 9, "focus": "bottom", "motion": "pan", "tts": "भागवत के अनुसार, उन्होंने अपने बाएँ हाथ की छोटी उँगली पर पूरे गोवर्धन पर्वत को ऐसे उठा लिया, जैसे बालक कोई छत्ता उठाता है।", "sub": "Bhagavat ke anusar, unhone apne baayen haath ki chhoti ungli par poore Govardhan parvat ko aise utha liya, jaise baalak koi chhatta uthata hai." },
+        { "img": 10, "focus": "center", "motion": "in", "tts": "उन्होंने सबको पुकारा, आओ, अपनी गायों, बछड़ों और परिवारों के साथ इस पर्वत के नीचे आ जाओ।", "sub": "Unhone sabko pukara, aao, apni gaayon, bachhdon aur parivaron ke saath is parvat ke neeche aa jao." },
+        { "img": 10, "focus": "bottom", "motion": "panl", "tts": "सारे ब्रजवासी गायों के साथ पर्वत के नीचे आ गए। वहाँ सब सुरक्षित थे, न बारिश थी, न ठंड।", "sub": "Saare brajwasi gaayon ke saath parvat ke neeche aa gaye. Wahan sab surakshit the, na baarish thi, na thand." },
+        { "img": 10, "focus": "top", "motion": "out", "tts": "ग्वाल-बालों ने भी अपनी लाठियाँ पर्वत के सहारे लगाईं। कहते हैं, यहीं से यह कथा हमें मिलकर सहारा देने की सीख भी देती है।", "sub": "Gwal-balon ne bhi apni lathiyan parvat ke sahare lagayin. Kehte hain, yahin se ye katha hamein milkar sahara dene ki seekh bhi deti hai." },
+        { "img": 13, "focus": "center", "motion": "pan", "tts": "श्री कृष्ण के चेहरे पर थकान नहीं, वही मीठी मुस्कान थी। वे बिना हिले, बिना थके पर्वत थामे खड़े रहे।", "sub": "Shri Krishna ke chehre par thakaan nahin, wahi meethi muskaan thi. Ve bina hile, bina thake parvat thaame khade rahe." },
+        { "img": 8, "focus": "center", "motion": "in", "tts": "इंद्र के बादल लगातार बरसते रहे। भागवत के अनुसार यह वर्षा पूरे सात दिन तक चलती रही।", "sub": "Indra ke baadal lagaatar barasate rahe. Bhagavat ke anusar ye varsha poore saat din tak chalti rahi." },
+        { "img": 10, "focus": "center", "motion": "pan", "tts": "सात दिन तक न किसी को भूख सताई, न प्यास, न नींद। सब बस श्री कृष्ण की ओर देखते और उनकी लीला गाते रहे।", "sub": "Saat din tak na kisi ko bhookh sataayi, na pyaas, na neend. Sab bas Shri Krishna ki or dekhte aur unki leela gaate rahe." },
+        { "img": 11, "focus": "top", "motion": "in", "tts": "आखिर इंद्र ने देखा कि उनकी सारी शक्ति व्यर्थ गई। आगे जानिए, तब इंद्र ने क्या किया।", "sub": "Aakhir Indra ne dekha ki unki saari shakti vyarth gayi. Aage jaaniye, tab Indra ne kya kiya.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Indra ki Kshama",
+      "scenes": [
+        { "img": 7, "focus": "center", "motion": "out", "tts": "इंद्र का घमंड टूट गया। उन्होंने बादलों को रोक दिया और समझ गए कि यह बालक कोई साधारण बालक नहीं है।", "sub": "Indra ka ghamand toot gaya. Unhone baadalon ko rok diya aur samajh gaye ki ye baalak koi saadharan baalak nahin hai." },
+        { "img": 1, "focus": "top", "motion": "panl", "tts": "आकाश साफ हुआ, बादल छँटे और सूरज की सुनहरी किरणें फिर से वृंदावन पर चमकने लगीं।", "sub": "Aakash saaf hua, baadal chhante aur sooraj ki sunahri kirnen phir se Vrindavan par chamakne lagin." },
+        { "img": 13, "focus": "top", "motion": "out", "tts": "श्री कृष्ण ने कहा, अब सब लोग गायों के साथ बाहर निकल आओ, संकट टल गया है।", "sub": "Shri Krishna ne kaha, ab sab log gaayon ke saath bahar nikal aao, sankat tal gaya hai." },
+        { "img": 9, "focus": "bottom", "motion": "panl", "tts": "सब के निकलने के बाद श्री कृष्ण ने पर्वत को धीरे से उसी स्थान पर रख दिया, जहाँ वह पहले था।", "sub": "Sab ke nikalne ke baad Shri Krishna ne parvat ko dheere se usi sthaan par rakh diya, jahan wo pehle tha." },
+        { "img": 11, "focus": "center", "motion": "in", "tts": "तब इंद्र कामधेनु सुरभि को साथ लेकर आए और हाथ जोड़कर श्री कृष्ण के चरणों में झुक गए।", "sub": "Tab Indra Kamdhenu Surabhi ko saath lekar aaye aur haath jodkar Shri Krishna ke charanon mein jhuk gaye." },
+        { "img": 11, "focus": "bottom", "motion": "pan", "tts": "इंद्र ने विनम्रता से क्षमा माँगी और कहा, प्रभु, मैं ऐश्वर्य के नशे में अपने आप को भूल गया था।", "sub": "Indra ne vinamrata se kshama maangi aur kaha, Prabhu, main aishwarya ke nashe mein apne aap ko bhool gaya tha." },
+        { "img": 11, "focus": "top", "motion": "out", "tts": "सुरभि गाय ने श्री कृष्ण का अभिषेक किया और उन्हें गोविंद नाम दिया। तभी से वे गोविंद भी कहलाए।", "sub": "Surabhi gaay ne Shri Krishna ka abhishek kiya aur unhein Govind naam diya. Tabhi se ve Govind bhi kehlaye." },
+        { "img": 0, "focus": "center", "motion": "in", "tts": "श्री कृष्ण ने इंद्र को क्षमा कर दिया। उन्होंने कहा कि अहंकार छोड़कर कर्तव्य निभाना ही सच्ची भक्ति है।", "sub": "Shri Krishna ne Indra ko kshama kar diya. Unhone kaha ki ahankar chhodkar kartavya nibhana hi sachchi bhakti hai." }
+      ]
+    },
+    {
+      "title": "Govardhan Puja ka Sandesh",
+      "scenes": [
+        { "img": 12, "focus": "center", "motion": "pan", "tts": "तब से कार्तिक शुक्ल प्रतिपदा को गोवर्धन पूजा और अन्नकूट की परंपरा चली आ रही है।", "sub": "Tab se Kartik Shukla Pratipada ko Govardhan Puja aur annakut ki parampara chali aa rahi hai." },
+        { "img": 12, "focus": "bottom", "motion": "in", "tts": "इस दिन लोग गोबर या अन्न से गोवर्धन की आकृति बनाते हैं, गायों की पूजा करते हैं और प्रसाद बाँटते हैं।", "sub": "Is din log gobar ya ann se Govardhan ki aakriti banate hain, gaayon ki pooja karte hain aur prasad baantte hain." },
+        { "img": 12, "focus": "top", "motion": "out", "tts": "इस कथा की सीख है कि घमंड कभी टिकता नहीं, और प्रकृति, गायों और अपनों के प्रति कृतज्ञता ही सच्ची पूजा है।", "sub": "Is katha ki seekh hai ki ghamand kabhi tikta nahin, aur prakriti, gaayon aur apnon ke prati kritagyata hi sachchi pooja hai." },
+        { "img": 0, "focus": "top", "motion": "panl", "tts": "सबके लिए प्रेम, सेवा और सहारे का संदेश ही गोवर्धन लीला का सार है। मंत्र है: ॐ कृष्णाय वासुदेवाय हरये परमात्मने।", "sub": "Sabke liye prem, seva aur sahare ka sandesh hi Govardhan leela ka saar hai. Mantra hai: Om Krishnaya Vasudevaya Haraye Paramatmane." },
+        { "endcard": true, "tts": "जय गिरिराज गोवर्धन! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।", "sub": "Jai Giriraj Govardhan! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN" }
+      ]
+    }
+  ],
+  "youtube_title": "Govardhan Puja ki Katha | गोवर्धन पूजा की कथा | Sampoorn Katha",
+  "youtube_description": "Govardhan Puja ki sampoorn katha: Indra ka yajna, Shri Krishna ki seekh, pehli Govardhan Puja aur annakut, Indra ka krodh, saat din Govardhan dharan aur Indra ki kshama.\nYe katha Shrimad Bhagavat Mahapuran (dasham skandh) ke anusar hai.\nगोवर्धन पूजा की कथा: श्री कृष्ण ने गोवर्धन पर्वत उठाकर ब्रजवासियों की रक्षा की।\nMantra: ॐ कृष्णाय वासुदेवाय हरये परमात्मने।\nJai Shree Shyam 🙏\nVideo pasand aaye to Like, Share karein aur Shyam Premi SN ko Subscribe karein.\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\n#GovardhanPuja #ShriKrishna #Annakut #JaiShreeShyam",
+  "youtube_tags": "Govardhan Puja ki katha, गोवर्धन पूजा की कथा, Govardhan Puja 2026, गोवर्धन पूजा, Govardhan leela, गोवर्धन लीला, Annakut ki katha, अन्नकूट की कथा, Krishna Indra ki katha, श्री कृष्ण और इंद्र, Giriraj Govardhan, गिरिराज गोवर्धन, Shyam Premi SN"
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "2026-11-07-long-govardhan-puja-katha",
+  "seconds": 458.9,
+  "scenes": 53,
+  "chapters": [
+    {
+      "title": "Govardhan ka Chamatkar",
+      "start": 0
+    },
+    {
+      "title": "Vrindavan aur Indra ka Yajna",
+      "start": 23.73
+    },
+    {
+      "title": "Shri Krishna ka Sujhav",
+      "start": 94.27
+    },
+    {
+      "title": "Pehli Govardhan Puja aur Annakut",
+      "start": 154.57
+    },
+    {
+      "title": "Indra ka Krodh",
+      "start": 210.3
+    },
+    {
+      "title": "Govardhan Dharan",
+      "start": 266.97
+    },
+    {
+      "title": "Indra ki Kshama",
+      "start": 348.43
+    },
+    {
+      "title": "Govardhan Puja ka Sandesh",
+      "start": 413.1
+    }
+  ],
+  "images": 14,
+  "images_generated": 0,
+  "neurons": 0,
+  "render_seconds": 571,
+  "real_photos": 0,
+  "thumbnail_variants": {
+    "winner": "b",
+    "scores": [
+      {
+        "kind": "a",
+        "score": 66,
+        "contrast": 0.619,
+        "face": 0.36
+      },
+      {
+        "kind": "b",
+        "score": 80,
+        "contrast": 0.809,
+        "face": 0.39
+      }
+    ]
+  }
+}

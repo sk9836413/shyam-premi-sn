@@ -35,3 +35,4 @@
 2026-11-07 | status | 2026-11-07-status-choti-diwali | Choti Diwali | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
 2026-11-07 | morning | 2026-11-07-morning-choti-diwali-yam-deepak | Choti Diwali (Narak Chaturdashi) | Choti Diwali par Yam deepak ki parampara: chaudah diye, Yamraj ke naam ka sarson ke tel ka deepak, parivar ki suraksha ki prarthana
 2026-11-07 | noon | 2026-11-07-noon-diwali-ram-ayodhya-deep | Shri Ram / Maa Lakshmi / Ganesh ji (Diwali) | Diwali par diye kyun: Shri Ram ka 14 varsh baad Ayodhya lautna aur deepotsav ki manyata, Lakshmi-Ganesh puja ki alag parampara; agla: Govardhan Puja
+2026-11-07 | long | 2026-11-07-long-govardhan-puja-katha | Shri Krishna (Govardhan Puja) | Govardhan Puja ki katha: Indra yajna par Krishna ka prashn, Govardhan pooja aur annakut, Indra ka krodh, saat din Govardhan dharan aur Indra ki kshama
