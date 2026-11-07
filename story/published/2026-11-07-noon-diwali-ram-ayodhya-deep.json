@@ -1,0 +1,157 @@
+{
+  "slug": "2026-11-07-noon-diwali-ram-ayodhya-deep",
+  "format": "dialogue",
+  "title": "Diwali ki Kahani",
+  "kicker": "Diwali Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "next": "Govardhan Puja",
+  "deity": "Shri Ram / Maa Lakshmi / Ganesh ji (Diwali)",
+  "summary": "Diwali par diye kyun: Shri Ram ka 14 varsh baad Ayodhya lautna aur deepotsav ki manyata, Lakshmi-Ganesh puja ki alag parampara; agla: Govardhan Puja",
+  "hook": "Diwali par diye kyun jalate hain?",
+  "cover": "दिवाली की कहानी",
+  "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "visuals": {
+    "diya": {
+      "prompt": "A decorated Indian home courtyard at dusk with rows of lit clay diyas, marigold garlands and rangoli patterns, warm golden glow, festive peaceful Diwali mood",
+      "real": false
+    },
+    "ram": {
+      "prompt": "Blue-skinned Lord Ram with a bow, Sita Mata in a saree and Lakshman ji beside them, standing on the flower-decorated Pushpak Vimaan in the evening sky, kind serene faces, traditional Indian iconography",
+      "real": false
+    },
+    "ayodhya": {
+      "prompt": "The ancient city of Ayodhya at night, every palace, street and house glowing with thousands of clay diyas, joyful citizens in traditional clothes welcoming, magical warm golden light",
+      "real": false
+    },
+    "lakshmi": {
+      "prompt": "Maa Lakshmi seated on a lotus holding lotus flowers with golden coins falling softly, elephant-headed Lord Ganesh ji seated beside her, diyas and flowers around, traditional Indian iconography, warm glow",
+      "real": false
+    }
+  },
+  "lines": [
+    {
+      "who": "chhotu",
+      "tts": "दिवाली पर दिए क्यों जलाते हैं, दादी?",
+      "sub": "Diwali par diye kyun jalate hain, Dadi?",
+      "top": "lakshmi"
+    },
+    {
+      "who": "dadi",
+      "tts": "सुनो बेटा, कल दिवाली है। यह रोशनी का त्योहार है, और इसके पीछे श्री राम की कथा है।",
+      "sub": "Suno beta, kal Diwali hai. Ye roshni ka tyohar hai, aur iske peeche Shri Ram ki katha hai.",
+      "top": "diya"
+    },
+    {
+      "who": "chhotu",
+      "tts": "श्री राम की कथा? कौन सी, दादी?",
+      "sub": "Shri Ram ki katha? Kaun si, Dadi?",
+      "top": "ram"
+    },
+    {
+      "who": "dadi",
+      "tts": "मान्यता है कि श्री राम चौदह वर्ष के वनवास के बाद अयोध्या लौटे थे। साथ में सीता माता और लक्ष्मण जी थे।",
+      "sub": "Manyata hai ki Shri Ram chaudah varsh ke vanvas ke baad Ayodhya laute the. Saath mein Sita Mata aur Lakshman ji the.",
+      "top": "ram"
+    },
+    {
+      "who": "chhotu",
+      "tts": "चौदह साल! अयोध्या के लोग तो बहुत खुश हुए होंगे?",
+      "sub": "Chaudah saal! Ayodhya ke log to bahut khush hue honge?",
+      "top": "ram"
+    },
+    {
+      "who": "dadi",
+      "tts": "हाँ बेटा, वे बरसों से राह देख रहे थे। रावण पर विजय के बाद प्रभु घर लौट रहे थे।",
+      "sub": "Haan beta, ve barson se raah dekh rahe the. Ravan par vijay ke baad Prabhu ghar laut rahe the.",
+      "top": "ayodhya"
+    },
+    {
+      "who": "chhotu",
+      "tts": "तो लोगों ने क्या किया?",
+      "sub": "To logon ne kya kiya?",
+      "top": "ayodhya"
+    },
+    {
+      "who": "dadi",
+      "tts": "कहते हैं, अयोध्यावासियों ने घर-घर और नगर में दिए जलाकर उनका स्वागत किया।",
+      "sub": "Kehte hain, Ayodhyavasiyon ne ghar-ghar aur nagar mein diye jalakar unka swagat kiya.",
+      "top": "ayodhya"
+    },
+    {
+      "who": "chhotu",
+      "tts": "इसीलिए हम भी दिए जलाते हैं! और लक्ष्मी जी की पूजा क्यों होती है?",
+      "sub": "Isiliye hum bhi diye jalate hain! Aur Lakshmi ji ki puja kyun hoti hai?",
+      "top": "lakshmi"
+    },
+    {
+      "who": "dadi",
+      "tts": "दिवाली की शाम लक्ष्मी जी और गणेश जी की पूजा की परंपरा है। यह एक अलग परंपरा है।",
+      "sub": "Diwali ki shaam Lakshmi ji aur Ganesh ji ki puja ki parampara hai. Ye ek alag parampara hai.",
+      "top": "lakshmi"
+    },
+    {
+      "who": "chhotu",
+      "tts": "गणेश जी साथ में क्यों, दादी?",
+      "sub": "Ganesh ji saath mein kyun, Dadi?",
+      "top": "lakshmi"
+    },
+    {
+      "who": "dadi",
+      "tts": "लक्ष्मी जी धन की देवी हैं, और गणेश जी बुद्धि के देवता। धन के साथ समझदारी भी चाहिए, बेटा।",
+      "sub": "Lakshmi ji dhan ki devi hain, aur Ganesh ji buddhi ke devta. Dhan ke saath samajhdari bhi chahiye, beta.",
+      "top": "lakshmi"
+    },
+    {
+      "who": "chhotu",
+      "tts": "वाह! तो हमें क्या करना चाहिए?",
+      "sub": "Wah! To hamein kya karna chahiye?",
+      "top": "diya"
+    },
+    {
+      "who": "dadi",
+      "tts": "घर में दिए जलाओ, बड़ों का आशीर्वाद लो और मिल-बाँटकर खुशियाँ मनाओ।",
+      "sub": "Ghar mein diye jalao, badon ka ashirwad lo aur mil-baantkar khushiyan manao.",
+      "top": "diya"
+    },
+    {
+      "who": "chhotu",
+      "tts": "दादी, कल किस त्योहार की कहानी सुनाओगी?",
+      "sub": "Dadi, kal kis tyohar ki kahani sunaogi?",
+      "top": "end"
+    },
+    {
+      "who": "dadi",
+      "tts": "कल गोवर्धन पूजा की कहानी सुनाऊँगी। लाइक, शेयर और सब्सक्राइब करना, बेटा! शुभ दिवाली!",
+      "sub": "Kal Govardhan Puja ki kahani sunaungi. Like, Share aur Subscribe karna, beta! Shubh Diwali!",
+      "top": "end"
+    }
+  ],
+  "facts": [
+    {
+      "claim": "Diwali is linked to Lord Ram returning to Ayodhya after fourteen years of exile and his victory over Ravana (tradition)",
+      "sources": [
+        "https://navbharatlive.com/religion/why-lakshmi-ganesh-puja-on-diwali-ram-return-rrs05",
+        "https://hindutone.com/festivals/diwali-2026-lord-rama-the-return-to-ayodhya-and-its-eternal-message/"
+      ]
+    },
+    {
+      "claim": "Citizens of Ayodhya welcomed Ram by lighting diyas (tradition; the video says kehte hain)",
+      "sources": [
+        "https://navbharatlive.com/religion/why-lakshmi-ganesh-puja-on-diwali-ram-return-rrs05",
+        "https://www.brut.media/in/articles/diwali-2026-date-day-and-puja-timings-when-is-choti-diwali-and-why-is-the-festival-celebrated"
+      ]
+    },
+    {
+      "claim": "Lakshmi-Ganesh puja is a separate Diwali tradition: Lakshmi as goddess of wealth, Ganesh of wisdom, worshipped together on Diwali evening",
+      "sources": [
+        "https://navbharatlive.com/religion/why-lakshmi-ganesh-puja-on-diwali-ram-return-rrs05",
+        "https://www.brut.media/in/articles/diwali-2026-date-day-and-puja-timings-when-is-choti-diwali-and-why-is-the-festival-celebrated"
+      ]
+    }
+  ],
+  "youtube_title": "Diwali ki Kahani | दिवाली की कहानी #Shorts",
+  "youtube_description": "Diwali par diye kyun jalate hain? Dadi aur Chhotu ki baat: Shri Ram ki Ayodhya vapsi aur Lakshmi-Ganesh puja ki parampara (manyata ke anusar).\nदिवाली की कहानी: श्री राम का अयोध्या लौटना और दीपोत्सव, दादी और छोटू की ज़ुबानी।\nMantra: श्री राम जय राम जय जय राम\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nPasand aaye to Like, Share aur Subscribe karein.\n#Diwali #Diwali2026 #ShriRam #DadiAurChhotu #JaiShreeShyam\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam",
+  "youtube_tags": "Diwali ki kahani, दिवाली की कहानी, Diwali kyun manate hain, दिवाली क्यों मनाते हैं, Diwali ki katha, दिवाली की कथा, Ram Ayodhya vapsi, राम अयोध्या वापसी, Lakshmi Ganesh puja, लक्ष्मी गणेश पूजा, Diwali 2026, Dadi aur Chhotu, दादी और छोटू",
+  "instagram_caption": "Diwali par diye kyun jalate hain? 🪔\nDadi ne Chhotu ko sunaya: Shri Ram ki Ayodhya vapsi aur Lakshmi-Ganesh puja ki parampara (manyata ke anusar).\nShri Ram Jai Ram Jai Jai Ram\nChitra AI dwara banaye gaye hain (sanketik).\nKal: Govardhan Puja ki kahani. Like, Share aur Follow karein.\n#Diwali #Diwali2026 #ShriRam #LakshmiPuja #DadiAurChhotu #JaiShreeShyam #HinduFestival #DeepotsavIndia\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam",
+  "facebook_caption": "Diwali ki kahani Dadi aur Chhotu ke saath: Shri Ram ki Ayodhya vapsi aur deepotsav. Kal Govardhan Puja ki kahani. Like, Share aur Follow karein 🙏\n#Diwali #Diwali2026 #JaiShreeShyam\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam"
+}

@@ -33,3 +33,4 @@
 - 2026-11-07-status-choti-diwali | youtube: https://youtube.com/shorts/dySo41u8SLw (public at 2026-11-07T00:30:00.000Z) | status video, made 06 Nov 19:36 IST | social: fb: https://www.facebook.com/reel/1849746413130424 (scheduled 2026-11-07T00:30:00.000Z) | ig: pending 2026-11-07T00:30:00.000Z
 - 2026-11-07-status-choti-diwali | instagram: https://www.instagram.com/reel/DfbPnXXzMA3/
 - 2026-11-07-morning-choti-diwali-yam-deepak | youtube: https://youtube.com/shorts/mEih2iskzV4 | social: fb: https://www.facebook.com/reel/1644267940759216 | ig: error upload failed: Request processing failed | animated 4/6
+- 2026-11-07-noon-diwali-ram-ayodhya-deep | youtube: https://youtube.com/shorts/YA9NXenVN1E | social: fb: https://www.facebook.com/388779648425633/videos/28311095528563236 | ig: error upload failed: Request processing failed | dialogue lipsync, lip-synced 16/16, 105 s

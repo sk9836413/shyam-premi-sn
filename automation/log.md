@@ -34,3 +34,4 @@
 2026-11-06 | evening | 2026-11-06-evening-dhanteras-lakshmi-darshan | Maa Lakshmi / Dhanvantari (Dhanteras) | Shubh Dhanteras Maa Lakshmi darshan, Dhanvantari ka amrit kalash ke saath prakat hona (manyata), shaam ko dwar par deepak ki parampara, Lakshmi-Ganesh darshan
 2026-11-07 | status | 2026-11-07-status-choti-diwali | Choti Diwali | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
 2026-11-07 | morning | 2026-11-07-morning-choti-diwali-yam-deepak | Choti Diwali (Narak Chaturdashi) | Choti Diwali par Yam deepak ki parampara: chaudah diye, Yamraj ke naam ka sarson ke tel ka deepak, parivar ki suraksha ki prarthana
+2026-11-07 | noon | 2026-11-07-noon-diwali-ram-ayodhya-deep | Shri Ram / Maa Lakshmi / Ganesh ji (Diwali) | Diwali par diye kyun: Shri Ram ka 14 varsh baad Ayodhya lautna aur deepotsav ki manyata, Lakshmi-Ganesh puja ki alag parampara; agla: Govardhan Puja
