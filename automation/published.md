@@ -36,3 +36,4 @@
 - 2026-11-07-noon-diwali-ram-ayodhya-deep | youtube: https://youtube.com/shorts/YA9NXenVN1E | social: fb: https://www.facebook.com/388779648425633/videos/28311095528563236 | ig: error upload failed: Request processing failed | dialogue lipsync, lip-synced 16/16, 105 s
 - 2026-11-07-long-govardhan-puja-katha | facebook: error POST /videos: Request Entity Too Large (code 413)
 - 2026-11-07-long-govardhan-puja-katha | youtube: https://youtu.be/4CRYLp1ULhk (public at 12:30 IST) | long 7:38, 53 scenes, render 10 min, 0 neurons
+- 2026-11-07-evening-choti-diwali-krishna-darshan | youtube: https://youtube.com/shorts/Rku_MplZmoA (public at 2026-11-07T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1466122608995552 (scheduled 2026-11-07T13:30:00.000Z) | ig: pending 2026-11-07T13:30:00.000Z | animated 3/4

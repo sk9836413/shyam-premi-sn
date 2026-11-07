@@ -1,0 +1,58 @@
+{
+  "slug": "2026-11-07-evening-choti-diwali-krishna-darshan",
+  "title": "Choti Diwali Krishna Darshan",
+  "kicker": "Choti Diwali Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Choti Diwali! Shri Krishna darshan",
+  "cover": "छोटी दिवाली दर्शन",
+  "scenes": [
+    {
+      "prompt": "Close-up devotional darshan of blue-skinned Lord Shri Krishna, peacock-feather crown, gold jewels, yellow dhoti, gentle smile, serene face in the middle of the frame, rows of lit clay diyas glowing around him, warm festive evening",
+      "tts": "छोटी दिवाली! श्री कृष्ण के दर्शन कीजिए।",
+      "sub": "Choti Diwali! Shri Krishna ke darshan kijiye.",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly and the golden glow gently pulses"
+    },
+    {
+      "prompt": "Blue-skinned Lord Shri Krishna with his consort Satyabhama on a decorated altar, golden light, marigold garlands and many lit diyas, serene faces, festive glow",
+      "tts": "मान्यता है, आज नरकासुर पर श्री कृष्ण की विजय हुई।",
+      "sub": "Manyata hai, aaj Narakasur par Shri Krishna ki vijay hui.",
+      "motion": "out",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the faces stay still and serene, the diya flames flicker and soft golden light pulses",
+      "video": "clips/1.mp4"
+    },
+    {
+      "prompt": "A home doorway in the evening with a row of lit clay diyas, a colourful rangoli and marigold garlands, warm golden light, no people",
+      "tts": "अंधकार पर प्रकाश की जीत, इसीलिए दीप जलाते हैं।",
+      "sub": "Andhkaar par prakash ki jeet, isiliye deep jalate hain.",
+      "motion": "pan",
+      "animate": "the diya flames flicker softly and a few marigold petals drift down in the warm light",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "Blue-skinned Lord Shri Krishna playing the flute, peacock-feather crown, standing under a starry sky, glowing diyas floating on a calm river nearby, peaceful evening",
+      "tts": "ॐ नमो भगवते वासुदेवाय। सबके घर दीप जलें।",
+      "sub": "Om Namo Bhagavate Vasudevaya. Sabke ghar deep jalein.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diyas on the water glow and drift softly",
+      "video": "clips/3.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "कल दिवाली के दर्शन के लिए लाइक, शेयर, सब्सक्राइब करें। जय श्री कृष्ण!",
+      "sub": "Kal Diwali ke darshan ke liye Like, Share, Subscribe karein. Jai Shri Krishna!"
+    }
+  ],
+  "youtube_title": "Choti Diwali Shri Krishna Darshan | छोटी दिवाली श्री कृष्ण दर्शन #Shorts",
+  "youtube_description": "Choti Diwali par Shri Krishna ke darshan. Manyata hai ki aaj ke din Shri Krishna ne Narakasur par vijay payi, aur deep jalane ki parampara hai.\nछोटी दिवाली पर श्री कृष्ण के दर्शन।\nMantra: ॐ नमो भगवते वासुदेवाय\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nAchha laga to Like, Share aur Subscribe karein.\n#ChotiDiwali #ShriKrishna #Diwali2026 #Shorts",
+  "youtube_tags": "Choti Diwali, छोटी दिवाली, Choti Diwali darshan, छोटी दिवाली दर्शन, Shri Krishna darshan, श्री कृष्ण दर्शन, Narak Chaturdashi, नरक चतुर्दशी, Narakasur, नरकासुर, Choti Diwali ki shubhkamnayein, छोटी दिवाली की शुभकामनाएं, Diwali 2026",
+  "instagram_caption": "Choti Diwali! Shri Krishna ke darshan 🪔\nManyata hai ki aaj Shri Krishna ne Narakasur par vijay payi.\nAndhkaar par prakash ki jeet ke liye deep jalaye jaate hain.\nOm Namo Bhagavate Vasudevaya 🙏\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#ChotiDiwali #ShriKrishna #NarakChaturdashi #Diwali2026 #Bhakti #JaiShreeShyam",
+  "facebook_caption": "Choti Diwali! Shri Krishna ke darshan. Chitra AI dwara banaye gaye hain (sanketik). Like, Share aur Follow karein.\n#ChotiDiwali #ShriKrishna #Diwali2026"
+}
