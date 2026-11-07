@@ -32,3 +32,4 @@
 - 2026-11-06-evening-dhanteras-lakshmi-darshan | youtube: https://youtube.com/shorts/rOki26BVmu0 | social: fb: https://www.facebook.com/reel/1174159498617255 | ig: error upload failed: Request processing failed
 - 2026-11-07-status-choti-diwali | youtube: https://youtube.com/shorts/dySo41u8SLw (public at 2026-11-07T00:30:00.000Z) | status video, made 06 Nov 19:36 IST | social: fb: https://www.facebook.com/reel/1849746413130424 (scheduled 2026-11-07T00:30:00.000Z) | ig: pending 2026-11-07T00:30:00.000Z
 - 2026-11-07-status-choti-diwali | instagram: https://www.instagram.com/reel/DfbPnXXzMA3/
+- 2026-11-07-morning-choti-diwali-yam-deepak | youtube: https://youtube.com/shorts/mEih2iskzV4 | social: fb: https://www.facebook.com/reel/1644267940759216 | ig: error upload failed: Request processing failed | animated 4/6

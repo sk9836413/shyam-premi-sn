@@ -1,0 +1,69 @@
+{
+  "slug": "2026-11-07-morning-choti-diwali-yam-deepak",
+  "title": "Choti Diwali ka Yam Deepak",
+  "kicker": "Choti Diwali Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Choti Diwali: Yam ka deepak kyun?",
+  "cover": "छोटी दिवाली",
+  "scenes": [
+    {
+      "prompt": "Close-up portrait of blue-skinned Lord Krishna with a peacock-feather crown and gentle smile, face in the middle of the frame, surrounded by glowing diyas on Choti Diwali evening, warm golden light",
+      "tts": "छोटी दिवाली! इस दिन यमराज के नाम का दीपक क्यों जलाते हैं?",
+      "sub": "Choti Diwali! Is din Yamraj ke naam ka deepak kyun jalate hain?",
+      "motion": "in",
+      "deity": true,
+      "animate": "the diya flames flicker softly and a few marigold petals drift slowly in the background, the face stays still and serene",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "An Indian family courtyard before sunrise, a devotee taking a holy morning bath with water from a brass pot, soft dawn light, diyas glowing nearby",
+      "tts": "मान्यता है कि इस दिन सूर्योदय से पहले स्नान का विशेष महत्व है।",
+      "sub": "Manyata hai ki is din suryoday se pehle snan ka vishesh mahatva hai.",
+      "motion": "pan"
+    },
+    {
+      "prompt": "A woman lighting a row of fourteen clay diyas filled with mustard oil on a house doorstep at dusk, warm glowing flames, plain stone steps",
+      "tts": "शाम को घर में चौदह दीपक जलाने की परंपरा है।",
+      "sub": "Shaam ko ghar mein chaudah deepak jalane ki parampara hai.",
+      "motion": "in",
+      "animate": "the diya flames flicker gently and the warm light softly pulses",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "A single clay diya placed at the doorstep at twilight, flame glowing, calm evening sky, house door decorated with marigold garland",
+      "tts": "इनके साथ एक दीपक यमराज के लिए भी रखा जाता है, सरसों के तेल का।",
+      "sub": "Inke saath ek deepak Yamraj ke liye bhi rakha jaata hai, sarson ke tel ka.",
+      "motion": "out",
+      "animate": "the single diya flame flickers softly and the evening light gently glows",
+      "video": "clips/3.mp4"
+    },
+    {
+      "prompt": "A joyful Indian family standing together at their lit doorway on Diwali eve, diyas glowing all around, warm festive atmosphere, peaceful faces",
+      "tts": "कई घरों में यह दीपक धनतेरस पर भी जलाया जाता है।",
+      "sub": "Kai gharon mein yeh deepak Dhanteras par bhi jalaya jaata hai.",
+      "motion": "pan"
+    },
+    {
+      "prompt": "Close-up of blue-skinned Lord Krishna with a peacock-feather crown smiling gently, rows of diyas glowing behind him, golden warm light",
+      "tts": "यह परिवार की सुरक्षा और सुख की प्रार्थना का दीपक माना जाता है।",
+      "sub": "Yeh parivar ki suraksha aur sukh ki prarthana ka deepak mana jaata hai.",
+      "motion": "in",
+      "deity": true,
+      "animate": "the diya flames behind flicker softly, the face stays still and serene, a few petals drift in the background",
+      "video": "clips/5.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "शुभ छोटी दिवाली! लाइक करें, शेयर करें, सब्सक्राइब करें। कल दिवाली की कथा, जय श्री कृष्ण!",
+      "sub": "Shubh Choti Diwali! Like, Share aur Subscribe karein. Kal Diwali ki katha, Jai Shri Krishna!"
+    }
+  ],
+  "youtube_title": "Choti Diwali Katha, Yam Deepak | छोटी दिवाली कथा यम दीपक #Shorts",
+  "youtube_description": "Choti Diwali (Narak Chaturdashi) par Yam deepak kyun jalate hain: chaudah diye aur Yamraj ke naam ka sarson ke tel ka deepak, parampara ke anusar.\nछोटी दिवाली की कथा और यम दीपक की परंपरा।\nJai Shree Shyam 🙏\nVideo pasand aaye to Like, Share aur Subscribe karein.\n#ChotiDiwali #NarakChaturdashi #YamDeepak #Diwali2026 #JaiShreeShyam",
+  "youtube_tags": "choti diwali katha, छोटी दिवाली कथा, choti diwali ki katha, narak chaturdashi, नरक चतुर्दशी, yam deepak, यम दीपक, choti diwali 2026, छोटी दिवाली, Diwali ki parampara, दिवाली की परंपरा, Jai Shree Shyam, Shyam Premi SN",
+  "instagram_caption": "Choti Diwali par Yam deepak kyun? 🪔\nParampara ke anusar shaam ko chaudah diye aur ek deepak Yamraj ke naam ka sarson ke tel se jalate hain. Ise parivar ki suraksha ki prarthana mana jaata hai.\nJai Shree Shyam 🙏\nLike, Share aur Follow karein.\n#ChotiDiwali #NarakChaturdashi #YamDeepak #Diwali #JaiShreeShyam #ShyamPremiSN #Diya",
+  "facebook_caption": "Choti Diwali par Yam deepak ki parampara: chaudah diye aur ek deepak Yamraj ke naam ka. Jai Shree Shyam 🙏 Like, Share aur Follow karein.\n#ChotiDiwali #YamDeepak #JaiShreeShyam"
+}
