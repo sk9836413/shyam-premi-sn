@@ -1,0 +1,110 @@
+{
+  "slug": "2026-11-08-long-bhai-dooj-yamraj-yamuna-katha",
+  "format": "long",
+  "title": "Bhai Dooj ki Katha",
+  "kicker": "Bhai Dooj Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Bhai Dooj: Yamraj Yamuna ke ghar",
+  "source": "Lok katha (Yam-Yamuna aur Krishna-Subhadra parampara) ke anusar",
+  "deity": "Yamraj / Yamuna Maiya (Bhai Dooj)",
+  "summary": "Bhai Dooj ki katha: Surya dev ki santan Yam aur Yamuna, behan ka nimantran, Yamraj ka aagman, tilak, vardaan, aur Krishna-Subhadra ki manyata",
+  "thumbnail": { "image": 0, "focus": "center", "text": "Yamraj aur Yamuna ki katha", "hi": "भाई दूज की सम्पूर्ण कथा" },
+  "images": [
+    { "prompt": "Close-up portrait of the river goddess Yamuna Maiya, a serene dark-complexioned goddess with a gentle smile, gold crown and jewels, applying a red tilak on the forehead of her brother Yamraj who has dark skin, a gold crown and a calm kind face, warm diya light, both faces in the middle of the frame" },
+    { "prompt": "Wide scene of Surya Dev, a radiant golden god with a blazing halo, riding a golden chariot with seven horses across a glowing dawn sky, subject in the middle band" },
+    { "prompt": "Wide scene in a royal palace garden at sunset: Surya Dev's queen Sanjna in a saree stepping away gently while a shadow-like second figure stands beside two small children, a boy and a girl, soft golden light, subject in the middle band" },
+    { "prompt": "Wide scene of the goddess Yamuna with dark complexion and a blue-green saree standing on the bank of the calm Yamuna river at dusk, gazing longingly at the horizon, diyas floating on the water, subject in the middle band" },
+    { "prompt": "Wide scene of Yamraj, dark-skinned and dignified with a tall gold crown, seated in his court beside his black buffalo, holding a large book, a calm and kind expression, warm lamp light, no fear imagery, subject in the middle band" },
+    { "prompt": "Wide scene of a decorated humble home with rows of glowing diyas and marigold garlands, the goddess Yamuna standing at the doorway with joyful tears, welcoming her brother Yamraj who arrives smiling, warm evening light, subject in the middle band" },
+    { "prompt": "Wide scene of Yamraj and goddess Yamuna sitting together on a floor mat before a plate of delicious Indian food and sweets, Yamuna lovingly serving, rows of diyas around, warm light, subject in the middle band" },
+    { "prompt": "Wide scene of the goddess Yamuna performing aarti with a decorated thali holding a diya, roli and rice, and applying a tilak on seated Yamraj's forehead, flowers around, warm golden light, subject in the middle band" },
+    { "prompt": "Wide scene of a peaceful morning on the banks of the Yamuna river with devotees, brothers and sisters, bathing and praying with folded hands, soft golden sunrise on the water, subject in the middle band" },
+    { "prompt": "Wide scene of blue-skinned Shri Krishna with a peacock-feather crown and yellow dhoti arriving at the palace door, where his sister Subhadra in a bright saree welcomes him with a lit aarti thali, flowers and diyas, subject in the middle band" },
+    { "prompt": "Wide scene of Subhadra applying a red tilak on the forehead of blue-skinned Shri Krishna, who smiles lovingly, a sweet plate and diyas nearby, warm palace light, subject in the middle band" },
+    { "prompt": "Wide scene of a modern happy Indian family at home: a sister applying a tilak on her smiling brother's forehead with a decorated thali of roli, rice, diya and sweets, parents watching with joy, diwali lights, subject in the middle band" },
+    { "prompt": "Wide scene of many glowing diyas arranged in rows on a festive night with marigold flowers and rangoli-free dark background, soft golden bokeh, peaceful and warm, subject in the middle band" }
+  ],
+  "chapters": [
+    {
+      "title": "Bhai Dooj ki Katha",
+      "scenes": [
+        { "img": 0, "focus": "center", "motion": "in", "tts": "भाई दूज की कथा: जब मृत्यु के देवता यमराज खुद अपनी बहन यमुना के घर भोजन करने पहुँचे।", "sub": "Bhai Dooj ki katha: jab mrityu ke devta Yamraj khud apni behan Yamuna ke ghar bhojan karne pahunche." },
+        { "img": 5, "focus": "center", "motion": "out", "tts": "आखिर यमुना ने भाई को क्या कहकर बुलाया, और यमराज ने बहन को कौन सा वरदान दिया?", "sub": "Aakhir Yamuna ne bhai ko kya kehkar bulaya, aur Yamraj ne behan ko kaun sa vardaan diya?" },
+        { "img": 7, "focus": "center", "motion": "in", "tts": "इस कथा में जानिए, भाई दूज पर बहन अपने भाई के माथे पर तिलक क्यों लगाती है।", "sub": "Is katha mein jaaniye, Bhai Dooj par behan apne bhai ke maathe par tilak kyon lagati hai." }
+      ]
+    },
+    {
+      "title": "Yam aur Yamuna",
+      "scenes": [
+        { "img": 1, "focus": "center", "motion": "in", "tts": "पुराणों की कथा के अनुसार सूर्य देव की पत्नी संज्ञा से दो संतानें हुईं, पुत्र यम और पुत्री यमुना।", "sub": "Puranik katha ke anusar Surya Dev ki patni Sanjna se do santanein huin, putra Yam aur putri Yamuna." },
+        { "img": 2, "focus": "center", "motion": "pan", "tts": "कहा जाता है कि संज्ञा सूर्य देव का तेज सहन नहीं कर पाईं, इसलिए उन्होंने अपनी छाया को पीछे छोड़ दिया।", "sub": "Kaha jaata hai ki Sanjna Surya Dev ka tej sahan nahi kar paayin, isliye unhone apni chhaya ko peechhe chhod diya." },
+        { "img": 2, "focus": "bottom", "motion": "out", "tts": "कुछ कथाओं में छाया को ही यम और यमुना की माता बताया गया है, पर भाई-बहन का स्नेह हर कथा में एक सा है।", "sub": "Kuch kathaon mein Chhaya ko hi Yam aur Yamuna ki mata bataya gaya hai, par bhai-behan ka sneh har katha mein ek sa hai." },
+        { "img": 4, "focus": "center", "motion": "in", "tts": "आगे चलकर यम धर्मराज कहलाए और यमलोक में रहकर जीवों के कर्मों का लेखा रखने लगे।", "sub": "Aage chalkar Yam Dharmraj kehlaye aur Yamlok mein rehkar jeevon ke karmon ka lekha rakhne lage." },
+        { "img": 3, "focus": "center", "motion": "in", "tts": "यमुना नदी के रूप में धरती पर बहने लगीं, और अपने भाई यम से बहुत स्नेह करती थीं।", "sub": "Yamuna nadi ke roop mein dharti par behne lagin, aur apne bhai Yam se bahut sneh karti thin." },
+        { "img": 3, "focus": "top", "motion": "out", "tts": "भाई यमलोक में था, और बहन का मन उससे मिलने के लिए तरसता रहता था।", "sub": "Bhai Yamlok mein tha, aur behan ka man usse milne ke liye tarasta rehta tha." }
+      ]
+    },
+    {
+      "title": "Yamuna ka Nimantran",
+      "scenes": [
+        { "img": 3, "focus": "bottom", "motion": "panl", "tts": "यमुना ने कई बार भाई को संदेश भेजा, भैया, एक बार मेरे घर आकर भोजन करो।", "sub": "Yamuna ne kayi baar bhai ko sandesh bheja, bhaiya, ek baar mere ghar aakar bhojan karo." },
+        { "img": 4, "focus": "top", "motion": "pan", "tts": "पर यमराज के पास सृष्टि के हर जीव का हिसाब रखने का काम था, इसलिए वे हर बार टाल देते थे।", "sub": "Par Yamraj ke paas srishti ke har jeev ka hisaab rakhne ka kaam tha, isliye ve har baar taal dete the." },
+        { "img": 3, "focus": "center", "motion": "out", "tts": "कथा कहती है कि यह सिलसिला बहुत समय तक चला, पर बहन ने अपने भाई से आस नहीं छोड़ी।", "sub": "Katha kehti hai ki yeh silsila bahut samay tak chala, par behan ne apne bhai se aas nahi chhodi." },
+        { "img": 4, "focus": "center", "motion": "panl", "tts": "फिर कार्तिक शुक्ल द्वितीया का दिन आया, जिसे यम द्वितीया भी कहा जाता है।", "sub": "Phir Kartik Shukla Dwitiya ka din aaya, jise Yam Dwitiya bhi kaha jaata hai." },
+        { "img": 4, "focus": "bottom", "motion": "in", "tts": "बहन की पुकार याद करके यमराज का मन पिघल गया, और उन्होंने यमुना के घर जाने का निश्चय किया।", "sub": "Behan ki pukar yaad karke Yamraj ka man pighal gaya, aur unhone Yamuna ke ghar jaane ka nishchay kiya." },
+        { "img": 6, "focus": "center", "motion": "out", "tts": "आगे देखिए, बहन ने भाई का स्वागत कैसे किया, और बदले में यमराज ने क्या कहा।", "sub": "Aage dekhiye, behan ne bhai ka swagat kaise kiya, aur badle mein Yamraj ne kya kaha.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Yamuna ke Ghar",
+      "scenes": [
+        { "img": 5, "focus": "center", "motion": "in", "tts": "भाई को द्वार पर खड़ा देखकर यमुना की आँखें खुशी से भर आईं।", "sub": "Bhai ko dwaar par khada dekhkar Yamuna ki aankhein khushi se bhar aayin." },
+        { "img": 5, "focus": "top", "motion": "pan", "tts": "उन्होंने भाई के स्वागत में दीपक जलाए और पूरे घर को फूलों से सजाया।", "sub": "Unhone bhai ke swagat mein deepak jalaye aur poore ghar ko phoolon se sajaya." },
+        { "img": 7, "focus": "center", "motion": "in", "tts": "यमुना ने यमराज के माथे पर तिलक लगाया और प्रेम से उनकी आरती उतारी।", "sub": "Yamuna ne Yamraj ke maathe par tilak lagaya aur prem se unki aarti utaari." },
+        { "img": 6, "focus": "center", "motion": "pan", "tts": "फिर बड़े प्रेम से उन्हें अपने हाथों से बना स्वादिष्ट भोजन कराया।", "sub": "Phir bade prem se unhein apne haathon se bana swadisht bhojan karaya." },
+        { "img": 6, "focus": "bottom", "motion": "out", "tts": "किसी कथा में छप्पन भोग का वर्णन है, और कहीं सादे भोजन का, पर भाव एक ही है: बहन का निश्छल प्रेम।", "sub": "Kisi katha mein chhappan bhog ka varnan hai, aur kahin saade bhojan ka, par bhaav ek hi hai: behan ka nishchhal prem." },
+        { "img": 7, "focus": "bottom", "motion": "in", "tts": "यमराज, जो सबके कर्मों का हिसाब रखते हैं, बहन के इस स्नेह और सेवा से बहुत प्रसन्न हुए।", "sub": "Yamraj, jo sabke karmon ka hisaab rakhte hain, behan ke is sneh aur seva se bahut prasann hue." },
+        { "img": 0, "focus": "center", "motion": "out", "tts": "उन्होंने कहा, बहन, तुम्हारे प्रेम से मैं प्रसन्न हूँ। माँगो, तुम्हें क्या वरदान चाहिए?", "sub": "Unhone kaha, behan, tumhare prem se main prasann hoon. Maango, tumhein kya vardaan chahiye?" },
+        { "img": 6, "focus": "top", "motion": "pan", "tts": "अब देखिए, यमुना ने भाई से क्या माँगा, और वही आज के पर्व की परंपरा कैसे बन गया।", "sub": "Ab dekhiye, Yamuna ne bhai se kya maanga, aur wahi aaj ke parv ki parampara kaise ban gaya.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Yamraj ka Vardaan",
+      "scenes": [
+        { "img": 0, "focus": "center", "motion": "in", "tts": "कथा के अनुसार यमुना ने यही माँगा कि भैया, हर वर्ष इसी दिन आप मेरे घर आया करें।", "sub": "Katha ke anusar Yamuna ne yahi maanga ki bhaiya, har varsh isi din aap mere ghar aaya karein." },
+        { "img": 12, "focus": "bottom", "motion": "in", "tts": "मान्यता है कि यमराज ने कहा कि इस दिन जो भाई बहन के घर भोजन करेगा और तिलक पाएगा, उसकी रक्षा का मेरा आशीर्वाद रहेगा।", "sub": "Manyata hai ki Yamraj ne kaha ki is din jo bhai behan ke ghar bhojan karega aur tilak paayega, uski raksha ka mera ashirwad rahega." },
+        { "img": 8, "focus": "center", "motion": "pan", "tts": "कई जगह मान्यता है कि इस दिन यमुना के किनारे स्नान और पूजा का भी विशेष महत्व है।", "sub": "Kayi jagah manyata hai ki is din Yamuna ke kinare snaan aur pooja ka bhi vishesh mahatva hai." },
+        { "img": 8, "focus": "top", "motion": "out", "tts": "इसीलिए इस पर्व को यम द्वितीया भी कहते हैं, और इस दिन यम और यमुना दोनों की पूजा की परंपरा है।", "sub": "Isiliye is parv ko Yam Dwitiya bhi kehte hain, aur is din Yam aur Yamuna dono ki pooja ki parampara hai." },
+        { "img": 5, "focus": "bottom", "motion": "in", "tts": "यमुना ने भाई को विदा किया, और उसी दिन से भाई-बहन के इस प्यारे पर्व की परंपरा चल पड़ी।", "sub": "Yamuna ne bhai ko vida kiya, aur usi din se bhai-behan ke is pyare parv ki parampara chal padi." },
+        { "img": 7, "focus": "center", "motion": "panl", "tts": "एक और लोक मान्यता भी है, जिसमें श्री कृष्ण अपनी बहन सुभद्रा के पास पहुँचते हैं।", "sub": "Ek aur lok manyata bhi hai, jisme Shri Krishna apni behan Subhadra ke paas pahunchte hain.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Krishna aur Subhadra",
+      "scenes": [
+        { "img": 9, "focus": "center", "motion": "in", "tts": "इस मान्यता के अनुसार नरकासुर का अंत करके श्री कृष्ण अपनी बहन सुभद्रा के घर पहुँचे।", "sub": "Is manyata ke anusar Narakasur ka ant karke Shri Krishna apni behan Subhadra ke ghar pahunche." },
+        { "img": 9, "focus": "top", "motion": "out", "tts": "सुभद्रा ने भाई का फूलों, दीपों और मिठाइयों से बड़े स्नेह के साथ स्वागत किया।", "sub": "Subhadra ne bhai ka phoolon, deepon aur mithaiyon se bade sneh ke saath swagat kiya." },
+        { "img": 10, "focus": "center", "motion": "in", "tts": "बहन ने श्री कृष्ण के माथे पर तिलक लगाया और उनके मंगल की प्रार्थना की।", "sub": "Behan ne Shri Krishna ke maathe par tilak lagaya aur unke mangal ki prarthana ki." },
+        { "img": 10, "focus": "bottom", "motion": "pan", "tts": "कहा जाता है कि तभी से बहनें अपने भाइयों के माथे पर तिलक लगाने लगीं।", "sub": "Kaha jaata hai ki tabhi se behnein apne bhaiyon ke maathe par tilak lagane lagin." },
+        { "img": 9, "focus": "bottom", "motion": "panl", "tts": "इन दोनों कथाओं की जगह और पात्र अलग हैं, पर संदेश एक ही है: भाई-बहन का निःस्वार्थ प्रेम।", "sub": "In dono kathaon ki jagah aur paatra alag hain, par sandesh ek hi hai: bhai-behan ka nihswarth prem." }
+      ]
+    },
+    {
+      "title": "Aaj ka Bhai Dooj",
+      "scenes": [
+        { "img": 11, "focus": "center", "motion": "in", "tts": "आज भी भाई दूज पर बहन थाली सजाती है, जिसमें रोली, चावल, दीपक और मिठाई होती है।", "sub": "Aaj bhi Bhai Dooj par behan thaali sajati hai, jisme roli, chawal, deepak aur mithai hoti hai." },
+        { "img": 11, "focus": "top", "motion": "out", "tts": "बहन भाई के माथे पर तिलक लगाती है, और भाई उपहार देकर उसकी रक्षा और साथ का वचन निभाता है।", "sub": "Behan bhai ke maathe par tilak lagati hai, aur bhai uphaar dekar uski raksha aur saath ka vachan nibhata hai." },
+        { "img": 11, "focus": "bottom", "motion": "pan", "tts": "इस वर्ष भाई दूज ग्यारह नवंबर को है, कुछ पंचांगों में दस नवंबर भी बताई गई है।", "sub": "Is varsh Bhai Dooj gyarah November ko hai, kuch panchangon mein das November bhi batayi gayi hai." },
+        { "img": 0, "focus": "center", "motion": "in", "tts": "यह पर्व सिखाता है कि रिश्ते व्यस्तता से बड़े होते हैं, और सच्चे प्रेम के आगे मृत्यु के देवता भी पिघल जाते हैं।", "sub": "Yeh parv sikhata hai ki rishte vyastata se bade hote hain, aur sachche prem ke aage mrityu ke devta bhi pighal jaate hain." },
+        { "img": 12, "focus": "center", "motion": "out", "tts": "यम और यमुना का स्मरण करके भाई-बहन एक-दूसरे के सुख और स्वास्थ्य की कामना करते हैं।", "sub": "Yam aur Yamuna ka smaran karke bhai-behan ek-dusre ke sukh aur swasthya ki kaamna karte hain." },
+        { "endcard": true, "tts": "जय यमुना मैया! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।", "sub": "Jai Yamuna Maiya! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN" }
+      ]
+    }
+  ],
+  "youtube_title": "Bhai Dooj ki Kahani, Yamraj Yamuna ki Katha | भाई दूज की कहानी | Sampoorn Katha",
+  "youtube_description": "Bhai Dooj ki katha: Surya Dev ki santan Yam aur Yamuna, behan ka nimantran, Yamraj ka Yamuna ke ghar aana, tilak, aarti aur vardaan ki parampara.\nIs video mein Krishna aur Subhadra ki lok manyata bhi hai. Alag-alag kshetron mein katha ke vivaran alag ho sakte hain.\nYe katha Lok katha (Yam-Yamuna aur Krishna-Subhadra parampara) ke anusar hai.\nभाई दूज की कथा: यमराज और बहन यमुना के प्रेम की सम्पूर्ण कहानी।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein.\n#BhaiDooj #YamDwitiya #Yamuna #JaiShreeShyam",
+  "youtube_tags": "Bhai Dooj ki katha, bhai dooj ki kahani, Yamraj aur Yamuna ki katha, Yam Dwitiya, Bhai Dooj 2026, भाई दूज की कथा, भाई दूज की कहानी, यमराज और यमुना की कथा, यम द्वितीया, भैया दूज, कृष्ण सुभद्रा भाई दूज, Shyam Premi SN"
+}

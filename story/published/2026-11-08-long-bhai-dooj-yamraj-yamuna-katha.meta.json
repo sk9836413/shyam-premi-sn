@@ -1,0 +1,57 @@
+{
+  "slug": "2026-11-08-long-bhai-dooj-yamraj-yamuna-katha",
+  "seconds": 291.9,
+  "scenes": 40,
+  "chapters": [
+    {
+      "title": "Bhai Dooj ki Katha",
+      "start": 0
+    },
+    {
+      "title": "Yam aur Yamuna",
+      "start": 21.43
+    },
+    {
+      "title": "Yamuna ka Nimantran",
+      "start": 66.77
+    },
+    {
+      "title": "Yamuna ke Ghar",
+      "start": 109.17
+    },
+    {
+      "title": "Yamraj ka Vardaan",
+      "start": 162.63
+    },
+    {
+      "title": "Krishna aur Subhadra",
+      "start": 209.47
+    },
+    {
+      "title": "Aaj ka Bhai Dooj",
+      "start": 243.7
+    }
+  ],
+  "images": 13,
+  "images_generated": 0,
+  "neurons": 0,
+  "render_seconds": 504,
+  "real_photos": 0,
+  "thumbnail_variants": {
+    "winner": "b",
+    "scores": [
+      {
+        "kind": "a",
+        "score": 68,
+        "contrast": 0.641,
+        "face": 0.36
+      },
+      {
+        "kind": "b",
+        "score": 78,
+        "contrast": 0.776,
+        "face": 0.39
+      }
+    ]
+  }
+}
