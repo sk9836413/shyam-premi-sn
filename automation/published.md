@@ -39,3 +39,4 @@
 - 2026-11-07-evening-choti-diwali-krishna-darshan | youtube: https://youtube.com/shorts/Rku_MplZmoA (public at 2026-11-07T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1466122608995552 (scheduled 2026-11-07T13:30:00.000Z) | ig: pending 2026-11-07T13:30:00.000Z | animated 3/4
 - 2026-11-08-status-diwali | youtube: https://youtube.com/shorts/cxLIaA38kKE (public at 2026-11-08T00:30:00.000Z) | status video, made 07 Nov 18:48 IST | social: fb: https://www.facebook.com/reel/28876175568676357 (scheduled 2026-11-08T00:30:00.000Z) | ig: pending 2026-11-08T00:30:00.000Z
 - 2026-11-07-evening-choti-diwali-krishna-darshan | instagram: https://www.instagram.com/reel/DfcStNMza1H/
+- 2026-11-08-status-diwali | instagram: https://www.instagram.com/reel/Dfd0Z9avLRy/
