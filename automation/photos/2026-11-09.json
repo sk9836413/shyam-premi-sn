@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-09",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "omkareshwar",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/omkareshwar/commons-omkareshwar-shri-omkar-mandhata-98405951-fd0c83.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-09T02:00:00.000Z",
+      "igAt": "2026-11-09T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-09-1-1.jpg"
+      ],
+      "caption": "Suprabhat! Somvar ki is shaant subah ki shuruaat Omkareshwar Jyotirlinga ke darshan se.\nनर्मदा के किनारे बसे ओंकारेश्वर में महादेव का आशीर्वाद सब पर बना रहे।\nMahadev ka naam lekar naye hafte ka pehla din shuru karte hain.\nJai Shree Shyam, Har Har Mahadev.\nAap Somvar ko subah sabse pehle kya karte hain?\n\n📷 Photo: Arian Zwegers from Brussels, Belgium, CC BY 2.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Omkareshwar,_Shri_Omkar_Mandhata_(9840595185).jpg\n\n#JaiShreeShyam #Omkareshwar #HarHarMahadev #Jyotirlinga #Mahadev #Suprabhat #SomvarSpecial",
+      "fb": {
+        "id": "1599153665560931",
+        "scheduled": "2026-11-09T02:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-09T03:43:00.000Z"
+      }
+    },
+    {
+      "n": 2,
+      "kind": "vichar",
+      "temple": null,
+      "quote": 8,
+      "ai": false,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-09T05:30:00.000Z",
+      "igAt": "2026-11-09T05:13:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-09-2-1.jpg"
+      ],
+      "caption": "Aaj ka vichar 🙏\nपोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय।\nढाई आखर प्रेम का, पढ़े सो पंडित होय॥ - संत कबीर\nMatlab: sirf kitaabein padhne se koi gyani nahi banta. Prem ko samajhne wala hi sachcha gyani hai.\nAapko apne jeevan mein prem ki sabse badi seekh kisse mili?\n\n#JaiShreeShyam #AajKaVichar #Kabir #KabirKeDohe #Prem #Satsang #Bhakti",
+      "fb": {
+        "id": "1599153735560924",
+        "scheduled": "2026-11-09T05:30:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-09T05:13:00.000Z"
+      }
+    },
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "nageshwar",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/nageshwar/commons-nageshwar-temple-gujarat-151b6d.jpg",
+        "footage/nageshwar/commons-nageshwar-temple-outdoors-bb04fb.jpg",
+        "footage/nageshwar/commons-mahadev-murti-nageshwar-temple-106165.jpg",
+        "footage/nageshwar/commons-mahadev-nageshwar-5faa05.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-09T12:00:00.000Z",
+      "igAt": "2026-11-09T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-09-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-09-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-09-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-09-3-4.jpg"
+      ],
+      "caption": "Nageshwar Jyotirlinga, Dwarka (Gujarat) ke baare mein 3 baatein swipe karke dekhiye.\nबारह ज्योतिर्लिंगों में से एक नागेश्वर की महिमा बहुत पुरानी मानी जाती है।\nVishal Shiv pratima, neeche bana garbhagriha aur Darukavana ki manyata, teenon is mandir ko khaas banate hain.\nAapne Nageshwar ya Dwarka ki yatra ki hai? Wahan ka sabse yaadgaar pal kaun sa tha?\n\n📷 Photo: YAKSH75, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Nageshwar_Temple_Gujarat.jpg\n📷 Photo: Amitparikh, Public Domain, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Nageshwar_temple_outdoors.JPG\n📷 Photo: YAKSH75, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Mahadev_Murti_Nageshwar_Temple.jpg\n📷 Photo: R.Natraj, CC BY 3.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Mahadev-Nageshwar.jpg\n\n#JaiShreeShyam #Nageshwar #NageshwarJyotirlinga #Dwarka #HarHarMahadev #Jyotirlinga #Gujarat #MandirDarshan",
+      "fb": {
+        "id": "388779648425633_1599154018894229",
+        "scheduled": "2026-11-09T12:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-09T13:16:00.000Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "ai": true,
+      "bank": "brand/photo-bank/khatu/kaggle-cast-0.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-09T14:00:00.000Z",
+      "igAt": "2026-11-09T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-09-4-1.jpg"
+      ],
+      "caption": "Shubh sandhya! Khatu Shyam ji ki sandhya aarti ka samay, man ko shanti dene wala pal.\nश्याम बाबा के शीश के दर्शन कर दिन की थकान उतर जाती है।\nJai Shree Shyam 🪔\nAaj shaam aapke ghar mein kaunsi aarti hui?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#JaiShreeShyam #KhatuShyam #SandhyaAarti #ShyamBaba #KhatuShyamJi #Aarti",
+      "fb": {
+        "id": "1599154078894223",
+        "scheduled": "2026-11-09T14:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-09T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

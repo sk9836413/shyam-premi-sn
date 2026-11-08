@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-09",
+  "weekday": "Somvar",
+  "festival": null,
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-09T02:00:00.000Z",
+      "igAt": "2026-11-09T03:43:00.000Z",
+      "kind": "darshan",
+      "temple": "omkareshwar",
+      "templeName": "Omkareshwar Jyotirlinga",
+      "category": "shiv",
+      "photos": [
+        {
+          "file": "footage/omkareshwar/commons-omkareshwar-shri-omkar-mandhata-98405951-fd0c83.jpg",
+          "credit": "Photo: Arian Zwegers from Brussels, Belgium, CC BY 2.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Omkareshwar,_Shri_Omkar_Mandhata_(9840595185).jpg",
+          "licence": "CC BY 2.0",
+          "author": "Arian Zwegers from Brussels, Belgium",
+          "title": "File:Omkareshwar, Shri Omkar Mandhata (9840595185).jpg"
+        }
+      ],
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 2,
+      "fbAt": "2026-11-09T05:30:00.000Z",
+      "igAt": "2026-11-09T05:13:00.000Z",
+      "kind": "vichar",
+      "quote": 8,
+      "quoteText": {
+        "dev": "पोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय।\nढाई आखर प्रेम का, पढ़े सो पंडित होय॥",
+        "source": "संत कबीर",
+        "roman": "Pothi padhi padhi jag mua, pandit bhaya na koy",
+        "meaning": "Sirf kitaabein padhne se koi gyani nahi banta. Prem ko samajhne wala hi sachcha gyani hai."
+      },
+      "write": [
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 3,
+      "fbAt": "2026-11-09T12:00:00.000Z",
+      "igAt": "2026-11-09T13:16:00.000Z",
+      "kind": "facts",
+      "temple": "nageshwar",
+      "templeName": "Nageshwar Jyotirlinga, Dwarka",
+      "category": "shiv",
+      "photos": [
+        {
+          "file": "footage/nageshwar/commons-nageshwar-temple-gujarat-151b6d.jpg",
+          "credit": "Photo: YAKSH75, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Nageshwar_Temple_Gujarat.jpg",
+          "licence": "CC BY 4.0",
+          "author": "YAKSH75",
+          "title": "File:Nageshwar Temple Gujarat.jpg"
+        },
+        {
+          "file": "footage/nageshwar/commons-nageshwar-temple-outdoors-bb04fb.jpg",
+          "credit": "Photo: Amitparikh, Public Domain, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Nageshwar_temple_outdoors.JPG",
+          "licence": "Public Domain",
+          "author": "Amitparikh",
+          "title": "File:Nageshwar temple outdoors.JPG"
+        },
+        {
+          "file": "footage/nageshwar/commons-mahadev-murti-nageshwar-temple-106165.jpg",
+          "credit": "Photo: YAKSH75, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Mahadev_Murti_Nageshwar_Temple.jpg",
+          "licence": "CC BY 4.0",
+          "author": "YAKSH75",
+          "title": "File:Mahadev Murti Nageshwar Temple.jpg"
+        },
+        {
+          "file": "footage/nageshwar/commons-mahadev-nageshwar-5faa05.jpg",
+          "credit": "Photo: R.Natraj, CC BY 3.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Mahadev-Nageshwar.jpg",
+          "licence": "CC BY 3.0",
+          "author": "R.Natraj",
+          "title": "File:Mahadev-Nageshwar.jpg"
+        }
+      ],
+      "write": [
+        "title",
+        "line",
+        "facts",
+        "sources",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 4,
+      "fbAt": "2026-11-09T14:00:00.000Z",
+      "igAt": "2026-11-09T14:16:00.000Z",
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "templeName": "Khatu Shyam ji Mandir, Sikar",
+      "bank": "brand/photo-bank/khatu/kaggle-cast-0.jpg",
+      "write": [
+        "big",
+        "line",
+        "question",
+        "caption",
+        "hashtags"
+      ]
+    }
+  ]
+}

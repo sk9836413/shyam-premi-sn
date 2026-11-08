@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-09",
+  "posts": {
+    "1": {
+      "big": "सुप्रभात",
+      "line": "हर हर महादेव 🙏",
+      "place": "ओंकारेश्वर ज्योतिर्लिंग, मध्य प्रदेश",
+      "text": "सोमवार की शुभ सुबह, महादेव की कृपा आप पर बनी रहे।",
+      "caption": "Suprabhat! Somvar ki is shaant subah ki shuruaat Omkareshwar Jyotirlinga ke darshan se.\nनर्मदा के किनारे बसे ओंकारेश्वर में महादेव का आशीर्वाद सब पर बना रहे।\nMahadev ka naam lekar naye hafte ka pehla din shuru karte hain.\nJai Shree Shyam, Har Har Mahadev.\nAap Somvar ko subah sabse pehle kya karte hain?",
+      "hashtags": ["#JaiShreeShyam", "#Omkareshwar", "#HarHarMahadev", "#Jyotirlinga", "#Mahadev", "#Suprabhat", "#SomvarSpecial"]
+    },
+    "2": {
+      "caption": "Aaj ka vichar 🙏\nपोथी पढ़ि पढ़ि जग मुआ, पंडित भया न कोय।\nढाई आखर प्रेम का, पढ़े सो पंडित होय॥ - संत कबीर\nMatlab: sirf kitaabein padhne se koi gyani nahi banta. Prem ko samajhne wala hi sachcha gyani hai.\nAapko apne jeevan mein prem ki sabse badi seekh kisse mili?",
+      "hashtags": ["#JaiShreeShyam", "#AajKaVichar", "#Kabir", "#KabirKeDohe", "#Prem", "#Satsang", "#Bhakti"]
+    },
+    "3": {
+      "title": "नागेश्वर ज्योतिर्लिंग",
+      "line": "3 बातें जो शायद आप नहीं जानते",
+      "facts": [
+        {
+          "dev": "नागेश्वर मंदिर के पास भगवान शिव की एक विशाल बैठी हुई प्रतिमा है, जो दूर से दिखती है।",
+          "roman": "Nageshwar mandir ke paas Bhagwan Shiv ki ek vishal baithi hui pratima hai, jo door se dikhti hai."
+        },
+        {
+          "dev": "ज्योतिर्लिंग का गर्भगृह ज़मीन के तल से नीचे बना है, इसलिए दर्शन के लिए नीचे उतरना पड़ता है।",
+          "roman": "Jyotirlinga ka garbhagriha zameen ke tal se neeche bana hai, isliye darshan ke liye neeche utarna padta hai."
+        },
+        {
+          "dev": "मान्यता है कि इसी दारुकावन में बालखिल्य ऋषियों ने शिव की तपस्या की थी।",
+          "roman": "Manyata hai ki isi Darukavana mein Balakhilya rishiyon ne Shiv ki tapasya ki thi."
+        }
+      ],
+      "sources": [
+        "https://devbhumidwarka.nic.in/tourist-place/nageshwar-temple/",
+        "https://behindeverytemple.org/hindu-temples/shiva/nageshwar-temple/"
+      ],
+      "caption": "Nageshwar Jyotirlinga, Dwarka (Gujarat) ke baare mein 3 baatein swipe karke dekhiye.\nबारह ज्योतिर्लिंगों में से एक नागेश्वर की महिमा बहुत पुरानी मानी जाती है।\nVishal Shiv pratima, neeche bana garbhagriha aur Darukavana ki manyata, teenon is mandir ko khaas banate hain.\nAapne Nageshwar ya Dwarka ki yatra ki hai? Wahan ka sabse yaadgaar pal kaun sa tha?",
+      "hashtags": ["#JaiShreeShyam", "#Nageshwar", "#NageshwarJyotirlinga", "#Dwarka", "#HarHarMahadev", "#Jyotirlinga", "#Gujarat", "#MandirDarshan"]
+    },
+    "4": {
+      "big": "शुभ संध्या",
+      "line": "संध्या आरती 🪔 जय श्री श्याम",
+      "question": "आज शाम आपके घर में कौन सी आरती हुई?",
+      "caption": "Shubh sandhya! Khatu Shyam ji ki sandhya aarti ka samay, man ko shanti dene wala pal.\nश्याम बाबा के शीश के दर्शन कर दिन की थकान उतर जाती है।\nJai Shree Shyam 🪔\nAaj shaam aapke ghar mein kaunsi aarti hui?",
+      "hashtags": ["#JaiShreeShyam", "#KhatuShyam", "#SandhyaAarti", "#ShyamBaba", "#KhatuShyamJi", "#Aarti"]
+    }
+  }
+}
