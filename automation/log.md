@@ -38,3 +38,4 @@
 2026-11-07 | long | 2026-11-07-long-govardhan-puja-katha | Shri Krishna (Govardhan Puja) | Govardhan Puja ki katha: Indra yajna par Krishna ka prashn, Govardhan pooja aur annakut, Indra ka krodh, saat din Govardhan dharan aur Indra ki kshama
 2026-11-07 | evening | 2026-11-07-evening-choti-diwali-krishna-darshan | Shri Krishna / Satyabhama (Choti Diwali) | Choti Diwali Shri Krishna darshan, Narakasur par vijay ki manyata, deepak se andhkaar par prakash ki jeet, Om Namo Bhagavate Vasudevaya
 2026-11-08 | status | 2026-11-08-status-diwali | Diwali | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
+2026-11-08 | morning | 2026-11-08-morning-diwali-lakshmi-ganesh-puja | Maa Lakshmi / Ganesh ji (Diwali) | Diwali par Lakshmi-Ganesh puja ki parampara: ghar ki safai, shaam ki puja, Ganesh ji se shubh aarambh, dwar par deepak (manyata)

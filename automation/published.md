@@ -40,3 +40,4 @@
 - 2026-11-08-status-diwali | youtube: https://youtube.com/shorts/cxLIaA38kKE (public at 2026-11-08T00:30:00.000Z) | status video, made 07 Nov 18:48 IST | social: fb: https://www.facebook.com/reel/28876175568676357 (scheduled 2026-11-08T00:30:00.000Z) | ig: pending 2026-11-08T00:30:00.000Z
 - 2026-11-07-evening-choti-diwali-krishna-darshan | instagram: https://www.instagram.com/reel/DfcStNMza1H/
 - 2026-11-08-status-diwali | instagram: https://www.instagram.com/reel/Dfd0Z9avLRy/
+- 2026-11-08-morning-diwali-lakshmi-ganesh-puja | youtube: https://youtube.com/shorts/UI58BxNtv5o | social: fb: https://www.facebook.com/reel/1531551685472746 | ig: https://www.instagram.com/reel/Dfd8npRtVV8/ | animated 4/6
