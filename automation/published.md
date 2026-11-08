@@ -44,3 +44,4 @@
 - 2026-11-08-noon-diwali-lakshmi-puja-katha | youtube: https://youtube.com/shorts/LZHZuxw_Cgc | social: fb: https://www.facebook.com/388779648425633/videos/2203302783949382 | ig: error upload failed: Request processing failed | dialogue lipsync, lip-synced 16/16, 99 s
 - 2026-11-08-long-bhai-dooj-yamraj-yamuna-katha | facebook: error POST /videos: Request Entity Too Large (code 413)
 - 2026-11-08-long-bhai-dooj-yamraj-yamuna-katha | youtube: https://youtu.be/WAWOzNPliMk (public at 12:30 IST) | long 4:51, 40 scenes, render 8 min, 0 neurons
+- 2026-11-08-evening-diwali-khatu-shyam-darshan | youtube: https://youtube.com/shorts/rpKWcpJtPgU (public at 2026-11-08T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1424084739888084 (scheduled 2026-11-08T13:30:00.000Z) | ig: pending 2026-11-08T13:30:00.000Z | animated 4/4

@@ -1,0 +1,58 @@
+{
+  "slug": "2026-11-08-evening-diwali-khatu-shyam-darshan",
+  "title": "Diwali Khatu Shyam Darshan",
+  "kicker": "Diwali Vishesh",
+  "playlist": "Khatu Shyam ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Shubh Diwali! Khatu Shyam ji darshan",
+  "cover": "शुभ दिवाली श्याम दर्शन",
+  "scenes": [
+    {
+      "prompt": "Close-up devotional darshan of the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum, face in the middle of the frame, rows of lit clay diyas glowing around, warm Diwali evening",
+      "tts": "शुभ दिवाली! खाटू श्याम जी के दर्शन कीजिए।",
+      "sub": "Shubh Diwali! Khatu Shyam ji ke darshan kijiye.",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly and the golden glow gently pulses",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "Rows of lit clay diyas and marigold garlands at the entrance of a decorated temple sanctum in the evening, warm golden light, no people",
+      "tts": "दीपों की रोशनी में श्याम बाबा का दरबार सजा है।",
+      "sub": "Deepon ki roshni mein Shyam Baba ka darbar saja hai.",
+      "motion": "pan",
+      "animate": "the diya flames flicker softly and a few marigold petals drift down in the warm light",
+      "video": "clips/1.mp4"
+    },
+    {
+      "prompt": "Close-up of the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum, glowing diyas in the foreground",
+      "tts": "भक्त उन्हें हारे का सहारा कहकर पुकारते हैं।",
+      "sub": "Bhakt unhe Haare ka Sahara kehkar pukarte hain.",
+      "motion": "out",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames glow and flicker softly",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "A home doorway in the evening with a row of lit clay diyas, a colourful rangoli and marigold garlands, warm golden light, no people",
+      "tts": "आपके घर दीप जलें, और खुशियाँ बनी रहें।",
+      "sub": "Aapke ghar deep jalein, aur khushiyan bani rahein.",
+      "motion": "in",
+      "animate": "the diya flames flicker softly and a few marigold petals drift down in the warm light",
+      "video": "clips/3.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "कल गोवर्धन पूजा के लिए लाइक, शेयर, सब्सक्राइब करें। जय श्री खाटू श्याम!",
+      "sub": "Kal Govardhan Puja ke liye Like, Share, Subscribe karein. Jai Shree Khatu Shyam!"
+    }
+  ],
+  "youtube_title": "Khatu Shyam Diwali Darshan | खाटू श्याम दिवाली दर्शन #Shorts",
+  "youtube_description": "Diwali par Khatu Shyam ji ke darshan. Bhakt Baba Shyam ko Haare ka Sahara kehkar pukarte hain.\nदिवाली पर खाटू श्याम जी के दर्शन।\nMantra: जय श्री श्याम\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nAchha laga to Like, Share aur Subscribe karein.\n#KhatuShyam #Diwali2026 #JaiShreeShyam #Shorts",
+  "youtube_tags": "Khatu Shyam Diwali darshan, खाटू श्याम दिवाली दर्शन, Khatu Shyam ji darshan, खाटू श्याम जी दर्शन, Shubh Diwali, शुभ दिवाली, Haare ka Sahara, हारे का सहारा, Baba Shyam, बाबा श्याम, Diwali 2026, Khatu Shyam, खाटू श्याम",
+  "instagram_caption": "Shubh Diwali! Khatu Shyam ji ke darshan 🪔\nBhakt Baba Shyam ko Haare ka Sahara kehkar pukarte hain.\nAapke ghar deep jalein aur khushiyan rahein.\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#KhatuShyam #JaiShreeShyam #Diwali2026 #ShubhDiwali #HaareKaSahara #Bhakti",
+  "facebook_caption": "Shubh Diwali! Khatu Shyam ji ke darshan. Chitra AI dwara banaye gaye hain (sanketik). Like, Share aur Follow karein.\n#KhatuShyam #Diwali2026 #JaiShreeShyam"
+}

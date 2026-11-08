@@ -41,3 +41,4 @@
 2026-11-08 | morning | 2026-11-08-morning-diwali-lakshmi-ganesh-puja | Maa Lakshmi / Ganesh ji (Diwali) | Diwali par Lakshmi-Ganesh puja ki parampara: ghar ki safai, shaam ki puja, Ganesh ji se shubh aarambh, dwar par deepak (manyata)
 2026-11-08 | noon | 2026-11-08-noon-diwali-lakshmi-puja-katha | Maa Lakshmi / Ganesh ji (Diwali) | Diwali ki raat Lakshmi Puja kyun: Samudra Manthan se Maa Lakshmi ka prakat hona (manyata), Lakshmi-Ganesh puja; agla: Govardhan Puja
 2026-11-08 | long | 2026-11-08-long-bhai-dooj-yamraj-yamuna-katha | Yamraj / Yamuna Maiya (Bhai Dooj) | Bhai Dooj ki katha: Surya dev ki santan Yam aur Yamuna, behan ka nimantran, Yamraj ka aagman, tilak, vardaan, aur Krishna-Subhadra ki manyata
+2026-11-08 | evening | 2026-11-08-evening-diwali-khatu-shyam-darshan | Khatu Shyam ji (Diwali) | Diwali par Khatu Shyam ji ke darshan, deepon se saja darbar, Haare ka Sahara jaikara; agla: Govardhan Puja
