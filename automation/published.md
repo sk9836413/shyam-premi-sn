@@ -41,3 +41,4 @@
 - 2026-11-07-evening-choti-diwali-krishna-darshan | instagram: https://www.instagram.com/reel/DfcStNMza1H/
 - 2026-11-08-status-diwali | instagram: https://www.instagram.com/reel/Dfd0Z9avLRy/
 - 2026-11-08-morning-diwali-lakshmi-ganesh-puja | youtube: https://youtube.com/shorts/UI58BxNtv5o | social: fb: https://www.facebook.com/reel/1531551685472746 | ig: https://www.instagram.com/reel/Dfd8npRtVV8/ | animated 4/6
+- 2026-11-08-noon-diwali-lakshmi-puja-katha | youtube: https://youtube.com/shorts/LZHZuxw_Cgc | social: fb: https://www.facebook.com/388779648425633/videos/2203302783949382 | ig: error upload failed: Request processing failed | dialogue lipsync, lip-synced 16/16, 99 s

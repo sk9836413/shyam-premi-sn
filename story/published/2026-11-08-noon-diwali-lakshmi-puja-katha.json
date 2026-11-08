@@ -1,0 +1,157 @@
+{
+  "slug": "2026-11-08-noon-diwali-lakshmi-puja-katha",
+  "format": "dialogue",
+  "title": "Diwali ki Katha, Lakshmi Puja",
+  "kicker": "Diwali Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "next": "Govardhan Puja",
+  "deity": "Maa Lakshmi / Ganesh ji (Diwali)",
+  "summary": "Diwali ki raat Lakshmi Puja kyun: Samudra Manthan se Maa Lakshmi ka prakat hona (manyata), Lakshmi-Ganesh puja; agla: Govardhan Puja",
+  "hook": "Diwali par Lakshmi ji kab aayin?",
+  "cover": "दिवाली लक्ष्मी पूजा",
+  "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "visuals": {
+    "lakshmi": {
+      "prompt": "Close-up darshan of the goddess Maa Lakshmi seated on a pink lotus, golden-skinned, four-armed, holding lotus flowers with golden coins falling softly, ornate golden crown, diyas glowing around her, traditional Indian iconography, warm glow",
+      "real": false
+    },
+    "sagar": {
+      "prompt": "Samudra Manthan: devas and asuras churning the milky ocean with Mount Mandara and Vasuki serpent, a radiant Maa Lakshmi rising on a lotus from the calm ocean, soft golden light, majestic and peaceful",
+      "real": false
+    },
+    "ganesh": {
+      "prompt": "Elephant-headed Lord Ganesh ji and Maa Lakshmi seated side by side on a decorated puja altar with marigold garlands, sweets, a brass kalash and lit diyas, traditional Indian iconography, warm festive glow",
+      "real": false
+    },
+    "diya": {
+      "prompt": "An Indian family home doorway at night, freshly cleaned and decorated with marigold garlands and rows of lit clay diyas, a grandmother and child placing a diya, warm golden glow, peaceful Diwali mood",
+      "real": false
+    }
+  },
+  "lines": [
+    {
+      "who": "chhotu",
+      "tts": "दिवाली की रात लक्ष्मी जी की पूजा क्यों करते हैं, दादी?",
+      "sub": "Diwali ki raat Lakshmi ji ki puja kyun karte hain, Dadi?",
+      "top": "lakshmi"
+    },
+    {
+      "who": "dadi",
+      "tts": "सुनो बेटा, आज कार्तिक अमावस्या की रात है। आज दिवाली पर लक्ष्मी पूजा होती है।",
+      "sub": "Suno beta, aaj Kartik Amavasya ki raat hai. Aaj Diwali par Lakshmi Puja hoti hai.",
+      "top": "diya"
+    },
+    {
+      "who": "chhotu",
+      "tts": "लक्ष्मी जी कहाँ से आई थीं, दादी?",
+      "sub": "Lakshmi ji kahan se aayi thin, Dadi?",
+      "top": "sagar"
+    },
+    {
+      "who": "dadi",
+      "tts": "मान्यता है कि समुद्र मंथन में क्षीर सागर से माँ लक्ष्मी प्रकट हुई थीं।",
+      "sub": "Manyata hai ki Samudra Manthan mein Kshir Sagar se Maa Lakshmi prakat hui thin.",
+      "top": "sagar"
+    },
+    {
+      "who": "chhotu",
+      "tts": "समुद्र मंथन? वह क्या होता है?",
+      "sub": "Samudra Manthan? Wo kya hota hai?",
+      "top": "sagar"
+    },
+    {
+      "who": "dadi",
+      "tts": "देवताओं और असुरों ने मिलकर समुद्र को मथा था। उसमें से कई रत्न निकले थे।",
+      "sub": "Devtaon aur asuron ne milkar samudra ko matha tha. Usmein se kai ratn nikle the.",
+      "top": "sagar"
+    },
+    {
+      "who": "chhotu",
+      "tts": "और लक्ष्मी जी किस दिन प्रकट हुईं?",
+      "sub": "Aur Lakshmi ji kis din prakat hui?",
+      "top": "sagar"
+    },
+    {
+      "who": "dadi",
+      "tts": "कई स्रोत कहते हैं कि कार्तिक अमावस्या की रात। इसीलिए दिवाली की रात पूजा शुभ मानते हैं।",
+      "sub": "Kai srot kehte hain ki Kartik Amavasya ki raat. Isiliye Diwali ki raat puja shubh maante hain.",
+      "top": "lakshmi"
+    },
+    {
+      "who": "chhotu",
+      "tts": "वाह! तो पूजा में गणेश जी क्यों होते हैं?",
+      "sub": "Wah! To puja mein Ganesh ji kyun hote hain?",
+      "top": "ganesh"
+    },
+    {
+      "who": "dadi",
+      "tts": "लक्ष्मी जी धन की देवी हैं और गणेश जी बुद्धि के देवता। दोनों साथ पूजे जाते हैं।",
+      "sub": "Lakshmi ji dhan ki devi hain aur Ganesh ji buddhi ke devta. Dono saath pooje jaate hain.",
+      "top": "ganesh"
+    },
+    {
+      "who": "chhotu",
+      "tts": "और घर में दिए क्यों जलाते हैं?",
+      "sub": "Aur ghar mein diye kyun jalate hain?",
+      "top": "diya"
+    },
+    {
+      "who": "dadi",
+      "tts": "कहते हैं, साफ़ घर और जगमग दिए देखकर लक्ष्मी जी का स्वागत होता है। यह परंपरा है।",
+      "sub": "Kehte hain, saaf ghar aur jagmag diye dekhkar Lakshmi ji ka swagat hota hai. Ye parampara hai.",
+      "top": "diya"
+    },
+    {
+      "who": "chhotu",
+      "tts": "तो हमें क्या सीखना चाहिए, दादी?",
+      "sub": "To hamein kya seekhna chahiye, Dadi?",
+      "top": "diya"
+    },
+    {
+      "who": "dadi",
+      "tts": "मिल-जुलकर खुशियाँ बाँटना, बेटा। यही दिवाली की सच्ची रोशनी है।",
+      "sub": "Mil-julkar khushiyan baantna, beta. Yahi Diwali ki sachchi roshni hai.",
+      "top": "lakshmi"
+    },
+    {
+      "who": "chhotu",
+      "tts": "दादी, कल किस त्योहार की कहानी सुनाओगी?",
+      "sub": "Dadi, kal kis tyohar ki kahani sunaogi?",
+      "top": "end"
+    },
+    {
+      "who": "dadi",
+      "tts": "कल गोवर्धन पूजा की कहानी सुनाऊँगी। लाइक, शेयर, सब्सक्राइब करना, बेटा! शुभ दिवाली!",
+      "sub": "Kal Govardhan Puja ki kahani sunaungi. Like, Share, Subscribe karna, beta! Shubh Diwali!",
+      "top": "end"
+    }
+  ],
+  "facts": [
+    {
+      "claim": "Diwali Lakshmi Puja 2026 is on Kartik Amavasya, Sunday 8 November",
+      "sources": [
+        "https://navbharatlive.com/photos/diwali-2026-date-kartik-amavasya-lakshmi-puja-muhurat-asp28",
+        "https://hindutone.com/festivals/lakshmi-puja-2026/"
+      ]
+    },
+    {
+      "claim": "By tradition Maa Lakshmi appeared from the Kshir Sagar during Samudra Manthan on Kartik Amavasya night (manyata; some sources differ on the day)",
+      "sources": [
+        "https://www.amarujala.com/uttar-pradesh/agra/diwali-2025-shubh-muhurat-time-for-lakshmi-pujan-on-diwali-2025-10-18",
+        "https://www.prabhatkhabar.com/religion/diwali-beginning-history"
+      ]
+    },
+    {
+      "claim": "Lakshmi (wealth) and Ganesh (wisdom) are worshipped together on Diwali evening",
+      "sources": [
+        "https://navbharatlive.com/religion/why-lakshmi-ganesh-puja-on-diwali-ram-return-rrs05",
+        "https://www.brut.media/in/articles/diwali-2026-date-day-and-puja-timings-when-is-choti-diwali-and-why-is-the-festival-celebrated"
+      ]
+    }
+  ],
+  "youtube_title": "Diwali ki Katha, Lakshmi Puja | दिवाली की कथा लक्ष्मी पूजा #Shorts",
+  "youtube_description": "Diwali ki raat Lakshmi Puja kyun? Dadi aur Chhotu ki baat: Samudra Manthan se Maa Lakshmi ka prakat hona (manyata ke anusar) aur Lakshmi-Ganesh puja.\nदिवाली की कथा: लक्ष्मी पूजा और माँ लक्ष्मी का प्राकट्य, दादी और छोटू की ज़ुबानी।\nMantra: ॐ श्रीं महालक्ष्म्यै नमः\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nPasand aaye to Like, Share aur Subscribe karein.\n#Diwali #Diwali2026 #LakshmiPuja #DadiAurChhotu #JaiShreeShyam\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam",
+  "youtube_tags": "Diwali ki katha, दिवाली की कथा, Diwali ki kahani, दिवाली की कहानी, Lakshmi Puja, लक्ष्मी पूजा, Samudra Manthan Lakshmi, समुद्र मंथन लक्ष्मी, Lakshmi Ganesh puja, लक्ष्मी गणेश पूजा, Diwali 2026, Dadi aur Chhotu, दादी और छोटू",
+  "instagram_caption": "Diwali ki raat Lakshmi Puja kyun? 🪔\nDadi ne Chhotu ko sunaya: Samudra Manthan se Maa Lakshmi ka prakat hona aur Lakshmi-Ganesh puja (manyata ke anusar).\nOm Shreem Mahalakshmyai Namah\nChitra AI dwara banaye gaye hain (sanketik).\nKal: Govardhan Puja ki kahani. Like, Share aur Follow karein.\n#Diwali #Diwali2026 #LakshmiPuja #MaaLakshmi #DadiAurChhotu #JaiShreeShyam #HinduFestival\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam",
+  "facebook_caption": "Diwali ki katha Dadi aur Chhotu ke saath: Maa Lakshmi ka prakat hona aur Lakshmi Puja. Kal Govardhan Puja ki kahani. Like, Share aur Follow karein 🙏\n#Diwali #Diwali2026 #JaiShreeShyam\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam"
+}
