@@ -432,6 +432,28 @@ if (s.format === 'dialogue') {
     need(!/\b(text|letters|writing|sign|caption|words|logo)\b/i.test(pr.replace(/no (text|letters|writing)/gi, '')), `visual "${k}": prompt must not ask for text, signs or letters`);
     need(vis[k]?.real === undefined || typeof vis[k].real === 'boolean', `visual "${k}": real must be true or false`);
   });
+  // Per-episode look (owner, 9 Nov 2026): the identical canonical two-shot every day got 0 views, so each episode has
+  // its own setting, outfits and light (characters/dialogue.py look_prompts), never one of the last 8 noon Shorts'.
+  const look = s.look && typeof s.look === 'object' ? s.look : {};
+  need(typeof look.setting === 'string' && look.setting.length >= 25 && look.setting.length <= 220, 'look.setting: the episode\'s place in English, 25-220 characters (e.g. "on the steps of a white marble ghat by the river at sunrise, brass lamps")');
+  for (const k of ['dadi', 'chhotu']) need(typeof look[k] === 'string' && look[k].length >= 12 && look[k].length <= 160, `look.${k}: ${k}'s outfit in English, 12-160 characters (colours and fabric, new each episode)`);
+  need(look.light === undefined || (typeof look.light === 'string' && look.light.length <= 120), 'look.light: optional, max 120 characters');
+  need(!/\b(text|letters|writing|sign|caption|words|logo)\b/i.test(Object.values(look).join(' ')), 'look: must not ask for text, signs or letters');
+  try {
+    const dir = 'story/published';
+    const prev = (fs.existsSync(dir) ? fs.readdirSync(dir) : []).filter((f) => /^\d{4}-\d{2}-\d{2}-noon-.+\.json$/.test(f) && !f.startsWith(s.slug || '~')).sort().slice(-8);
+    const lw = (t) => new Set(String(t || '').toLowerCase().split(/[^a-z]+/).filter((w) => w.length >= 4));
+    const overlap = (a, b) => { const A = lw(a), B = lw(b); if (!A.size || !B.size) return 0; let n = 0; for (const w of A) if (B.has(w)) n++; return n / Math.min(A.size, B.size); };
+    for (const f of prev) {
+      const p = JSON.parse(fs.readFileSync(`${dir}/${f}`, 'utf8')).look;
+      if (!p) continue;
+      const clash = overlap(look.setting, p.setting) >= 0.5 ? 'setting' : overlap(`${look.dadi} ${look.chhotu}`, `${p.dadi} ${p.chhotu}`) >= 0.6 ? 'outfits' : '';
+      if (!clash) continue;
+      const msg = `look: the ${clash} repeats ${f.replace(/\.json$/, '')}; choose a clearly different place, outfits and light`;
+      if (process.argv.includes('--soft-topics')) console.log(`${process.env.GITHUB_ACTIONS ? '::warning::' : 'warning: '}${msg}`);
+      else problems.push(msg);
+    }
+  } catch (e) { console.log(`warning: look check skipped (${e.message})`); }
   const lines = Array.isArray(s.lines) ? s.lines : [];
   need(lines.length >= 14 && lines.length <= 24, `14-24 lines needed (has ${lines.length})`);
   const used = new Set();
@@ -509,7 +531,8 @@ need(/no text/i.test(s.style || ''), 'style must include "no text"');
 
 const scenes = Array.isArray(s.scenes) ? s.scenes : [];
 const evening = /-(evening|noon)-/.test(s.slug || ''); // noon = an extra animated darshan Short, same rules
-const [minScenes, maxScenes, maxChars] = evening ? [4, 5, 330] : [6, 8, 620];
+// Morning: 21-35 s since 10 Nov 2026 (owner: max 3 uploads a day; every winner was 21-31 s), so 4-6 scenes, 380 characters.
+const [minScenes, maxScenes, maxChars] = evening ? [4, 5, 330] : [4, 6, 380];
 need(scenes.length >= minScenes && scenes.length <= maxScenes, `${minScenes}-${maxScenes} scenes needed for this slot (has ${scenes.length})`);
 const totalTts = scenes.reduce((n, sc) => n + (sc.tts || '').length, 0);
 need(totalTts <= maxChars, `total narration ${totalTts} characters; keep it under ${maxChars} so the Short stays short`);

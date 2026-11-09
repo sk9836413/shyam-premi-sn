@@ -11,7 +11,9 @@
 // claim  (run right before the upload) fetches origin/main and answers go=false when
 //        - automation/log.md already has "<day> | <slot> |" (another run published the slot), or
 //        - automation/published.md has "- <slug> | youtube: https…", or
-//        - another run holds an unexpired claim (2 h) on the same day+slot or slug that it has not released.
+//        - another run holds an unexpired claim (2 h) on the same day+slot or slug that it has not released, or
+//        - the DAILY CAP: the day already has 3 YouTube uploads (log.md / published.md lines of that IST date, plus live
+//          claims of other slots); the skip is logged as "- <slug> | skipped: daily cap 3 (...)" in published.md.
 //        Otherwise it appends "- <slug> | claim: <day> <slot> by run <id> at <ISO>" to published.md on top of
 //        origin/main (git plumbing, the job's checkout is not touched) and pushes. A rejected push means someone else pushed first: fetch, check
 //        again, retry (git's fast-forward rule makes the claim atomic, so only one run can win).
@@ -27,11 +29,12 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 export const CLAIM_TTL_MS = 2 * 3600e3;
+export const DAILY_CAP = 3; // YouTube uploads per IST date (owner, 9 Nov 2026; scripts/day-plan.mjs)
 
 const esc = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 /** Pure decision from the two files' text (unit-tested). */
-export function decide({ log = '', pub = '', day, slot, slug, run, now = Date.now(), ttl = CLAIM_TTL_MS }) {
+export function decide({ log = '', pub = '', day, slot, slug, run, now = Date.now(), ttl = CLAIM_TTL_MS, cap = DAILY_CAP }) {
   if (new RegExp(`^${esc(day)} \\| ${esc(slot)} \\|`, 'm').test(log)) return { go: false, reason: `log.md already has ${day} | ${slot}` };
   if (new RegExp(`^- ${esc(slug)} \\| youtube: https?://`, 'm').test(pub)) return { go: false, reason: `published.md already has ${slug} on YouTube` };
   const claims = new Map(); // "<run>|<day> <slot>|<slug>" -> at
@@ -41,13 +44,30 @@ export function decide({ log = '', pub = '', day, slot, slug, run, now = Date.no
     const r = line.match(/^- (\S+) \| claim released: (\S+) (\S+) by run (\S+)/);
     if (r) claims.delete(`${r[4]}|${r[2]} ${r[3]}|${r[1]}`);
   }
+  const done = dayUploads({ log, pub, day }); // slug -> slot
   for (const [k, at] of claims) {
     const [who, key, s] = k.split('|');
     if (who.split('.')[0] === String(run).split('.')[0]) continue; // our own claim (or an earlier attempt of this run)
     if (!(now - at < ttl)) continue;
     if (key === `${day} ${slot}` || s === slug) return { go: false, reason: `run ${who} claimed ${key} (${s}) at ${new Date(at).toISOString()}` };
+    if (key.startsWith(`${day} `)) done.set(s, key.slice(day.length + 1)); // another slot of the day, uploading right now
+  }
+  // Daily cap (owner, 9 Nov 2026; scripts/day-plan.mjs): at most `cap` YouTube uploads go public per IST date.
+  for (const [s, sl] of done) if (s === slug || sl === slot) done.delete(s);
+  if (done.size >= cap) {
+    return { go: false, cap: true, reason: `daily cap: ${day} already has ${done.size} YouTube uploads (${[...done.values()].sort().join(', ')}); max ${cap} a day` };
   }
   return { go: true };
+}
+
+/** The day's YouTube uploads as slug -> slot: log.md lines "<day> | <slot> | <slug> |" and published.md lines
+ *  "- <day>-<slot>-… | youtube: https…". A scheduled status Short or movie part counts on its public day, which its
+ *  slug and log line carry. One slug is one upload (on a movie day the "morning" line repeats the movie part's slug). */
+export function dayUploads({ log = '', pub = '', day }) {
+  const up = new Map();
+  for (const m of log.matchAll(new RegExp(`^${esc(day)} \\| (\\w+) \\| (\\S+)`, 'gm'))) if (!up.has(m[2])) up.set(m[2], m[1]);
+  for (const m of pub.matchAll(new RegExp(`^- (${esc(day)}-([a-z]+)-\\S*) \\| youtube: https?://`, 'gm'))) if (!up.has(m[1])) up.set(m[1], m[2]);
+  return up;
 }
 
 export const claimLine = ({ day, slot, slug, run, now = Date.now() }) => `- ${slug} | claim: ${day} ${slot} by run ${run} at ${new Date(now).toISOString()}`;
@@ -115,7 +135,12 @@ function main() {
   const check = () => decide({ log: show('automation/log.md'), pub: show('automation/published.md'), day, slot, slug, run });
   try {
     const r = pushLine(claimLine({ day, slot, slug, run }), `Claim ${day} ${slot}: ${slug}`, check);
-    return r.go ? { go: true, claimed: `${day} ${slot}`, slug, run } : { ...r, slug };
+    if (r.go) return { go: true, claimed: `${day} ${slot}`, slug, run };
+    // Over the daily cap: skip this upload and say so in published.md (once per slug and day).
+    if (r.cap && !show('automation/published.md').includes(`- ${slug} | skipped: daily cap`)) {
+      try { pushLine(`- ${slug} | skipped: daily cap ${DAILY_CAP} (${day} ${slot}; ${r.reason.replace(/^daily cap: /, '')}) by run ${run}`, `Skip ${day} ${slot}: daily cap`); } catch (e) { r.warning = `could not log the skip: ${e.message}`; }
+    }
+    return { ...r, slug };
   } catch (e) {
     return { go: true, slug, warning: `upload guard could not claim ${day} ${slot} (${e.message}); relying on the YouTube/Meta duplicate check` };
   }

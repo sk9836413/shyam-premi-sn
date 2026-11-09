@@ -38,4 +38,21 @@ describe('decide', () => {
     assert.equal(decide({ ...base, pub: released }).go, true);
     assert.equal(decide({ ...base, pub: `${claimLine({ ...base, run: '9.1', now: NOW - 3 * 3600e3 })}\n` }).go, true);
   });
+  test('daily cap: a 4th upload of the day is skipped', () => {
+    const d = { ...base, day: '2026-11-11', slot: 'evening', slug: '2026-11-11-evening-x' };
+    const log = '2026-11-11 | status | 2026-11-11-status-bhai-dooj | Bhai Dooj | s\n2026-11-11 | morning | 2026-11-11-morning-a | x | y\n';
+    assert.equal(decide({ ...d, log }).go, true);
+    const pub = '- 2026-11-11-noon-b | youtube: https://youtube.com/shorts/abc\n';
+    const r = decide({ ...d, log, pub });
+    assert.equal(r.go, false); assert.equal(r.cap, true); assert.match(r.reason, /noon/);
+    // a live claim of another slot counts too; another day's uploads do not
+    const claim = `${claimLine({ ...d, slot: 'long', slug: '2026-11-11-long-c', run: '5.1', now: NOW - 60e3 })}\n`;
+    assert.equal(decide({ ...d, log, pub: claim }).go, false);
+    assert.equal(decide({ ...d, log, pub: pub.replace('11-11', '11-12') }).go, true);
+  });
+  test('daily cap: a movie day counts the movie part once (morning line repeats its slug)', () => {
+    const d = { ...base, day: '2026-11-20', slot: 'evening', slug: '2026-11-20-evening-x' };
+    const log = '2026-11-20 | movie | 2026-11-20-movie-k-part-4 | K | m\n2026-11-20 | morning | 2026-11-20-movie-k-part-4 | K | m\n2026-11-20 | status | 2026-11-20-status-j | J | s\n';
+    assert.equal(decide({ ...d, log }).go, true);
+  });
 });

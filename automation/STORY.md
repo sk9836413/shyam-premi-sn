@@ -1,8 +1,20 @@
 # Shyam Premi SN: daily story video instructions
 
-You write the devotional story videos for **Shyam Premi SN** (YouTube, Instagram, Facebook): two
-Shorts a day (slots `morning` and `evening`, sections 1-4) and one long katha video (slot `long`,
-section 5). Everything published is in the brand's name only. There is no human review, so every
+You write the devotional story videos for **Shyam Premi SN** (YouTube, Instagram, Facebook): the
+`morning` and `evening` Shorts (sections 1-4), and on their rotation days the long katha video (slot `long`,
+section 5) or the Dadi-Chhotu Short (slot `noon`, section 6).
+
+**At most 3 YouTube uploads a day (owner, 9 Nov 2026).** At 3-4 uploads a day (2-6 Nov) Shorts got hundreds of views;
+at 5-6 a day (7-9 Nov) they fell to 0-15, most likely YouTube's repetitive / mass-produced AI content signals. So every
+upload must be high quality and clearly different, and the workflow (`scripts/day-plan.mjs`) runs only these slots:
+
+| Day type | Upload 1 | Upload 2 | Upload 3 |
+|---|---|---|---|
+| Normal day | `morning` Short (animated temple/darshan or a strong katha, 21-35 s) | `evening` darshan (19:00 IST) | Mon and Fri: `long` (15:00 IST); Wed: `noon` Dadi-Chhotu (15:00 IST); other days nothing |
+| Festival day (`automation/calendar.md`) | festival status Short (06:00 IST) | `morning` festival Short | `evening` darshan; no long, no noon |
+| Movie day (an approved series' release) | the movie part (07:00 IST) replaces the `morning` Short | `evening` darshan | the status Short when it is also a festival (20 Nov Janmotsav); nothing else |
+
+`scripts/upload-guard.mjs` skips (and logs) any 4th YouTube upload of an IST date. Everything published is in the brand's name only. There is no human review, so every
 rule below is a hard requirement.
 
 ## 1. Choose today's subject
@@ -44,8 +56,8 @@ Work out today's date in India (IST) and pick the subject in this order:
 **Growth data (3 Nov 2026):** the first temple Short (Salasar Balaji Dham) got 123 views and 19 likes overnight, the channel's best in weeks, and short darshan clips beat long kathas. Favour temple and darshan Shorts, and use **festival weeks** (Dhanteras, Diwali, Govardhan, Bhai Dooj, Dev Uthani Ekadashi = Khatu Shyam Janmotsav) with the festival name first in the title, because search volume peaks then. The owner's goal is mass subscribers: end every Short with a clear subscribe ask tied to the next video ("kal [temple/katha] dekhne ke liye subscribe karein").
 
 **Khatu Shyam Baba Janmotsav countdown (15-19 Nov 2026).** The Janmotsav is on Dev Uthani Ekadashi, **20 Nov 2026**
-(calendar.md), the channel's biggest day. On the 5 days before it the `evening` darshan Short and the `noon` Dadi-Chhotu
-Short count down to it (this overrides the temple rotation and, for these two slots, the Chhath days; the `morning` slot
+(calendar.md), the channel's biggest day. On the 5 days before it the `evening` darshan Short (and a `noon` Dadi-Chhotu Short, if one
+runs that day: Wednesdays of normal days only) count down to it (this overrides the temple rotation and, for these two slots, the Chhath days; the `morning` slot
 keeps the festival). Put the countdown in `kicker` (`Janmotsav: 5 din`, ... `Janmotsav: kal`) and end with "Janmotsav
 tak roz dekhiye". One angle per day, each different from what log.md already has (tell a new part, not a repeat):
 - 15 Nov: who Barbarik was (Ghatotkach and Maurvi's son, the three arrows boon), as Mahabharat lok katha.
@@ -54,18 +66,18 @@ tak roz dekhiye". One angle per day, each different from what log.md already has
 - 18 Nov: Khatu Shyam ji temple history and architecture (the rebuilding, the town, Shyam Kund), from the trust,
   Rajasthan Tourism or the Sikar district site plus one more source.
 - 19 Nov: why the Janmotsav is on Dev Uthani Ekadashi, and how it is celebrated (shringar, nishan, kirtan): sourced, no
-  crowd numbers or timings. Dadi ends with "kal Baba ka Janmotsav hai". 20 Nov: the long video on the
-  Janmotsav and Dev Uthani Ekadashi; the status Short (story/status/2026-11-20.json) goes out at 06:00 IST.
+  crowd numbers or timings. The 19 Nov evening ends with "kal Baba ka Janmotsav hai". 20 Nov (a movie day): the status Short
+  (story/status/2026-11-20.json) at 06:00 IST, Part 4 at 07:00 and the evening darshan: 3 uploads, no long video.
 - **17-20 Nov mornings are the mini-movie "Khatu Shyam ji ki Amar Katha" (section 7), Parts 1-4 at 07:00 IST**, made
   ahead by the `movie` job. On those days the morning run writes nothing (log.md already has `<date> | movie |`), and the
-  evening/noon countdown must not retell the same scene: Part 1 = birth, vow, three arrows; Part 2 = the Brahmin's peepal
+  evening countdown must not retell the same scene: Part 1 = birth, vow, three arrows; Part 2 = the Brahmin's peepal
   test; Part 3 = the sheesh daan; Part 4 = the Shyam boon, Khatu and the Janmotsav.
 Accuracy rules (section 2 and mandir-series.md) apply in full: legends labelled as tradition, every fact with two sources.
 
 Do not repeat a story already listed in `automation/log.md` within the last 60 days. Before choosing, search log.md (Grep) for the story's key words, e.g. "sheesh", "barbarik", "sanjeevani", in both slugs and titles: on 3 Nov 2026 "Barbarik ka Sheesh Daan" repeated a 27 Oct Short because only the exact slug was checked.
 
-**One subject per day (all slots, the long video included).** The channel now posts 5-6 videos a day (status 06:00,
-morning, noon, long 12:30, evening 19:00), and near-identical uploads compete with each other: on 8 Nov 2026 "Diwali
+**One subject per day (all slots, the long video included).** Near-identical uploads compete with each other (when the
+channel posted 5-6 videos a day: status 06:00, morning, noon, long 12:30, evening 19:00): on 8 Nov 2026 "Diwali
 Lakshmi Puja, Shubh Diwali" (morning) and "Diwali ki Katha, Lakshmi Puja" (noon) went out beside the Diwali status Short
 and got 7 and 5 views; 9 Nov's noon "Govardhan Puja ki Katha" repeated the 7 Nov long video's title (4 views); 7 Nov's
 noon "Diwali ki Kahani" retold the 5 Nov long video (Ram's return to Ayodhya, 0 views). Before choosing, read **every**
@@ -79,7 +91,7 @@ before) and reports "one subject per day: …": change the subject or the angle 
 
 **Shorts algorithm (why videos are short now).** YouTube pushes a Short to more people only when viewers
 watch most of it and replay it. Our 65-90 s kathas got 8-35 views, while the channel's own 15-30 s clips
-got 100+. So: **morning kathas 50-60 s, evening darshan Shorts 25-35 s** (owner, 3 Nov 2026: "shorts bahut chote aa rhe h time badhao"), a hook in the first 2 seconds,
+got 100+, and every winner was 21-31 s. So: **morning Shorts 21-35 s (4-6 scenes; owner, 9 Nov 2026), evening darshan Shorts 25-35 s**, a hook in the first 2 seconds,
 one idea per scene, no slow build-up, and an ending that flows back into the start.
 
 **Hook, title and cover formulas (channel data, 6 Nov 2026; `scripts/validate.mjs` enforces them).**
@@ -134,13 +146,15 @@ usually finds nothing, which is fine.
 "WhatsApp status" Short is pre-written in `story/status/<date>.json` and published at 06:00 IST by the workflow's
 `status` job. It does not use a slot or a log line of yours; do not duplicate it.
 
-**Slot.** The prompt tells you the slot. There are two videos a day:
-- `morning` (published about 07:00 IST): the subject chosen above.
+**Slot.** The prompt tells you the slot (the table at the top says which slots run on which days):
+- `morning` (published when ready, about 10:30 IST): the subject chosen above, as an **animated temple/darshan Short
+  or a strong katha of 21-35 s**: 4-6 scenes, at most 380 characters of narration, the hook rules below (deity/temple
+  name first). Pick the single most striking moment or fact, not the whole story: the long video tells full kathas.
 - `evening` (published about 19:00 IST): a **darshan Short** of 25-35 s, usually Khatu Shyam ji:
   4-5 scenes (a darshan image, one line of bhav or a short fact/leela, the mantra or jaikara, end card),
   calm and beautiful rather than a full story. It must differ from this morning's video: check today's
   `morning` line in `automation/log.md`. On a big festival day both slots may cover the festival.
-- `noon` (daily since 5 Nov 2026, published as soon as it is ready, about 11:00-11:30 IST): the **"Dadi aur Chhotu"**
+- `noon` (Wednesdays of normal days only since 10 Nov 2026, public at 15:00 IST): the **"Dadi aur Chhotu"**
   cartoon dialogue Short, 90-120 s. It has its own format and rules: **section 6**. Sections 3-4 do not apply to it.
 
 ## 2. Research the story
@@ -175,7 +189,7 @@ usually finds nothing, which is fine.
   "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
   "hook": "<Hinglish, max 38 characters, names the deity/temple/festival, shown big from 0.4 to 2.6 s, e.g. Barbarik ne Shri Krishna ko sheesh kyun diya?>",
   "cover": "<2-4 Devanagari words with the name, max 24 characters, drawn huge on the first 0.4 s, e.g. खाटू श्याम दर्शन>",
-  "scenes": [ ... morning 6-8 scenes, evening 4-5 scenes; scene 1 = the deity/temple close-up ... ],
+  "scenes": [ ... morning 4-6 scenes, evening 4-5 scenes; scene 1 = the deity/temple close-up ... ],
   "youtube_title": "...",
   "youtube_description": "...",
   "youtube_tags": "...",
@@ -190,7 +204,7 @@ Each scene:
   Describe deities in their traditional iconography (colour, weapons, vahan, ornaments). Never ask
   for text, signs or letters. Never depict deities in disrespectful, violent-gory or sexualised ways.
 - `tts`: the narration line in **Hindi Devanagari**, one short sentence, at most 110 characters.
-  Total narration (all scenes) at most 620 characters in the morning and 330 in the evening.
+  Total narration (all scenes) at most 380 characters in the morning and 330 in the evening.
   Write numbers as words.
 - `sub`: the same line in **Hinglish (Roman script)**, at most 120 characters.
 - `motion`: `in`, `out` or `pan`. Vary them.
@@ -269,9 +283,9 @@ Do not render, upload, publish, commit or push: later workflow steps do that.
 
 ## 5. Long video (slot `long` only)
 
-Only when the prompt says the slot is `long`. Once a day, after the morning Short, you write one
-**long katha video**: 16:9, **5-10 minutes**, YouTube only (a regular video, not a Short), published
-at 12:30 IST. Sections 3-4 do not apply to it; everything else below does.
+Only when the prompt says the slot is `long`. On Mondays and Fridays of normal days (not festival or movie days), after
+the morning Short, you write one **long katha video**: 16:9, **5-10 minutes**, YouTube only (a regular video, not a
+Short), published at 15:00 IST. Sections 3-4 do not apply to it; everything else below does.
 
 **Subject.** Same order as section 1: a festival or vrat today or in the next 3 days (tell the story
 behind it, e.g. why Dhanteras is celebrated), then a `long part` item from today's trend research (section 1, item 2;
@@ -371,12 +385,20 @@ Write it to `story/long/scenes.json` and run `node scripts/validate.mjs story/lo
 it passes. Do not edit `automation/log.md` (the workflow records the long video). Do not render,
 upload, commit or push.
 
-## 6. "Dadi aur Chhotu" dialogue Short (slot `noon` only)
+## 6. "Dadi aur Chhotu" dialogue Short (slot `noon` only: Wednesdays of normal days, public 15:00 IST)
 
 Two cartoon characters talk: **Dadi Maa** (about 70, calm, tells the story) and her grandson **Chhotu** (8, curious).
-**Chhotu's questions drive the story**: he asks, Dadi answers, he reacts and asks the next thing. The characters, voices,
-music and layout are fixed (characters/library/shyam); you only write the dialogue and the story images. The owner
-approved this format on 4 Nov 2026 ("YES sahi h").
+**Chhotu's questions drive the story**: he asks, Dadi answers, he reacts and asks the next thing. The characters' faces, voices,
+music and layout are fixed (characters/library/shyam); you write the dialogue, the story images and the episode's
+`look`. The owner approved this format on 4 Nov 2026 ("YES sahi h").
+
+**A new look every episode (owner, 9 Nov 2026).** The same canonical two-shot (charpai, courtyard, cream saree, mustard
+kurta) on every episode read as repetitive and those Shorts got 0 views. So each episode sets `look`: a **different
+place** that fits the story (a ghat at sunrise, a temple courtyard at an aarti, a rooftop under the stars, a village
+fair... never the charpai courtyard again), **different outfits** for both (colours and fabric) and the light. The
+renderer draws the episode's own two-shot and close-ups from it (`characters/dialogue.py` look_prompts; the faces stay
+the same). `scripts/validate.mjs` rejects a setting or outfits too close to any of the last 8 noon Shorts
+(`story/published/*-noon-*.json`). English, no text or signs.
 
 **Subject (in this order).**
 1. A festival today or tomorrow (`automation/calendar.md`; Diwali week: Dhanteras, Choti Diwali, Diwali, Govardhan,
@@ -447,6 +469,10 @@ scenes (a farmer's plough, a dream, a cart) are `real: false`.
   "hook": "<Roman, max 38 characters, names the temple/festival, shown big from 0.4 to 2.6 s>",
   "cover": "<2-4 Devanagari words with the name, max 24 characters>",
   "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "look": { "setting": "<English, 25-220 characters: where they sit today, e.g. on the steps of a white marble ghat by a calm river at sunrise, brass lamps and marigolds>",
+            "dadi": "<English, 12-160: Dadi's outfit today, e.g. a soft green cotton saree with a gold border and a cream shawl>",
+            "chhotu": "<English, 12-160: Chhotu's outfit today, e.g. an orange kurta with a small blue vest>",
+            "light": "<optional, max 120: e.g. golden sunrise light>" },
   "visuals": { "temple": { "prompt": "...", "real": true }, "field": { "prompt": "...", "real": false } },
   "lines": [ { "who": "chhotu", "tts": "...", "sub": "...", "top": "temple" }, ... ],
   "facts": [ { "claim": "...", "sources": ["https://...", "https://..."] }, ... at least 3 ],
@@ -472,8 +498,8 @@ characters, dialogue, animated scenes and a cliffhanger, so viewers binge and su
 ahead by the `movie` job (after the evening run) and goes out at **07:00 IST on its release day as that day's morning
 Short** (YouTube publishAt, Facebook scheduled Page video, Instagram queued Reel). Owner, 6 Nov 2026: first series
 "Khatu Shyam ji ki Amar Katha" on 17-20 Nov; then movies for all temples, one part a day, replacing the morning katha
-(only once the owner approved the pilot and the repo variable `MOVIE_DAILY=on` is set). Evening darshan, status, noon
-Dadi-Chhotu and the long video stay as they are.
+(only once the owner approved the pilot and the repo variable `MOVIE_DAILY=on` is set). On a movie day the part is one
+of the day's 3 uploads: evening darshan (+ the status Short on a festival day), no long video and no noon Short.
 
 **Queue.** `automation/movie-series.md`: series in order (mandir-series.md order; a festival in the next 7 days or a
 `trends` topic may jump the queue), each with its parts, sources and status. Finish a series before starting the next.

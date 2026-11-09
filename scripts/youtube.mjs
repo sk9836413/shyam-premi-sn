@@ -6,7 +6,7 @@
 //   node scripts/youtube.mjs find --title "<youtube_title>" [--hours 36]   read-only: the same title among recent uploads
 //   node scripts/youtube.mjs upload --video <mp4> --scenes story/today/scenes.json [--publish-at 19:00 | 2026-11-06T06:00] [--dry-run] [--allow-duplicate]
 //   node scripts/youtube.mjs upload --long --video <mp4> --scenes story/long/scenes.json --meta <out/slug.json>
-//        [--thumbnail <jpg>] [--publish-at 12:30]   regular video, chapters from --meta, scheduled at that IST time
+//        [--thumbnail <jpg>] [--publish-at 15:00]   regular video, chapters from --meta, scheduled at that IST time
 //
 // Quota (developers.google.com/youtube/v3/determine_quota_cost, updated 2026-10-15): videos.insert has its
 // own bucket (100 calls a day, 1 per call). From the shared 10,000 units: playlists.list 1, playlistItems.insert

@@ -2,7 +2,8 @@
 
 Owner, 6 Nov 2026: "short movies" instead of narrated kathas: each temple's origin or legend as a **2-4 part** mini film
 (vertical Shorts, ~2-3 min each, cliffhanger, "Part n kal subah 7 baje"), one part a day in the **morning** slot,
-replacing the morning katha. Evening darshan, festival status, noon Dadi-Chhotu and the long video stay as they are.
+replacing the morning katha. Owner, 9 Nov 2026 (max 3 YouTube uploads a day, scripts/day-plan.mjs): a movie day has
+the part (07:00), the evening darshan and, on a festival day, the status Short (06:00); no long video, no noon Short.
 
 **Gates.** A series uploads only when its `series.json` has `"approved": true` (the owner reviews the pilot first;
 until then each part is rendered and parked for review). The daily pipeline (Claude writes tomorrow's part) runs only

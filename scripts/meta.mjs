@@ -4,7 +4,7 @@
 //
 //   node scripts/meta.mjs check                      read-only: the Page and the Instagram account
 //   node scripts/meta.mjs short --video <mp4> --scenes <json> [--video-url <hosted mp4>] [--publish-at 19:00|YYYY-MM-DDTHH:MM] [--dry-run]
-//   node scripts/meta.mjs long --video <mp4> --scenes <json> --meta <out/slug.json> [--thumbnail <jpg>] [--publish-at 12:30] [--dry-run]
+//   node scripts/meta.mjs long --video <mp4> --scenes <json> --meta <out/slug.json> [--thumbnail <jpg>] [--publish-at 15:00] [--dry-run]
 //   node scripts/meta.mjs flush [--log automation/published.md] [--dry-run]
 //
 // short  Facebook: a Reel when the video is vertical and 3-90 s (Meta's Reel limit), otherwise a normal Page video

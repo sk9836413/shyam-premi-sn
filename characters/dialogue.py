@@ -174,18 +174,49 @@ def footage_for(temple, root=None):
     return out
 
 
+# Per-episode look (owner, 9 Nov 2026): the same canonical two-shot every day got 0 views, so a Shyam spec may carry
+# "look": {"setting", "dadi", "chhotu", "light"?} (a new place, outfits and light each episode). `images` then also draws
+# look-both.jpg (the two-shot), look-dadi.jpg and look-chhotu.jpg with FLUX from these fixed faces plus the look, and the
+# renderer uses them instead of the canonical library (no lip-sync: a slow camera on the stills, speaker highlight and
+# waveform). If FLUX fails, the canonical library and lip-sync are used as before.
+LOOK_FACES = {
+    "dadi": "an elderly Indian grandmother around 70 with silver-white hair in a neat low bun, round thin gold-rimmed glasses, "
+            "a small red bindi, kind brown eyes, gentle smile with soft laugh lines",
+    "chhotu": "a curious 8-year-old Indian boy with short messy black hair, big round brown eyes, chubby cheeks",
+}
+LOOK_STYLE = "stylized 3D animated feature film look, original character design, soft warm cinematic lighting, rich warm colours, highly detailed, sharp focus, no text, no letters, no writing, no watermark"
+
+
+def look_prompts(look):
+    light = look.get("light") or "soft warm light"
+    d, c = f"{LOOK_FACES['dadi']}, wearing {look['dadi']}", f"{LOOK_FACES['chhotu']}, wearing {look['chhotu']}"
+    return {
+        "look-both": f"Medium two-shot from the waist up, {look['setting']}, {light}. On the left {d}; on the right {c}. Both sitting "
+                     f"close together, faces turned three-quarters towards the viewer, large and clearly visible, the grandmother in "
+                     f"the left half and the boy in the right half of the picture. {LOOK_STYLE}",
+        "look-dadi": f"Close-up portrait from the chest up, centred, {d}, speaking warmly with one hand raised gently, {look['setting']} "
+                     f"softly blurred behind her, {light}. {LOOK_STYLE}",
+        "look-chhotu": f"Close-up portrait from the chest up, centred, {c}, listening with wide-eyed wonder, {look['setting']} softly "
+                       f"blurred behind him, {light}. {LOOK_STYLE}",
+    }
+
+
 def cmd_images(a):
     spec = load_json(a.spec)
     os.makedirs(a.out, exist_ok=True)
     real = footage_for(spec.get("temple"), a.footage)
     made, failed = 0, []
-    for key, v in spec.get("visuals", {}).items():
+    jobs = [(key, f"{v['prompt']}. {spec.get('style', '')}", v.get("real")) for key, v in spec.get("visuals", {}).items()]
+    look = spec.get("look")
+    if isinstance(look, dict) and all(look.get(k) for k in ("setting", "dadi", "chhotu")):
+        jobs += [(k, p, False) for k, p in look_prompts(look).items()]
+    for key, prompt, is_real in jobs:
         f = f"{a.out}/{key}.jpg"
-        if os.path.exists(f) or (v.get("real") and real):
+        if os.path.exists(f) or (is_real and real):
             continue
         try:
             req = urllib.request.Request(f"{os.environ['MEDIA_URL']}/ai/flux", method="POST",
-                                         data=json.dumps({"prompt": f"{v['prompt']}. {spec.get('style', '')}", "steps": 4}).encode(),
+                                         data=json.dumps({"prompt": prompt, "steps": 4}).encode(),
                                          # Cloudflare answers Python's default User-Agent with 403 (error 1010)
                                          headers={"Authorization": f"Bearer {os.environ['MEDIA_TOKEN']}", "Content-Type": "application/json",
                                                   "User-Agent": "shyam-premi-sn/1.0 (+https://github.com/sk9836413/shyam-premi-sn)"})
@@ -322,6 +353,14 @@ class Renderer:
         self.build = os.path.join(os.path.dirname(os.path.abspath(a.out)), f"build-{os.path.basename(a.out)[:-4]}")
         os.makedirs(self.build, exist_ok=True)
         self.master = Image.open(os.path.join(self.lib["dir"], self.lib["master"])).convert("RGB")
+        self.face = dict(self.lib.get("face_centre_master", {}))
+        # Per-episode look (look_prompts): the episode's own two-shot and close-ups replace the canonical library.
+        both = os.path.join(a.images or "", "look-both.jpg")
+        self.look = self.channel == "shyam" and bool(a.images) and os.path.exists(both)
+        if self.look:
+            self.master = Image.open(both).convert("RGB")
+            mw, mh = self.master.size
+            self.face = {"dadi": [0.29 * mw, 0.42 * mh], "chhotu": [0.71 * mw, 0.45 * mh]}
         self.footage = footage_for(self.raw.get("temple"), a.footage) if self.channel == "shyam" else []
         self.ev = json.load(open(a.visuals, encoding="utf-8")) if a.visuals and os.path.exists(a.visuals) else []
         self.used_footage, self.ai_visuals = [], set()
@@ -412,7 +451,7 @@ class Renderer:
             d.line([x, 0, x, W], fill=int(140 * min(1, max(0, (t - 0.35) / 0.4))))
         layer = Image.new("RGBA", (W, W), (0, 0, 0, 0))
         layer.putalpha(g)
-        cx, cy = [v * W / self.master.width for v in self.lib["face_centre_master"][who]]
+        cx, cy = [v * W / self.master.width for v in self.face[who]]
         glow = Image.new("L", (W, W), 0)
         ImageDraw.Draw(glow).ellipse([cx - 230, cy - 260, cx + 230, cy + 260], fill=60)
         glow = glow.filter(ImageFilter.GaussianBlur(70))
@@ -421,9 +460,21 @@ class Renderer:
         layer.save(p)
         return p
 
-    def still(self, who):
-        """Still two-shot (the canonical master) with the speaker highlighted: the fallback when no lip-sync clip exists."""
+    def closeup(self, who):
+        """The episode's own close-up of the speaker (per-episode look), or None."""
+        p = os.path.join(self.a.images or "", f"look-{who}.jpg")
+        return p if self.look and os.path.exists(p) and os.path.getsize(p) > 10000 else None
+
+    def still(self, who, two=True):
+        """Still two-shot (the canonical master, or the episode's look) with the speaker highlighted: the fallback when no
+        lip-sync clip exists. In look mode a close-up line shows the episode's close-up of the speaker instead."""
         from PIL import Image
+        cu = None if two else self.closeup(who)
+        if cu:
+            p = f"{self.build}/still-cu-{who}.png"
+            if not os.path.exists(p):
+                Image.open(cu).convert("RGB").resize((3 * W // 2, 3 * W // 2), Image.LANCZOS).save(p)
+            return p
         p = f"{self.build}/still-{who}.png"
         if not os.path.exists(p):
             im = self.master.resize((W, W), Image.LANCZOS).convert("RGBA")
@@ -481,7 +532,7 @@ class Renderer:
         audio = f"{self.a.voice}/{self.voice[i]['file']}"
         kind, story_file, label = self.story(line["top"] or "end", i)
         lip = os.path.join(self.a.lipsync or "", f"{i:02d}.mp4")
-        use_lip = bool(self.a.lipsync) and os.path.exists(lip) and os.path.getsize(lip) > 10000
+        use_lip = not self.look and bool(self.a.lipsync) and os.path.exists(lip) and os.path.getsize(lip) > 10000
         parts = sub_chunks(line["sub"])
         total = sum(len(p) for p in parts) or 1
         speech = max(0.5, self.voice[i]["speech_s"])
@@ -513,10 +564,12 @@ class Renderer:
             if plan["two"]:
                 hl = self.highlight(line["who"])
         else:
-            inputs += ["-loop", "1", "-framerate", str(FPS), "-t", f"{dur:.3f}", "-i", self.still(line["who"])]
-            # A slow camera: wide on short replies, a push in towards the speaker on longer lines.
-            cx, cy = [v / self.master.width for v in self.lib["face_centre_master"][line["who"]]]
-            zmax = 1.06 if plan["two"] else 1.32
+            cu = not plan["two"] and self.closeup(line["who"])
+            inputs += ["-loop", "1", "-framerate", str(FPS), "-t", f"{dur:.3f}", "-i", self.still(line["who"], plan["two"])]
+            # A slow camera: wide on short replies, a push in towards the speaker on longer lines (on the episode's
+            # close-up: a gentle push in on the face).
+            cx, cy = (0.5, 0.42) if cu else [v / self.master.width for v in self.face[line["who"]]]
+            zmax = 1.06 if plan["two"] else (1.14 if cu else 1.32)
             cf = (f"[2:v]zoompan=z='min(1+{zmax - 1:.2f}*on/({min(dur, 3.5):.3f}*{FPS}),{zmax})':"
                   f"x='max(0,min(iw-iw/zoom,{cx:.3f}*iw-iw/zoom/2))':y='max(0,min(ih-ih/zoom,{cy:.3f}*ih-ih/zoom/2))':d=1:s={W}x{W}:fps={FPS}[ch0]")
         n_in = 3

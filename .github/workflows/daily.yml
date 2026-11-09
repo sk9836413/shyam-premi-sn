@@ -1,5 +1,11 @@
-# Shyam Premi SN: two story videos a day (YouTube Short + Instagram/Facebook reel via Make), plus one
-# long katha video (16:9, 5-10 min, YouTube only, scheduled for 12:30 IST) made after the morning Short.
+# Shyam Premi SN: at most 3 YouTube uploads a day (owner, 9 Nov 2026; scripts/day-plan.mjs decides which, and
+# scripts/upload-guard.mjs enforces a hard cap of 3 per IST date): 5-6 a day (7-9 Nov) collapsed views to 0-15.
+#   normal day:   morning Short + evening darshan (19:00) + Mon/Fri the long katha video (15:00), Wed the Dadi-Chhotu
+#                 Short (15:00, a new setting and outfits each time); other days nothing more
+#   festival day: status Short 06:00 + morning festival Short + evening darshan (no long, no noon)
+#   movie day:    the movie part 07:00 replaces the morning Short + evening darshan (+ status on a festival day)
+# A slot that is not planned for the day skips at once (no render). Photo posts and the Veo kit are not uploads.
+# The long katha video (16:9, 5-10 min, YouTube only, scheduled for 15:00 IST) is made after the morning Short.
 # Morning window 05:30-11:59 IST, evening window 17:30-22:59 IST. GitHub's schedule often fires hours
 # late, so it is polled every 30 minutes inside both windows; the first run in a window publishes and the
 # rest skip (slot already in automation/log.md). Runs outside a window do nothing, so nothing posts at night.
@@ -12,7 +18,7 @@
 # with FLUX.1-schnell on the Kaggle GPU (one short sps-frames-<slot> session), and anything still missing gets a picture
 # bank / real temple photo / plain stand-in in the renderer. Each run's summary has the image ledger (images per source,
 # neurons). force_fallback=true skips Workers AI for a test run.
-# slot=noon (dispatched by the scheduler at 10:13 IST, retry 18:46 IST) is the daily "Dadi aur Chhotu" cartoon dialogue
+# slot=noon (dispatched by the scheduler on Wednesdays only at 10:13 IST, retry 18:46 IST; public 15:00 IST) is the "Dadi aur Chhotu" cartoon dialogue
 # Short (STORY.md section 6, characters/): edge-tts voices, story images, lip-sync on Kaggle (~10-15 GPU-min), else the
 # still two-shot with a speaker highlight. dry_run=true renders everything and keeps the video as an artifact only.
 # Festival "WhatsApp status" Shorts (job `status`, story/status/<date>.json, written in advance): after every evening-slot
@@ -25,12 +31,12 @@
 # Facebook + Instagram (scripts/meta.mjs, Graph API, never-expiring Page token in the META_PAGE_ID / META_PAGE_TOKEN / IG_USER_ID
 # secrets; without them, or when Meta rejects the token, scripts/publish.mjs falls back to Make as before). Facebook Reels
 # stop at 90 s, so a longer Short (Dadi aur Chhotu) is a normal Page video; Instagram Reels via the API take up to 15 min.
-# Timing follows YouTube: morning and noon Shorts go out at once; the evening Short (19:00 IST) and the festival status
+# Timing follows YouTube: the morning Short goes out at once, the Wednesday noon Short at 15:00 IST; the evening Short (19:00 IST) and the festival status
 # Short (06:00 IST) are SCHEDULED on Facebook, and because Instagram has no scheduled publishing they are queued
 # ("ig: pending <time>" in automation/published.md) and the `instagram` job, which runs on every trigger (no new cron),
 # publishes them within 20 minutes of that time: the 18:46 IST evening dispatch waits for 19:00, the status Short goes
 # out with the first run after 06:00 IST (the 05:47 IST schedule poll or the 09:13 IST morning dispatch), and a slot
-# missed by over 6 hours is skipped. The long katha video is a normal Facebook Page video scheduled for 12:30 IST
+# missed by over 6 hours is skipped. The long katha video is a normal Facebook Page video scheduled for 15:00 IST
 # (in-stream ads later); it is not posted to Instagram.
 name: Daily story video
 
@@ -41,7 +47,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning, evening, noon, long, status or movie (empty = by time of day; long = only the long video; noon = the Dadi aur Chhotu Short; status = only tomorrow's festival status Short; movie = only the next due mini-movie part)
+        description: morning, evening, noon, long, status or movie (empty = by time of day; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part)
         required: false
         default: ''
       dry_run:
@@ -176,6 +182,14 @@ jobs:
             echo "movie_day=$(grep -m1 "^$today | movie |" automation/log.md | cut -d'|' -f3 | xargs)" >> "$GITHUB_OUTPUT"
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today morning = the scheduled movie part"
+          elif ! node scripts/day-plan.mjs --date "$today" --slot "$slot" --check > "$RUNNER_TEMP/plan.json"; then
+            # At most 3 uploads a day (scripts/day-plan.mjs): e.g. noon only on Wednesdays of normal days.
+            if [ "${{ inputs.dry_run }}" = true ]; then
+              echo "::notice::Dry run of a slot not planned today: $(cat "$RUNNER_TEMP/plan.json")"
+            else
+              echo "done=true" >> "$GITHUB_OUTPUT"
+              echo "::notice::$today $slot is not planned today: $(node -p "require(process.env.RUNNER_TEMP + '/plan.json').why")"
+            fi
           fi
 
       - uses: actions/setup-node@v4
@@ -376,6 +390,9 @@ jobs:
           SPS_SLOT: char-shyam
         run: |
           fail() { echo "::warning::Lip-sync skipped, using stills: $1"; echo "- Lip-sync skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          # A per-episode look (spec "look": new setting and outfits, images look-*.jpg) replaces the canonical clip library
+          # (identical frames every day got 0 views), so there is nothing to lip-sync: the renderer animates the stills.
+          if [ -f story/today/char/images/look-both.jpg ]; then echo "- Lip-sync: not used (per-episode look)" >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
           [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
           pip install -q 'kaggle>=2.2' six || fail "kaggle CLI install failed"
           node animate/kaggle.mjs quota --min 2 > "$RUNNER_TEMP/quota.json" || fail "under 2 Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
@@ -441,8 +458,9 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-        # The evening Short is made hours early, so YouTube publishes it at 19:00 IST (straight away if later).
-        run: node scripts/youtube.mjs upload --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || '' }} | tee "$RUNNER_TEMP/yt.json"
+        # The evening Short is made hours early, so YouTube publishes it at 19:00 IST (straight away if later); the Wednesday
+        # noon Short at 15:00 IST, so the day's 3 uploads are spread out (morning ~10:30, 15:00, 19:00).
+        run: node scripts/youtube.mjs upload --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || steps.date.outputs.slot == 'noon' && '--publish-at 15:00' || '' }} | tee "$RUNNER_TEMP/yt.json"
 
       - name: Instagram and Facebook (Graph API, Make fallback)
         id: make
@@ -461,7 +479,7 @@ jobs:
           if grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" 2>/dev/null; then
             echo '{"status":"ok","summary":"skipped (the YouTube video already existed: posted by an earlier run)"}' | tee "$RUNNER_TEMP/make.json"; exit 0
           fi
-          node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || '' }} | tee "$RUNNER_TEMP/make.json"
+          node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || steps.date.outputs.slot == 'noon' && '--publish-at 15:00' || '' }} | tee "$RUNNER_TEMP/make.json"
 
       - name: Record
         # Only once something was published, so a failed render is retried by the next slot run.
@@ -489,8 +507,8 @@ jobs:
           echo "::error::YouTube: ${{ steps.yt.outcome }}, Make: ${{ steps.make.outcome }}"
           exit 1
 
-  # Daily long katha video (automation/STORY.md section 5): 16:9, 5-10 min, YouTube only, private with
-  # publishAt 12:30 IST. Runs after the morning Short (whatever its result) or alone with slot=long, so the
+  # Long katha video (automation/STORY.md section 5) on Mondays and Fridays of normal days (scripts/day-plan.mjs):
+  # 16:9, 5-10 min, YouTube only, private with publishAt 15:00 IST. Runs after the morning Short (whatever its result) or alone with slot=long, so the
   # Shorts never wait for it or fail because of it. Story and images are cached per day, so a retry costs no
   # extra neurons; after 3 failed attempts it waits for the next day. If the upload fails (quotaExceeded or
   # an error) the mp4 is parked on the media Worker and the next run retries it (scripts/long-pending.mjs).
@@ -548,6 +566,9 @@ jobs:
           echo "today=$today" >> "$GITHUB_OUTPUT"
           if grep -q "^$today | long |" automation/log.md; then
             echo "::notice::$today long video already made"
+          elif [ "${{ inputs.slot }}" != long ] && ! node scripts/day-plan.mjs --date "$today" --slot long --check > "$RUNNER_TEMP/plan.json"; then
+            # Mon/Fri of normal days only (an explicit slot=long dispatch still runs; the upload guard's daily cap applies).
+            echo "::notice::No long video today: $(node -p "require(process.env.RUNNER_TEMP + '/plan.json').why")"
           else
             echo "GO=1" >> "$GITHUB_ENV"
           fi
@@ -732,9 +753,9 @@ jobs:
         continue-on-error: true
         run: |
           node scripts/youtube.mjs upload --long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json \
-            --meta "story/long/out/$SLUG.json" --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/yt.json"
+            --meta "story/long/out/$SLUG.json" --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 15:00 | tee "$RUNNER_TEMP/yt.json"
 
-      # The same video as a normal Facebook Page video (not a Reel), scheduled for 12:30 IST like YouTube; its line in
+      # The same video as a normal Facebook Page video (not a Reel), scheduled for 15:00 IST like YouTube; its line in
       # published.md is committed by Record. Never fails the job; skipped without the META_* secrets.
       - name: Facebook Page video (Graph API)
         if: steps.render.outcome == 'success' && steps.claim.outputs.go == 'true'
@@ -746,7 +767,7 @@ jobs:
           [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; no Facebook copy"; exit 0; }
           grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" 2>/dev/null && { echo "::notice::YouTube already had it (earlier run): no second Facebook copy"; exit 0; }
           node scripts/meta.mjs long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json --meta "story/long/out/$SLUG.json" \
-            --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/fb.json" || true
+            --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 15:00 | tee "$RUNNER_TEMP/fb.json" || true
           echo "- $SLUG | facebook: $(node -p "try{const j=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/fb.json','utf8'));j.facebook?j.facebook.url+(j.facebook.scheduled?' (scheduled '+j.facebook.scheduled+')':''):'error '+(j.error||j.status)}catch{'failed'}")" >> automation/published.md
           grep -q '"status":"ok"' "$RUNNER_TEMP/fb.json" || echo "::warning::Facebook Page video failed: $(head -c 300 "$RUNNER_TEMP/fb.json")"
 
@@ -767,7 +788,7 @@ jobs:
             const fs=require('fs'); const s=require('./story/long/scenes.json'); const m=require('./story/long/out/$SLUG.json');
             let y={}; try { y=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')); } catch {}
             const len=Math.floor(m.seconds/60)+':'+String(Math.floor(m.seconds%60)).padStart(2,'0');
-            const yt=y.youtube ? y.youtube.url+(y.youtube.publishAt?' (public at 12:30 IST)':'')+(y.youtube.thumbnailError?' (thumbnail failed: '+y.youtube.thumbnailError.slice(0,80)+')':'') : 'pending, retried next run ('+(y.status||'failed')+')';
+            const yt=y.youtube ? y.youtube.url+(y.youtube.publishAt?' (public at 15:00 IST)':'')+(y.youtube.thumbnailError?' (thumbnail failed: '+y.youtube.thumbnailError.slice(0,80)+')':'') : 'pending, retried next run ('+(y.status||'failed')+')';
             const out={log:'${{ steps.date.outputs.today }} | long | '+s.slug+' | '+s.deity+' | '+s.summary,
               pub:'- '+s.slug+' | youtube: '+yt+' | long '+len+', '+m.scenes+' scenes, render '+Math.round(m.render_seconds/60)+' min, '+m.neurons+' neurons',
               sum:'### Long video '+s.slug+'\n\n- Length: '+len+' ('+m.scenes+' scenes, '+m.chapters.length+' chapters)\n- Render: '+m.render_seconds+' s\n- Images: '+m.images+' ('+m.images_generated+' generated, ~'+m.neurons+' neurons)\n- YouTube: '+yt+'\n- Artifact: long-'+s.slug+' (7 days)\n'};
@@ -1248,6 +1269,40 @@ jobs:
           git add automation/movie-series.md story/movies/*/series.json story/movies/*/part-*.json 2>/dev/null || true
           git commit -qm "Movie $SLUG scheduled for $rel 07:00"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # Weekly measurement of the "max 3 uploads a day" change (scripts/growth-compare.mjs -> automation/growth.md): on Monday
+  # (IST) morning runs, the average views per Short of 2-8 Nov (before) vs 10-16 Nov and the last 7 days, plus the
+  # subscriber change. YouTube Data API, the same credentials as the uploads; a few quota units. Never fails the workflow.
+  growth:
+    needs: story
+    if: always() && needs.story.outputs.long == 'true' && !inputs.dry_run
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    concurrency:
+      group: shyam-growth
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Weekly growth comparison
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          SHYAM_YT_CLIENT_ID: ${{ secrets.SHYAM_YT_CLIENT_ID }}
+          SHYAM_YT_CLIENT_SECRET: ${{ secrets.SHYAM_YT_CLIENT_SECRET }}
+          SHYAM_YT_REFRESH_TOKEN: ${{ secrets.SHYAM_YT_REFRESH_TOKEN }}
+        run: |
+          today=$(TZ=Asia/Kolkata date +%F)
+          [ "$(TZ=Asia/Kolkata date +%u)" = 1 ] || { echo "Not Monday (IST): nothing to do"; exit 0; }
+          grep -q "^## Week of $today" automation/growth.md 2>/dev/null && { echo "Already written today"; exit 0; }
+          node scripts/growth-compare.mjs --date "$today" | tee -a "$GITHUB_STEP_SUMMARY"
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/growth.md && git commit -qm "Growth comparison $today"
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
 
   # Instagram has no scheduled publishing: queued Reels ("ig: pending <time>" in automation/published.md, written for the
   # evening and festival status Shorts) are published here within 20 minutes of their time (see the header). Runs on every
