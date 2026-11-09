@@ -44,3 +44,4 @@
 2026-11-08 | evening | 2026-11-08-evening-diwali-khatu-shyam-darshan | Khatu Shyam ji (Diwali) | Diwali par Khatu Shyam ji ke darshan, deepon se saja darbar, Haare ka Sahara jaikara; agla: Govardhan Puja
 2026-11-09 | morning | 2026-11-09-morning-bhai-dooj-krishna-subhadra | Shri Krishna / Subhadra (Bhai Dooj) | Bhai Dooj ki lok katha: Narakasur ke baad Krishna ka Subhadra ke ghar jaana, tilak, aarti aur raksha ka ashirwad (manyata)
 2026-11-09 | noon | 2026-11-09-noon-govardhan-puja-katha | Shri Krishna (Govardhan Puja) | Govardhan Puja kyun: Braj ke log, Indra ka krodh, Krishna ka Govardhan dharan (saat din, manyata), Annakut ki parampara; agla: Bhai Dooj
+2026-11-09 | long | 2026-11-09-long-khatu-shyam-ka-itihas-barbarik-katha | Khatu Shyam ji (Barbarik) | Khatu Shyam ka itihas: Barbarik ka janm, teen baan, haare ka saath dene ka vachan, Krishna ki pariksha, sheesh daan, Khatu mein sheesh ka prakat hona aur mandir

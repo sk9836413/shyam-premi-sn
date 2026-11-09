@@ -1,0 +1,57 @@
+{
+  "slug": "2026-11-09-long-khatu-shyam-ka-itihas-barbarik-katha",
+  "seconds": 408.1,
+  "scenes": 56,
+  "chapters": [
+    {
+      "title": "Khatu Shyam ki Katha",
+      "start": 0
+    },
+    {
+      "title": "Barbarik ka Janm",
+      "start": 14.8
+    },
+    {
+      "title": "Haare ka Saath dene ka Vachan",
+      "start": 63.47
+    },
+    {
+      "title": "Shri Krishna ki Pariksha",
+      "start": 120.5
+    },
+    {
+      "title": "Sheesh Daan",
+      "start": 190.5
+    },
+    {
+      "title": "Khatu mein Sheesh Prakat",
+      "start": 277.43
+    },
+    {
+      "title": "Janmotsav aur Aashirwad",
+      "start": 354.1
+    }
+  ],
+  "images": 14,
+  "images_generated": 0,
+  "neurons": 0,
+  "render_seconds": 594,
+  "real_photos": 0,
+  "thumbnail_variants": {
+    "winner": "b",
+    "scores": [
+      {
+        "kind": "a",
+        "score": 73,
+        "contrast": 0.729,
+        "face": 0.36
+      },
+      {
+        "kind": "b",
+        "score": 82,
+        "contrast": 0.837,
+        "face": 0.39
+      }
+    ]
+  }
+}

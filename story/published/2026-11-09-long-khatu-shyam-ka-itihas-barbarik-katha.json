@@ -1,0 +1,128 @@
+{
+  "slug": "2026-11-09-long-khatu-shyam-ka-itihas-barbarik-katha",
+  "format": "long",
+  "title": "Khatu Shyam ka Itihas: Barbarik ki Katha",
+  "kicker": "Janmotsav: 11 din",
+  "playlist": "Khatu Shyam ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Khatu Shyam ne sheesh kyun diya?",
+  "source": "Lok katha (Khatu Shyam parampara) aur Mahabharat ki manyata ke anusar",
+  "temple": "khatu-shyam-mandir",
+  "deity": "Khatu Shyam ji (Barbarik)",
+  "summary": "Khatu Shyam ka itihas: Barbarik ka janm, teen baan, haare ka saath dene ka vachan, Krishna ki pariksha, sheesh daan, Khatu mein sheesh ka prakat hona aur mandir",
+  "thumbnail": { "image": 0, "focus": "center", "text": "Barbarik se Khatu Shyam tak", "hi": "खाटू श्याम का इतिहास" },
+  "images": [
+    { "prompt": "Close-up portrait: the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum, glowing diyas, face in the middle of the frame" },
+    { "prompt": "Wide scene in a green forest kingdom: the mighty Ghatotkach and his wife Maurvi smile lovingly at their young son Barbarik, a bright-eyed boy with a small bow, warm golden afternoon light, Mahabharat era, traditional ancient Indian dress, subjects in the middle of the frame" },
+    { "prompt": "Wide scene: young Barbarik, a handsome boy-warrior with a calm face, kneels in prayer before a glowing divine light in a forest shrine, three luminous golden arrows float above his folded hands, soft divine glow, flower petals, subject in the middle band" },
+    { "prompt": "Wide scene: young warrior prince Barbarik riding a graceful blue horse across a dusty plain at sunrise, a bow in his hand and a quiver holding three glowing arrows, a determined and gentle expression, ancient Indian warrior dress, subject in the middle band" },
+    { "prompt": "Wide cinematic view of the plain of Kurukshetra at dawn: two vast armies far away with colourful banners and chariots under a golden sky, calm and distant, no fighting visible, no gore, mist over the field, subject in the middle band" },
+    { "prompt": "Wide scene: blue-skinned Shri Krishna, disguised as a simple Brahmin in plain saffron cloth with a gentle smile, stands on a forest path and speaks with young warrior Barbarik on his blue horse, a large peepal tree behind them, warm morning light" },
+    { "prompt": "Wide scene under a huge peepal tree: young Barbarik aims one glowing golden arrow that circles the leaves of the tree in a bright trail of light, blue-skinned Shri Krishna in Brahmin dress watches calmly, one leaf hidden under his foot, magical golden glow, subject in the middle band" },
+    { "prompt": "Wide devotional scene: young Barbarik kneels with folded hands and lowered eyes before blue-skinned Shri Krishna with peacock feather and yellow dhoti, who raises his hand in blessing, soft golden light and falling flower petals, peaceful and sacred, no violence" },
+    { "prompt": "Wide scene: the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, placed with reverence on a green hilltop overlooking the distant plain of Kurukshetra at sunrise, golden light, peaceful, no gore" },
+    { "prompt": "Wide scene in a Rajasthan village at dawn: a gentle cow stands on a small mound of earth and milk flows by itself onto the ground, astonished villagers in traditional dress watch with folded hands, sand dunes and neem trees, soft golden light" },
+    { "prompt": "Wide scene: a Rajput king with a turban sleeps on a royal bed in an old Rajasthan palace chamber, a soft golden divine glow and peacock feathers float in the air above him as he dreams, warm lamp light, subject in the middle band" },
+    { "prompt": "Wide view of the white marble Khatu Shyam ji temple building in Sikar, Rajasthan, with domes and a tall entrance, colourful flags waving, many devotees in colourful clothes walking in the courtyard, bright blue sky", "real": true },
+    { "prompt": "Wide darshan scene: the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum, rows of glowing diyas in front, devotees with folded hands" },
+    { "prompt": "Wide scene: blue-skinned Shri Krishna in his divine form with a peacock feather crown, yellow dhoti and a serene smile, a softly glowing golden Sudarshan Chakra behind him, standing in a golden-lit open field with drifting flower petals, peaceful and majestic, no violence" }
+  ],
+  "chapters": [
+    {
+      "title": "Khatu Shyam ki Katha",
+      "scenes": [
+        { "img": 0, "focus": "center", "motion": "in", "tts": "खाटू श्याम बाबा ने अपना शीश श्री कृष्ण को क्यों दे दिया? कौन थे बर्बरीक?", "sub": "Khatu Shyam Baba ne apna sheesh Shri Krishna ko kyun de diya? Kaun the Barbarik?" },
+        { "img": 4, "focus": "center", "motion": "out", "tts": "इस कथा में जानिए बर्बरीक से खाटू श्याम बनने तक की पूरी कहानी, और खाटू धाम का इतिहास।", "sub": "Is katha mein jaaniye Barbarik se Khatu Shyam banne tak ki poori kahani, aur Khatu Dham ka itihas." }
+      ]
+    },
+    {
+      "title": "Barbarik ka Janm",
+      "scenes": [
+        { "img": 4, "focus": "top", "motion": "pan", "tts": "यह कथा महाभारत के समय की है, जब कुरुक्षेत्र में धर्म और अधर्म का महायुद्ध होने वाला था।", "sub": "Ye katha Mahabharat ke samay ki hai, jab Kurukshetra mein dharm aur adharm ka mahayuddh hone wala tha." },
+        { "img": 1, "focus": "center", "motion": "in", "tts": "लोक कथा के अनुसार बर्बरीक पांडव भीम के पुत्र घटोत्कच और माता मौर्वी के पुत्र थे।", "sub": "Lok katha ke anusar Barbarik Pandav Bheem ke putra Ghatotkach aur Mata Maurvi ke putra the." },
+        { "img": 2, "focus": "center", "motion": "out", "tts": "बचपन से ही बर्बरीक वीर, विनम्र और अपनी माता के आज्ञाकारी थे।", "sub": "Bachpan se hi Barbarik veer, vinamra aur apni mata ke aagyakari the." },
+        { "img": 2, "focus": "top", "motion": "in", "tts": "माता मौर्वी ने उन्हें युद्ध की कला सिखाई और सदा धर्म के पक्ष में खड़े रहना सिखाया।", "sub": "Mata Maurvi ne unhe yuddh ki kala sikhai aur sada dharm ke paksh mein khade rehna sikhaya." },
+        { "img": 2, "focus": "bottom", "motion": "pan", "tts": "मान्यता है कि कठोर तपस्या और देवी की कृपा से उन्हें तीन अद्भुत बाण मिले।", "sub": "Manyata hai ki kathor tapasya aur Devi ki kripa se unhe teen adbhut baan mile." },
+        { "img": 2, "focus": "center", "motion": "panl", "tts": "कहते हैं पहला बाण निशान लगाता, दूसरा बचाने वालों को चुनता और तीसरा सबको भेद देता था।", "sub": "Kehte hain pehla baan nishaan lagata, doosra bachane walon ko chunta aur teesra sabko bhed deta tha." },
+        { "img": 3, "focus": "center", "motion": "in", "tts": "इसी कारण उन्हें तीन बाणधारी कहा गया, और उनका नीला घोड़ा उनकी पहचान बना।", "sub": "Isi karan unhe teen baandhari kaha gaya, aur unka neela ghoda unki pehchaan bana.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Haare ka Saath dene ka Vachan",
+      "scenes": [
+        { "img": 4, "focus": "bottom", "motion": "out", "tts": "जब बर्बरीक ने सुना कि कुरुक्षेत्र में कौरव और पांडवों का युद्ध होने वाला है, तो उनका मन युद्ध देखने को जग उठा।", "sub": "Jab Barbarik ne suna ki Kurukshetra mein Kaurav aur Pandavon ka yuddh hone wala hai, to unka man yuddh dekhne ko jag utha." },
+        { "img": 1, "focus": "top", "motion": "pan", "tts": "वे अपनी माता के चरणों में गए और युद्ध में जाने की आज्ञा माँगी।", "sub": "Ve apni mata ke charnon mein gaye aur yuddh mein jaane ki aagya maangi." },
+        { "img": 1, "focus": "center", "motion": "out", "tts": "माता ने पूछा कि तुम किसकी ओर से लड़ोगे? बर्बरीक ने कहा, जो पक्ष कमज़ोर होगा, मैं उसी का साथ दूँगा।", "sub": "Mata ne poocha ki tum kiski or se ladoge? Barbarik ne kaha, jo paksh kamzor hoga, main usi ka saath doonga." },
+        { "img": 1, "focus": "bottom", "motion": "in", "tts": "माता मौर्वी ने उन्हें हारे हुए का साथ देने का वचन दिलवाया और आशीर्वाद दिया।", "sub": "Mata Maurvi ne unhe haare hue ka saath dene ka vachan dilwaya aur aashirwad diya." },
+        { "img": 3, "focus": "top", "motion": "panl", "tts": "यही वचन आगे चलकर बाबा श्याम को हारे का सहारा बनाने वाला था।", "sub": "Yahi vachan aage chalkar Baba Shyam ko Haare ka Sahara banane wala tha." },
+        { "img": 3, "focus": "bottom", "motion": "pan", "tts": "बर्बरीक अपने नीले घोड़े पर सवार होकर तीन बाण और धनुष लेकर कुरुक्षेत्र की ओर चल पड़े।", "sub": "Barbarik apne neele ghode par sawar hokar teen baan aur dhanush lekar Kurukshetra ki or chal pade." },
+        { "img": 3, "focus": "center", "motion": "out", "tts": "लेकिन एक सवाल था: अगर वे सबसे कमज़ोर का साथ देंगे, तो कमज़ोर पक्ष कौन सा होगा?", "sub": "Lekin ek sawal tha: agar ve sabse kamzor ka saath denge, to kamzor paksh kaun sa hoga?" },
+        { "img": 4, "focus": "top", "motion": "in", "tts": "आगे देखिए, श्री कृष्ण ने रास्ते में बर्बरीक की कौन सी परीक्षा ली।", "sub": "Aage dekhiye, Shri Krishna ne raaste mein Barbarik ki kaun si pariksha li.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Shri Krishna ki Pariksha",
+      "scenes": [
+        { "img": 5, "focus": "center", "motion": "in", "tts": "कथा कहती है कि सर्वज्ञ श्री कृष्ण जान गए कि बर्बरीक के वचन से युद्ध का रूप बदल सकता है।", "sub": "Katha kehti hai ki sarvagya Shri Krishna jaan gaye ki Barbarik ke vachan se yuddh ka roop badal sakta hai." },
+        { "img": 5, "focus": "top", "motion": "pan", "tts": "वे एक साधारण ब्राह्मण का रूप धरकर रास्ते में बर्बरीक के सामने आए।", "sub": "Ve ek saadharan Brahmin ka roop dharkar raaste mein Barbarik ke saamne aaye." },
+        { "img": 5, "focus": "center", "motion": "panl", "tts": "ब्राह्मण ने पूछा, क्या तीन बाण काफ़ी होंगे? बर्बरीक बोले, मेरा एक ही बाण पूरी सेना के लिए बहुत है।", "sub": "Brahmin ne poocha, kya teen baan kaafi honge? Barbarik bole, mera ek hi baan poori sena ke liye bahut hai." },
+        { "img": 6, "focus": "center", "motion": "in", "tts": "श्री कृष्ण ने उन्हें पास के पीपल के पेड़ के सारे पत्तों को एक ही बाण से भेदने को कहा।", "sub": "Shri Krishna ne unhe paas ke peepal ke ped ke saare patton ko ek hi baan se bhedne ko kaha." },
+        { "img": 6, "focus": "top", "motion": "out", "tts": "बर्बरीक ने बाण छोड़ा, और वह चमकता हुआ बाण पेड़ के एक-एक पत्ते को भेदता चला गया।", "sub": "Barbarik ne baan chhoda, aur wo chamakta hua baan ped ke ek-ek patte ko bhedta chala gaya." },
+        { "img": 6, "focus": "bottom", "motion": "pan", "tts": "तभी वह बाण श्री कृष्ण के चरण के चारों ओर घूमने लगा, क्योंकि एक पत्ता उनके पैर के नीचे दबा था।", "sub": "Tabhi wo baan Shri Krishna ke charan ke chaaron or ghoomne laga, kyunki ek patta unke pair ke neeche daba tha." },
+        { "img": 6, "focus": "center", "motion": "panl", "tts": "बर्बरीक ने कहा, हे ब्राह्मण देव, अपना पैर हटा लीजिए, नहीं तो यह बाण आपके पैर को चोट पहुँचा देगा।", "sub": "Barbarik ne kaha, he Brahmin dev, apna pair hata lijiye, nahi to ye baan aapke pair ko chot pahuncha dega." },
+        { "img": 5, "focus": "top", "motion": "in", "tts": "श्री कृष्ण ने पैर हटाया, बाण ने वह पत्ता भी भेद दिया, और वे बर्बरीक की शक्ति देखकर समझ गए।", "sub": "Shri Krishna ne pair hataya, baan ne wo patta bhi bhed diya, aur ve Barbarik ki shakti dekhkar samajh gaye." },
+        { "img": 13, "focus": "center", "motion": "in", "tts": "श्री कृष्ण जानते थे कि कौरव पक्ष कमज़ोर पड़ते ही बर्बरीक उधर चले जाएँगे और संतुलन बिगड़ जाएगा।", "sub": "Shri Krishna jaante the ki Kaurav paksh kamzor padte hi Barbarik udhar chale jayenge aur santulan bigad jayega.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Sheesh Daan",
+      "scenes": [
+        { "img": 13, "focus": "top", "motion": "pan", "tts": "तब श्री कृष्ण ने अपना असली रूप दिखाया और बर्बरीक को उनके वचन की गहराई समझाई।", "sub": "Tab Shri Krishna ne apna asli roop dikhaya aur Barbarik ko unke vachan ki gehraai samjhai." },
+        { "img": 7, "focus": "top", "motion": "out", "tts": "कथा के अनुसार उन्होंने कहा कि युद्ध से पहले रणभूमि की पूजा के लिए सबसे वीर क्षत्रिय का शीश दान चाहिए।", "sub": "Katha ke anusar unhone kaha ki yuddh se pehle ranbhoomi ki puja ke liye sabse veer kshatriya ka sheesh daan chahiye." },
+        { "img": 7, "focus": "bottom", "motion": "pan", "tts": "बर्बरीक ने बिना झिझके हाथ जोड़े और कहा, प्रभु, मैं यह दान सहर्ष देने को तैयार हूँ।", "sub": "Barbarik ne bina jhijhke haath jode aur kaha, Prabhu, main ye daan saharsh dene ko taiyaar hoon." },
+        { "img": 7, "focus": "center", "motion": "panl", "tts": "बस उनकी एक इच्छा थी कि वे अपनी आँखों से महाभारत का पूरा युद्ध देख सकें।", "sub": "Bas unki ek ichha thi ki ve apni aankhon se Mahabharat ka poora yuddh dekh saken." },
+        { "img": 8, "focus": "center", "motion": "in", "tts": "श्री कृष्ण ने उनकी यह इच्छा स्वीकार की और उनके शीश को एक ऊँची पहाड़ी पर स्थापित करवाया।", "sub": "Shri Krishna ne unki ye ichha sweekar ki aur unke sheesh ko ek unchi pahadi par sthapit karwaya." },
+        { "img": 8, "focus": "top", "motion": "out", "tts": "वहाँ से उस शीश ने पूरा कुरुक्षेत्र का युद्ध देखा।", "sub": "Wahan se us sheesh ne poora Kurukshetra ka yuddh dekha." },
+        { "img": 8, "focus": "bottom", "motion": "pan", "tts": "कथा है कि युद्ध के बाद जब पांडव जीत का श्रेय आपस में गिन रहे थे, तब सबने बर्बरीक से पूछा।", "sub": "Katha hai ki yuddh ke baad jab Pandav jeet ka shrey aapas mein gin rahe the, tab sabne Barbarik se poochha." },
+        { "img": 8, "focus": "center", "motion": "panl", "tts": "शीश ने उत्तर दिया कि इस युद्ध में मैंने केवल श्री कृष्ण का सुदर्शन चक्र चलते देखा, विजय उन्हीं की है।", "sub": "Sheesh ne uttar diya ki is yuddh mein maine keval Shri Krishna ka Sudarshan Chakra chalte dekha, vijay unhi ki hai." },
+        { "img": 13, "focus": "bottom", "motion": "out", "tts": "तब श्री कृष्ण प्रसन्न हुए और बर्बरीक को वरदान दिया।", "sub": "Tab Shri Krishna prasann hue aur Barbarik ko vardaan diya." },
+        { "img": 12, "focus": "center", "motion": "out", "tts": "उन्होंने कहा, कलियुग में तुम मेरे नाम श्याम से पूजे जाओगे, और हारे हुए का सहारा बनोगे।", "sub": "Unhone kaha, Kaliyug mein tum mere naam Shyam se pooje jaoge, aur haare hue ka sahara banoge." },
+        { "img": 7, "focus": "top", "motion": "in", "tts": "इसी वरदान के कारण आज भी भक्त बाबा को हारे का सहारा, शीश के दानी और तीन बाणधारी कहकर पुकारते हैं।", "sub": "Isi vardaan ke karan aaj bhi bhakt Baba ko Haare ka Sahara, Sheesh ke Daani aur Teen Baandhari kehkar pukarte hain." },
+        { "img": 13, "focus": "bottom", "motion": "pan", "tts": "लेकिन उस शीश का आगे क्या हुआ, और वह खाटू कैसे पहुँचा? यह सुनिए अगले हिस्से में।", "sub": "Lekin us sheesh ka aage kya hua, aur wo Khatu kaise pahuncha? Ye suniye agle hisse mein.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Khatu mein Sheesh Prakat",
+      "scenes": [
+        { "img": 9, "focus": "top", "motion": "in", "tts": "लोक परंपरा के अनुसार, कलियुग में वह शीश राजस्थान के खाटू गाँव की धरती में प्रकट होना था।", "sub": "Lok parampara ke anusar, Kaliyug mein wo sheesh Rajasthan ke Khatu gaon ki dharti mein prakat hona tha." },
+        { "img": 9, "focus": "center", "motion": "out", "tts": "कहते हैं कि वहाँ एक गाय रोज़ एक टीले पर जाती और उसके थन से अपने आप दूध बहने लगता था।", "sub": "Kehte hain ki wahan ek gaay roz ek teele par jaati aur uske than se apne aap doodh behne lagta tha." },
+        { "img": 9, "focus": "bottom", "motion": "panl", "tts": "गाँव वाले यह चमत्कार देखकर चकित रह गए, और उन्होंने उस जगह की खुदाई की।", "sub": "Gaon wale ye chamatkar dekhkar chakit reh gaye, aur unhone us jagah ki khudai ki." },
+        { "img": 9, "focus": "top", "motion": "pan", "tts": "मान्यता है कि वहीं से वह दिव्य शीश प्रकट हुआ, जिसे आज हम खाटू श्याम बाबा के रूप में पूजते हैं।", "sub": "Manyata hai ki wahin se wo divya sheesh prakat hua, jise aaj hum Khatu Shyam Baba ke roop mein pujte hain." },
+        { "img": 10, "focus": "center", "motion": "in", "tts": "उस समय खाटू के शासक राजा रूप सिंह चौहान थे।", "sub": "Us samay Khatu ke shasak Raja Roop Singh Chauhan the." },
+        { "img": 10, "focus": "top", "motion": "out", "tts": "लोक कथा के अनुसार उन्हें स्वप्न में आदेश मिला कि वहाँ मंदिर बनवाकर शीश की स्थापना की जाए।", "sub": "Lok katha ke anusar unhe swapn mein aadesh mila ki wahan mandir banwakar sheesh ki sthapna ki jaye." },
+        { "img": 10, "focus": "bottom", "motion": "pan", "tts": "राजा ने श्रद्धा से मंदिर बनवाया और शीश को उसमें विराजमान किया।", "sub": "Raja ne shraddha se mandir banwaya aur sheesh ko usmein virajman kiya." },
+        { "img": 11, "focus": "center", "motion": "in", "tts": "आज यही खाटू श्याम जी का मंदिर सीकर ज़िले के खाटू गाँव में है, जहाँ दूर-दूर से भक्त आते हैं।", "sub": "Aaj yahi Khatu Shyam ji ka mandir Sikar zile ke Khatu gaon mein hai, jahan door-door se bhakt aate hain." },
+        { "img": 11, "focus": "top", "motion": "pan", "tts": "कहा जाता है कि समय के साथ मंदिर का कई बार जीर्णोद्धार और विस्तार किया गया।", "sub": "Kaha jata hai ki samay ke saath mandir ka kai baar jeernoddhar aur vistaar kiya gaya." },
+        { "img": 11, "focus": "bottom", "motion": "out", "tts": "मंदिर के पास श्याम कुंड है, जिसके बारे में मान्यता है कि वहीं से शीश प्रकट हुआ था।", "sub": "Mandir ke paas Shyam Kund hai, jiske baare mein manyata hai ki wahin se sheesh prakat hua tha." },
+        { "img": 12, "focus": "bottom", "motion": "pan", "tts": "आगे सुनिए, खाटू श्याम बाबा का जन्मोत्सव देवउठनी एकादशी को क्यों मनाया जाता है।", "sub": "Aage suniye, Khatu Shyam Baba ka Janmotsav Dev Uthani Ekadashi ko kyun manaya jata hai.", "teaser": true }
+      ]
+    },
+    {
+      "title": "Janmotsav aur Aashirwad",
+      "scenes": [
+        { "img": 12, "focus": "center", "motion": "in", "tts": "खाटू श्याम बाबा का जन्मोत्सव कार्तिक शुक्ल एकादशी, यानी देवउठनी एकादशी को मनाया जाता है।", "sub": "Khatu Shyam Baba ka Janmotsav Kartik Shukla Ekadashi, yaani Dev Uthani Ekadashi ko manaya jata hai." },
+        { "img": 12, "focus": "top", "motion": "out", "tts": "इस साल देवउठनी एकादशी बीस नवंबर को है, यानी बाबा का जन्मोत्सव बस कुछ ही दिन दूर है।", "sub": "Is saal Dev Uthani Ekadashi bees November ko hai, yaani Baba ka Janmotsav bas kuch hi din door hai." },
+        { "img": 11, "focus": "top", "motion": "pan", "tts": "इस दिन भक्त निशान यात्रा, कीर्तन और श्रृंगार के साथ बाबा का उत्सव मनाते हैं।", "sub": "Is din bhakt Nishan Yatra, kirtan aur shringar ke saath Baba ka utsav manate hain." },
+        { "img": 0, "focus": "center", "motion": "in", "tts": "बर्बरीक की कथा हमें सिखाती है कि सच्चा दान वह है जो बिना किसी शर्त के, पूरे मन से दिया जाए।", "sub": "Barbarik ki katha hame sikhati hai ki sachcha daan wo hai jo bina kisi shart ke, poore man se diya jaye." },
+        { "img": 0, "focus": "top", "motion": "out", "tts": "और वचन निभाना सबसे बड़ा धर्म है, चाहे उसकी कितनी भी बड़ी कीमत क्यों न हो।", "sub": "Aur vachan nibhana sabse bada dharm hai, chahe uski kitni bhi badi keemat kyun na ho." },
+        { "img": 0, "focus": "bottom", "motion": "pan", "tts": "बोलिए, हारे के सहारे, खाटू वाले श्याम बाबा की जय!", "sub": "Boliye, Haare ke Sahare, Khatu wale Shyam Baba ki jai!" },
+        { "endcard": true, "tts": "जय श्री श्याम! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें। जय खाटू श्याम!", "sub": "Jai Shree Shyam! Katha achhi lagi ho to Like, Share aur Subscribe karein, Shyam Premi SN. Jai Khatu Shyam!" }
+      ]
+    }
+  ],
+  "youtube_title": "Khatu Shyam ka Itihas, Barbarik ki Katha | खाटू श्याम का इतिहास | Sampoorn Katha",
+  "youtube_description": "Khatu Shyam ka itihas: Barbarik kaun the, unhe teen baan kaise mile, unhone Shri Krishna ko sheesh daan kyun diya, aur Khatu Dham mein sheesh kaise prakat hua. Janmotsav (Dev Uthani Ekadashi) se pehle ye sampoorn katha dekhiye.\nYe katha Lok katha (Khatu Shyam parampara) aur Mahabharat ki manyata ke anusar hai. Alag-alag kathaon mein kuch baatein bhinn ho sakti hain.\nखाटू श्याम का इतिहास और बर्बरीक की सम्पूर्ण कथा: हारे के सहारे श्याम बाबा।\nMantra: जय श्री श्याम, हारे के सहारे, खाटू वाले श्याम बाबा की जय!\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein.\n#KhatuShyam #Barbarik #JaiShreeShyam #KhatuShyamJanmotsav",
+  "youtube_tags": "Khatu Shyam ka itihas, खाटू श्याम का इतिहास, Barbarik ki katha, बर्बरीक की कथा, Khatu Shyam ki katha, खाटू श्याम की कथा, Khatu Shyam Janmotsav, खाटू श्याम जन्मोत्सव, Haare ka Sahara, हारे का सहारा, Teen Baan Dhari, Khatu Shyam mandir ka itihas, Barbarik ki kahani, Jai Shree Shyam"
+}
