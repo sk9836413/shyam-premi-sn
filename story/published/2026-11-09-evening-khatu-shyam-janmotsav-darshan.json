@@ -1,0 +1,57 @@
+{
+  "slug": "2026-11-09-evening-khatu-shyam-janmotsav-darshan",
+  "title": "Khatu Shyam Janmotsav Darshan",
+  "kicker": "Janmotsav ki taiyari",
+  "playlist": "Khatu Shyam ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Khatu Shyam Janmotsav: Baba ke darshan",
+  "cover": "खाटू श्याम जन्मोत्सव",
+  "scenes": [
+    {
+      "prompt": "Close-up devotional darshan of the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum, face in the middle of the frame, soft golden evening glow",
+      "tts": "खाटू श्याम जन्मोत्सव आ रहा है। बाबा के दर्शन कीजिए।",
+      "sub": "Khatu Shyam Janmotsav aa raha hai. Baba ke darshan kijiye.",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few petals drift in the foreground",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A temple sanctum entrance decorated with marigold garlands and rows of lit clay diyas in the evening, warm golden light, no people",
+      "tts": "देव उठनी एकादशी पर बाबा का जन्मोत्सव मनाया जाता है।",
+      "sub": "Dev Uthani Ekadashi par Baba ka Janmotsav manaya jata hai.",
+      "motion": "pan",
+      "animate": "the diya flames flicker softly and a few marigold petals drift down in the warm light",
+      "video": "clips/1.mp4"
+    },
+    {
+      "prompt": "Close-up of the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum, glowing diyas in the foreground",
+      "tts": "भक्त उन्हें हारे का सहारा कहकर पुकारते हैं।",
+      "sub": "Bhakt unhe Haare ka Sahara kehkar pukarte hain.",
+      "motion": "out",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames glow and flicker softly"
+    },
+    {
+      "prompt": "A quiet temple courtyard at dusk with saffron flags fluttering gently and a lamp-lit pathway, warm golden sky, no people",
+      "tts": "बीस नवंबर को श्याम दरबार में उत्सव होगा।",
+      "sub": "Bees November ko Shyam darbar mein utsav hoga.",
+      "motion": "in",
+      "animate": "the saffron flags flutter softly in the breeze and the lamp flames flicker gently",
+      "video": "clips/3.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "कल गोवर्धन पूजा के लिए लाइक, शेयर, सब्सक्राइब करें। जय खाटू श्याम!",
+      "sub": "Kal Govardhan Puja ke liye Like, Share, Subscribe karein. Jai Khatu Shyam!"
+    }
+  ],
+  "youtube_title": "Khatu Shyam Janmotsav Darshan | खाटू श्याम जन्मोत्सव दर्शन #Shorts",
+  "youtube_description": "Khatu Shyam Janmotsav se pehle Baba Shyam ke darshan. Janmotsav Dev Uthani Ekadashi, 20 November 2026 ko hai. Bhakt Baba ko Haare ka Sahara kehkar pukarte hain.\nखाटू श्याम जन्मोत्सव से पहले बाबा श्याम के दर्शन।\nMantra: जय श्री श्याम\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nAchha laga to Like, Share aur Subscribe karein.\n#KhatuShyam #KhatuShyamJanmotsav #JaiShreeShyam #Shorts",
+  "youtube_tags": "Khatu Shyam Janmotsav, खाटू श्याम जन्मोत्सव, Khatu Shyam Janmotsav darshan, खाटू श्याम जन्मोत्सव दर्शन, Khatu Shyam ji darshan, खाटू श्याम जी दर्शन, Haare ka Sahara, हारे का सहारा, Dev Uthani Ekadashi, देव उठनी एकादशी, Baba Shyam, बाबा श्याम, Khatu Shyam, खाटू श्याम",
+  "instagram_caption": "Khatu Shyam Janmotsav aa raha hai, Baba ke darshan 🙏\nJanmotsav Dev Uthani Ekadashi, 20 November 2026 ko hai.\nBhakt Baba ko Haare ka Sahara kehkar pukarte hain.\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#KhatuShyam #KhatuShyamJanmotsav #JaiShreeShyam #DevUthaniEkadashi #HaareKaSahara #Bhakti",
+  "facebook_caption": "Khatu Shyam Janmotsav aa raha hai, Baba ke darshan. Chitra AI dwara banaye gaye hain (sanketik). Like, Share aur Follow karein.\n#KhatuShyam #KhatuShyamJanmotsav #JaiShreeShyam"
+}

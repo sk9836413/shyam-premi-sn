@@ -50,3 +50,4 @@
 - 2026-11-09-noon-govardhan-puja-katha | youtube: https://youtube.com/shorts/ldGTRm9Mgsg | social: fb: https://www.facebook.com/388779648425633/videos/2558262588027889 | ig: error upload failed: Request processing failed | dialogue lipsync, lip-synced 18/18, 100 s
 - 2026-11-09-long-khatu-shyam-ka-itihas-barbarik-katha | facebook: error POST /videos: Request Entity Too Large (code 413)
 - 2026-11-09-long-khatu-shyam-ka-itihas-barbarik-katha | youtube: https://youtu.be/9vzCSo-jfWs (public at 12:30 IST) | long 6:48, 56 scenes, render 10 min, 0 neurons
+- 2026-11-09-evening-khatu-shyam-janmotsav-darshan | youtube: https://youtube.com/shorts/af354zYWQg8 (public at 2026-11-09T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1857019365320602 (scheduled 2026-11-09T13:30:00.000Z) | ig: pending 2026-11-09T13:30:00.000Z | animated 3/4
