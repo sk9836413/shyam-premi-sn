@@ -1,0 +1,57 @@
+{
+  "note": "Kalyug ke Bhagwan (STORY.md section 8): cute 3D cartoon deities in everyday roles. Each character has ONE canonical portrait (<id>.png, 576x1024, FLUX.1-schnell on Kaggle, picked by a person) and ONE Wan 2.2 base clip (clips/<id>.mp4, front view, mouth closed) that every episode's close-ups and lip-sync reuse. Never regenerate a portrait that exists. `wide` goes into scene prompts so the character looks the same in wide shots. `face_box` = the MuseTalk box on the portrait/base clip as fractions of the frame [x1, y1, x2, y2] (eyebrows to under the chin, cheek to cheek); `mouth` = the blend ellipse inside that box [cx, cy, rx, ry] as fractions of the box (default 0.5, 0.74, 0.40, 0.30); both measured on the picked portrait. Voices: edge-tts hi-IN Madhur/Swara with fixed pitch/rate (+ fx); the Bal characters are lighter and faster. Never a cloned or famous voice.",
+  "style": "adorable 3D animated family-movie style like a modern Pixar or Disney feature film, cute stylized character design, big expressive eyes, soft rounded shapes, smooth subsurface skin shading, soft global illumination, warm vibrant colours, highly detailed, sharp focus, no text, no letters, no watermark",
+  "portrait": "vertical portrait, head and shoulders, the face large and centred in the upper half of the frame, front view looking at the camera, eyes open, mouth gently closed in a soft smile, softly blurred background of {bg}",
+  "characters": {
+    "narrator": {"name": "Sutradhar", "kind": "voice", "color": "FFF3D6", "voice": {"edge": "hi-IN-MadhurNeural", "rate": "-4%", "pitch": "-4Hz"}},
+    "bal-ganesh": {
+      "name": "Bal Ganesh", "dev": "बाल गणेश", "kind": "deity", "lipsync": true, "color": "FFB74D",
+      "description": "Bal Ganesh, an adorable chubby toddler Lord Ganesha with a cute baby elephant head, big soft floppy ears, a short trunk curling to one side, a small smiling mouth visible under the trunk, one small white tusk and one broken short tusk, big sparkling kind black eyes, soft rosy peach-pink skin, a small golden crown with red gems, a red tilak on the forehead, a yellow silk dhoti and a red sash, gold armlets",
+      "wide": "Bal Ganesh (adorable chubby toddler Lord Ganesha, baby elephant head with big floppy ears and a short curled trunk, one broken tusk, rosy peach-pink skin, small golden crown, red tilak, yellow silk dhoti, red sash, often holding a round modak sweet)",
+      "bg": "soft warm golden bokeh lights",
+      "voice": {"edge": "hi-IN-SwaraNeural", "rate": "+4%", "pitch": "+38Hz"}
+    },
+    "bal-krishna": {
+      "name": "Bal Krishna", "dev": "बाल कृष्ण", "kind": "deity", "lipsync": true, "color": "4FC3F7",
+      "description": "Bal Krishna, an adorable toddler Lord Krishna with sky-blue skin, chubby cheeks, big sparkling lotus-shaped eyes, curly black hair, a small golden crown with one peacock feather, a yellow pitambar silk dhoti, a gold waist chain, a bamboo flute tucked in his sash, a tiny smudge of white butter on one cheek",
+      "wide": "Bal Krishna (adorable toddler Lord Krishna with sky-blue skin, curly black hair, small golden crown with one peacock feather, yellow pitambar dhoti, bamboo flute in his sash, often with a little clay pot of white butter)",
+      "bg": "soft warm golden bokeh lights",
+      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "+6%", "pitch": "+58Hz"}
+    },
+    "mahadev": {
+      "name": "Mahadev", "dev": "महादेव", "kind": "deity", "lipsync": true, "color": "90CAF9",
+      "description": "Mahadev (Lord Shiva) as a kind, gentle, calm 3D animated character with a warm soft smile, a youthful clean-shaven face, pale ash-blue skin and a deeper blue throat, long dark matted jata hair tied in a top bun with a small silver crescent moon and a tiny stream of the river Ganga flowing from it, a closed third eye and three ash lines on the forehead, rudraksha bead necklaces, a small friendly cobra around the neck, a tiger-skin cloth on one shoulder",
+      "wide": "Mahadev (kind gentle Lord Shiva, pale ash-blue skin, deeper blue throat, clean-shaven, dark jata hair bun with a silver crescent moon and a tiny stream of the Ganga, closed third eye and three ash lines on the forehead, rudraksha necklaces, a small cobra around the neck, tiger-skin cloth, a trishul with a small damru)",
+      "bg": "soft cool blue and silver bokeh lights like moonlit snow",
+      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "-10%", "pitch": "-10Hz", "fx": "divine"}
+    },
+    "parvati": {
+      "name": "Maa Parvati", "dev": "माँ पार्वती", "kind": "deity", "lipsync": true, "color": "F48FB1",
+      "description": "Maa Parvati as a kind, loving, motherly goddess in 3D animated style, warm wheatish skin, a gentle smile, big kind eyes, a red bindi and sindoor, long black hair under a golden crown, gold earrings and a gold necklace, a red silk saree with a golden border",
+      "wide": "Maa Parvati (kind motherly goddess, warm wheatish skin, red bindi and sindoor, golden crown, gold jewellery, red silk saree with a golden border)",
+      "bg": "soft warm pink and golden bokeh lights",
+      "voice": {"edge": "hi-IN-SwaraNeural", "rate": "-8%", "pitch": "-2Hz", "fx": "divine"}
+    },
+    "bal-hanuman": {
+      "name": "Bal Hanuman", "dev": "बाल हनुमान", "kind": "deity", "lipsync": true, "color": "FF8A65",
+      "description": "Bal Hanuman, an adorable little child vanara god like a cute baby monkey, a round baby face with soft orange-red fur, chubby puffed cheeks, a smooth hairless baby chin, big bright innocent eyes, a small golden crown, gold earrings, a red sindoor tilak, a red and gold dhoti, a tiny golden mace on his shoulder, a long curled tail, a young child with a baby face",
+      "wide": "Bal Hanuman (adorable child vanara god, cute round baby-monkey face with soft orange-red fur and a smooth baby chin, small golden crown, red sindoor tilak, red and gold dhoti, tiny golden mace, long curled tail)",
+      "bg": "soft saffron morning bokeh lights",
+      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "+10%", "pitch": "+40Hz"}
+    },
+    "chintu": {
+      "name": "Chintu", "dev": "चिंटू", "kind": "human", "lipsync": true, "color": "A5D6A7",
+      "description": "Chintu, a cute ten-year-old Indian schoolboy in 3D animated style, warm brown skin, neat short black hair, big round expressive brown eyes, a friendly round face, a light blue school shirt",
+      "wide": "Chintu (cute ten-year-old Indian schoolboy, warm brown skin, neat short black hair, big round brown eyes, light blue school shirt)",
+      "bg": "a cosy Indian home in soft warm light",
+      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "+2%", "pitch": "+24Hz"}
+    },
+    "mummy": {
+      "name": "Mummy", "dev": "मम्मी", "kind": "human", "lipsync": true, "color": "CE93D8",
+      "description": "Chintu's mother, a kind Indian woman of about thirty-five in 3D animated style, warm brown skin, black hair in a neat bun, a small red bindi, a gentle smile, a simple green cotton saree",
+      "wide": "Chintu's mother (kind Indian woman of about thirty-five, warm brown skin, hair in a neat bun, small red bindi, simple green cotton saree)",
+      "bg": "a cosy Indian home in soft warm light",
+      "voice": {"edge": "hi-IN-SwaraNeural", "rate": "-4%", "pitch": "+0Hz"}
+    }
+  }
+}

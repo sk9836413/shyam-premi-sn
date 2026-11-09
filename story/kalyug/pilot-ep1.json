@@ -1,0 +1,158 @@
+{
+  "format": "kalyug",
+  "series": "kalyug-ke-bhagwan",
+  "series_title": "Kalyug ke Bhagwan",
+  "slug": "kalyug-pilot-bal-ganesh-exam-ka-darr",
+  "release": "pilot",
+  "publish_at": "08:00",
+  "lead": "bal-ganesh",
+  "deity": "Bal Ganesh",
+  "topic": "exam ka darr",
+  "title": "Bal Ganesh aur exam ka darr",
+  "title_dev": "बाल गणेश और एग्ज़ाम का डर",
+  "summary": "Kalyug ke Bhagwan: Chintu ko exam ka darr, Bal Ganesh ne Vyas ji ki shart (har shlok samajh kar likhna) se sikhaya: ratna nahi, samajh kar padho",
+  "lesson": "Samajh kar padho, ek-ek paath dhyan se; dar bhaagta hai, aur kaam ka 'Shri Ganesh' karo",
+  "source": "Mahabharata (Adi Parva) ki prasiddh katha: Maharishi Vyas ne Mahabharata boli aur Shri Ganesh ne likhi; Vyas ji ki shart thi ki Ganesh ji har shlok samajh kar hi likhein. Kalam tootne par daant tod kar likhna lok-katha hai ('kehte hain').",
+  "facts": [
+    {
+      "claim": "Maharishi Vyas ne Mahabharata boli aur Shri Ganesh ne likhi (Adi Parva ki prasiddh katha; critical edition ise baad ka jod maanta hai)",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Ganesha",
+        "https://www.vedantu.com/stories/ganesha-writes-the-mahabharata"
+      ]
+    },
+    {
+      "claim": "Ganesh ji ki shart: Vyas ji bina ruke bolein; Vyas ji ki shart: Ganesh ji har shlok samajh kar hi likhein",
+      "sources": [
+        "https://www.vedantu.com/stories/ganesha-writes-the-mahabharata",
+        "https://anahat.co.in/blogs/slider-blog/vyasa-ganesha-mahabharata"
+      ]
+    },
+    {
+      "claim": "Lok-katha: kalam tooti to Ganesh ji ne apna daant tod kar likhna jaari rakha (isliye 'kehte hain')",
+      "sources": [
+        "https://www.mythologyblog.com/indian/the-broken-tusk/",
+        "https://houseofmangalam.com/blogs/camphor-tales/the-story-behind-lord-ganeshas-broken-tusk"
+      ]
+    }
+  ],
+  "music": "playful",
+  "cast": [
+    "bal-ganesh",
+    "chintu"
+  ],
+  "names": [
+    "गणेश",
+    "चिंटू",
+    "व्यास",
+    "महाभारत",
+    "मोदक"
+  ],
+  "scenes": [
+    {
+      "prompt": "A cosy small Indian bedroom at night, a ten-year-old boy Chintu sits at a wooden study desk piled high with school books and notebooks, his head in his hands, looking worried, a warm desk lamp glowing, a window with a night sky behind him, medium shot",
+      "cast": [
+        "chintu"
+      ],
+      "motion": "in",
+      "animate": "the boy sighs and rubs his forehead, the warm lamp light flickers softly, a page of the open book lifts slightly",
+      "lines": [
+        {
+          "who": "chintu",
+          "tts": "कल एग्ज़ाम है, और मुझे कुछ भी याद नहीं हो रहा!",
+          "sub": "Kal exam hai, aur mujhe kuch bhi yaad nahi ho raha!"
+        },
+        {
+          "who": "chintu",
+          "tts": "गणपति बप्पा, अब आप ही कुछ कीजिए!",
+          "sub": "Ganpati Bappa, ab aap hi kuch kijiye!"
+        }
+      ]
+    },
+    {
+      "prompt": "The same cosy Indian bedroom at night, little Bal Ganesh sits cross-legged on top of a stack of school books on the study desk inside a soft golden glow, smiling and holding out a round modak sweet, a surprised happy ten-year-old boy Chintu sits at the desk looking at him, warm desk lamp, medium shot",
+      "cast": [
+        "bal-ganesh",
+        "chintu"
+      ],
+      "motion": "in",
+      "animate": "a soft golden glow shimmers around little Ganesha and tiny sparkles float in the air, his big ears flap gently, the boy's face lights up with surprise",
+      "lines": [
+        {
+          "who": "bal-ganesh",
+          "tts": "डरो मत चिंटू, मैं आ गया!",
+          "sub": "Daro mat Chintu, main aa gaya!"
+        },
+        {
+          "who": "chintu",
+          "tts": "गणेश जी? आप सच में आ गए?",
+          "sub": "Ganesh ji? Aap sach mein aa gaye?"
+        },
+        {
+          "who": "bal-ganesh",
+          "tts": "हाँ! पहले ये मोदक खाओ, फिर एक कहानी सुनो।",
+          "sub": "Haan! Pehle ye modak khao, phir ek kahani suno."
+        }
+      ]
+    },
+    {
+      "prompt": "A peaceful forest ashram beside a river in ancient India, little Bal Ganesh sits on a low wooden seat inscribing long palm-leaf manuscripts with a stylus, beside him the elderly sage Maharishi Vyasa with a long white beard and saffron robes speaks with one hand raised, warm sunlight through the trees, gentle storybook flashback",
+      "cast": [
+        "bal-ganesh"
+      ],
+      "motion": "pan",
+      "lines": [
+        {
+          "who": "bal-ganesh",
+          "tts": "महर्षि व्यास जी महाभारत बोलते गए, और मैं लिखता गया।",
+          "sub": "Maharishi Vyas ji Mahabharat bolte gaye, aur main likhta gaya."
+        },
+        {
+          "who": "bal-ganesh",
+          "tts": "उनकी शर्त थी, हर श्लोक समझकर ही लिखना। रटना नहीं!",
+          "sub": "Unki shart thi, har shlok samajhkar hi likhna. Ratna nahi!"
+        },
+        {
+          "who": "bal-ganesh",
+          "tts": "और कहते हैं, कलम टूटी तो मैंने अपना दाँत तोड़कर लिखना जारी रखा!",
+          "sub": "Aur kehte hain, kalam tooti to maine apna daant todkar likhna jaari rakha!"
+        }
+      ]
+    },
+    {
+      "prompt": "The cosy Indian bedroom in soft morning light, a happy ten-year-old boy Chintu studies calmly at his tidy desk with an open book, little Bal Ganesh sits on the desk beside him happily eating a round modak, sunlight through the window, medium shot",
+      "cast": [
+        "bal-ganesh",
+        "chintu"
+      ],
+      "motion": "in",
+      "lines": [
+        {
+          "who": "chintu",
+          "tts": "तो मुझे भी समझकर पढ़ना है?",
+          "sub": "To mujhe bhi samajhkar padhna hai?"
+        },
+        {
+          "who": "bal-ganesh",
+          "tts": "हाँ! एक-एक पाठ ध्यान से, बीच में छोटा ब्रेक, और अच्छी नींद।",
+          "sub": "Haan! Ek-ek paath dhyan se, beech mein chhota break, aur achhi neend."
+        },
+        {
+          "who": "chintu",
+          "tts": "थैंक यू गणेश जी! अब मैं नहीं डरूँगा।",
+          "sub": "Thank you Ganesh ji! Ab main nahi darunga."
+        }
+      ]
+    }
+  ],
+  "endcard": {
+    "who": "bal-ganesh",
+    "tts": "पढ़ाई का श्री गणेश करो! ऐसी और कहानियों के लिए सब्सक्राइब करो।",
+    "sub": "Padhai ka Shri Ganesh karo! Aisi aur kahaniyon ke liye Subscribe karo."
+  },
+  "youtube_title": "Bal Ganesh ne sikhaya exam ka darr kaise bhagayein | बाल गणेश ने सिखाया #Shorts",
+  "youtube_description": "Kalyug ke Bhagwan: Chintu ko exam ka darr tha, to Bal Ganesh ne Maharishi Vyas aur Mahabharata likhne ki katha se sikhaya: ratna nahi, samajh kar padho.\nKatha: Mahabharata (Adi Parva) ki prasiddh katha ke anusar Vyas ji ne Mahabharata boli aur Shri Ganesh ne likhi, is shart par ki Ganesh ji har shlok samajh kar likhein. Daant tod kar likhna lok-katha hai.\nबाल गणेश ने सिखाया: समझकर पढ़ो, डर अपने आप भागेगा।\nChitra, awaaz aur animation AI se banaye gaye hain (sanketik).\nGanpati Bappa Morya 🙏\nAchhi lage to Like, Share aur Subscribe karein · Shyam Premi SN\n#BalGanesh #GanpatiBappa #KalyugKeBhagwan #ExamTips #Shorts",
+  "youtube_tags": "Bal Ganesh, बाल गणेश, Ganesh ji cartoon, Kalyug ke Bhagwan, exam ka darr, exam tips in Hindi, Ganpati Bappa, Mahabharat Ganesh Vyas katha, गणेश जी की कहानी, kids moral story Hindi",
+  "instagram_caption": "Exam ka darr? Bal Ganesh ne sikhaya: ratna nahi, samajh kar padho 🙏\nKalyug ke Bhagwan, Episode 1.\nGanpati Bappa Morya!\nAchhi lage to Like, Share aur Follow karein\n#BalGanesh #GanpatiBappa #KalyugKeBhagwan #ExamTips #StudentLife",
+  "facebook_caption": "Kalyug ke Bhagwan: Bal Ganesh ne sikhaya exam ka darr kaise bhagayein. Ganpati Bappa Morya 🙏\nAchhi lage to Like, Share aur Follow karein.\n#BalGanesh #KalyugKeBhagwan"
+}

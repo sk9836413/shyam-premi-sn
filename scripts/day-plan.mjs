@@ -12,6 +12,10 @@
 //   movie day    (a release date of an approved story/movies/<series>/series.json) the movie part at 07:00 replaces the
 //                morning Short + evening darshan (+ the status Short when the day is also a festival with a status
 //                file, e.g. 20 Nov Janmotsav); no long, no noon
+//   kalyug day   (owner, 9 Nov 2026; repo variable KALYUG=on) Tuesday, Thursday and Saturday of NORMAL days: the
+//                "Kalyug ke Bhagwan" episode (STORY.md section 8, 08:00) replaces the morning Short + evening darshan.
+//                Festival days keep their festival content and movie days the movie. A date with an episode logged in
+//                automation/log.md ("<date> | kalyug |") is a kalyug day whatever the variable says.
 // Photo posts and the Veo kit are not YouTube uploads and are not planned here. scripts/upload-guard.mjs enforces the
 // hard cap (3 YouTube uploads per IST date) on top of this plan.
 //
@@ -25,7 +29,8 @@ import { pathToFileURL } from 'node:url';
 const WEEKDAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 export const LONG_DAYS = [1, 5]; // Monday, Friday
 export const NOON_DAYS = [3]; // Wednesday
-export const AT = { status: '06:00', movie: '07:00', morning: 'on render, ~10:30', long: '15:00', noon: '15:00', evening: '19:00' };
+export const KALYUG_DAYS = [2, 4, 6]; // Tuesday, Thursday, Saturday
+export const AT = { status: '06:00', movie: '07:00', kalyug: '08:00', morning: 'on render, ~10:30', long: '15:00', noon: '15:00', evening: '19:00' };
 
 const read = (f) => { try { return fs.readFileSync(f, 'utf8'); } catch { return ''; } };
 export const weekday = (date) => new Date(`${date}T12:00:00Z`).getUTCDay();
@@ -48,14 +53,16 @@ export function loadInputs(root = '.') {
     if (j?.approved !== true) continue;
     for (const p of j.parts || []) if (p.release) movies.set(p.release, `${series} part ${p.part ?? p.n ?? '?'}`);
   }
-  for (const m of read(path.join(root, 'automation/log.md')).matchAll(/^(\d{4}-\d{2}-\d{2}) \| movie \| (\S+)/gm)) {
+  const log = read(path.join(root, 'automation/log.md'));
+  for (const m of log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| movie \| (\S+)/gm)) {
     if (!movies.has(m[1])) movies.set(m[1], m[2]);
   }
-  return { festivals, status, movies };
+  const kalyugLogged = new Set([...log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| kalyug \| /gm)].map((m) => m[1]));
+  return { festivals, status, movies, kalyug: process.env.KALYUG === 'on', kalyugLogged };
 }
 
 /** The day's planned YouTube uploads, in time order: [{ slot, at, what }]. */
-export function planDay(date, { festivals, status, movies }) {
+export function planDay(date, { festivals, status, movies, kalyug = false, kalyugLogged = new Set() }) {
   const wd = weekday(date);
   const festival = festivals.get(date);
   const movie = movies.get(date);
@@ -73,6 +80,11 @@ export function planDay(date, { festivals, status, movies }) {
     up.push({ slot: 'evening', what: 'evening darshan' });
     return { date, day: WEEKDAY[wd], type: 'festival', festival, uploads: up.map((u) => ({ ...u, at: AT[u.slot] })) };
   }
+  if (kalyugLogged.has(date) || (kalyug && KALYUG_DAYS.includes(wd))) {
+    up.push({ slot: 'kalyug', what: 'Kalyug ke Bhagwan episode (replaces the morning Short)' });
+    up.push({ slot: 'evening', what: 'evening darshan' });
+    return { date, day: WEEKDAY[wd], type: 'kalyug', uploads: up.map((u) => ({ ...u, at: AT[u.slot] })) };
+  }
   up.push({ slot: 'morning', what: 'morning Short (temple/darshan or strong katha, 21-35 s)' });
   if (LONG_DAYS.includes(wd)) up.push({ slot: 'long', what: 'long katha video' });
   if (NOON_DAYS.includes(wd)) up.push({ slot: 'noon', what: 'Dadi-Chhotu Short (new setting/outfits)' });
@@ -80,12 +92,13 @@ export function planDay(date, { festivals, status, movies }) {
   return { date, day: WEEKDAY[wd], type: 'normal', uploads: up.map((u) => ({ ...u, at: AT[u.slot] })) };
 }
 
-/** Is this slot planned for the date? The morning slot stays allowed on a movie day: the workflow reaches it there
- *  only when the movie part is NOT in log.md (it failed), and then a morning Short takes its place. */
+/** Is this slot planned for the date? The morning slot stays allowed on a movie or kalyug day: the workflow reaches it
+ *  there only when the movie part / episode is NOT in log.md (it failed), and then a morning Short takes its place. */
 export function isPlanned(date, slot, inputs) {
   const p = planDay(date, inputs);
   if (p.uploads.some((u) => u.slot === slot)) return { planned: true, plan: p };
   if (slot === 'morning' && p.type === 'movie') return { planned: true, plan: p, why: 'movie day without a logged movie part: the morning Short replaces it' };
+  if (slot === 'morning' && p.type === 'kalyug') return { planned: true, plan: p, why: 'kalyug day without a logged episode: the morning Short replaces it' };
   const why = slot === 'long' ? `the long video runs on Mon and Fri of normal days only (${p.day}, ${p.type} day)`
     : slot === 'noon' ? `the Dadi-Chhotu Short runs on Wednesdays of normal days only (${p.day}, ${p.type} day)`
       : slot === 'status' ? `no festival status Short planned for ${date}`

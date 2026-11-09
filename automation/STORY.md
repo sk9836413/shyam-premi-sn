@@ -13,6 +13,7 @@ upload must be high quality and clearly different, and the workflow (`scripts/da
 | Normal day | `morning` Short (animated temple/darshan or a strong katha, 21-35 s) | `evening` darshan (19:00 IST) | Mon and Fri: `long` (15:00 IST); Wed: `noon` Dadi-Chhotu (15:00 IST); other days nothing |
 | Festival day (`automation/calendar.md`) | festival status Short (06:00 IST) | `morning` festival Short | `evening` darshan; no long, no noon |
 | Movie day (an approved series' release) | the movie part (07:00 IST) replaces the `morning` Short | `evening` darshan | the status Short when it is also a festival (20 Nov Janmotsav); nothing else |
+| Kalyug day (Tue/Thu/Sat normal day, `KALYUG=on`) | the "Kalyug ke Bhagwan" episode (08:00 IST, section 8) replaces the `morning` Short | `evening` darshan | nothing else |
 
 `scripts/upload-guard.mjs` skips (and logs) any 4th YouTube upload of an IST date. Everything published is in the brand's name only. There is no human review, so every
 rule below is a hard requirement.
@@ -544,3 +545,63 @@ praise, never a mela/yatra/procession. **Real photos**: set `temple` for licence
 footage/<temple>/ has them; never call an AI image real.
 
 Validate with `node scripts/validate.mjs story/movies/<series>/part-<n>.json`. Do not render, upload, commit or push.
+
+## 8. "Kalyug ke Bhagwan" (morning slot on Tue/Thu/Sat normal days; job `kalyug`)
+
+Owner, 9 Nov 2026: **cute, fully animated 3D cartoon deities (Pixar-like family-movie look) in everyday roles**, with
+lip-sync. A child or parent has a relatable modern problem; the deity, gentle, wise or playful, gives a short lesson
+rooted in a well-known katha, shloka or value. 30-60 s vertical Shorts. With the repo variable `KALYUG=on`, the
+episode is the **morning Short of every Tuesday, Thursday and Saturday that is a normal day** (`scripts/day-plan.mjs`):
+it replaces the morning Short, so the day stays within 3 uploads (episode 08:00 + evening darshan). Festival days keep
+their festival content, movie days (17-20 Nov) the movie. The `kalyug` job makes TOMORROW's episode the evening before
+(after the evening run, outside the Kaggle windows) and schedules it (YouTube publishAt 08:00, Facebook scheduled,
+Instagram queued); if it fails, the morning Short runs as usual.
+
+**Characters** (`characters/kalyug/cast.json`; one canonical portrait `<id>.png` + one base clip `clips/<id>.mp4` each,
+picked by a person, never regenerated; voices fixed): `bal-ganesh` (big ears, short curled trunk, one broken tusk,
+modak), `bal-krishna` (sky-blue skin, peacock feather, flute, butter), `mahadev` (kind, ash-blue skin with a deeper blue
+throat, crescent moon, Ganga in the jata, trishul, cobra), `parvati`, `bal-hanuman` (cute child vanara, no beard),
+`chintu` (10-year-old boy), `mummy` (his mother). Only characters with a portrait (the validator checks) may be cast.
+A new character is added to cast.json and drawn on Kaggle (`story/kalyug.py cast`), then a person picks it.
+
+**Topics** (rotate; never the same topic or deity two episodes running; check `automation/log.md` lines `| kalyug |`
+and the de-dup rule of section 1): exam stress, phone/screen addiction, respecting parents and elders, anger, jealousy,
+friendship, gratitude, not giving up, honesty, sharing, fear of the dark, bullying (kindly), patience, cleanliness,
+caring for animals and nature, the festival of the week (as a family moment). Match deity and lesson to a story the
+deity is known for, e.g. Bal Ganesh + Vyas ji's Mahabharata (understand, then write) or his mother Parvati (devotion
+to parents); Bal Krishna + makhan chori / Govardhan (sharing, courage), Sudama (friendship); Mahadev + Neelkanth
+(holding poison for others: patience with anger); Parvati + her tapasya (not giving up); Bal Hanuman + leaping for the
+sun (confidence, with humility) or seva of Shri Ram.
+
+**Accuracy (hard rules).** Never invent scripture, a shloka, a chaupai, a quote or an event. If you quote, quote a
+well-known verse exactly (e.g. Bhagavad Gita 2.47 "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन") and add `shloka`
+`{text, ref, sources: [2 URLs]}`; otherwise say the lesson in simple words. A legend is labelled ("kehte hain",
+"katha hai"). `facts`: every katha detail the episode states, each `{claim, sources: [2 independent URLs]}`.
+
+**Respect rules (hard).** Devotional, warm or lightly humorous at most. Never mocking, never vulgar, no intoxication,
+no violence, no politics, no other religions, no comparisons that put down anyone, and **no deity doing anything
+demeaning** (no deity scolded, slapped, tricked, made the butt of a joke, doing chores as punishment, in modern
+uniforms of a lowly job as a gag). Everyday "roles" means the deity appears in the child's everyday world as a friend,
+teacher or guide. Iconography stays correct (colours, crown, attributes). Cute, never silly.
+
+**File.** `story/kalyug/<release>-<topic>.json`, slug `<release>-kalyug-<topic>` (Roman a-z0-9-). Copy the shape of
+`story/kalyug/pilot-ep1.json`:
+- `format: "kalyug"`, `series: "kalyug-ke-bhagwan"`, `series_title`, `release`, `publish_at: "08:00"`, `lead` (the
+  deity id), `deity`, `topic`, `title` (Roman, max 40, **deity name first**: "Bal Ganesh aur exam ka darr"),
+  `title_dev` (Devanagari), `summary` (max 160, no "|"), `lesson`, `source`, `facts`, optional `shloka`, `music`
+  (`playful` or `calm`), `cast`, `names` (Devanagari names for the pronunciation check).
+- `scenes` (3-5): `prompt` (one vertical moment in the child's world, name the characters: their look comes from
+  cast.json; a deity in the prompt must be in the scene's `cast`; no text), `cast`, `motion` (`in`/`out`/`pan`/`still`),
+  `animate` (1-3 scenes, ONE sentence of gentle motion; 2 become Wan clips), `lines` (1-5): `{who, tts (Devanagari,
+  max 100, numbers as words), sub (Roman, max 110)}`. A scene's first line shows the scene; every other line cuts to the
+  speaker's lip-synced close-up.
+- **Hook in the first 2 s:** line 1 is the child's problem or question in max 60 characters ("कल एग्ज़ाम है, और मुझे
+  कुछ भी याद नहीं हो रहा!"), no greeting; the title with the deity's name is on screen over it (0-2.8 s).
+- The deity speaks at least 3 lines; 7-16 lines in total; ~30-60 s (the validator estimates from the voices).
+- `endcard` `{tts, sub}`: spoken by the lead deity: the lesson in one line + "...ke liye Subscribe karo".
+- `youtube_title`: deity name first, `"<Deity> ne sikhaya ... | देवनागरी #Shorts"` or `"<Deity> ka jawab ..."` (max 90);
+  `youtube_description` with "Kalyug ke Bhagwan", the katha source line, a Devanagari line, "Chitra, awaaz aur
+  animation AI se banaye gaye hain (sanketik).", a subscribe line and `#KalyugKeBhagwan`; `youtube_tags` (8-15, some
+  Devanagari); `instagram_caption`, `facebook_caption` (Roman).
+
+Validate with `node scripts/validate.mjs story/kalyug/<file>.json`. Do not render, upload, commit or push.

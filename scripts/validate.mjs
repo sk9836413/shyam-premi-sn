@@ -300,6 +300,109 @@ if (s.format === 'status') {
   process.exit(0);
 }
 
+// ---- "Kalyug ke Bhagwan" episode (story/kalyug/<release>-<topic>.json, STORY.md section 8) --------------------------
+// A cute 3D cartoon deity in an everyday situation, 30-60 s, the morning Short of Tue/Thu/Sat normal days. Pace as the
+// movie (Madhur ~13.6, Swara ~11.6 Devanagari characters a second at +0%, scaled by the rate) + ~0.45 s per line; no title beat.
+if (s.format === 'kalyug') {
+  const { planDay, loadInputs, weekday } = await import('./day-plan.mjs');
+  const lib = JSON.parse(fs.readFileSync('characters/kalyug/cast.json', 'utf8')).characters;
+  const pilot = s.release === 'pilot';
+  need(pilot ? /^kalyug-pilot-[a-z0-9-]+$/.test(s.slug || '') : /^\d{4}-\d{2}-\d{2}-kalyug-[a-z0-9-]+$/.test(s.slug || '') && s.slug.startsWith(s.release),
+    'slug: <release yyyy-mm-dd>-kalyug-<topic in Roman, a-z0-9->');
+  if (!pilot) {
+    const p = /^\d{4}-\d{2}-\d{2}$/.test(s.release || '') ? planDay(s.release, { ...loadInputs('.'), kalyug: true }) : { uploads: [] };
+    need(p.uploads.some((u) => u.slot === 'kalyug'),
+      `release ${s.release}: a Tuesday, Thursday or Saturday that is a normal day (festival days keep festival content, movie days the movie)`);
+  }
+  need(/^\d{2}:\d{2}$/.test(s.publish_at || ''), 'publish_at: IST time on the release day, e.g. "08:00"');
+  const cast = Array.isArray(s.cast) ? s.cast : [];
+  cast.forEach((c) => need(lib[c], `cast "${c}" is not in characters/kalyug/cast.json`));
+  cast.filter((c) => lib[c] && lib[c].kind !== 'voice').forEach((c) => need(fs.existsSync(`characters/kalyug/${c}.png`), `cast "${c}" has no canonical portrait yet (characters/kalyug/${c}.png is picked by a person first)`));
+  need(lib[s.lead]?.kind === 'deity' && cast.includes(s.lead), 'lead: the episode\'s deity (a "deity" id from characters/kalyug/cast.json, in cast)');
+  const leadName = (lib[s.lead]?.name || '').toLowerCase();
+  const leadKey = leadName.replace(/^maa /, '');
+  const startsLead = (t) => { const x = String(t || '').toLowerCase(); return Boolean(leadKey) && (x.startsWith(leadName) || x.startsWith(leadKey)); };
+  need(s.deity && !/[|\n]/.test(s.deity) && s.summary && s.summary.length <= 160 && !/[|\n]/.test(s.summary), 'deity and summary (max 160 characters, no "|") for the log line');
+  need(s.title && s.title.length <= 40 && !DEVANAGARI.test(s.title) && startsLead(s.title), `title: Roman, max 40, starts with the deity's name ("${lib[s.lead]?.name} ..."); shown big over the hook`);
+  need(s.title_dev && DEVANAGARI.test(s.title_dev) && s.title_dev.length <= 40, 'title_dev: the title in Devanagari (max 40), shown under it');
+  need(s.topic && s.lesson && s.lesson.length <= 160, 'topic (the modern situation) and lesson (one line, max 160)');
+  need(s.source && s.source.length >= 20, 'source: the katha/shloka/value the lesson comes from (no invented scripture), also said in youtube_description');
+  const facts = Array.isArray(s.facts) ? s.facts : [];
+  need(facts.length >= 1, 'facts: at least 1 {claim, sources: [2+ URLs]} for the katha or shloka the lesson uses');
+  facts.forEach((f, i) => need(f?.claim && (f.sources || []).filter((u) => /^https?:\/\//.test(u)).length >= 2, `fact ${i + 1}: a claim and 2 independent source URLs`));
+  if (s.shloka) {
+    const all = (s.scenes || []).flatMap((sc) => sc.lines || []).map((l) => l.tts).join(' ');
+    need(DEVANAGARI.test(s.shloka.text || '') && all.includes(s.shloka.text) && /\d+\.\d+|chaupai|doha|दोहा|चौपाई/i.test(s.shloka.ref || '') && (s.shloka.sources || []).filter((u) => /^https?:\/\//.test(u)).length >= 2,
+      'shloka: {text (exactly as spoken in a tts), ref (e.g. "Bhagavad Gita 2.47"), sources: 2 URLs with the same text}; never a made-up verse');
+  }
+  // Respect rules (owner, 9 Nov 2026): devotional, warm or lightly humorous; never mocking, vulgar, political, another
+  // religion, or a deity doing anything demeaning.
+  const RESPECT = /\b(mazaak\s*uda|mock|drunk|sharab|daaru|daru|beer|whisky|cigarette|beedi|bidi|gutka|nasha|gaali|thappad|slap|kick|joota|chappal\s*maar|pagal|bewakoof|ullu|gadha|kutta|kutte|item\s*song|sexy|kiss|bikini|toilet|potty|fart|vomit|ulti|politic|neta|modi|gandhi|bjp|congress|chunav|election|allah|jesus|yesu|church|girja|masjid|mosque|quran|bible|isai|muslim|islam|namaz|pope)\b|शराब|दारू|नशा|गाली|थप्पड़|पागल|बेवकूफ|उल्लू|गधा|चुनाव|नेता|मस्जिद|चर्च/i;
+  const texts = [...(s.scenes || []).flatMap((sc) => [sc.prompt, sc.animate, ...(sc.lines || []).flatMap((l) => [l.tts, l.sub])]), s.endcard?.tts, s.endcard?.sub, s.title, s.youtube_title, s.youtube_description];
+  need(!texts.some((t) => RESPECT.test(t || '')), 'respect rules: no mocking, vulgar, intoxication, violence, politics or other religions; a deity never does anything demeaning');
+  const scenes = Array.isArray(s.scenes) ? s.scenes : [];
+  need(scenes.length >= 3 && scenes.length <= 5, `3-5 scenes (has ${scenes.length})`);
+  const ICON = { 'bal-ganesh': /ganesh|ganesha|ganpati/i, 'bal-krishna': /krishna|kanha/i, mahadev: /mahadev|\bshiva?\b|bholenath/i, parvati: /parvati/i, 'bal-hanuman': /hanuman/i };
+  let secs = 0, nLines = 0, animated = 0;
+  const spoken = (l) => {
+    const v = lib[l.who]?.voice || {};
+    return (l.tts || '').length / ((/Swara/.test(v.edge || '') ? 11.6 : 13.6) * (1 + parseInt(v.rate || '0', 10) / 100)) + 0.45;
+  };
+  const checkLine = (l, n) => {
+    need(lib[l.who] && (cast.includes(l.who) || l.who === 'narrator'), `${n}: who "${l.who}" must be in the spec's cast`);
+    need(l.tts && DEVANAGARI.test(l.tts) && l.tts.length <= 100 && !/\d/.test(l.tts), `${n}: tts Devanagari, max 100 characters, numbers as words`);
+    need(l.sub && !DEVANAGARI.test(l.sub) && l.sub.length <= 110, `${n}: sub Roman Hinglish, max 110 characters`);
+    need(l.shot === undefined || ['wide', 'close'].includes(l.shot), `${n}: shot must be "wide" or "close"`);
+    secs += spoken(l); nLines++;
+  };
+  scenes.forEach((sc, i) => {
+    const n = `scene ${i + 1}`;
+    need(sc.prompt && sc.prompt.length >= 40 && !/\b(text|letters|writing|sign|caption|words|logo)\b/i.test(sc.prompt.replace(/no (text|letters|writing)/gi, '')), `${n}: prompt missing, too short, or asks for text`);
+    (sc.cast || []).forEach((c) => need(cast.includes(c), `${n}: cast "${c}" is not in the spec's cast`));
+    for (const [id, re] of Object.entries(ICON)) need(!re.test(sc.prompt || '') || (sc.cast || []).includes(id), `${n}: the prompt shows ${lib[id]?.name}: add "${id}" to the scene's cast (its canonical look and iconography are added from cast.json)`);
+    need(['in', 'out', 'pan', 'still', undefined].includes(sc.motion), `${n}: motion in, out, pan or still`);
+    if (sc.animate !== undefined) {
+      animated++;
+      need(typeof sc.animate === 'string' && sc.animate.length >= 20 && sc.animate.length <= 300 && !/\b(run|running|fight|fighting|dance|dancing|battle|explod|lightning|fast|fly|flying)\b/i.test(sc.animate), `${n}: animate: one sentence of GENTLE motion`);
+    }
+    const lines = Array.isArray(sc.lines) ? sc.lines : [];
+    need(lines.length >= 1 && lines.length <= 5, `${n}: 1-5 lines`);
+    lines.forEach((l, k) => checkLine(l, `${n} line ${k + 1}`));
+  });
+  const first = scenes[0]?.lines?.[0];
+  need(first && (first.tts || '').length <= 60 && !WEAK_OPENER.test(String(first.sub || '').trim()) && !WEAK_OPENER_DEV.test(String(first.tts || '').trim()),
+    'hook: the first line is the relatable problem or question, max 60 characters (~2-3 s), no greeting; the title (with the deity name) is on screen at the same time');
+  need(animated >= 1 && animated <= 3, `mark 1-3 scenes with "animate" (has ${animated}); 2 become Wan clips`);
+  need(scenes.some((sc) => (sc.cast || []).includes(s.lead)), 'the lead deity appears in at least one scene');
+  need(scenes.flatMap((sc) => sc.lines || []).filter((l) => l.who === s.lead).length >= 3, 'the lead deity speaks at least 3 lines (the lesson)');
+  if (s.endcard) checkLine({ who: s.lead, ...s.endcard }, 'endcard');
+  need((s.endcard?.who || s.lead) === s.lead, 'endcard: spoken by the lead deity');
+  need(/subscribe/i.test(s.endcard?.sub || ''), 'endcard.sub: the ending line with the subscribe ask');
+  need(secs >= 30 && secs <= 60, `estimated length ${Math.round(secs)} s; an episode is 30-60 s`);
+  need(nLines >= 7 && nLines <= 16, `7-16 spoken lines (has ${nLines})`);
+  const yt = s.youtube_title || '';
+  const roman = romanTitle(yt);
+  need(yt.length <= 90 && yt.endsWith(' #Shorts') && DEVANAGARI.test(yt), 'youtube_title: max 90 characters, "<Deity> ne sikhaya ... | देवनागरी #Shorts"');
+  need(startsLead(roman), `youtube_title: the deity's name first ("${lib[s.lead]?.name} ne sikhaya...", "${lib[s.lead]?.name} ka jawab...")`);
+  need(roman.length >= 8 && roman.length <= 60, `youtube_title: the Roman part is ${roman.length} characters; keep it 8-60`);
+  const desc = s.youtube_description || '';
+  need(/sanketik/i.test(desc) && /subscribe/i.test(desc) && DEVANAGARI.test(desc), 'youtube_description: the AI line ("... AI se banaye gaye hain (sanketik)"), a Devanagari line and a subscribe line');
+  need(/kalyug ?ke ?bhagwan/i.test(desc) && /#KalyugKeBhagwan/.test(desc), 'youtube_description: name the series "Kalyug ke Bhagwan" and add #KalyugKeBhagwan');
+  need(!/[<>]/.test(yt + desc + (s.youtube_tags || '')), 'YouTube fields must not contain < or >');
+  const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
+  need(tags.length >= 8 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 8-15 tags with some Devanagari (has ${tags.length})`);
+  need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
+  need((s.facebook_caption || '').trim() && !DEVANAGARI.test(s.facebook_caption), 'facebook_caption: Roman, not empty');
+  need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
+  if (problems.length) {
+    console.log(problems.map((p) => `- ${p}`).join('\n'));
+    process.exit(1);
+  }
+  for (const n of notes) console.log(n);
+  console.log(`OK: ${file} (kalyug episode, ${scenes.length} scenes, ${nLines} lines, ~${Math.round(secs)} s)`);
+  process.exit(0);
+}
+
 // ---- Movie part (story/movies/<series>/part-<n>.json, STORY.md section 7) ------------------------------------------
 // Speaking pace: edge-tts hi-IN Madhur ~13.6 Devanagari characters a second at +0%, Swara ~11.6 (measured 4 Nov 2026),
 // scaled by each character's rate; +0.3-0.75 s pause per line, +2 s title beat. A part is a vertical Short: <= 175 s.

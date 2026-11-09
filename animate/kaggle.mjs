@@ -41,25 +41,30 @@ const SLOT = process.env.SPS_SLOT || 'daily';
 const CHAR = SLOT.startsWith('char-');
 // movie: one part of a mini-movie series (story/movie.py dataset -> story/movie_kernel.py: FLUX frames, Wan clips,
 // lip-sync and a Whisper pronunciation check in one session; STORY.md section 7).
-const MOVIE = SLOT === 'movie';
+const MOVIE = SLOT === 'movie' || SLOT === 'kalyug';
+// kalyug: one "Kalyug ke Bhagwan" episode (story/kalyug.py dataset -> the same story/movie_kernel.py; STORY.md section 8),
+// its own kernel sps-kalyug and dataset sps-kalyug-inputs.
 // frames-<slot>: FLUX.1-schnell start frames / story images on the GPU when Workers AI is out of neurons (animate/frames.mjs,
 // kernel animate/kaggle/frames_kernel.py, dataset built by frames.mjs and sent with `upload`).
 const FRAMES = SLOT.startsWith('frames-');
-const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : MOVIE ? 'sps-movie-inputs' : CHAR ? `sps-char-inputs-${SLOT.slice(5)}`
+const DATASET = SLOT === 'long' ? 'sps-tts-inputs-long' : MOVIE ? `sps-${SLOT}-inputs` : CHAR ? `sps-char-inputs-${SLOT.slice(5)}`
   : FRAMES ? `sps-frames-inputs-${SLOT.slice(7)}` : `sps-animate-inputs-${SLOT}`;
-const KERNEL = SLOT === 'long' ? 'sps-tts-long' : MOVIE ? 'sps-movie' : CHAR ? `sps-${SLOT}` : FRAMES ? `sps-${SLOT}` : `sps-animate-${SLOT}`;
+const KERNEL = SLOT === 'long' ? 'sps-tts-long' : MOVIE ? `sps-${SLOT}` : CHAR ? `sps-${SLOT}` : FRAMES ? `sps-${SLOT}` : `sps-animate-${SLOT}`;
 const CODE = MOVIE ? path.join(DIR, '..', 'story', 'movie_kernel.py') : CHAR ? path.join(DIR, '..', 'characters', 'kaggle', 'lipsync_daily.py')
   : FRAMES ? path.join(DIR, 'kaggle', 'frames_kernel.py') : path.join(DIR, 'kaggle', 'animate.py');
 // Every GPU kernel of both channels (one Kaggle account): `lock` waits while any other one runs.
 const ALL_KERNELS = [...['morning', 'evening', 'noon', 'status', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
-  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie',
+  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie', 'sps-kalyug',
   ...['morning', 'evening', 'noon', 'status', 'long', 'photos', 'veo', 'pilot'].map((x) => `sps-frames-${x}`)];
 const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);
 const cmd = args[0] || 'status';
 const opt = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const STAMP_FILE = path.join(DIR, 'dataset', MOVIE ? 'movie.json' : 'jobs.json');
+// SPS_DATASET_DIR / SPS_PUSH_DIR / SPS_FETCH_DIR: other folders than animate/dataset, animate/kaggle-push and animate/kaggle-out (local pilots that must not
+// touch a CI-style run's files on the same PC).
+const DATA_DIR = process.env.SPS_DATASET_DIR ? path.resolve(process.env.SPS_DATASET_DIR) : path.join(DIR, 'dataset');
+const STAMP_FILE = path.join(DATA_DIR, MOVIE ? 'movie.json' : 'jobs.json');
 
 function kaggle(...a) {
   const r = spawnSync(CLI, a, { encoding: 'utf8' });
@@ -88,7 +93,7 @@ async function prepare() {
   // A long video keeps its scenes in chapters: flatten them in render-long.mjs order.
   const all = spec.scenes || spec.chapters.flatMap((c) => c.scenes);
   const plan = opt('--plan') ? JSON.parse(fs.readFileSync(opt('--plan'), 'utf8')) : null;
-  const out = path.join(DIR, 'dataset');
+  const out = DATA_DIR;
   fs.rmSync(out, { recursive: true, force: true });
   fs.mkdirSync(out, { recursive: true });
   const settings = { ...DEFAULTS(), ...(spec.animate_settings || {}) };
@@ -205,7 +210,7 @@ export function framePrompt(s, spec) {
 
 // Sends a dataset folder that is already built (characters/dialogue.py dataset) as a new version of DATASET.
 async function upload() {
-  const out = path.join(DIR, 'dataset');
+  const out = DATA_DIR;
   // The lip-sync kernel upscales its clips with the same enhance.py (Real-ESRGAN); the frames kernel needs neither.
   if (!FRAMES) {
     fs.copyFileSync(path.join(DIR, 'kaggle', 'enhance.py'), path.join(out, 'enhance.py'));
@@ -226,7 +231,7 @@ async function upload() {
 async function push() {
   const u = user();
   const stamp = JSON.parse(fs.readFileSync(STAMP_FILE, 'utf8')).stamp;
-  const dir = path.join(DIR, 'kaggle-push');
+  const dir = process.env.SPS_PUSH_DIR ? path.resolve(process.env.SPS_PUSH_DIR) : path.join(DIR, 'kaggle-push');
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
   // START_BY: a session that only starts after this (queued too long, so the workflow has already fallen back to
@@ -286,7 +291,7 @@ async function wait() {
 
 function fetch() {
   const to = path.resolve(opt('--to', path.join(DIR, 'clips')));
-  const out = path.join(DIR, 'kaggle-out');
+  const out = process.env.SPS_FETCH_DIR ? path.resolve(process.env.SPS_FETCH_DIR) : path.join(DIR, 'kaggle-out');
   fs.rmSync(out, { recursive: true, force: true });
   const r = kaggle('kernels', 'output', `${user()}/${KERNEL}`, '-p', out);
   if (!r.ok) throw new Error(`kernel output: ${r.out.split('\n').pop()}`);

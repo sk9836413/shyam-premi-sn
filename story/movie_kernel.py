@@ -11,7 +11,8 @@
 #               the base clip of any speaking character that has none yet in characters/cast/clips/.
 #   3. lips   : MuseTalk 1.5 lip-sync of each human character's close-up line on that character's base clip
 #               (characters/kaggle/lipsync_daily.py). The face box is found here on the clip's first frame (OpenCV
-#               Haar cascades); no face found = no lip-sync for that character (gentle motion only).
+#               Haar cascades), or given per job as `box_frac` (cartoon faces, story/kalyug.py; + an optional blend
+#               ellipse `mask`); no face found = no lip-sync for that character (gentle motion only).
 #   4. qa     : Whisper large-v3-turbo (MIT) transcribes every voice line: a pronunciation check (CER per line, names).
 # Output (/kaggle/working): frames/<id>.png, stills/<id>.jpg, clips/<id>.mp4, lip/<id>.mp4, qa.json, results.json.
 import glob, json, os, shutil, subprocess, sys, time
@@ -129,6 +130,18 @@ def face_box(clip):
     return [max(0, x), max(0, int(y + 0.12 * h)), min(W, x + w), min(H, int(y + 1.06 * h))], W
 
 
+def frac_box(clip, frac):
+    """A face box given as fractions of the frame [x1, y1, x2, y2] -> pixels on the clip's first frame."""
+    import cv2
+    cap = cv2.VideoCapture(clip)
+    W, H = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    cap.release()
+    if not W:
+        return None, None
+    x1, y1, x2, y2 = frac
+    return [int(x1 * W), int(y1 * H), int(x2 * W), int(y2 * H)], W
+
+
 def stage_lips(inp, spec, cfg, T0):
     lips = spec.get("lips", [])
     if not lips:
@@ -142,7 +155,10 @@ def stage_lips(inp, spec, cfg, T0):
         who = j["who"]
         if who not in boxes:
             base = next((p for p in (f"{WORK}/clips/cast-{who}.mp4", f"{inp}/castclip-{who}.mp4") if os.path.exists(p)), None)
-            box, W = face_box(base) if base else (None, None)
+            if base and j.get("box_frac"):  # measured by a person on the portrait (cartoon faces: Haar finds no face)
+                box, W = frac_box(base, j["box_frac"])
+            else:
+                box, W = face_box(base) if base else (None, None)
             boxes[who] = {"clip": base, "box": box, "W": W}
             if base and box:
                 shutil.copy(base, f"{d}/base-{who}.mp4")
@@ -151,7 +167,7 @@ def stage_lips(inp, spec, cfg, T0):
             continue
         shutil.copy(f"{inp}/{j['audio']}", f"{d}/{j['audio']}")
         jobs.append({"id": j["id"], "clip": f"base-{who}.mp4", "audio": j["audio"], "box": b["box"], "box_frame": b["W"],
-                     "seconds": j.get("seconds", 3)})
+                     "seconds": j.get("seconds", 3), **({"mask": j["mask"]} if j.get("mask") else {})})
     if not jobs:
         return {"skipped": "no base clip with a detectable face", "boxes": boxes}
     if os.path.exists(f"{inp}/enhance.py"):

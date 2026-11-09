@@ -61,3 +61,5 @@ characters/cast/candidates*/
 __pycache__/
 # daily photo posts: rendered cards (hosted on the media Worker; dry runs keep them as the artifact)
 story/photos/*/out/
+# Kalyug ke Bhagwan work folder (voices, Kaggle outputs, renders)
+story/kalyug/work/

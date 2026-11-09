@@ -4,6 +4,8 @@
 #                 Short (15:00, a new setting and outfits each time); other days nothing more
 #   festival day: status Short 06:00 + morning festival Short + evening darshan (no long, no noon)
 #   movie day:    the movie part 07:00 replaces the morning Short + evening darshan (+ status on a festival day)
+#   kalyug day:   (repo variable KALYUG=on) Tue/Thu/Sat of normal days: the "Kalyug ke Bhagwan" episode 08:00 replaces
+#                 the morning Short + evening darshan; made the evening before by the `kalyug` job (STORY.md section 8)
 # A slot that is not planned for the day skips at once (no render). Photo posts and the Veo kit are not uploads.
 # The long katha video (16:9, 5-10 min, YouTube only, scheduled for 15:00 IST) is made after the morning Short.
 # Morning window 05:30-11:59 IST, evening window 17:30-22:59 IST. GitHub's schedule often fires hours
@@ -47,7 +49,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning, evening, noon, long, status or movie (empty = by time of day; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part)
+        description: morning, evening, noon, long, status, movie or kalyug (empty = by time of day; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part; kalyug = only tomorrow's Kalyug ke Bhagwan episode)
         required: false
         default: ''
       dry_run:
@@ -62,8 +64,12 @@ on:
         description: movie slot only - a part file, e.g. story/movies/khatu-shyam-amar-katha/part-1.json (empty = the next due part)
         required: false
         default: ''
+      kalyug_spec:
+        description: kalyug slot only - an episode file, e.g. story/kalyug/pilot-ep1.json (empty = tomorrow's episode)
+        required: false
+        default: ''
       kaggle_reuse:
-        description: movie slot only - render from the last finished sps-movie Kaggle session (no new GPU session)
+        description: movie / kalyug slot only - render from the last finished sps-movie / sps-kalyug Kaggle session (no new GPU session)
         type: boolean
         default: false
       force_fallback:
@@ -82,7 +88,7 @@ permissions:
 # automation/published.md with an atomic push (a second run finds the claim or the log.md line and skips). Then
 # youtube.mjs and meta.mjs look for the same title/caption among the last 36 h of uploads and posts and never repeat it.
 concurrency:
-  group: ${{ inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
+  group: ${{ inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || inputs.slot == 'kalyug' && 'daily-story-kalyug' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
   cancel-in-progress: false
 
 jobs:
@@ -119,6 +125,8 @@ jobs:
       status: ${{ steps.date.outputs.status }}
       # The mini-movie job runs after every evening-slot run (and for slot=movie): it makes the next due part.
       movie: ${{ steps.date.outputs.movie }}
+      # The Kalyug ke Bhagwan job runs after every evening-slot run (and for slot=kalyug): it makes tomorrow's episode.
+      kalyug: ${{ steps.date.outputs.kalyug }}
       # IST date and the festival day of a status run: the long and status jobs queue per day on them.
       today: ${{ steps.date.outputs.today }}
       status_day: ${{ steps.date.outputs.status_day }}
@@ -156,6 +164,10 @@ jobs:
             echo "movie=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Mini-movie part only"; exit 0
           fi
+          if [ "$slot" = kalyug ]; then
+            echo "kalyug=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Kalyug ke Bhagwan episode only"; exit 0
+          fi
           if [ -z "$slot" ]; then
             hm=$((10#$(TZ=Asia/Kolkata date +%H%M)))
             if [ $hm -ge 530 ] && [ $hm -lt 1200 ]; then slot=morning
@@ -172,7 +184,7 @@ jobs:
           # can be dry-run during the day first.
           if [ "$slot" = evening ] && [ $((10#$(TZ=Asia/Kolkata date +%H))) -ge 15 ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
           # Mini-movies (STORY.md section 7) are made a day or more ahead by the `movie` job, which runs after evening runs.
-          if [ "$slot" = evening ]; then echo "movie=true" >> "$GITHUB_OUTPUT"; fi
+          if [ "$slot" = evening ]; then echo "movie=true" >> "$GITHUB_OUTPUT"; echo "kalyug=true" >> "$GITHUB_OUTPUT"; fi
           if grep -q "^$today | $slot |" automation/log.md; then
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today $slot already published"
@@ -180,8 +192,15 @@ jobs:
             # A movie part is scheduled for 07:00 today: it IS the morning Short. Only the trend research and the Veo kit
             # run, then "Movie morning" records the slot.
             echo "movie_day=$(grep -m1 "^$today | movie |" automation/log.md | cut -d'|' -f3 | xargs)" >> "$GITHUB_OUTPUT"
+            echo "movie_kind=movie" >> "$GITHUB_OUTPUT"
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today morning = the scheduled movie part"
+          elif [ "$slot" = morning ] && grep -q "^$today | kalyug |" automation/log.md; then
+            # A Kalyug ke Bhagwan episode is scheduled for 08:00 today (made last evening): it IS the morning Short.
+            echo "movie_day=$(grep -m1 "^$today | kalyug |" automation/log.md | cut -d'|' -f3 | xargs)" >> "$GITHUB_OUTPUT"
+            echo "movie_kind=kalyug" >> "$GITHUB_OUTPUT"
+            echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::$today morning = the scheduled Kalyug ke Bhagwan episode"
           elif ! node scripts/day-plan.mjs --date "$today" --slot "$slot" --check > "$RUNNER_TEMP/plan.json"; then
             # At most 3 uploads a day (scripts/day-plan.mjs): e.g. noon only on Wednesdays of normal days.
             if [ "${{ inputs.dry_run }}" = true ]; then
@@ -285,17 +304,20 @@ jobs:
 
       # On a movie day the scheduled part (YouTube publishAt 07:00, Facebook scheduled, Instagram queued) is the morning
       # Short: record the slot so later morning triggers skip, and commit today's trend research for the other slots.
+      # The same on a kalyug day for the scheduled Kalyug ke Bhagwan episode (08:00).
       - name: Movie morning
         if: ${{ !cancelled() && steps.date.outputs.movie_day != '' && !inputs.dry_run }}
         run: |
-          today="${{ steps.date.outputs.today }}"; slug="${{ steps.date.outputs.movie_day }}"
-          line=$(grep -m1 "^$today | movie | $slug |" automation/log.md)
-          echo "$today | morning | $slug | $(echo "$line" | cut -d'|' -f4 | xargs) | mini-movie part (scheduled 07:00, replaces the katha Short)" >> automation/log.md
+          today="${{ steps.date.outputs.today }}"; slug="${{ steps.date.outputs.movie_day }}"; kind="${{ steps.date.outputs.movie_kind }}"
+          line=$(grep -m1 "^$today | $kind | $slug |" automation/log.md)
+          what="mini-movie part (scheduled 07:00, replaces the katha Short)"
+          [ "$kind" = kalyug ] && what="Kalyug ke Bhagwan episode (scheduled 08:00, replaces the morning Short)"
+          echo "$today | morning | $slug | $(echo "$line" | cut -d'|' -f4 | xargs) | $what" >> automation/log.md
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/log.md
           [ -d automation/trends ] && git add automation/trends
-          git commit -qm "Morning $today: movie part $slug"
+          git commit -qm "Morning $today: $kind $slug"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
       # Real temple photos (Wikimedia Commons, CC0 / PD / CC BY only, exact temple only) for the spec's `temple`, fetched
@@ -1268,6 +1290,206 @@ jobs:
           git add automation/log.md automation/published.md "story/published/$SLUG.json" characters/cast/clips
           git add automation/movie-series.md story/movies/*/series.json story/movies/*/part-*.json 2>/dev/null || true
           git commit -qm "Movie $SLUG scheduled for $rel 07:00"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # "Kalyug ke Bhagwan" (STORY.md section 8, story/kalyug.py, characters/kalyug/): cute 3D cartoon deities in everyday
+  # roles, 30-60 s. With the repo variable KALYUG=on, after every evening-slot run (and alone with slot=kalyug) TOMORROW's
+  # episode is made when tomorrow is a Tue/Thu/Sat normal day (scripts/kalyug-due.mjs): Claude writes the spec, edge-tts
+  # voices, ONE Kaggle session (sps-kalyug = story/movie_kernel.py: FLUX frames, 2 Wan clips, MuseTalk lip-sync on the
+  # library base clips, Whisper check; ~40-45 GPU-min), render, then YouTube private with publishAt <release> 08:00,
+  # Facebook scheduled, Instagram queued. It is that day's morning Short ("Movie morning" in the story job). Never starts
+  # a Kaggle session in 09:00-11:30 / 18:30-21:00 IST or below the daily Shorts' quota reserve (`story/kalyug.py gate`):
+  # the next evening trigger (every 30 min to 23:17 IST) tries again; if none succeeds the morning Short runs as usual.
+  kalyug:
+    needs: story
+    if: always() && needs.story.outputs.kalyug == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    concurrency:
+      group: shyam-kalyug
+      cancel-in-progress: false
+    env:
+      FFMPEG_PATH: ffmpeg
+      KOKORO_DIR: ${{ github.workspace }}/.kokoro
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      KALYUG: ${{ vars.KALYUG }}
+      W: story/kalyug/work
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Due episode
+        id: d
+        run: |
+          git fetch -q origin main && git checkout -q origin/main -- automation/log.md automation/published.md
+          node scripts/kalyug-due.mjs --spec "${{ inputs.kalyug_spec }}" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/setup-python@v5
+        if: steps.d.outputs.mode == 'produce' || steps.d.outputs.mode == 'write'
+        with:
+          python-version: '3.12'
+
+      - name: Kaggle window and quota
+        id: gate
+        if: steps.d.outputs.mode == 'produce' || steps.d.outputs.mode == 'write'
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          [ "${{ inputs.kaggle_reuse }}" = true ] && { echo "go=true" >> "$GITHUB_OUTPUT"; exit 0; }
+          pip install -q 'kaggle>=2.2' six
+          node animate/kaggle.mjs quota > "$RUNNER_TEMP/quota.json" || true
+          python -I story/kalyug.py gate --quota "$RUNNER_TEMP/quota.json" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Write the episode
+        id: write
+        if: steps.d.outputs.mode == 'write' && steps.gate.outputs.go == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --max-turns 100
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(ls:*)"
+          prompt: |
+            Write the next "Kalyug ke Bhagwan" episode of Shyam Premi SN. Its release day (IST) is ${{ steps.d.outputs.release }} at 08:00.
+            Follow automation/STORY.md section 8 exactly (and section 2 for accuracy), with the characters in
+            characters/kalyug/cast.json. Write story/kalyug/${{ steps.d.outputs.release }}-<topic>.json, make
+            `node scripts/validate.mjs <that file>` pass, and change nothing else.
+
+      - name: Spec
+        id: spec
+        if: steps.gate.outputs.go == 'true' && (steps.d.outputs.mode == 'produce' || steps.write.outcome == 'success')
+        run: |
+          f="${{ steps.d.outputs.file }}"
+          [ -n "$f" ] || f=$(ls story/kalyug/${{ steps.d.outputs.release }}-*.json 2>/dev/null | head -1)
+          [ -n "$f" ] && [ -f "$f" ] || { echo "::error::No episode file for ${{ steps.d.outputs.release }}"; exit 1; }
+          node scripts/validate.mjs --soft-topics "$f"
+          node scripts/kalyug-due.mjs --spec "$f" > "$RUNNER_TEMP/due.json"
+          for k in slug release publish_at; do echo "$k=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').$k")" >> "$GITHUB_OUTPUT"; done
+          echo "SLUG=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').slug")" >> "$GITHUB_ENV"
+          echo "F=$f" >> "$GITHUB_ENV"
+
+      - name: Tools
+        if: steps.spec.outcome == 'success'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libfribidi0 libraqm0 > /dev/null
+          pip install -q edge-tts pillow kokoro-onnx==0.6.1 soundfile==0.14.0 'kaggle>=2.2' six
+          python -c "from PIL import features; print('raqm (Devanagari subtitles):', features.check('raqm'))"
+
+      - name: Voices
+        if: steps.spec.outcome == 'success'
+        run: python -I story/kalyug.py voice --spec "$F" --out "$W/voice" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Kaggle (frames, clips, lip-sync, pronunciation check)
+        id: kaggle
+        if: steps.spec.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 130
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: kalyug
+        run: |
+          [ -n "$KAGGLE_API_TOKEN" ] || { echo "::error::no KAGGLE_API_TOKEN secret"; exit 1; }
+          if [ "${{ inputs.kaggle_reuse }}" = true ]; then  # re-render a finished session (e.g. after a renderer fix)
+            node animate/kaggle.mjs fetch --to "$W/kaggle" | tee -a "$GITHUB_STEP_SUMMARY"
+            node scripts/movie-qa.mjs "$W/kaggle/qa.json" >> "$GITHUB_STEP_SUMMARY" || true
+            exit 0
+          fi
+          python -I story/kalyug.py dataset --spec "$F" --voice "$W/voice" --out animate/dataset --max-minutes 60
+          node animate/kaggle.mjs upload
+          node animate/kaggle.mjs lock --minutes 60
+          node animate/kaggle.mjs push --queue-minutes 20 --retry-minutes 20
+          start=$(date +%s)
+          node animate/kaggle.mjs wait --minutes 90 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json")"
+          node animate/kaggle.mjs fetch --to "$W/kaggle" | tee "$RUNNER_TEMP/fetch.json"
+          echo "- Kaggle: $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min" >> "$GITHUB_STEP_SUMMARY"
+          node scripts/movie-qa.mjs "$W/kaggle/qa.json" >> "$GITHUB_STEP_SUMMARY" || true
+          ls "$W/kaggle/frames" | grep -q '^s0' || ls "$W/kaggle/clips" | grep -q '^s0' || { echo "::error::Kaggle made no frames"; exit 1; }
+
+      - name: Render
+        id: render
+        if: steps.kaggle.outcome == 'success'
+        run: |
+          mkdir -p "$W/out/small"
+          python -I story/kalyug.py keep --kaggle "$W/kaggle"
+          v="$W/voice"; [ -f "$W/kaggle/voice/voice.json" ] && v="$W/kaggle/voice"
+          python -I story/kalyug.py render --spec "$F" --voice "$v" --kaggle "$W/kaggle" --out "$W/out/$SLUG.mp4" \
+            --meta "$W/out/meta.json" --srt "$W/out/$SLUG.srt" --small "$W/out/small/$SLUG.mp4" | tee -a "$GITHUB_STEP_SUMMARY"
+          ffprobe -v error -show_entries format=duration:stream=width,height -of compact "$W/out/$SLUG.mp4" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the video as an artifact (7 days)
+        if: steps.render.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: kalyug-${{ env.SLUG }}
+          path: |
+            story/kalyug/work/out/
+            story/kalyug/work/kaggle/qa.json
+            story/kalyug/work/kaggle/results*.json
+          retention-days: 7
+          compression-level: 0
+
+      - name: Host
+        id: host
+        if: steps.render.outcome == 'success'
+        run: node scripts/publish.mjs --host-only --video "$W/out/small/$SLUG.mp4" --scenes "$F" | tee "$RUNNER_TEMP/host.json"
+
+      - name: Claim the upload
+        id: claim
+        if: steps.render.outcome == 'success' && !inputs.dry_run && steps.spec.outputs.release != 'pilot'
+        run: node scripts/upload-guard.mjs claim --day "${{ steps.spec.outputs.release }}" --slot kalyug --slug "$SLUG"
+
+      - name: YouTube (public at 08:00 IST on the release day)
+        id: yt
+        if: steps.claim.outputs.go == 'true'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$F" --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" | tee "$RUNNER_TEMP/yt.json"
+          grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"
+
+      - name: Release the claim after a failed upload
+        if: always() && steps.claim.outputs.go == 'true' && steps.yt.outcome != 'success'
+        run: node scripts/upload-guard.mjs release --day "${{ steps.spec.outputs.release }}" --slot kalyug --slug "$SLUG" --reason "YouTube ${{ steps.yt.outcome }}"
+
+      - name: Facebook and Instagram (Graph API)
+        id: meta
+        if: steps.yt.outcome == 'success'
+        continue-on-error: true
+        env:
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
+          grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" && { echo "::notice::YouTube already had it (earlier run): no second Facebook/Instagram post"; exit 0; }
+          node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$F" --video-url "$MEDIA_URL/m/$SLUG.mp4" \
+            --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" | tee "$RUNNER_TEMP/meta.json" || true
+
+      - name: Record
+        if: steps.yt.outcome == 'success'
+        run: |
+          mkdir -p story/published
+          cp "$F" "story/published/$SLUG.json"
+          rel="${{ steps.spec.outputs.release }}"
+          yt=$(node -p "const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/yt.json', 'utf8')).youtube; y.url + ' (public at ' + y.publishAt + ')'")
+          deity=$(node -p "require('./' + process.env.F).deity"); summary=$(node -p "require('./' + process.env.F).summary")
+          echo "$rel | kalyug | $SLUG | $deity | $summary" >> automation/log.md
+          social=$(node -p "try { ' | social: ' + JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/meta.json', 'utf8')).summary } catch { '' }")
+          made=$(node -p "const m = require('./' + process.env.W + '/out/meta.json'); m.seconds + ' s, clips ' + m.animated_scenes.length + ', lip-sync ' + m.lip_lines")
+          echo "- $SLUG | youtube: $yt | Kalyug ke Bhagwan ($made), made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/log.md automation/published.md "story/published/$SLUG.json" characters/kalyug/clips "$F"
+          git commit -qm "Kalyug ke Bhagwan $SLUG scheduled for $rel 08:00"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
   # Weekly measurement of the "max 3 uploads a day" change (scripts/growth-compare.mjs -> automation/growth.md): on Monday

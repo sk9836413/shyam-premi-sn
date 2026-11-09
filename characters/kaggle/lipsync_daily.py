@@ -78,9 +78,12 @@ def track(frames, box, scale):
     dx, dy = sm(dx), sm(dy)
     return [(x1 + a, y1 + b, x2 + a, y2 + b) for a, b in zip(dx, dy)], float(np.mean(sc))
 
-def blend_mask(w, h):
+def blend_mask(w, h, e=None):
+    # The new mouth's blend ellipse: centre and radii as fractions of the face box (a job's "mask" for cartoon faces,
+    # e.g. a mouth under Bal Ganesh's trunk); default = the lower face.
+    cx, cy, rx, ry = e or (0.5, 0.74, 0.40, 0.30)
     m = np.zeros((h, w), np.float32)
-    cv2.ellipse(m, (w // 2, int(h * 0.74)), (int(w * 0.40), int(h * 0.30)), 0, 0, 360, 1.0, -1)
+    cv2.ellipse(m, (int(w * cx), int(h * cy)), (int(w * rx), int(h * ry)), 0, 0, 360, 1.0, -1)
     k = max(3, int(w * 0.12) | 1)
     return cv2.GaussianBlur(m, (k, k), 0)
 
@@ -133,7 +136,7 @@ for jid in ids:
         for i, face in enumerate(outs):
             f = fc[i % len(fc)].copy(); x1, y1, x2, y2 = bc[i % len(bc)]; y2 = min(H, y2 + 10)
             face = cv2.resize(face.astype(np.uint8), (x2 - x1, y2 - y1), interpolation=cv2.INTER_LANCZOS4)
-            m = blend_mask(x2 - x1, y2 - y1)
+            m = blend_mask(x2 - x1, y2 - y1, job.get("mask"))
             if cfg.get("enhance", True):
                 face = enhance(face, f[y1:y2, x1:x2], m)
             mm = m[..., None]
