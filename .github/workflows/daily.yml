@@ -1403,9 +1403,9 @@ jobs:
           fi
           python -I story/kalyug.py dataset --spec "$F" --voice "$W/voice" --out animate/dataset --max-minutes 60
           node animate/kaggle.mjs upload
-          # A session stuck in QUEUED (sps-char-epifive since 8 Nov) would hold the lock forever: go on after 60 min, Kaggle
+          # A session stuck in QUEUED (sps-char-epifive since 8 Nov) would hold the lock forever: go on after 20 min, Kaggle
           # itself refuses a 3rd session and push retries.
-          node animate/kaggle.mjs lock --minutes 60 || echo "::warning::lock: another sps kernel still RUNNING/QUEUED after 60 min; pushing anyway"
+          node animate/kaggle.mjs lock --minutes 20 || echo "::warning::lock: another sps kernel still RUNNING/QUEUED after 20 min; pushing anyway (Kaggle allows 2)"
           node animate/kaggle.mjs push --queue-minutes 20 --retry-minutes 20
           start=$(date +%s)
           node animate/kaggle.mjs wait --minutes 90 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json")"
