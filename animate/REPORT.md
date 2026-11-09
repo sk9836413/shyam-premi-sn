@@ -272,3 +272,40 @@ over the weeks of 7-13 and 14-20 Nov.
 - Stills in this pilot were not upscaled (enhance.py skipped non-numeric ids; fixed for the next run).
 - Krishna came out as a child and Hanuman with a beard in two portrait runs (FLUX ignores "no beard"); stronger prompts are
   being redrawn; until a person picks a portrait, those characters' lines play over the scene (no close-up).
+
+## 14. "Kalyug ke Bhagwan" (9-10 Nov 2026): cute 3D deities in everyday roles, lip-synced
+
+Owner: cute, fully animated Pixar-like cartoon deities in everyday roles with lip-sync. Rules: STORY.md section 8.
+Code: `story/kalyug.py` (cast, pick, sheet, voice, dataset, render, keep, gate) on the movie kernel
+(`story/movie_kernel.py`, kernel `sps-kalyug`), `scripts/kalyug-due.mjs`, job `kalyug` in daily.yml. Library
+`characters/kalyug/`: cast.json (descriptions, voices, MuseTalk face box + mouth ellipse), 7 canonical PNGs, 8 base/talk
+clips, character-sheet.png. Workers AI neurons: zero (FLUX.1-schnell on Kaggle).
+
+### 14.1 Pilot "Bal Ganesh aur exam ka darr" (E:\SK\kalyug-pilot\ep1.mp4, NOT uploaded)
+52.5 s, 1080x1920 30 fps, -14.1 LUFS, 12 lines (Chintu 5, Bal Ganesh 7 incl. the subscribe line), 4 scenes (2 Wan clips,
+2 upscaled stills), hook line at 0 s with the title overlay, Devanagari + Roman subtitles in speaker colours, synthesized
+pluck/pad score, chime when Ganesh appears, bells on scene changes. Whisper check: mean CER 4.6 % (Chintu's Madhur
+voice is heard as "गनेश" for "गणेश" twice, minor).
+
+| Session | Seconds | What |
+|---|---|---|
+| 1 cast | 1,270 | 35 FLUX images: 27 portraits (Hanuman 9 tries, none bearded) + 8 scene frames, ~33 s/image |
+| 2 | 6,078 | 8 Ganesh redraws (464 s), 8 Wan clips (5,316 s: 2 scenes + 6 one-time base clips), 3 lip lines, Whisper |
+| 3 | 2,192 | Ganesh base + talk clip (1,725 s), 13 lip lines (457 s: Chintu redo + Ganesh try + 5 test lines) |
+| **Pilot total** | **9,540 = 159 min** | of which one-time library ~120 min |
+
+### 14.2 GPU per episode (steady state, library reused): ~40-45 min
+FLUX 4 scene frames ~6 min + 2 Wan 5B scene clips in parallel (81 frames, ~22 min + ~4 min setup) + MuseTalk
+~6-7 min + Whisper ~1.5 min. A new character costs one base clip once (~20 min). Weekly: 3 episodes ~2.1 h, replacing 3
+morning Shorts (~3.25 h): **~1.2 GPU-h/week saved**. Gate (`kalyug.py gate`): never 09:00-11:30 / 18:30-21:00 IST, needs
+>= 80 min to the next window and 0.8 h spare above the daily Shorts' reserve.
+
+### 14.3 Quality verdict
+- Consistency: close-ups always come from the canonical base clips (same face every episode); scene frames are FLUX from
+  the cast `wide` text, so the characters there are close but not identical (crown/costume details vary).
+- Lip-sync: MuseTalk on cartoon faces works with a hand-measured face box; the default blend ellipse smeared Chintu's
+  chin (mouth check 0.50), a lips-only ellipse fixed it (0.81-0.82). Test lines for Mummy, Parvati, Mahadev, Bal
+  Krishna and Bal Hanuman are clean. **Bal Ganesh cannot be lip-synced** (mouth under the trunk: MuseTalk smeared the
+  trunk into human lips), so he talks with a Wan talk clip (trunk and mouth corners move), not phoneme-accurate.
+- Artefacts: both scene clips pass the reject check (no flash/cut, no new colours); the renderer drops a failing clip.
+- Mahadev's portrait shows the moon and tilak; the Ganga stream, cobra and trishul are only in scene prompts.

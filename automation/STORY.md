@@ -562,6 +562,8 @@ picked by a person, never regenerated; voices fixed): `bal-ganesh` (big ears, sh
 modak), `bal-krishna` (sky-blue skin, peacock feather, flute, butter), `mahadev` (kind, ash-blue skin with a deeper blue
 throat, crescent moon, Ganga in the jata, trishul, cobra), `parvati`, `bal-hanuman` (cute child vanara, no beard),
 `chintu` (10-year-old boy), `mummy` (his mother). Only characters with a portrait (the validator checks) may be cast.
+Everyone's close-ups are MuseTalk lip-synced except Bal Ganesh: his mouth sits under the trunk (MuseTalk smears the
+trunk), so he talks with a "talk clip" (trunk and mouth corners moving); the story should still give him the lesson.
 A new character is added to cast.json and drawn on Kaggle (`story/kalyug.py cast`), then a person picks it.
 
 **Topics** (rotate; never the same topic or deity two episodes running; check `automation/log.md` lines `| kalyug |`

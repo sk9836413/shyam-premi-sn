@@ -235,19 +235,36 @@ def cmd_dataset(a):
                    "names": [n for n in spec.get("names", []) if n in l["tts"]]})
     shutil.copy(f"{a.voice}/voice.json", f"{a.out}/voice.json")
     new_base = []
-    for who in speaking:  # base clip: from the library, else made now from the canonical portrait (once, then kept)
+    extra_ids = [w for w in (a.base or "").split(",") if w and w not in speaking]  # --base: fill the library ahead
+    for who in speaking + extra_ids:  # base clip: from the library, else made now from the canonical portrait (once, then kept)
         lib_clip = os.path.join(KDIR, "clips", f"{who}.mp4")
         if os.path.exists(lib_clip):
-            shutil.copy(lib_clip, f"{a.out}/castclip-{who}.mp4")
+            if who in speaking:
+                shutil.copy(lib_clip, f"{a.out}/castclip-{who}.mp4")
         elif has_portrait(who):
             shutil.copy(os.path.join(KDIR, f"{who}.png"), f"{a.out}/cast-{who}.png")
             extra = {"bal-ganesh": ", the big soft ears sway very gently", "bal-hanuman": ", the tail curls gently",
                      "mahadev": ", the tiny Ganga stream flows gently and the small cobra moves slowly"}.get(who, "")
             clips.append({"id": f"cast-{who}", "image": f"cast-{who}.png", "frames": 81, "seconds": 4.2, "seed": 5,
-                          "prompt": f"{chars[who]['description']}. A locked-off camera, a very slow subtle push-in. Motion: the character "
+                          "prompt": f"{chars[who]['description']}. A locked-off static camera, no zoom, no camera movement. Motion: the character "
                                     f"breathes calmly and blinks naturally, the head stays still and faces the camera, the mouth stays closed{extra}. "
                                     "The face keeps exactly the same identity throughout. 3D animated family movie, soft warm light"})
             new_base.append(who)
+    # A "talk" clip (cast.json "talk": true): the character talking (mouth/trunk moving), for faces MuseTalk cannot
+    # lip-sync (Bal Ganesh's mouth sits under the trunk). Played on that character's close-ups while it speaks.
+    closeups = [l["who"] for si, l in lines if shot_of(si, l, spec, chars) == "close"]
+    for who in dict.fromkeys(closeups + extra_ids):
+        if chars.get(who, {}).get("talk") and has_portrait(who) and not os.path.exists(os.path.join(KDIR, "clips", f"{who}-talk.mp4")):
+            if not os.path.exists(f"{a.out}/cast-{who}.png"):
+                shutil.copy(os.path.join(KDIR, f"{who}.png"), f"{a.out}/cast-{who}.png")
+            clips.append({"id": f"cast-{who}-talk", "image": f"cast-{who}.png", "frames": 81, "seconds": 4.2, "seed": 7,
+                          "prompt": f"{chars[who]['description']}. A locked-off static camera, no zoom, no camera movement. Motion: "
+                                    f"{chars[who]['talk']} The head stays facing the camera and the face keeps exactly the same identity "
+                                    "throughout. 3D animated family movie, soft warm light"})
+            new_base.append(f"{who}-talk")
+    for who in filter(None, (a.draw or "").split(",")):  # --draw: new portrait candidates for a person to pick
+        for n in range(int(a.seeds)):
+            images.append({"id": f"cast-{who}-{n}", "prompt": portrait_prompt(chars[who], lib), "seed": 2000 + 97 * (n + int(a.seed_offset)) + len(who), "w": FW, "h": FH})
     settings = {"tier": "kalyug", "max_minutes": int(a.max_minutes), "flux": {"size": 1024, "steps": 6}, "reserve_minutes": 12 if lips else 5,
                 "qa_minutes": 3, "anim": {"width": FW, "height": FH, "steps": 25, "hero14b": False}}
     stamp = f"{spec['slug']}-{int(time.time())}"
@@ -307,6 +324,77 @@ class Episode(M.Movie):
 
     def lead_color(self):
         return hexrgb(self.chars.get(self.spec.get("lead"), {}).get("color", "FFD666"))
+
+    def kfile(self, *parts):
+        p = super().kfile(*parts)
+        if p and parts[0] == "clips" and parts[-1].startswith("s") and not self.clip_ok(p):
+            return None  # rejected scene clip: the scene's still with a camera move instead
+        return p
+
+    def talk_clip(self, who):
+        p = os.path.join(KDIR, "clips", f"{who}-talk.mp4")
+        return self.kfile("clips", f"cast-{who}-talk.mp4") or (p if os.path.exists(p) else None)
+
+    def close_shot(self, i, who, dur):
+        """Lip-synced clip (mouth check) > the character's talk clip (cartoon faces MuseTalk cannot do) > base clip > portrait."""
+        lip = self.kfile("lip", f"lip-{i:02d}.mp4")
+        if lip and self.lip_ok(lip, who):
+            return super().close_shot(i, who, dur)
+        talk = self.talk_clip(who)
+        if not talk:
+            return super().close_shot(i, who, dur)
+        out = f"{self.build}/close-{i:02d}.mp4"
+        n = max(1, round(dur * FPS))
+        push = f"zoompan=z='1.04+0.06*on/{n}':x='iw/2-(iw/zoom/2)':y='ih*0.42-(ih/zoom*0.42)':d=1:s={W}x{H}:fps={FPS}"
+        rev = f"{self.build}/talk-{who}-pp.mp4"
+        if not os.path.exists(rev):  # ping-pong loop: never a jump back to the first frame
+            ff("-i", talk, "-filter_complex", "[0:v]split[a][b];[b]reverse[r];[a][r]concat=n=2:v=1:a=0[v]", "-map", "[v]", "-an",
+               "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", rev)
+        ff("-stream_loop", "-1", "-i", rev, "-filter_complex",
+           f"[0:v]fps={FPS},scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},setsar=1,trim=duration={dur:.3f},{push},format=yuv420p[v]",
+           "-map", "[v]", "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "17", "-t", f"{dur:.3f}", out)
+        self.used["talk"] = self.used.get("talk", 0) + 1
+        return out
+
+    def clip_ok(self, path):
+        """Automatic reject check for a scene clip, the same rules as animate/check-clips.mjs (no person in the loop):
+        a frame-to-frame change over 6x the median that covers >= 25% of the frame (a flash, cut or flicker), or a hue
+        family absent from the first frame on > 0.2% of the pixels (a rainbow/blue streak) rejects it."""
+        import numpy as np
+        if not hasattr(self, "_clip_ok"):
+            self._clip_ok, self.clip_checks = {}, {}
+        if path in self._clip_ok:
+            return self._clip_ok[path]
+        S = 128
+        r = subprocess.run([os.environ.get("FFMPEG_PATH", "ffmpeg"), "-v", "error", "-i", path, "-vf", f"fps=8,scale={S}:{S}", "-f", "rawvideo",
+                            "-pix_fmt", "rgb24", "-"], capture_output=True)
+        fr = np.frombuffer(r.stdout, np.uint8)
+        n = len(fr) // (S * S * 3)
+        ok = True
+        if n >= 4:
+            v = fr[:n * S * S * 3].reshape(n, S * S, 3).astype(np.float32)
+            e = np.abs(np.diff(v, axis=0)).sum(axis=2)
+            diffs, cover = e.mean(axis=1) / 3, (e > 60).mean(axis=1)
+            med = float(np.sort(diffs)[len(diffs) // 2])
+            ratios = diffs / (med + 0.5)
+            spike = float(max([0.0] + [ratios[k] for k in range(len(ratios)) if cover[k] >= 0.25]))
+            c = v / 255
+            mx, mn = c.max(axis=2), c.min(axis=2)
+            d = mx - mn
+            valid = (mx >= 0.25) & (d / np.maximum(mx, 1e-6) >= 0.2)
+            R, G, B = c[..., 0], c[..., 1], c[..., 2]
+            dd = np.maximum(d, 1e-6)
+            h = np.where(mx == R, np.mod((G - B) / dd, 6), np.where(mx == G, (B - R) / dd + 2, (R - G) / dd + 4))
+            bins = (np.mod(h * 60 + 360, 360) // 30).astype(int)
+            hist = np.stack([np.bincount(bins[k][valid[k]], minlength=12)[:12] for k in range(n)])
+            ref = hist[0] * 2
+            absent = [(ref[(k + 11) % 12] + ref[k] + ref[(k + 1) % 12]) < 0.0005 * 2 * S * S for k in range(12)]
+            new = float(max((hist[k][absent].sum() if any(absent) else 0) / (S * S) for k in range(n)))
+            why = (f"flicker/jump {spike:.1f}x" if spike > 6 else "") or (f"colour streak {new * 100:.2f}%" if new > 0.002 else "")
+            ok = not why
+            self.clip_checks[os.path.basename(path)] = {"ok": ok, "why": why, "spike": round(spike, 2), "new_colour": round(new, 4)}
+        self._clip_ok[path] = ok
+        return ok
 
     # Devanagari needs complex shaping. Pillow does it with libraqm (the CI runner); where raqm is missing (a Windows PC)
     # the rows are drawn by ffmpeg's drawtext (HarfBuzz shaping) into transparent PNGs instead, so subtitles and the title
@@ -422,17 +510,17 @@ class Episode(M.Movie):
         from PIL import Image, ImageDraw
         im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(im)
-        y = 250
-        f = self.f.get("bold", 70)
+        # Right under the header and small, so the speaker's face stays visible.
+        y = 150
+        f = self.f.get("bold", 54)
         t = "SUBSCRIBE"
         tw = d.textlength(t, font=f)
-        d.rounded_rectangle([(W - tw) // 2 - 60, y, (W + tw) // 2 + 60, y + 120], 60, fill=(204, 0, 0, 245))
-        d.text(((W - tw) // 2, y + 18), t, font=f, fill=(255, 255, 255))
-        y += 160
-        for t, size, col in ((f"Naya episode: {SERIES_DAYS}", 44, (255, 230, 160)), ("Shyam Premi SN", 48, (255, 255, 255))):
-            ft = self.f.get("bold", size)
-            d.text(((W - d.textlength(t, font=ft)) // 2, y), t, font=ft, fill=col, stroke_width=3, stroke_fill=(0, 0, 0))
-            y += size + 26
+        d.rounded_rectangle([(W - tw) // 2 - 50, y, (W + tw) // 2 + 50, y + 92], 46, fill=(204, 0, 0, 240))
+        d.text(((W - tw) // 2, y + 14), t, font=f, fill=(255, 255, 255))
+        y += 104
+        ft = self.f.get("bold", 34)
+        t = f"Naya episode: {SERIES_DAYS}"
+        d.text(((W - d.textlength(t, font=ft)) // 2, y), t, font=ft, fill=(255, 230, 160), stroke_width=3, stroke_fill=(0, 0, 0))
         return im
 
     def run(self):
@@ -488,8 +576,8 @@ class Episode(M.Movie):
             open(self.a.srt, "w", encoding="utf-8").write("".join(
                 f"{k + 1}\n{ts(a0)} --> {ts(b0)}\n{(n + ': ') if n else ''}{txt}\n\n" for k, (a0, b0, txt, n) in enumerate(srt)))
         meta = {"seconds": round(t0, 2), "shots": len(plan), "animated_scenes": sorted(set(self.used["clips"])), "lip_lines": self.used["lip"],
-                "closeups_no_lip": self.used["closeups"], "still_tracks": self.used["stills"], "devanagari_subtitles": self.f.raqm,
-                "lip_check": self.lip_scores}
+                "closeups_no_lip": self.used["closeups"], "talk_lines": self.used.get("talk", 0), "still_tracks": self.used["stills"], "devanagari_subtitles": self.f.raqm,
+                "lip_check": self.lip_scores, "clip_checks": getattr(self, "clip_checks", {})}
         if self.a.meta:
             json.dump(meta, open(self.a.meta, "w"), indent=1)
         if self.a.small:
@@ -558,7 +646,8 @@ def main():
         p.add_argument(o)
     p.add_argument("--ids", default="missing"); p.add_argument("--seeds", default=3); p.add_argument("--frame-seeds", default=2)
     p.add_argument("--clips", default=2); p.add_argument("--max-minutes", default=60); p.add_argument("--keep-build", action="store_true")
-    p.add_argument("--force", action="store_true")
+    p.add_argument("--force", action="store_true"); p.add_argument("--base", default=""); p.add_argument("--draw", default="")
+    p.add_argument("--seed-offset", default=0)
     a = p.parse_args()
     fn = globals().get(f"cmd_{a.cmd}")
     if not fn:
