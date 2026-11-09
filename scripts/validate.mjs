@@ -2,11 +2,14 @@
 // Checks story/today/scenes.json against automation/STORY.md before anything is rendered or posted.
 //   node scripts/validate.mjs story/today/scenes.json
 //   node scripts/validate.mjs [--long] story/long/scenes.json    the daily long katha video (STORY.md section 5)
+//   --soft-topics   the "one subject per day" check (scripts/topics.mjs) only warns; the workflow's own Validate steps
+//                   pass it, so while the story is written the clash must be fixed, but it never stops a post.
 // Prints each problem and exits 1 if there are any.
 import fs from 'node:fs';
+import { topicWarnings } from './topics.mjs';
 
 const longMode = process.argv.includes('--long');
-const file = process.argv.slice(2).find((a) => a !== '--long') || 'story/today/scenes.json';
+const file = process.argv.slice(2).find((a) => !a.startsWith('--')) || 'story/today/scenes.json';
 const s = JSON.parse(fs.readFileSync(file, 'utf8'));
 const problems = [];
 const need = (ok, msg) => { if (!ok) problems.push(msg); };
@@ -56,6 +59,20 @@ const trendPhrases = (() => {
   return [...fs.readFileSync(`${dir}/${f}`, 'utf8').matchAll(/`([^`]+)`\s*\|\s*`([^`]+)`/g)].map((m) => m[1].toLowerCase());
 })();
 const notes = [];
+
+// ---- One subject per day (scripts/topics.mjs, STORY.md section 1) ----------------------------------------------------
+// No two uploads of the same day (any slot, the long video, the status Short by title) and none of the 2 days before
+// with the same title words or subject: 7-9 Nov 2026 had "Diwali Lakshmi Puja" + "Diwali ki Katha, Lakshmi Puja" on one
+// day and "Govardhan Puja ki Katha" twice in 3 days, all at 0-9 views. Soft rule: a problem while writing (pick
+// another angle), only a warning with --soft-topics (the workflow), so it never blocks a post.
+if (!['status', 'movie'].includes(s.format)) {
+  let clashes = [];
+  try { clashes = topicWarnings(s); } catch (e) { console.log(`warning: topic check skipped (${e.message})`); }
+  for (const w of clashes) {
+    if (process.argv.includes('--soft-topics')) console.log(`${process.env.GITHUB_ACTIONS ? '::warning::' : 'warning: '}${w}`);
+    else problems.push(w);
+  }
+}
 
 function checkHook(hook, what = 'hook') {
   need(!WEAK_OPENER.test(String(hook || '').trim()), `${what}: no greeting or slow intro ("Aaj suniye", "Namaste", "Dadi, ..."): open with the name or the question`);

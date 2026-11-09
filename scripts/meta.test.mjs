@@ -1,7 +1,7 @@
 // Payload/plan building for scripts/meta.mjs (no network). Run: node --test scripts/meta.test.mjs
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { captions, igQueue, istAt, longPost, planShort, summarize } from './meta.mjs';
+import { captions, igQueue, istAt, longPost, planShort, sameText, summarize } from './meta.mjs';
 
 // 2026-11-05 10:43 IST
 const NOW = Date.UTC(2026, 10, 5, 5, 13);
@@ -98,4 +98,17 @@ test('summarize', () => {
   assert.equal(summarize({ status: 'ok', facebook: { url: 'https://f', scheduled: 'T' }, instagram: { pending: '2026-11-05T13:30:00.000Z' } }),
     'fb: https://f (scheduled T) | ig: pending 2026-11-05T13:30:00.000Z');
   assert.equal(summarize({ status: 'partial-failure', facebook: { error: 'boom' } }), 'fb: error boom | ig: skipped');
+});
+
+describe('duplicate guard', () => {
+  test('sameText ignores case, spaces, emoji and punctuation', () => {
+    assert.equal(sameText('Shubh Deepawali! 🪔✨\nMaa Lakshmi aur Ganesh ji ki kripa', 'shubh deepawali  Maa Lakshmi aur Ganesh ji ki kripa'), true);
+    assert.equal(sameText('शुभ दीपावली! माँ लक्ष्मी', 'शुभ दीपावली माँ लक्ष्मी'), true);
+    assert.equal(sameText('Shubh Diwali! Khatu Shyam ji ke darshan', 'Shubh Diwali! Lakshmi-Ganesh puja aur deepon ki parampara'), false);
+    assert.equal(sameText('', ''), false);
+  });
+  test('summary marks a post that already existed', () => {
+    assert.equal(summarize({ facebook: { url: 'https://www.facebook.com/reel/1', duplicate: true }, instagram: { pending: '2026-11-08T00:30:00.000Z' } }),
+      'fb: https://www.facebook.com/reel/1 (already posted, not repeated) | ig: pending 2026-11-08T00:30:00.000Z');
+  });
 });

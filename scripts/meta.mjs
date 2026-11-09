@@ -17,6 +17,8 @@
 // flush  Publishes every queued Instagram Reel whose time is within 20 minutes (waits for it) and no more than
 //        6 hours past; appends "- <slug> | instagram: <url | error ... | skipped ...>" (2 attempts at most).
 //
+// Duplicates: short, long and flush first look for the same caption/title among the Page's Reels, videos and scheduled
+//        posts and the Instagram media of the last 36 h; a hit is reported as "(already posted, not repeated)".
 // Env (GitHub secrets) or %USERPROFILE%\.shyampremisk\social.env: META_PAGE_ID, META_PAGE_TOKEN, IG_USER_ID,
 // optional META_API_VERSION (default v27.0); MEDIA_URL for flush. Tokens are never printed (public logs).
 // Prints one JSON line. Exit 0 = done or not configured; 1 = a platform failed (result says which).
@@ -124,10 +126,17 @@ export function igQueue(text) {
   return [...queue.values()];
 }
 
+/** Same post text? Case, spaces, emoji and punctuation ignored; the first 160 characters decide (unit-tested). */
+export function sameText(a, b) {
+  const n = (t) => String(t || '').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{M}\p{N}]+/gu, ' ').trim().slice(0, 160);
+  return n(a).length >= 12 && n(a) === n(b);
+}
+
 /** One-line summary for automation/published.md. */
 export function summarize(r) {
   if (r.status === 'not-configured') return 'meta not configured';
-  const cell = (x) => (!x ? 'skipped' : x.error ? `error ${x.error.slice(0, 120)}` : x.pending ? `pending ${x.pending}` : `${x.url || x.id}${x.scheduled ? ` (scheduled ${x.scheduled})` : ''}`);
+  const cell = (x) => (!x ? 'skipped' : x.error ? `error ${x.error.slice(0, 120)}` : x.pending ? `pending ${x.pending}`
+    : `${x.url || x.id}${x.duplicate ? ' (already posted, not repeated)' : x.scheduled ? ` (scheduled ${x.scheduled})` : ''}`);
   return `fb: ${cell(r.facebook)} | ig: ${cell(r.instagram)}`.replace(/\r?\n/g, ' ');
 }
 
@@ -203,6 +212,32 @@ async function igReel(caption, { file, videoUrl }) {
   return { id, url: permalink || `https://www.instagram.com/khatushyampremisn/`, type: 'reel' };
 }
 
+// Duplicate guard (7 Nov 2026: the Diwali status Reel went to the Page twice, 18:48 and 19:32 IST): before posting,
+// the Page's Reels, videos and scheduled posts and the Instagram media of the last 36 h are checked for the same
+// caption/title; a hit is returned as {..., duplicate: true} and nothing is posted. A failed lookup posts as before.
+const RECENT_MS = 36 * 3600e3;
+export async function fbExisting(text, title) {
+  const since = Date.now() - RECENT_MS;
+  const fresh = (x) => !x.created_time || Date.parse(x.created_time) >= since;
+  const [reels, videos, scheduled] = await Promise.all([
+    graph('GET', `${env.META_PAGE_ID}/video_reels`, { fields: 'id,description,created_time', limit: '25' }).catch(() => ({ data: [] })),
+    graph('GET', `${env.META_PAGE_ID}/videos`, { fields: 'id,title,description,created_time', limit: '25' }),
+    graph('GET', `${env.META_PAGE_ID}/scheduled_posts`, { fields: 'id,message', limit: '50' }).catch(() => ({ data: [] })),
+  ]);
+  const hit = [...(reels.data || []), ...(videos.data || [])].filter(fresh)
+    .find((v) => sameText(v.description, text) || (title && sameText(v.title, title)));
+  if (hit) return { id: hit.id, url: `https://www.facebook.com/${env.META_PAGE_ID}/videos/${hit.id}`, duplicate: true };
+  const post = (scheduled.data || []).find((p) => sameText(p.message, text));
+  return post ? { id: post.id, url: `https://www.facebook.com/${post.id}`, scheduled: 'already scheduled', duplicate: true } : null;
+}
+export async function igExisting(caption) {
+  if (!env.IG_USER_ID) return null;
+  const { data = [] } = await graph('GET', `${env.IG_USER_ID}/media`, { fields: 'id,caption,timestamp,permalink', limit: '25' });
+  const hit = data.find((m) => Date.parse(m.timestamp) >= Date.now() - RECENT_MS && sameText(m.caption, caption));
+  return hit ? { id: hit.id, url: hit.permalink, type: 'reel', duplicate: true } : null;
+}
+const orNull = (p) => p.catch((e) => { console.error(`::warning::Meta duplicate check failed (${redact(e.message)}); posting`); return null; });
+
 function probe(file) {
   const ffprobe = (process.env.FFMPEG_PATH || 'ffmpeg').replace(/ffmpeg(\.exe)?$/, (m) => m.replace('ffmpeg', 'ffprobe'));
   const r = spawnSync(ffprobe, ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height:format=duration', '-of', 'json', file], { encoding: 'utf8' });
@@ -235,11 +270,13 @@ async function shortUnsafe({ video, spec, videoUrl, publishAt, dryRun = false })
     try { r[key] = await fn(); } catch (e) { r[key] = { error: redact(e.message) }; errors.push(e); }
   };
   const scheduled = plan.fbSchedule.scheduled_publish_time ? { scheduled: new Date(+plan.fbSchedule.scheduled_publish_time * 1000).toISOString() } : {};
-  await attempt('facebook', async () => ({
+  await attempt('facebook', async () => (await orNull(fbExisting(text.facebook))) || ({
     ...(plan.fb === 'reel' ? await fbReel(video, text.facebook, plan.fbSchedule) : await fbVideo(video, { title: spec.title, description: text.facebook, schedule: plan.fbSchedule })),
     ...scheduled,
   }));
-  if (plan.ig === 'reel' && env.IG_USER_ID) {
+  const igDup = plan.ig === 'reel' && env.IG_USER_ID ? await orNull(igExisting(text.instagram)) : null;
+  if (igDup) r.instagram = igDup;
+  else if (plan.ig === 'reel' && env.IG_USER_ID) {
     if (plan.igAt) {
       if (!videoUrl) r.instagram = { error: 'no hosted video_url to publish from later' };
       else r.instagram = { pending: plan.igAt };
@@ -258,6 +295,8 @@ async function postLong({ video, spec, meta, thumbnail, publishAt, dryRun }) {
   const schedule = at ? { published: 'false', scheduled_publish_time: String(Math.floor(at / 1000)) } : {};
   if (dryRun) return { status: 'dry-run', version: VERSION, ...post, schedule, thumbnail: Boolean(thumbnail && fs.existsSync(thumbnail)) };
   try {
+    const dup = await orNull(fbExisting(post.description, post.title));
+    if (dup) return { status: 'ok', slug: spec.slug, facebook: dup };
     const fb = await fbVideo(video, { ...post, thumb: thumbnail, schedule });
     return { status: 'ok', slug: spec.slug, facebook: { ...fb, ...(at ? { scheduled: new Date(at).toISOString() } : {}) } };
   } catch (e) {
@@ -282,7 +321,9 @@ async function flush({ log, dryRun }) {
         if (!fs.existsSync(specFile)) throw new Error(`${specFile} missing`);
         const wait = Date.parse(q.at) - Date.now();
         if (wait > 0) await sleep(wait);
-        cell = (await igReel(captions(JSON.parse(fs.readFileSync(specFile, 'utf8'))).instagram, { videoUrl: `${env.MEDIA_URL}/m/${q.slug}.mp4` })).url;
+        const caption = captions(JSON.parse(fs.readFileSync(specFile, 'utf8'))).instagram;
+        const dup = await orNull(igExisting(caption));
+        cell = dup ? `${dup.url} (already posted, not repeated)` : (await igReel(caption, { videoUrl: `${env.MEDIA_URL}/m/${q.slug}.mp4` })).url;
       } catch (e) {
         cell = `error ${redact(e.message).slice(0, 160)}`;
       }

@@ -64,6 +64,19 @@ Accuracy rules (section 2 and mandir-series.md) apply in full: legends labelled 
 
 Do not repeat a story already listed in `automation/log.md` within the last 60 days. Before choosing, search log.md (Grep) for the story's key words, e.g. "sheesh", "barbarik", "sanjeevani", in both slugs and titles: on 3 Nov 2026 "Barbarik ka Sheesh Daan" repeated a 27 Oct Short because only the exact slug was checked.
 
+**One subject per day (all slots, the long video included).** The channel now posts 5-6 videos a day (status 06:00,
+morning, noon, long 12:30, evening 19:00), and near-identical uploads compete with each other: on 8 Nov 2026 "Diwali
+Lakshmi Puja, Shubh Diwali" (morning) and "Diwali ki Katha, Lakshmi Puja" (noon) went out beside the Diwali status Short
+and got 7 and 5 views; 9 Nov's noon "Govardhan Puja ki Katha" repeated the 7 Nov long video's title (4 views); 7 Nov's
+noon "Diwali ki Kahani" retold the 5 Nov long video (Ram's return to Ayodhya, 0 views). Before choosing, read **every**
+line of today and the 2 days before in `automation/log.md` (and `story/status/<today>.json`, whose title is
+"<Festival> Status 2026") and give your video **its own subject**: a different story, deity or temple, or on a festival
+day a clearly different angle (e.g. morning = what the puja means, noon = a lesser-known katha of the festival,
+evening = a temple's festival darshan) with **different title words**. Never a second "<Festival> ki Katha/Kahani" on a
+day that already has one, and never a bare "<Festival> ki Katha" beside the status Short. `scripts/validate.mjs` checks
+this (the same title words, or 60% of the title or subject words shared, with today's uploads and those of the 2 days
+before) and reports "one subject per day: …": change the subject or the angle and the title until it passes.
+
 **Shorts algorithm (why videos are short now).** YouTube pushes a Short to more people only when viewers
 watch most of it and replay it. Our 65-90 s kathas got 8-35 views, while the channel's own 15-30 s clips
 got 100+. So: **morning kathas 50-60 s, evening darshan Shorts 25-35 s** (owner, 3 Nov 2026: "shorts bahut chote aa rhe h time badhao"), a hook in the first 2 seconds,
@@ -267,7 +280,8 @@ Khatu Shyam ji / Barbarik katha. Tell the **full** katha, beginning to end, not 
 due, write the next part of the temple series in `automation/mandir-series.md`. Aim for about 3 days a week.
 That file sets the part order, slug pattern, sources, the AI-image disclaimer and the legal rule for sati temples. It may
 share today's deity with the morning Short. Do not repeat a story that has a `| long |` line in
-`automation/log.md` within the last 120 days.
+`automation/log.md` within the last 120 days. "One subject per day" (section 1) applies: not the same story or title
+words as today's Shorts or the uploads of the 2 days before.
 
 **Accuracy (strict).** Follow the commonly known scriptural or traditional version, checked against at
 least two sources (section 2). Put the tradition in `source`, exactly as it will appear in the
@@ -376,7 +390,7 @@ approved this format on 4 Nov 2026 ("YES sahi h").
    Diwali kyun manate hain?"), and when you choose tomorrow's temple (`next`), prefer one that the file's Recommended
    topics or autocomplete show people searching for, among the next 3 in the series order. A promised `next` is
    never dropped for a trend.
-It must differ from today's `morning` and `evening` lines. Numbered series: in a pan-India series, set
+It must differ from today's `morning`, `evening` and `long` lines and the 2 days before (section 1, "One subject per day"). Numbered series: in a pan-India series, set
 `kicker` to the series and number (`Jyotirlinga 3/12`) and use the series name as `playlist`; Rajasthan temples
 use `Dadi ki Kahani` and `Mandir Itihas`; festivals `Tyohar aur Vrat Kathayein`.
 

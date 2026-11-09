@@ -3,7 +3,8 @@
 //
 //   node scripts/youtube.mjs auth [--client <client_secret.json>]   one-time, on the PC (pick the Shyam Premi SN channel)
 //   node scripts/youtube.mjs check
-//   node scripts/youtube.mjs upload --video <mp4> --scenes story/today/scenes.json [--publish-at 19:00 | 2026-11-06T06:00] [--dry-run]
+//   node scripts/youtube.mjs find --title "<youtube_title>" [--hours 36]   read-only: the same title among recent uploads
+//   node scripts/youtube.mjs upload --video <mp4> --scenes story/today/scenes.json [--publish-at 19:00 | 2026-11-06T06:00] [--dry-run] [--allow-duplicate]
 //   node scripts/youtube.mjs upload --long --video <mp4> --scenes story/long/scenes.json --meta <out/slug.json>
 //        [--thumbnail <jpg>] [--publish-at 12:30]   regular video, chapters from --meta, scheduled at that IST time
 //
@@ -22,6 +23,8 @@
 // 6 Nov 2026 on a Short of this channel: thumbnails.set returns 200 and YouTube serves the image as hqdefault /
 // maxresdefault (search results, the watch page, suggestions); the portrait Shorts-feed frame (oar2) stays YouTube's
 // own pick, which is why the frame itself must be strong too. --no-cover-thumbnail turns it off.
+// Duplicates: before every upload the channel's uploads of the last 36 h are checked for the same title (see
+// findRecentUpload); a hit returns {"status":"ok","duplicate":true,"youtube":{the existing video}} and uploads nothing.
 // Prints one JSON line. Exit code 0 = done (or not configured), 1 = failure.
 import { exec, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -148,6 +151,31 @@ async function upload(env, videoFile, meta, opts = {}) {
   };
 }
 
+// Second lock against duplicate uploads (scripts/upload-guard.mjs is the first): on 7 Nov 2026 two runs uploaded the
+// Diwali status Short (cxLIaA38kKE, bUAZevyVvHE). Before uploading, the channel's newest uploads are listed
+// (channels.list + playlistItems.list + videos.list, 3 units); a video with the same title (case, spaces and punctuation
+// ignored) added in the last 36 h means another run already uploaded it, and that video is returned instead
+// ({"status":"ok","duplicate":true}), so the caller records it and posts nothing again. --allow-duplicate skips the check.
+const sameTitle = (a, b) => {
+  const n = (t) => String(t || '').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{M}\p{N}]+/gu, ' ').trim();
+  return n(a) !== '' && n(a) === n(b);
+};
+
+async function findRecentUpload(env, title, hours = 36) {
+  const token = await accessToken(env);
+  const get = async (endpoint, what) => json(await fetch(`https://www.googleapis.com/youtube/v3/${endpoint}`, { headers: { Authorization: `Bearer ${token}` } }), what);
+  const ch = await get('channels?part=contentDetails&mine=true', 'Channel lookup');
+  const uploads = ch.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+  if (!uploads) return null;
+  const { items = [] } = await get(`playlistItems?part=snippet&maxResults=25&playlistId=${uploads}`, 'Recent uploads');
+  const since = Date.now() - hours * 3600e3;
+  const hit = items.find((i) => Date.parse(i.snippet?.publishedAt) >= since && sameTitle(i.snippet?.title, title));
+  if (!hit) return null;
+  const id = hit.snippet.resourceId.videoId;
+  const status = (await get(`videos?part=status&id=${id}`, 'Video lookup')).items?.[0]?.status || {};
+  return { id, privacy: status.privacyStatus, ...(status.publishAt ? { publishAt: status.publishAt } : {}) };
+}
+
 // Custom thumbnails need a phone-verified channel; a failure is reported, never fatal.
 async function setThumbnail(env, videoId, file) {
   const token = await accessToken(env);
@@ -227,6 +255,7 @@ async function main() {
   const env = loadEnv();
   if (!KEYS.every((k) => env[k])) return { status: 'not-configured', envFile: ENV_FILE };
   if (command === 'check') return { status: 'ok', channel: await channel(await accessToken(env)) };
+  if (command === 'find') return { status: 'ok', match: await findRecentUpload(env, option('--title'), Number(option('--hours') || 36)) };
   if (command === 'upload') {
     const video = option('--video');
     const scenes = option('--scenes');
@@ -236,6 +265,14 @@ async function main() {
     const meta = metaFromScenes(scenes, option('--meta'));
     const opts = { long, publishAt: publishAt(option('--publish-at')) };
     if (args.includes('--dry-run')) return { status: 'dry-run', ...meta, ...opts };
+    if (!args.includes('--allow-duplicate')) {
+      let dup = null;
+      try { dup = await findRecentUpload(env, meta.title); } catch (e) { console.error(`::warning::YouTube duplicate check failed (${e.message}); uploading`); }
+      if (dup) {
+        console.error(`::warning::"${meta.title}" is already on the channel (${dup.id}, uploaded in the last 36 h): not uploading it again`);
+        return { status: 'ok', duplicate: true, youtube: { ...dup, url: long ? `https://youtu.be/${dup.id}` : `https://youtube.com/shorts/${dup.id}` }, units: 3 };
+      }
+    }
     let youtube;
     try {
       youtube = await upload(env, video, meta, opts);

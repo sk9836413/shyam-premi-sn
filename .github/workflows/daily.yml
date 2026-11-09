@@ -70,13 +70,42 @@ permissions:
 
 # Evening runs have their own queue, so the long animated evening job can run beside the morning one; within a
 # slot, runs queue and the later one skips once the slot is in log.md. log.md and published.md merge as unions.
+# Uploads are idempotent (7 Nov 2026: the 18:43 IST evening schedule run and the 18:46 IST dispatch ran side by side and
+# BOTH status jobs uploaded the Diwali status Short to YouTube and Facebook): the status and long jobs also queue per
+# day (job concurrency below), and right before every upload scripts/upload-guard.mjs claims "<day> <slot>" in
+# automation/published.md with an atomic push (a second run finds the claim or the log.md line and skips). Then
+# youtube.mjs and meta.mjs look for the same title/caption among the last 36 h of uploads and posts and never repeat it.
 concurrency:
   group: ${{ inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
   cancel-in-progress: false
 
 jobs:
-  story:
+  # The slot this run would make and its IST date, only for the story job's queue below: on 7 Nov 2026 an evening
+  # schedule run and the 18:46 IST evening dispatch were NOT serialised by the workflow-level group above, so the queue
+  # key is now computed from the clock like the Date step does (same windows), not from github.event.schedule.
+  slot:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      key: ${{ steps.k.outputs.key }}
+    steps:
+      - id: k
+        run: |
+          slot="${{ inputs.slot }}"
+          if [ -z "$slot" ]; then
+            hm=$((10#$(TZ=Asia/Kolkata date +%H%M)))
+            if [ $hm -ge 530 ] && [ $hm -lt 1200 ]; then slot=morning; elif [ $hm -ge 1730 ] && [ $hm -lt 2300 ]; then slot=evening; else slot=none; fi
+          fi
+          echo "key=$slot-$(TZ=Asia/Kolkata date +%F)" >> "$GITHUB_OUTPUT"
+
+  story:
+    needs: slot
+    runs-on: ubuntu-latest
+    # One story job per slot and day at a time (cancel-in-progress false): a second run of the same slot waits, then
+    # its Date step finds the slot in log.md and skips. slot=status/long/movie runs only route to their own jobs.
+    concurrency:
+      group: shyam-story-${{ needs.slot.outputs.key }}
+      cancel-in-progress: false
     outputs:
       # The long video job runs after every morning-slot run (and for slot=long); it skips once done.
       long: ${{ steps.date.outputs.long }}
@@ -84,6 +113,9 @@ jobs:
       status: ${{ steps.date.outputs.status }}
       # The mini-movie job runs after every evening-slot run (and for slot=movie): it makes the next due part.
       movie: ${{ steps.date.outputs.movie }}
+      # IST date and the festival day of a status run: the long and status jobs queue per day on them.
+      today: ${{ steps.date.outputs.today }}
+      status_day: ${{ steps.date.outputs.status_day }}
     # 230 + up to 40 min for the Kaggle FLUX images when Workers AI is out of neurons
     timeout-minutes: 270
     env:
@@ -103,6 +135,8 @@ jobs:
           # A queued run may have been triggered before the previous one recorded its slot: use the latest log.
           git fetch -q origin main && git checkout -q origin/main -- automation/log.md
           today=$(TZ=Asia/Kolkata date +%F)
+          echo "today=$today" >> "$GITHUB_OUTPUT"
+          sd="${{ inputs.status_date }}"; echo "status_day=${sd:-$(TZ=Asia/Kolkata date -d tomorrow +%F)}" >> "$GITHUB_OUTPUT"
           slot="${{ inputs.slot }}"
           if [ "$slot" = long ]; then
             echo "long=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
@@ -125,7 +159,6 @@ jobs:
               echo "done=true" >> "$GITHUB_OUTPUT"; exit 0
             fi
           fi
-          echo "today=$today" >> "$GITHUB_OUTPUT"
           echo "slot=$slot" >> "$GITHUB_OUTPUT"
           if [ "$slot" = morning ]; then echo "long=true" >> "$GITHUB_OUTPUT"; fi
           # Tomorrow's festival status Short: only on evening runs from 15:00 IST (the 18:46 IST retry dispatch and the
@@ -215,7 +248,7 @@ jobs:
       - name: Validate
         if: steps.date.outputs.done != 'true'
         run: |
-          node scripts/validate.mjs story/today/scenes.json
+          node scripts/validate.mjs --soft-topics story/today/scenes.json
           slug=$(node -p "require('./story/today/scenes.json').slug")
           case "$slug" in "${{ steps.date.outputs.today }}-${{ steps.date.outputs.slot }}-"*) ;; *) echo "::error::Unexpected slug $slug"; exit 1;; esac
           grep -q "^${{ steps.date.outputs.today }} | ${{ steps.date.outputs.slot }} |" automation/log.md || { echo "::error::log.md line missing"; exit 1; }
@@ -393,10 +426,17 @@ jobs:
         continue-on-error: true
         run: node scripts/festival-links.mjs story/today/scenes.json
 
+      # Re-check right before the upload and claim the slot (scripts/upload-guard.mjs): another run that published or
+      # claimed "<today> <slot>" meanwhile wins, and this one uploads, posts and records nothing.
+      - name: Claim the upload
+        id: claim
+        if: steps.date.outputs.done != 'true' && !inputs.dry_run
+        run: node scripts/upload-guard.mjs claim --day "${{ steps.date.outputs.today }}" --slot "${{ steps.date.outputs.slot }}" --slug "$SLUG"
+
       - name: YouTube
         id: yt
         continue-on-error: true
-        if: steps.date.outputs.done != 'true' && !inputs.dry_run
+        if: steps.date.outputs.done != 'true' && !inputs.dry_run && steps.claim.outputs.go == 'true'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
@@ -407,7 +447,7 @@ jobs:
       - name: Instagram and Facebook (Graph API, Make fallback)
         id: make
         continue-on-error: true
-        if: steps.date.outputs.done != 'true' && !inputs.dry_run
+        if: steps.date.outputs.done != 'true' && !inputs.dry_run && steps.claim.outputs.go == 'true'
         env:
           MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
           MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
@@ -415,8 +455,13 @@ jobs:
           META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
-        # Evening: Facebook scheduled for 19:00 IST like YouTube, Instagram queued for the `instagram` job.
-        run: node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || '' }} | tee "$RUNNER_TEMP/make.json"
+        # Evening: Facebook scheduled for 19:00 IST like YouTube, Instagram queued for the `instagram` job. When YouTube
+        # already had this video (an earlier run uploaded it), that run posted to Facebook/Instagram too: skip.
+        run: |
+          if grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" 2>/dev/null; then
+            echo '{"status":"ok","summary":"skipped (the YouTube video already existed: posted by an earlier run)"}' | tee "$RUNNER_TEMP/make.json"; exit 0
+          fi
+          node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || '' }} | tee "$RUNNER_TEMP/make.json"
 
       - name: Record
         # Only once something was published, so a failed render is retried by the next slot run.
@@ -432,7 +477,11 @@ jobs:
           git add automation/log.md automation/calendar.md automation/published.md "story/published/$SLUG.json" footage
           [ -d automation/trends ] && git add automation/trends
           git commit -qm "Story $SLUG"
-          git pull -q --rebase && git push -q
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
+
+      - name: Release the claim after a failed upload
+        if: always() && steps.claim.outputs.go == 'true' && steps.yt.outcome != 'success' && steps.make.outcome != 'success'
+        run: node scripts/upload-guard.mjs release --day "${{ steps.date.outputs.today }}" --slot "${{ steps.date.outputs.slot }}" --slug "$SLUG" --reason "YouTube ${{ steps.yt.outcome }}, social ${{ steps.make.outcome }}"
 
       - name: Fail if a platform failed
         if: steps.yt.outcome == 'failure' || steps.make.outcome == 'failure'
@@ -450,6 +499,10 @@ jobs:
     if: always() && needs.story.outputs.long == 'true' && !inputs.dry_run
     runs-on: ubuntu-latest
     timeout-minutes: 210
+    # One long video per day even when two morning runs overlap (the later one queues, then skips via log.md).
+    concurrency:
+      group: shyam-long-${{ needs.story.outputs.today }}
+      cancel-in-progress: false
     env:
       FFMPEG_PATH: ffmpeg
       PYTHON: python
@@ -595,7 +648,7 @@ jobs:
       - name: Validate
         if: env.GO == '1'
         run: |
-          node scripts/validate.mjs --long story/long/scenes.json
+          node scripts/validate.mjs --long --soft-topics story/long/scenes.json
           slug=$(node -p "require('./story/long/scenes.json').slug")
           case "$slug" in "${{ steps.date.outputs.today }}-long-"*) ;; *) echo "::error::Unexpected slug $slug"; exit 1;; esac
           echo "SLUG=$slug" >> "$GITHUB_ENV"
@@ -668,9 +721,14 @@ jobs:
           retention-days: 7
           compression-level: 0
 
+      - name: Claim the upload
+        id: claim
+        if: steps.render.outcome == 'success'
+        run: node scripts/upload-guard.mjs claim --day "${{ steps.date.outputs.today }}" --slot long --slug "$SLUG"
+
       - name: YouTube
         id: yt
-        if: steps.render.outcome == 'success'
+        if: steps.render.outcome == 'success' && steps.claim.outputs.go == 'true'
         continue-on-error: true
         run: |
           node scripts/youtube.mjs upload --long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json \
@@ -679,13 +737,14 @@ jobs:
       # The same video as a normal Facebook Page video (not a Reel), scheduled for 12:30 IST like YouTube; its line in
       # published.md is committed by Record. Never fails the job; skipped without the META_* secrets.
       - name: Facebook Page video (Graph API)
-        if: steps.render.outcome == 'success'
+        if: steps.render.outcome == 'success' && steps.claim.outputs.go == 'true'
         continue-on-error: true
         env:
           META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
         run: |
           [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; no Facebook copy"; exit 0; }
+          grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" 2>/dev/null && { echo "::notice::YouTube already had it (earlier run): no second Facebook copy"; exit 0; }
           node scripts/meta.mjs long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json --meta "story/long/out/$SLUG.json" \
             --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/fb.json" || true
           echo "- $SLUG | facebook: $(node -p "try{const j=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/fb.json','utf8'));j.facebook?j.facebook.url+(j.facebook.scheduled?' (scheduled '+j.facebook.scheduled+')':''):'error '+(j.error||j.status)}catch{'failed'}")" >> automation/published.md
@@ -699,7 +758,7 @@ jobs:
           node scripts/long-pending.mjs keep "$SLUG" "$reason"
 
       - name: Record
-        if: always() && steps.render.outcome == 'success'
+        if: always() && steps.render.outcome == 'success' && steps.claim.outputs.go == 'true'
         run: |
           mkdir -p story/published
           cp story/long/scenes.json "story/published/$SLUG.json"
@@ -717,7 +776,7 @@ jobs:
           cat "$RUNNER_TEMP/sum.md" >> "$GITHUB_STEP_SUMMARY"
           git add automation "story/published/$SLUG.json" "story/published/$SLUG.meta.json" footage
           git commit -qm "Long $SLUG"
-          git pull -q --rebase && git push -q
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
 
       - name: Report a failed upload
         if: steps.yt.outcome == 'failure'
@@ -739,6 +798,11 @@ jobs:
     if: always() && needs.story.outputs.status == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 240
+    # Evening runs and slot=status dispatches are in different workflow queues; this job queues per festival day so two
+    # runs never make the same status Short at once (7 Nov 2026: Diwali uploaded twice). A queued run then skips via log.md.
+    concurrency:
+      group: shyam-status-${{ needs.story.outputs.status_day }}
+      cancel-in-progress: false
     env:
       FFMPEG_PATH: ffmpeg
       PYTHON: python
@@ -911,9 +975,14 @@ jobs:
           node scripts/festival-links.mjs "$W/scenes.json"
           echo "- Download link: $url" >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Claim the upload
+        id: claim
+        if: steps.host.outcome == 'success' && !inputs.dry_run
+        run: node scripts/upload-guard.mjs claim --day "${{ steps.d.outputs.day }}" --slot status --slug "$SLUG"
+
       - name: YouTube (public at 06:00 IST on the festival day)
         id: yt
-        if: steps.host.outcome == 'success' && !inputs.dry_run
+        if: steps.host.outcome == 'success' && !inputs.dry_run && steps.claim.outputs.go == 'true'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
@@ -934,6 +1003,7 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: |
           [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
+          grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" && { echo "::notice::YouTube already had it (earlier run): no second Facebook/Instagram post"; exit 0; }
           at="${{ steps.d.outputs.day }}T$(node -p "require('./$W/scenes.json').publish_at || '06:00'")"
           node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" \
             --video-url "$MEDIA_URL/m/$SLUG.mp4" --publish-at "$at" | tee "$RUNNER_TEMP/meta.json" || true
@@ -959,7 +1029,11 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/log.md automation/published.md "story/published/$SLUG.json"
           git commit -qm "Status $SLUG"
-          git pull -q --rebase && git push -q
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
+
+      - name: Release the claim after a failed upload
+        if: always() && steps.claim.outputs.go == 'true' && steps.yt.outcome != 'success'
+        run: node scripts/upload-guard.mjs release --day "${{ steps.d.outputs.day }}" --slot status --slug "$SLUG" --reason "YouTube ${{ steps.yt.outcome }}"
 
   # Mini-movie series (STORY.md section 7, story/movies/<series>/, automation/movie-series.md): after every evening-slot
   # run (and alone with slot=movie) the next due part is made a day or more before its release: edge-tts voices per
@@ -1124,9 +1198,14 @@ jobs:
           git commit -qm "Movie $SLUG rendered for review"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
+      - name: Claim the upload
+        id: claim
+        if: steps.render.outcome == 'success' && steps.spec.outputs.approved == 'true' && !inputs.dry_run
+        run: node scripts/upload-guard.mjs claim --day "${{ steps.spec.outputs.release }}" --slot movie --slug "$SLUG"
+
       - name: YouTube (public at 07:00 IST on the release day)
         id: yt
-        if: steps.render.outcome == 'success' && steps.spec.outputs.approved == 'true' && !inputs.dry_run
+        if: steps.render.outcome == 'success' && steps.spec.outputs.approved == 'true' && !inputs.dry_run && steps.claim.outputs.go == 'true'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
@@ -1147,6 +1226,7 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: |
           [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
+          grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" && { echo "::notice::YouTube already had it (earlier run): no second Facebook/Instagram post"; exit 0; }
           node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$F" --video-url "$MEDIA_URL/m/$SLUG.mp4" \
             --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" | tee "$RUNNER_TEMP/meta.json" || true
 
