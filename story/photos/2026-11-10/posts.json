@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-10",
+  "posts": {
+    "1": {
+      "big": "गोवर्धन पूजा",
+      "line": "की हार्दिक शुभकामनाएं 🙏",
+      "place": "गोवर्धन पर्वत (गिरिराज जी), मथुरा",
+      "text": "गिरिराज जी की कृपा सदा बनी रहे। जय श्री श्याम 🙏",
+      "caption": "गोवर्धन पूजा की हार्दिक शुभकामनाएं 🙏\nAaj Giriraj ji ki pooja aur annakut ka din hai.\nGiriraj ji ki kripa aap sabhi par sada bani rahe.\nजय श्री श्याम\nAapke ghar mein Govardhan Puja par annakut mein sabse khaas kya banta hai?",
+      "hashtags": ["#JaiShreeShyam", "#GovardhanPuja", "#Annakut", "#GirirajJi", "#Govardhan", "#Mathura", "#ShriKrishna"]
+    },
+    "2": {
+      "caption": "आज का विचार 🌿\n\"जाकी रही भावना जैसी। प्रभु मूरति देखी तिन तैसी॥\" - रामचरितमानस (बालकांड)\nMatlab: jiska jaisa bhaav hota hai, use Prabhu waise hi dikhte hain.\nBhaav ki hi baat hai, bhakti mein sabse zyada yahi mayne rakhta hai.\nAap pooja karte samay apne man mein kaunsa bhaav rakhte hain?",
+      "hashtags": ["#JaiShreeShyam", "#AajKaVichar", "#Ramcharitmanas", "#Tulsidas", "#Bhakti", "#Bhaav", "#SanatanDharma"]
+    },
+    "3": {
+      "title": "जाखू हनुमान मंदिर",
+      "line": "3 बातें जो शायद आप नहीं जानते",
+      "facts": [
+        {
+          "dev": "जाखू मंदिर शिमला की जाखू पहाड़ी पर है, जहाँ हनुमान जी की 108 फुट ऊँची प्रतिमा स्थापित है।",
+          "roman": "Jakhu mandir Shimla ki Jakhu pahadi par hai, jahan Hanuman ji ki 108 foot unchi pratima sthapit hai."
+        },
+        {
+          "dev": "मान्यता है कि संजीवनी बूटी ले जाते समय हनुमान जी ने इसी पहाड़ी पर विश्राम किया था।",
+          "roman": "Manyata hai ki Sanjeevani booti le jaate samay Hanuman ji ne isi pahadi par vishram kiya tha."
+        },
+        {
+          "dev": "मान्यता है कि हनुमान जी की भेंट यहाँ याकू ऋषि से हुई थी। मंदिर परिसर में सैकड़ों बंदर रहते हैं।",
+          "roman": "Manyata hai ki yahan Hanuman ji ki Yaku rishi se bhent hui thi. Mandir parisar mein saikdon bandar rehte hain."
+        }
+      ],
+      "sources": [
+        "https://shimla.hptours.org/temples/jakhu-temple-shimla",
+        "https://www.apnisanskriti.com/jakhoo-temple-shimla-himachal-pradesh"
+      ],
+      "caption": "जाखू हनुमान मंदिर, शिमला 🙏\nShimla ki Jakhu pahadi par Hanuman ji ka yeh mandir bahut prasiddh hai.\nSwipe karke 3 baatein padhiye: 108 foot ki pratima, Sanjeevani ki manyata aur Yaku rishi ki katha.\nJaise sources mein likha hai, kuch baatein manyata par aadharit hain.\nAapne Jakhu Hanuman ji ke darshan kab kiye the, ya kabhi jaane ka man hai?",
+      "hashtags": ["#JaiShreeShyam", "#JakhuTemple", "#JakhuHanuman", "#Shimla", "#Hanuman", "#JaiHanuman", "#HimachalPradesh", "#MandirDarshan"]
+    },
+    "4": {
+      "big": "शुभ संध्या",
+      "line": "संध्या आरती 🪔 जय श्री श्याम",
+      "question": "आज संध्या आरती में आपने किसका स्मरण किया?",
+      "caption": "शुभ संध्या 🪔\nKhatu Shyam ji ke sheesh ko pranam, sandhya aarti ka samay.\nदिन भर की thakaan ko aarti ki roshni mein shaant kar lijiye.\nJai Shree Shyam 🙏\nAapke ghar mein aaj sandhya aarti mein kiska smaran hua?",
+      "hashtags": ["#JaiShreeShyam", "#KhatuShyam", "#SandhyaAarti", "#ShubhSandhya", "#KhatuShyamJi", "#Aarti"]
+    }
+  }
+}

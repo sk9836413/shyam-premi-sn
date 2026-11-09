@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-10",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": "govardhan",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/govardhan/commons-kund-at-goverdhan-dham-panoramio-6f1bcd.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-10T02:00:00.000Z",
+      "igAt": "2026-11-10T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-10-1-1.jpg"
+      ],
+      "caption": "गोवर्धन पूजा की हार्दिक शुभकामनाएं 🙏\nAaj Giriraj ji ki pooja aur annakut ka din hai.\nGiriraj ji ki kripa aap sabhi par sada bani rahe.\nजय श्री श्याम\nAapke ghar mein Govardhan Puja par annakut mein sabse khaas kya banta hai?\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam\n\n📷 Photo: Gyanendrasinghchauha…, CC BY 3.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Kund_at_Goverdhan_Dham_-_panoramio.jpg\n\n#JaiShreeShyam #GovardhanPuja #Annakut #GirirajJi #Govardhan #Mathura #ShriKrishna",
+      "fb": {
+        "id": "1600294972113467",
+        "scheduled": "2026-11-10T02:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-10T03:43:00.000Z"
+      }
+    },
+    {
+      "n": 2,
+      "kind": "vichar",
+      "temple": null,
+      "quote": 9,
+      "ai": false,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-10T05:30:00.000Z",
+      "igAt": "2026-11-10T05:13:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-10-2-1.jpg"
+      ],
+      "caption": "आज का विचार 🌿\n\"जाकी रही भावना जैसी। प्रभु मूरति देखी तिन तैसी॥\" - रामचरितमानस (बालकांड)\nMatlab: jiska jaisa bhaav hota hai, use Prabhu waise hi dikhte hain.\nBhaav ki hi baat hai, bhakti mein sabse zyada yahi mayne rakhta hai.\nAap pooja karte samay apne man mein kaunsa bhaav rakhte hain?\n\n#JaiShreeShyam #AajKaVichar #Ramcharitmanas #Tulsidas #Bhakti #Bhaav #SanatanDharma",
+      "fb": {
+        "id": "1600295048780126",
+        "scheduled": "2026-11-10T05:30:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-10T05:13:00.000Z"
+      }
+    },
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "jakhu",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/jakhu/commons-pavanputra-hanuman-7c03f3.jpg",
+        "footage/jakhu/commons-hanuman-statue-jakhoo-shimla-2014-05-07-6bdd4c.jpg",
+        "footage/jakhu/commons-sdhp-3521-hanuman-statue-near-jakhu-temp-a169ae.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-10T12:00:00.000Z",
+      "igAt": "2026-11-10T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-10-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-10-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-10-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-10-3-4.jpg"
+      ],
+      "caption": "जाखू हनुमान मंदिर, शिमला 🙏\nShimla ki Jakhu pahadi par Hanuman ji ka yeh mandir bahut prasiddh hai.\nSwipe karke 3 baatein padhiye: 108 foot ki pratima, Sanjeevani ki manyata aur Yaku rishi ki katha.\nJaise sources mein likha hai, kuch baatein manyata par aadharit hain.\nAapne Jakhu Hanuman ji ke darshan kab kiye the, ya kabhi jaane ka man hai?\n\n📷 Photo: Prasundaram, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Pavanputra_Hanuman.jpg\n📷 Photo: Biswarup Ganguly, CC BY 3.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Hanuman_Statue_-_Jakhoo_-_Shimla_2014-05-07_1272.JPG\n📷 Photo: VasuVR, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:SDHP-3521_Hanuman_statue_near_Jakhu_temple_Shimla.jpg\n\n#JaiShreeShyam #JakhuTemple #JakhuHanuman #Shimla #Hanuman #JaiHanuman #HimachalPradesh #MandirDarshan",
+      "fb": {
+        "id": "388779648425633_1600295258780105",
+        "scheduled": "2026-11-10T12:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-10T13:16:00.000Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "ai": true,
+      "bank": "brand/photo-bank/khatu/kaggle-cast-1.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-10T14:00:00.000Z",
+      "igAt": "2026-11-10T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-10-4-1.jpg"
+      ],
+      "caption": "शुभ संध्या 🪔\nKhatu Shyam ji ke sheesh ko pranam, sandhya aarti ka samay.\nदिन भर की thakaan ko aarti ki roshni mein shaant kar lijiye.\nJai Shree Shyam 🙏\nAapke ghar mein aaj sandhya aarti mein kiska smaran hua?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#JaiShreeShyam #KhatuShyam #SandhyaAarti #ShubhSandhya #KhatuShyamJi #Aarti",
+      "fb": {
+        "id": "1600295302113434",
+        "scheduled": "2026-11-10T14:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-10T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}
