@@ -53,3 +53,4 @@
 - 2026-11-09-evening-khatu-shyam-janmotsav-darshan | youtube: https://youtube.com/shorts/af354zYWQg8 (public at 2026-11-09T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1857019365320602 (scheduled 2026-11-09T13:30:00.000Z) | ig: pending 2026-11-09T13:30:00.000Z | animated 3/4
 - 2026-11-09-evening-khatu-shyam-janmotsav-darshan | instagram: https://www.instagram.com/reel/DfhcVKGBkB_/
 - 2026-11-10-status-govardhan-puja | claim: 2026-11-10 status by run 42624069063.1 at 2026-11-09T13:41:34.605Z
+- 2026-11-10-status-govardhan-puja | youtube: https://youtube.com/shorts/f7PkC10sh4Q (public at 2026-11-10T00:30:00.000Z) | status video, made 09 Nov 19:11 IST | social: fb: https://www.facebook.com/reel/1134835449248459 (scheduled 2026-11-10T00:30:00.000Z) | ig: pending 2026-11-10T00:30:00.000Z
