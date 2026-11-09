@@ -1,0 +1,74 @@
+{
+  "slug": "2026-11-09-morning-bhai-dooj-krishna-subhadra",
+  "title": "Bhai Dooj ki Katha",
+  "kicker": "Bhai Dooj Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Bhai Dooj: Krishna aur Subhadra",
+  "cover": "भाई दूज की कथा",
+  "scenes": [
+    {
+      "prompt": "Close-up portrait of blue-skinned Lord Krishna with a gentle smile, golden crown with a peacock feather, yellow silk dhoti, face in the middle of the frame, glowing diyas and marigold flowers around him, warm festive light",
+      "tts": "भाई दूज की कथा: श्री कृष्ण और बहन सुभद्रा।",
+      "sub": "Bhai Dooj ki katha: Shri Krishna aur behan Subhadra.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly, a few marigold petals drift in the background",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "Blue-skinned Lord Krishna in royal attire returning to a palace courtyard at dusk after a victory, calm and smiling, lamps glowing along the walls, warm light",
+      "tts": "लोक मान्यता है कि नरकासुर के वध के बाद कृष्ण जी बहन के घर गए।",
+      "sub": "Lok manyata hai ki Narakasur ke vadh ke baad Krishna ji behan ke ghar gaye.",
+      "motion": "pan"
+    },
+    {
+      "prompt": "A loving young woman Subhadra in a saffron saree welcoming her brother Lord Krishna at the palace doorway with a brass aarti thali, diyas, flowers and sweets, joyful warm faces, evening light",
+      "tts": "सुभद्रा जी ने दीपों से उनका स्वागत किया।",
+      "sub": "Subhadra ji ne deepon se unka swagat kiya.",
+      "motion": "in",
+      "animate": "the diya flames in the aarti thali flicker gently and a few flower petals fall slowly",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "Subhadra gently applying a red tilak on the forehead of her brother blue-skinned Lord Krishna, brass thali with diyas and sweets in front of them, tender smiles, warm golden light",
+      "tts": "उन्होंने भाई के माथे पर तिलक लगाया और आरती उतारी।",
+      "sub": "Unhone bhai ke maathe par tilak lagaya aur aarti utaari.",
+      "motion": "out",
+      "animate": "the diya flames flicker softly and thin incense smoke curls slowly upward",
+      "video": "clips/3.mp4"
+    },
+    {
+      "prompt": "Brother and sister seated together sharing sweets from a thali, Lord Krishna blue-skinned smiling lovingly at Subhadra, lamps and marigold garlands in the background, cosy palace room",
+      "tts": "कहते हैं, उन्होंने स्नेह से भोजन कराया और मिठाई खिलाई।",
+      "sub": "Kehte hain, unhone sneh se bhojan karaya aur mithai khilayi.",
+      "motion": "pan"
+    },
+    {
+      "prompt": "Lord Krishna blue-skinned raising his palm in blessing over Subhadra, who bows with folded hands, soft golden glow, diyas and rose petals around them, warm loving mood",
+      "tts": "श्री कृष्ण ने बहन को आशीर्वाद और रक्षा का वचन दिया।",
+      "sub": "Shri Krishna ne behan ko ashirwad aur raksha ka vachan diya.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the faces stay still and serene, the diya flames flicker softly, a few petals drift in the background"
+    },
+    {
+      "prompt": "A modern Indian sister applying a tilak on her brother's forehead with a thali of diyas and sweets, the family smiling around them, festive home, warm evening light",
+      "tts": "तभी से भाई दूज पर बहनें भाई को तिलक लगाती हैं।",
+      "sub": "Tabhi se Bhai Dooj par behnein bhai ko tilak lagati hain.",
+      "motion": "out"
+    },
+    {
+      "endcard": true,
+      "tts": "जय श्री कृष्ण! लाइक, शेयर, सब्सक्राइब करें। कल खाटू श्याम जी देखिए। जय श्री कृष्ण!",
+      "sub": "Jai Shri Krishna! Like, Share, Subscribe karein. Kal Khatu Shyam ji dekhiye. Jai Shri Krishna!"
+    }
+  ],
+  "youtube_title": "Bhai Dooj ki Katha, Krishna Subhadra | भाई दूज की कथा #Shorts",
+  "youtube_description": "Bhai Dooj ki katha: lok manyata ke anusar Narakasur ke vadh ke baad Shri Krishna behan Subhadra ke ghar gaye, Subhadra ne tilak aur aarti ki. Doosri parampara Yamraj aur Yamuna ki bhi hai.\nभाई दूज की कथा, श्री कृष्ण और सुभद्रा।\nॐ नमो भगवते वासुदेवाय\nJai Shree Shyam 🙏\nVideo pasand aaye to Like, Share aur Subscribe karein.\n#BhaiDooj #BhaiDooj2026 #Krishna #JaiShreeShyam",
+  "youtube_tags": "Bhai Dooj ki katha, भाई दूज की कथा, Bhai Dooj 2026, भाई दूज 2026, Krishna Subhadra, कृष्ण सुभद्रा, Bhai Dooj tilak, भाई दूज तिलक, Bhai Dooj story, भाई दूज की कहानी, Jai Shree Shyam, Shyam Premi SN",
+  "instagram_caption": "Bhai Dooj: Krishna aur Subhadra ki katha 🪔\nLok manyata hai ki Narakasur ke vadh ke baad Shri Krishna behan Subhadra ke ghar gaye, aur Subhadra ne tilak aur aarti ki. Bhai-behan ka pyaar sada bana rahe.\nOm Namo Bhagavate Vasudevaya\nJai Shree Shyam 🙏\nLike, Share aur Follow karein.\n#BhaiDooj #BhaiDooj2026 #Krishna #Subhadra #Diwali #JaiShreeShyam #ShyamPremiSN",
+  "facebook_caption": "Bhai Dooj ki katha: Krishna aur Subhadra ka tilak (lok manyata). Jai Shree Shyam 🙏 Like, Share aur Follow karein.\n#BhaiDooj #Krishna #JaiShreeShyam"
+}

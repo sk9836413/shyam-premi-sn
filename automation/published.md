@@ -46,3 +46,4 @@
 - 2026-11-08-long-bhai-dooj-yamraj-yamuna-katha | youtube: https://youtu.be/WAWOzNPliMk (public at 12:30 IST) | long 4:51, 40 scenes, render 8 min, 0 neurons
 - 2026-11-08-evening-diwali-khatu-shyam-darshan | youtube: https://youtube.com/shorts/rpKWcpJtPgU (public at 2026-11-08T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1424084739888084 (scheduled 2026-11-08T13:30:00.000Z) | ig: pending 2026-11-08T13:30:00.000Z | animated 4/4
 - 2026-11-08-evening-diwali-khatu-shyam-darshan | instagram: https://www.instagram.com/reel/Dfe3f9URV6P/
+- 2026-11-09-morning-bhai-dooj-krishna-subhadra | youtube: https://youtube.com/shorts/l00kqAUyoTE | social: fb: https://www.facebook.com/reel/1664928778558386 | ig: error upload failed: Request processing failed | animated 3/7
