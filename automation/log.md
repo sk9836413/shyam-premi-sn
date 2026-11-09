@@ -43,3 +43,4 @@
 2026-11-08 | long | 2026-11-08-long-bhai-dooj-yamraj-yamuna-katha | Yamraj / Yamuna Maiya (Bhai Dooj) | Bhai Dooj ki katha: Surya dev ki santan Yam aur Yamuna, behan ka nimantran, Yamraj ka aagman, tilak, vardaan, aur Krishna-Subhadra ki manyata
 2026-11-08 | evening | 2026-11-08-evening-diwali-khatu-shyam-darshan | Khatu Shyam ji (Diwali) | Diwali par Khatu Shyam ji ke darshan, deepon se saja darbar, Haare ka Sahara jaikara; agla: Govardhan Puja
 2026-11-09 | morning | 2026-11-09-morning-bhai-dooj-krishna-subhadra | Shri Krishna / Subhadra (Bhai Dooj) | Bhai Dooj ki lok katha: Narakasur ke baad Krishna ka Subhadra ke ghar jaana, tilak, aarti aur raksha ka ashirwad (manyata)
+2026-11-09 | noon | 2026-11-09-noon-govardhan-puja-katha | Shri Krishna (Govardhan Puja) | Govardhan Puja kyun: Braj ke log, Indra ka krodh, Krishna ka Govardhan dharan (saat din, manyata), Annakut ki parampara; agla: Bhai Dooj

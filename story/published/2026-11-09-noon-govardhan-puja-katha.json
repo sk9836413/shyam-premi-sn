@@ -1,0 +1,169 @@
+{
+  "slug": "2026-11-09-noon-govardhan-puja-katha",
+  "format": "dialogue",
+  "title": "Govardhan Puja ki Katha",
+  "kicker": "Govardhan Puja",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "next": "Bhai Dooj",
+  "deity": "Shri Krishna (Govardhan Puja)",
+  "summary": "Govardhan Puja kyun: Braj ke log, Indra ka krodh, Krishna ka Govardhan dharan (saat din, manyata), Annakut ki parampara; agla: Bhai Dooj",
+  "hook": "Govardhan Puja kyon manate hain?",
+  "cover": "गोवर्धन पूजा कथा",
+  "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "visuals": {
+    "giri": {
+      "prompt": "Divine darshan of Lord Shri Krishna, little blue-skinned, with a peacock feather crown lifting the green Govardhan hill on the little finger of his hand, villagers of Braj and white cows sheltering safely beneath it, soft rain outside and warm golden light inside, peaceful devotional mood",
+      "real": false
+    },
+    "krishna": {
+      "prompt": "Close-up darshan of blue-skinned Shri Krishna as a gentle boy with a peacock feather crown and a soft smile, talking kindly to cowherd villagers near the green Govardhan hill, cows grazing, warm golden light",
+      "real": false
+    },
+    "indra": {
+      "prompt": "Indra, king of the devas, on a white elephant above dark swirling rain clouds, stern but not scary, golden crown, rain falling over a green village of Braj below, soft cinematic light",
+      "real": false
+    },
+    "annakut": {
+      "prompt": "A temple offering of Annakut: a big mountain of colourful vegetarian food and sweets in brass plates before a small Krishna murti with marigold garlands and lit diyas, warm festive glow",
+      "real": false
+    }
+  },
+  "lines": [
+    {
+      "who": "chhotu",
+      "tts": "गोवर्धन पूजा क्यों करते हैं, दादी?",
+      "sub": "Govardhan Puja kyun karte hain, Dadi?",
+      "top": "giri"
+    },
+    {
+      "who": "dadi",
+      "tts": "सुनो बेटा, यह त्योहार दिवाली के अगले दिन, कार्तिक शुक्ल प्रतिपदा को आता है।",
+      "sub": "Suno beta, ye tyohar Diwali ke agle din, Kartik Shukla Pratipada ko aata hai.",
+      "top": "giri"
+    },
+    {
+      "who": "chhotu",
+      "tts": "इसमें किसकी पूजा होती है?",
+      "sub": "Ismein kiski puja hoti hai?",
+      "top": "giri"
+    },
+    {
+      "who": "dadi",
+      "tts": "गोवर्धन पर्वत की, और श्रीकृष्ण जी की भी। यह कथा भागवत पुराण में आती है।",
+      "sub": "Govardhan parvat ki, aur Shri Krishna ji ki bhi. Ye katha Bhagwat Puran mein aati hai.",
+      "top": "krishna"
+    },
+    {
+      "who": "chhotu",
+      "tts": "पहले ब्रज के लोग किसकी पूजा करते थे?",
+      "sub": "Pehle Braj ke log kiski puja karte the?",
+      "top": "indra"
+    },
+    {
+      "who": "dadi",
+      "tts": "कहते हैं, वे हर साल वर्षा के देवता इंद्र की पूजा करते थे।",
+      "sub": "Kehte hain, ve har saal varsha ke devta Indra ki puja karte the.",
+      "top": "indra"
+    },
+    {
+      "who": "chhotu",
+      "tts": "फिर श्रीकृष्ण ने क्या कहा?",
+      "sub": "Phir Shri Krishna ne kya kaha?",
+      "top": "krishna"
+    },
+    {
+      "who": "dadi",
+      "tts": "उन्होंने कहा कि गोवर्धन पर्वत हमारी गायों को घास और पानी देता है। उसकी पूजा करो।",
+      "sub": "Unhone kaha ki Govardhan parvat hamari gayon ko ghas aur paani deta hai. Uski puja karo.",
+      "top": "krishna"
+    },
+    {
+      "who": "chhotu",
+      "tts": "तो क्या इंद्र देव नाराज़ हो गए?",
+      "sub": "To kya Indra dev naraz ho gaye?",
+      "top": "indra"
+    },
+    {
+      "who": "dadi",
+      "tts": "हाँ बेटा। कथा के अनुसार उन्होंने ब्रज में बहुत तेज़ वर्षा कर दी।",
+      "sub": "Haan beta. Katha ke anusar unhone Braj mein bahut tez varsha kar di.",
+      "top": "indra"
+    },
+    {
+      "who": "chhotu",
+      "tts": "अरे! फिर सब लोग कैसे बचे?",
+      "sub": "Are! Phir sab log kaise bache?",
+      "top": "giri"
+    },
+    {
+      "who": "dadi",
+      "tts": "श्रीकृष्ण ने गोवर्धन पर्वत को अपनी छोटी उँगली पर उठा लिया। सब उसके नीचे आ गए।",
+      "sub": "Shri Krishna ne Govardhan parvat ko apni chhoti ungli par utha liya. Sab uske neeche aa gaye.",
+      "top": "giri"
+    },
+    {
+      "who": "chhotu",
+      "tts": "पर्वत कितने दिन उठाए रखा, दादी?",
+      "sub": "Parvat kitne din uthaye rakha, Dadi?",
+      "top": "giri"
+    },
+    {
+      "who": "dadi",
+      "tts": "मान्यता है, सात दिन। फिर इंद्र ने हार मानी और वर्षा रोक दी।",
+      "sub": "Manyata hai, saat din. Phir Indra ne haar maani aur varsha rok di.",
+      "top": "giri"
+    },
+    {
+      "who": "chhotu",
+      "tts": "और आज लोग अन्नकूट क्यों बनाते हैं?",
+      "sub": "Aur aaj log Annakut kyun banate hain?",
+      "top": "annakut"
+    },
+    {
+      "who": "dadi",
+      "tts": "अन्नकूट का मतलब है अन्न का पहाड़। भोजन के बहुत से पकवान भगवान को अर्पित करते हैं।",
+      "sub": "Annakut ka matlab hai ann ka pahad. Bhojan ke bahut se pakwan Bhagwan ko arpit karte hain.",
+      "top": "annakut"
+    },
+    {
+      "who": "chhotu",
+      "tts": "वाह! दादी, कल कौन सा त्योहार है?",
+      "sub": "Wah! Dadi, kal kaun sa tyohar hai?",
+      "top": "end"
+    },
+    {
+      "who": "dadi",
+      "tts": "भाई दूज की कहानी सुनाऊँगी। देखने के लिए लाइक, शेयर और सब्सक्राइब करना, बेटा!",
+      "sub": "Bhai Dooj ki kahani sunaungi. Dekhne ke liye Like, Share aur Subscribe karna, beta!",
+      "top": "end"
+    }
+  ],
+  "facts": [
+    {
+      "claim": "Krishna persuaded the villagers to worship Govardhan hill instead of Indra; Indra sent storms; Krishna held up the hill on a finger; Indra admitted defeat after seven days",
+      "sources": [
+        "https://www.prabhatkhabar.com/religion/govardhan-puja-2024-katha-kahani-in-hindi",
+        "https://en.wikipedia.org/wiki/Govardhan_Puja"
+      ]
+    },
+    {
+      "claim": "Govardhan Puja falls the day after Diwali, Kartik Shukla Pratipada",
+      "sources": [
+        "https://bharatdiscovery.org/india/Annakoot",
+        "https://en.wikipedia.org/wiki/Govardhan_Puja"
+      ]
+    },
+    {
+      "claim": "Annakut means a mountain of food, offered to Krishna; the katha is from the Bhagwat Puran",
+      "sources": [
+        "https://shubhpanchang.com/hi/festivals/annakutotsav",
+        "https://www.prabhatkhabar.com/religion/govardhan-puja-2024-katha-kahani-in-hindi"
+      ]
+    }
+  ],
+  "youtube_title": "Govardhan Puja ki Katha | गोवर्धन पूजा की कथा #Shorts",
+  "youtube_description": "Govardhan Puja kyun manate hain? Dadi aur Chhotu ki baatcheet mein Shri Krishna, Indra aur Govardhan parvat ki katha (Bhagwat Puran ki manyata), aur Annakut ki parampara.\nगोवर्धन पूजा की कथा: श्रीकृष्ण और गोवर्धन पर्वत।\nKrishna Govinda Gopala 🙏\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nPasand aaye to Like, Share aur Subscribe karein.\n#GovardhanPuja #Annakut #ShriKrishna #DadiChhotu\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam",
+  "youtube_tags": "Govardhan Puja ki katha, govardhan puja kyon manaya jata hai, गोवर्धन पूजा की कथा, गोवर्धन पूजा क्यों मनाया जाता है, Govardhan Puja 2026, गोवर्धन पूजा, Annakut, अन्नकूट, Shri Krishna, श्रीकृष्ण, Dadi aur Chhotu, Shyam Premi SN",
+  "instagram_caption": "Govardhan Puja kyon manate hain? Chhotu ne Dadi se poochha!\nShri Krishna ne Govardhan parvat uthakar Braj ki raksha ki, aisi manyata hai. Annakut ka matlab hai ann ka pahad.\nKrishna Govinda Gopala 🙏\nLike, Share aur Subscribe karein.\n#GovardhanPuja #Annakut #ShriKrishna #JaiShreeShyam #DadiChhotu #Diwali #Govardhan\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam",
+  "facebook_caption": "Govardhan Puja kyon manate hain? Dadi aur Chhotu ki kahani, Shri Krishna aur Govardhan parvat ki katha (manyata). Like, Share aur Subscribe karein.\n#GovardhanPuja #ShriKrishna #JaiShreeShyam\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam"
+}

@@ -47,3 +47,4 @@
 - 2026-11-08-evening-diwali-khatu-shyam-darshan | youtube: https://youtube.com/shorts/rpKWcpJtPgU (public at 2026-11-08T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1424084739888084 (scheduled 2026-11-08T13:30:00.000Z) | ig: pending 2026-11-08T13:30:00.000Z | animated 4/4
 - 2026-11-08-evening-diwali-khatu-shyam-darshan | instagram: https://www.instagram.com/reel/Dfe3f9URV6P/
 - 2026-11-09-morning-bhai-dooj-krishna-subhadra | youtube: https://youtube.com/shorts/l00kqAUyoTE | social: fb: https://www.facebook.com/reel/1664928778558386 | ig: error upload failed: Request processing failed | animated 3/7
+- 2026-11-09-noon-govardhan-puja-katha | youtube: https://youtube.com/shorts/ldGTRm9Mgsg | social: fb: https://www.facebook.com/388779648425633/videos/2558262588027889 | ig: error upload failed: Request processing failed | dialogue lipsync, lip-synced 18/18, 100 s
