@@ -60,3 +60,4 @@
 - 2026-11-10-evening-shrinathji-nathdwara-darshan | claim: 2026-11-10 evening by run 42760735217.1 at 2026-11-10T06:03:31.082Z
 - 2026-11-10-evening-shrinathji-nathdwara-darshan | youtube: https://youtube.com/shorts/k2nKPKJ--T8 (public at 2026-11-10T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/3605682209610203 (scheduled 2026-11-10T13:30:00.000Z) | ig: pending 2026-11-10T13:30:00.000Z
 - 2026-11-10-evening-shrinathji-nathdwara-darshan | instagram: https://www.instagram.com/reel/DfkBF6GoKEB/
+- 2026-11-11-status-bhai-dooj | claim: 2026-11-11 status by run 42823067253.1 at 2026-11-10T14:20:15.253Z
