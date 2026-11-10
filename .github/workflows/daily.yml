@@ -766,6 +766,12 @@ jobs:
           retention-days: 7
           compression-level: 0
 
+      # Festival card links (scripts/festival-links.mjs, e.g. the Janmotsav card 17-20 Nov 2026), only while the page is live.
+      - name: Festival links
+        if: steps.render.outcome == 'success'
+        continue-on-error: true
+        run: node scripts/festival-links.mjs story/long/scenes.json --day "${{ steps.date.outputs.today }}" --slot long
+
       - name: Claim the upload
         id: claim
         if: steps.render.outcome == 'success'
@@ -1244,6 +1250,12 @@ jobs:
           git commit -qm "Movie $SLUG rendered for review"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
+      # Festival card links (scripts/festival-links.mjs, e.g. the Janmotsav card 17-20 Nov 2026), only while the page is live.
+      - name: Festival links
+        if: steps.render.outcome == 'success' && steps.spec.outputs.approved == 'true' && !inputs.dry_run
+        continue-on-error: true
+        run: node scripts/festival-links.mjs "$F" --day "${{ steps.spec.outputs.release }}" --slot movie
+
       - name: Claim the upload
         id: claim
         if: steps.render.outcome == 'success' && steps.spec.outputs.approved == 'true' && !inputs.dry_run
@@ -1445,6 +1457,12 @@ jobs:
         id: host
         if: steps.render.outcome == 'success'
         run: node scripts/publish.mjs --host-only --video "$W/out/small/$SLUG.mp4" --scenes "$F" | tee "$RUNNER_TEMP/host.json"
+
+      # Festival card links (scripts/festival-links.mjs, e.g. the Janmotsav card 17-20 Nov 2026), only while the page is live.
+      - name: Festival links
+        if: steps.render.outcome == 'success' && !inputs.dry_run && steps.spec.outputs.release != 'pilot'
+        continue-on-error: true
+        run: node scripts/festival-links.mjs "$F" --day "${{ steps.spec.outputs.release }}" --slot kalyug
 
       - name: Claim the upload
         id: claim

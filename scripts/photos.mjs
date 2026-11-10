@@ -28,6 +28,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { linkLines } from './festival-links.mjs';
 import { cardHtml, imageSize, renderCards } from './photo-cards.mjs';
 import { photosFor, FOOTAGE } from './real-photos.mjs';
 
@@ -131,8 +132,9 @@ const FESTIVALS = [
   { key: 'ekadashi', bank: ['khatu'], match: /ekadashi/i, big: 'शुभ एकादशी', line: 'जय श्री श्याम 🙏', text: 'भगवान श्री हरि की कृपा सदा बनी रहे', tags: ['#Ekadashi', '#JaiShreeHari'], temple: null },
 ];
 
-// The EpiFive Diwali card tool (coordinator, 6 Nov 2026), in the captions until 11 Nov, only while the page returns 200.
-const LINKS = [{ from: '2026-11-06', to: '2026-11-11', url: 'https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam', line: (u) => `Apne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): ${u}` }];
+// Festival links (EpiFive card tools) come from scripts/festival-links.mjs, shared with the videos: the Diwali card on
+// festival posts 6-11 Nov, the Khatu Shyam Janmotsav card on festival, morning darshan and Khatu sandhya posts 17-20 Nov,
+// tagged per platform (utm_source=facebook / instagram), only while the page returns 200.
 
 // ---------------------------------------------------------------- temples and rotation
 
@@ -493,19 +495,10 @@ export async function build(date, { noFlux = false, log = console.log } = {}) {
 
 // ---------------------------------------------------------------- captions
 
-async function liveLinks(date) {
-  const lines = [];
-  for (const l of LINKS) {
-    if (date < l.from || date > l.to) continue;
-    const status = await fetch(l.url, { redirect: 'follow', signal: AbortSignal.timeout(20000), headers: { 'User-Agent': 'shyam-premi-sn/1.0' } }).then((r) => r.status).catch(() => 0);
-    if (status === 200) lines.push(l.line(l.url));
-  }
-  return lines;
-}
-
+/** `links`: festival link lines for this post and platform (linkLines in festival-links.mjs). */
 export function caption(post, links = []) {
   const parts = [post.text.caption.trim()];
-  if (post.festival && links.length) parts.push(links.join('\n'));
+  if (links.length) parts.push(links.join('\n'));
   if (post.ai) parts.push('Chitra AI dwara banaya gaya hai (sanketik).');
   if (post.credits?.length) parts.push(post.credits.map((c) => `📷 ${c}`).join('\n'));
   parts.push(post.text.hashtags.join(' '));
@@ -584,11 +577,11 @@ function writeState(date, st) {
 /** Hosts the cards, schedules Facebook and queues Instagram; merges into automation/photos/<date>.json. */
 export async function publish(date, { dryRun = false, log = console.log } = {}) {
   const built = readJson(path.join(workDir(date), 'out', 'posts.json'));
-  const links = await liveLinks(date);
   const st = readState(date) || { date, posts: [] };
   for (const post of built.posts) {
     if (st.posts.some((x) => x.n === post.n)) { log(`post ${post.n}: already published`); continue; }
-    const text = caption(post, links);
+    const text = caption(post, await linkLines(date, 'facebook', post));
+    const igText = caption(post, await linkLines(date, 'instagram', post));
     if (dryRun) { log(`[dry-run] post ${post.n} (${post.kind}, ${post.files.length} image(s)) FB ${post.fbAt} IG ${post.igAt}\n${text}\n`); continue; }
     const rec = { n: post.n, kind: post.kind, temple: post.temple, quote: post.quote, ai: post.ai, bank: post.bank, photos: post.photos, source: post.source, fbAt: post.fbAt, igAt: post.igAt };
     try {
@@ -596,6 +589,7 @@ export async function publish(date, { dryRun = false, log = console.log } = {}) 
       for (const [i, f] of post.files.entries()) rec.images.push(await host(path.join(ROOT, f), `photo-${date}-${post.n}-${i + 1}.jpg`));
     } catch (e) { log(`::warning::post ${post.n}: hosting failed, not posted (the next run retries): ${redact(e.message)}`); continue; }
     rec.caption = text;
+    if (igText !== text) rec.igCaption = igText;
     if (configured()) {
       try { rec.fb = await facebook(rec.images, text, Date.parse(post.fbAt)); } catch (e) { rec.fb = { error: redact(e.message).slice(0, 200) }; log(`::warning::post ${post.n}: Facebook: ${rec.fb.error}`); }
     } else rec.fb = { error: 'META_* not configured' };
@@ -623,7 +617,7 @@ export async function flush({ dryRun = false, now = Date.now(), log = console.lo
       if (done.length) continue; // one Instagram post per run: a missed slot catches up on the next trigger
       if (dryRun) { done.push({ date, n: p.n, dryRun: true }); continue; }
       try {
-        const r = await instagram(p.images, p.caption);
+        const r = await instagram(p.images, p.igCaption || p.caption);
         p.ig = { id: r.id, url: r.url, at: new Date().toISOString() };
       } catch (e) {
         p.igAttempts = (p.igAttempts || 0) + 1;
