@@ -53,7 +53,15 @@ def old_lines(texts, out):
     async def go():
         import edge_tts
         for i, t in enumerate(texts):
-            await edge_tts.Communicate(t, VOICE, rate="+0%").save(f"{out}/old-{i}.mp3")
+            for attempt in range(6):  # the free endpoint sometimes answers NoAudioReceived / 503
+                try:
+                    await edge_tts.Communicate(t, VOICE, rate="+0%").save(f"{out}/old-{i}.mp3")
+                    break
+                except Exception as e:  # noqa: BLE001
+                    print(f"edge-tts retry {attempt} {type(e).__name__}", file=sys.stderr, flush=True)
+                    await asyncio.sleep(3 * (attempt + 1))
+            else:
+                raise SystemExit(f"edge-tts failed: {t[:40]}")
     asyncio.run(go())
     return [{"file": f"{out}/old-{i}.mp3", "speech": dur(f"{out}/old-{i}.mp3"), "lead": 0.0} for i in range(len(texts))]
 
