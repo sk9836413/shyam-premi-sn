@@ -55,7 +55,7 @@ export function clashes(video, others) {
     if (days < 0 || days > RECENT_DAYS) continue;
     if (days === 0 && o.slot === v.slot) continue; // an earlier attempt of this same slot
     const sameWords = v.titleWords.length > 0 && v.titleWords.length === o.titleWords.length && v.titleWords.every((w) => o.titleWords.includes(w));
-    const formatted = (x) => (x.status || x.slot === 'status' || x.slot === 'movie');
+    const formatted = (x) => (x.status || ['status', 'eve', 'statusday', 'movie'].includes(x.slot)); // festival status variants share words by design
     let why = '';
     if (sameWords) why = 'the same title words';
     else if (days === 0 && !formatted(o) && jaccard(v.titleWords, o.titleWords) >= SAME_DAY) why = 'a near-identical title';

@@ -25,8 +25,7 @@
       "sub": "Baba Shyam ke Janmotsav ki aap sabko badhai! Jai Shree Shyam!"
     },
     {
-      "prompt": "Devotees with folded hands carrying saffron and blue flags walking towards the glowing Khatu Shyam temple at dusk, lamps lit along the path, fresh flower garlands, peaceful golden sky, joyful devotional mood",
-      "animate": "the flags flutter gently in a soft breeze, the lamps flicker and the camera slowly glides forward",
+      "prompt": "Devotees with folded hands carrying saffron and blue flags walking towards a glowing white temple in a small Rajasthan town at dusk, lamps lit along the path, fresh flower garlands, peaceful golden sky, joyful devotional mood",
       "motion": "out",
       "hold": 6,
       "big": "हारे का सहारा",
@@ -44,6 +43,36 @@
       "sub": "Dev Uthani Ekadashi ki shubhkamnayein. Om Namo Bhagavate Vasudevaya."
     },
     {
+      "prompt": "A grand white marble Hindu temple in a small Rajasthan town at night, decorated with strings of warm golden lights, marigold garlands and saffron and blue nishan flags for the Janmotsav festival, devotees with folded hands in soft focus",
+      "animate": "the strings of lights twinkle softly, the flags flutter gently and the camera slowly glides forward",
+      "motion": "in",
+      "hold": 6,
+      "big": "खाटू धाम",
+      "line": "जन्मोत्सव पर सजा बाबा का दरबार",
+      "tts": "जन्मोत्सव पर बाबा का दरबार फूलों और दीपों से सजता है।",
+      "sub": "Janmotsav par Baba ka darbaar phoolon aur deepon se sajta hai."
+    },
+    {
+      "prompt": "Close-up darshan of the Sheesh (head only, no body, no arms, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a curled moustache, a tall ornate golden mukut with peacock feathers, a festive birthday shringar of red and pink rose garlands and white gajra, many lit diyas, a soft golden glow",
+      "animate": "a very slow push-in, the diya light gently pulses and rose petals drift down in front, the face stays still",
+      "deity": true,
+      "motion": "out",
+      "hold": 6,
+      "big": "हारे का सहारा",
+      "line": "बाबा श्याम हमारा",
+      "tts": "हारे का सहारा, बाबा श्याम हमारा!",
+      "sub": "Haare ka sahara, Baba Shyam hamara!"
+    },
+    {
+      "prompt": "A green tulsi plant beside a small canopy of sugarcane stalks decorated with marigold garlands, a brass kalash, rows of lit clay diyas and a rangoli on a courtyard at dawn, festive devotional mood",
+      "motion": "pan",
+      "hold": 6,
+      "big": "देवउठनी एकादशी",
+      "line": "शुभ कार्यों का आरंभ",
+      "tts": "देवउठनी एकादशी से शुभ कार्यों का आरंभ होता है। जय श्री हरि!",
+      "sub": "Dev Uthani Ekadashi se shubh kaaryon ka aarambh hota hai. Jai Shree Hari!"
+    },
+    {
       "endcard": true,
       "hold": 5,
       "tts": "अपने परिवार को भेजें। जय श्री श्याम!",
@@ -54,5 +83,25 @@
   "youtube_description": "Baba Shyam ke Janmotsav ki badhai! Khatu parampara mein Kartik Shukla Ekadashi (Dev Uthani Ekadashi) ko Khatu Shyam Baba ka Janmotsav manaya jata hai. Sundar darshan, WhatsApp status ke liye.\nबाबा श्याम के जन्मोत्सव की आप सबको बधाई! हारे का सहारा, बाबा श्याम हमारा।\nMantra: ॐ नमो भगवते वासुदेवाय (Om Namo Bhagavate Vasudevaya)\n(Bhagwan Vishnu ka dwadashakshar mantra (Shrimad Bhagwat parampara), Dev Uthani Ekadashi ke liye)\n\nIs status video ko download karke apne WhatsApp / Instagram status par lagayein.\n\nShyam Premi SN ki taraf se aapko aur aapke parivaar ko dher saari shubhkamnayein. Jai Shree Shyam 🙏\nAchha lage to Like karein, apno ko bhejein aur channel Subscribe karein.\n#KhatuShyam #ShyamJanmotsav #DevUthaniEkadashi #HaareKaSahara #JaiShreeShyam\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.",
   "youtube_tags": "Khatu Shyam Janmotsav status, Khatu Shyam birthday status, Shyam Baba Janmotsav 2026, Dev Uthani Ekadashi status, खाटू श्याम जन्मोत्सव, श्याम बाबा जन्मोत्सव, देवउठनी एकादशी, हारे का सहारा, Haare ka sahara, Khatu Shyam status, खाटू श्याम स्टेटस, Jai Shree Shyam, Shyam Premi SN",
   "instagram_caption": "Baba Shyam ke Janmotsav ki badhai! 🌹\nHaare ka sahara, Baba Shyam hamara. Dev Uthani Ekadashi ki bhi shubhkamnayein.\nJai Shree Shyam 🙏\nApne parivaar ko bhejein, status par lagayein.\n#KhatuShyam #ShyamJanmotsav #DevUthaniEkadashi #HaareKaSahara #ShyamBaba #JaiShreeShyam",
-  "facebook_caption": "Baba Shyam ke Janmotsav ki badhai! 🌹\nHaare ka sahara, Baba Shyam hamara. Dev Uthani Ekadashi ki bhi shubhkamnayein.\nJai Shree Shyam 🙏\n#KhatuShyam #ShyamJanmotsav #DevUthaniEkadashi"
+  "facebook_caption": "Baba Shyam ke Janmotsav ki badhai! 🌹\nHaare ka sahara, Baba Shyam hamara. Dev Uthani Ekadashi ki bhi shubhkamnayein.\nJai Shree Shyam 🙏\n#KhatuShyam #ShyamJanmotsav #DevUthaniEkadashi",
+  "desc": "Khatu parampara mein Kartik Shukla Ekadashi (Dev Uthani Ekadashi, 20 November 2026) ko Khatu Shyam Baba ka Janmotsav manaya jata hai. Baba ke darshan aur jaikara",
+  "hashtags": [
+    "#KhatuShyam",
+    "#ShyamJanmotsav",
+    "#DevUthaniEkadashi",
+    "#HaareKaSahara",
+    "#JaiShreeShyam"
+  ],
+  "tags": [
+    "Khatu Shyam Janmotsav status",
+    "Khatu Shyam birthday status",
+    "Shyam Baba Janmotsav 2026",
+    "Dev Uthani Ekadashi status",
+    "खाटू श्याम जन्मोत्सव",
+    "श्याम बाबा जन्मोत्सव",
+    "देवउठनी एकादशी",
+    "हारे का सहारा",
+    "Khatu Shyam status"
+  ],
+  "variants_note": "Family spec of the Janmotsav status engine (automation/festivals.json picks): 18 Nov 20:00 [3,0,1], 19 Nov 20:00 [0,1,5], 20 Nov 00:30 [4,2,0], 20 Nov 08:30 [1,4,3]. Never rendered itself."
 }

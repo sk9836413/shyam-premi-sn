@@ -1,11 +1,11 @@
 # Shyam Premi SN: at most 3 YouTube uploads a day (owner, 9 Nov 2026; scripts/day-plan.mjs decides which, and
 # scripts/upload-guard.mjs enforces a hard cap of 3 per IST date): 5-6 a day (7-9 Nov) collapsed views to 0-15.
-#   normal day:   morning Short + evening darshan (19:00) + Mon/Fri the long katha video (15:00), Wed the Dadi-Chhotu
-#                 Short (15:00, a new setting and outfits each time); other days nothing more
-#   festival day: status Short 06:00 + morning festival Short + evening darshan (no long, no noon)
-#   movie day:    the movie part 07:00 replaces the morning Short + evening darshan (+ status on a festival day)
-#   kalyug day:   (repo variable KALYUG=on) Tue/Thu/Sat of normal days: the "Kalyug ke Bhagwan" episode 08:00 replaces
-#                 the morning Short + evening darshan; made the evening before by the `kalyug` job (STORY.md section 8)
+# Re-planned 11 Nov 2026 around the festival "status" Short, the only format that went viral (Choti Diwali Status 798
+# views, Dhanteras Status 456; katha Shorts avg 18): day-plan fills each day by priority, max 3:
+#   movie part 07:00 > festival status Shorts (job `status`, scripts/status-engine.mjs: `eve` 20:00 the evening before,
+#   `status` 00:30 on the day, `statusday` 08:30 on big festivals) > morning (weekday "day status" Short made by the
+#   status engine, or a famous-temple darshan on festival days) > evening famous-temple darshan 19:00 > Kalyug ke
+#   Bhagwan (Tue/Thu/Sat, KALYUG=on) > long katha (Mon/Fri) / Dadi-Chhotu (Wed). Katha Shorts are cut.
 # A slot that is not planned for the day skips at once (no render). Photo posts and the Veo kit are not uploads.
 # The long katha video (16:9, 5-10 min, YouTube only, scheduled for 15:00 IST) is made after the morning Short.
 # Morning window 05:30-11:59 IST, evening window 17:30-22:59 IST. GitHub's schedule often fires hours
@@ -23,10 +23,13 @@
 # slot=noon (dispatched by the scheduler on Wednesdays only at 10:13 IST, retry 18:46 IST; public 15:00 IST) is the "Dadi aur Chhotu" cartoon dialogue
 # Short (STORY.md section 6, characters/): edge-tts voices, story images, lip-sync on Kaggle (~10-15 GPU-min), else the
 # still two-shot with a speaker highlight. dry_run=true renders everything and keeps the video as an artifact only.
-# Festival "WhatsApp status" Shorts (job `status`, story/status/<date>.json, written in advance): after every evening-slot
-# run from 15:00 IST (the 18:46 IST retry dispatch, the evening schedule) the video for TOMORROW's festival is animated on Kaggle, rendered, hosted on
-# the media Worker (download link in the description) and uploaded private with publishAt 06:00 IST on the festival day.
-# slot=status (+ status_date) runs only that job; with dry_run it renders and hosts but never uploads or logs. The
+# Festival "WhatsApp status" Shorts (job `status`, scripts/status-engine.mjs + automation/festivals.json): after every
+# evening-slot run (10:43 IST dispatch, the evening schedule, the 18:46 IST retry) the engine picks what is due: today's
+# `eve` variant (public 20:00) and tomorrow's 00:30 `status` / 08:30 `statusday` variants of ONE festival. Its base spec
+# (story/status/<date>.json or the theme) is animated once on Kaggle; every variant reuses those pictures/clips with its
+# own hook, picture order and title, is rendered as a 15-25 s loop, hosted on the media Worker (download link), uploaded
+# private with publishAt, scheduled on Facebook and queued for Instagram. slot=status (+ status_date = the festival day)
+# runs only that job; with dry_run it renders and hosts every variant of that festival but never uploads or logs. The
 # images and clips are cached per festival day, so a dry run's clips are reused by the real run.
 # Real temple photos: before rendering, scripts/real-photos.mjs fetches licence-safe Wikimedia Commons photos for the
 # spec's `temple` when footage/<temple>/ has none; the renderers show them on `real` scenes and credit them.
@@ -140,6 +143,8 @@ jobs:
       # The media Worker runs FLUX and hosts the videos, so no Cloudflare API token is needed.
       MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
       SPS_WORKERS_AI: ${{ inputs.force_fallback && '0' || '' }}
+      # day-plan counts the Kalyug ke Bhagwan episode only when the repo variable is on (the same plan as the kalyug job)
+      KALYUG: ${{ vars.KALYUG }}
     steps:
       - uses: actions/checkout@v4
 
@@ -179,10 +184,10 @@ jobs:
           fi
           echo "slot=$slot" >> "$GITHUB_OUTPUT"
           if [ "$slot" = morning ]; then echo "long=true" >> "$GITHUB_OUTPUT"; fi
-          # Tomorrow's festival status Short: only on evening runs from 15:00 IST (the 18:46 IST retry dispatch and the
-          # evening schedule), so it never competes with the evening Short for the Kaggle GPU (10:43 IST dispatch) and
-          # can be dry-run during the day first.
-          if [ "$slot" = evening ] && [ $((10#$(TZ=Asia/Kolkata date +%H))) -ge 15 ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
+          # Festival status Shorts (status engine): every evening-slot run checks what is due (today's 20:00 `eve` variant,
+          # tomorrow's 00:30 / 08:30 variants); the job runs after this one, so it never competes with the evening Short
+          # of the same run for the Kaggle GPU, and the 10:43 IST dispatch makes the 20:00 variant in good time.
+          if [ "$slot" = evening ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
           # Mini-movies (STORY.md section 7) are made a day or more ahead by the `movie` job, which runs after evening runs.
           if [ "$slot" = evening ]; then echo "movie=true" >> "$GITHUB_OUTPUT"; echo "kalyug=true" >> "$GITHUB_OUTPUT"; fi
           if grep -q "^$today | $slot |" automation/log.md; then
@@ -195,14 +200,10 @@ jobs:
             echo "movie_kind=movie" >> "$GITHUB_OUTPUT"
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today morning = the scheduled movie part"
-          elif [ "$slot" = morning ] && grep -q "^$today | kalyug |" automation/log.md; then
-            # A Kalyug ke Bhagwan episode is scheduled for 08:00 today (made last evening): it IS the morning Short.
-            echo "movie_day=$(grep -m1 "^$today | kalyug |" automation/log.md | cut -d'|' -f3 | xargs)" >> "$GITHUB_OUTPUT"
-            echo "movie_kind=kalyug" >> "$GITHUB_OUTPUT"
-            echo "done=true" >> "$GITHUB_OUTPUT"
-            echo "::notice::$today morning = the scheduled Kalyug ke Bhagwan episode"
           elif ! node scripts/day-plan.mjs --date "$today" --slot "$slot" --check > "$RUNNER_TEMP/plan.json"; then
-            # At most 3 uploads a day (scripts/day-plan.mjs): e.g. noon only on Wednesdays of normal days.
+            # At most 3 uploads a day (scripts/day-plan.mjs): e.g. noon only on Wednesdays when nothing better fits. A
+            # Kalyug ke Bhagwan episode (08:00) no longer replaces the morning Short: both run when the cap allows.
+            # day-plan also writes what/kind/theme: kind=daystatus = the status engine makes the morning Short.
             if [ "${{ inputs.dry_run }}" = true ]; then
               echo "::notice::Dry run of a slot not planned today: $(cat "$RUNNER_TEMP/plan.json")"
             else
@@ -224,7 +225,8 @@ jobs:
       - name: Tools
         if: steps.date.outputs.done != 'true'
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          # fonts-noto-color-emoji: the day status Short's Hindi overlays (story/status-overlays.mjs) carry emoji
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core fonts-noto-color-emoji > /dev/null
           pip install -q kokoro-onnx==0.6.1 soundfile==0.14.0 edge-tts
 
       - name: Cache Kokoro model
@@ -262,7 +264,7 @@ jobs:
           node scripts/trend-signals.mjs --date "${{ steps.date.outputs.today }}" | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Write the story
-        if: steps.date.outputs.done != 'true'
+        if: steps.date.outputs.done != 'true' && steps.date.outputs.kind != 'daystatus'
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -273,11 +275,19 @@ jobs:
           prompt: |
             Write today's Shyam Premi SN story video. Today's date (IST) is ${{ steps.date.outputs.today }}, slot: ${{ steps.date.outputs.slot }}.
             Follow automation/STORY.md exactly${{ steps.date.outputs.slot == 'noon' && ' (the noon slot is the "Dadi aur Chhotu" dialogue Short: section 6)' || '' }}.
+            Today's plan for this slot (scripts/day-plan.mjs): ${{ steps.date.outputs.what || 'see the table at the top of STORY.md' }}.
             Today's trend research is automation/trends/${{ steps.date.outputs.today }}.md (if it is missing, the newest file in
             automation/trends/): read its first 100 lines and use it as STORY.md section 1 says.
             Write every tts in the warm spoken style of STORY.md "Spoken style" (short sentences, max 18 words).
             Write story/today/scenes.json, make scripts/validate.mjs pass,
             and append one line to automation/log.md. Change nothing else.
+
+      # The morning "day status" Short (Somvar Mahadev, Mangalvar Salasar Balaji, ...; Ekadashi: Gyaras Khatu Shyam) is
+      # made by the status engine (scripts/status-themes.mjs), not by Claude: 15-25 s loop, bold Hindi hook, "स्टेटस पर
+      # लगाएं", title "<Day> <Deity> Status | <Hindi> स्टेटस वीडियो #Shorts"; names and the first picture rotate weekly.
+      - name: Day status (status engine)
+        if: steps.date.outputs.done != 'true' && steps.date.outputs.kind == 'daystatus'
+        run: node scripts/status-engine.mjs day --date "${{ steps.date.outputs.today }}" --out story/today/scenes.json --log automation/log.md | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Validate
         if: steps.date.outputs.done != 'true'
@@ -838,19 +848,23 @@ jobs:
             echo "::error::YouTube upload failed: $(cat "$RUNNER_TEMP/yt.json" 2>/dev/null)"; exit 1
           fi
 
-  # Festival "WhatsApp status" Short (story/status/<date>.json; checked by scripts/validate.mjs): 15-30 s vertical darshan
-  # with a big Hindi blessing, a well-known mantra where there is one, the logo and the end line "Apne parivaar ko
-  # bhejein 🙏 | Subscribe: Shyam Premi SN". No 06:00 IST trigger exists (the scheduler's crons are fixed), so it is made
-  # the evening BEFORE the festival, after the evening slot's run, and YouTube publishes it at 06:00 IST (publishAt),
-  # when people set their morning status. The mp4 is also hosted on the media Worker (7 days) and its direct link goes
-  # into the description so viewers can download it and set it as their status.
+  # Festival status Shorts (scripts/status-engine.mjs, automation/festivals.json; owner, 11 Nov 2026): the one format that
+  # went viral (Choti Diwali Status 2026: 798 views; Dhanteras Status 456). After every evening-slot run (and alone with
+  # slot=status) the engine picks ONE festival with variants due: today's `eve` (public 20:00 IST, when people pick
+  # tomorrow's WhatsApp status), tomorrow's `status` (00:30 IST) and, for big festivals, `statusday` (08:30 IST). The
+  # festival's base spec (story/status/<date>.json, else its theme in scripts/status-themes.mjs) gets its pictures and
+  # Kaggle clips ONCE; each variant reuses them with its own bold Hindi hook, picture order and title ("<Festival> Status
+  # 2026 | <Hindi> स्टेटस वीडियो #Shorts"), is rendered as a 15-25 s loop (story/render-story.mjs `loop`), hosted on the
+  # media Worker (7-day download link in the description), uploaded private with publishAt (a late `eve` goes out at
+  # once), scheduled as a Facebook Reel and queued for Instagram (the `instagram` job). Only variants that fit the
+  # 3-a-day cap exist (scripts/day-plan.mjs), and scripts/upload-guard.mjs claims "<day> <slot>" before each upload.
   status:
     needs: story
     if: always() && needs.story.outputs.status == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 240
-    # Evening runs and slot=status dispatches are in different workflow queues; this job queues per festival day so two
-    # runs never make the same status Short at once (7 Nov 2026: Diwali uploaded twice). A queued run then skips via log.md.
+    # Evening runs and slot=status dispatches are in different workflow queues; this job queues per day so two runs never
+    # make the same status Short at once (7 Nov 2026: Diwali uploaded twice). A queued run then skips via log.md.
     concurrency:
       group: shyam-status-${{ needs.story.outputs.status_day }}
       cancel-in-progress: false
@@ -861,6 +875,7 @@ jobs:
       SUB_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
       MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
       MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      KALYUG: ${{ vars.KALYUG }}
       W: story/status/work
       SPS_WORKERS_AI: ${{ inputs.force_fallback && '0' || '' }}
     steps:
@@ -868,25 +883,23 @@ jobs:
         with:
           ref: main
 
-      - name: Festival day
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # What is due now (scripts/status-engine.mjs due): variants of one festival, minus those already in log.md, those the
+      # 3-a-day cap dropped and those whose time has passed. slot=status + status_date = all variants of that festival.
+      - name: Festival status variants due
         id: d
         run: |
           git fetch -q origin main && git checkout -q origin/main -- automation/log.md
-          day="${{ inputs.status_date }}"
-          [ -n "$day" ] || day=$(TZ=Asia/Kolkata date -d tomorrow +%F)
-          f="story/status/$day.json"
-          [ -f "$f" ] || { echo "::notice::No festival status video planned for $day"; exit 0; }
-          if grep -q "^$day | status |" automation/log.md && [ "${{ inputs.dry_run }}" != true ]; then
-            echo "::notice::The $day status video is already scheduled"; exit 0
-          fi
-          echo "day=$day" >> "$GITHUB_OUTPUT"
+          fam="${{ inputs.status_date }}"
+          node scripts/status-engine.mjs due ${fam:+--family "$fam"} ${{ inputs.dry_run && '--dry' || '' }} --out "$RUNNER_TEMP/status" > "$RUNNER_TEMP/due.out"
+          node -e 'const d=require(process.argv[1]); console.log(`- Status engine (${d.now_ist} IST): ${d.variants.length ? d.variants.map((v) => `${v.day} ${v.at} ${v.slot} "${v.title}"`).join("; ") : "nothing due"}${d.skipped.length ? `; skipped: ${d.skipped.join("; ")}` : ""}`)' "$RUNNER_TEMP/status/due.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          day=$(node -p "require('$RUNNER_TEMP/status/due.json').family || ''")
+          [ -n "$day" ] || { echo "::notice::No festival status Short due now"; exit 0; }
           echo "GO=1" >> "$GITHUB_ENV"
-          echo "SLUG=$(node -p "require('./$f').slug")" >> "$GITHUB_ENV"
-
-      - uses: actions/setup-node@v4
-        if: env.GO == '1'
-        with:
-          node-version: 22
+          echo "SLUG=$(node -p "require('$RUNNER_TEMP/status/due.json').base_slug")" >> "$GITHUB_ENV"
 
       - name: Restore the day's images and clips
         if: env.GO == '1'
@@ -896,8 +909,8 @@ jobs:
           key: status-${{ steps.d.outputs.day }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: status-${{ steps.d.outputs.day }}-
 
-      # The checked-in spec is the source of truth; accepted clips from an earlier run (e.g. the dry run) are kept when
-      # their scene's prompt is unchanged.
+      # The festival's base spec is the source of truth; accepted clips from an earlier run (the evening before, a dry run)
+      # are kept when their scene's prompt is unchanged. The base itself is never uploaded; its variants are validated.
       - name: Spec
         if: env.GO == '1'
         run: |
@@ -913,8 +926,7 @@ jobs:
             });
             fs.writeFileSync(dst, JSON.stringify(spec, null, 2) + "\n");
             console.log(JSON.stringify({ slug: spec.slug, clips_kept: kept }));
-            if (kept) fs.appendFileSync(process.env.GITHUB_ENV, "HAVE_CLIPS=1\n");' "story/status/${{ steps.d.outputs.day }}.json" "$W/scenes.json"
-          node scripts/validate.mjs --soft-topics "$W/scenes.json"  # spoken-style warnings (long sentences) never stop a post
+            if (kept) fs.appendFileSync(process.env.GITHUB_ENV, "HAVE_CLIPS=1\n");' "$RUNNER_TEMP/status/family.json" "$W/scenes.json"
 
       - uses: actions/setup-python@v5
         if: env.GO == '1'
@@ -957,7 +969,7 @@ jobs:
           node animate/frames.mjs "$W/scenes.json" --wait 40
 
       # Same Kaggle path as the evening Short (Wan 2.2 TI2V-5B, private kernel sps-animate-status, T4 x2), only for the
-      # scenes marked `animate` and only when no accepted clips are cached yet. Any failure: FLUX still + zoompan.
+      # base scenes marked `animate` (max 3) and only when no accepted clips are cached yet. Any failure: FLUX still + zoompan.
       - name: Animate (Kaggle GPU)
         if: env.GO == '1' && env.HAVE_CLIPS != '1'
         continue-on-error: true
@@ -984,13 +996,6 @@ jobs:
           echo "- Kaggle: $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min, quota before: $(cat "$RUNNER_TEMP/quota.json")" >> "$GITHUB_STEP_SUMMARY"
           node animate/check-clips.mjs "$W/scenes.json" --clips "$W/clips" --plan "$plan" --stills "$W/stills" --summary "$GITHUB_STEP_SUMMARY"
 
-      - name: Render
-        id: render
-        if: env.GO == '1'
-        run: |
-          node story/render-story.mjs "$W/scenes.json" | tee "$RUNNER_TEMP/render.txt"
-          ffprobe -v error -show_entries format=duration:stream=width,height -of compact "$W/out/$SLUG.mp4" | tee -a "$GITHUB_STEP_SUMMARY"
-
       - name: Save the day's images and clips
         if: always() && env.GO == '1'
         uses: actions/cache/save@v4
@@ -998,93 +1003,92 @@ jobs:
           path: story/status/work
           key: status-${{ steps.d.outputs.day }}-${{ github.run_id }}-${{ github.run_attempt }}
 
-      - name: Keep the video as an artifact (7 days)
-        if: steps.render.outcome == 'success'
-        uses: actions/upload-artifact@v4
-        with:
-          name: status-${{ env.SLUG }}
-          path: |
-            story/status/work/out/
-            story/status/work/scenes.json
-          retention-days: 7
-          compression-level: 0
-
-      # Download link: the mp4 on the media Worker (KV, 7 days). Then the festival card link (only once that page is live).
-      - name: Host the download and add links
-        id: host
-        if: steps.render.outcome == 'success'
-        run: |
-          node scripts/publish.mjs --host-only --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" | tee "$RUNNER_TEMP/host.json"
-          url=$(node -p "JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/host.json','utf8')).video_url||''")
-          [ -n "$url" ] || { echo "::error::media upload failed"; exit 1; }
-          node -e '
-            const fs = require("fs"), [f, url] = process.argv.slice(1), s = JSON.parse(fs.readFileSync(f, "utf8"));
-            const line = `Status video download karein (7 din tak, free): ${url}`;
-            for (const k of ["youtube_description", "instagram_caption", "facebook_caption"])
-              if (s[k] && !s[k].includes(url)) s[k] = s[k].replace(/\n\n/, `\n\n${line}\n\n`);
-            fs.writeFileSync(f, JSON.stringify(s, null, 2) + "\n");' "$W/scenes.json" "$url"
-          node scripts/festival-links.mjs "$W/scenes.json"
-          echo "- Download link: $url" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Claim the upload
-        id: claim
-        if: steps.host.outcome == 'success' && !inputs.dry_run
-        run: node scripts/upload-guard.mjs claim --day "${{ steps.d.outputs.day }}" --slot status --slug "$SLUG"
-
-      - name: YouTube (public at 06:00 IST on the festival day)
-        id: yt
-        if: steps.host.outcome == 'success' && !inputs.dry_run && steps.claim.outputs.go == 'true'
+      # One variant at a time: spec (status-engine variants) -> validate -> render (loop) -> host + download link ->
+      # festival links (17-20 Nov Janmotsav card) -> claim -> YouTube (publishAt) -> Facebook Reel + Instagram queue ->
+      # log.md / published.md (committed per variant). A failed variant releases its claim; the others still go out.
+      - name: Variants (render, host, upload, record)
+        id: variants
+        if: env.GO == '1'
         env:
+          # each variant scene points at the base's upscaled still itself (scene.image); no index-based stills lookup
+          STILLS_DIR: story/status/work/no-stills
+          DRY: ${{ inputs.dry_run }}
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-        run: |
-          at="${{ steps.d.outputs.day }}T$(node -p "require('./$W/scenes.json').publish_at || '06:00'")"
-          node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --publish-at "$at" | tee "$RUNNER_TEMP/yt.json"
-          grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"
-
-      # Facebook Reel scheduled for the same time; Instagram queued ("ig: pending") for the `instagram` job.
-      - name: Facebook and Instagram (Graph API)
-        id: meta
-        if: steps.yt.outcome == 'success'
-        continue-on-error: true
-        env:
           META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: |
-          [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
-          grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" && { echo "::notice::YouTube already had it (earlier run): no second Facebook/Instagram post"; exit 0; }
-          at="${{ steps.d.outputs.day }}T$(node -p "require('./$W/scenes.json').publish_at || '06:00'")"
-          node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" \
-            --video-url "$MEDIA_URL/m/$SLUG.mp4" --publish-at "$at" | tee "$RUNNER_TEMP/meta.json" || true
-
-      - name: Dry run summary
-        if: inputs.dry_run && steps.render.outcome == 'success'
-        run: |
-          at="${{ steps.d.outputs.day }}T$(node -p "require('./$W/scenes.json').publish_at || '06:00'")"
-          node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --publish-at "$at" --dry-run > "$RUNNER_TEMP/yt-dry.json"
-          node -e 'const j=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")); console.log(`- Dry run: would upload "${j.title}" with publishAt ${j.publishAt}\n\n\`\`\`\n${j.description}\n\`\`\``)' "$RUNNER_TEMP/yt-dry.json" >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Record
-        if: steps.yt.outcome == 'success'
-        run: |
-          mkdir -p story/published
-          cp "$W/scenes.json" "story/published/$SLUG.json"
-          yt=$(node -p "const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')).youtube; y.url+' (public at '+y.publishAt+')'")
-          fest=$(node -p "require('./$W/scenes.json').festival")
-          echo "${{ steps.d.outputs.day }} | status | $SLUG | $fest | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST" >> automation/log.md
-          social=$(node -p "try{' | social: '+JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/meta.json','utf8')).summary}catch{''}")
-          echo "- $SLUG | youtube: $yt | status video, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
+          node scripts/status-engine.mjs variants --base "$W/scenes.json" --due "$RUNNER_TEMP/status/due.json" > "$RUNNER_TEMP/variants.tsv"
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add automation/log.md automation/published.md "story/published/$SLUG.json"
-          git commit -qm "Status $SLUG"
-          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
+          j() { node -p "try{const j=JSON.parse(require('fs').readFileSync('$1','utf8'));$2}catch{''}"; }
+          variant() {
+            local file="$1" slug="$2" day="$3" slot="$4" at="$5"
+            node scripts/validate.mjs --soft-topics "$file" || { echo "::error::$slug failed validation"; return 1; }
+            node story/render-story.mjs "$file" > "$RUNNER_TEMP/render.txt" 2>&1 || { tail -30 "$RUNNER_TEMP/render.txt"; echo "::error::$slug render failed"; return 1; }
+            tail -3 "$RUNNER_TEMP/render.txt"
+            echo "- $slug: $(ffprobe -v error -show_entries format=duration -of csv=p=0 "$W/out/$slug.mp4") s, public $day $at IST" >> "$GITHUB_STEP_SUMMARY"
+            node scripts/publish.mjs --host-only --video "$W/out/$slug.mp4" --scenes "$file" > "$RUNNER_TEMP/host.json" || true
+            url=$(j "$RUNNER_TEMP/host.json" "j.video_url||''")
+            [ -n "$url" ] || { echo "::error::$slug: media upload failed"; return 1; }
+            node -e '
+              const fs = require("fs"), [f, url] = process.argv.slice(1), s = JSON.parse(fs.readFileSync(f, "utf8"));
+              const line = `Status video download karein (7 din tak, free): ${url}`;
+              for (const k of ["youtube_description", "instagram_caption", "facebook_caption"])
+                if (s[k] && !s[k].includes(url)) s[k] = /\n\n/.test(s[k]) ? s[k].replace(/\n\n/, `\n\n${line}\n\n`) : `${s[k]}\n\n${line}`;
+              fs.writeFileSync(f, JSON.stringify(s, null, 2) + "\n");' "$file" "$url"
+            node scripts/festival-links.mjs "$file" || true
+            if [ "$DRY" = true ]; then
+              node scripts/youtube.mjs upload --video "$W/out/$slug.mp4" --scenes "$file" --publish-at "${day}T${at}" --dry-run > "$RUNNER_TEMP/yt-dry.json" || true
+              echo "  - dry run: would upload \"$(j "$RUNNER_TEMP/yt-dry.json" "j.title")\" with publishAt $(j "$RUNNER_TEMP/yt-dry.json" "j.publishAt||'now'"); download $url" >> "$GITHUB_STEP_SUMMARY"
+              return 0
+            fi
+            node scripts/upload-guard.mjs claim --day "$day" --slot "$slot" --slug "$slug" > "$RUNNER_TEMP/claim.json"
+            grep -q '"go":true' "$RUNNER_TEMP/claim.json" || { echo "::notice::$slug not uploaded: $(head -c 300 "$RUNNER_TEMP/claim.json")"; return 0; }
+            if ! node scripts/youtube.mjs upload --video "$W/out/$slug.mp4" --scenes "$file" --publish-at "${day}T${at}" > "$RUNNER_TEMP/yt.json" || ! grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"; then
+              echo "::error::$slug: YouTube upload failed: $(head -c 300 "$RUNNER_TEMP/yt.json")"
+              node scripts/upload-guard.mjs release --day "$day" --slot "$slot" --slug "$slug" --reason "YouTube upload failed"
+              return 1
+            fi
+            rm -f "$RUNNER_TEMP/meta.json"
+            if [ -n "$META_PAGE_TOKEN" ] && ! grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json"; then
+              node scripts/meta.mjs short --video "$W/out/$slug.mp4" --scenes "$file" --video-url "$MEDIA_URL/m/$slug.mp4" --publish-at "${day}T${at}" > "$RUNNER_TEMP/meta.json" || true
+            fi
+            mkdir -p story/published
+            cp "$file" "story/published/$slug.json"
+            yt=$(j "$RUNNER_TEMP/yt.json" "const y=j.youtube; y.url+(y.publishAt?' (public at '+y.publishAt+')':' (public now)')")
+            fest=$(j "$file" "j.festival")
+            social=$(j "$RUNNER_TEMP/meta.json" "' | social: '+j.summary")
+            echo "$day | $slot | $slug | $fest | status Short variant $(j "$file" "j.variant") \"$(j "$file" "j.youtube_title.split(' | ')[0]")\" (15-25 s loop, download link), public $at IST" >> automation/log.md
+            echo "- $slug | youtube: $yt | status variant, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
+            git add automation/log.md automation/published.md "story/published/$slug.json"
+            git commit -qm "Status $slug"
+            for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
+            echo "  - uploaded: $yt$social" >> "$GITHUB_STEP_SUMMARY"
+          }
+          failed=0
+          while IFS=$'\t' read -r file slug day slot at; do
+            [ -n "$slug" ] || continue
+            echo "::group::$slug ($day $slot $at)"
+            variant "$file" "$slug" "$day" "$slot" "$at" < /dev/null || failed=1
+            echo "::endgroup::"
+          done < "$RUNNER_TEMP/variants.tsv"
+          exit $failed
 
-      - name: Release the claim after a failed upload
-        if: always() && steps.claim.outputs.go == 'true' && steps.yt.outcome != 'success'
-        run: node scripts/upload-guard.mjs release --day "${{ steps.d.outputs.day }}" --slot status --slug "$SLUG" --reason "YouTube ${{ steps.yt.outcome }}"
+      - name: Keep the videos as an artifact (7 days)
+        if: always() && env.GO == '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: status-${{ steps.d.outputs.day }}-${{ github.run_id }}
+          path: |
+            story/status/work/out/
+            story/status/work/v-*.json
+            story/status/work/scenes.json
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: ignore
 
   # Mini-movie series (STORY.md section 7, story/movies/<series>/, automation/movie-series.md): after every evening-slot
   # run (and alone with slot=movie) the next due part is made a day or more before its release: edge-tts voices per

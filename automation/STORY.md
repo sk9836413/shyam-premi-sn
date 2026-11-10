@@ -6,14 +6,26 @@ section 5) or the Dadi-Chhotu Short (slot `noon`, section 6).
 
 **At most 3 YouTube uploads a day (owner, 9 Nov 2026).** At 3-4 uploads a day (2-6 Nov) Shorts got hundreds of views;
 at 5-6 a day (7-9 Nov) they fell to 0-15, most likely YouTube's repetitive / mass-produced AI content signals. So every
-upload must be high quality and clearly different, and the workflow (`scripts/day-plan.mjs`) runs only these slots:
+upload must be high quality and clearly different.
 
-| Day type | Upload 1 | Upload 2 | Upload 3 |
-|---|---|---|---|
-| Normal day | `morning` Short (animated temple/darshan or a strong katha, 21-35 s) | `evening` darshan (19:00 IST) | Mon and Fri: `long` (15:00 IST); Wed: `noon` Dadi-Chhotu (15:00 IST); other days nothing |
-| Festival day (`automation/calendar.md`) | festival status Short (06:00 IST) | `morning` festival Short | `evening` darshan; no long, no noon |
-| Movie day (an approved series' release) | the movie part (07:00 IST) replaces the `morning` Short | `evening` darshan | the status Short when it is also a festival (20 Nov Janmotsav); nothing else |
-| Kalyug day (Tue/Thu/Sat normal day, `KALYUG=on`) | the "Kalyug ke Bhagwan" episode (08:00 IST, section 8) replaces the `morning` Short | `evening` darshan | nothing else |
+**Re-plan around what goes viral (owner, 11 Nov 2026; data of all 109 videos).** Festival "status" Shorts average 154
+views (Choti Diwali Status 2026: 798, Dhanteras Status: 456; the big festivals, out the night before or just after
+midnight); famous-temple darshan Shorts 60 (Moravinandan Khatu Shyam 173, Shakambhari Sakrai 163, Salasar Balaji 133);
+katha Shorts 18, the worst: **no more katha Shorts**. Generic "X Darshan" Shorts of the last days got 1-10. The workflow
+(`scripts/day-plan.mjs`) fills every day by priority, max 3:
+
+| Priority | Upload | Made by |
+|---|---|---|
+| 0 | the mini-movie part, 07:00 (17-20 Nov) | `movie` job (section 7) |
+| 1 | festival status Shorts: `eve` 20:00 the evening before, `status` 00:30 on the day, `statusday` 08:30 (big festivals) | `status` job, `scripts/status-engine.mjs` (no action from you) |
+| 2 | `morning`: on normal days the weekday **day status** Short (Somvar Mahadev, Mangalvar Hanuman/Salasar Balaji, Budhvar Ganesh, Guruvar Vishnu/Sai, Shukravar Lakshmi/Santoshi, Shanivar Shani dev, Ravivar Surya; Ekadashi: Gyaras Khatu Shyam) | the status engine (no action from you) |
+| 2 | `morning` on other festival days: a **famous-temple darshan** Short tied to the festival's deity | you (sections 1-4) |
+| 3 | `evening` 19:00: a **famous-temple darshan** Short | you (sections 1-4) |
+| 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`) | `kalyug` job (section 8) |
+| 5 | `long` katha video Mon/Fri 15:00; `noon` Dadi-Chhotu Wed 15:00 | you (sections 5, 6) |
+
+Anything below the first three that day is left out (the prompt tells you your slot's plan). Movie days and big-festival
+days have no `morning` Short of yours.
 
 `scripts/upload-guard.mjs` skips (and logs) any 4th YouTube upload of an IST date. Everything published is in the brand's name only. There is no human review, so every
 rule below is a hard requirement.
@@ -56,7 +68,8 @@ Work out today's date in India (IST) and pick the subject in this order:
    morning by `scripts/trend-signals.mjs` from YouTube autocomplete (Roman and Devanagari), Google Trends India and our
    own channel numbers (if today's file is missing, use the newest one in that folder). Read its first 100 lines: the
    **Recommended topics** list is ranked, and each item names a format, the exact search phrase in Roman and
-   Devanagari, and the evidence. Take the highest-ranked item whose format fits this slot (`morning katha` = morning,
+   Devanagari, and the evidence. Take the highest-ranked item whose format fits this slot (`morning temple darshan` or
+   `morning katha` = morning, but write it as a temple darshan,
    `evening darshan` = evening, `noon Dadi-Chhotu` = noon, `long part` = long) and that passes every rule in this file.
    On a festival day the festival stays the subject: use the file to pick its angle and search phrase.
    - **Title:** use the item's search phrase naturally: in `youtube_title` the Roman phrase first, ` | `, then the
@@ -73,17 +86,22 @@ Work out today's date in India (IST) and pick the subject in this order:
    Hanuman ji, Sunday Surya dev. At least twice a week, choose a **Khatu Shyam ji (Barbarika)**
    story instead: Khatu Shyam ji is the channel's main deity.
 
-4. **Famous temples (Mandir series).** On 4 days a week, when there is no festival, make the `evening`
-   darshan Short about a temple from `automation/mandir-series.md` instead of Khatu Shyam ji: its name,
-   place and one well-sourced fact, following that file's accuracy and **sati-temple rules**. People
-   search for these temples by name, so put the temple name first in the title, in Roman and Devanagari.
+4. **Famous temples (Mandir series).** The `evening` Short (and the `morning` Short on festival days) is a
+   **famous-temple darshan**: a well-known temple people search for by name (Khatu Shyam ji at least twice a week:
+   Moravinandan Khatu Shyam got 173 views; Salasar Balaji, Shakambhari Mata Sakrai, Mehandipur Balaji, Jeen Mata,
+   Somnath, Mahakaleshwar, Kashi Vishwanath, Banke Bihari, Nathdwara Shrinathji, ... from
+   `automation/mandir-series.md`): its name, place and one well-sourced fact, following that file's accuracy and
+   **sati-temple rules**. Put the temple name first in the title, in Roman and Devanagari, plus Darshan
+   ("Salasar Balaji Dham Darshan | सालासर बालाजी धाम दर्शन #Shorts"). Never a generic "<Deity> Darshan" without a temple:
+   those got 1-10 views. On a festival day pick a famous temple of that festival's deity (Ekadashi: a Vishnu/Krishna
+   temple; Pradosh/Shivratri: a Jyotirlinga; Sankashti: a famous Ganesh temple).
 
 **Growth data (3 Nov 2026):** the first temple Short (Salasar Balaji Dham) got 123 views and 19 likes overnight, the channel's best in weeks, and short darshan clips beat long kathas. Favour temple and darshan Shorts, and use **festival weeks** (Dhanteras, Diwali, Govardhan, Bhai Dooj, Dev Uthani Ekadashi = Khatu Shyam Janmotsav) with the festival name first in the title, because search volume peaks then. The owner's goal is mass subscribers: end every Short with a clear subscribe ask tied to the next video ("kal [temple/katha] dekhne ke liye subscribe karein").
 
 **Khatu Shyam Baba Janmotsav countdown (15-19 Nov 2026).** The Janmotsav is on Dev Uthani Ekadashi, **20 Nov 2026**
-(calendar.md), the channel's biggest day. On the 5 days before it the `evening` darshan Short (and a `noon` Dadi-Chhotu Short, if one
-runs that day: Wednesdays of normal days only) count down to it (this overrides the temple rotation and, for these two slots, the Chhath days; the `morning` slot
-keeps the festival). Put the countdown in `kicker` (`Janmotsav: 5 din`, ... `Janmotsav: kal`) and end with "Janmotsav
+(calendar.md), the channel's biggest day. On the days before it the `evening` darshan Short counts down to it whenever
+it runs (16, 17, 18 and 19 Nov; 15 Nov has two Chhath status Shorts, so no evening Short); this overrides the temple
+rotation. The Janmotsav status Shorts go out on their own (18 + 19 Nov 20:00, 20 Nov 00:30 + 08:30; janmotsav-promo.md). Put the countdown in `kicker` (`Janmotsav: 5 din`, ... `Janmotsav: kal`) and end with "Janmotsav
 tak roz dekhiye". One angle per day, each different from what log.md already has (tell a new part, not a repeat):
 - 15 Nov: who Barbarik was (Ghatotkach and Maurvi's son, the three arrows boon), as Mahabharat lok katha.
 - 16 Nov: Barbarik's vow to side with the losing side and the sheesh daan to Shri Krishna (new details, not the 27 Oct / 3 Nov lines).
@@ -91,8 +109,9 @@ tak roz dekhiye". One angle per day, each different from what log.md already has
 - 18 Nov: Khatu Shyam ji temple history and architecture (the rebuilding, the town, Shyam Kund), from the trust,
   Rajasthan Tourism or the Sikar district site plus one more source.
 - 19 Nov: why the Janmotsav is on Dev Uthani Ekadashi, and how it is celebrated (shringar, nishan, kirtan): sourced, no
-  crowd numbers or timings. The 19 Nov evening ends with "kal Baba ka Janmotsav hai". 20 Nov (a movie day): the status Short
-  (story/status/2026-11-20.json) at 06:00 IST, Part 4 at 07:00 and the evening darshan: 3 uploads, no long video.
+  crowd numbers or timings. The 19 Nov evening ends with "kal Baba ka Janmotsav hai". 20 Nov (a movie day): the
+  Janmotsav status Short at 00:30, Part 4 at 07:00 and a second Janmotsav status Short at 08:30: 3 uploads, no evening
+  Short, no long video.
 - **17-20 Nov mornings are the mini-movie "Khatu Shyam ji ki Amar Katha" (section 7), Parts 1-4 at 07:00 IST**, made
   ahead by the `movie` job. On those days the morning run writes nothing (log.md already has `<date> | movie |`), and the
   evening countdown must not retell the same scene: Part 1 = birth, vow, three arrows; Part 2 = the Brahmin's peepal
@@ -167,18 +186,21 @@ katha scene as real, and never call an AI image real. A `real` scene with a phot
 other scenes (darshan, katha). For a temple not in temples.json, still set `temple`; the photo search is strict and
 usually finds nothing, which is fine.
 
-**Festival status Shorts (no action needed).** For Dhanteras to Chhath and the Khatu Shyam Janmotsav, a separate 15-30 s
-"WhatsApp status" Short is pre-written in `story/status/<date>.json` and published at 06:00 IST by the workflow's
-`status` job. It does not use a slot or a log line of yours; do not duplicate it.
+**Festival status Shorts and day status Shorts (no action needed).** The status engine (`scripts/status-engine.mjs`,
+calendar `automation/festivals.json`, two panchang sources per date) makes every festival's 15-25 s loopable "<Festival>
+Status 2026 | <Hindi> स्टेटस वीडियो #Shorts" Shorts (20:00 the evening before, 00:30 on the day, 08:30 on big festivals)
+and the weekday day status Shorts of the `morning` slot. They are in log.md as `eve`, `status`, `statusday` and
+`morning` lines. Never make a status Short yourself and never repeat their festival/weekday title words: your Short is
+a temple darshan.
 
 **Slot.** The prompt tells you the slot (the table at the top says which slots run on which days):
-- `morning` (published when ready, about 10:30 IST): the subject chosen above, as an **animated temple/darshan Short
-  or a strong katha of 21-35 s**: 4-6 scenes, at most 380 characters of narration, the hook rules below (deity/temple
-  name first). Pick the single most striking moment or fact, not the whole story: the long video tells full kathas.
-- `evening` (published about 19:00 IST): a **darshan Short** of 25-35 s, usually Khatu Shyam ji:
-  4-5 scenes (a darshan image, one line of bhav or a short fact/leela, the mantra or jaikara, end card),
-  calm and beautiful rather than a full story. It must differ from this morning's video: check today's
-  `morning` line in `automation/log.md`. On a big festival day both slots may cover the festival.
+- `morning` (you write it only on festival days that are not Ekadashi or big festivals; published when ready, about
+  10:30 IST): a **famous-temple darshan Short** of 21-35 s tied to the festival's deity: 4-6 scenes, at most 380
+  characters of narration, the hook rules below (temple name first). No katha Shorts (owner, 11 Nov 2026).
+- `evening` (published about 19:00 IST): a **famous-temple darshan Short** of 25-35 s (Khatu Shyam ji at least twice a
+  week): 4-5 scenes (the temple/darshan close-up, one well-sourced fact or the bhav, the mantra or jaikara, end card),
+  calm and beautiful rather than a story. It must differ from this morning's video and the day's status Shorts: check
+  today's lines in `automation/log.md`.
 - `noon` (Wednesdays of normal days only since 10 Nov 2026, public at 15:00 IST): the **"Dadi aur Chhotu"**
   cartoon dialogue Short, 90-120 s. It has its own format and rules: **section 6**. Sections 3-4 do not apply to it.
 
@@ -527,7 +549,8 @@ ahead by the `movie` job (after the evening run) and goes out at **07:00 IST on 
 Short** (YouTube publishAt, Facebook scheduled Page video, Instagram queued Reel). Owner, 6 Nov 2026: first series
 "Khatu Shyam ji ki Amar Katha" on 17-20 Nov; then movies for all temples, one part a day, replacing the morning katha
 (only once the owner approved the pilot and the repo variable `MOVIE_DAILY=on` is set). On a movie day the part is one
-of the day's 3 uploads: evening darshan (+ the status Short on a festival day), no long video and no noon Short.
+of the day's 3 uploads: the movie part comes first, then status Shorts, then the evening darshan (day-plan priority);
+no long video, no noon Short and no Kalyug episode on a movie day.
 
 **Queue.** `automation/movie-series.md`: series in order (mandir-series.md order; a festival in the next 7 days or a
 `trends` topic may jump the queue), each with its parts, sources and status. Finish a series before starting the next.
@@ -573,16 +596,17 @@ footage/<temple>/ has them; never call an AI image real.
 
 Validate with `node scripts/validate.mjs story/movies/<series>/part-<n>.json`. Do not render, upload, commit or push.
 
-## 8. "Kalyug ke Bhagwan" (morning slot on Tue/Thu/Sat normal days; job `kalyug`)
+## 8. "Kalyug ke Bhagwan" (08:00 on Tue/Thu/Sat when it fits; job `kalyug`)
 
 Owner, 9 Nov 2026: **cute, fully animated 3D cartoon deities (Pixar-like family-movie look) in everyday roles**, with
 lip-sync. A child or parent has a relatable modern problem; the deity, gentle, wise or playful, gives a short lesson
 rooted in a well-known katha, shloka or value. 30-60 s vertical Shorts. With the repo variable `KALYUG=on`, the
-episode is the **morning Short of every Tuesday, Thursday and Saturday that is a normal day** (`scripts/day-plan.mjs`):
-it replaces the morning Short, so the day stays within 3 uploads (episode 08:00 + evening darshan). Festival days keep
-their festival content, movie days (17-20 Nov) the movie. The `kalyug` job makes TOMORROW's episode the evening before
-(after the evening run, outside the Kaggle windows) and schedules it (YouTube publishAt 08:00, Facebook scheduled,
-Instagram queued); if it fails, the morning Short runs as usual.
+episode goes out at 08:00 on **Tuesday, Thursday and Saturday when it fits under the 3-a-day cap** (`scripts/day-plan.mjs`,
+owner 11 Nov 2026: status and temple Shorts come first): beside the morning day status Short and the evening temple
+darshan, not instead of them. A day with a festival status Short (or the evening before one), a festival day and a
+movie day (17-20 Nov) has no episode. The `kalyug` job makes TOMORROW's episode the evening before (after the evening
+run, outside the Kaggle windows) only when tomorrow's plan has it, and schedules it (YouTube publishAt 08:00, Facebook
+scheduled, Instagram queued).
 
 **Characters** (`characters/kalyug/cast.json`; one canonical portrait `<id>.png` + one base clip `clips/<id>.mp4` each,
 picked by a person, never regenerated; voices fixed): `bal-ganesh` (big ears, short curled trunk, one broken tusk,

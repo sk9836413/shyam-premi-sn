@@ -32,6 +32,8 @@ const OUT = option('--out') || `automation/trends/${DATE}.md`;
 const notes = [];
 const note = (s) => { notes.push(s); console.error(s); };
 const read = (f) => { try { return fs.readFileSync(f, 'utf8').replace(/\r\n/g, '\n'); } catch { return ''; } };
+// Festivals whose status Shorts the status engine makes (automation/festivals.json, tier big/status).
+const statusDates = () => { try { return new Set(JSON.parse(read('automation/festivals.json')).festivals.filter((x) => x.tier !== 'info').map((x) => x.date)); } catch { return new Set(); } };
 
 // ---------- Devanagari forms (word by word; a phrase with an unknown word has no form) ----------
 const PHRASES = {
@@ -276,8 +278,8 @@ function formatOf(phrase, fallback) {
   if (/katha|kahani|story|vrat/.test(phrase)) return 'morning katha';
   return fallback;
 }
-const FORMAT_SLOT = { 'morning katha': 'morning', 'evening darshan': 'evening', 'noon Dadi-Chhotu': 'noon', 'long part': 'long', 'festival status': 'status' };
-const FORMAT_TAG = { 'morning katha': 'katha', 'evening darshan': 'darshan', 'noon Dadi-Chhotu': 'Dadi-Chhotu', 'long part': 'long', 'festival status': 'status' };
+const FORMAT_SLOT = { 'morning temple darshan': 'morning', 'morning katha': 'morning', 'evening darshan': 'evening', 'noon Dadi-Chhotu': 'noon', 'long part': 'long', 'festival status': 'status' };
+const FORMAT_TAG = { 'morning temple darshan': 'darshan', 'morning katha': 'katha', 'evening darshan': 'darshan', 'noon Dadi-Chhotu': 'Dadi-Chhotu', 'long part': 'long', 'festival status': 'status' };
 
 function recentLog(days) {
   const since = addDays(DATE, -days);
@@ -327,15 +329,17 @@ function recommend({ sugg, rising, cal, temps, ch, stats, trends }) {
       const seed = name.toLowerCase();
       const why = [`${name} on ${fmtDay(f.date)} (calendar.md)`];
       const subjectWord = seed.split(' ')[0];
-      const katha = best(seed, /katha|kahani|story/) || `${seed} ki katha`;
-      add({ format: 'morning katha', when: fmtDay(f.date), seed, phrase: katha, subjectWord, why, score: 100 - away * 6 });
+      // Katha Shorts are cut (owner, 11 Nov 2026: avg 18 views); on a festival day the morning Short is a temple darshan.
+      const darshan = best(seed, /darshan|mandir|temple|dham/) || `${seed} darshan`;
+      add({ format: 'morning temple darshan', when: fmtDay(f.date), seed, phrase: darshan, subjectWord, why, score: 100 - away * 6 });
       const kyu = best(seed, /kyu|kyon|kyun|kaise|kab hai/) || `${seed} kyu manate hai`;
       if (away <= 1) add({ format: 'noon Dadi-Chhotu', when: fmtDay(f.date), seed, phrase: kyu, subjectWord, why, score: 92 - away * 6 });
       if (away >= 1) add({ format: 'long part', when: `${fmtDay(addDays(f.date, -1))} (eve of ${name})`, seed, phrase: best(seed, /katha|kahani|itihas/) || `${seed} ki katha`, subjectWord, why, score: 80 - away * 5 });
       const st = best(seed, /status/);
       if (st) {
-        const pre = fs.existsSync(`story/status/${f.date}.json`);
-        add({ format: 'festival status', when: fmtDay(f.date), seed, phrase: st, subjectWord, why: [...why, pre ? `story/status/${f.date}.json already written (06:00 IST): title it with this phrase, don't duplicate` : 'no status Short planned yet'], score: (pre ? 55 : 75) - away * 4 });
+        // The status engine (automation/festivals.json) makes these itself: 20:00 the evening before + 00:30 on the day.
+        const pre = fs.existsSync(`story/status/${f.date}.json`) || statusDates().has(f.date);
+        add({ format: 'festival status', when: fmtDay(f.date), seed, phrase: st, subjectWord, why: [...why, pre ? 'the status engine already makes this festival\'s status Shorts (20:00 the evening before, 00:30 on the day): do not duplicate' : 'no status Short planned yet'], score: (pre ? 55 : 75) - away * 4 });
       }
     }
   }

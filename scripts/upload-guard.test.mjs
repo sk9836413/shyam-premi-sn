@@ -55,4 +55,11 @@ describe('decide', () => {
     const log = '2026-11-20 | movie | 2026-11-20-movie-k-part-4 | K | m\n2026-11-20 | morning | 2026-11-20-movie-k-part-4 | K | m\n2026-11-20 | status | 2026-11-20-status-j | J | s\n';
     assert.equal(decide({ ...d, log }).go, true);
   });
+  test('daily cap: festival status variants count on their public day (eve the evening before, status 00:30 on the day)', () => {
+    const d = { ...base, day: '2026-11-19', slot: 'evening', slug: '2026-11-19-evening-x' };
+    const pub = '- 2026-11-19-eve-khatu-shyam-janmotsav | youtube: https://youtube.com/shorts/a\n- 2026-11-20-status-dev-uthani-ekadashi | youtube: https://youtube.com/shorts/b\n';
+    const log = '2026-11-19 | movie | 2026-11-19-movie-k-part-3 | K | m\n';
+    assert.equal(decide({ ...d, log, pub }).go, true); // movie + eve = 2 on 19 Nov; the 20 Nov status does not count here
+    assert.equal(decide({ ...d, log: `${log}2026-11-19 | statusday | 2026-11-19-statusday-z | z | z\n`, pub }).go, false);
+  });
 });

@@ -10,7 +10,8 @@
 // - 6-11 Nov 2026: the EpiFive Diwali greeting card (Jai Shree Shyam theme) on the status and noon Shorts.
 // - 17-20 Nov 2026 (Khatu Shyam Janmotsav = Dev Uthani Ekadashi, Fri 20 Nov 2026; Drik Panchang + Prokerala): the
 //   EpiFive Khatu Shyam Janmotsav card tool on every upload (all slots, long video, movie and Kalyug parts) and on the
-//   festival and Khatu sandhya photo posts, with utm_source per platform (youtube / instagram / facebook).
+//   festival and Khatu sandhya photo posts, with utm_source per platform (youtube / instagram / facebook). The status
+//   engine's Janmotsav variants (eve 18 + 19 Nov 20:00, status 20 Nov 00:30, statusday 20 Nov 08:30) carry it too.
 import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
@@ -22,7 +23,7 @@ export const LINKS = [
   },
   {
     from: '2026-11-17', to: '2026-11-20',
-    slots: ['morning', 'evening', 'noon', 'status', 'long', 'movie', 'kalyug'],
+    slots: ['morning', 'evening', 'noon', 'status', 'eve', 'statusday', 'long', 'movie', 'kalyug'],
     // photo posts (photos.mjs): calendar-festival posts, the morning darshan and the Khatu sandhya aarti post
     photoKinds: ['darshan', 'aarti'],
     url: 'https://www.epifive.com/tools/khatu-shyam-janmotsav-greeting-card',

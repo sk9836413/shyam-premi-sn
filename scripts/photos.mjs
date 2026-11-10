@@ -105,7 +105,8 @@ export function festivalOn(date) {
   const file = path.join(ROOT, 'automation', 'calendar.md');
   const row = fs.readFileSync(file, 'utf8').split(/\r?\n/).find((l) => l.startsWith(`| ${date} |`));
   if (!row) return null;
-  const text = row.split('|')[2].replace(/\*\*/g, '').trim();
+  // the festival names only, not the cited sources ("Dev Diwali" in a Kartik Purnima source line is not Diwali)
+  const text = row.split('|')[2].replace(/\*\*/g, '').split(/Sources?:/)[0].trim();
   const f = FESTIVALS.find((x) => x.match.test(text));
   return f ? { ...f, calendar: text } : null;
 }

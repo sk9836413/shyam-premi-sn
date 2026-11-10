@@ -4,6 +4,8 @@
 //   scene.big     big Hindi blessing (Devanagari, gold, Yatra One)
 //   scene.line    one smaller Hindi line under it
 //   scene.mantra  optional mantra / shloka line (Tiro Devanagari Hindi, saffron)
+//   spec.cta      (loop status Shorts, scripts/status-engine.mjs) a red pill at the bottom of every scene, e.g.
+//                 "स्टेटस पर लगाएं 📲"; scene 1's big is then the bold hook ("कल है खाटू श्याम जन्मोत्सव 🙏"), sized to fit
 //   end card      spec.endline (default "Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN"), split at " | "
 // Fonts: brand/fonts (SIL OFL). Emoji: the system colour emoji font (CI installs fonts-noto-color-emoji).
 // CHROME = path to Chrome/Edge if it is not found automatically.
@@ -43,14 +45,20 @@ function html(scene, spec) {
     .e1{font-family:'Yatra','Noto Color Emoji',sans-serif;font-size:86px;line-height:1.2;color:#FFD54A;
       text-shadow:0 4px 0 #3b1500,0 6px 18px rgba(0,0,0,.9)}
     .e2{display:inline-block;margin-top:40px;padding:18px 44px;border-radius:60px;background:#c4161c;
-      font-family:'Yatra',sans-serif;font-size:60px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.6)}`;
+      font-family:'Yatra',sans-serif;font-size:60px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.6)}
+    .cta{position:absolute;left:0;right:0;bottom:26px;text-align:center}
+    .cta span{display:inline-block;padding:10px 38px;border-radius:50px;background:#c4161c;border:3px solid #FFD54A;
+      font-family:'Yatra','Noto Color Emoji',sans-serif;font-size:46px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.6)}`;
   let body;
   if (scene.endcard) {
     const [a, b] = String(spec.endline || END_LINE).split(' | ');
     body = `<div class="end"><div class="e1">${esc(a)}</div>${b ? `<div class="e2">${esc(b)}</div>` : ''}</div>`;
   } else {
-    body = `<div class="panel"></div><div class="box">${scene.big ? `<div class="big">${esc(scene.big)}</div>` : ''}` +
-      `${scene.line ? `<div class="line">${esc(scene.line)}</div>` : ''}${scene.mantra ? `<div class="mantra">${esc(scene.mantra)}</div>` : ''}</div>`;
+    const len = [...String(scene.big || '')].length;
+    const size = len <= 14 ? 118 : len <= 22 ? 100 : 84; // a long hook ("परसों है ...") still fits on two lines
+    body = `<div class="panel"></div><div class="box"${spec.cta ? ' style="bottom:150px"' : ''}>${scene.big ? `<div class="big" style="font-size:${size}px">${esc(scene.big)}</div>` : ''}` +
+      `${scene.line ? `<div class="line">${esc(scene.line)}</div>` : ''}${scene.mantra ? `<div class="mantra">${esc(scene.mantra)}</div>` : ''}</div>` +
+      `${spec.cta ? `<div class="cta"><span>${esc(spec.cta)}</span></div>` : ''}`;
   }
   return `<!doctype html><html><head><meta charset="utf-8"><style>${css}</style></head><body>${body}</body></html>`;
 }

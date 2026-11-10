@@ -1,0 +1,718 @@
+{
+  "about": "Festival status engine calendar, 11 Nov 2026 - 31 Jan 2027 (scripts/status-engine.mjs, scripts/day-plan.mjs). Every date was checked on 11 Nov 2026 for New Delhi in two panchang sources (D = drikpanchang.com, Smarta, Purnimanta; P = prokerala.com with loc=1261481 = New Delhi); the second source is named where prokerala has no page. tier big = 3 status variants (evening before 20:00, 00:30, 08:30; Janmotsav 4), status = 2 (evening before 20:00, 00:30), info = in the calendar for the story writer only (no status Short). names: one per variant in time order (title '<en> Status <year> | <hi> स्टेटस वीडियो #Shorts'). theme: scripts/status-themes.mjs; spec: a hand-written base spec that replaces the theme. automation/calendar.md is generated from this file (node scripts/status-engine.mjs calendar).",
+  "sources": {
+    "D": "https://www.drikpanchang.com (month lists /festivals/month/festivals-<month>.html?year=YYYY; /vrats/ekadashidates.html, /vrats/pradoshdates.html, /vrats/masik-shivaratri-dates.html, /vrats/purnimasidates.html, /vrats/amavasyadates.html, /vrats/sankashti-chaturthi-dates.html; /sankranti/makar-sankranti-date-time.html?year=2027)",
+    "P": "https://www.prokerala.com (?loc=1261481 = New Delhi; month grid /general/calendar/hinducalendar.php?year=YYYY&mon=<month>&sb=1&loc=1261481; festival pages /festivals/<slug>.html?loc=1261481)"
+  },
+  "excluded": [
+    "Mauni Amavasya 2027 = Sat 6 Feb 2027 (D 'Mauni Amavas'; P mauni-amavasya.html): after 31 Jan, not in this window.",
+    "Basant (Vasant) Panchami 2027 = Thu 11 Feb 2027 (D 'Vasant Panchami'; P basant-panchami.html): after 31 Jan, not in this window.",
+    "Shattila Ekadashi 2027 = Tue 2 Feb 2027 (D only): after 31 Jan.",
+    "Guru Nanak Jayanti (24 Nov 2026, D + P): another faith's festival, not used for status Shorts on this devotional channel."
+  ],
+  "festivals": [
+    {
+      "date": "2026-11-11",
+      "key": "bhai-dooj",
+      "tier": "status",
+      "spec": "story/status/2026-11-11.json",
+      "label": "Bhai Dooj (Yam Dwitiya)",
+      "names": [
+        {
+          "en": "Bhai Dooj",
+          "hi": "भाई दूज"
+        }
+      ],
+      "variants": [
+        {
+          "slot": "status",
+          "offset": 0,
+          "at": "00:30"
+        }
+      ],
+      "sources": [
+        "calendar.md (5 Nov 2026, two sources; some calendars 10 Nov)",
+        "already published: youtube.com/shorts/66CfOFbeAaY, public 11 Nov 06:00 IST"
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "key": "chhath-nahay-khay",
+      "tier": "status",
+      "theme": "chhath",
+      "spec": "story/status/2026-11-13.json",
+      "label": "Chhath Puja day 1: Nahay Khay",
+      "names": [
+        {
+          "en": "Nahay Khay",
+          "hi": "नहाय खाय"
+        },
+        {
+          "en": "Chhath Puja Nahay Khay",
+          "hi": "छठ पूजा नहाय खाय"
+        }
+      ],
+      "sources": [
+        "D: festivals-november.html?year=2026 lists Chhath Puja on Sun 15 Nov (Kartik Shukla Shashthi), so day 1 is Chaturthi, 13 Nov",
+        "P: festivals/chhath-puja.html?loc=1261481: Nahay Khay Fri 13 Nov 2026"
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "key": "chhath-kharna",
+      "tier": "info",
+      "label": "Chhath Puja day 2: Kharna (Lohanda)",
+      "sources": [
+        "D: Chhath Puja 15 Nov (Shashthi) -> Kharna = Panchami 14 Nov",
+        "P: festivals/chhath-puja.html?loc=1261481: Lohanda/Kharna Sat 14 Nov 2026"
+      ]
+    },
+    {
+      "date": "2026-11-15",
+      "key": "chhath-sandhya-arghya",
+      "tier": "status",
+      "theme": "chhath",
+      "spec": "story/status/2026-11-15.json",
+      "label": "Chhath Puja: Sandhya Arghya (main day)",
+      "names": [
+        {
+          "en": "Chhath Sandhya Arghya",
+          "hi": "छठ संध्या अर्घ्य"
+        },
+        {
+          "en": "Chhath Puja",
+          "hi": "छठ पूजा"
+        }
+      ],
+      "sources": [
+        "D: festivals-november.html?year=2026: Chhath Puja Sun 15 Nov",
+        "P: festivals/chhath-puja.html?loc=1261481: Sandhya Arghya Sun 15 Nov 2026 (Shashthi, sunset 5:23 PM)"
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "key": "chhath-usha-arghya",
+      "tier": "status",
+      "theme": "chhath",
+      "spec": "story/status/2026-11-16.json",
+      "label": "Chhath Puja: Usha Arghya",
+      "names": [
+        {
+          "en": "Chhath Usha Arghya",
+          "hi": "छठ उषा अर्घ्य"
+        },
+        {
+          "en": "Chhathi Maiya",
+          "hi": "छठी मैया"
+        }
+      ],
+      "sources": [
+        "D: Chhath Puja 15 Nov (Shashthi) -> Usha Arghya at sunrise of Saptami, 16 Nov",
+        "P: festivals/chhath-puja.html?loc=1261481: Usha Arghya Mon 16 Nov 2026"
+      ]
+    },
+    {
+      "date": "2026-11-17",
+      "key": "gopashtami",
+      "tier": "info",
+      "label": "Gopashtami",
+      "sources": [
+        "D: festivals-november.html?year=2026: Gopashtami Tue 17 Nov",
+        "P: festivals/gopashtami.html?loc=1261481: 17 Nov (Ashtami 4:20 AM 17th to 6:05 AM 18th)"
+      ]
+    },
+    {
+      "date": "2026-11-18",
+      "key": "akshaya-navami",
+      "tier": "info",
+      "label": "Akshaya (Amla) Navami",
+      "sources": [
+        "D: festivals-november.html?year=2026: Akshaya Navami Wed 18 Nov",
+        "P: festivals/akshaya-navami.html?loc=1261481: 18 Nov"
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "key": "khatu-shyam-janmotsav",
+      "tier": "big",
+      "theme": "janmotsav",
+      "spec": "story/status/2026-11-20.json",
+      "label": "Khatu Shyam Baba Janmotsav = Dev Uthani (Prabodhini) Ekadashi",
+      "names": [
+        {
+          "en": "Shyam Baba Janmotsav",
+          "hi": "श्याम बाबा जन्मोत्सव"
+        },
+        {
+          "en": "Khatu Shyam Janmotsav",
+          "hi": "खाटू श्याम जन्मोत्सव"
+        },
+        {
+          "en": "Dev Uthani Ekadashi",
+          "hi": "देवउठनी एकादशी"
+        },
+        {
+          "en": "Khatu Shyam Birthday",
+          "hi": "खाटू श्याम जन्मदिन"
+        }
+      ],
+      "variants": [
+        {
+          "slot": "eve",
+          "offset": -2,
+          "at": "20:00",
+          "picks": [
+            3,
+            0,
+            1
+          ]
+        },
+        {
+          "slot": "eve",
+          "offset": -1,
+          "at": "20:00",
+          "picks": [
+            0,
+            1,
+            5
+          ]
+        },
+        {
+          "slot": "status",
+          "offset": 0,
+          "at": "00:30",
+          "picks": [
+            4,
+            2,
+            0
+          ]
+        },
+        {
+          "slot": "statusday",
+          "offset": 0,
+          "at": "08:30",
+          "picks": [
+            1,
+            4,
+            3
+          ]
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2026: Devutthana Ekadashi Fri 20 Nov (tithi 7:15 AM 20th to 6:31 AM 21st)",
+        "P: Nov grid + festivals/ekadashi: Prabodhini Ekadashi 20 Nov; Khatu parampara: Janmotsav on Kartik Shukla Ekadashi (khatu.in)"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "key": "tulsi-vivah",
+      "tier": "status",
+      "theme": "tulsi",
+      "label": "Tulsi Vivah (Dwadashi)",
+      "names": [
+        {
+          "en": "Tulsi Shaligram Vivah",
+          "hi": "तुलसी शालिग्राम विवाह"
+        },
+        {
+          "en": "Tulsi Vivah",
+          "hi": "तुलसी विवाह"
+        }
+      ],
+      "sources": [
+        "D: festivals-november.html?year=2026: Tulasi Vivah Sat 21 Nov (Dwadashi)",
+        "P: festivals/tulasi-vivah.html?loc=1261481: 21 Nov (Dwadashi 6:32 AM 21st to 4:57 AM 22nd)"
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "key": "ravi-pradosh-nov",
+      "tier": "status",
+      "theme": "pradosh",
+      "label": "Ravi Pradosh Vrat",
+      "names": [
+        {
+          "en": "Ravi Pradosh Vrat",
+          "hi": "रवि प्रदोष व्रत"
+        },
+        {
+          "en": "Pradosh Vrat",
+          "hi": "प्रदोष व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/pradoshdates.html?year=2026: Ravi Pradosh Sun 22 Nov (puja 5:25-8:06 PM)",
+        "P: hinducalendar.php?year=2026&mon=november&loc=1261481: Pradosh Vrat 22 Nov"
+      ]
+    },
+    {
+      "date": "2026-11-23",
+      "key": "vaikuntha-chaturdashi",
+      "tier": "info",
+      "label": "Vaikuntha Chaturdashi",
+      "sources": [
+        "D: festivals-november.html?year=2026: Vaikuntha Chaturdashi Mon 23 Nov",
+        "mpanchang.com/festivals/vaikuntha-chaturdashi/: 23 Nov 2026 (prokerala has no page)"
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "key": "dev-deepawali",
+      "tier": "big",
+      "theme": "devdeepawali",
+      "label": "Kartik Purnima; Dev Deepawali",
+      "names": [
+        {
+          "en": "Dev Deepawali",
+          "hi": "देव दीपावली"
+        },
+        {
+          "en": "Kartik Purnima",
+          "hi": "कार्तिक पूर्णिमा"
+        },
+        {
+          "en": "Dev Deepawali Kashi",
+          "hi": "काशी देव दीपावली"
+        }
+      ],
+      "sources": [
+        "D: festivals-november.html?year=2026: Dev Diwali + Kartika Purnima Tue 24 Nov (tithi 11:42 PM 23rd to 8:23 PM 24th)",
+        "P: festivals/kartik-purnima.html + festivals/dev-diwali.html?loc=1261481: 24 Nov"
+      ]
+    },
+    {
+      "date": "2026-11-27",
+      "key": "ganadhipa-sankashti",
+      "tier": "status",
+      "theme": "sankashti",
+      "label": "Ganadhipa Sankashti Chaturthi",
+      "names": [
+        {
+          "en": "Sankashti Chaturthi",
+          "hi": "संकष्टी चतुर्थी"
+        },
+        {
+          "en": "Ganadhipa Sankashti",
+          "hi": "गणाधिप संकष्टी"
+        }
+      ],
+      "sources": [
+        "D: vrats/sankashti-chaturthi-dates.html?year=2026: Ganadhipa Sankashti Fri 27 Nov (moonrise 8:18 PM)",
+        "P: festivals/sankashti-chaturthi.html?loc=1261481: 27 Nov (moonrise 8:12 PM)"
+      ]
+    },
+    {
+      "date": "2026-12-01",
+      "key": "kaal-bhairav-jayanti",
+      "tier": "status",
+      "theme": "bhairav",
+      "label": "Kaal Bhairav Jayanti",
+      "names": [
+        {
+          "en": "Kaal Bhairav Jayanti",
+          "hi": "काल भैरव जयंती"
+        },
+        {
+          "en": "Kalbhairav Ashtami",
+          "hi": "कालभैरव अष्टमी"
+        }
+      ],
+      "sources": [
+        "D: festivals-december.html?year=2026: Kalabhairav Jayanti Tue 1 Dec",
+        "P: festivals/kalabhairav-jayanti.html?loc=1261481: 1 Dec (Ashtami 12:12 AM to 11:14 PM)"
+      ]
+    },
+    {
+      "date": "2026-12-04",
+      "key": "utpanna-ekadashi",
+      "tier": "status",
+      "theme": "ekadashi",
+      "label": "Utpanna Ekadashi",
+      "names": [
+        {
+          "en": "Utpanna Ekadashi",
+          "hi": "उत्पन्ना एकादशी"
+        },
+        {
+          "en": "Utpanna Ekadashi Vrat",
+          "hi": "उत्पन्ना एकादशी व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2026: Utpanna Ekadashi Fri 4 Dec",
+        "P: hinducalendar.php?year=2026&mon=december&loc=1261481: 4 Dec"
+      ]
+    },
+    {
+      "date": "2026-12-06",
+      "key": "ravi-pradosh-dec",
+      "tier": "status",
+      "theme": "pradosh",
+      "label": "Ravi Pradosh Vrat",
+      "names": [
+        {
+          "en": "Ravi Pradosh Vrat",
+          "hi": "रवि प्रदोष व्रत"
+        },
+        {
+          "en": "Pradosh Vrat",
+          "hi": "प्रदोष व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/pradoshdates.html?year=2026: Ravi Pradosh Sun 6 Dec (5:24-8:07 PM)",
+        "P: hinducalendar.php?year=2026&mon=december&loc=1261481: Pradosh 6 Dec"
+      ]
+    },
+    {
+      "date": "2026-12-07",
+      "key": "masik-shivratri-dec",
+      "tier": "status",
+      "theme": "shivratri",
+      "label": "Masik Shivratri",
+      "names": [
+        {
+          "en": "Masik Shivratri",
+          "hi": "मासिक शिवरात्रि"
+        },
+        {
+          "en": "Shivratri",
+          "hi": "शिवरात्रि"
+        }
+      ],
+      "sources": [
+        "D: vrats/masik-shivaratri-dates.html?year=2026: Mon 7 Dec (Nishita 11:46 PM-12:40 AM)",
+        "P: festivals/masik-shivaratri.html?loc=1261481: 7 Dec (11:45 PM-12:40 AM)"
+      ]
+    },
+    {
+      "date": "2026-12-08",
+      "key": "margashirsha-amavasya",
+      "tier": "status",
+      "theme": "amavasya",
+      "label": "Margashirsha Amavasya",
+      "names": [
+        {
+          "en": "Margashirsha Amavasya",
+          "hi": "मार्गशीर्ष अमावस्या"
+        },
+        {
+          "en": "Amavasya",
+          "hi": "अमावस्या"
+        }
+      ],
+      "sources": [
+        "D: vrats/amavasyadates.html?year=2026: Tue 8 Dec (tithi 4:12 AM 8th to 6:21 AM 9th)",
+        "P: hinducalendar.php?year=2026&mon=december&loc=1261481: Amavasya 8 Dec"
+      ]
+    },
+    {
+      "date": "2026-12-14",
+      "key": "vivah-panchami",
+      "tier": "status",
+      "theme": "ramsita",
+      "label": "Vivah Panchami (Shri Ram-Sita Vivah)",
+      "names": [
+        {
+          "en": "Vivah Panchami",
+          "hi": "विवाह पंचमी"
+        },
+        {
+          "en": "Ram Sita Vivah",
+          "hi": "राम सीता विवाह"
+        }
+      ],
+      "sources": [
+        "D: festivals-december.html?year=2026: Vivah Panchami Mon 14 Dec",
+        "P: festivals/vivah-panchami.html?loc=1261481: 14 Dec"
+      ]
+    },
+    {
+      "date": "2026-12-16",
+      "key": "kharmas",
+      "tier": "info",
+      "label": "Dhanu Sankranti; Kharmas begins (until Makar Sankranti)",
+      "sources": [
+        "D: sankranti/dhanu-sankranti-date-time.html?year=2026: Wed 16 Dec, 10:29 AM",
+        "P: Dec grid: Dhanu Sankranti 16 Dec; Kharmas 16 Dec per bhaktibharat.com"
+      ]
+    },
+    {
+      "date": "2026-12-20",
+      "key": "gita-jayanti",
+      "tier": "status",
+      "theme": "gita",
+      "label": "Gita Jayanti; Mokshada Ekadashi",
+      "names": [
+        {
+          "en": "Gita Jayanti",
+          "hi": "गीता जयंती"
+        },
+        {
+          "en": "Mokshada Ekadashi",
+          "hi": "मोक्षदा एकादशी"
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2026: Mokshada Ekadashi + Gita Jayanti Sun 20 Dec",
+        "P: festivals/gita-jayanti.html?loc=1261481: 20 Dec; Dec grid: Mokshada Ekadashi 20 Dec"
+      ]
+    },
+    {
+      "date": "2026-12-21",
+      "key": "som-pradosh-dec",
+      "tier": "status",
+      "theme": "pradosh",
+      "label": "Som Pradosh Vrat",
+      "names": [
+        {
+          "en": "Som Pradosh Vrat",
+          "hi": "सोम प्रदोष व्रत"
+        },
+        {
+          "en": "Pradosh Vrat",
+          "hi": "प्रदोष व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/pradoshdates.html?year=2026: Som Pradosh Mon 21 Dec (5:36-8:13 PM)",
+        "P: hinducalendar.php?year=2026&mon=december&loc=1261481: Pradosh 21 Dec"
+      ]
+    },
+    {
+      "date": "2026-12-23",
+      "key": "margashirsha-purnima",
+      "tier": "status",
+      "theme": "purnima",
+      "label": "Margashirsha Purnima (also Dattatreya Jayanti, Annapurna Jayanti)",
+      "names": [
+        {
+          "en": "Margashirsha Purnima",
+          "hi": "मार्गशीर्ष पूर्णिमा"
+        },
+        {
+          "en": "Purnima Vrat",
+          "hi": "पूर्णिमा व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/purnimasidates.html?year=2026: Wed 23 Dec (tithi 10:47 AM 23rd to 6:57 AM 24th); Dattatreya + Annapurna Jayanti same day",
+        "P: Dec grid: Purnima 23 Dec; festivals/dattatreya-jayanti.html: 23 Dec"
+      ]
+    },
+    {
+      "date": "2026-12-26",
+      "key": "akhuratha-sankashti",
+      "tier": "status",
+      "theme": "sankashti",
+      "label": "Akhuratha Sankashti Chaturthi",
+      "names": [
+        {
+          "en": "Sankashti Chaturthi",
+          "hi": "संकष्टी चतुर्थी"
+        },
+        {
+          "en": "Akhuratha Sankashti",
+          "hi": "अखुरथ संकष्टी"
+        }
+      ],
+      "sources": [
+        "D: vrats/sankashti-chaturthi-dates.html?year=2026: Akhuratha Sankashti Sat 26 Dec (moonrise 8:19 PM)",
+        "P: festivals/sankashti-chaturthi.html?loc=1261481: 26 Dec"
+      ]
+    },
+    {
+      "date": "2027-01-03",
+      "key": "saphala-ekadashi",
+      "tier": "status",
+      "theme": "ekadashi",
+      "label": "Saphala Ekadashi",
+      "names": [
+        {
+          "en": "Saphala Ekadashi",
+          "hi": "सफला एकादशी"
+        },
+        {
+          "en": "Saphala Ekadashi Vrat",
+          "hi": "सफला एकादशी व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2027: Saphala Ekadashi Sun 3 Jan",
+        "P: hinducalendar.php?year=2027&mon=january&loc=1261481: 3 Jan"
+      ]
+    },
+    {
+      "date": "2027-01-05",
+      "key": "masik-shivratri-jan",
+      "tier": "status",
+      "theme": "shivratri",
+      "label": "Masik Shivratri + Bhaum Pradosh Vrat",
+      "names": [
+        {
+          "en": "Masik Shivratri",
+          "hi": "मासिक शिवरात्रि"
+        },
+        {
+          "en": "Bhaum Pradosh Vrat",
+          "hi": "भौम प्रदोष व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/pradoshdates.html + masik-shivaratri-dates.html?year=2027: Bhaum Pradosh + Masik Shivaratri Tue 5 Jan",
+        "P: Jan grid: Pradosh 5 Jan; Shivaratri 5 Jan per panchang.astrosage.com (Delhi)"
+      ]
+    },
+    {
+      "date": "2027-01-07",
+      "key": "paush-amavasya",
+      "tier": "status",
+      "theme": "amavasya",
+      "label": "Paush Amavasya",
+      "names": [
+        {
+          "en": "Paush Amavasya",
+          "hi": "पौष अमावस्या"
+        },
+        {
+          "en": "Amavasya Vrat",
+          "hi": "अमावस्या व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/amavasyadates.html?year=2027: Thu 7 Jan (tithi 11:13 PM 6th to 1:53 AM 8th)",
+        "P: hinducalendar.php?year=2027&mon=january&loc=1261481: Amavasya 7 Jan"
+      ]
+    },
+    {
+      "date": "2027-01-14",
+      "key": "lohri",
+      "tier": "status",
+      "theme": "lohri",
+      "label": "Lohri",
+      "names": [
+        {
+          "en": "Lohri",
+          "hi": "लोहड़ी"
+        },
+        {
+          "en": "Happy Lohri",
+          "hi": "हैप्पी लोहड़ी"
+        }
+      ],
+      "sources": [
+        "D: festivals-january.html?year=2027: Lohri Thu 14 Jan",
+        "P: festivals/lohri.html?loc=1261481: 14 Jan"
+      ]
+    },
+    {
+      "date": "2027-01-15",
+      "key": "makar-sankranti",
+      "tier": "big",
+      "theme": "sankranti",
+      "label": "Makar Sankranti (sankranti moment 14 Jan ~9:06-9:14 PM, after sunset, so observed 15 Jan)",
+      "names": [
+        {
+          "en": "Makar Sankranti",
+          "hi": "मकर संक्रांति"
+        },
+        {
+          "en": "Sankranti",
+          "hi": "संक्रांति"
+        },
+        {
+          "en": "Happy Makar Sankranti",
+          "hi": "हैप्पी मकर संक्रांति"
+        }
+      ],
+      "sources": [
+        "D: sankranti/makar-sankranti-date-time.html?year=2027: Fri 15 Jan (moment 9:14 PM 14 Jan; Punya Kala 7:15 AM-5:46 PM)",
+        "P: festivals/makar-sankranti.html?loc=1261481: 15 Jan (moment 9:06 PM 14 Jan)"
+      ]
+    },
+    {
+      "date": "2027-01-18",
+      "key": "putrada-ekadashi",
+      "tier": "status",
+      "theme": "ekadashi",
+      "label": "Pausha Putrada Ekadashi (Smarta; Vaishnava 19 Jan)",
+      "names": [
+        {
+          "en": "Putrada Ekadashi",
+          "hi": "पुत्रदा एकादशी"
+        },
+        {
+          "en": "Paush Putrada Ekadashi",
+          "hi": "पौष पुत्रदा एकादशी"
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2027: Smarta Mon 18 Jan (Vaishnava 19 Jan)",
+        "P: hinducalendar.php?year=2027&mon=january&loc=1261481: 18 Jan"
+      ]
+    },
+    {
+      "date": "2027-01-20",
+      "key": "budh-pradosh-jan",
+      "tier": "status",
+      "theme": "pradosh",
+      "label": "Budh Pradosh Vrat",
+      "names": [
+        {
+          "en": "Budh Pradosh Vrat",
+          "hi": "बुध प्रदोष व्रत"
+        },
+        {
+          "en": "Pradosh Vrat",
+          "hi": "प्रदोष व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/pradoshdates.html?year=2027: Budh Pradosh Wed 20 Jan (5:50-8:31 PM)",
+        "P: hinducalendar.php?year=2027&mon=january&loc=1261481: Pradosh 20 Jan"
+      ]
+    },
+    {
+      "date": "2027-01-22",
+      "key": "paush-purnima",
+      "tier": "status",
+      "theme": "shakambhari",
+      "label": "Paush Purnima = Shakambhari Purnima (Magh snan begins)",
+      "names": [
+        {
+          "en": "Paush Purnima",
+          "hi": "पौष पूर्णिमा"
+        },
+        {
+          "en": "Shakambhari Purnima",
+          "hi": "शाकंभरी पूर्णिमा"
+        }
+      ],
+      "sources": [
+        "D: vrats/purnimasidates.html?year=2027: Pausha Purnima + Shakambhari Purnima Fri 22 Jan",
+        "P: festivals/paush-purnima.html?loc=1261481: 22 Jan (Magh snan begins)"
+      ]
+    },
+    {
+      "date": "2027-01-25",
+      "key": "sakat-chauth",
+      "tier": "status",
+      "theme": "sakat",
+      "label": "Sakat Chauth (Lambodara Sankashti)",
+      "names": [
+        {
+          "en": "Sakat Chauth",
+          "hi": "सकट चौथ"
+        },
+        {
+          "en": "Lambodara Sankashti",
+          "hi": "लम्बोदर संकष्टी"
+        }
+      ],
+      "sources": [
+        "D: vrats/sankashti-chaturthi-dates.html?year=2027: Lambodara Sankashti Mon 25 Jan (moonrise 9:16 PM)",
+        "P: festivals/sakat-chauth.html?loc=1261481: 25 Jan (moonrise 9:12 PM)"
+      ]
+    }
+  ]
+}

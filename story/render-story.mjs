@@ -444,7 +444,8 @@ bellAt.forEach((t, k) => { const ms = Math.round(t * 1000); f.push(`[${A0 + laye
 const bedIns = ['[dr]', '[bl]', ...layers.map((_, k) => `[am${k}]`), ...bellAt.map((_, k) => `[bb${k}]`)];
 f.push(`${bedIns.join('')}amix=inputs=${bedIns.length}:duration=first:normalize=0[bed]`);
 f.push('[bed][key]sidechaincompress=threshold=0.02:ratio=5:attack=25:release=450:makeup=1[duck]');
-f.push(`[duck][vox]amix=inputs=2:duration=first:normalize=0,atrim=duration=${T},afade=t=out:st=${(total - 2).toFixed(2)}:d=2,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]`);
+const OUTFADE = STATUS && spec.loop ? 0.6 : 2; // a loop status Short only dips at the end, then replays
+f.push(`[duck][vox]amix=inputs=2:duration=first:normalize=0,atrim=duration=${T},afade=t=out:st=${(total - OUTFADE).toFixed(2)}:d=${OUTFADE},loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]`);
 fs.mkdirSync(path.join(base, 'out'), { recursive: true });
 const out = path.join(base, 'out', `${spec.slug}.mp4`);
 run([
@@ -454,6 +455,19 @@ run([
   '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-crf', '23', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2',
   '-t', total.toFixed(2), '-movflags', '+faststart', out,
 ]);
+// Loop status Shorts (scripts/status-engine.mjs, spec.loop): the last 0.5 s cross-fades into the video's own first frame
+// (the hook), so YouTube's automatic replay continues seamlessly instead of jumping from an end card to the start.
+if (STATUS && spec.loop) {
+  const first = path.join(work, 'loop-first.png');
+  run(['-i', clips[0].file, '-frames:v', '1', first]);
+  const X = 0.5;
+  const tmp = path.join(work, 'loop.mp4');
+  run(['-i', out, '-loop', '1', '-framerate', String(FPS), '-t', (X + 0.1).toFixed(2), '-i', first, '-filter_complex',
+    `[1:v]format=yuv420p,setsar=1,fps=${FPS},settb=1/${FPS}[t];[0:v]format=yuv420p,setsar=1,fps=${FPS},settb=1/${FPS}[m];[m][t]xfade=transition=fade:duration=${X}:offset=${(total - X).toFixed(2)},trim=duration=${total.toFixed(2)}[v]`,
+    '-map', '[v]', '-map', '0:a', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-crf', '23', '-c:a', 'copy', '-movflags', '+faststart', tmp]);
+  fs.renameSync(tmp, out);
+  console.log('loop: the last 0.5 s fades into the first frame');
+}
 // Credit every real photo shown: "Photo: <author>, <licence>, via Wikimedia Commons (<file page>)".
 if (usedPhotos.length) {
   const credit = usedPhotos.map(creditLine).join('\n');
