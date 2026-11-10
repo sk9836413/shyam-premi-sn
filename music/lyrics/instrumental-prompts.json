@@ -1,0 +1,131 @@
+{
+ "note": "Instrumental prompt pool for the weekly batch (music/weekly.mjs). Describe instruments and mood only; never name a song, singer, film or label.",
+ "prompts": [
+  {
+   "id": "i-calm-bansuri-bhupali",
+   "mood": "calm",
+   "bpm": 70,
+   "duration": 60,
+   "caption": "Indian devotional instrumental, solo bansuri flute melody over tanpura drone, soft santoor, slow peaceful temple morning, raga Bhupali mood, gentle, no vocals"
+  },
+  {
+   "id": "i-calm-santoor-morning",
+   "mood": "calm",
+   "bpm": 80,
+   "duration": 60,
+   "caption": "peaceful santoor melody with soft tabla and tanpura drone, Hindustani classical devotional, morning temple atmosphere, no vocals"
+  },
+  {
+   "id": "i-calm-sitar-alaap",
+   "mood": "calm",
+   "bpm": 60,
+   "duration": 60,
+   "caption": "meditative sitar alaap over tanpura drone, slow, spiritual, warm, no percussion, no vocals"
+  },
+  {
+   "id": "i-calm-shiv-flute",
+   "mood": "calm",
+   "bpm": 72,
+   "duration": 60,
+   "caption": "Mahadev meditation instrumental, deep bansuri flute, tanpura drone, soft damru taps, Himalayan calm, no vocals"
+  },
+  {
+   "id": "i-emotional-harmonium",
+   "mood": "emotional",
+   "bpm": 76,
+   "duration": 60,
+   "caption": "emotional bhajan instrumental, harmonium melody, bansuri, soft dholak, longing devotional mood, slow, no vocals"
+  },
+  {
+   "id": "i-emotional-sarangi",
+   "mood": "emotional",
+   "bpm": 66,
+   "duration": 60,
+   "caption": "sad devotional story background, sarangi and bansuri, tanpura drone, slow, cinematic Indian, no vocals"
+  },
+  {
+   "id": "i-emotional-krishna-flute",
+   "mood": "emotional",
+   "bpm": 84,
+   "duration": 60,
+   "caption": "Krishna bhakti instrumental, bansuri flute and santoor, gentle tabla, tender emotional, Vrindavan, no vocals"
+  },
+  {
+   "id": "i-aarti-bells-harmonium",
+   "mood": "aarti",
+   "bpm": 100,
+   "duration": 60,
+   "caption": "joyful temple aarti instrumental, harmonium melody, manjira cymbals, temple bells, dholak kirtan rhythm, devotional, no vocals"
+  },
+  {
+   "id": "i-aarti-kirtan-groove",
+   "mood": "aarti",
+   "bpm": 108,
+   "duration": 60,
+   "caption": "kirtan groove instrumental, harmonium riff, kartal, dholak, claps, joyful bhakti, no vocals"
+  },
+  {
+   "id": "i-festive-rajasthani-dhol",
+   "mood": "festive",
+   "bpm": 124,
+   "duration": 60,
+   "caption": "festive Rajasthani folk instrumental, dhol and nagada drums, shehnai melody, celebration, energetic, no vocals"
+  },
+  {
+   "id": "i-festive-dj-dhol",
+   "mood": "festive",
+   "bpm": 128,
+   "duration": 60,
+   "caption": "devotional DJ dhol beat instrumental, punchy dhol, harmonium riff, claps, festive Indian bhajan dance groove, no vocals"
+  },
+  {
+   "id": "i-festive-shehnai",
+   "mood": "festive",
+   "bpm": 116,
+   "duration": 60,
+   "caption": "auspicious shehnai and dhol festive instrumental, Indian festival celebration, bright, no vocals"
+  },
+  {
+   "id": "i-calm-khatu-morning",
+   "mood": "calm",
+   "bpm": 72,
+   "duration": 60,
+   "caption": "gentle morning darshan instrumental for Khatu Shyam ji, bansuri and santoor over tanpura drone, soft temple bells, Rajasthani folk colour, peaceful, no vocals"
+  },
+  {
+   "id": "i-calm-hanuman-dhyan",
+   "mood": "calm",
+   "bpm": 70,
+   "duration": 60,
+   "caption": "Hanuman meditation instrumental, deep bansuri, tanpura, soft dholak heartbeat, steady and strong, no vocals"
+  },
+  {
+   "id": "i-emotional-haara-hua",
+   "mood": "emotional",
+   "bpm": 74,
+   "duration": 60,
+   "caption": "emotional devotional instrumental, harmonium and sarangi, slow dholak, heartfelt surrender, Rajasthani bhajan feel, no vocals"
+  },
+  {
+   "id": "i-aarti-sandhya",
+   "mood": "aarti",
+   "bpm": 96,
+   "duration": 60,
+   "caption": "evening sandhya aarti instrumental, temple bells, conch, harmonium melody, manjira, dholak, devotional and bright, no vocals"
+  },
+  {
+   "id": "i-festive-khatu-nishan",
+   "mood": "festive",
+   "bpm": 126,
+   "duration": 60,
+   "caption": "festive Khatu Shyam yatra instrumental, dhol and nagada, shehnai and harmonium hook, claps, Rajasthani celebration, energetic, no vocals"
+  },
+  {
+   "id": "i-festive-shiv-damru",
+   "mood": "festive",
+   "bpm": 128,
+   "duration": 60,
+   "caption": "energetic Mahadev instrumental, damru and dhol beat, shehnai riff, conch, festive kanwar yatra groove, no vocals"
+  }
+ ]
+}

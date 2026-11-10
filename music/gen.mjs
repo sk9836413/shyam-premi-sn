@@ -3,6 +3,7 @@
 //        (09:00-11:30 and 18:30-21:00 IST), while another sps-* GPU kernel runs (animate/kaggle.mjs lock), or with under
 //        --min-hours (default 8) of weekly GPU quota left; then pushes one private T4 session (stops itself after ~38 min)
 //   node music/gen.mjs status
+//   node music/gen.mjs wait [--minutes 55]                         -> exit 0 once the session is COMPLETE
 //   node music/gen.mjs fetch --to <dir>                            -> results.json + <id>.mp3 (+ <id>.vocals.mp3)
 //   node music/gen.mjs import --from <dir> --batch <batch.json> [--vocals]
 //        -> tracks that pass QA (duration, loudness, true peak, clipping; vocals also Whisper CER) go to music/library/
@@ -65,6 +66,18 @@ function push() {
   process.exit(r.ok && /successfully pushed/i.test(r.out) ? 0 : 1);
 }
 
+async function wait() {
+  const until = Date.now() + Number(opt('--minutes', 55)) * 60e3;
+  let st = '';
+  while (Date.now() < until) {
+    await new Promise((r) => setTimeout(r, 60e3));
+    st = (kaggle('kernels', 'status', KERNEL).out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || st).toUpperCase();
+    if (/COMPLETE|ERROR|CANCEL/.test(st)) break;
+  }
+  console.log(JSON.stringify({ status: st || 'unknown' }));
+  process.exit(st === 'COMPLETE' ? 0 : 1);
+}
+
 function fetchOut() {
   const to = path.resolve(opt('--to', path.join(os.tmpdir(), 'sps-music-out')));
   fs.mkdirSync(to, { recursive: true });
@@ -81,6 +94,7 @@ export function passesQa(t, { vocals = false } = {}) {
   if (t.true_peak != null && t.true_peak > 0.5) why.push(`true peak ${t.true_peak}`);
   if (t.clip_share != null && t.clip_share > 0.001) why.push(`clipping ${(t.clip_share * 100).toFixed(2)}%`);
   if (t.lufs != null && (t.lufs < -35 || t.lufs > -5)) why.push(`loudness ${t.lufs}`);
+  if (t.kind !== 'vocal' && ((t.clap_singing ?? 0) > 0.5 || (t.whisper_words ?? 0) > 12)) why.push(`singing heard in an instrumental (CLAP ${t.clap_singing}, ${t.whisper_words} words)`);
   if (t.kind === 'vocal') {
     if (!vocals) why.push('vocal bhajans not enabled for the library');
     if (!(t.cer != null && t.cer <= 0.35)) why.push(`Whisper CER ${t.cer}`);
@@ -119,6 +133,7 @@ function importBatch() {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   if (cmd === 'push') push();
+  else if (cmd === 'wait') await wait();
   else if (cmd === 'fetch') fetchOut();
   else if (cmd === 'import') importBatch();
   else console.log(kaggle('kernels', 'status', KERNEL).out.trim());

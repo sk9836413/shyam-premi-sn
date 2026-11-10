@@ -6,6 +6,7 @@ import path from 'node:path';
 import test from 'node:test';
 import { checkLibrary, historyFrom, istWindowBlocked, loadLibrary, moodFor, musicFor, pickTrack, sha256, validateLicence } from './engine.mjs';
 import { passesQa, resolveJobs } from './gen.mjs';
+import { isoWeek, prune, weeklyBatch } from './weekly.mjs';
 
 const T = (id, moods) => ({ id, moods });
 const lib = [T('a-calm', ['calm']), T('b-calm', ['calm']), T('c-festive', ['festive']), T('d-aarti', ['aarti', 'festive']), T('e-emo', ['emotional'])];
@@ -151,7 +152,26 @@ test('batch jobs and QA gate', () => {
   const ok = { file: 'x.mp3', seconds: 60, lufs: -12, true_peak: -1, clip_share: 0, kind: 'instrumental' };
   assert.deepEqual(passesQa(ok), []);
   assert.match(passesQa({ ...ok, clip_share: 0.01 }).join(), /clipping/);
+  assert.match(passesQa({ ...ok, clap_singing: 0.7 }).join(), /singing heard/);
+  assert.match(passesQa({ ...ok, whisper_words: 30 }).join(), /singing heard/);
   assert.match(passesQa({ ...ok, kind: 'vocal', cer: 0.2 }).join(), /not enabled/);
   assert.deepEqual(passesQa({ ...ok, kind: 'vocal', cer: 0.2 }, { vocals: true }), []);
   assert.match(passesQa({ ...ok, kind: 'vocal', cer: 0.6 }, { vocals: true }).join(), /CER/);
+});
+
+test('weekly batch: fresh seeds per ISO week, rotating prompts; prune keeps the newest generated tracks', () => {
+  assert.deepEqual(isoWeek('2026-11-16'), { year: 2026, week: 47 });
+  assert.deepEqual(isoWeek('2027-01-01'), { year: 2026, week: 53 });
+  const prompts = Array.from({ length: 18 }, (_, k) => ({ id: `i-p${k}`, mood: 'calm', caption: `c${k}` }));
+  const a = weeklyBatch(prompts, '2026-11-16'), b = weeklyBatch(prompts, '2026-11-23');
+  assert.equal(a.jobs.length, 12);
+  assert.ok(a.jobs.every((j) => j.kind === 'instrumental' && /^i-2026w47-/.test(j.id)));
+  assert.notDeepEqual(a.jobs.map((j) => j.seed), b.jobs.map((j) => j.seed));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'music-prune-'));
+  for (const [stem, d] of [['gen-a', '2026-11-01'], ['gen-b', '2026-11-08'], ['gen-c', '2026-11-15'], ['cc-x', '2020-01-01']]) {
+    fs.writeFileSync(path.join(dir, `${stem}.ogg`), 'x');
+    fs.writeFileSync(path.join(dir, `${stem}.licence.json`), JSON.stringify({ checked: d }));
+  }
+  assert.deepEqual(prune(dir, 2), ['gen-a']);
+  assert.deepEqual(fs.readdirSync(dir).sort(), ['cc-x.licence.json', 'cc-x.ogg', 'gen-b.licence.json', 'gen-b.ogg', 'gen-c.licence.json', 'gen-c.ogg']);
 });
