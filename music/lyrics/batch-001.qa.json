@@ -1,0 +1,717 @@
+{
+ "run": "Kaggle sps-music v3, 11 Nov 2026, T4, DiT float32, LM 1.7B float32 on the 2nd T4",
+ "minutes": 20.8,
+ "model": "ACE-Step 1.5 (acestep-v15-turbo + acestep-5Hz-lm-1.7B)",
+ "tracks": [
+  {
+   "id": "v-khatu-jai-shree-shyam",
+   "kind": "vocal",
+   "seed": 1111,
+   "bpm": 128,
+   "seconds": 60.0,
+   "gen_seconds": 39.0,
+   "lufs": -13.95,
+   "true_peak": -0.99,
+   "clip_share": 0.0,
+   "cer": 0.271,
+   "whisper": "जय श्री शाम, बोलो जय रिशाम, खाटू वाले बाबा का जग में उचाना जय श्री शाम, बोलो जय रिशाम, आरे का साथी मेरा लिले वाला शाम रिंदस से पैड़ बल चलके, खाथे निशान उठाया आगो निट्टी मस्ती में पूरा खटू आया शाम कुंड की दुगगी से वनहल कहो जाए बाबा की एक नजर से बेडी बन जाए जैशी शाम, बोलो जैशी शाम खटू वाले बाबा का जड़ में उचाना जैशी शाम, बोलो जैशी शाम खरिप्टा सती मिना लिये वला शाम",
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.712
+    ],
+    [
+     "solo bansuri flute",
+     0.134
+    ],
+    [
+     "veena",
+     0.087
+    ],
+    [
+     "western rock music",
+     0.036
+    ]
+   ],
+   "clap_singing": 0.016
+  },
+  {
+   "id": "v-khatu-jai-shree-shyam-roman",
+   "kind": "vocal",
+   "seed": 1111,
+   "bpm": 128,
+   "seconds": 60.0,
+   "gen_seconds": 30.0,
+   "lufs": -14.15,
+   "true_peak": -2.09,
+   "clip_share": 0.0,
+   "cer": 0.281,
+   "whisper": "जय श्रीषम बोलो जय श्रीषम खटू वाले बाबा का जग में उचनाम जय श्रीषम बोलो जय श्रीषम हारे कसा थी मेरा लीले वाला शाम रिंग सिप पर दिल चल के हाथ निशान उठाया भागुन की मस्ती में पूरा खटू आया शम्पुन्द की बुग्गी से मनहल का हो जाए बाबा की ख्रेकन से बिगदी बन जाए जैशी शम बोलो जैशी शम खटू वली बाबा का जगमें उठनाओ जैशी शम बोलो जैशी शम हाई लेकर साथी में लाली लेवाला शाम",
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.48
+    ],
+    [
+     "solo bansuri flute",
+     0.277
+    ],
+    [
+     "veena",
+     0.17
+    ],
+    [
+     "western rock music",
+     0.039
+    ]
+   ],
+   "clap_singing": 0.015
+  },
+  {
+   "id": "v-khatu-thak-ke-aaya",
+   "kind": "vocal",
+   "seed": 2222,
+   "bpm": 78,
+   "seconds": 60.0,
+   "gen_seconds": 31.1,
+   "lufs": -15.9,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.142,
+   "whisper": "ठक्के आहूं बाबा अब तु ही संभल खाटू वाले शावधनी रख ले मेरा खल अपनों ने भी छोड़ा दुनिया ने ठुकराया तेरी चोखट पे आके फिर से जीना आया शीश के दानी तूने सब का मान बढ़ाया मेरे आसू पोच तेरे मैं भी दर पे आया तक के आया हूँ बाबा अब तू ही संभल खटू वाले शामधन रखले मेरा खल",
+   "clap_top": [
+    [
+     "veena",
+     0.293
+    ],
+    [
+     "electronic dance music",
+     0.288
+    ],
+    [
+     "solo bansuri flute",
+     0.119
+    ],
+    [
+     "western rock music",
+     0.115
+    ]
+   ],
+   "clap_singing": 0.129
+  },
+  {
+   "id": "v-bhole-bam-bam",
+   "kind": "vocal",
+   "seed": 3333,
+   "bpm": 130,
+   "seconds": 60.0,
+   "gen_seconds": 31.9,
+   "lufs": -14.41,
+   "true_peak": -0.85,
+   "clip_share": 0.0,
+   "cer": 0.191,
+   "whisper": "बम बम बोले बोलो बम बम बोले डमरू वाले बाबा सारा जग डोले बम बम बोले बोलो बम बम बोले केलाशी के आके सबके मन खोले गंगा जट में बहती चंदा माते सोहे हीले कंड की मस्ती हर भगत को मोहे पस्मरमा के नाचे नंदी संग में जूमे सावन की बूंडो में बगची वाला खूमे ठमरूबाले बाबा सारा जगे डोले",
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.668
+    ],
+    [
+     "veena",
+     0.197
+    ],
+    [
+     "solo bansuri flute",
+     0.061
+    ],
+    [
+     "western rock music",
+     0.038
+    ]
+   ],
+   "clap_singing": 0.027
+  },
+  {
+   "id": "v-shiv-om-namah",
+   "kind": "vocal",
+   "seed": 4444,
+   "bpm": 80,
+   "seconds": 60.0,
+   "gen_seconds": 31.5,
+   "lufs": -13.58,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.118,
+   "whisper": "उम्नम शिवाय उम्नम शिवाय भोले तेरी भक्ती में हर दुख मिठ जाए जटा में गंगा गले में नाग तेरे नाम से जागे मन का भग कैलाश पे बैठे ध्यान लगाए जो भी पुकारे दवडे आए उम्नमशिवाई उम्नमशिवाई बोले तेरी भक्ती में हर दुख मिट जाए",
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.356
+    ],
+    [
+     "a woman singing",
+     0.264
+    ],
+    [
+     "veena",
+     0.127
+    ],
+    [
+     "western rock music",
+     0.083
+    ]
+   ],
+   "clap_singing": 0.349
+  },
+  {
+   "id": "v-hanuman-chalisa-open",
+   "kind": "vocal",
+   "seed": 5555,
+   "bpm": 100,
+   "seconds": 50.0,
+   "gen_seconds": 26.1,
+   "lufs": -15.06,
+   "true_peak": -0.79,
+   "clip_share": 0.0,
+   "cer": 0.116,
+   "whisper": "जय हनुमान जान गुन सागड़ जय कपीसते हु लोक उजागड़ राम दुत अतुलित बलधाम अन्जनी पुत्र पवन सुत नाम महा बीर बिक्रम बजरंगी उमति निवार सुमति के संगी जय हनुमान जान गुन सागर जय कपी सते हु लोक उजागर",
+   "clap_top": [
+    [
+     "veena",
+     0.324
+    ],
+    [
+     "electronic dance music",
+     0.223
+    ],
+    [
+     "solo bansuri flute",
+     0.221
+    ],
+    [
+     "western rock music",
+     0.132
+    ]
+   ],
+   "clap_singing": 0.056
+  },
+  {
+   "id": "v-om-jai-jagdish",
+   "kind": "vocal",
+   "seed": 6666,
+   "bpm": 92,
+   "seconds": 50.0,
+   "gen_seconds": 25.9,
+   "lufs": -16.53,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.28,
+   "whisper": "ओम जय जगदीश हरे, फाम जय जगदीश हरे, खक्त जनों के संकर्ट, थास जनों के संकर्ट, खनले दूर करें, आम जय जगदेश हरे जो धावे फल पावे तुख बिल से मन का सुख संपटी घर आवे कश्ट मिती तल का",
+   "clap_top": [
+    [
+     "veena",
+     0.326
+    ],
+    [
+     "electronic dance music",
+     0.301
+    ],
+    [
+     "solo bansuri flute",
+     0.127
+    ],
+    [
+     "shehnai",
+     0.086
+    ]
+   ],
+   "clap_singing": 0.051
+  },
+  {
+   "id": "v-krishna-radhe-bol",
+   "kind": "vocal",
+   "seed": 7777,
+   "bpm": 112,
+   "seconds": 60.0,
+   "gen_seconds": 31.7,
+   "lufs": -15.33,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.185,
+   "whisper": "राधे राधे बुल मनवा राधे राधे बुल शंसलोने के बलसी बाजे अन्नुमोर यमुना की नारे गुवाले नाचे तानते माखन की मट की फूटी रली की चाल पे गोपियां जूमे सारी मुर मुखुटनी हाई विंदावन की गलियों में बरसे प्यार राधे राधे पुल मनवा राधे राधे पुल शंग सलोन की बनसी बाजे अन्मोर",
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.58
+    ],
+    [
+     "solo bansuri flute",
+     0.178
+    ],
+    [
+     "veena",
+     0.118
+    ],
+    [
+     "a woman singing",
+     0.048
+    ]
+   ],
+   "clap_singing": 0.054
+  },
+  {
+   "id": "v-khatu-jai-shree-shyam-seed2",
+   "kind": "vocal",
+   "seed": 8888,
+   "bpm": 128,
+   "seconds": 60.0,
+   "gen_seconds": 33.4,
+   "lufs": -15.15,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.208,
+   "whisper": "जय श्रीशम बोलो जय श्रीशम खाटू वाले बाबा जग में उच्छा नम जय श्रीशम बोलो जय श्रीशम हारे का साथी मेरा लिले वाला शम बिंड़स से पैडल चलके हाथ निशान उठाया फागों में की मस्ती मेरे पूरा खाटू आया शाम पुंड की डुबकी से मन हलका हो जाए बाबा की एक नजर से भिगडी बन जाए जै श्री शाम बोलो जै श्री शाम खातु वाले बाबा का जग में उचानाओ जै श्री शाम बोलो जै श्री शाम हारे का साथी मेरा लिले वाला शाम करते हैं",
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.576
+    ],
+    [
+     "solo bansuri flute",
+     0.187
+    ],
+    [
+     "veena",
+     0.152
+    ],
+    [
+     "western rock music",
+     0.039
+    ]
+   ],
+   "clap_singing": 0.028
+  },
+  {
+   "id": "i-calm-bansuri-bhupali",
+   "kind": "instrumental",
+   "seed": 101,
+   "bpm": 70,
+   "seconds": 60.0,
+   "gen_seconds": 29.0,
+   "lufs": -17.08,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "whisper": "प्रश्न प्रश्न",
+   "whisper_words": 2,
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.429
+    ],
+    [
+     "western rock music",
+     0.276
+    ],
+    [
+     "solo bansuri flute",
+     0.213
+    ],
+    [
+     "a woman singing",
+     0.012
+    ]
+   ],
+   "clap_singing": 0.014
+  },
+  {
+   "id": "i-calm-santoor-morning",
+   "kind": "instrumental",
+   "seed": 102,
+   "bpm": 80,
+   "seconds": 60.0,
+   "gen_seconds": 28.8,
+   "lufs": -15.59,
+   "true_peak": -0.95,
+   "clip_share": 0.0,
+   "whisper": "प्रश्न प्रश्न प्रश्न अजय को",
+   "whisper_words": 2,
+   "clap_top": [
+    [
+     "western rock music",
+     0.451
+    ],
+    [
+     "electronic dance music",
+     0.363
+    ],
+    [
+     "solo bansuri flute",
+     0.034
+    ],
+    [
+     "piano",
+     0.028
+    ]
+   ],
+   "clap_singing": 0.022
+  },
+  {
+   "id": "i-calm-sitar-alaap",
+   "kind": "instrumental",
+   "seed": 103,
+   "bpm": 60,
+   "seconds": 60.0,
+   "gen_seconds": 28.6,
+   "lufs": -15.82,
+   "true_peak": -0.98,
+   "clip_share": 0.0,
+   "whisper": "अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को कि अ प्रस्तुति प्रस्तुति",
+   "whisper_words": 2,
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.533
+    ],
+    [
+     "sitar",
+     0.17
+    ],
+    [
+     "piano",
+     0.058
+    ],
+    [
+     "western rock music",
+     0.051
+    ]
+   ],
+   "clap_singing": 0.044
+  },
+  {
+   "id": "i-calm-shiv-flute",
+   "kind": "instrumental",
+   "seed": 104,
+   "bpm": 72,
+   "seconds": 60.0,
+   "gen_seconds": 28.7,
+   "lufs": -15.21,
+   "true_peak": -0.99,
+   "clip_share": 0.0,
+   "whisper": "अजय को अजय को प्रभाव प्रभाव",
+   "whisper_words": 2,
+   "clap_top": [
+    [
+     "sitar",
+     0.525
+    ],
+    [
+     "solo bansuri flute",
+     0.176
+    ],
+    [
+     "harmonium",
+     0.084
+    ],
+    [
+     "shehnai",
+     0.055
+    ]
+   ],
+   "clap_singing": 0.028
+  },
+  {
+   "id": "i-emotional-harmonium",
+   "kind": "instrumental",
+   "seed": 105,
+   "bpm": 76,
+   "seconds": 60.0,
+   "gen_seconds": 28.8,
+   "lufs": -15.38,
+   "true_peak": -0.98,
+   "clip_share": 0.0,
+   "whisper": "प्रश्न प्रश्न प्रस्तुति प्रस्तुति",
+   "whisper_words": 2,
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.497
+    ],
+    [
+     "western rock music",
+     0.265
+    ],
+    [
+     "solo bansuri flute",
+     0.151
+    ],
+    [
+     "orchestral film score",
+     0.024
+    ]
+   ],
+   "clap_singing": 0.018
+  },
+  {
+   "id": "i-emotional-sarangi",
+   "kind": "instrumental",
+   "seed": 106,
+   "bpm": 66,
+   "seconds": 60.0,
+   "gen_seconds": 28.6,
+   "lufs": -16.22,
+   "true_peak": -0.99,
+   "clip_share": 0.0,
+   "whisper": "प्रश्न प्रश्न प्रभाव प्रभाव",
+   "whisper_words": 2,
+   "clap_top": [
+    [
+     "western rock music",
+     0.251
+    ],
+    [
+     "a woman singing",
+     0.229
+    ],
+    [
+     "piano",
+     0.106
+    ],
+    [
+     "sitar",
+     0.072
+    ]
+   ],
+   "clap_singing": 0.291
+  },
+  {
+   "id": "i-emotional-krishna-flute",
+   "kind": "instrumental",
+   "seed": 107,
+   "bpm": 84,
+   "seconds": 60.0,
+   "gen_seconds": 28.7,
+   "lufs": -15.74,
+   "true_peak": -0.78,
+   "clip_share": 0.0,
+   "whisper": "प्रश्न प्रश्न कि अ",
+   "whisper_words": 0,
+   "clap_top": [
+    [
+     "western rock music",
+     0.536
+    ],
+    [
+     "solo bansuri flute",
+     0.299
+    ],
+    [
+     "electronic dance music",
+     0.119
+    ],
+    [
+     "sitar",
+     0.007
+    ]
+   ],
+   "clap_singing": 0.008
+  },
+  {
+   "id": "i-aarti-bells-harmonium",
+   "kind": "instrumental",
+   "seed": 108,
+   "bpm": 100,
+   "seconds": 60.0,
+   "gen_seconds": 28.9,
+   "lufs": -18.36,
+   "true_peak": -0.79,
+   "clip_share": 0.0,
+   "whisper": "प्रशान पर प्रशान पर प्रशान प्रस्तुति प्रस्तुति",
+   "whisper_words": 2,
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.864
+    ],
+    [
+     "western rock music",
+     0.074
+    ],
+    [
+     "solo bansuri flute",
+     0.027
+    ],
+    [
+     "dhol drums",
+     0.01
+    ]
+   ],
+   "clap_singing": 0.002
+  },
+  {
+   "id": "i-aarti-kirtan-groove",
+   "kind": "instrumental",
+   "seed": 109,
+   "bpm": 108,
+   "seconds": 60.0,
+   "gen_seconds": 28.9,
+   "lufs": -16.98,
+   "true_peak": -0.68,
+   "clip_share": 0.0,
+   "whisper": "प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प्रेमार पर प् प्रस्तुति प्रस्तुति",
+   "whisper_words": 2,
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.701
+    ],
+    [
+     "solo bansuri flute",
+     0.17
+    ],
+    [
+     "western rock music",
+     0.112
+    ],
+    [
+     "veena",
+     0.003
+    ]
+   ],
+   "clap_singing": 0.003
+  },
+  {
+   "id": "i-festive-rajasthani-dhol",
+   "kind": "instrumental",
+   "seed": 110,
+   "bpm": 124,
+   "seconds": 60.0,
+   "gen_seconds": 28.6,
+   "lufs": -16.64,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "whisper": "अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को अजय को प्रश्न प्रश्न प्रश्न झाल",
+   "whisper_words": 0,
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.424
+    ],
+    [
+     "solo bansuri flute",
+     0.274
+    ],
+    [
+     "western rock music",
+     0.155
+    ],
+    [
+     "veena",
+     0.039
+    ]
+   ],
+   "clap_singing": 0.003
+  },
+  {
+   "id": "i-festive-dj-dhol",
+   "kind": "instrumental",
+   "seed": 111,
+   "bpm": 128,
+   "seconds": 60.0,
+   "gen_seconds": 28.8,
+   "lufs": -14.5,
+   "true_peak": -0.91,
+   "clip_share": 0.0,
+   "whisper": "प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रतिम प्रति प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्तुत्र प्रस्त",
+   "whisper_words": 19,
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.706
+    ],
+    [
+     "western rock music",
+     0.119
+    ],
+    [
+     "veena",
+     0.054
+    ],
+    [
+     "solo bansuri flute",
+     0.046
+    ]
+   ],
+   "clap_singing": 0.005
+  },
+  {
+   "id": "i-festive-shehnai",
+   "kind": "instrumental",
+   "seed": 112,
+   "bpm": 116,
+   "seconds": 60.0,
+   "gen_seconds": 28.7,
+   "lufs": -16.09,
+   "true_peak": -0.54,
+   "clip_share": 0.0,
+   "whisper": "प्रस्तुति प्रस्तुति प्रस्तुति प्रस्तुति",
+   "whisper_words": 0,
+   "clap_top": [
+    [
+     "electronic dance music",
+     0.516
+    ],
+    [
+     "western rock music",
+     0.313
+    ],
+    [
+     "solo bansuri flute",
+     0.084
+    ],
+    [
+     "tabla drums",
+     0.03
+    ]
+   ],
+   "clap_singing": 0.002
+  }
+ ],
+ "speaker_similarity_ecapa": {
+  "v-khatu-jai-shree-shyam|v-khatu-jai-shree-shyam-roman": 0.828,
+  "v-khatu-jai-shree-shyam|v-khatu-thak-ke-aaya": 0.733,
+  "v-khatu-jai-shree-shyam|v-bhole-bam-bam": 0.773,
+  "v-khatu-jai-shree-shyam|v-shiv-om-namah": 0.751,
+  "v-khatu-jai-shree-shyam|v-hanuman-chalisa-open": 0.655,
+  "v-khatu-jai-shree-shyam|v-om-jai-jagdish": 0.305,
+  "v-khatu-jai-shree-shyam|v-krishna-radhe-bol": 0.355,
+  "v-khatu-jai-shree-shyam|v-khatu-jai-shree-shyam-seed2": 0.843,
+  "v-khatu-jai-shree-shyam-roman|v-khatu-thak-ke-aaya": 0.598,
+  "v-khatu-jai-shree-shyam-roman|v-bhole-bam-bam": 0.733,
+  "v-khatu-jai-shree-shyam-roman|v-shiv-om-namah": 0.61,
+  "v-khatu-jai-shree-shyam-roman|v-hanuman-chalisa-open": 0.495,
+  "v-khatu-jai-shree-shyam-roman|v-om-jai-jagdish": 0.336,
+  "v-khatu-jai-shree-shyam-roman|v-krishna-radhe-bol": 0.344,
+  "v-khatu-jai-shree-shyam-roman|v-khatu-jai-shree-shyam-seed2": 0.72,
+  "v-khatu-thak-ke-aaya|v-bhole-bam-bam": 0.659,
+  "v-khatu-thak-ke-aaya|v-shiv-om-namah": 0.86,
+  "v-khatu-thak-ke-aaya|v-hanuman-chalisa-open": 0.825,
+  "v-khatu-thak-ke-aaya|v-om-jai-jagdish": 0.33,
+  "v-khatu-thak-ke-aaya|v-krishna-radhe-bol": 0.407,
+  "v-khatu-thak-ke-aaya|v-khatu-jai-shree-shyam-seed2": 0.737,
+  "v-bhole-bam-bam|v-shiv-om-namah": 0.656,
+  "v-bhole-bam-bam|v-hanuman-chalisa-open": 0.579,
+  "v-bhole-bam-bam|v-om-jai-jagdish": 0.229,
+  "v-bhole-bam-bam|v-krishna-radhe-bol": 0.287,
+  "v-bhole-bam-bam|v-khatu-jai-shree-shyam-seed2": 0.745,
+  "v-shiv-om-namah|v-hanuman-chalisa-open": 0.821,
+  "v-shiv-om-namah|v-om-jai-jagdish": 0.283,
+  "v-shiv-om-namah|v-krishna-radhe-bol": 0.352,
+  "v-shiv-om-namah|v-khatu-jai-shree-shyam-seed2": 0.761,
+  "v-hanuman-chalisa-open|v-om-jai-jagdish": 0.261,
+  "v-hanuman-chalisa-open|v-krishna-radhe-bol": 0.296,
+  "v-hanuman-chalisa-open|v-khatu-jai-shree-shyam-seed2": 0.695,
+  "v-om-jai-jagdish|v-krishna-radhe-bol": 0.816,
+  "v-om-jai-jagdish|v-khatu-jai-shree-shyam-seed2": 0.236,
+  "v-krishna-radhe-bol|v-khatu-jai-shree-shyam-seed2": 0.285
+ }
+}

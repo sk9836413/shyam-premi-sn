@@ -204,6 +204,7 @@ def qa():
             pr = out.logits_per_audio.softmax(-1).mean(0).cpu().numpy()
             top = sorted(zip(labels, pr), key=lambda z: -z[1])[:4]
             r['clap_top'] = [[l, round(float(p), 3)] for l, p in top]
+            r['clap'] = {l: round(float(p), 4) for l, p in zip(labels, pr)}
             r['clap_singing'] = round(float(sum(p for l, p in zip(labels, pr) if 'singing' in l)), 3)
             log(f'{r["id"]}: CLAP {r["clap_top"]} singing={r["clap_singing"]}')
         del cm

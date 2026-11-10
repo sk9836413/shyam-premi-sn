@@ -154,6 +154,8 @@ test('batch jobs and QA gate', () => {
   assert.match(passesQa({ ...ok, clip_share: 0.01 }).join(), /clipping/);
   assert.match(passesQa({ ...ok, clap_singing: 0.7 }).join(), /singing heard/);
   assert.match(passesQa({ ...ok, whisper_words: 30 }).join(), /singing heard/);
+  assert.match(passesQa({ ...ok, clap_top: [['electronic dance music', 0.8], ['solo bansuri flute', 0.05]] }).join(), /few Indian/);
+  assert.deepEqual(passesQa({ ...ok, clap: { sitar: 0.3, piano: 0.7 } }), []);
   assert.match(passesQa({ ...ok, kind: 'vocal', cer: 0.2 }).join(), /not enabled/);
   assert.deepEqual(passesQa({ ...ok, kind: 'vocal', cer: 0.2 }, { vocals: true }), []);
   assert.match(passesQa({ ...ok, kind: 'vocal', cer: 0.6 }, { vocals: true }).join(), /CER/);

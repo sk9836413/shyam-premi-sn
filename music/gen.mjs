@@ -86,6 +86,14 @@ function fetchOut() {
   process.exit(r.ok ? 0 : 1);
 }
 
+const INDIAN = ['solo bansuri flute', 'sitar', 'santoor', 'tabla drums', 'dhol drums', 'harmonium', 'shehnai', 'veena', 'temple bells'];
+// Share of the CLAP zero-shot probability on Indian instruments (full distribution if present, else the top 4 = a lower bound).
+export function indianShare(t) {
+  const pairs = t.clap ? Object.entries(t.clap) : t.clap_top;
+  if (!pairs) return null;
+  return pairs.filter(([l]) => INDIAN.includes(l)).reduce((a, [, p]) => a + p, 0);
+}
+
 // QA gate for the library (same numbers the kernel measured).
 export function passesQa(t, { vocals = false } = {}) {
   const why = [];
@@ -95,6 +103,9 @@ export function passesQa(t, { vocals = false } = {}) {
   if (t.clip_share != null && t.clip_share > 0.001) why.push(`clipping ${(t.clip_share * 100).toFixed(2)}%`);
   if (t.lufs != null && (t.lufs < -35 || t.lufs > -5)) why.push(`loudness ${t.lufs}`);
   if (t.kind !== 'vocal' && ((t.clap_singing ?? 0) > 0.5 || (t.whisper_words ?? 0) > 12)) why.push(`singing heard in an instrumental (CLAP ${t.clap_singing}, ${t.whisper_words} words)`);
+  // CLAP must hear Indian instruments (batch-001: santoor/sarangi/aarti prompts came out "western rock" / "EDM" to CLAP).
+  const share = indianShare(t);
+  if (t.kind !== 'vocal' && share != null && share < 0.15) why.push(`CLAP hears few Indian instruments (${share.toFixed(2)})`);
   if (t.kind === 'vocal') {
     if (!vocals) why.push('vocal bhajans not enabled for the library');
     if (!(t.cer != null && t.cer <= 0.35)) why.push(`Whisper CER ${t.cer}`);
@@ -115,7 +126,8 @@ function importBatch() {
     report.push({ id: t.id, ok: !why.length, why });
     if (why.length) continue;
     const id = `gen-${t.id}`;
-    normaliseLoudness(path.join(from, t.file), path.join(lib, `${id}.ogg`));
+    const src = [path.join(from, t.file), path.join(from, 'out', t.file)].find((f) => fs.existsSync(f));
+    normaliseLoudness(src, path.join(lib, `${id}.ogg`));
     const j = meta[t.id] || {};
     fs.writeFileSync(path.join(lib, `${id}.licence.json`), `${JSON.stringify({
       id, title: t.id, moods: [j.mood || t.mood || 'calm'], kind: t.kind, bpm: t.bpm, deity: j.deity || null,
