@@ -18,6 +18,30 @@ upload must be high quality and clearly different, and the workflow (`scripts/da
 `scripts/upload-guard.mjs` skips (and logs) any 4th YouTube upload of an IST date. Everything published is in the brand's name only. There is no human review, so every
 rule below is a hard requirement.
 
+## Spoken style (every `tts`, every format)
+
+Owner, 10 Nov 2026: the narration sounded robotic. The voices stay the free edge-tts Madhur/Swara (they pronounce Hindi
+best; Chatterbox and Parler were worse), but every line is now spoken **sentence by sentence** (`voice/humanize.py`:
+each sentence gets its own pace and pitch from its mood, natural pauses, soft breaths, a warm room). That only sounds
+human when the **script is written to be spoken**, like a family elder telling a katha, not read from a book:
+
+- **Short sentences**: one idea each, **at most 18 words** (the validator flags longer ones). Two short sentences beat
+  one long one with "जिन्होंने… जिनसे… जिसके कारण…".
+- **Warm, everyday Hindi/Hinglish**: "बेटा", "सुनो…", "देखो", "हैं ना?", "सोचो…", "अरे!", "फिर क्या हुआ?". Use these
+  fillers **in moderation** (one or two per Short, a few per long video), never in every line.
+- **Rhetorical questions and emotion words**: "क्या आप जानते हैं…?", "कितना बड़ा त्याग, है ना?", "आँखें भर आईं…".
+- **Mark pauses with commas and "…"**: "और फिर… श्री कृष्ण ने माँग लिया, उनका शीश।" ("…" is a short dramatic pause;
+  at most one or two per line).
+- **No bookish Sanskritized sentences** ("तत्पश्चात", "उपरांत", "द्वारा प्राप्त किए", "समर्पित कर दिया" → "फिर", "के
+  बाद", "मिले", "दे दिया"). **Shlokas, mantras and jaikaras stay exactly as they are** (exempt from the 18 words).
+- **Numbers as words** ("तीन बाण", "सौ साल"), never digits.
+- `mood` (optional, on a scene or a dialogue line): `calm`, `wonder`, `excitement`, `serious` or `emotional`. Without
+  it the mood comes from the words (questions go slightly up, "!" with जय is excitement, ॐ/नमः lines are a slow mantra);
+  set it only where the words do not show it (e.g. a quiet line that should be `emotional`).
+
+Bookish: `बर्बरीक ने कठोर तपस्या द्वारा तीन अमोघ बाण प्राप्त किए, जिनसे संपूर्ण युद्ध क्षणभर में समाप्त हो सकता था।`
+Spoken: `तपस्या से मिले तीन बाण। सोचो… सिर्फ़ तीन बाण, और पूरा युद्ध खत्म!`
+
 ## 1. Choose today's subject
 
 Work out today's date in India (IST) and pick the subject in this order:
@@ -204,7 +228,8 @@ Each scene:
 - `prompt`: English image prompt for one clear moment: characters, setting, action, emotion.
   Describe deities in their traditional iconography (colour, weapons, vahan, ornaments). Never ask
   for text, signs or letters. Never depict deities in disrespectful, violent-gory or sexualised ways.
-- `tts`: the narration line in **Hindi Devanagari**, one short sentence, at most 110 characters.
+- `tts`: the narration line in **Hindi Devanagari**, in the "Spoken style" above (one or two short sentences), at most
+  110 characters. Optional `mood` (see "Spoken style").
   Total narration (all scenes) at most 380 characters in the morning and 330 in the evening.
   Write numbers as words.
 - `sub`: the same line in **Hinglish (Roman script)**, at most 120 characters.
@@ -316,7 +341,8 @@ story, new miracles, dates, numbers or promises of benefit. Nothing that is not 
 - **Teasers every ~2 minutes:** mark a scene `"teaser": true` whose line pulls the viewer forward,
   e.g. `Aage dekhiye, Shri Krishna ne kaun si pariksha li…` or `Lekin asli mod abhi baaki tha…`. The
   validator wants one at least every 2.5 minutes. They must be honest: what they promise comes later.
-- 30-60 scenes. Each scene is one moment: `tts` at most 170 characters (Devanagari, numbers as words),
+- 30-60 scenes. Each scene is one moment: `tts` at most 170 characters (Devanagari, numbers as words, "Spoken style":
+  2-3 short sentences, a katha told to the family, not read from a book; optional `mood`),
   `sub` at most 150 characters (Roman Hinglish, the same line). Narration speaks ~12 characters a
   second; the validator estimates the length and wants 5-10 minutes (about 3,300-6,500 characters
   of tts in total).
@@ -429,9 +455,10 @@ speaks the disclaimer ("Sati pratha Bharat mein kanoon dwara pratibandhit hai…
 the disclaimer in the description. Respectful tone, no fear or money promises (section 2).
 
 **Dialogue.**
-- 14-24 lines, about **90-120 seconds** spoken. Dadi speaks slowly (~10 Devanagari characters a second), Chhotu
-  faster (~14), with a short pause between turns; the validator estimates the length (about 1,000-1,300 characters
-  of tts in total).
+- 14-24 lines, about **90-120 seconds** spoken. Dadi speaks slowly (~11 Devanagari characters a second), Chhotu
+  faster (~14), with quick, natural turn-taking (50-150 ms between speakers); the validator estimates the length
+  (about 1,100-1,450 characters of tts in total). Both talk in the "Spoken style": Dadi warm and simple ("सुनो
+  बेटा…", "है ना?"), Chhotu curious and excited ("सच में?", "फिर क्या हुआ, दादी?"). Optional `mood` per line.
 - Line 1: **Chhotu asks a curious question** that hooks in 2 seconds and **starts with the temple/deity/festival
   name** (the most surprising fact as a question, e.g. "Salasar Balaji ki daadhi-moochh kyun hai, Dadi?"). Never
   open with "Dadi, …" or a greeting (those Shorts got 0-4 views); its `top` is the temple/murti picture.
@@ -518,7 +545,7 @@ of the day's 3 uploads: evening darshan (+ the status Short on a festival day), 
   iconography; no text; **no gore or violence**: a war is distant banners, a sacrifice is light and petals), `cast` (who
   is in the picture), `motion` (`in`/`out`/`pan`), `animate` (GENTLE micro-motion for 2-6 key scenes; the GPU tier
   decides how many become Wan clips), optional `hero: true` (one scene, the 14B model), `deity: true` for a deity or
-  murti in the picture, and `lines` (1-6): `{who, tts (Devanagari, max 110, numbers as words), sub (Roman, max 120),
+  murti in the picture, and `lines` (1-6): `{who, tts (Devanagari, max 110, numbers as words, "Spoken style"), sub (Roman, max 120), mood?,
   shot?}`. A narrator line shows the scene; a character's line cuts to their close-up (lip-synced for humans; deities
   get gentle motion only, never lip-sync; Khatu Shyam ji speaks only as the sheesh, cast `khatu-shyam`).
 - `teaser` `{prompt, tts, sub}`: "Agle bhaag mein: ..." over the next part's key image (the last part: "Agli movie series
@@ -595,7 +622,7 @@ teacher or guide. Iconography stays correct (colours, crown, attributes). Cute, 
 - `scenes` (3-5): `prompt` (one vertical moment in the child's world, name the characters: their look comes from
   cast.json; a deity in the prompt must be in the scene's `cast`; no text), `cast`, `motion` (`in`/`out`/`pan`/`still`),
   `animate` (1-3 scenes, ONE sentence of gentle motion; 2 become Wan clips), `lines` (1-5): `{who, tts (Devanagari,
-  max 100, numbers as words), sub (Roman, max 110)}`. A scene's first line shows the scene; every other line cuts to the
+  max 100, numbers as words, "Spoken style": kids talk like kids, the deity warm and simple), mood?, sub (Roman, max 110)}`. A scene's first line shows the scene; every other line cuts to the
   speaker's lip-synced close-up.
 - **Hook in the first 2 s:** line 1 is the child's problem or question in max 60 characters ("कल एग्ज़ाम है, और मुझे
   कुछ भी याद नहीं हो रहा!"), no greeting; the title with the deity's name is on screen over it (0-2.8 s).

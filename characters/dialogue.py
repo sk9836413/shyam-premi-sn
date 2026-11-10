@@ -52,7 +52,7 @@ def load_spec(path, channel):
     """Both channels' specs as one shape: lines [{who, tts, sub, top, step}] and visuals {key: {...}}."""
     s = load_json(path)
     if channel == "shyam":
-        lines = [{"who": l["who"], "tts": l["tts"], "sub": l["sub"], "top": l.get("top"), "step": None} for l in s["lines"]]
+        lines = [{"who": l["who"], "tts": l["tts"], "sub": l["sub"], "top": l.get("top"), "step": None, "mood": l.get("mood")} for l in s["lines"]]
         return {**s, "lines": lines, "visuals": s.get("visuals", {})}
     lines, last = [], "v0"
     for l in s["lines"]:
@@ -94,6 +94,33 @@ def kokoro_say(text, v, wav, lang):
     sf.write(wav, a, sr)
 
 
+def human_voices(items):
+    """voice/humanize.py (sentence-by-sentence mood prosody, pauses, breaths, EQ / de-ess / compression / small room)
+    for a batch of Hindi lines: {index: result} for the lines that worked; {} when SPS_HUMAN_VOICE=0 or the chain is
+    unavailable, so the caller makes those lines with the old single-request chain."""
+    if os.environ.get("SPS_HUMAN_VOICE", "1") == "0" or not items:
+        return {}
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "voice"))
+        import humanize  # numpy; imported here so EpiFive (English, old chain) never needs it
+        res = humanize.render(items)
+    except Exception as e:  # noqa: BLE001
+        print(f"human voice chain failed, using plain edge-tts: {type(e).__name__}: {e}", flush=True)
+        return {}
+    for i, r in enumerate(res):
+        if "error" in r:
+            print(f"human voice line {i} failed ({r['error']}), plain edge-tts for it", flush=True)
+    return {i: r for i, r in enumerate(res) if "error" not in r}
+
+
+def human_pause(seed, same_speaker, text, mood=None, scene_change=False):
+    """Pause after a line in the human chain: 50-150 ms when the other character answers, 220-340 ms when the same
+    one goes on, 0.6-0.8 s at a scene change, +0.12 s after an emotional / serious line (voice/humanize.py turn_gap)."""
+    sys.path.insert(0, os.path.join(ROOT, "voice"))
+    import humanize
+    return humanize.turn_gap(seed, same_speaker, humanize.line_moods(text, mood)[-1], scene_change=scene_change)
+
+
 def bump(rate, pct):
     n = int(rate.replace("%", "")) + pct
     return f"{'+' if n >= 0 else ''}{n}%"
@@ -104,32 +131,47 @@ def cmd_voice(a):
     lang, sp, pz = lib["lang"], lib["speakers"], lib["pauses"]
     os.makedirs(a.out, exist_ok=True)
     faster = 0
+    human_on = lang == "hi" and os.environ.get("SPS_HUMAN_VOICE", "1") != "0"
+    LEAD = 0.06 if human_on else 0.09
     for attempt in range(2):
-        lines, engine = [], "edge-tts"
-        for i, l in enumerate(spec["lines"]):
+        lines, engine = [], "edge-tts (human chain)" if human_on else "edge-tts"
+        L = spec["lines"]
+        voices, pauses = [], []
+        for i, l in enumerate(L):
             v = dict(sp[l["who"]]["voice"])
             v["rate"] = bump(v.get("rate", "+0%"), faster)
-            raw, out = f"{a.out}/{i:02d}-raw", f"{a.out}/{i:02d}.wav"
-            text = spoken(l["tts"], lang)
-            try:
-                asyncio.run(edge_say(text, v, raw + ".mp3")); src = raw + ".mp3"
-            except Exception:
-                kokoro_say(text, v, raw + ".wav", lang); src = raw + ".wav"; engine = "kokoro (edge-tts failed)"
-            nxt = spec["lines"][i + 1]["who"] if i + 1 < len(spec["lines"]) else None
-            # Pauses between turns (the pilot's Dadi ran on without breathing): longer when the speaker changes,
-            # a beat more after a question, a long hold after the last line.
-            pause = pz["end"] if nxt is None else (pz["switch"] + (0.12 if l["tts"].rstrip().endswith("?") else 0)) if nxt != l["who"] else pz["same"]
-            ff("-i", src, "-af",
-               "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
-               "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
-               f"loudnorm=I=-18:TP=-2:LRA=11,aresample=24000,adelay=90:all=1,apad=pad_dur={pause:.2f}",
-               "-ac", "1", "-ar", "24000", out)
-            for f in (raw + ".mp3", raw + ".wav"):
-                if os.path.exists(f):
-                    os.remove(f)
+            voices.append(v)
+            nxt = L[i + 1]["who"] if i + 1 < len(L) else None
+            if nxt is None:
+                pauses.append(pz["end"])
+            elif human_on:  # quick, natural turn-taking (owner, 10 Nov 2026)
+                pauses.append(human_pause(f"{i}|{l['tts']}", nxt == l["who"], l["tts"], l.get("mood")))
+            else:
+                # Pauses between turns (the pilot's Dadi ran on without breathing): longer when the speaker changes,
+                # a beat more after a question, a long hold after the last line.
+                pauses.append((pz["switch"] + (0.12 if l["tts"].rstrip().endswith("?") else 0)) if nxt != l["who"] else pz["same"])
+        made = human_voices([{"text": spoken(l["tts"], lang), "voice": voices[i], "mood": l.get("mood"), "out": f"{a.out}/{i:02d}.wav",
+                              "lead": LEAD, "pause": pauses[i], "seed": f"{l['who']}|{i}|{l['tts']}"} for i, l in enumerate(L)]) if human_on else {}
+        for i, l in enumerate(L):
+            v, pause, out = voices[i], pauses[i], f"{a.out}/{i:02d}.wav"
+            if i not in made:
+                raw = f"{a.out}/{i:02d}-raw"
+                text = spoken(l["tts"], lang)
+                try:
+                    asyncio.run(edge_say(text, v, raw + ".mp3")); src = raw + ".mp3"
+                except Exception:
+                    kokoro_say(text, v, raw + ".wav", lang); src = raw + ".wav"; engine = "kokoro (edge-tts failed)"
+                ff("-i", src, "-af",
+                   "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
+                   "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
+                   f"loudnorm=I=-18:TP=-2:LRA=11,aresample=24000,adelay={int(LEAD * 1000)}:all=1,apad=pad_dur={pause:.2f}",
+                   "-ac", "1", "-ar", "24000", out)
+                for f in (raw + ".mp3", raw + ".wav"):
+                    if os.path.exists(f):
+                        os.remove(f)
             secs = wav_len(out)
             lines.append({"i": i, "who": l["who"], "file": f"{i:02d}.wav", "seconds": round(secs, 3),
-                          "speech_s": round(secs - pause - 0.09, 3), "pause_s": pause})
+                          "speech_s": round(secs - pause - LEAD, 3), "pause_s": pause})
         total = sum(x["seconds"] for x in lines)
         if total <= MAX_TOTAL or attempt:
             break
@@ -674,7 +716,8 @@ class Renderer:
             music = [f"aevalsrc='0.09*sin(2*PI*138.59*t)*(1+0.25*sin(2*PI*0.18*t))+0.06*sin(2*PI*207.65*t)*(1+0.25*sin(2*PI*0.23*t))+0.045*sin(2*PI*277.18*t)|"
                      f"0.09*sin(2*PI*138.59*t+0.4)*(1+0.25*sin(2*PI*0.21*t))+0.06*sin(2*PI*207.65*t+0.3)+0.045*sin(2*PI*277.18*t+0.2)':s=48000:d={T}",
                      f"anoisesrc=d={T}:c=brown:a=0.5:r=48000,lowpass=f=420,tremolo=f=0.12:d=0.6",  # soft evening wind
-                     f"anoisesrc=d={T}:c=white:a=0.5:r=48000,bandpass=f=4700:width_type=h:w=700,tremolo=f=13:d=1,tremolo=f=0.31:d=0.9"]  # crickets
+                     f"anoisesrc=d={T}:c=white:a=0.5:r=48000,bandpass=f=4700:width_type=h:w=700,tremolo=f=13:d=1,tremolo=f=0.31:d=0.9",  # crickets
+                     f"aevalsrc='if(lt(random(0),0.0003),(random(1)-0.5)*1.4,0)':s=48000:d={T},highpass=f=1800,lowpass=f=7500"]  # diya crackle
             bell = "aevalsrc='0.45*sin(2*PI*1046*t)*exp(-2.2*t)+0.25*sin(2*PI*2093*t)*exp(-3.5*t)+0.15*sin(2*PI*1568*t)*exp(-2.8*t)':s=48000:d=4"
             sfx = [(bell, 0.2, 0.8), (bell, starts[-1], 0.6)]
         else:  # soft synth pad + quiet room tone + a whoosh whenever the screen changes
@@ -690,7 +733,7 @@ class Renderer:
         return music, sfx
 
     def mix(self, n_music, sfx, total):
-        vols = [0.42, 0.10, 0.035] if self.st["music"] == "drone" else [0.30, 0.05]
+        vols = [0.42, 0.10, 0.035, 0.25] if self.st["music"] == "drone" else [0.30, 0.05]
         f = [f"[{k + 1}:a]aformat=sample_rates=48000:channel_layouts=stereo,volume={vols[k]}[m{k}]" for k in range(n_music)]
         for j, (_, at, vol) in enumerate(sfx):
             ms = int(at * 1000)
@@ -698,6 +741,11 @@ class Renderer:
         ins = "".join(f"[m{k}]" for k in range(n_music)) + "".join(f"[s{j}]" for j in range(len(sfx)))
         f.append(f"{ins}amix=inputs={n_music + len(sfx)}:duration=longest:normalize=0,atrim=duration={total:.2f},"
                  f"afade=t=in:d=1.2,afade=t=out:st={max(0, total - 2):.2f}:d=2[bed]")
+        if self.lib.get("lang") == "hi":  # Shyam (10 Nov 2026): the bed ducks under the voices (sidechain), as in the Shorts
+            f.append("[0:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[vo][sc]")
+            f.append("[bed][sc]sidechaincompress=threshold=0.03:ratio=5:attack=20:release=400[duck]")
+            f.append("[vo][duck]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]")
+            return ";".join(f)
         f.append(f"[0:a][bed]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]")
         return ";".join(f)
 

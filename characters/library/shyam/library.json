@@ -33,8 +33,9 @@
    "side": "right",
    "voice": {
     "edge": "hi-IN-MadhurNeural",
-    "rate": "+4%",
+    "rate": "+8%",
     "pitch": "+45Hz",
+    "child": true,
     "kokoro": "hm_omega",
     "kokoro_speed": 1.0
    }

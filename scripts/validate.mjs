@@ -74,6 +74,37 @@ if (!['status', 'movie'].includes(s.format)) {
   }
 }
 
+// ---- Spoken style (STORY.md "Spoken style", 10 Nov 2026: the owner found the narration robotic) ----------------------
+// Every spoken line (any `tts`, in every format) is said sentence by sentence by voice/humanize.py, so long bookish
+// sentences sound read out. A sentence (up to । ! ? . ॥) over 18 words is flagged; shlokas/mantras are exempt (ॐ, ॥,
+// नमः, स्वाहा, the spec's `shloka.text`). `mood` (optional, per scene or line) must be one of the humanize moods.
+// Like the topic check: a problem while writing, a warning with --soft-topics (the workflow), so it never stops a post.
+const MOODS = ['calm', 'wonder', 'excitement', 'serious', 'emotional'];
+const SHLOKA = /ॐ|॥|नमः|नमो|स्वाहा/;
+const MAX_WORDS = 18;
+{
+  const style = [];
+  const shlokaText = String(s.shloka?.text || '').trim();
+  const walk = (o, where) => {
+    if (Array.isArray(o)) return o.forEach((x, i) => walk(x, `${where}[${i}]`));
+    if (!o || typeof o !== 'object') return;
+    if (typeof o.tts === 'string') {
+      if (o.mood !== undefined && !MOODS.includes(o.mood)) problems.push(`${where}: mood must be one of ${MOODS.join(', ')}`);
+      const text = shlokaText ? o.tts.replace(shlokaText, '') : o.tts;
+      for (const sent of text.split(/[।!?.॥]+/)) {
+        const n = sent.split(/\s+/).filter((w) => /[ऀ-ॿA-Za-z]/.test(w)).length;
+        if (n > MAX_WORDS && !SHLOKA.test(sent)) style.push(`${where}: a ${n}-word sentence; speak it as 2-3 short sentences (max ${MAX_WORDS} words): "${sent.trim().slice(0, 60)}…"`);
+      }
+    }
+    for (const [k, v] of Object.entries(o)) if (k !== 'shloka' && v && typeof v === 'object') walk(v, where ? `${where}.${k}` : k);
+  };
+  walk(s, '');
+  for (const w of style) {
+    if (process.argv.includes('--soft-topics')) console.log(`${process.env.GITHUB_ACTIONS ? '::warning::' : 'warning: '}${w}`);
+    else problems.push(w);
+  }
+}
+
 function checkHook(hook, what = 'hook') {
   need(!WEAK_OPENER.test(String(hook || '').trim()), `${what}: no greeting or slow intro ("Aaj suniye", "Namaste", "Dadi, ..."): open with the name or the question`);
   need(named(hook), `${what}: name the deity, temple or festival (formula: "<Name>: <blessing or curiosity>", e.g. "Salasar Balaji ki daadhi kyun?" or "Shubh Dhanteras! Dhanvantari ka ashirwad")`);
@@ -504,8 +535,9 @@ if (s.format === 'movie') {
 }
 
 // ---- "Dadi aur Chhotu" dialogue Short (noon slot, STORY.md section 6) -----------------------------
-// Speaking pace measured with edge-tts on 4 Nov 2026: Dadi (Swara, -15%) ~9.9 Devanagari characters a second,
-// Chhotu (Madhur, +4%, pitched up) ~14.2; each turn adds ~0.65-0.75 s of pause (longer when the speaker changes).
+// Speaking pace with the human voice chain (voice/humanize.py, measured 10 Nov 2026 on the 9 Nov Govardhan Short):
+// Dadi (Swara, -15%) ~10.8 Devanagari characters a second, Chhotu (Madhur, +8%, pitched up) ~13.9, sentence pauses
+// included; each turn adds only ~0.2 s (50-150 ms between speakers). Before: 9.9 / 14.2 and ~0.65-0.75 s a turn.
 // Sati temples (automation/mandir-series.md): no fair/mela/procession talk at all, and the legal disclaimer is required.
 if (/sati/i.test(`${s.slug || ''} ${s.temple || ''} ${s.title || ''}`)) {
   const all = JSON.stringify(s);
@@ -585,8 +617,8 @@ if (s.format === 'dialogue') {
   need(tail.some((l) => l.who === 'chhotu' && /\bkal\b/i.test(l.sub || '') && /\?/.test(l.sub || '')), 'one of the last 2 lines: Chhotu asks about tomorrow\'s temple ("Dadi, kal ... ?")');
   need(/subscribe/i.test(lines.at(-1)?.sub || '') && /like/i.test(lines.at(-1)?.sub || ''), 'the last line asks to like, share and subscribe');
   need(lines.at(-1)?.top === 'end', 'the last line shows the end card (top "end")');
-  const secs = lines.reduce((t, l) => t + (l.tts || '').length / (l.who === 'dadi' ? 9.9 : 14.2) + (l.who === 'dadi' ? 0.63 : 0.76), 0);
-  need(secs >= 85 && secs <= 125, `estimated length ${Math.round(secs)} s; must be 90-120 s (Dadi speaks ~9.9 characters a second, Chhotu ~14.2): adjust the lines`);
+  const secs = lines.reduce((t, l) => t + (l.tts || '').length / (l.who === 'dadi' ? 10.8 : 13.9) + 0.2, 0);
+  need(secs >= 85 && secs <= 125, `estimated length ${Math.round(secs)} s; must be 90-120 s (Dadi speaks ~10.8 characters a second, Chhotu ~13.9): adjust the lines`);
   const facts = Array.isArray(s.facts) ? s.facts : [];
   need(facts.length >= 3, 'facts: at least 3 entries {claim, sources: [2+ URLs]} for what the dialogue states');
   facts.forEach((f, i) => need(f?.claim && Array.isArray(f.sources) && f.sources.filter((u) => /^https?:\/\//.test(u)).length >= 2, `fact ${i + 1}: needs a claim and 2 independent source URLs`));

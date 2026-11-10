@@ -11,7 +11,9 @@
 // Status videos (spec.format "status", story/status/<date>.json): the festival "WhatsApp status" Short; each scene's
 // big Hindi blessing, mantra and the end line are drawn by story/status-overlays.mjs (headless Chrome, so Devanagari
 // and the emoji render correctly) and laid over the frame instead of the subtitles.
-// Voice: edge-tts (Kokoro fallback). Music: synthesized drone + bell. Ambience (Nov 2026): a synthesized bed picked
+// Voice: edge-tts made human (voice/humanize.py: sentence-by-sentence mood prosody + jitter, pauses, soft breaths,
+// EQ / de-ess / compression / a small room; SPS_HUMAN_VOICE=0 = the old single-request chain; Kokoro fallback).
+// Music: synthesized drone + bell. Ambience (Nov 2026): a synthesized bed picked
 // from the scenes (temple air, crowd murmur, diya crackle, distant bells at scene changes; no third-party audio),
 // ducked under the voice with a sidechain compressor, then the whole mix to -14 LUFS.
 // Look (Nov 2026, animate/REPORT.md section 10): a light warm grade + vignette, subtle temporal film grain and a
@@ -128,6 +130,29 @@ function ttsEdge() {
   });
 }
 
+// Human chain (default since 10 Nov 2026): one batch through voice/humanize.py. Every scene after the first gets a
+// 0.3 s lead (it may hold a soft breath) and is placed that much earlier, so the words still start where they did.
+// Emotional / serious / mantra scenes hold 0.2 s longer before the next scene.
+const HUMAN = process.env.SPS_HUMAN_VOICE !== '0';
+const HUMAN_LEAD = 0.3;
+const leads = spec.scenes.map(() => 0);
+const extraHold = spec.scenes.map(() => 0);
+function ttsHuman() {
+  const items = spec.scenes.map((s, i) => ({
+    text: s.tts, voice: s.voice || spec.voice || 'hm_omega', mood: s.mood, out: path.join(work, `voice-${i}.wav`), lead: i === 0 ? 0 : HUMAN_LEAD,
+  }));
+  const job = path.join(work, 'voice-job.json');
+  fs.writeFileSync(job, JSON.stringify({ items, concurrency: 5 }));
+  const r = spawnSync(PYTHON, ['-I', path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../voice/humanize.py'), job],
+    { encoding: 'utf8', env: { ...process.env, FFMPEG_PATH: FF }, maxBuffer: 1 << 24 });
+  if (r.status !== 0) throw new Error(`humanize: ${(r.stderr || '').trim().split('\n').pop()}`);
+  const res = JSON.parse(r.stdout.trim().split('\n').pop());
+  const bad = res.find((x) => x.error);
+  if (bad) throw new Error(`humanize: ${bad.error}`);
+  res.forEach((x, i) => { leads[i] = x.lead; extraHold[i] = ['emotional', 'serious', 'mantra'].includes(x.last_mood) ? 0.2 : 0; });
+  return res.map((x) => x.speech_s);
+}
+
 // Chatterbox narration made on the Kaggle GPU (voice/chatterbox_tts.py): used when VOICE_DIR holds a voice.json in
 // which every line succeeded; otherwise edge-tts (then Kokoro) makes the voice here.
 function ttsPremade() {
@@ -148,6 +173,17 @@ function tts() {
     console.log('voice: Chatterbox (made on Kaggle)');
     voiceExt = 'wav';
     return premade;
+  }
+  if (process.env.TTS_ENGINE !== 'kokoro' && HUMAN) {
+    try {
+      const durations = ttsHuman();
+      voiceExt = 'wav';
+      console.log('voice: edge-tts, human chain (voice/humanize.py)');
+      return durations;
+    } catch (e) {
+      leads.fill(0); extraHold.fill(0);
+      console.log(`human voice chain failed, using plain edge-tts: ${e.message}`);
+    }
   }
   if (process.env.TTS_ENGINE !== 'kokoro') {
     try {
@@ -229,7 +265,7 @@ const probeSeconds = (file) => Number(spawnSync(FFPROBE, ['-v', 'error', '-show_
 
 const durations = tts();
 // `hold` (status videos) keeps a scene on screen longer than its narration.
-const sceneSeconds = (i) => Math.max(2.6, spec.scenes[i].hold || 0, durations[i] + 0.7);
+const sceneSeconds = (i) => Math.max(2.6, spec.scenes[i].hold || 0, durations[i] + 0.7 + extraHold[i]);
 
 // --prepare: only make the FLUX images and measure each scene's length, for the image-to-video step
 // (animate/kaggle.mjs prepare --plan). Writes build/<slug>/plan.json; the full render runs later.
@@ -395,7 +431,7 @@ let start = 0;
 const mix = [];
 clips.forEach((c, i) => {
   if (i > 0) start += clips[i - 1].seconds - FADE;
-  const ms = Math.round((start + (i === 0 ? VOICE_START : FADE + 0.15)) * 1000);
+  const ms = Math.max(0, Math.round((start + (i === 0 ? VOICE_START : FADE + 0.15) - leads[i]) * 1000));
   f.push(`[${n + 2 + i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=1.7,adelay=${ms}|${ms}[v${i}]`);
   mix.push(`[v${i}]`);
 });

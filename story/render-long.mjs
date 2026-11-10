@@ -6,7 +6,8 @@
 // spec.images (measured 1 Nov 2026: ~326 Workers AI neurons per image at 8 steps; 4 steps, the FLUX-schnell default, roughly halves it). Scenes reuse them
 // with different 16:9 crops (focus top/center/bottom) and camera moves. images[i].file (relative to
 // scenes.json) skips generation, for local tests.
-// Voice: edge-tts hi-IN-MadhurNeural (Kokoro fallback). Music: synthesized drone, a bell per chapter.
+// Voice: edge-tts hi-IN-MadhurNeural through the human chain (voice/humanize.py; Kokoro fallback). Music: synthesized
+// drone, a bell per chapter, synthesized ambience; all ducked under the voice (sidechain), -14 LUFS.
 // Within a chapter scenes crossfade; chapters dip through black and get a "Adhyay N" label.
 // Real temple photos: images marked `real: true` (temple exterior/interior) use the licence-checked photos in
 // footage/<spec.temple>/ (scripts/real-photos.mjs) instead of FLUX when there are any: no neurons spent, a 16:9
@@ -177,8 +178,31 @@ function ttsPremade() {
   console.log('voice: Chatterbox (made on Kaggle)');
   return files.map((file) => ({ file, seconds: duration(file) }));
 }
+// Human chain (default since 10 Nov 2026, voice/humanize.py): sentence-by-sentence mood prosody + jitter, 200-600 ms
+// pauses with soft breaths, EQ / de-ess / compression / a small room. Lines after the first get a 0.3 s lead (it may
+// hold a breath) and are placed that much earlier; they are already trimmed, so the TRIM pass below is skipped.
+// SPS_HUMAN_VOICE=0 = the old single-request chain.
+const HUMAN_LEAD = 0.3;
+function ttsHuman() {
+  const items = scenes.map((s, i) => ({
+    text: s.tts, voice: s.voice || spec.voice || 'hm_omega', mood: s.mood, out: path.join(work, `line-${i}.wav`), lead: i === 0 ? 0 : HUMAN_LEAD,
+  }));
+  const job = path.join(work, 'voice-job.json');
+  fs.writeFileSync(job, JSON.stringify({ items, concurrency: 6 }));
+  const r = spawnSync(PYTHON, ['-I', path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../voice/humanize.py'), job],
+    { encoding: 'utf8', env: { ...process.env, FFMPEG_PATH: FF }, maxBuffer: 1 << 26 });
+  if (r.status !== 0) throw new Error(`humanize: ${(r.stderr || '').trim().split('\n').pop()}`);
+  const res = JSON.parse(r.stdout.trim().split('\n').pop());
+  const bad = res.find((x) => x.error);
+  if (bad) throw new Error(`humanize: ${bad.error}`);
+  console.log('voice: edge-tts, human chain (voice/humanize.py)');
+  return res.map((x) => ({ file: x.file, seconds: x.speech_s, lead: x.lead, mood: x.last_mood }));
+}
 async function tts() {
   let lines = ttsPremade();
+  if (!lines && process.env.TTS_ENGINE !== 'kokoro' && process.env.SPS_HUMAN_VOICE !== '0') {
+    try { return ttsHuman(); } catch (e) { console.log(`human voice chain failed, using plain edge-tts: ${e.message}`); }
+  }
   if (!lines && process.env.TTS_ENGINE !== 'kokoro') {
     try { lines = await ttsEdge(); } catch (e) { console.log(`edge-tts failed, using Kokoro for every line: ${e.message}`); }
   }
@@ -205,7 +229,8 @@ const titleFile = textFile('title.txt', titleText);
 async function clip(scene, i, img, voice) {
   // Voice starts as the crossfade ends; lines are ~0.9 s apart (longer, with a bell, between chapters).
   const lead = i === 0 ? 0.1 : scene.firstInChapter ? 0.5 : FADE + 0.05;
-  const tail = scene.lastInChapter ? 0.9 : 0.35;
+  // A beat longer after an emotional / serious / mantra line (human chain: voice.mood).
+  const tail = (scene.lastInChapter ? 0.9 : 0.35) + (['emotional', 'serious', 'mantra'].includes(voice.mood) ? 0.25 : 0);
   const minimum = scene.endcard ? 6 : 3;
   const frames = Math.round(Math.max(minimum, lead + voice.seconds + tail + FADE) * FPS);
   const out = path.join(work, `clip-${i}.mp4`);
@@ -286,7 +311,7 @@ for (const [c, ch] of spec.chapters.entries()) {
   let start = 0;
   const a = [];
   cl.forEach((x, k) => {
-    const ms = Math.round((start + x.lead) * 1000);
+    const ms = Math.max(0, Math.round((start + x.lead - (x.voice.lead || 0)) * 1000));
     a.push(`[${k + 1}:a]aresample=48000,aformat=channel_layouts=stereo,volume=1.7,adelay=${ms}|${ms}[a${k}]`);
     start += x.seconds - FADE;
   });
@@ -317,15 +342,33 @@ await ff(['-f', 'concat', '-safe', '0', '-i', alist, '-c', 'copy', narration]);
 const drone = `aevalsrc='0.09*sin(2*PI*138.59*t)*(1+0.25*sin(2*PI*0.18*t))+0.06*sin(2*PI*207.65*t)*(1+0.25*sin(2*PI*0.23*t))+0.045*sin(2*PI*277.18*t)|0.09*sin(2*PI*138.59*t+0.4)*(1+0.25*sin(2*PI*0.21*t))+0.06*sin(2*PI*207.65*t+0.3)+0.045*sin(2*PI*277.18*t+0.2)':s=48000:d=${total.toFixed(3)}`;
 const bell = `aevalsrc='0.45*sin(2*PI*1046*t)*exp(-2.2*t)+0.25*sin(2*PI*2093*t)*exp(-3.5*t)+0.15*sin(2*PI*1568*t)*exp(-2.8*t)':s=48000:d=4`;
 const K = chapters.length;
+// Ambience under the voice (10 Nov 2026, as in the Shorts; all synthesized, no third-party audio): temple air always,
+// a distant crowd murmur for temple stories and a soft diya crackle for aarti/lamp scenes (from the image prompts;
+// spec.ambience overrides: temple | aarti | nature | quiet | none). Drone + bells + ambience are ducked under the
+// narration with a sidechain compressor, then the whole mix goes to -14 LUFS.
+const promptWords = (spec.images || []).map((im) => im.prompt || '').join(' ').toLowerCase();
+const PLACE = /temple|mandir|courtyard|devotee|darshan|murti/;
+const amb = spec.ambience || (/aarti|diya|lamp|flame/.test(promptWords) && PLACE.test(promptWords) ? 'aarti'
+  : PLACE.test(promptWords) ? 'temple' : /forest|grove|river|mountain|field|village|sky|garden/.test(promptWords) ? 'nature' : 'quiet');
+const TT = total.toFixed(3);
+const ambLayers = amb === 'none' ? [] : [
+  `anoisesrc=color=brown:amplitude=0.6:seed=7:d=${TT},lowpass=f=${amb === 'nature' ? 900 : 380},tremolo=f=0.11:d=0.55,volume=${amb === 'nature' ? 0.14 : 0.08}`,
+  ...(['temple', 'aarti'].includes(amb) ? [`anoisesrc=color=pink:amplitude=0.5:seed=11:d=${TT},bandpass=f=520:width_type=h:w=520,tremolo=f=3.3:d=0.55,tremolo=f=0.31:d=0.6,lowpass=f=1400,volume=0.06`] : []),
+  ...(['aarti', 'temple'].includes(amb) ? [`aevalsrc='if(lt(random(0),${amb === 'aarti' ? 0.0008 : 0.0003}),(random(1)-0.5)*1.4,0)':s=48000:d=${TT},highpass=f=1800,lowpass=f=7500,volume=${amb === 'aarti' ? 0.45 : 0.25}`] : []),
+];
 const mix = [
   `[2:a]volume=0.42[dr]`,
   `[3:a]aformat=channel_layouts=stereo,volume=0.7,asplit=${K}${chapters.map((_, k) => `[b${k}]`).join('')}`,
   ...chapters.map((c, k) => `[b${k}]adelay=${Math.round(c.start * 1000)}|${Math.round(c.start * 1000)}[bb${k}]`),
-  `[1:a][dr]${chapters.map((_, k) => `[bb${k}]`).join('')}amix=inputs=${K + 2}:duration=first:normalize=0,` +
+  ...ambLayers.map((_, k) => `[${4 + k}:a]aformat=sample_rates=48000:channel_layouts=stereo[am${k}]`),
+  `[1:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[vox][key]`,
+  `[dr]${chapters.map((_, k) => `[bb${k}]`).join('')}${ambLayers.map((_, k) => `[am${k}]`).join('')}amix=inputs=${K + 1 + ambLayers.length}:duration=first:normalize=0[bed]`,
+  '[bed][key]sidechaincompress=threshold=0.02:ratio=4:attack=25:release=500:makeup=1[duck]',
+  `[vox][duck]amix=inputs=2:duration=first:normalize=0,` +
     `afade=t=out:st=${(total - 2.5).toFixed(2)}:d=2.5,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]`,
 ];
 const out = path.join(base, 'out', `${spec.slug}.mp4`);
-await ff(['-i', joined, '-i', narration, '-f', 'lavfi', '-i', drone, '-f', 'lavfi', '-i', bell, '-filter_complex', mix.join(';'),
+await ff(['-i', joined, '-i', narration, '-f', 'lavfi', '-i', drone, '-f', 'lavfi', '-i', bell, ...ambLayers.flatMap((l) => ['-f', 'lavfi', '-i', l]), '-filter_complex', mix.join(';'),
   '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2', '-t', total.toFixed(3), '-movflags', '+faststart', out]);
 
 // Thumbnail 1280x720: the chosen scene image, darkened at the bottom, big gold text and the logo.

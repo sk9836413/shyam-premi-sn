@@ -29,7 +29,7 @@ import movie as M  # noqa: E402  (shared renderer pieces; CAST_DIR is pointed at
 
 KDIR = os.path.join(ROOT, "characters", "kalyug")
 M.CAST_DIR = KDIR
-from dialogue import edge_say, ff, hexrgb, kokoro_say, wav_len, wrap  # noqa: E402
+from dialogue import edge_say, ff, human_pause, human_voices, hexrgb, kokoro_say, wav_len, wrap  # noqa: E402
 
 W, H, FPS = M.W, M.H, M.FPS
 FW, FH = M.FW, M.FH
@@ -152,15 +152,15 @@ def cmd_voice(a):
     spec, chars = load(a.spec), cast()["characters"]
     os.makedirs(a.out, exist_ok=True)
     lines, engine, meta = all_lines(spec), "edge-tts", []
+    # Human chain (voice/humanize.py, 10 Nov 2026): each character keeps its fixed edge voice/pitch/rate, modulated by
+    # the line's mood; 50-150 ms between speakers, longer at scene changes and after emotional lines.
+    human_on = os.environ.get("SPS_HUMAN_VOICE", "1") != "0"
+    pauses = []
     for i, (si, l) in enumerate(lines):
-        v = chars[l["who"]]["voice"]
-        raw, out = f"{a.out}/{i:02d}-raw", f"{a.out}/line-{i:02d}.wav"
-        try:
-            asyncio.run(edge_say(l["tts"], v, raw + ".mp3")); src = raw + ".mp3"
-        except Exception:
-            kokoro_say(l["tts"], {"kokoro": "hf_alpha" if "Swara" in v["edge"] else "hm_omega"}, raw + ".wav", "hi"); src = raw + ".wav"
-            engine = "kokoro (edge-tts failed)"
         nxt = lines[i + 1] if i + 1 < len(lines) else None
+        if human_on and nxt is not None:
+            pauses.append(human_pause(f"{i}|{l['tts']}", nxt[1]["who"] == l["who"], l["tts"], l.get("mood"), scene_change=nxt[0] != si))
+            continue
         if nxt is None:
             pause = 1.2
         elif nxt[0] != si:
@@ -169,15 +169,31 @@ def cmd_voice(a):
             pause = 0.35 + (0.12 if l["tts"].rstrip().endswith("?") else 0)
         else:
             pause = 0.22
-        fx = M.FX.get(v.get("fx", ""), "")
-        ff("-i", src, "-af",
-           "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
-           "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
-           f"loudnorm=I=-18:TP=-2:LRA=11{',' + fx if fx else ''},aresample=24000,adelay=60:all=1,apad=pad_dur={pause:.2f}",
-           "-ac", "1", "-ar", "24000", out)
-        for f in (raw + ".mp3", raw + ".wav"):
-            if os.path.exists(f):
-                os.remove(f)
+        pauses.append(pause)
+    made = human_voices([{"text": l["tts"], "voice": chars[l["who"]]["voice"], "mood": l.get("mood"), "out": f"{a.out}/line-{i:02d}.wav",
+                          "lead": 0.06, "pause": pauses[i], "fx": M.FX.get(chars[l["who"]]["voice"].get("fx", ""), ""), "seed": f"{l['who']}|{i}|{l['tts']}"}
+                         for i, (si, l) in enumerate(lines)]) if human_on else {}
+    if made:
+        engine = "edge-tts (human chain)"
+    for i, (si, l) in enumerate(lines):
+        v = chars[l["who"]]["voice"]
+        raw, out = f"{a.out}/{i:02d}-raw", f"{a.out}/line-{i:02d}.wav"
+        pause = pauses[i]
+        if i not in made:
+            try:
+                asyncio.run(edge_say(l["tts"], v, raw + ".mp3")); src = raw + ".mp3"
+            except Exception:
+                kokoro_say(l["tts"], {"kokoro": "hf_alpha" if "Swara" in v["edge"] else "hm_omega"}, raw + ".wav", "hi"); src = raw + ".wav"
+                engine = "kokoro (edge-tts failed)"
+            fx = M.FX.get(v.get("fx", ""), "")
+            ff("-i", src, "-af",
+               "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
+               "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,"
+               f"loudnorm=I=-18:TP=-2:LRA=11{',' + fx if fx else ''},aresample=24000,adelay=60:all=1,apad=pad_dur={pause:.2f}",
+               "-ac", "1", "-ar", "24000", out)
+            for f in (raw + ".mp3", raw + ".wav"):
+                if os.path.exists(f):
+                    os.remove(f)
         secs = wav_len(out)
         meta.append({"i": i, "scene": si, "who": l["who"], "file": os.path.basename(out), "seconds": round(secs, 3),
                      "speech_s": round(secs - pause - 0.06, 3), "pause_s": pause})

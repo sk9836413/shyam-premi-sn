@@ -1,0 +1,40 @@
+# One-off A/B for the human-voice chain (voice/humanize.py, 10 Nov 2026): renders old.mp3 (bookish script, plain
+# edge-tts), new.mp3 (spoken script, human chain) and old-chain-new-script.mp3 with voice/human_ab.py, then Whisper
+# large-v3 (CPU, int8) checks the pronunciation (WER/CER against each script). Manual only; nothing is published.
+# Result: the run's artifact voice-human-ab (the mp3s + wer.json) and the table in the run summary.
+name: Voice test (human chain A/B)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q edge-tts numpy faster-whisper
+      - name: A/B
+        run: |
+          mkdir -p out
+          python -I voice/human_ab.py --out out
+          python voice/human_wer.py --dir out | tee out/log.txt
+          { echo "### Human voice chain A/B (Whisper large-v3)"; sed -n '/^| File/,$p' out/log.txt; } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voice-human-ab
+          path: |
+            out/*.mp3
+            out/*.json
+            out/log.txt
+          retention-days: 14

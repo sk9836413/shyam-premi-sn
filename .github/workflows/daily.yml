@@ -275,6 +275,7 @@ jobs:
             Follow automation/STORY.md exactly${{ steps.date.outputs.slot == 'noon' && ' (the noon slot is the "Dadi aur Chhotu" dialogue Short: section 6)' || '' }}.
             Today's trend research is automation/trends/${{ steps.date.outputs.today }}.md (if it is missing, the newest file in
             automation/trends/): read its first 100 lines and use it as STORY.md section 1 says.
+            Write every tts in the warm spoken style of STORY.md "Spoken style" (short sentences, max 18 words).
             Write story/today/scenes.json, make scripts/validate.mjs pass,
             and append one line to automation/log.md. Change nothing else.
 
@@ -664,7 +665,8 @@ jobs:
             Follow automation/STORY.md exactly: sections 1-2 for choosing and researching the subject, and section 5
             "Long video" for everything else. Today's trend research is automation/trends/${{ steps.date.outputs.today }}.md
             (if it is missing, the newest file in automation/trends/): read its first 100 lines and prefer a "long part" topic
-            from it when it fits the section 5 subject order. Write story/long/scenes.json and make
+            from it when it fits the section 5 subject order. Narrate in the warm spoken style of STORY.md "Spoken
+            style" (short sentences, max 18 words, like telling the katha to family). Write story/long/scenes.json and make
             `node scripts/validate.mjs story/long/scenes.json` pass. You may add confirmed festivals to
             automation/calendar.md. Change nothing else (do not edit automation/log.md: the workflow records it).
             Use the Write tool for the file (the directory story/long already exists); shell commands other than
@@ -906,7 +908,7 @@ jobs:
             fs.writeFileSync(dst, JSON.stringify(spec, null, 2) + "\n");
             console.log(JSON.stringify({ slug: spec.slug, clips_kept: kept }));
             if (kept) fs.appendFileSync(process.env.GITHUB_ENV, "HAVE_CLIPS=1\n");' "story/status/${{ steps.d.outputs.day }}.json" "$W/scenes.json"
-          node scripts/validate.mjs "$W/scenes.json"
+          node scripts/validate.mjs --soft-topics "$W/scenes.json"  # spoken-style warnings (long sentences) never stop a post
 
       - uses: actions/setup-python@v5
         if: env.GO == '1'
@@ -1134,7 +1136,8 @@ jobs:
           prompt: |
             Write the next Shyam Premi SN mini-movie part. Its release day (IST) is ${{ steps.d.outputs.release }} at 07:00.
             Follow automation/STORY.md section 7 exactly (and sections 1-2 for research and accuracy), with the queue in
-            automation/movie-series.md and the characters in characters/cast/cast.json. Write story/movies/<series>/series.json
+            automation/movie-series.md and the characters in characters/cast/cast.json. Lines follow STORY.md "Spoken style"
+            (natural spoken Hindi, short sentences, max 18 words). Write story/movies/<series>/series.json
             (when the series starts) and story/movies/<series>/part-<n>.json, make `node scripts/validate.mjs <that file>` pass,
             and update the series' row in automation/movie-series.md. Change nothing else.
 
@@ -1145,7 +1148,7 @@ jobs:
           f="${{ steps.d.outputs.file }}"
           [ -n "$f" ] || f=$(node scripts/movie-due.mjs --today "${{ steps.d.outputs.release }}" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>console.log(JSON.parse(s).file||""))')
           [ -n "$f" ] && [ -f "$f" ] || { echo "::error::No movie part file for ${{ steps.d.outputs.release }}"; exit 1; }
-          node scripts/validate.mjs "$f"
+          node scripts/validate.mjs --soft-topics "$f"  # spoken-style warnings (long sentences) never stop a part
           node scripts/movie-due.mjs --part "$f" > "$RUNNER_TEMP/due.json"
           for k in slug release publish_at approved; do echo "$k=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').$k")" >> "$GITHUB_OUTPUT"; done
           echo "SLUG=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').slug")" >> "$GITHUB_ENV"
@@ -1359,7 +1362,8 @@ jobs:
           prompt: |
             Write the next "Kalyug ke Bhagwan" episode of Shyam Premi SN. Its release day (IST) is ${{ steps.d.outputs.release }} at 08:00.
             Follow automation/STORY.md section 8 exactly (and section 2 for accuracy), with the characters in
-            characters/kalyug/cast.json. Write story/kalyug/${{ steps.d.outputs.release }}-<topic>.json, make
+            characters/kalyug/cast.json. Lines follow STORY.md "Spoken style" (natural spoken Hindi, short sentences,
+            max 18 words). Write story/kalyug/${{ steps.d.outputs.release }}-<topic>.json, make
             `node scripts/validate.mjs <that file>` pass, and change nothing else.
 
       - name: Spec

@@ -24,8 +24,9 @@
       "bg": "soft warm golden bokeh lights",
       "voice": {
         "edge": "hi-IN-SwaraNeural",
-        "rate": "+4%",
-        "pitch": "+38Hz"
+        "rate": "+8%",
+        "pitch": "+38Hz",
+        "child": true
       },
       "talk": "Bal Ganesh happily talks to the camera: the corners of his smiling mouth under the trunk open and close as he speaks, his short trunk bobs gently with the words, his eyes blink and his big ears flap softly."
     },
@@ -40,8 +41,9 @@
       "bg": "soft warm golden bokeh lights",
       "voice": {
         "edge": "hi-IN-MadhurNeural",
-        "rate": "+6%",
-        "pitch": "+58Hz"
+        "rate": "+10%",
+        "pitch": "+46Hz",
+        "child": true
       },
       "face_box": [0.345, 0.395, 0.76, 0.6],
       "mouth": [0.45, 0.63, 0.2, 0.11]
@@ -94,7 +96,8 @@
       "voice": {
         "edge": "hi-IN-MadhurNeural",
         "rate": "+10%",
-        "pitch": "+40Hz"
+        "pitch": "+40Hz",
+        "child": true
       },
       "face_box": [0.275, 0.4, 0.725, 0.59],
       "mouth": [0.53, 0.68, 0.22, 0.12]
@@ -110,8 +113,9 @@
       "bg": "a cosy Indian home in soft warm light",
       "voice": {
         "edge": "hi-IN-MadhurNeural",
-        "rate": "+2%",
-        "pitch": "+24Hz"
+        "rate": "+6%",
+        "pitch": "+24Hz",
+        "child": true
       },
       "face_box": [0.207, 0.355, 0.802, 0.67],
       "mouth": [0.5, 0.635, 0.24, 0.13]
