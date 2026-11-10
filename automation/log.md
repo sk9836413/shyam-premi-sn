@@ -47,3 +47,4 @@
 2026-11-09 | long | 2026-11-09-long-khatu-shyam-ka-itihas-barbarik-katha | Khatu Shyam ji (Barbarik) | Khatu Shyam ka itihas: Barbarik ka janm, teen baan, haare ka saath dene ka vachan, Krishna ki pariksha, sheesh daan, Khatu mein sheesh ka prakat hona aur mandir
 2026-11-09 | evening | 2026-11-09-evening-khatu-shyam-janmotsav-darshan | Khatu Shyam ji (Janmotsav ki taiyari) | Khatu Shyam Janmotsav se pehle Baba ke darshan, Dev Uthani Ekadashi 20 Nov, Haare ka Sahara jaikara; agla: Govardhan Puja
 2026-11-10 | status | 2026-11-10-status-govardhan-puja | Govardhan Puja | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
+2026-11-10 | morning | 2026-11-10-morning-giriraj-annakut-meaning | Shri Krishna / Giriraj Maharaj (Govardhan Puja) | Annakut ka arth: anna ka parvat Giriraj ji ko arpit, Govardhan dharan ki katha (manyata), Gau Mata ki pooja, kritagyata ka sandesh

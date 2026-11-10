@@ -56,3 +56,4 @@
 - 2026-11-10-status-govardhan-puja | youtube: https://youtube.com/shorts/f7PkC10sh4Q (public at 2026-11-10T00:30:00.000Z) | status video, made 09 Nov 19:11 IST | social: fb: https://www.facebook.com/reel/1134835449248459 (scheduled 2026-11-10T00:30:00.000Z) | ig: pending 2026-11-10T00:30:00.000Z
 - 2026-11-10-status-govardhan-puja | instagram: https://www.instagram.com/reel/Dfi-FX1RzFl/
 - 2026-11-10-morning-giriraj-annakut-meaning | claim: 2026-11-10 morning by run 42751284587.1 at 2026-11-10T04:10:35.074Z
+- 2026-11-10-morning-giriraj-annakut-meaning | youtube: https://youtube.com/shorts/HSIDDK4r5cw | social: fb: https://www.facebook.com/reel/1064826199934952 | ig: https://www.instagram.com/reel/DfjBGf8JFoL/
