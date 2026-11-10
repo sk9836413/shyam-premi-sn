@@ -49,3 +49,4 @@
 2026-11-10 | status | 2026-11-10-status-govardhan-puja | Govardhan Puja | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
 2026-11-10 | morning | 2026-11-10-morning-giriraj-annakut-meaning | Shri Krishna / Giriraj Maharaj (Govardhan Puja) | Annakut ka arth: anna ka parvat Giriraj ji ko arpit, Govardhan dharan ki katha (manyata), Gau Mata ki pooja, kritagyata ka sandesh
 2026-11-10 | evening | 2026-11-10-evening-shrinathji-nathdwara-darshan | Shrinathji, Nathdwara (Govardhan Puja, Krishna) | Shrinathji Nathdwara darshan, Rajsamand, Govardhan Puja par Annakut ka bhog, Krishna ka baal roop (manyata); agla: Bhai Dooj
+2026-11-11 | status | 2026-11-11-status-bhai-dooj | Bhai Dooj | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
