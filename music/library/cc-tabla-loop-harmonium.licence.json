@@ -1,0 +1,58 @@
+{
+  "id": "cc-tabla-loop-harmonium",
+  "title": "Tabla loop with harmonium drone",
+  "moods": [
+    "aarti"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-arrangement",
+  "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs633150",
+      "title": "tabla 5to4 85bpm -loop.aif",
+      "author": "MieliTietty",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/MieliTietty/sounds/633150/",
+      "download_url": "https://cdn.freesound.org/previews/633/633150_10486071-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "3606fc316372b2d1812dfd52c2b113e9d30cf3317b93f30bac27f00ed90cbe48",
+      "evidence": "tabla loop, 85 bpm (uploader's production)",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 33.8,
+          "loop": true
+        }
+      ]
+    },
+    {
+      "id": "fs264442",
+      "title": "Harmonium Drone2",
+      "author": "easy_thunder",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/easy_thunder/sounds/264442/",
+      "download_url": "https://cdn.freesound.org/previews/264/264442_4965426-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "c0810f82b91405fbc13912e4915233b983ddc4ac27143182efdf7b1afc72fb50",
+      "evidence": "own harmonium drone",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 68,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "588e33cd24c6932566eaf7dcec16d87d84709bc2651965d57d245d0b9d7be808"
+}

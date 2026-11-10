@@ -1,0 +1,78 @@
+{
+  "id": "cc-temple-bells-tabla",
+  "title": "Temple bells, tabla and tambura",
+  "moods": [
+    "aarti"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-arrangement",
+  "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs876447",
+      "title": "Bells at a Hindu temple 1",
+      "author": "barryshamir",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/barryshamir/sounds/876447/",
+      "download_url": "https://cdn.freesound.org/previews/876/876447_14047045-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "5f30656adce10ae94357200807b81dd69f464e56268e674ec0c0e61a8530562f",
+      "evidence": "uploader and friend ringing bells at Shree Kote Mahaganapathi temple, Madikeri",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 10,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "fs719950",
+      "title": "tabla sound",
+      "author": "jasonlee3071",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/jasonlee3071/sounds/719950/",
+      "download_url": "https://cdn.freesound.org/previews/719/719950_7413715-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "9ec1990b6ee0e10780570c3bf537608e4eda1e85dff947ce930b2068085a16a9",
+      "evidence": "tabla playing, uploader's recording",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 28,
+          "loop": true
+        }
+      ]
+    },
+    {
+      "id": "fs506312",
+      "title": "Tambura_Eb_fat.aiff",
+      "author": "Kaczinski",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/Kaczinski/sounds/506312/",
+      "download_url": "https://cdn.freesound.org/previews/506/506312_408747-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "5f740b8d590691af5905706cb100026d9119022dd6dae468aabce1a317422117",
+      "evidence": "uploader's own custom 8-string tambura in Eb",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 100,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "401c39d3a3f182ed9b6593f9fdc98461e08883b21469f5a119579cf921605e47"
+}

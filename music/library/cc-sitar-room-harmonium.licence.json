@@ -1,0 +1,59 @@
+{
+  "id": "cc-sitar-room-harmonium",
+  "title": "Sitar with harmonium drone",
+  "moods": [
+    "calm",
+    "emotional"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-arrangement",
+  "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs339970",
+      "title": "Sitar.wav",
+      "author": "Toni_Quiroga",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/Toni_Quiroga/sounds/339970/",
+      "download_url": "https://cdn.freesound.org/previews/339/339970_5302138-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "bbdf82cc12f74c851007ae3247837986c52b476f39df8d1b0256ac0aac3b5cb2",
+      "evidence": "sitar played by the uploader's friend, recorded by the uploader",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 50,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "fs264407",
+      "title": "Harmonium Drone1",
+      "author": "easy_thunder",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/easy_thunder/sounds/264407/",
+      "download_url": "https://cdn.freesound.org/previews/264/264407_4965426-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "61148619315e175d84f777b712c03364a7549b97cdcf080cd32d6ebf84eabe00",
+      "evidence": "own Paul & Co. harmonium drone",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 5,
+          "seconds": 50,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "c2f56a92d3942e4d8c0dfb6b97f7ce1a4a13d2b6a09b9c5311508cd6a90e3a94"
+}

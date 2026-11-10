@@ -1,0 +1,30 @@
+{
+  "checked": "2026-11-11",
+  "note": "Sources and models looked at for the music engine and NOT used, with the reason. Re-check before ever adding one.",
+  "sources": [
+    {"name": "Pixabay Music", "urls": ["https://pixabay.com/service/license-summary/", "https://pixabay.com/service/faq/"],
+     "why": "Licence allows use without attribution but forbids distributing the files 'on a standalone basis' (so not in this public repo), and the FAQ says some contributors register tracks with Content ID ('Tracks displaying a shield icon are registered with Content ID and may trigger claims'; claims can hit monetisation, FB/IG may mute). pixabay.com answers scripts with a Cloudflare challenge (HTTP 403), so no unattended fetch either. Not usable for a no-manual-step, no-claim pipeline."},
+    {"name": "YouTube Audio Library", "urls": ["https://support.google.com/youtube/answer/3376882"],
+     "why": "Download only inside YouTube Studio (login, manual). Safe from Content ID on YouTube, but the help page gives no guidance for use off YouTube ('YouTube can't give legal guidance ... on issues with music that can occur off the platform'), and Creative Commons tracks need a credit. Owner may still pick tracks by hand for YouTube-only videos."},
+    {"name": "Wikimedia Commons 'Aarti Puja, Ganpati Vandana / Lakshmi Laxmi / deity Santoshi' (uploader Lisa.davis, tagged CC0)", "urls": ["https://commons.wikimedia.org/wiki/File:Aarti_Puja,_Lakshmi_Laxmi.ogg"],
+     "why": "Copied from archive.org 'HindiBhajans-shriHariOmSharanJi': commercial recordings by singer Hari Om Sharan. The CC0 tag was not given by the rights holder (licence laundering). Rejected."},
+    {"name": "Wikimedia Commons 'Raga *.ogg' (public domain) and Internet Archive collections marked public domain (LPMR Ravi Shankar / Shivkumar Sharma / Hariprasad Chaurasia / Ali Akbar Khan, 'Shiv Kumar Sharma collection', Bollywood compilations)", "urls": ["https://archive.org/details/lpmr-shivkumar-sharma"],
+     "why": "Uploaded by third parties with a PD mark; these are label recordings (often registered in Content ID by the labels). Rejected."},
+    {"name": "Veena Raja Rao / Veena Kinhal (Free Music Archive via Commons, CC0)", "urls": ["https://commons.wikimedia.org/wiki/File:Veena_Kinhal_-_01_-_Haratanaya_Sree.ogg"],
+     "why": "CC0 claim could not be confirmed on the original Free Music Archive page; also part of a released album. Skipped."},
+    {"name": "L. Ramakrishnan, 'Shri Nilotpala Nayike' (Internet Archive, CC0)", "urls": ["https://archive.org/details/shrInilotpalanayike"],
+     "why": "Concert recording; the accompanists' rights are not covered by the uploader's dedication. Skipped (his solo home-studio Kiravani recording is used)."},
+    {"name": "Freesound field recordings that may contain loudspeaker or band music (e.g. 'Hindu_Wedding_Ceremony_Music', 'Indian Wedding Dhols', 'indian band playing at Montparnasse metro', 'aarti.mp3', 'river Ganges evening Aarti ceremony')", "urls": ["https://freesound.org/people/bobv2/sounds/395024/"],
+     "why": "A CC0 field recording can still capture someone else's copyrighted song. Skipped; only recordings of the uploader's own (or a named friend's) playing, or pure percussion/bells, are used."},
+    {"name": "Freesound 'Indian_Gungroos_Ankle_Bells_Improv' (CC0)", "urls": ["https://freesound.org/people/RutgerMuller/sounds/365406/"],
+     "why": "Licence fine, but the recording sits at -55 to -64 dBFS; normalising it brings up hiss. Not used."}
+  ],
+  "models": [
+    {"name": "MusicGen / AudioGen / JASCO (Meta AudioCraft)", "licence": "weights CC-BY-NC 4.0", "why": "Non-commercial weights."},
+    {"name": "YuE (M-A-P)", "licence": "Apache-2.0 (v1)", "why": "Vocals in English, Chinese, Japanese, Korean only; no Hindi. YuE2 (Sept 2026) is reported to carry a non-commercial default licence."},
+    {"name": "Stable Audio Open 1.0", "licence": "Stability AI Community License (commercial use free under USD 1M annual revenue)", "why": "Instrumental/sound only (no singing), 47 s max; usable, but ACE-Step 1.5 covers instrumentals under MIT with no revenue condition."},
+    {"name": "HeartMuLa-oss-3B", "licence": "Apache-2.0", "why": "Needs ~24 GB VRAM (Kaggle T4 has 16 GB); benchmarked on en/zh/ja/ko/es, Hindi unproven. Re-check if a smaller checkpoint appears."},
+    {"name": "DiffRhythm / DiffRhythm 2", "licence": "Apache-2.0", "why": "Chinese/English lyrics only."},
+    {"name": "LeVo / SongGeneration (Tencent)", "licence": "not confirmed", "why": "Language constraints per the HeartMuLa paper; licence not verified. Not tried."}
+  ]
+}

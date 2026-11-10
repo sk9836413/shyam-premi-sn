@@ -83,6 +83,11 @@ on:
 permissions:
   contents: write
 
+# Music engine (music/engine.mjs): repo variable MUSIC_ENGINE=on puts a licence-checked library track under every
+# render-story.mjs Short instead of the synthesized drone; unset = old sound.
+env:
+  MUSIC_ENGINE: ${{ vars.MUSIC_ENGINE }}
+
 # Evening runs have their own queue, so the long animated evening job can run beside the morning one; within a
 # slot, runs queue and the later one skips once the slot is in log.md. log.md and published.md merge as unions.
 # Uploads are idempotent (7 Nov 2026: the 18:43 IST evening schedule run and the 18:46 IST dispatch ran side by side and

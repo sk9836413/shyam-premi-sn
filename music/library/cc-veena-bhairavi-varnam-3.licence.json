@@ -1,0 +1,39 @@
+{
+  "id": "cc-veena-bhairavi-varnam-3",
+  "title": "Bhairavi varnam on veena (Pushpa Srivatsan), part 3",
+  "moods": [
+    "emotional",
+    "aarti"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-excerpt",
+  "licence": "CC0 1.0 (excerpt, loudness-normalised; Internet Archive)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "ia-varnam-bhairavi",
+      "title": "Varnam (Bhairavi), Veena Dhanam bani",
+      "author": "Smt Pushpa Srivatsan (performer; uploaded by family, nvvathsan@gmail.com)",
+      "platform": "Internet Archive",
+      "source_url": "https://archive.org/details/VarnamBhairavi",
+      "download_url": "https://archive.org/download/VarnamBhairavi/Varnam%20(Bhairavi).mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "956be4849bbea8dc775e6b34e95ca238de055cd6a74a8499188b06cfe79c99eb",
+      "evidence": "Home recording of a traditional varnam (composer Pacchimiriam Adiyappa, 18th c., public domain); CC0 per archive.org licenseurl; also on Wikimedia Commons as CC0 (File:Viriboni, rendered on the Veena.ogg)",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 610,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "35d3349d5c2001a841c86318179d8d21169c3c1dd3b06f59e6a05443473402e8"
+}

@@ -1,0 +1,79 @@
+{
+  "id": "cc-dhol-temple-bells",
+  "title": "Dhol with temple bells",
+  "moods": [
+    "festive",
+    "aarti"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-arrangement",
+  "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs172445",
+      "title": "Dhol adibashi.wav",
+      "author": "makbulchowdhury",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/makbulchowdhury/sounds/172445/",
+      "download_url": "https://cdn.freesound.org/previews/172/172445_166333-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "9406f685e4faf8f9b36afd1ef8ab3f8bc8019378da80dfbaaa7eb70607e0e30c",
+      "evidence": "traditional dhol",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 53,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "fs466652",
+      "title": "Indian Temple Bell.WAV",
+      "author": "ganiket",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/ganiket/sounds/466652/",
+      "download_url": "https://cdn.freesound.org/previews/466/466652_9226170-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "e5afd981fba525c64a7e8172d95dd78db8426e4338453eed35bfc1396c33870d",
+      "evidence": "Indian temple bell, Himachal Pradesh, uploader's recording",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 30.5,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "fs34870",
+      "title": "Shiva Bells.wav",
+      "author": "grololo",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/grololo/sounds/34870/",
+      "download_url": "https://cdn.freesound.org/previews/34/34870_311859-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "5d6348d17112c1dd17775ab2642b521e64843bb27005d3d52100967757defb0d",
+      "evidence": "devotees ringing Shiva temple bells, Assam (uploader's documentary recording)",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 30,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "81234ec0a7b3456ed9a97eac915c941bb741c8490f6581d02c92040f7469c65b"
+}

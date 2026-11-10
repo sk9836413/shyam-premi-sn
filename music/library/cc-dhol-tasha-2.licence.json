@@ -1,0 +1,38 @@
+{
+  "id": "cc-dhol-tasha-2",
+  "title": "Dhol-Tasha, Thane, part 2",
+  "moods": [
+    "festive"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-excerpt",
+  "licence": "CC0 1.0 (excerpt, loudness-normalised; Freesound)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs712286",
+      "title": "Dhol_Tasha_Maharashtra_Urban_2",
+      "author": "prospekt42",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/prospekt42/sounds/712286/",
+      "download_url": "https://cdn.freesound.org/previews/712/712286_6742895-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "19a4cd59d14584024bf7cd22474109fd1e50783690c740656ab8469e5042a89d",
+      "evidence": "Dhol-Tasha performance in Thane, uploader's recording",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 245,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "502033276f78cb8285f161f54c55e3cdbacd3026d05add37c0a712f66ea7451e"
+}

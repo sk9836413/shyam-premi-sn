@@ -1,0 +1,39 @@
+{
+  "id": "cc-veena-kiravani-alapana-2",
+  "title": "Veena alapana in Kiravani (L. Ramakrishnan), part 2",
+  "moods": [
+    "calm",
+    "emotional"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-excerpt",
+  "licence": "Public Domain Dedication (excerpt, loudness-normalised; Internet Archive)",
+  "licence_url": "https://creativecommons.org/licenses/publicdomain/",
+  "components": [
+    {
+      "id": "ia-kiravani",
+      "title": "Kiravani - veena alapana and tanam",
+      "author": "L. Ramakrishnan (performer; uploaded by the performer, lramakrishnan2004@gmail.com)",
+      "platform": "Internet Archive",
+      "source_url": "https://archive.org/details/LR_kIravANI",
+      "download_url": "https://archive.org/download/LR_kIravANI/kiravani.mp3",
+      "licence": "Public Domain Dedication (CC PD, http://creativecommons.org/licenses/publicdomain/)",
+      "licence_url": "https://creativecommons.org/licenses/publicdomain/",
+      "sha256": "9e7f5e7a1ba144aaa53162fc04ee81e9540fa43ebaaf5f114febba59599c91c6",
+      "evidence": "Solo veena improvisation recorded at a home studio in Portland, 1 Jan 2004; dedicated to the public domain by the performer (archive.org licenseurl); also on Wikimedia Commons as CC0 (File:Kiravani-L Ramakrishnan.ogg)",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 182,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "58631e1e426b027f368963889a9fbf7f923e0101d3b9b680917e249f986fc7f2"
+}

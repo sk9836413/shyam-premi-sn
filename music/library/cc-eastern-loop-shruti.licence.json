@@ -1,0 +1,59 @@
+{
+  "id": "cc-eastern-loop-shruti",
+  "title": "Eastern instrumental loop with shruti",
+  "moods": [
+    "aarti",
+    "calm"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-arrangement",
+  "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs411661",
+      "title": "Eastern Vibe Instrumental Loop",
+      "author": "mooncubedesign",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/mooncubedesign/sounds/411661/",
+      "download_url": "https://cdn.freesound.org/previews/411/411661_5426702-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "bb78e3467a152ff95d9bc68175c54fac4b653f7e25da13969ce7ba795f6d03db",
+      "evidence": "uploader's own eastern instrumental loop (\"do whatever you like\")",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 26.8,
+          "loop": true
+        }
+      ]
+    },
+    {
+      "id": "fs788403",
+      "title": "Ricks Shruti",
+      "author": "darkleaves",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/darkleaves/sounds/788403/",
+      "download_url": "https://cdn.freesound.org/previews/788/788403_13781041-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "06bebe078b7d2d77aa6ac5f7d9d8ec0da787561c991282cbbf30cf3e6f10423f",
+      "evidence": "shruti box drone (A#), recorded live by the uploader",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 60,
+          "loop": true
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "fa55dd5e1da1a2f16a9bc1edb425efe811426532bfbd18c01de768261b018aab"
+}

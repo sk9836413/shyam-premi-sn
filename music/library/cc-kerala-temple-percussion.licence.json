@@ -1,0 +1,38 @@
+{
+  "id": "cc-kerala-temple-percussion",
+  "title": "Kerala temple-festival percussion",
+  "moods": [
+    "festive"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-excerpt",
+  "licence": "CC0 1.0 (excerpt, loudness-normalised; Freesound)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs677840",
+      "title": "Temple Percussion (Binaural)",
+      "author": "prasad86",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/prasad86/sounds/677840/",
+      "download_url": "https://cdn.freesound.org/previews/677/677840_3247946-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "9d11e2debcb08287c72ebfbfc46f6739b84f715631e30cc03517347adabec86e",
+      "evidence": "Kerala temple-festival percussion ensemble, uploader's binaural recording",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "64dc75d60380d8c03b11abd8913e278575472c412330e2f9ae2cf9c84c70a828"
+}

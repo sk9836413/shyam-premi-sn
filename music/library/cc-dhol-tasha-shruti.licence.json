@@ -1,0 +1,58 @@
+{
+  "id": "cc-dhol-tasha-shruti",
+  "title": "Dhol-Tasha with shruti drone",
+  "moods": [
+    "festive"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-arrangement",
+  "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs712286",
+      "title": "Dhol_Tasha_Maharashtra_Urban_2",
+      "author": "prospekt42",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/prospekt42/sounds/712286/",
+      "download_url": "https://cdn.freesound.org/previews/712/712286_6742895-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "19a4cd59d14584024bf7cd22474109fd1e50783690c740656ab8469e5042a89d",
+      "evidence": "Dhol-Tasha performance in Thane, uploader's recording",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 120,
+          "seconds": 70,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "fs788403",
+      "title": "Ricks Shruti",
+      "author": "darkleaves",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/darkleaves/sounds/788403/",
+      "download_url": "https://cdn.freesound.org/previews/788/788403_13781041-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "06bebe078b7d2d77aa6ac5f7d9d8ec0da787561c991282cbbf30cf3e6f10423f",
+      "evidence": "shruti box drone (A#), recorded live by the uploader",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 60,
+          "loop": true
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "cea0f9b5df40fc6b6b557ca35b868146932df1f2de07d7b49d2c1d3840c51d26"
+}

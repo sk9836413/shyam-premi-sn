@@ -1,0 +1,58 @@
+{
+  "id": "cc-shruti-swarmandal",
+  "title": "Shruti box and swarmandal",
+  "moods": [
+    "calm"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-arrangement",
+  "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs788403",
+      "title": "Ricks Shruti",
+      "author": "darkleaves",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/darkleaves/sounds/788403/",
+      "download_url": "https://cdn.freesound.org/previews/788/788403_13781041-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "06bebe078b7d2d77aa6ac5f7d9d8ec0da787561c991282cbbf30cf3e6f10423f",
+      "evidence": "shruti box drone (A#), recorded live by the uploader",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 60,
+          "loop": true
+        }
+      ]
+    },
+    {
+      "id": "fs415398",
+      "title": "Tuning Swarmandal Indian Harp.wav",
+      "author": "luckylittleraven",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/luckylittleraven/sounds/415398/",
+      "download_url": "https://cdn.freesound.org/previews/415/415398_2112203-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "f4bd4d73dfc7bbac99530933ab53ee1350c7629629ec91af2656b474d0870cb5",
+      "evidence": "uploader tuning and strumming a swarmandal",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 165,
+          "seconds": 32,
+          "loop": true
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "f230dd4fcf390c7fa823b7242599adcde2373902321da28f22136fcd8ead0bbb"
+}

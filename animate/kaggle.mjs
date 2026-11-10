@@ -54,7 +54,7 @@ const CODE = MOVIE ? path.join(DIR, '..', 'story', 'movie_kernel.py') : CHAR ? p
   : FRAMES ? path.join(DIR, 'kaggle', 'frames_kernel.py') : path.join(DIR, 'kaggle', 'animate.py');
 // Every GPU kernel of both channels (one Kaggle account): `lock` waits while any other one runs.
 const ALL_KERNELS = [...['morning', 'evening', 'noon', 'status', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
-  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie', 'sps-kalyug',
+  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie', 'sps-kalyug', 'sps-music',
   ...['morning', 'evening', 'noon', 'status', 'long', 'photos', 'veo', 'pilot'].map((x) => `sps-frames-${x}`)];
 const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);

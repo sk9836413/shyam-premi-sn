@@ -1,0 +1,39 @@
+{
+  "id": "cc-guitar-raga-impro",
+  "title": "Indian-style guitar improvisation",
+  "moods": [
+    "emotional",
+    "calm"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-excerpt",
+  "licence": "CC0 1.0 (excerpt, loudness-normalised; Freesound)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs11200",
+      "title": "impro indian echo.mp3",
+      "author": "Proutlip",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/Proutlip/sounds/11200/",
+      "download_url": "https://cdn.freesound.org/previews/11/11200_26738-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "2dd6bc1ad981f8b22ddce6c5ac4ff2408a1b0f504af24d66f2e61b0608f45dcb",
+      "evidence": "Indian-style guitar improvisation with echo, own performance",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "8fc8a8ed4fe72598c33f55d499bf5b200bc34418492814d29563264b34fbf6f8"
+}

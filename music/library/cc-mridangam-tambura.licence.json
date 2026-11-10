@@ -1,0 +1,79 @@
+{
+  "id": "cc-mridangam-tambura",
+  "title": "Mridangam theka with tambura",
+  "moods": [
+    "aarti",
+    "festive"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-arrangement",
+  "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs176272",
+      "title": "Mridangam-Tishra",
+      "author": "ajaysm",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/ajaysm/sounds/176272/",
+      "download_url": "https://cdn.freesound.org/previews/176/176272_2385996-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "c091b5f673cfb67b979a71db45c6ebfc5e5cf5c80d0d96611dbdc0fd4a57a835",
+      "evidence": "mridangam theka, own (amateur) playing",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 46.5,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "fs176276",
+      "title": "Mridangam-Khanda",
+      "author": "ajaysm",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/ajaysm/sounds/176276/",
+      "download_url": "https://cdn.freesound.org/previews/176/176276_2385996-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "1247630953cc161d81dfeb9236ad748af8e699b8dca4cb99d08843d838131c87",
+      "evidence": "mridangam theka in khanda nade",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 0,
+          "seconds": 39.4,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "fs506312",
+      "title": "Tambura_Eb_fat.aiff",
+      "author": "Kaczinski",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/Kaczinski/sounds/506312/",
+      "download_url": "https://cdn.freesound.org/previews/506/506312_408747-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "5f740b8d590691af5905706cb100026d9119022dd6dae468aabce1a317422117",
+      "evidence": "uploader's own custom 8-string tambura in Eb",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 60,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "c844ec991ca90c5ea0996f5d865894cbb5b149197876f68bb10819b1ce50d801"
+}

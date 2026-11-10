@@ -1,0 +1,59 @@
+{
+  "id": "cc-kerala-percussion-tambura",
+  "title": "Kerala temple percussion with tambura",
+  "moods": [
+    "festive",
+    "aarti"
+  ],
+  "kind": "instrumental",
+  "source": "cc0-arrangement",
+  "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "components": [
+    {
+      "id": "fs677840",
+      "title": "Temple Percussion (Binaural)",
+      "author": "prasad86",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/prasad86/sounds/677840/",
+      "download_url": "https://cdn.freesound.org/previews/677/677840_3247946-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "9d11e2debcb08287c72ebfbfc46f6739b84f715631e30cc03517347adabec86e",
+      "evidence": "Kerala temple-festival percussion ensemble, uploader's binaural recording",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 5,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    },
+    {
+      "id": "fs506312",
+      "title": "Tambura_Eb_fat.aiff",
+      "author": "Kaczinski",
+      "platform": "Freesound",
+      "source_url": "https://freesound.org/people/Kaczinski/sounds/506312/",
+      "download_url": "https://cdn.freesound.org/previews/506/506312_408747-hq.mp3",
+      "licence": "CC0 1.0 Universal (public domain dedication)",
+      "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "5f740b8d590691af5905706cb100026d9119022dd6dae468aabce1a317422117",
+      "evidence": "uploader's own custom 8-string tambura in Eb",
+      "checked": "2026-11-11",
+      "used": [
+        {
+          "start": 20,
+          "seconds": 75,
+          "loop": false
+        }
+      ]
+    }
+  ],
+  "attribution": null,
+  "redistributable": true,
+  "content_id": "performer-uploaded CC0/PD recordings; not label releases",
+  "checked": "2026-11-11",
+  "sha256": "23a97b3f356806ae1e54ac05f4dd3b85a6fc9363d0da6afdbd0e1cba821fea73"
+}

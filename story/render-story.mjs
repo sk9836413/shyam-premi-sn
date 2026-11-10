@@ -414,6 +414,13 @@ const PLACE = /temple|mandir|courtyard|devotee|darshan|murti/;
 const amb = spec.ambience || (/aarti|diya|lamp|flame/.test(words) && PLACE.test(words) ? 'aarti'
   : PLACE.test(words) ? 'temple' : /forest|grove|river|mountain|field|village|sky|garden/.test(words) ? 'nature' : 'quiet');
 const T = total.toFixed(2);
+// Music engine (music/engine.mjs, off unless the repo variable MUSIC_ENGINE=on): a licence-checked library track takes
+// the drone's place in the ducked bed; any problem keeps the drone. The pick is saved as spec.music (7-day no-repeat).
+let music = null;
+if (process.env.MUSIC_ENGINE === 'on') {
+  try { music = (await import('../music/engine.mjs')).musicFor(spec); } catch (e) { console.log(`music engine skipped: ${e.message}`); }
+  if (music) { spec.music = music.meta; console.log(`music: ${music.meta.id} (${music.meta.mood})`); }
+}
 const layers = amb === 'none' ? [] : [
   // temple air / wind: brown noise, low-passed, slowly breathing
   `anoisesrc=color=brown:amplitude=0.6:seed=7:d=${T},lowpass=f=${amb === 'nature' ? 900 : 380},tremolo=f=0.11:d=0.55,volume=${amb === 'nature' ? 0.16 : 0.09}`,
@@ -438,7 +445,7 @@ clips.forEach((c, i) => {
 // Voice bus; music + ambience bus ducked under it (sidechain), then the whole mix normalised to -14 LUFS.
 const A0 = 2 * n + 2; // first ambience input
 f.push(`${mix.join('')}amix=inputs=${n}:duration=longest:normalize=0,apad=whole_dur=${T},asplit=2[vox][key]`);
-f.push(`[${n}:a]volume=0.5[dr]`, `[${n + 1}:a]aformat=channel_layouts=stereo[bl]`);
+f.push(`[${n}:a]${music ? `${music.filter},atrim=duration=${T}` : 'volume=0.5'}[dr]`, `[${n + 1}:a]aformat=channel_layouts=stereo[bl]`);
 layers.forEach((_, k) => f.push(`[${A0 + k}:a]aformat=sample_rates=48000:channel_layouts=stereo[am${k}]`));
 bellAt.forEach((t, k) => { const ms = Math.round(t * 1000); f.push(`[${A0 + layers.length + k}:a]aformat=channel_layouts=stereo,adelay=${ms}|${ms}[bb${k}]`); });
 const bedIns = ['[dr]', '[bl]', ...layers.map((_, k) => `[am${k}]`), ...bellAt.map((_, k) => `[bb${k}]`)];
@@ -449,7 +456,7 @@ f.push(`[duck][vox]amix=inputs=2:duration=first:normalize=0,atrim=duration=${T},
 fs.mkdirSync(path.join(base, 'out'), { recursive: true });
 const out = path.join(base, 'out', `${spec.slug}.mp4`);
 run([
-  ...clips.flatMap((c) => ['-i', c.file]), '-f', 'lavfi', '-i', drone, '-f', 'lavfi', '-i', bell, ...clips.flatMap((c) => ['-i', c.voice]),
+  ...clips.flatMap((c) => ['-i', c.file]), ...(music ? music.input : ['-f', 'lavfi', '-i', drone]), '-f', 'lavfi', '-i', bell, ...clips.flatMap((c) => ['-i', c.voice]),
   ...layers.flatMap((l) => ['-f', 'lavfi', '-i', l]), ...bellAt.flatMap(() => ['-f', 'lavfi', '-i', bell2]),
   '-filter_complex', f.join(';'), '-map', `[${prev}]`, '-map', '[a]',
   '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-crf', '23', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2',
@@ -468,6 +475,7 @@ if (STATUS && spec.loop) {
   fs.renameSync(tmp, out);
   console.log('loop: the last 0.5 s fades into the first frame');
 }
+if (music && !usedPhotos.length) fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
 // Credit every real photo shown: "Photo: <author>, <licence>, via Wikimedia Commons (<file page>)".
 if (usedPhotos.length) {
   const credit = usedPhotos.map(creditLine).join('\n');
