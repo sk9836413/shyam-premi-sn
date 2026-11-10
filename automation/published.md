@@ -58,3 +58,4 @@
 - 2026-11-10-morning-giriraj-annakut-meaning | claim: 2026-11-10 morning by run 42751284587.1 at 2026-11-10T04:10:35.074Z
 - 2026-11-10-morning-giriraj-annakut-meaning | youtube: https://youtube.com/shorts/HSIDDK4r5cw | social: fb: https://www.facebook.com/reel/1064826199934952 | ig: https://www.instagram.com/reel/DfjBGf8JFoL/
 - 2026-11-10-evening-shrinathji-nathdwara-darshan | claim: 2026-11-10 evening by run 42760735217.1 at 2026-11-10T06:03:31.082Z
+- 2026-11-10-evening-shrinathji-nathdwara-darshan | youtube: https://youtube.com/shorts/k2nKPKJ--T8 (public at 2026-11-10T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/3605682209610203 (scheduled 2026-11-10T13:30:00.000Z) | ig: pending 2026-11-10T13:30:00.000Z

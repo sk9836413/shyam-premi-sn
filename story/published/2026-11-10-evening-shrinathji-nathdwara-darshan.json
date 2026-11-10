@@ -1,0 +1,56 @@
+{
+  "slug": "2026-11-10-evening-shrinathji-nathdwara-darshan",
+  "title": "Shrinathji Nathdwara Darshan",
+  "kicker": "Govardhan Puja Vishesh",
+  "playlist": "Vishnu ji aur Krishna ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shri Krishna",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Shrinathji, Nathdwara: Annakut darshan",
+  "cover": "श्रीनाथजी नाथद्वारा",
+  "temple": "shrinathji-nathdwara",
+  "scenes": [
+    {
+      "prompt": "Close-up devotional darshan of blue-skinned child Shri Krishna as Shrinathji, calm gentle face in the middle of the frame, peacock feather crown, one raised hand lifting the small green Govardhan hill, decorated with marigold garlands and jewels, in a decorated haveli sanctum, soft golden evening glow",
+      "tts": "श्रीनाथजी, नाथद्वारा के दर्शन कीजिए।",
+      "sub": "Shrinathji, Nathdwara ke darshan kijiye.",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few petals drift in the foreground"
+    },
+    {
+      "prompt": "A grand traditional Rajasthani haveli-style temple courtyard in Nathdwara in the evening, decorated with marigold garlands and rows of lit clay diyas, warm golden light, no people",
+      "tts": "नाथद्वारा राजस्थान के राजसमंद ज़िले में है।",
+      "sub": "Nathdwara Rajasthan ke Rajsamand zile mein hai.",
+      "motion": "pan",
+      "real": true,
+      "animate": "the diya flames flicker softly and a few marigold petals drift down in the warm light"
+    },
+    {
+      "prompt": "A tall mountain-shaped heap of traditional sweets and rice dishes offered before a decorated Krishna altar with marigolds and lit clay diyas, festive temple hall, warm golden light, no people",
+      "tts": "गोवर्धन पूजा पर यहाँ अन्नकूट का भोग लगता है।",
+      "sub": "Govardhan Puja par yahan Annakut ka bhog lagta hai.",
+      "motion": "out",
+      "animate": "the diya flames flicker softly and the warm light gently glows"
+    },
+    {
+      "prompt": "Close-up of blue-skinned child Shri Krishna as Shrinathji, serene face in the middle of the frame, peacock feather crown, marigold garlands, glowing diyas in the foreground, decorated sanctum",
+      "tts": "मान्यता है, श्रीनाथजी कृष्ण का बाल रूप हैं।",
+      "sub": "Manyata hai, Shrinathji Krishna ka baal roop hain.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames glow and flicker softly"
+    },
+    {
+      "endcard": true,
+      "tts": "कल भाई दूज के लिए लाइक, शेयर, सब्सक्राइब करें। जय श्रीनाथजी!",
+      "sub": "Kal Bhai Dooj ke liye Like, Share, Subscribe karein. Jai Shrinathji!"
+    }
+  ],
+  "youtube_title": "Shrinathji Nathdwara Darshan | श्रीनाथजी नाथद्वारा दर्शन #Shorts",
+  "youtube_description": "Govardhan Puja par Shrinathji, Nathdwara (Rajsamand, Rajasthan) ke darshan. Manyata hai ki Shrinathji Shri Krishna ka baal roop hain, aur Govardhan Puja par yahan Annakut ka bhog lagta hai.\nगोवर्धन पूजा पर श्रीनाथजी, नाथद्वारा के दर्शन।\nMantra: ॐ नमो भगवते वासुदेवाय\nJai Shree Krishna 🙏\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nAchha laga to Like, Share aur Subscribe karein.\n#Shrinathji #Nathdwara #GovardhanPuja #Shorts",
+  "youtube_tags": "Shrinathji Nathdwara darshan, श्रीनाथजी नाथद्वारा दर्शन, Shrinathji, श्रीनाथजी, Nathdwara temple, नाथद्वारा मंदिर, Govardhan Puja, गोवर्धन पूजा, Shrinathji Mandir Rajasthan, Krishna darshan, कृष्ण दर्शन, Rajsamand, राजसमंद",
+  "instagram_caption": "Govardhan Puja par Shrinathji, Nathdwara ke darshan 🙏\nManyata hai ki Shrinathji Krishna ka baal roop hain.\nOm Namo Bhagavate Vasudevaya\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#Shrinathji #Nathdwara #GovardhanPuja #Krishna #JaiShriKrishna #Rajasthan #Bhakti",
+  "facebook_caption": "Govardhan Puja par Shrinathji, Nathdwara ke darshan. Chitra AI dwara banaye gaye hain (sanketik). Like, Share aur Follow karein.\n#Shrinathji #Nathdwara #GovardhanPuja"
+}
