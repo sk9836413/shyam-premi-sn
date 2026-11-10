@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-11",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-11T02:00:00.000Z",
+      "igAt": "2026-11-11T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-11-1-1.jpg"
+      ],
+      "caption": "Bhai Dooj ki hardik shubhkamnayein!\nबहन का टीका और भाई का आशीर्वाद, यही इस पर्व की सबसे sundar baat hai.\nShree Shyam ji aap sabke parivaar mein pyaar aur apnapan banaye rakhein.\nAap Bhai Dooj par apne bhai ya behen ke saath kaun si yaad sabse zyada sanjokar rakhte hain?\nChitra AI dwara banaya gaya hai (sanketik).\n\nApne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#BhaiDooj #BhaiDooj2026 #JaiShreeShyam #BhaiBehen #Festival",
+      "fb": {
+        "id": "1601481465328151",
+        "scheduled": "2026-11-11T02:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-11T03:43:00.000Z"
+      }
+    },
+    {
+      "n": 2,
+      "kind": "vichar",
+      "temple": null,
+      "quote": 10,
+      "ai": false,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-11T05:30:00.000Z",
+      "igAt": "2026-11-11T05:13:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-11-2-1.jpg"
+      ],
+      "caption": "आज का विचार 🙏\nउद्धरेदात्मनात्मानं नात्मानमवसादयेत्।\n— श्रीमद्भगवद्गीता 6.5\nMatlab: Apne aap ko khud upar uthaiye, khud ko kabhi girne mat dijiye.\nAaj aap apne aap ko upar uthane ke liye kaun si ek chhoti si koshish karenge?\n\n#JaiShreeShyam #AajKaVichar #BhagavadGita #GitaGyan #KhatuShyam",
+      "fb": {
+        "id": "1601481518661479",
+        "scheduled": "2026-11-11T05:30:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-11T05:13:00.000Z"
+      }
+    },
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "moti-dungri-ganesh",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/moti-dungri-ganesh/commons-moti-dungri-ganesh-ji-mandir-jaipur-janu-e4bfb5.jpg",
+        "footage/moti-dungri-ganesh/commons-ganesh-temple-jaipur-b080fc.jpg",
+        "footage/moti-dungri-ganesh/commons-ganesh-temple-jaipur-2-c910d4.jpg",
+        "footage/moti-dungri-ganesh/commons-jaipur-sri-moti-dungri-ganesh-ji-mandir-df8d07.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-11T12:00:00.000Z",
+      "igAt": "2026-11-11T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-11-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-11-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-11-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-11-3-4.jpg"
+      ],
+      "caption": "Jaipur ka Moti Dungri Ganesh mandir 🙏\nAaj Budhvar hai, Ganesh ji ka din.\nSwipe karke is mandir ki 3 dilchasp baatein padhiye.\nमोती डूंगरी गणेश जी की जय!\nAapne Jaipur ke Moti Dungri Ganesh ji ke darshan kab kiye the?\n\n📷 Photo: Noon Plastic, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Moti_Dungri_Ganesh_Ji_Mandir,_Jaipur;_January_2024.jpg\n📷 Photo: Kanhaiyalal Chouhan, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Ganesh_temple_jaipur_.jpg\n📷 Photo: Kanhaiyalal Chouhan, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Ganesh_temple_jaipur_2.jpg\n📷 Photo: Chainwit., CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Jaipur_-_Sri_Moti_Dungri_Ganesh_Ji_Mandir_(2022)_-_img_02.jpg\n\n#MotiDungri #MotiDungriGanesh #Ganesh #Jaipur #JaiShreeShyam #Budhvar",
+      "fb": {
+        "id": "388779648425633_1601481705328127",
+        "scheduled": "2026-11-11T12:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-11T13:16:00.000Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "ai": true,
+      "bank": "brand/photo-bank/khatu/kaggle-cast-2.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-11T14:00:00.000Z",
+      "igAt": "2026-11-11T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-11-4-1.jpg"
+      ],
+      "caption": "शुभ संध्या 🪔\nसंध्या आरती का समय, मन को शांति देने वाला पल.\nJai Shree Shyam, Khatu Shyam baba sabka kalyan karein.\nAapke ghar mein aaj shaam kaun si aarti hui?\nChitra AI dwara banaya gaya hai (sanketik).\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#JaiShreeShyam #KhatuShyam #SandhyaAarti #ShubhSandhya #KhatuShyamJi",
+      "fb": {
+        "id": "1601481768661454",
+        "scheduled": "2026-11-11T14:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-11T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}
