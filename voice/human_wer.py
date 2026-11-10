@@ -1,6 +1,7 @@
 # Whisper check for the human-voice A/B (voice/human_ab.py): transcribes old.mp3, new.mp3 and
 # old-chain-new-script.mp3 (the full mixes, ambience included) with Whisper large-v3 (faster-whisper, CPU int8) and
 # scores each against its own script: WER and CER after Hindi normalisation (punctuation, nukta, chandrabindu).
+# Whisper writes English loanwords in Devanagari its own way (शेर for शेयर), the same in every file.
 #   python voice/human_wer.py --dir DIR [--model large-v3]   -> DIR/wer.json + a Markdown table on stdout
 import argparse
 import json
@@ -35,7 +36,10 @@ def main():
     m = WhisperModel(a.model, device="cpu", compute_type="int8")
     rows = {}
     for name, ref in refs.items():
-        segs, _ = m.transcribe(f"{a.dir}/{name}.mp3", language="hi", beam_size=5, condition_on_previous_text=False)
+        # VAD chunks + 20 s windows: without them Whisper dropped a whole phrase at the 30 s window edge in both chains
+        # (first run, 10 Nov 2026), which measures the decoder, not the voice.
+        segs, _ = m.transcribe(f"{a.dir}/{name}.mp3", language="hi", beam_size=5, condition_on_previous_text=False,
+                               vad_filter=True, vad_parameters={"min_silence_duration_ms": 600}, chunk_length=20)
         hyp = " ".join(s.text.strip() for s in segs)
         r, h = norm(ref), norm(hyp)
         rows[name] = {"wer": round(dist(r.split(), h.split()) / max(1, len(r.split())), 4),
