@@ -1037,13 +1037,18 @@ jobs:
             echo "- $slug: $(ffprobe -v error -show_entries format=duration -of csv=p=0 "$W/out/$slug.mp4") s, public $day $at IST" >> "$GITHUB_STEP_SUMMARY"
             node scripts/publish.mjs --host-only --video "$W/out/$slug.mp4" --scenes "$file" > "$RUNNER_TEMP/host.json" || true
             url=$(j "$RUNNER_TEMP/host.json" "j.video_url||''")
-            [ -n "$url" ] || { echo "::error::$slug: media upload failed"; return 1; }
-            node -e '
-              const fs = require("fs"), [f, url] = process.argv.slice(1), s = JSON.parse(fs.readFileSync(f, "utf8"));
-              const line = `Status video download karein (7 din tak, free): ${url}`;
-              for (const k of ["youtube_description", "instagram_caption", "facebook_caption"])
-                if (s[k] && !s[k].includes(url)) s[k] = /\n\n/.test(s[k]) ? s[k].replace(/\n\n/, `\n\n${line}\n\n`) : `${s[k]}\n\n${line}`;
-              fs.writeFileSync(f, JSON.stringify(s, null, 2) + "\n");' "$file" "$url"
+            # Hosting is not worth losing the post (11 Nov 2026: the media Worker answered HTTP 429 at night): without it the
+            # Short still goes to YouTube and Facebook, only the download link and the Instagram Reel are missing.
+            if [ -z "$url" ]; then
+              echo "::warning::$slug: media upload failed ($(head -c 200 "$RUNNER_TEMP/host.json")): no download link, no Instagram Reel"
+            else
+              node -e '
+                const fs = require("fs"), [f, url] = process.argv.slice(1), s = JSON.parse(fs.readFileSync(f, "utf8"));
+                const line = `Status video download karein (7 din tak, free): ${url}`;
+                for (const k of ["youtube_description", "instagram_caption", "facebook_caption"])
+                  if (s[k] && !s[k].includes(url)) s[k] = /\n\n/.test(s[k]) ? s[k].replace(/\n\n/, `\n\n${line}\n\n`) : `${s[k]}\n\n${line}`;
+                fs.writeFileSync(f, JSON.stringify(s, null, 2) + "\n");' "$file" "$url"
+            fi
             node scripts/festival-links.mjs "$file" || true
             if [ "$DRY" = true ]; then
               node scripts/youtube.mjs upload --video "$W/out/$slug.mp4" --scenes "$file" --publish-at "${day}T${at}" --dry-run > "$RUNNER_TEMP/yt-dry.json" || true
@@ -1059,7 +1064,7 @@ jobs:
             fi
             rm -f "$RUNNER_TEMP/meta.json"
             if [ -n "$META_PAGE_TOKEN" ] && ! grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json"; then
-              node scripts/meta.mjs short --video "$W/out/$slug.mp4" --scenes "$file" --video-url "$MEDIA_URL/m/$slug.mp4" --publish-at "${day}T${at}" > "$RUNNER_TEMP/meta.json" || true
+              node scripts/meta.mjs short --video "$W/out/$slug.mp4" --scenes "$file" ${url:+--video-url "$url"} --publish-at "${day}T${at}" > "$RUNNER_TEMP/meta.json" || true
             fi
             mkdir -p story/published
             cp "$file" "story/published/$slug.json"
