@@ -3,11 +3,13 @@
 // (SHYAM PREMI SKA), for interaction between the videos. Rules and the texts Claude writes: automation/PHOTOS.md.
 //
 //   1 Suprabhat darshan: a REAL temple photo (footage/<temple>/, licence-checked, credited), rotated by the weekday
-//     deity; on a festival day (automation/calendar.md) the festival greeting card instead   FB 07:30  IG 09:13 IST
-//   2 Aaj ka vichar: a quote card (automation/vichar.json, rotated; no picture)               FB 11:00  IG 10:43
-//   3 Mandir carousel: real photos of one temple + 3 sourced fact slides (Claude)            FB 17:30  IG 18:46
+//     deity; on a festival day (automation/calendar.md) the festival greeting card instead   FB 06:30  IG 09:13 IST
+//   2 Aaj ka vichar: a quote card (automation/vichar.json, rotated; no picture)               IG 10:43 only
+//   3 Mandir carousel: real photos of one temple + 3 sourced fact slides (Claude)            IG 18:46 only
 //   4 Sandhya aarti: Khatu Shyam ji darshan (AI picture, labelled; the owner's own photos in
-//     footage/khatu-shyam-mandir/ win when they exist) + a genuine question                    FB 19:30  IG 19:46
+//     footage/khatu-shyam-mandir/ win when they exist) + a genuine question                    IG 19:46 only
+// Facebook (owner, 11 Nov 2026, monetization challenge): ONE photo a day, post 1 at 06:30 IST, in the Facebook caption
+// template of scripts/fb.mjs (Claude's `fb_caption`, else composed); Instagram is unchanged.
 // Facebook is SCHEDULED (scheduled_publish_time). Instagram has no scheduled publishing, so its times are the existing
 // triggers of the scheduler Worker (E:\epifive\scheduler), which dispatches .github/workflows/photos.yml on every
 // cron; `flush` publishes the Instagram post whose time has come. Build happens the evening before (18:46 IST, retry
@@ -29,6 +31,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { linkLines } from './festival-links.mjs';
+import { checkFbCaption, fbPhotoCaption } from './fb.mjs';
 import { cardHtml, imageSize, renderCards } from './photo-cards.mjs';
 import { photosFor, FOOTAGE } from './real-photos.mjs';
 
@@ -59,10 +62,10 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // ---------------------------------------------------------------- time (IST)
 
 export const SLOTS = [
-  { n: 1, fb: '07:30', ig: '09:13' },
-  { n: 2, fb: '11:00', ig: '10:43' },
-  { n: 3, fb: '17:30', ig: '18:46' },
-  { n: 4, fb: '19:30', ig: '19:46' },
+  { n: 1, fb: '06:30', ig: '09:13' },
+  { n: 2, fb: null, ig: '10:43' },
+  { n: 3, fb: null, ig: '18:46' },
+  { n: 4, fb: null, ig: '19:46' },
 ];
 const IST = 5.5 * 3600e3;
 export const istDate = (now = Date.now()) => new Date(now + IST).toISOString().slice(0, 10);
@@ -77,7 +80,7 @@ const IG_LATE = 4 * 3600e3; // and skips it when more than 4 hours late (the nex
 /** Slots of `date` that still make sense to build at `now`, minus those already published. */
 export function slotsToBuild(date, now = Date.now(), done = []) {
   return SLOTS.filter((s) => !done.includes(s.n))
-    .filter((s) => istAt(date, s.ig) >= now - IG_EARLY || istAt(date, s.fb) >= now + FB_LEAD)
+    .filter((s) => istAt(date, s.ig) >= now - IG_EARLY || (s.fb && istAt(date, s.fb) >= now + FB_LEAD))
     .map((s) => s.n);
 }
 
@@ -269,18 +272,18 @@ export function plan(date, slots = [1, 2, 3, 4]) {
   const used = [];
   for (const n of slots) {
     const s = SLOTS.find((x) => x.n === n);
-    const base = { n, fbAt: new Date(istAt(date, s.fb)).toISOString(), igAt: new Date(istAt(date, s.ig)).toISOString() };
+    const base = { n, fbAt: s.fb ? new Date(istAt(date, s.fb)).toISOString() : null, igAt: new Date(istAt(date, s.ig)).toISOString() };
     if (n === 1 && fest) {
       const t = fest.temple && list.find((x) => x.slug === fest.temple);
       const bank = !t && pickBank(fest.bank || [fest.key], h);
       posts.push({ ...base, kind: 'festival', festival: { key: fest.key, name: fest.calendar, big: fest.big, line: fest.line, blessing: fest.text, tags: fest.tags },
         ...(t ? { temple: t.slug, templeName: t.name, photos: pickPhotos(t, h, date, 1).map(photoInfo) } : bank ? { bank } : { flux: fest.flux || `${KHATU_SHEESH}, festive diyas and flowers` }),
-        write: ['big', 'line', 'place', 'text', 'caption', 'hashtags'] });
+        write: ['big', 'line', 'place', 'text', 'caption', 'hashtags', 'fb_caption'] });
       if (t) used.push(t.slug);
     } else if (n === 1) {
       const t = pickTemple(inCats.length ? inCats : list, h, date, used);
       used.push(t.slug);
-      posts.push({ ...base, kind: 'darshan', temple: t.slug, templeName: t.name, category: t.category, photos: pickPhotos(t, h, date, 1).map(photoInfo), write: ['big', 'line', 'place', 'text', 'caption', 'hashtags'] });
+      posts.push({ ...base, kind: 'darshan', temple: t.slug, templeName: t.name, category: t.category, photos: pickPhotos(t, h, date, 1).map(photoInfo), write: ['big', 'line', 'place', 'text', 'caption', 'hashtags', 'fb_caption'] });
     } else if (n === 2) {
       const qs = QUOTES();
       const i = quoteIndex(date, qs.length);
@@ -348,6 +351,14 @@ export function checkPost(p, entry) {
     }
   }
   return e;
+}
+
+/** Post 1 also goes to Facebook (06:30 IST): its `fb_caption` follows the Facebook template (scripts/fb.mjs). Checked on
+ *  its own, so a weak Facebook text never replaces the Instagram texts (build composes a Facebook text instead). */
+export function checkFbPost(p, entry) {
+  if (!entry.fbAt) return [];
+  if (!p?.fb_caption) return ['fb_caption: missing (the Facebook text of this post; PHOTOS.md "Facebook caption")'];
+  return checkFbCaption(p.fb_caption, { draft: true }).map((m) => `fb_caption: ${m}`);
 }
 
 const AARTI_Q = [
@@ -485,7 +496,10 @@ export async function build(date, { noFlux = false, log = console.log } = {}) {
       rendered = await renderCards(cards.map((c, i) => ({ html: cardHtml(c), file: files[i] })));
     }
     if (rendered.some((r) => r.overflow)) log(`::warning::post ${entry.n}: text still overflows on ${rendered.filter((r) => r.overflow).length} card(s)`);
-    result.push({ n: entry.n, kind: entry.kind, fbAt: entry.fbAt, igAt: entry.igAt, temple: entry.temple || null, quote: entry.quote, ai, greeting: greetingOnly,
+    const fbOk = source === 'claude' && t.fb_caption && !checkFbPost(t, entry).length;
+    const fbInfo = entry.fbAt ? { kind: entry.kind, date, temple: entry.temple || null, templeName: entry.templeName || '', festival: entry.festival ? { key: entry.festival.key, big: t.big || entry.festival.big, line: t.line || entry.festival.line, blessing: entry.festival.blessing } : null,
+      fbCaption: fbOk ? t.fb_caption : null, place: t.place || '', blessing: t.text || '', hashtags: t.hashtags || [] } : null;
+    result.push({ n: entry.n, kind: entry.kind, fbAt: entry.fbAt, igAt: entry.igAt, temple: entry.temple || null, quote: entry.quote, ai, greeting: greetingOnly, fbInfo,
       bank: ai && image && entry.bank ? entry.bank : null, photos: ai || greetingOnly ? [] : ph.map((x) => x.file), credits: ai ? [] : uniq(ph.map((x) => `${x.credit}${/BY/.test(x.licence || '') ? ', cropped' : ''}${x.url ? `: ${x.url}` : ''}`)),
       text: { caption: t.caption, hashtags: t.hashtags }, source, festival: entry.festival?.key || null, files: files.map(rel) });
   }
@@ -581,22 +595,26 @@ export async function publish(date, { dryRun = false, log = console.log } = {}) 
   const st = readState(date) || { date, posts: [] };
   for (const post of built.posts) {
     if (st.posts.some((x) => x.n === post.n)) { log(`post ${post.n}: already published`); continue; }
-    const text = caption(post, await linkLines(date, 'facebook', post));
     const igText = caption(post, await linkLines(date, 'instagram', post));
-    if (dryRun) { log(`[dry-run] post ${post.n} (${post.kind}, ${post.files.length} image(s)) FB ${post.fbAt} IG ${post.igAt}\n${text}\n`); continue; }
+    // Facebook: post 1 only (fbAt), in the Facebook template; the photo credits and the AI line stay (licence, honesty).
+    const fb = post.fbAt && post.fbInfo ? fbPhotoCaption(post.fbInfo, { links: await linkLines(date, 'facebook', post), credits: (post.credits || []).map((c) => `📷 ${c}`), ai: post.ai }) : null;
+    const text = fb?.text || null;
+    if (dryRun) { log(`[dry-run] post ${post.n} (${post.kind}, ${post.files.length} image(s)) ${text ? `FB ${post.fbAt} [${fb.source}]` : 'FB -'} IG ${post.igAt}\n${igText}\n${text ? `--- Facebook ---\n${text}\n` : ''}`); continue; }
     const rec = { n: post.n, kind: post.kind, temple: post.temple, quote: post.quote, ai: post.ai, bank: post.bank, photos: post.photos, source: post.source, fbAt: post.fbAt, igAt: post.igAt };
     try {
       rec.images = [];
       for (const [i, f] of post.files.entries()) rec.images.push(await host(path.join(ROOT, f), `photo-${date}-${post.n}-${i + 1}.jpg`));
     } catch (e) { log(`::warning::post ${post.n}: hosting failed, not posted (the next run retries): ${redact(e.message)}`); continue; }
-    rec.caption = text;
-    if (igText !== text) rec.igCaption = igText;
-    if (configured()) {
+    rec.caption = igText; // what Instagram posts (flush reads igCaption || caption)
+    if (text) { rec.fbCaption = text; rec.fbSource = fb.source; }
+    // (a post built by the old 4-a-day plan has an fbAt but no fbInfo: Instagram only too)
+    if (!post.fbAt || !text) rec.fb = { skipped: 'Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)' };
+    else if (configured()) {
       try { rec.fb = await facebook(rec.images, text, Date.parse(post.fbAt)); } catch (e) { rec.fb = { error: redact(e.message).slice(0, 200) }; log(`::warning::post ${post.n}: Facebook: ${rec.fb.error}`); }
     } else rec.fb = { error: 'META_* not configured' };
     rec.ig = env.IG_USER_ID ? { pending: post.igAt } : { skipped: 'IG_USER_ID not set' };
     st.posts.push(rec);
-    log(`post ${post.n} (${post.kind}): fb ${rec.fb.id ? `${rec.fb.id}${rec.fb.scheduled ? ` scheduled ${rec.fb.scheduled}` : ' published'}` : rec.fb.error} | ig pending ${post.igAt}`);
+    log(`post ${post.n} (${post.kind}): fb ${rec.fb.id ? `${rec.fb.id}${rec.fb.scheduled ? ` scheduled ${rec.fb.scheduled}` : ' published'}` : rec.fb.error || rec.fb.skipped} | ig pending ${post.igAt}`);
   }
   if (!dryRun) { st.posts.sort((a, b) => a.n - b.n); st.neurons = (st.neurons || 0) + (built.neurons || 0); writeState(date, st); }
   return st;
@@ -659,7 +677,7 @@ async function main() {
     if (!fs.existsSync(file)) return { status: 'error', problems: [`${rel(file)} missing`] };
     let posts;
     try { posts = readJson(file).posts || {}; } catch (e) { return { status: 'error', problems: [`posts.json: ${e.message}`] }; }
-    const problems = p.posts.flatMap((entry) => (posts[String(entry.n)] ? checkPost(posts[String(entry.n)], entry) : ['not written']).map((m) => `post ${entry.n} (${entry.kind}): ${m}`));
+    const problems = p.posts.flatMap((entry) => (posts[String(entry.n)] ? [...checkPost(posts[String(entry.n)], entry), ...checkFbPost(posts[String(entry.n)], entry)] : ['not written']).map((m) => `post ${entry.n} (${entry.kind}): ${m}`));
     return { status: problems.length ? 'error' : 'ok', problems };
   }
   if (cmd === 'flux-jobs') { // the AI pictures build needs, for animate/frames.mjs --jobs (Workers AI, else Kaggle FLUX)

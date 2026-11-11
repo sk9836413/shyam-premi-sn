@@ -7,6 +7,7 @@
 // Prints each problem and exits 1 if there are any.
 import fs from 'node:fs';
 import { topicWarnings } from './topics.mjs';
+import { checkFbCaption } from './fb.mjs';
 
 const longMode = process.argv.includes('--long');
 const file = process.argv.slice(2).find((a) => !a.startsWith('--')) || 'story/today/scenes.json';
@@ -103,6 +104,21 @@ const MAX_WORDS = 18;
   };
   walk(s, '');
   for (const w of style) {
+    if (process.argv.includes('--soft-topics')) console.log(`${process.env.GITHUB_ACTIONS ? '::warning::' : 'warning: '}${w}`);
+    else problems.push(w);
+  }
+}
+
+// ---- Facebook caption (scripts/fb.mjs; owner, 11 Nov 2026: Facebook monetization challenge) --------------------------
+// facebook_caption: line 1 = a Hindi (Devanagari) bhaav line + one genuine question, then 1-2 context lines, then exactly
+// 3 hashtags on the last line (#KhatuShyam #JaiShreeShyam + 1 topical); mostly Devanagari with a little Hinglish; no
+// URLs (the script adds the festival link and photo credits); no engagement bait of any kind. A problem while writing,
+// a warning with --soft-topics (the workflow): at publish time a caption that fails is replaced by the one fb.mjs
+// composes, so it never stops a post. Status Shorts are made by the engine, not Claude: fb.mjs composes theirs. The long
+// katha, Kalyug and Dadi-Chhotu Shorts are not in the Facebook plan (scripts/fb.mjs), so their caption is not checked.
+if (!longMode && !/^\d{4}-\d{2}-\d{2}-long-/.test(s.slug || '') && !['status', 'long', 'kalyug', 'dialogue'].includes(s.format)) {
+  for (const m of checkFbCaption(s.facebook_caption, { draft: true })) {
+    const w = `facebook_caption: ${m} (STORY.md "Facebook caption")`;
     if (process.argv.includes('--soft-topics')) console.log(`${process.env.GITHUB_ACTIONS ? '::warning::' : 'warning: '}${w}`);
     else problems.push(w);
   }
@@ -446,7 +462,7 @@ if (s.format === 'kalyug') {
   const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
   need(tags.length >= 8 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 8-15 tags with some Devanagari (has ${tags.length})`);
   need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
-  need((s.facebook_caption || '').trim() && !DEVANAGARI.test(s.facebook_caption), 'facebook_caption: Roman, not empty');
+  need((s.facebook_caption || '').trim(), 'facebook_caption: not empty (the Facebook template, STORY.md "Facebook caption")');
   need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
   if (problems.length) {
     console.log(problems.map((p) => `- ${p}`).join('\n'));
@@ -546,7 +562,7 @@ if (s.format === 'movie') {
   const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
   need(tags.length >= 10 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 10-15 tags with some Devanagari (has ${tags.length})`);
   need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
-  need((s.facebook_caption || '').trim() && !DEVANAGARI.test(s.facebook_caption), 'facebook_caption: Roman, not empty');
+  need((s.facebook_caption || '').trim(), 'facebook_caption: not empty (the Facebook template, STORY.md "Facebook caption")');
   need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
   if (problems.length) {
     console.log(problems.map((p) => `- ${p}`).join('\n'));
@@ -667,7 +683,7 @@ if (s.format === 'dialogue') {
   const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
   need(tags.length >= 10 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 10-15 tags with some Devanagari (has ${tags.length})`);
   need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
-  need((s.facebook_caption || '').trim() && !DEVANAGARI.test(s.facebook_caption), 'facebook_caption: Roman, not empty');
+  need((s.facebook_caption || '').trim(), 'facebook_caption: not empty (the Facebook template, STORY.md "Facebook caption")');
   need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
   if (problems.length) {
     console.log(problems.map((p) => `- ${p}`).join('\n'));
@@ -754,7 +770,7 @@ need((s.facebook_caption || '').trim().length > 0, 'facebook_caption is empty');
 // title is drawn on the video with a Latin-only font; the YouTube fields carry Devanagari keywords too.
 need(DEVANAGARI.test(yt), 'youtube_title needs the keyword in Devanagari too ("Roman | देवनागरी #Shorts")');
 need(DEVANAGARI.test(s.youtube_tags || ''), 'youtube_tags need some Devanagari search phrases');
-for (const k of ['title', 'instagram_caption', 'facebook_caption']) {
+for (const k of ['title', 'instagram_caption']) {
   need(!DEVANAGARI.test(s[k] || ''), `${k} must be Roman-script Hinglish`);
 }
 // Real temple photos (footage/<temple>/, scripts/real-photos.mjs): `temple` names the folder, `real` marks temple scenes.

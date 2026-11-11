@@ -1,15 +1,17 @@
 # Daily photo posts (Instagram feed + Facebook Page)
 
-The owner wants 3-4 photo posts a day for interaction. `scripts/photos.mjs` chooses the pictures, temples, quote and
+The owner wants 3-4 photo posts a day for interaction on Instagram. **Facebook gets ONE photo a day** (owner, 11 Nov
+2026, Facebook monetization challenge; scripts/fb.mjs): post 1 at 06:30 IST, with its own Facebook text (`fb_caption`).
+Posts 2-4 are Instagram only. `scripts/photos.mjs` chooses the pictures, temples, quote and
 times; Claude only writes the texts into `story/photos/<date>/posts.json`. Then the script validates, renders the cards
 (headless Chrome, brand/fonts), hosts them on the media Worker, SCHEDULES Facebook and queues Instagram (`.github/workflows/photos.yml`).
 
 | # | Post | Facebook | Instagram |
 |---|---|---|---|
-| 1 | Suprabhat darshan (real temple photo, rotated by weekday deity) or the festival greeting on festival days | 07:30 IST | 09:13 IST |
-| 2 | Aaj ka vichar (quote card from automation/vichar.json) | 11:00 | 10:43 |
-| 3 | Mandir carousel: real photos + "3 baatein" fact slides | 17:30 | 18:46 |
-| 4 | Sandhya aarti darshan of Khatu Shyam ji + a genuine question | 19:30 | 19:46 |
+| 1 | Suprabhat darshan (real temple photo, rotated by weekday deity) or the festival greeting on festival days | 06:30 IST | 09:13 IST |
+| 2 | Aaj ka vichar (quote card from automation/vichar.json) | - | 10:43 |
+| 3 | Mandir carousel: real photos + "3 baatein" fact slides | - | 18:46 |
+| 4 | Sandhya aarti darshan of Khatu Shyam ji + a genuine question | - | 19:46 |
 
 Instagram has no scheduled publishing, so it posts at the scheduler Worker's existing trigger times.
 
@@ -28,6 +30,11 @@ Write only the posts listed in plan.json. Fields (all strings unless shown):
   Dham kab gaye the?", "Aapke ghar mein aaj kaunsi aarti hui?"). 120-900 characters.
 - `hashtags`: array of 5-10 relevant hashtags, always including `#JaiShreeShyam` or `#KhatuShyam`, plus the deity,
   temple or festival (`#Somnath`, `#HarHarMahadev`, `#Diwali2026` ...). No banned or unrelated trending tags.
+- darshan / festival (post 1) also goes to Facebook, so it has `fb_caption`: the Facebook template of
+  automation/STORY.md "Facebook caption": line 1 = a Hindi (Devanagari) bhaav line + ONE genuine question ending in `?`
+  (e.g. `सुप्रभात 🙏 हर हर महादेव। क्या आपने कभी सोमनाथ ज्योतिर्लिंग के दर्शन किए हैं?`), then 1-2 context lines (mostly
+  Devanagari), then a blank line and exactly 3 hashtags `#KhatuShyam #JaiShreeShyam #<topical>`. No URL, no credit or
+  AI line (the script adds them), no asks of any kind (like/share/comment/tag/follow/"likhein"/"bhejein").
 - darshan / festival (post 1): `big` (Devanagari, max 16 characters, e.g. `सुप्रभात`, `शुभ दीपावली`), `line` (max 30, e.g.
   `जय श्री श्याम 🙏`), `place` (temple name in Devanagari, max 34, e.g. `सोमनाथ ज्योतिर्लिंग, गुजरात`; festival: a short
   festival line), `text` (a short Devanagari blessing, max 70).

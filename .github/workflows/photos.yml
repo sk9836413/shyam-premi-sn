@@ -9,6 +9,11 @@
 #      today was never built. plan -> Claude writes the texts -> validate (fallback texts when they fail) -> render
 #      -> host on the media Worker -> Facebook SCHEDULED (07:30, 11:00, 17:30, 19:30 IST) -> Instagram queued,
 #   4. publishes again when something became due, then commits automation/photos/<date>.json.
+# FACEBOOK (owner, 11 Nov 2026, monetization challenge; scripts/fb.mjs): only post 1 goes to Facebook, scheduled for
+# 06:30 IST in the Facebook caption template; posts 2-4 are Instagram only. Every run also logs the Page's daily views and
+# the plays per Reel (scripts/fb-daily.mjs insights -> automation/fb-insights.json, 30-day progress toward 1,000,000), and
+# the 19:46 IST run waits until 20:45 IST for the daily Facebook "share kit" (job share-kit: today's Reel URLs, Hindi
+# share lines, today's half of automation/fb-groups.json -> automation/share-kit/<date>.md, Resend email, CRM task).
 # Separate from daily.yml on purpose: a failed photo post never touches the video pipeline. The repo is public, so the
 # Actions minutes are free. dry_run = plan, write and render (the cards are the run's artifact), publish nothing.
 name: Photo posts
@@ -57,6 +62,12 @@ jobs:
         if: ${{ !inputs.dry_run }}
         continue-on-error: true
         run: node scripts/photos.mjs flush | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Facebook insights (Page views, plays per Reel)
+        if: ${{ !inputs.dry_run }}
+        continue-on-error: true
+        timeout-minutes: 5
+        run: node scripts/fb-daily.mjs insights | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Picture bank (morning runs)
         if: ${{ !inputs.dry_run }}
@@ -151,10 +162,61 @@ jobs:
       - name: Commit
         if: ${{ always() && !inputs.dry_run }}
         run: |
-          for p in automation/photos brand/photo-bank; do [ -e "$p" ] && git add -A "$p"; done
+          for p in automation/photos brand/photo-bank automation/fb-insights.json; do [ -e "$p" ] && git add -A "$p"; done
           for p in story/photos/*/plan.json story/photos/*/posts.json; do [ -e "$p" ] && git add "$p"; done
           git diff --cached --quiet && exit 0
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -qm "Photo posts $(TZ=Asia/Kolkata date '+%F %H:%M') IST"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # Daily Facebook "share kit" (scripts/fb-daily.mjs share-kit) around 20:45 IST, after the evening Reel (20:30) is live:
+  # only the run that starts 19:30-22:59 IST (the scheduler's 19:46 dispatch) waits for it, once a day. No new cron.
+  share-kit:
+    if: ${{ !inputs.dry_run }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    env:
+      META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+      META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Wait until 20:45 IST (evening run only, once a day)
+        id: wait
+        run: |
+          today=$(TZ=Asia/Kolkata date +%F); hm=$((10#$(TZ=Asia/Kolkata date +%H%M)))
+          if [ $hm -lt 1930 ] || [ $hm -ge 2300 ]; then echo "::notice::Share kit: only the evening run (19:30-22:59 IST) makes it ($hm IST)"; exit 0; fi
+          git fetch -q origin main
+          if git cat-file -e "origin/main:automation/share-kit/$today.md" 2>/dev/null; then echo "::notice::Share kit $today already made"; exit 0; fi
+          wait=$(( $(TZ=Asia/Kolkata date -d "$today 20:45" +%s) - $(date +%s) ))
+          [ $wait -gt 0 ] && { echo "Waiting $wait s for 20:45 IST (the evening Reel goes live at 20:30)"; sleep $wait; }
+          echo "go=true" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v4
+        if: steps.wait.outputs.go == 'true'
+        with:
+          node-version: 22
+
+      - name: Share kit (email when RESEND_API_KEY is set, CRM task, automation/share-kit/<date>.md)
+        if: steps.wait.outputs.go == 'true'
+        continue-on-error: true
+        run: |
+          git pull -q --rebase origin main
+          # fresh numbers for the run summary only (the photos job commits automation/fb-insights.json; no rebase clash)
+          node scripts/fb-daily.mjs insights --dry | tee -a "$GITHUB_STEP_SUMMARY"
+          node scripts/fb-daily.mjs share-kit | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit
+        if: steps.wait.outputs.go == 'true'
+        run: |
+          [ -d automation/share-kit ] && git add automation/share-kit
+          git diff --cached --quiet && exit 0
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -qm "Facebook share kit $(TZ=Asia/Kolkata date +%F)"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done

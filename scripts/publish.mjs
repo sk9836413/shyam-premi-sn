@@ -5,6 +5,7 @@
 //   node scripts/publish.mjs --video <mp4> --scenes story/today/scenes.json [--publish-at 19:00] [--dry-run]
 //   ... --host-only   only host the mp4 + jpg on the Worker (status videos: the download link for the description)
 //   --publish-at      IST time YouTube publishes at: Facebook is scheduled for it, Instagram is queued (meta.mjs flush)
+//   --fb-at <t> | --no-fb   Facebook's own time ("now", HH:MM, YYYY-MM-DDTHH:MM IST) or no Facebook (scripts/fb.mjs flags)
 // Env: MEDIA_URL, MEDIA_TOKEN, META_PAGE_ID, META_PAGE_TOKEN, IG_USER_ID, MAKE_WEBHOOK_URL, MAKE_API_KEY (locally: %USERPROFILE%\.shyampremisk\
 // make.env and media-token.txt). Prints one JSON line.
 import { spawnSync } from 'node:child_process';
@@ -60,8 +61,9 @@ async function main() {
   const hostOnly = args.includes('--host-only');
   const direct = !hostOnly && metaConfigured();
   const publishAt = option('--publish-at');
+  const fbOpts = { fbAt: option('--fb-at'), noFb: args.includes('--no-fb') };
   if (args.includes('--dry-run')) {
-    return { status: 'dry-run', payload, ...(direct ? { meta: await postShort({ video, spec, videoUrl: payload.video_url, publishAt, dryRun: true }) } : {}) };
+    return { status: 'dry-run', payload, ...(direct ? { meta: await postShort({ video, spec, videoUrl: payload.video_url, publishAt, ...fbOpts, dryRun: true }) } : {}) };
   }
 
   // With the Graph API the post is uploaded from the local file, so a hosting failure only affects a queued Instagram post.
@@ -76,7 +78,7 @@ async function main() {
   }
   if (hostOnly) return { status: 'hosted', video_url: payload.video_url, thumbnail_url: payload.thumbnail_url };
   if (direct) {
-    const meta = await postShort({ video, spec, videoUrl: hosted ? payload.video_url : null, publishAt });
+    const meta = await postShort({ video, spec, videoUrl: hosted ? payload.video_url : null, publishAt, ...fbOpts });
     if (meta.status !== 'ok') console.error(`::warning::Facebook/Instagram (Graph API): ${meta.summary || meta.error || meta.status}`);
     if (!meta.authFailed) return { status: meta.status, video_url: payload.video_url, summary: meta.summary, meta };
     console.error('::warning::Meta rejected the Page token; falling back to Make.');

@@ -3,8 +3,9 @@
 // through the Meta Graph API (never-expiring Page token). Node built-ins only.
 //
 //   node scripts/meta.mjs check                      read-only: the Page and the Instagram account
-//   node scripts/meta.mjs short --video <mp4> --scenes <json> [--video-url <hosted mp4>] [--publish-at 19:00|YYYY-MM-DDTHH:MM] [--dry-run]
-//   node scripts/meta.mjs long --video <mp4> --scenes <json> --meta <out/slug.json> [--thumbnail <jpg>] [--publish-at 15:00] [--dry-run]
+//   node scripts/meta.mjs short --video <mp4> --scenes <json> [--video-url <hosted mp4>] [--publish-at 19:00|YYYY-MM-DDTHH:MM]
+//                              [--fb-at now|HH:MM|YYYY-MM-DDTHH:MM | --no-fb] [--dry-run]
+//   node scripts/meta.mjs long --video <mp4> --scenes <json> --meta <out/slug.json> [--thumbnail <jpg>] [--publish-at 15:00] [--no-fb] [--dry-run]
 //   node scripts/meta.mjs flush [--log automation/published.md] [--dry-run]
 //
 // short  Facebook: a Reel when the video is vertical and 3-90 s (Meta's Reel limit), otherwise a normal Page video
@@ -12,6 +13,9 @@
 //        facebook_caption / instagram_caption. With --publish-at (IST, like youtube.mjs) at least 15 minutes ahead,
 //        Facebook is SCHEDULED for that time and Instagram, which has no scheduled publishing, is queued: the line
 //        "ig: pending <ISO>" goes into automation/published.md and `flush` publishes it from --video-url.
+//        Facebook plan (scripts/fb.mjs, 11 Nov 2026: at most 2 videos + 1 photo a day): --fb-at gives Facebook its own
+//        time ("now" = straight away) and --no-fb leaves Facebook out; Instagram keeps following --publish-at. Without
+//        either flag Facebook follows --publish-at as before. The Facebook text is fbVideoCaption() (fb.mjs template).
 // long   The long katha video as a normal Facebook Page video (in-stream ads later), scheduled like YouTube:
 //        youtube_title, the description with chapters, the Devanagari keywords and the AI disclaimer. No Instagram.
 // flush  Publishes every queued Instagram Reel whose time is within 20 minutes (waits for it) and no more than
@@ -27,6 +31,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { fbVideoCaption } from './fb.mjs';
 
 export const FB_REEL_MAX = 90;
 export const IG_REEL_MAX = 15 * 60;
@@ -72,16 +77,26 @@ export function istAt(hhmm, now = Date.now()) {
   return at - now > LEAD_MS ? at : null;
 }
 
-/** What goes where for a Short. */
-export function planShort({ seconds, width, height, publishAt = null, now = Date.now() }) {
+/** What goes where for a Short. fbAt: Facebook's own time (epoch ms), null = now, 'skip' = no Facebook; undefined = publishAt. */
+export function planShort({ seconds, width, height, publishAt = null, fbAt, now = Date.now() }) {
   const vertical = height > width;
-  const fb = vertical && seconds >= MIN_SECONDS && seconds <= FB_REEL_MAX ? 'reel' : 'video';
+  const fb = fbAt === 'skip' ? 'skip' : vertical && seconds >= MIN_SECONDS && seconds <= FB_REEL_MAX ? 'reel' : 'video';
   const ig = seconds >= MIN_SECONDS && seconds <= IG_REEL_MAX ? 'reel' : 'skip';
-  const at = publishAt && publishAt - now > LEAD_MS ? publishAt : null;
-  if (at && at - now > 29 * 86400e3) throw new Error('publish time more than 29 days ahead');
-  const unix = at ? String(Math.floor(at / 1000)) : null;
-  const fbSchedule = !unix ? {} : fb === 'reel' ? { video_state: 'SCHEDULED', scheduled_publish_time: unix } : { published: 'false', scheduled_publish_time: unix };
+  const ahead = (t) => (t && t - now > LEAD_MS ? t : null);
+  const at = ahead(publishAt);
+  const fbTime = fbAt === undefined ? at : fbAt === 'skip' ? null : ahead(fbAt);
+  for (const t of [at, fbTime]) if (t && t - now > 29 * 86400e3) throw new Error('publish time more than 29 days ahead');
+  const unix = fbTime ? String(Math.floor(fbTime / 1000)) : null;
+  const fbSchedule = !unix || fb === 'skip' ? {} : fb === 'reel' ? { video_state: 'SCHEDULED', scheduled_publish_time: unix } : { published: 'false', scheduled_publish_time: unix };
   return { fb, ig, fbSchedule, igAt: ig === 'reel' && at ? new Date(at).toISOString() : null };
+}
+
+/** --fb-at value -> planShort's fbAt: 'skip' (--no-fb), null ('now' or a time already past), epoch ms, undefined (no flag). */
+export function fbAtOption(value, noFb = false, now = Date.now()) {
+  if (noFb || value === 'skip') return 'skip';
+  if (value === undefined || value === null || value === '') return undefined;
+  if (value === 'now') return null;
+  return istAt(value, now - LEAD_MS - 1) ?? null;
 }
 
 /** Facebook Page video copy of the long katha: title, description (+ chapters, Devanagari keywords, AI line). */
@@ -135,7 +150,7 @@ export function sameText(a, b) {
 /** One-line summary for automation/published.md. */
 export function summarize(r) {
   if (r.status === 'not-configured') return 'meta not configured';
-  const cell = (x) => (!x ? 'skipped' : x.error ? `error ${x.error.slice(0, 120)}` : x.pending ? `pending ${x.pending}`
+  const cell = (x) => (!x ? 'skipped' : x.skipped ? `skipped (${x.skipped})` : x.error ? `error ${x.error.slice(0, 120)}` : x.pending ? `pending ${x.pending}`
     : `${x.url || x.id}${x.duplicate ? ' (already posted, not repeated)' : x.scheduled ? ` (scheduled ${x.scheduled})` : ''}`);
   return `fb: ${cell(r.facebook)} | ig: ${cell(r.instagram)}`.replace(/\r?\n/g, ' ');
 }
@@ -259,21 +274,26 @@ export async function postShort(opts) {
   }
 }
 
-async function shortUnsafe({ video, spec, videoUrl, publishAt, dryRun = false }) {
+async function shortUnsafe({ video, spec, videoUrl, publishAt, fbAt, noFb = false, dryRun = false }) {
   const info = probe(video);
-  const plan = planShort({ ...info, publishAt: istAt(publishAt) });
+  const plan = planShort({ ...info, publishAt: istAt(publishAt), fbAt: fbAtOption(fbAt, noFb) });
   const text = captions(spec);
-  if (dryRun) return { status: 'dry-run', version: VERSION, video: info, plan, chars: { facebook: text.facebook.length, instagram: text.instagram.length } };
+  const fbText = fbVideoCaption(spec);
+  text.facebook = fbText.text;
+  if (dryRun) return { status: 'dry-run', version: VERSION, video: info, plan, facebook_caption: fbText, chars: { facebook: text.facebook.length, instagram: text.instagram.length } };
   const r = { status: 'ok', slug: spec.slug, seconds: Math.round(info.seconds) };
   const errors = [];
   const attempt = async (key, fn) => {
     try { r[key] = await fn(); } catch (e) { r[key] = { error: redact(e.message) }; errors.push(e); }
   };
   const scheduled = plan.fbSchedule.scheduled_publish_time ? { scheduled: new Date(+plan.fbSchedule.scheduled_publish_time * 1000).toISOString() } : {};
-  await attempt('facebook', async () => (await orNull(fbExisting(text.facebook))) || ({
-    ...(plan.fb === 'reel' ? await fbReel(video, text.facebook, plan.fbSchedule) : await fbVideo(video, { title: spec.title, description: text.facebook, schedule: plan.fbSchedule })),
-    ...scheduled,
-  }));
+  if (plan.fb === 'skip') r.facebook = { skipped: 'not in the Facebook plan' };
+  else {
+    await attempt('facebook', async () => (await orNull(fbExisting(text.facebook))) || ({
+      ...(plan.fb === 'reel' ? await fbReel(video, text.facebook, plan.fbSchedule) : await fbVideo(video, { title: spec.title, description: text.facebook, schedule: plan.fbSchedule })),
+      ...scheduled,
+    }));
+  }
   const igDup = plan.ig === 'reel' && env.IG_USER_ID ? await orNull(igExisting(text.instagram)) : null;
   if (igDup) r.instagram = igDup;
   else if (plan.ig === 'reel' && env.IG_USER_ID) {
@@ -283,13 +303,14 @@ async function shortUnsafe({ video, spec, videoUrl, publishAt, dryRun = false })
     } else await attempt('instagram', () => igReel(text.instagram, { file: video }));
   }
   if (errors.length) r.status = 'partial-failure';
-  if (errors.length && errors.length === [r.facebook, r.instagram].filter((x) => x && !x.pending).length && errors.some((e) => isAuthError(e.code))) r.authFailed = true;
+  if (errors.length && errors.length === [r.facebook, r.instagram].filter((x) => x && !x.pending && !x.skipped).length && errors.some((e) => isAuthError(e.code))) r.authFailed = true;
   r.summary = summarize(r);
   return r;
 }
 
-async function postLong({ video, spec, meta, thumbnail, publishAt, dryRun }) {
+async function postLong({ video, spec, meta, thumbnail, publishAt, noFb, dryRun }) {
   if (!configured()) return { status: 'not-configured' };
+  if (noFb) return { status: 'ok', slug: spec.slug, facebook: { skipped: 'not in the Facebook plan' } };
   const post = longPost(spec, meta);
   const at = istAt(publishAt);
   const schedule = at ? { published: 'false', scheduled_publish_time: String(Math.floor(at / 1000)) } : {};
@@ -350,9 +371,10 @@ async function main() {
     const video = opt('--video');
     const spec = JSON.parse(fs.readFileSync(opt('--scenes'), 'utf8'));
     if (!video || !fs.existsSync(video)) throw new Error(`video not found: ${video}`);
-    if (cmd === 'short') return postShort({ video, spec, videoUrl: opt('--video-url'), publishAt: opt('--publish-at'), dryRun });
+    const noFb = args.includes('--no-fb');
+    if (cmd === 'short') return postShort({ video, spec, videoUrl: opt('--video-url'), publishAt: opt('--publish-at'), fbAt: opt('--fb-at'), noFb, dryRun });
     const meta = opt('--meta') ? JSON.parse(fs.readFileSync(opt('--meta'), 'utf8')) : {};
-    return postLong({ video, spec, meta, thumbnail: opt('--thumbnail'), publishAt: opt('--publish-at'), dryRun });
+    return postLong({ video, spec, meta, thumbnail: opt('--thumbnail'), publishAt: opt('--publish-at'), noFb, dryRun });
   }
   if (cmd === 'flush') return flush({ log: opt('--log') || 'automation/published.md', dryRun });
   throw new Error('Usage: meta.mjs check | short ... | long ... | flush (see the header)');

@@ -43,6 +43,10 @@
 # out with the first run after 06:00 IST (the 05:47 IST schedule poll or the 09:13 IST morning dispatch), and a slot
 # missed by over 6 hours is skipped. The long katha video is a normal Facebook Page video scheduled for 15:00 IST
 # (in-stream ads later); it is not posted to Instagram.
+# FACEBOOK PLAN (owner, 11 Nov 2026, monetization challenge; scripts/fb.mjs): Facebook gets at most 2 videos + 1 photo a
+# day. Every Facebook step asks `node scripts/fb.mjs flags` for its own Facebook time (--fb-at: Reel 1 = the status
+# Short at its status time or the day-status Short ~07:30/as soon as ready, Reel 2 = the evening darshan 20:30, 18:00 on
+# a 20:00 eve-status day) or --no-fb; YouTube and Instagram times are unchanged. Kalyug and the long katha: no Facebook.
 name: Daily story video
 
 on:
@@ -517,7 +521,9 @@ jobs:
           if grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" 2>/dev/null; then
             echo '{"status":"ok","summary":"skipped (the YouTube video already existed: posted by an earlier run)"}' | tee "$RUNNER_TEMP/make.json"; exit 0
           fi
-          node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || steps.date.outputs.slot == 'noon' && '--publish-at 15:00' || '' }} | tee "$RUNNER_TEMP/make.json"
+          # Facebook's own time or no Facebook (scripts/fb.mjs: at most 2 videos a day); YouTube/Instagram keep --publish-at.
+          fb=$(node scripts/fb.mjs flags --date "${{ steps.date.outputs.today }}" --slot "${{ steps.date.outputs.slot }}" || echo --no-fb)
+          node scripts/publish.mjs --video "story/today/out/$SLUG.mp4" --scenes story/today/scenes.json ${{ steps.date.outputs.slot == 'evening' && '--publish-at 19:00' || steps.date.outputs.slot == 'noon' && '--publish-at 15:00' || '' }} $fb | tee "$RUNNER_TEMP/make.json"
 
       - name: Record
         # Only once something was published, so a failed render is retried by the next slot run.
@@ -811,6 +817,8 @@ jobs:
         run: |
           [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; no Facebook copy"; exit 0; }
           grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" 2>/dev/null && { echo "::notice::YouTube already had it (earlier run): no second Facebook copy"; exit 0; }
+          # Facebook plan (scripts/fb.mjs): at most 2 videos a day, and the long katha is not one of them.
+          if [ "$(node scripts/fb.mjs flags --date "$(TZ=Asia/Kolkata date +%F)" --slot long || echo --no-fb)" = --no-fb ]; then echo "::notice::Facebook plan: the long katha video is YouTube only"; exit 0; fi
           node scripts/meta.mjs long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json --meta "story/long/out/$SLUG.json" \
             --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 15:00 | tee "$RUNNER_TEMP/fb.json" || true
           echo "- $SLUG | facebook: $(node -p "try{const j=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/fb.json','utf8'));j.facebook?j.facebook.url+(j.facebook.scheduled?' (scheduled '+j.facebook.scheduled+')':''):'error '+(j.error||j.status)}catch{'failed'}")" >> automation/published.md
@@ -1064,7 +1072,9 @@ jobs:
             fi
             rm -f "$RUNNER_TEMP/meta.json"
             if [ -n "$META_PAGE_TOKEN" ] && ! grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json"; then
-              node scripts/meta.mjs short --video "$W/out/$slug.mp4" --scenes "$file" ${url:+--video-url "$url"} --publish-at "${day}T${at}" > "$RUNNER_TEMP/meta.json" || true
+              # Facebook: only the day's chosen status Reel (scripts/fb.mjs), at the status time; Instagram as before.
+              fb=$(node scripts/fb.mjs flags --date "$day" --slot "$slot" --festival-date "$(j "$file" "j.festival_date||''")" || echo --no-fb)
+              node scripts/meta.mjs short --video "$W/out/$slug.mp4" --scenes "$file" ${url:+--video-url "$url"} --publish-at "${day}T${at}" $fb > "$RUNNER_TEMP/meta.json" || true
             fi
             mkdir -p story/published
             cp "$file" "story/published/$slug.json"
@@ -1299,8 +1309,10 @@ jobs:
         run: |
           [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
           grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" && { echo "::notice::YouTube already had it (earlier run): no second Facebook/Instagram post"; exit 0; }
+          # Facebook plan (scripts/fb.mjs): the part goes to Facebook only on a day with a free video slot (07:30 IST).
+          fb=$(node scripts/fb.mjs flags --date "${{ steps.spec.outputs.release }}" --slot movie || echo --no-fb)
           node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$F" --video-url "$MEDIA_URL/m/$SLUG.mp4" \
-            --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" | tee "$RUNNER_TEMP/meta.json" || true
+            --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" $fb | tee "$RUNNER_TEMP/meta.json" || true
 
       - name: Record
         if: steps.yt.outcome == 'success'
@@ -1509,8 +1521,9 @@ jobs:
         run: |
           [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
           grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" && { echo "::notice::YouTube already had it (earlier run): no second Facebook/Instagram post"; exit 0; }
+          # Facebook plan (scripts/fb.mjs): Kalyug ke Bhagwan is not one of the 2 Facebook videos a day: Instagram only.
           node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$F" --video-url "$MEDIA_URL/m/$SLUG.mp4" \
-            --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" | tee "$RUNNER_TEMP/meta.json" || true
+            --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" --no-fb | tee "$RUNNER_TEMP/meta.json" || true
 
       - name: Record
         if: steps.yt.outcome == 'success'

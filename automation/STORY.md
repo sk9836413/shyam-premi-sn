@@ -298,15 +298,15 @@ tts `जय श्री श्याम! कथा अच्छी लगी �
 sub `Jai Shree Shyam! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN`.
 The endcard tts may be up to 140 characters: keep the request short, and **end it with a jaikara naming the hook's
 deity/temple** (`… सब्सक्राइब करें। जय सालासर बालाजी!`) so the replay loops into scene 1.
-Also end `youtube_description`, `instagram_caption` and `facebook_caption` with one short line asking
-viewers to like, share and follow/subscribe (Hinglish).
+Also end `youtube_description` and `instagram_caption` with one short line asking viewers to like, share and
+follow/subscribe (Hinglish). **Not** `facebook_caption`: it follows the Facebook template below, with no asks at all.
 
 `playlist`: exactly one of `Khatu Shyam ji ki Kathayein`, `Shiv ji ki Kathayein`, `Hanuman ji ki Kathayein`,
 `Ganesh ji ki Kathayein`, `Vishnu ji aur Krishna ki Kathayein`, `Maa Durga aur Devi ki Kathayein`,
 `Shani Dev ki Kathayein`, `Surya Dev ki Kathayein`, `Tyohar aur Vrat Kathayein`, matching the story's deity
 (festival stories go in `Tyohar aur Vrat Kathayein`).
 
-Captions: Hinglish in Roman script, respectful, no engagement bait like "share karo warna". Many
+Captions (except `facebook_caption`, see "Facebook caption" below): Hinglish in Roman script, respectful, no engagement bait like "share karo warna". Many
 bhakts search YouTube in Hindi, so the YouTube fields also carry the main keyword in Devanagari
 (`title` stays Roman: it is drawn on the video with a Latin-only font):
 
@@ -319,7 +319,26 @@ bhakts search YouTube in Hindi, so the YouTube fields also carry the main keywor
   (`Hanuman ji ki katha, हनुमान जी की कथा, संजीवनी बूटी, Khatu Shyam, खाटू श्याम …`).
 - `instagram_caption`: hook line, 2–3 lines of the story's message, the mantra, then 5–10 relevant
   hashtags (`#KhatuShyam #JaiShreeShyam #Navratri …`). Max 2,200 characters.
-- `facebook_caption`: 2–4 lines and 2–4 hashtags.
+- `facebook_caption`: the Facebook template below.
+
+### Facebook caption (all formats; owner, 11 Nov 2026: Facebook monetization challenge)
+
+Facebook gets at most 2 videos and 1 photo a day (scripts/fb.mjs), and Meta demotes engagement bait, so every
+`facebook_caption` is written the same way (`node scripts/validate.mjs` checks it):
+
+1. **Line 1:** a Hindi bhaav line in Devanagari plus ONE genuine question to the viewer about their own experience or
+   devotion, ending with `?`. Example: `हर हर महादेव 🙏 क्या आपने कभी सोमनाथ ज्योतिर्लिंग के दर्शन किए हैं?`,
+   `हारे का सहारा, बाबा श्याम हमारा 🙏 बाबा श्याम का कौन सा भजन आपको सबसे प्रिय है?`
+2. **1-2 lines of context**: what the video shows, in Devanagari (a little Hinglish is fine), e.g.
+   `प्रभास पाटन में समुद्र किनारे बारह ज्योतिर्लिंगों में पहला (मान्यता)।` / `Somnath Jyotirlinga, Gujarat ke darshan.`
+3. Nothing else: no URL (the script adds the Janmotsav / festival link and the photo credits when they apply), no AI
+   line (added automatically).
+4. **Last line: exactly 3 hashtags**: `#KhatuShyam #JaiShreeShyam` plus ONE topical tag (`#Somnath`, `#BhaiDooj`,
+   `#HarHarMahadev` …). No hashtags anywhere else.
+
+Mostly Devanagari, a little Hinglish. **No engagement bait of any kind**: no like/share/comment/tag/follow/subscribe/
+forward asks, no "Jai Shree Shyam likhein", no "apno ko bhejein", no "warna", no luck/money/miracle promises. A plain
+question (line 1) is the only call to the viewer. If the caption fails, the script composes one from the spec.
 
 ## 4. Check and record
 
@@ -535,7 +554,7 @@ scenes (a farmer's plough, a dream, a cart) are `real: false`.
 ```
 
 YouTube and caption fields follow section 3's rules (title max 90 characters ending ` #Shorts`, 10-15 tags with
-Devanagari, captions in Roman). The description also carries `Chitra AI dwara banaye gaye hain (sanketik). Awaaz aur
+Devanagari, captions in Roman; `facebook_caption` in the "Facebook caption" template). The description also carries `Chitra AI dwara banaye gaye hain (sanketik). Awaaz aur
 animation AI se.` and ends with a like/share/subscribe line; real-footage credits are added automatically.
 
 Run `node scripts/validate.mjs story/today/scenes.json` until it passes, then append the log line as in section 4
@@ -655,6 +674,6 @@ teacher or guide. Iconography stays correct (colours, crown, attributes). Cute, 
 - `youtube_title`: deity name first, `"<Deity> ne sikhaya ... | देवनागरी #Shorts"` or `"<Deity> ka jawab ..."` (max 90);
   `youtube_description` with "Kalyug ke Bhagwan", the katha source line, a Devanagari line, "Chitra, awaaz aur
   animation AI se banaye gaye hain (sanketik).", a subscribe line and `#KalyugKeBhagwan`; `youtube_tags` (8-15, some
-  Devanagari); `instagram_caption`, `facebook_caption` (Roman).
+  Devanagari); `instagram_caption` (Roman), `facebook_caption` (the "Facebook caption" template of section 3).
 
 Validate with `node scripts/validate.mjs story/kalyug/<file>.json`. Do not render, upload, commit or push.
