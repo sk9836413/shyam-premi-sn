@@ -1,0 +1,68 @@
+{
+  "slug": "2026-11-11-evening-somnath-jyotirlinga-darshan",
+  "title": "Somnath Mandir Darshan",
+  "kicker": "Jyotirlinga 1/12",
+  "playlist": "Shiv ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Har Har Mahadev",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Somnath: pehla Jyotirlinga",
+  "cover": "सोमनाथ मंदिर दर्शन",
+  "temple": "somnath",
+  "scenes": [
+    {
+      "prompt": "Close-up devotional darshan of the Somnath Shivling, dark stone Shivling in the middle of the frame, white bilva leaves, marigold garlands and a silver cobra hood above, a lit brass diya beside it, sacred sanctum, soft golden glow",
+      "tts": "सोमनाथ, पहला ज्योतिर्लिंग। दर्शन कीजिए।",
+      "sub": "Somnath, pehla Jyotirlinga. Darshan kijiye.",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the Shivling stays still and serene, the soft golden glow gently pulses, a few petals drift in the foreground",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A grand white-stone Chalukya-style Hindu temple with a tall shikhara and a saffron flag, standing on the Arabian Sea shore at sunset, calm waves, golden evening light, no people",
+      "tts": "ये मंदिर गुजरात के प्रभास पाटन में, समुद्र किनारे है।",
+      "sub": "Ye mandir Gujarat ke Prabhas Patan mein, samudra kinare hai.",
+      "motion": "pan",
+      "real": true,
+      "animate": "the sea waves roll softly and the saffron flag flutters gently in the evening breeze"
+    },
+    {
+      "prompt": "Twelve small glowing Shivlings arranged in a circle of soft golden light on a dark starry sky above a temple silhouette, devotional illustration, no people",
+      "tts": "बारह ज्योतिर्लिंगों में, सबसे पहला इन्हीं को माना जाता है।",
+      "sub": "Barah Jyotirlingon mein, sabse pehla inhin ko mana jata hai.",
+      "motion": "out",
+      "animate": "the small lights glow and twinkle softly",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "Close-up of the Somnath Shivling with a crescent moon above it, dark stone Shivling in the middle of the frame, white flowers, bilva leaves and glowing diyas in the foreground, sacred sanctum",
+      "tts": "हर हर महादेव! ॐ नमः शिवाय।",
+      "sub": "Har Har Mahadev! Om Namah Shivaya.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the Shivling stays still, the diya flames glow and flicker softly",
+      "video": "clips/3.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "कल फिर नया दर्शन। लाइक, शेयर, सब्सक्राइब करें। जय सोमनाथ!",
+      "sub": "Kal phir naya darshan. Like, Share, Subscribe karein. Jai Somnath!"
+    }
+  ],
+  "youtube_title": "Somnath Mandir Darshan | सोमनाथ मंदिर दर्शन #Shorts",
+  "youtube_description": "Somnath Jyotirlinga ke darshan: Prabhas Patan (Gir Somnath, Gujarat) mein samudra kinare ye mandir. Barah Jyotirlingon mein sabse pehla Jyotirlinga mana jata hai.\nसोमनाथ ज्योतिर्लिंग मंदिर के दर्शन, गुजरात।\nMantra: ॐ नमः शिवाय\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nAchha laga to Like, Share aur Subscribe karein.\n#Somnath #Jyotirlinga #MahadevDarshan #Shorts\n\nPhoto: Ms Sarah Welch, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:%22Aerial_view_of_Somnath_temple_01,_Prabhas_Patan_Gujarat.jpg)",
+  "youtube_tags": "Somnath temple, सोमनाथ मंदिर, Somnath mandir darshan, सोमनाथ मंदिर दर्शन, Somnath Jyotirlinga, सोमनाथ ज्योतिर्लिंग, pehla Jyotirlinga, पहला ज्योतिर्लिंग, Prabhas Patan, Gujarat temple, Mahadev darshan, महादेव दर्शन, Shiv ji darshan",
+  "instagram_caption": "Somnath: pehla Jyotirlinga, ke darshan 🙏\nPrabhas Patan, Gujarat mein samudra kinare ye mandir.\nOm Namah Shivaya\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#Somnath #Jyotirlinga #Mahadev #HarHarMahadev #Shiv #Gujarat #Bhakti\n\nPhoto: Ms Sarah Welch, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:%22Aerial_view_of_Somnath_temple_01,_Prabhas_Patan_Gujarat.jpg)",
+  "facebook_caption": "Somnath Jyotirlinga ke darshan, Prabhas Patan, Gujarat. Chitra AI dwara banaye gaye hain (sanketik). Like, Share aur Follow karein.\n#Somnath #Jyotirlinga #Mahadev\n\nPhoto: Ms Sarah Welch, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:%22Aerial_view_of_Somnath_temple_01,_Prabhas_Patan_Gujarat.jpg)",
+  "music": {
+    "id": "cc-veena-bhairavi-varnam-2",
+    "mood": "calm",
+    "title": "Bhairavi varnam on veena (Pushpa Srivatsan), part 2",
+    "licence": "CC0 1.0 (excerpt, loudness-normalised; Internet Archive)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}
