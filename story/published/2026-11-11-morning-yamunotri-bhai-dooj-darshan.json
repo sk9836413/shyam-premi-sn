@@ -1,0 +1,73 @@
+{
+  "slug": "2026-11-11-morning-yamunotri-bhai-dooj-darshan",
+  "title": "Yamunotri Dham Darshan",
+  "kicker": "Bhai Dooj Vishesh",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Maa Yamuna",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Yamunotri Dham: Bhai Dooj par kapat?",
+  "cover": "यमुनोत्री धाम दर्शन",
+  "temple": "yamunotri",
+  "scenes": [
+    {
+      "prompt": "Close-up devotional darshan of Maa Yamuna, a serene dark-complexioned goddess with a gentle face in the middle of the frame, golden crown, marigold garlands, standing on a tortoise, holding a water pot, in a small Himalayan temple sanctum, soft golden glow",
+      "tts": "यमुनोत्री धाम में भाई दूज पर कपाट क्यों बंद होते हैं?",
+      "sub": "Yamunotri Dham mein Bhai Dooj par kapat kyon band hote hain?",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few marigold petals drift in the foreground",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A small traditional stone Himalayan temple of Yamunotri among snow-capped mountains and pine forest at sunrise, a river valley below, soft golden light, no people",
+      "tts": "यह उत्तराखंड में है, माँ यमुना का धाम।",
+      "sub": "Ye Uttarakhand mein hai, Maa Yamuna ka dham.",
+      "motion": "pan",
+      "real": true,
+      "animate": "light mist drifts slowly over the mountains and the river water flows gently",
+      "video": "clips/1.mp4"
+    },
+    {
+      "prompt": "Maa Yamuna as a river goddess and her brother Yamraj, calm and kind, standing side by side near the river bank, she applies a tilak on his forehead, soft warm light, devotional illustration",
+      "tts": "यम और यमुना, भाई-बहन। भाई दूज की कथा इन्हीं से जुड़ी है।",
+      "sub": "Yam aur Yamuna, bhai-behan. Bhai Dooj ki katha inhi se judi hai.",
+      "motion": "out"
+    },
+    {
+      "prompt": "A decorated traditional palanquin carrying the murti of Maa Yamuna, covered with marigold garlands, carried gently down a mountain path in the soft morning light, snowy peaks behind, no faces visible",
+      "tts": "भाई दूज पर माँ की डोली खरसाली जाती है, सर्दियों के घर।",
+      "sub": "Bhai Dooj par Maa ki doli Kharsali jaati hai, sardiyon ke ghar.",
+      "motion": "in",
+      "animate": "marigold garlands sway softly and light mist drifts across the mountain path"
+    },
+    {
+      "prompt": "Close-up of Maa Yamuna murti, serene face in the middle of the frame, golden crown, marigold garlands, glowing diyas in the foreground, decorated sanctum",
+      "tts": "अक्षय तृतीया पर कपाट फिर खुलते हैं।",
+      "sub": "Akshaya Tritiya par kapat phir khulte hain.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames glow and flicker softly",
+      "video": "clips/4.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "कल एक और मंदिर के दर्शन के लिए लाइक, शेयर, सब्सक्राइब करें। जय यमुनोत्री धाम!",
+      "sub": "Kal ek aur mandir ke darshan ke liye Like, Share, Subscribe karein. Jai Yamunotri Dham!"
+    }
+  ],
+  "youtube_title": "Yamunotri Dham Darshan | यमुनोत्री धाम दर्शन #Shorts",
+  "youtube_description": "Bhai Dooj par Yamunotri Dham (Uttarakhand), Maa Yamuna ke darshan. Har saal Bhai Dooj (Yam Dwitiya) par Yamunotri ke kapat sardiyon ke liye band hote hain aur Maa ki doli Kharsali jaati hai; Akshaya Tritiya par kapat phir khulte hain.\nभाई दूज पर यमुनोत्री धाम, माँ यमुना के दर्शन।\nJai Maa Yamuna\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nAchha laga to Like, Share aur Subscribe karein.\n#Yamunotri #BhaiDooj #MaaYamuna #Shorts",
+  "youtube_tags": "Yamunotri Dham darshan, यमुनोत्री धाम दर्शन, Yamunotri temple, यमुनोत्री मंदिर, Maa Yamuna, माँ यमुना, Bhai Dooj, भाई दूज, Yam Dwitiya, यम द्वितीया, Kharsali, खरसाली, Chhota Char Dham, छोटा चार धाम",
+  "instagram_caption": "Bhai Dooj par Yamunotri Dham, Maa Yamuna ke darshan 🙏\nBhai Dooj par kapat band hote hain aur Maa ki doli Kharsali jaati hai.\nJai Maa Yamuna\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#Yamunotri #BhaiDooj #MaaYamuna #Uttarakhand #CharDham #JaiShreeShyam #Bhakti",
+  "facebook_caption": "Bhai Dooj par Yamunotri Dham, Maa Yamuna ke darshan. Chitra AI dwara banaye gaye hain (sanketik). Like, Share aur Follow karein.\n#Yamunotri #BhaiDooj #MaaYamuna",
+  "music": {
+    "id": "cc-sitar-room-harmonium",
+    "mood": "calm",
+    "title": "Sitar with harmonium drone",
+    "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}

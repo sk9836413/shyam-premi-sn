@@ -64,3 +64,4 @@
 - 2026-11-11-status-bhai-dooj | youtube: https://youtube.com/shorts/66CfOFbeAaY (public at 2026-11-11T00:30:00.000Z) | status video, made 10 Nov 19:50 IST | social: fb: https://www.facebook.com/reel/29110824925244435 (scheduled 2026-11-11T00:30:00.000Z) | ig: pending 2026-11-11T00:30:00.000Z
 - 2026-11-11-status-bhai-dooj | instagram: https://www.instagram.com/reel/Dfli3caBx8W/
 - 2026-11-11-morning-yamunotri-bhai-dooj-darshan | claim: 2026-11-11 morning by run 42954623897.1 at 2026-11-11T04:35:56.749Z
+- 2026-11-11-morning-yamunotri-bhai-dooj-darshan | youtube: https://youtube.com/shorts/TtgilIEzJIw | social: fb: https://www.facebook.com/reel/1037574682720783 | ig: https://www.instagram.com/reel/DfloyyDJvgb/ | animated 3/5
