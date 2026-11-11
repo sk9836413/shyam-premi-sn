@@ -594,7 +594,8 @@ export async function publish(date, { dryRun = false, log = console.log } = {}) 
   const built = readJson(path.join(workDir(date), 'out', 'posts.json'));
   const st = readState(date) || { date, posts: [] };
   for (const post of built.posts) {
-    if (st.posts.some((x) => x.n === post.n)) { log(`post ${post.n}: already published`); continue; }
+    // a dry run shows every post's texts, also of a day already published (to check the Instagram and Facebook texts)
+    if (st.posts.some((x) => x.n === post.n) && !dryRun) { log(`post ${post.n}: already published`); continue; }
     const igText = caption(post, await linkLines(date, 'instagram', post));
     // Facebook: post 1 only (fbAt), in the Facebook template; the photo credits and the AI line stay (licence, honesty).
     const fb = post.fbAt && post.fbInfo ? fbPhotoCaption(post.fbInfo, { links: await linkLines(date, 'facebook', post), credits: (post.credits || []).map((c) => `📷 ${c}`), ai: post.ai }) : null;
