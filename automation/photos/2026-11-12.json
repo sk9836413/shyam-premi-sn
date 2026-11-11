@@ -1,0 +1,105 @@
+{
+  "date": "2026-11-12",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "udupi-krishna",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/udupi-krishna/commons-burning-a-pure-white-cloth-udupi-krishna-3029c1.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-12T02:00:00.000Z",
+      "igAt": "2026-11-12T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-12-1-1.jpg"
+      ],
+      "caption": "सुप्रभात 🙏\nGuruvar ki is shubh subah mein Udupi Sri Krishna Matha, Karnataka ko pranam.\nश्रीकृष्ण की कृपा आप सब पर बनी रहे।\nAapka din shanti aur prem se bhara ho.\nAap Udupi ya Karnataka ke kisi mandir mein kab gaye the?\n\n📷 Photo: Paul Mannix, CC BY 2.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Burning_a_pure_white_cloth,_Udupi_Krishna_temple,_Karnataka,_India_(464047346).jpg\n\n#JaiShreeShyam #Suprabhat #UdupiKrishna #ShriKrishna #Guruvar #Karnataka #Mandir",
+      "fb": {
+        "id": "1602825068527124",
+        "scheduled": "2026-11-12T02:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-12T03:43:00.000Z"
+      }
+    },
+    {
+      "n": 2,
+      "kind": "vichar",
+      "temple": null,
+      "quote": 11,
+      "ai": false,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-12T05:30:00.000Z",
+      "igAt": "2026-11-12T05:13:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-12-2-1.jpg"
+      ],
+      "caption": "आज का विचार 🌿\nरहिमन धागा प्रेम का, मत तोड़ो चटकाय।\nटूटे से फिर ना जुड़े, जुड़े गाँठ परि जाय॥ - रहीम\nMatlab: prem ka rishta jhatke se mat todiye. Toota rishta jud bhi jaye to gaanth reh jaati hai.\nAapne kabhi kisi rishte ko sambhalkar bachaya hai? Kaise?\n\n#JaiShreeShyam #AajKaVichar #Rahim #RahimKeDohe #Prem #Rishte #Hindi",
+      "fb": {
+        "id": "1602825145193783",
+        "scheduled": "2026-11-12T05:30:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-12T05:13:00.000Z"
+      }
+    },
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "somnath",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/somnath/commons-somnath-temple-jyotirlinga-7df36d.jpg",
+        "footage/somnath/commons-aerial-view-of-somnath-temple-02-prabhas-ae04b6.jpg",
+        "footage/somnath/commons-aerial-view-of-somnath-temple-01-prabhas-01ec47.jpg",
+        "footage/somnath/commons-somanath-from-the-beach-edit-75531c.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-12T12:00:00.000Z",
+      "igAt": "2026-11-12T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-12-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-12-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-12-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-12-3-4.jpg"
+      ],
+      "caption": "Somnath Jyotirlinga, Gujarat 🙏\nBarah jyotirlingon mein se ek, Prabhas Patan ke samudra tat par.\nSwipe karke dekhiye 3 baatein: punarnirman, Chalukya shaili aur shikhar ki oonchai.\nहर हर महादेव!\nAap Somnath ke darshan kab kar chuke hain, ya kab jaana chahenge?\n\n📷 Photo: YAKSH75, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Somnath_Temple_Jyotirlinga.jpg\n📷 Photo: Ms Sarah Welch, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:%22Aerial_view_of_Somnath_temple_02,_Prabhas_Patan_Gujarat.jpg\n📷 Photo: Ms Sarah Welch, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:%22Aerial_view_of_Somnath_temple_01,_Prabhas_Patan_Gujarat.jpg\n📷 Photo: Ambuj.Saxena at English Wikipedia, Public Domain, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Somanath_from_the_beach_edit.jpg\n\n#JaiShreeShyam #Somnath #SomnathJyotirlinga #HarHarMahadev #Jyotirlinga #Gujarat #Mahadev #Mandir",
+      "fb": {
+        "id": "388779648425633_1602825345193763",
+        "scheduled": "2026-11-12T12:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-12T13:16:00.000Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "ai": true,
+      "bank": "brand/photo-bank/khatu/kaggle-cast-0.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-12T14:00:00.000Z",
+      "igAt": "2026-11-12T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-12-4-1.jpg"
+      ],
+      "caption": "शुभ संध्या 🪔\nखाटू श्याम बाबा की संध्या आरती के भाव के साथ, शीश के दानी को प्रणाम।\nHaare ke sahare, Baba Shyam ki kripa aap sab par bani rahe.\nAapke ghar mein aaj sandhya aarti kisne ki?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#JaiShreeShyam #KhatuShyam #KhatuShyamJi #SandhyaAarti #ShubhSandhya #BabaShyam",
+      "fb": {
+        "id": "1602825381860426",
+        "scheduled": "2026-11-12T14:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-12T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

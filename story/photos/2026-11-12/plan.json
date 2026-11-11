@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-12",
+  "weekday": "Guruvar",
+  "festival": null,
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-12T02:00:00.000Z",
+      "igAt": "2026-11-12T03:43:00.000Z",
+      "kind": "darshan",
+      "temple": "udupi-krishna",
+      "templeName": "Udupi Sri Krishna Matha",
+      "category": "vishnu",
+      "photos": [
+        {
+          "file": "footage/udupi-krishna/commons-burning-a-pure-white-cloth-udupi-krishna-3029c1.jpg",
+          "credit": "Photo: Paul Mannix, CC BY 2.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Burning_a_pure_white_cloth,_Udupi_Krishna_temple,_Karnataka,_India_(464047346).jpg",
+          "licence": "CC BY 2.0",
+          "author": "Paul Mannix",
+          "title": "File:Burning a pure white cloth, Udupi Krishna temple, Karnataka, India (464047346).jpg"
+        }
+      ],
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 2,
+      "fbAt": "2026-11-12T05:30:00.000Z",
+      "igAt": "2026-11-12T05:13:00.000Z",
+      "kind": "vichar",
+      "quote": 11,
+      "quoteText": {
+        "dev": "रहिमन धागा प्रेम का, मत तोड़ो चटकाय।\nटूटे से फिर ना जुड़े, जुड़े गाँठ परि जाय॥",
+        "source": "रहीम",
+        "roman": "Rahiman dhaga prem ka, mat todo chatkay",
+        "meaning": "Prem ka rishta jhatke se mat todiye. Toota rishta jud bhi jaye to gaanth reh jaati hai."
+      },
+      "write": [
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 3,
+      "fbAt": "2026-11-12T12:00:00.000Z",
+      "igAt": "2026-11-12T13:16:00.000Z",
+      "kind": "facts",
+      "temple": "somnath",
+      "templeName": "Somnath Jyotirlinga, Gujarat",
+      "category": "shiv",
+      "photos": [
+        {
+          "file": "footage/somnath/commons-somnath-temple-jyotirlinga-7df36d.jpg",
+          "credit": "Photo: YAKSH75, CC0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Somnath_Temple_Jyotirlinga.jpg",
+          "licence": "CC0",
+          "author": "YAKSH75",
+          "title": "File:Somnath Temple Jyotirlinga.jpg"
+        },
+        {
+          "file": "footage/somnath/commons-aerial-view-of-somnath-temple-02-prabhas-ae04b6.jpg",
+          "credit": "Photo: Ms Sarah Welch, CC0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:%22Aerial_view_of_Somnath_temple_02,_Prabhas_Patan_Gujarat.jpg",
+          "licence": "CC0",
+          "author": "Ms Sarah Welch",
+          "title": "File:\"Aerial view of Somnath temple 02, Prabhas Patan Gujarat.jpg"
+        },
+        {
+          "file": "footage/somnath/commons-aerial-view-of-somnath-temple-01-prabhas-01ec47.jpg",
+          "credit": "Photo: Ms Sarah Welch, CC0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:%22Aerial_view_of_Somnath_temple_01,_Prabhas_Patan_Gujarat.jpg",
+          "licence": "CC0",
+          "author": "Ms Sarah Welch",
+          "title": "File:\"Aerial view of Somnath temple 01, Prabhas Patan Gujarat.jpg"
+        },
+        {
+          "file": "footage/somnath/commons-somanath-from-the-beach-edit-75531c.jpg",
+          "credit": "Photo: Ambuj.Saxena at English Wikipedia, Public Domain, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Somanath_from_the_beach_edit.jpg",
+          "licence": "Public Domain",
+          "author": "Ambuj.Saxena at English Wikipedia",
+          "title": "File:Somanath from the beach edit.jpg"
+        }
+      ],
+      "write": [
+        "title",
+        "line",
+        "facts",
+        "sources",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 4,
+      "fbAt": "2026-11-12T14:00:00.000Z",
+      "igAt": "2026-11-12T14:16:00.000Z",
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "templeName": "Khatu Shyam ji Mandir, Sikar",
+      "bank": "brand/photo-bank/khatu/kaggle-cast-0.jpg",
+      "write": [
+        "big",
+        "line",
+        "question",
+        "caption",
+        "hashtags"
+      ]
+    }
+  ]
+}

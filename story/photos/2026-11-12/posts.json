@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-12",
+  "posts": {
+    "1": {
+      "big": "सुप्रभात",
+      "line": "जय श्री कृष्ण 🙏",
+      "place": "उडुपी श्री कृष्ण मठ, कर्नाटक",
+      "text": "गुरुवार की शुभ सुबह, श्रीकृष्ण की कृपा आप और आपके परिवार पर बनी रहे।",
+      "caption": "सुप्रभात 🙏\nGuruvar ki is shubh subah mein Udupi Sri Krishna Matha, Karnataka ko pranam.\nश्रीकृष्ण की कृपा आप सब पर बनी रहे।\nAapka din shanti aur prem se bhara ho.\nAap Udupi ya Karnataka ke kisi mandir mein kab gaye the?",
+      "hashtags": ["#JaiShreeShyam", "#Suprabhat", "#UdupiKrishna", "#ShriKrishna", "#Guruvar", "#Karnataka", "#Mandir"]
+    },
+    "2": {
+      "caption": "आज का विचार 🌿\nरहिमन धागा प्रेम का, मत तोड़ो चटकाय।\nटूटे से फिर ना जुड़े, जुड़े गाँठ परि जाय॥ - रहीम\nMatlab: prem ka rishta jhatke se mat todiye. Toota rishta jud bhi jaye to gaanth reh jaati hai.\nAapne kabhi kisi rishte ko sambhalkar bachaya hai? Kaise?",
+      "hashtags": ["#JaiShreeShyam", "#AajKaVichar", "#Rahim", "#RahimKeDohe", "#Prem", "#Rishte", "#Hindi"]
+    },
+    "3": {
+      "title": "सोमनाथ मंदिर",
+      "line": "3 बातें जो शायद आप नहीं जानते",
+      "facts": [
+        {
+          "dev": "सरदार पटेल ने 1947 में पुनर्निर्माण की पहल की; 11 मई 1951 को डॉ. राजेंद्र प्रसाद ने प्राण प्रतिष्ठा की।",
+          "roman": "Sardar Patel ne 1947 mein punarnirman ki pehal ki; 11 May 1951 ko Dr. Rajendra Prasad ne pran pratishtha ki."
+        },
+        {
+          "dev": "वर्तमान मंदिर चालुक्य शैली में है, जिसे कैलाश महामेरु प्रासाद शैली भी कहा जाता है।",
+          "roman": "Vartaman mandir Chalukya shaili mein hai, jise Kailash Mahameru Prasad shaili bhi kaha jata hai."
+        },
+        {
+          "dev": "मंदिर के मुख्य शिखर की ऊँचाई लगभग 47 मीटर (करीब 155 फीट) है।",
+          "roman": "Mandir ke mukhya shikhar ki oonchai lagbhag 47 meter (kareeb 155 ft) hai."
+        }
+      ],
+      "sources": [
+        "https://esamskriti.com/a/Gujarat/Somnath-Temple.aspx",
+        "https://anantamias.com/somnath-mandir/"
+      ],
+      "caption": "Somnath Jyotirlinga, Gujarat 🙏\nBarah jyotirlingon mein se ek, Prabhas Patan ke samudra tat par.\nSwipe karke dekhiye 3 baatein: punarnirman, Chalukya shaili aur shikhar ki oonchai.\nहर हर महादेव!\nAap Somnath ke darshan kab kar chuke hain, ya kab jaana chahenge?",
+      "hashtags": ["#JaiShreeShyam", "#Somnath", "#SomnathJyotirlinga", "#HarHarMahadev", "#Jyotirlinga", "#Gujarat", "#Mahadev", "#Mandir"]
+    },
+    "4": {
+      "big": "शुभ संध्या",
+      "line": "संध्या आरती 🪔 जय श्री श्याम",
+      "question": "आपके घर में आज संध्या आरती किसने की?",
+      "caption": "शुभ संध्या 🪔\nखाटू श्याम बाबा की संध्या आरती के भाव के साथ, शीश के दानी को प्रणाम।\nHaare ke sahare, Baba Shyam ki kripa aap sab par bani rahe.\nAapke ghar mein aaj sandhya aarti kisne ki?",
+      "hashtags": ["#JaiShreeShyam", "#KhatuShyam", "#KhatuShyamJi", "#SandhyaAarti", "#ShubhSandhya", "#BabaShyam"]
+    }
+  }
+}
