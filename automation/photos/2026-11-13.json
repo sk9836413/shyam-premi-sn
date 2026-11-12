@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-13",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-13T01:00:00.000Z",
+      "igAt": "2026-11-13T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-13-1-1.jpg"
+      ],
+      "caption": "छठ पूजा की हार्दिक शुभकामनाएं 🙏\nआज नहाय-खाय है, चार दिन के इस पावन पर्व का पहला दिन।\nस्नान के बाद सादा, शुद्ध भोजन से व्रत की शुरुआत होती है।\nछठी मैया और सूर्य देव की कृपा सब पर बनी रहे।\nAapke ghar mein nahay-khay ka prasad kaun banata hai?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#ChhathPuja #ChhathiMaiya #SuryaDev #NahayKhay #JaiShreeShyam #KhatuShyam",
+      "fbCaption": "छठ पूजा की शुभकामनाएं 🙏 आज नहाय-खाय है। क्या आपके घर में भी आज से छठ का व्रत शुरू हुआ है?\nचार दिन के इस पावन पर्व का पहला दिन, स्नान और शुद्ध सात्विक भोजन के साथ। छठी मैया और सूर्य देव की कृपा बनी रहे।\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#KhatuShyam #JaiShreeShyam #ChhathPuja",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1604075375068760",
+        "scheduled": "2026-11-13T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-13T03:43:00.000Z"
+      }
+    },
+    {
+      "n": 2,
+      "kind": "vichar",
+      "temple": null,
+      "quote": 12,
+      "ai": false,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": null,
+      "igAt": "2026-11-13T05:13:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-13-2-1.jpg"
+      ],
+      "caption": "आज का विचार 🙏\nदुख में सुमिरन सब करे, सुख में करे न कोय।\nजो सुख में सुमिरन करे, दुख काहे को होय॥ - संत कबीर\nKabir ji kehte hain ki Bhagwan ko sirf dukh mein nahi, sukh mein bhi yaad karna chahiye.\nAap sukh ke samay Bhagwan ko kaise yaad karte hain?\n\n#AajKaVichar #Kabir #KabirDohe #JaiShreeShyam #KhatuShyam #Bhakti",
+      "fb": {
+        "skipped": "Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)"
+      },
+      "ig": {
+        "pending": "2026-11-13T05:13:00.000Z"
+      }
+    },
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "kamakshi-amman",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/kamakshi-amman/commons-kanchi-kamakshi-temple-8be91c.jpg",
+        "footage/kamakshi-amman/commons-tnk26-f-25-mandapam-in-kamakshi-amman-te-49c0e6.jpg",
+        "footage/kamakshi-amman/commons-kamakshi-amman-temple-complex-and-main-b-42ba9f.jpg",
+        "footage/kamakshi-amman/commons-kamakshi-amman-temple-complex-and-main-b-83b189.jpg"
+      ],
+      "source": "claude",
+      "fbAt": null,
+      "igAt": "2026-11-13T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-13-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-13-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-13-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-13-3-4.jpg"
+      ],
+      "caption": "कामाक्षी अम्मन मंदिर, कांचीपुरम 🙏\nYeh Kanchipuram ka prasiddh Devi mandir hai.\nSlides mein 3 baatein hain: Devi ka padmasan, nabhi ki manyata aur Shri Chakra.\nTasveeron mein mandir parisar ki jhalak dekhiye.\nAapne kabhi Kanchipuram ya Kamakshi Amman ke darshan kiye hain?\n\n📷 Photo: Vadanagiri bhaskar, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Kanchi_Kamakshi_temple.jpg\n📷 Photo: VasuVR, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:TNK26-F-25_Mandapam_in_Kamakshi_Amman_Temple_tank_Kanchipuram.jpg\n📷 Photo: Pinakpani, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Kamakshi_Amman_Temple_complex_and_main_building_at_Kanchipuram_03.jpg\n📷 Photo: Pinakpani, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Kamakshi_Amman_Temple_complex_and_main_building_at_Kanchipuram_29.jpg\n\n#KamakshiAmman #Kanchipuram #ShaktiPeeth #MandirDarshan #IncredibleIndia #JaiShreeShyam",
+      "fb": {
+        "skipped": "Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)"
+      },
+      "ig": {
+        "pending": "2026-11-13T13:16:00.000Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "ai": true,
+      "bank": "brand/photo-bank/khatu/kaggle-cast-1.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": null,
+      "igAt": "2026-11-13T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-13-4-1.jpg"
+      ],
+      "caption": "शुभ संध्या 🪔\nखाटू श्याम जी की संध्या आरती का समय, शीश के दानी बाबा श्याम को प्रणाम।\nदिनभर की थकान के बाद दीपक की लौ में मन को शांति मिलती है।\nजय श्री श्याम 🙏\nAaj shaam aapke ghar mein kaunsi aarti hui?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#KhatuShyam #JaiShreeShyam #SandhyaAarti #ShyamBaba #KhatuShyamJi #Aarti",
+      "fb": {
+        "skipped": "Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)"
+      },
+      "ig": {
+        "pending": "2026-11-13T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

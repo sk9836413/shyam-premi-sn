@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-13",
+  "weekday": "Shukravar",
+  "festival": "छठी मैया और सूर्य देव की कृपा बनी रहे",
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-13T01:00:00.000Z",
+      "igAt": "2026-11-13T03:43:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "chhath",
+        "name": "Chhath Puja day 1: Nahay Khay; Nahay Khay; Chhath Puja Nahay Khay (status Shorts: eve 11-12 20:00, status 11-13 00:30).",
+        "big": "छठ पूजा",
+        "line": "की शुभकामनाएं 🙏",
+        "blessing": "छठी मैया और सूर्य देव की कृपा बनी रहे",
+        "tags": [
+          "#ChhathPuja",
+          "#ChhathiMaiya",
+          "#SuryaDev"
+        ]
+      },
+      "flux": "Sunrise over a calm river ghat, bamboo soop baskets with fruits, sugarcane and thekua on the steps, lit diyas floating on the water, golden sun on the horizon, no people",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    },
+    {
+      "n": 2,
+      "fbAt": null,
+      "igAt": "2026-11-13T05:13:00.000Z",
+      "kind": "vichar",
+      "quote": 12,
+      "quoteText": {
+        "dev": "दुख में सुमिरन सब करे, सुख में करे न कोय।\nजो सुख में सुमिरन करे, दुख काहे को होय॥",
+        "source": "संत कबीर",
+        "roman": "Dukh mein sumiran sab kare, sukh mein kare na koy",
+        "meaning": "Bhagwan ko sirf dukh mein nahi, sukh mein bhi yaad karein."
+      },
+      "write": [
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 3,
+      "fbAt": null,
+      "igAt": "2026-11-13T13:16:00.000Z",
+      "kind": "facts",
+      "temple": "kamakshi-amman",
+      "templeName": "Kamakshi Amman, Kanchipuram",
+      "category": "devi",
+      "photos": [
+        {
+          "file": "footage/kamakshi-amman/commons-kanchi-kamakshi-temple-8be91c.jpg",
+          "credit": "Photo: Vadanagiri bhaskar, CC0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Kanchi_Kamakshi_temple.jpg",
+          "licence": "CC0",
+          "author": "Vadanagiri bhaskar",
+          "title": "File:Kanchi Kamakshi temple.jpg"
+        },
+        {
+          "file": "footage/kamakshi-amman/commons-tnk26-f-25-mandapam-in-kamakshi-amman-te-49c0e6.jpg",
+          "credit": "Photo: VasuVR, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:TNK26-F-25_Mandapam_in_Kamakshi_Amman_Temple_tank_Kanchipuram.jpg",
+          "licence": "CC BY 4.0",
+          "author": "VasuVR",
+          "title": "File:TNK26-F-25 Mandapam in Kamakshi Amman Temple tank Kanchipuram.jpg"
+        },
+        {
+          "file": "footage/kamakshi-amman/commons-kamakshi-amman-temple-complex-and-main-b-42ba9f.jpg",
+          "credit": "Photo: Pinakpani, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Kamakshi_Amman_Temple_complex_and_main_building_at_Kanchipuram_03.jpg",
+          "licence": "CC BY 4.0",
+          "author": "Pinakpani",
+          "title": "File:Kamakshi Amman Temple complex and main building at Kanchipuram 03.jpg"
+        },
+        {
+          "file": "footage/kamakshi-amman/commons-kamakshi-amman-temple-complex-and-main-b-83b189.jpg",
+          "credit": "Photo: Pinakpani, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Kamakshi_Amman_Temple_complex_and_main_building_at_Kanchipuram_29.jpg",
+          "licence": "CC BY 4.0",
+          "author": "Pinakpani",
+          "title": "File:Kamakshi Amman Temple complex and main building at Kanchipuram 29.jpg"
+        }
+      ],
+      "write": [
+        "title",
+        "line",
+        "facts",
+        "sources",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 4,
+      "fbAt": null,
+      "igAt": "2026-11-13T14:16:00.000Z",
+      "kind": "aarti",
+      "temple": "khatu-shyam-mandir",
+      "templeName": "Khatu Shyam ji Mandir, Sikar",
+      "bank": "brand/photo-bank/khatu/kaggle-cast-1.jpg",
+      "write": [
+        "big",
+        "line",
+        "question",
+        "caption",
+        "hashtags"
+      ]
+    }
+  ]
+}
