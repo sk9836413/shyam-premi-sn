@@ -71,3 +71,4 @@
 - 2026-11-12-morning-guruvar-vishnu | claim: 2026-11-12 morning by run 43150103143.1 at 2026-11-12T04:28:14.175Z
 - 2026-11-12-morning-guruvar-vishnu | youtube: https://youtube.com/shorts/gs77Sif4kL8 | social: fb: skipped (not in the Facebook plan) | ig: error upload failed: Request processing failed | animated 2/3
 - 2026-11-12-evening-khatu-shyam-mandir-darshan | claim: 2026-11-12 evening by run 43159897806.1 at 2026-11-12T06:34:30.432Z
+- 2026-11-12-evening-khatu-shyam-mandir-darshan | youtube: https://youtube.com/shorts/HzwWbWynY_4 (public at 2026-11-12T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/2644366659341772 (scheduled 2026-11-12T12:30:00.000Z) | ig: pending 2026-11-12T13:30:00.000Z | animated 4/4

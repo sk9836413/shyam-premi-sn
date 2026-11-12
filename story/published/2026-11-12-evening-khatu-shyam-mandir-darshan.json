@@ -1,0 +1,69 @@
+{
+  "slug": "2026-11-12-evening-khatu-shyam-mandir-darshan",
+  "title": "Khatu Shyam Mandir Darshan",
+  "kicker": "Guruvar Darshan",
+  "playlist": "Khatu Shyam ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Khatu Shyam Mandir, Sikar darshan",
+  "cover": "खाटू श्याम मंदिर",
+  "temple": "khatu-shyam-mandir",
+  "scenes": [
+    {
+      "prompt": "Close-up devotional darshan of the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum, face in the middle of the frame, soft golden glow",
+      "tts": "खाटू श्याम मंदिर, सीकर। बाबा श्याम के दर्शन कीजिए।",
+      "sub": "Khatu Shyam Mandir, Sikar. Baba Shyam ke darshan kijiye.",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few petals drift in the foreground",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A grand white marble Rajasthani temple with a tall shikhara and saffron flags in a small town, golden evening light, devotees' silhouettes far away in the courtyard",
+      "tts": "ये मंदिर राजस्थान के सीकर ज़िले के खाटू गाँव में है।",
+      "sub": "Ye mandir Rajasthan ke Sikar zile ke Khatu gaon mein hai.",
+      "motion": "pan",
+      "real": true,
+      "animate": "the saffron flags flutter gently in the evening breeze",
+      "video": "clips/1.mp4"
+    },
+    {
+      "prompt": "Warm devotional scene of brass diyas, marigold garlands and fresh flowers laid before a decorated sanctum, soft golden light, no people",
+      "tts": "मान्यता है, यहाँ बाबा श्याम का शीश पूजा जाता है।",
+      "sub": "Manyata hai, yahan Baba Shyam ka sheesh pooja jata hai.",
+      "motion": "out",
+      "animate": "the diya flames flicker softly and a few marigold petals drift down slowly",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "Close-up of the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum, glowing diyas in the foreground",
+      "tts": "हारे का सहारा, बाबा श्याम हमारा। जय श्री श्याम!",
+      "sub": "Haare ka sahara, Baba Shyam hamara. Jai Shree Shyam!",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still, the diya flames glow and flicker softly",
+      "video": "clips/3.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "कल फिर नया दर्शन। लाइक, शेयर, सब्सक्राइब करें। जय खाटू श्याम!",
+      "sub": "Kal phir naya darshan. Like, Share, Subscribe karein. Jai Khatu Shyam!"
+    }
+  ],
+  "youtube_title": "Khatu Shyam Mandir Darshan, Sikar | खाटू श्याम मंदिर दर्शन #Shorts",
+  "youtube_description": "Khatu Shyam Mandir ke darshan: Khatu gaon, Sikar zila, Rajasthan. Manyata hai ki yahan Baba Shyam ka sheesh pooja jata hai.\nखाटू श्याम मंदिर, सीकर (राजस्थान) के दर्शन।\nMantra: जय श्री श्याम, हारे का सहारा बाबा श्याम हमारा\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nAchha laga to Like, Share aur Subscribe karein.\n#KhatuShyam #KhatuShyamMandir #JaiShreeShyam #Shorts",
+  "youtube_tags": "Khatu Shyam mandir, खाटू श्याम मंदिर, Khatu Shyam mandir darshan, खाटू श्याम मंदिर दर्शन, Khatu Shyam Sikar, खाटू श्याम सीकर, Baba Shyam darshan, बाबा श्याम दर्शन, Haare ka sahara, हारे का सहारा, Khatu Shyam ji, Khatu Shyam Rajasthan",
+  "instagram_caption": "Khatu Shyam Mandir, Sikar ke darshan 🙏\nKhatu gaon, Rajasthan. Manyata hai yahan Baba Shyam ka sheesh pooja jata hai.\nJai Shree Shyam, Haare ka sahara Baba Shyam hamara.\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#KhatuShyam #KhatuShyamMandir #JaiShreeShyam #BabaShyam #HaareKaSahara #Sikar #Rajasthan #Bhakti",
+  "facebook_caption": "जय श्री श्याम 🙏 क्या आपने कभी खाटू श्याम मंदिर के दर्शन किए हैं?\nराजस्थान के सीकर ज़िले के खाटू गाँव में बाबा श्याम का मंदिर (मान्यता)।\nKhatu Shyam Mandir ke darshan, chitra AI se banaye gaye hain.\n#KhatuShyam #JaiShreeShyam #KhatuShyamMandir",
+  "music": {
+    "id": "cc-eastern-loop-shruti",
+    "mood": "calm",
+    "title": "Eastern instrumental loop with shruti",
+    "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}
