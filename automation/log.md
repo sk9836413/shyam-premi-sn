@@ -55,3 +55,4 @@
 2026-11-12 | morning | 2026-11-12-morning-guruvar-vishnu | Vishnu ji / Sai Baba (Guruvar) | Day status Short "Guruvar Vishnu ji Status" (status engine, 15-25 s loop)
 2026-11-12 | evening | 2026-11-12-evening-khatu-shyam-mandir-darshan | Khatu Shyam ji / Khatu Shyam Mandir, Sikar | Khatu Shyam Mandir darshan: Khatu gaon, Sikar, Rajasthan, sheesh pooja (manyata), Haare ka Sahara jaikara; agla: Chhath Puja
 2026-11-12 | eve | 2026-11-12-eve-nahay-khay | Chhath Puja (Nahay Khay) | status Short variant 1 "Nahay Khay Status 2026" (15-25 s loop, download link), public 20:00 IST
+2026-11-13 | status | 2026-11-13-status-chhath-puja-nahay-khay | Chhath Puja (Nahay Khay) | status Short variant 2 "Chhath Puja Nahay Khay Status 2026" (15-25 s loop, download link), public 00:30 IST
