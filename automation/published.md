@@ -77,3 +77,5 @@
 - 2026-11-13-status-chhath-puja-nahay-khay | claim: 2026-11-13 status by run 43159897806.1 at 2026-11-12T07:20:40.887Z
 - 2026-11-13-status-chhath-puja-nahay-khay | youtube: https://youtube.com/shorts/O-Lxh283NX0 (public at 2026-11-12T19:00:00.000Z) | status variant, made 12 Nov 12:50 IST | social: fb: https://www.facebook.com/reel/1630595368846394 (scheduled 2026-11-12T19:00:00.000Z) | ig: pending 2026-11-12T19:00:00.000Z
 - 2026-11-12-evening-khatu-shyam-mandir-darshan | instagram: https://www.instagram.com/reel/DfpKsmcBRqw/
+- 2026-11-12-eve-nahay-khay | instagram: https://www.instagram.com/reel/Dfp3orahrqh/
+- 2026-11-13-status-chhath-puja-nahay-khay | instagram: https://www.instagram.com/reel/Dfp3uO7pR1s/
