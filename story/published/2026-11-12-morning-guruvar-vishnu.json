@@ -1,0 +1,68 @@
+{
+  "slug": "2026-11-12-morning-guruvar-vishnu",
+  "format": "status",
+  "loop": true,
+  "date": "2026-11-12",
+  "festival": "Guruvar Vishnu ji",
+  "family": "day-guruvar-vishnu",
+  "title": "Shyam Premi SN",
+  "kicker": "Guruvar Vishnu ji",
+  "playlist": "Vishnu ji aur Krishna ki Kathayein",
+  "voice": "hf_alpha",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing",
+  "cta": "स्टेटस पर लगाएं 📲",
+  "mantra_source": "Bhagwan Vishnu ka dwadashakshar mantra (Shrimad Bhagwat parampara)",
+  "deity": "Vishnu ji / Sai Baba (Guruvar)",
+  "day_status": "guruvar-vishnu",
+  "scenes": [
+    {
+      "prompt": "Divine darshan of Bhagwan Vishnu with four arms holding conch, chakra, mace and lotus, blue complexion, golden crown and yellow silk dhoti, serene face, standing on a pink lotus, a soft golden halo, tulsi leaves and lit clay diyas in the foreground, a decorated temple sanctum",
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, diya flames flicker softly",
+      "deity": true,
+      "motion": "in",
+      "hold": 6,
+      "big": "ॐ साईं राम! शुभ गुरुवार 🙏",
+      "line": "जय श्री हरि",
+      "tts": "ॐ साईं राम! शुभ गुरुवार! भगवान श्री हरि की कृपा आप पर सदा बनी रहे।",
+      "sub": "Guruvar Vishnu ji! Bhagwan Shri Hari ki kripa aap par sada bani rahe.",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "Shirdi Sai Baba seated calmly on a stone with one leg folded, white kafni robe and white head cloth, a gentle blessing hand, an old Dwarkamai mosque wall behind, warm lamp light",
+      "animate": "a very slow push-in, the lamp light glows softly, the face stays still",
+      "deity": true,
+      "motion": "out",
+      "hold": 6,
+      "big": "ॐ साईं राम",
+      "line": "श्रद्धा और सबूरी",
+      "tts": "श्रद्धा और सबूरी, जीवन को आसान बना देती है।",
+      "sub": "Shraddha aur saburi, jeevan ko aasaan bana deti hai.",
+      "video": "clips/1.mp4"
+    },
+    {
+      "prompt": "A green tulsi plant in a decorated clay pot on a temple courtyard at dawn, lit diyas around it, yellow marigold flowers and a small brass kalash, calm golden light",
+      "motion": "pan",
+      "hold": 6,
+      "big": "ॐ नमो नारायणाय",
+      "mantra": "ॐ नमो भगवते वासुदेवाय",
+      "tts": "ॐ नमो भगवते वासुदेवाय। स्टेटस पर लगाएं, और सबको भेजें।",
+      "sub": "Om Namo Bhagavate Vasudevaya. Status par lagayein, sabko bhejein! Subscribe: Shyam Premi SN",
+      "line": "अपनों को भेजें, सब्सक्राइब करें 🙏"
+    }
+  ],
+  "youtube_title": "Guruvar Vishnu ji Status | गुरुवार विष्णु जी स्टेटस वीडियो #Shorts",
+  "youtube_description": "Guruvar Vishnu ji! Guruvar Bhagwan Vishnu (aur bahut se bhakton ke liye Sai Baba) ka din hai. WhatsApp status ke liye sundar video.\nॐ साईं राम! शुभ गुरुवार 🙏 जय श्री हरि\nMantra: ॐ नमो भगवते वासुदेवाय (Bhagwan Vishnu ka dwadashakshar mantra (Shrimad Bhagwat parampara))\n\nIs status video ko download karke apne WhatsApp / Instagram status par lagayein.\n\nShyam Premi SN ki taraf se aapko aur aapke parivaar ko dher saari shubhkamnayein. Jai Shree Shyam 🙏\nAchha lage to Like karein, apno ko bhejein aur channel Subscribe karein.\n#GuruvarStatus #JaiShreeHari #VishnuJi #SaiBaba #OmSaiRam\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.",
+  "youtube_tags": "Guruvar Vishnu ji status, गुरुवार विष्णु जी स्टेटस, Guruvar Vishnu ji whatsapp status, Guruvar status, Vishnu ji status, Sai Baba status, गुरुवार स्टेटस, विष्णु जी स्टेटस, साईं बाबा स्टेटस, Thursday status, Om Sai Ram, Jai Shree Hari, Shyam Premi SN",
+  "instagram_caption": "Guruvar Vishnu ji 🙏\nBhagwan Shri Hari ki kripa aap par sada bani rahe.\nStatus par lagayein, apno ko bhejein 🙏\n#GuruvarStatus #JaiShreeHari #VishnuJi #SaiBaba #OmSaiRam",
+  "facebook_caption": "Guruvar Vishnu ji 🙏\nBhagwan Shri Hari ki kripa aap par sada bani rahe.\nStatus par lagayein, apno ko bhejein 🙏\n#GuruvarStatus #JaiShreeHari #VishnuJi #SaiBaba",
+  "music": {
+    "id": "cc-dhol-tasha-shruti",
+    "mood": "festive",
+    "title": "Dhol-Tasha with shruti drone",
+    "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}

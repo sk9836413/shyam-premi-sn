@@ -52,3 +52,4 @@
 2026-11-11 | status | 2026-11-11-status-bhai-dooj | Bhai Dooj | WhatsApp status Short (darshan, blessing, download link), public 06:00 IST
 2026-11-11 | morning | 2026-11-11-morning-yamunotri-bhai-dooj-darshan | Maa Yamuna / Yamunotri Dham (Bhai Dooj) | Yamunotri Dham darshan: Yam-Yamuna bhai-behan, Bhai Dooj par kapat band, Maa ki doli Kharsali, Akshaya Tritiya par kapat phir khulte hain
 2026-11-11 | evening | 2026-11-11-evening-somnath-jyotirlinga-darshan | Shiv ji / Somnath Jyotirlinga, Gujarat | Somnath Mandir darshan: Prabhas Patan samudra kinare, barah Jyotirlingon mein pehla (manyata), Har Har Mahadev
+2026-11-12 | morning | 2026-11-12-morning-guruvar-vishnu | Vishnu ji / Sai Baba (Guruvar) | Day status Short "Guruvar Vishnu ji Status" (status engine, 15-25 s loop)

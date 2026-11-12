@@ -69,3 +69,4 @@
 - 2026-11-11-evening-somnath-jyotirlinga-darshan | youtube: https://youtube.com/shorts/SJWJv2Uwots (public at 2026-11-11T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/29469015486120415 (scheduled 2026-11-11T13:30:00.000Z) | ig: pending 2026-11-11T13:30:00.000Z | animated 3/4
 - 2026-11-11-evening-somnath-jyotirlinga-darshan | instagram: https://www.instagram.com/reel/Dfml5LjxIEQ/
 - 2026-11-12-morning-guruvar-vishnu | claim: 2026-11-12 morning by run 43150103143.1 at 2026-11-12T04:28:14.175Z
+- 2026-11-12-morning-guruvar-vishnu | youtube: https://youtube.com/shorts/gs77Sif4kL8 | social: fb: skipped (not in the Facebook plan) | ig: error upload failed: Request processing failed | animated 2/3
