@@ -73,3 +73,4 @@
 - 2026-11-12-evening-khatu-shyam-mandir-darshan | claim: 2026-11-12 evening by run 43159897806.1 at 2026-11-12T06:34:30.432Z
 - 2026-11-12-evening-khatu-shyam-mandir-darshan | youtube: https://youtube.com/shorts/HzwWbWynY_4 (public at 2026-11-12T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/2644366659341772 (scheduled 2026-11-12T12:30:00.000Z) | ig: pending 2026-11-12T13:30:00.000Z | animated 4/4
 - 2026-11-12-eve-nahay-khay | claim: 2026-11-12 eve by run 43159897806.1 at 2026-11-12T07:18:38.916Z
+- 2026-11-12-eve-nahay-khay | youtube: https://youtube.com/shorts/xa7GYZx8pO8 (public at 2026-11-12T14:30:00.000Z) | status variant, made 12 Nov 12:48 IST | social: fb: https://www.facebook.com/reel/2100119677333219 (scheduled 2026-11-12T14:30:00.000Z) | ig: pending 2026-11-12T14:30:00.000Z
