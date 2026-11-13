@@ -13,8 +13,8 @@
    "festival_name": "Chhath Puja",
    "festival_date": "2026-11-15",
    "deity_name": "Chhathi Maiya / Suruj Dev",
-   "bpm": 110,
-   "singer": "male"
+   "bpm": 100,
+   "singer": "female"
   },
   {
    "slot": 7,
@@ -25,7 +25,7 @@
    "festival_name": "Chhath Puja",
    "festival_date": "2026-11-15",
    "deity_name": "Chhathi Maiya / Suruj Dev",
-   "bpm": 112,
+   "bpm": 108,
    "singer": "female"
   },
   {
@@ -37,7 +37,7 @@
    "festival_name": "Chhath Puja",
    "festival_date": "2026-11-15",
    "deity_name": "Chhathi Maiya / Suruj Dev",
-   "bpm": 78,
+   "bpm": 84,
    "singer": "female"
   },
   {
@@ -49,7 +49,7 @@
    "festival_name": "Chhath Puja",
    "festival_date": "2026-11-15",
    "deity_name": "Chhathi Maiya / Suruj Dev",
-   "bpm": 82,
+   "bpm": 88,
    "singer": "female"
   },
   {
@@ -61,7 +61,7 @@
    "festival_name": "Chhath Puja",
    "festival_date": "2026-11-15",
    "deity_name": "Chhathi Maiya / Suruj Dev",
-   "bpm": 76,
+   "bpm": 82,
    "singer": "male"
   }
  ],
