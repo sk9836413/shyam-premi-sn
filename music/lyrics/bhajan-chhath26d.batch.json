@@ -1,0 +1,65 @@
+{
+ "batch": "bhajan-chhath26d",
+ "note": "Chhath retry 2 (13 Nov 2026 ~18:00 IST): plain spelling, the name sung ONCE (final chorus says माई), so one clean position decides; Nahay Khay x5 seeds, Kharna x4 seeds (festive folk caption, female).",
+ "singer": {
+  "male": "solo male vocalist, warm clear folk tenor voice, Indian devotional folk singing, Hindi Bhojpuri",
+  "female": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri"
+ },
+ "jobs": [
+  {
+   "id": "b-chhath26d-01-devi",
+   "kind": "vocal",
+   "slot": 1,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "title_hi": "नहाय खाय के पावन दिन",
+   "title_roman": "Nahay Khay Ke Pawan Din (Kaddu Bhaat Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं\n[verse]\nभोरे भोरे गंगा घाट पे, डुबकी लेली हम\nअरवा चाउर, चना के दाल, लउकी के संग\nसेंधा नमक, शुद्ध रसोई, माटी के चूल्हा\nसखियन संग गीत गावत, मनवा भइल उजला\n[chorus]\nनहाय खाय के पावन दिन, माई घर में आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं",
+   "lyrics_devanagari": "[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं\n[verse]\nभोरे भोरे गंगा घाट पे, डुबकी लेली हम\nअरवा चाउर, चना के दाल, लउकी के संग\nसेंधा नमक, शुद्ध रसोई, माटी के चूल्हा\nसखियन संग गीत गावत, मनवा भइल उजला\n[chorus]\nनहाय खाय के पावन दिन, माई घर में आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं",
+   "language": "hi",
+   "singer": "female",
+   "caption": "festive Bhojpuri Chhath puja folk geet, traditional Indian devotional folk song, dholak and nal groove, harmonium, jhaal cymbals, shehnai, bansuri, claps, joyful village ghat celebration, no western drum kit, no synth, catchy singalong chorus",
+   "bpm": 104,
+   "duration": 56,
+   "seeds": [
+    2222,
+    4411,
+    4423,
+    4437,
+    4451
+   ],
+   "chhath_day": "nahay-khay",
+   "singer_caption": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri",
+   "spelling": "plain, name once"
+  },
+  {
+   "id": "b-chhath26d-02-devi",
+   "kind": "vocal",
+   "slot": 2,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "title_hi": "खरना के सांझ",
+   "title_roman": "Kharna Ke Saanjh (Kheer Roti Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nखरना के सांझ भइल, छठी मइया पधारो\nगुड़ के खीर, घी के रोटी, भोग स्वीकारो\n[verse]\nदिन भर व्रत रखली हम, सांझ जरल दियरी\nमाटी के चूल्हा पर, आम के लकड़ी\nथरिया में परसाद सजल, तुलसी के पतिया\nरसियाव के मीठ सुगंध, महकल सगरी रतिया\n[chorus]\nखरना के सांझ भइल, माई घर में पधारो\nगुड़ के खीर, घी के रोटी, भोग स्वीकारो",
+   "lyrics_devanagari": "[chorus]\nखरना के सांझ भइल, छठी मइया पधारो\nगुड़ के खीर, घी के रोटी, भोग स्वीकारो\n[verse]\nदिन भर व्रत रखली हम, सांझ जरल दियरी\nमाटी के चूल्हा पर, आम के लकड़ी\nथरिया में परसाद सजल, तुलसी के पतिया\nरसियाव के मीठ सुगंध, महकल सगरी रतिया\n[chorus]\nखरना के सांझ भइल, माई घर में पधारो\nगुड़ के खीर, घी के रोटी, भोग स्वीकारो",
+   "language": "hi",
+   "singer": "female",
+   "caption": "festive Bhojpuri Chhath puja folk geet, traditional Indian devotional folk song, dholak and nal groove, harmonium, jhaal cymbals, shehnai, bansuri, claps, joyful village ghat celebration, no western drum kit, no synth, catchy singalong chorus",
+   "bpm": 96,
+   "duration": 60,
+   "seeds": [
+    2222,
+    4513,
+    4527,
+    4539
+   ],
+   "chhath_day": "kharna",
+   "singer_caption": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri",
+   "spelling": "plain, name once"
+  }
+ ]
+}
