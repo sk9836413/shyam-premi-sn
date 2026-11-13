@@ -1,0 +1,88 @@
+{
+ "batch": "bhajan-chhath26c",
+ "note": "Chhath name pronunciation retry (13 Nov 2026 17:45 IST): bhajan-chhath26 had 0/5 pass, छठी heard as चटी/चठी in most positions. Nahay Khay song with the name in 2 positions only, 3 spellings x 3 seeds.",
+ "singer": {
+  "male": "solo male vocalist, warm clear folk tenor voice, Indian devotional folk singing, Hindi Bhojpuri",
+  "female": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri"
+ },
+ "jobs": [
+  {
+   "id": "b-chhath26c-01a-devi",
+   "kind": "vocal",
+   "slot": 1,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "title_hi": "नहाय खाय के पावन दिन",
+   "title_roman": "Nahay Khay Ke Pawan Din (Kaddu Bhaat Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं\n[verse]\nभोरे भोरे गंगा घाट पे, डुबकी लेली हम\nअरवा चाउर, चना के दाल, लउकी के संग\nसेंधा नमक, शुद्ध रसोई, माटी के चूल्हा\nसखियन संग गीत गावत, मनवा भइल उजला\n[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं",
+   "lyrics_devanagari": "[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं\n[verse]\nभोरे भोरे गंगा घाट पे, डुबकी लेली हम\nअरवा चाउर, चना के दाल, लउकी के संग\nसेंधा नमक, शुद्ध रसोई, माटी के चूल्हा\nसखियन संग गीत गावत, मनवा भइल उजला\n[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं",
+   "language": "hi",
+   "singer": "female",
+   "caption": "festive Bhojpuri Chhath puja folk geet, traditional Indian devotional folk song, dholak and nal groove, harmonium, jhaal cymbals, shehnai, bansuri, claps, joyful village ghat celebration, no western drum kit, no synth, catchy singalong chorus",
+   "bpm": 104,
+   "duration": 56,
+   "seeds": [
+    2222,
+    3101,
+    7207
+   ],
+   "chhath_day": "nahay-khay",
+   "singer_caption": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri",
+   "spelling": "plain"
+  },
+  {
+   "id": "b-chhath26c-01b-devi",
+   "kind": "vocal",
+   "slot": 1,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "title_hi": "नहाय खाय के पावन दिन",
+   "title_roman": "Nahay Khay Ke Pawan Din (Kaddu Bhaat Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nनहाय खाय के पावन दिन, छ्छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं\n[verse]\nभोरे भोरे गंगा घाट पे, डुबकी लेली हम\nअरवा चाउर, चना के दाल, लउकी के संग\nसेंधा नमक, शुद्ध रसोई, माटी के चूल्हा\nसखियन संग गीत गावत, मनवा भइल उजला\n[chorus]\nनहाय खाय के पावन दिन, छ्छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं",
+   "lyrics_devanagari": "[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं\n[verse]\nभोरे भोरे गंगा घाट पे, डुबकी लेली हम\nअरवा चाउर, चना के दाल, लउकी के संग\nसेंधा नमक, शुद्ध रसोई, माटी के चूल्हा\nसखियन संग गीत गावत, मनवा भइल उजला\n[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं",
+   "language": "hi",
+   "singer": "female",
+   "caption": "festive Bhojpuri Chhath puja folk geet, traditional Indian devotional folk song, dholak and nal groove, harmonium, jhaal cymbals, shehnai, bansuri, claps, joyful village ghat celebration, no western drum kit, no synth, catchy singalong chorus",
+   "bpm": 104,
+   "duration": 56,
+   "seeds": [
+    2222,
+    3102,
+    7210
+   ],
+   "chhath_day": "nahay-khay",
+   "singer_caption": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri",
+   "spelling": "geminated छ्छ"
+  },
+  {
+   "id": "b-chhath26c-01c-devi",
+   "kind": "vocal",
+   "slot": 1,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "title_hi": "नहाय खाय के पावन दिन",
+   "title_roman": "Nahay Khay Ke Pawan Din (Kaddu Bhaat Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nनहाय खाय के पावन दिन, छ‍ठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं\n[verse]\nभोरे भोरे गंगा घाट पे, डुबकी लेली हम\nअरवा चाउर, चना के दाल, लउकी के संग\nसेंधा नमक, शुद्ध रसोई, माटी के चूल्हा\nसखियन संग गीत गावत, मनवा भइल उजला\n[chorus]\nनहाय खाय के पावन दिन, छ‍ठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं",
+   "lyrics_devanagari": "[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं\n[verse]\nभोरे भोरे गंगा घाट पे, डुबकी लेली हम\nअरवा चाउर, चना के दाल, लउकी के संग\nसेंधा नमक, शुद्ध रसोई, माटी के चूल्हा\nसखियन संग गीत गावत, मनवा भइल उजला\n[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nकद्दू भात के भोग लगल, अंगना खुशियां छाईं",
+   "language": "hi",
+   "singer": "female",
+   "caption": "festive Bhojpuri Chhath puja folk geet, traditional Indian devotional folk song, dholak and nal groove, harmonium, jhaal cymbals, shehnai, bansuri, claps, joyful village ghat celebration, no western drum kit, no synth, catchy singalong chorus",
+   "bpm": 104,
+   "duration": 56,
+   "seeds": [
+    2222,
+    3103,
+    7213
+   ],
+   "chhath_day": "nahay-khay",
+   "singer_caption": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri",
+   "spelling": "ZWJ after छ"
+  }
+ ]
+}

@@ -1229,5 +1229,34 @@
       "File:Swaminarayan Akshardham Temple-Delhi-97.jpg",
       "File:2020-01-24 Visita Oficial à Índia.jpg"
     ]
+  },
+  "modhera-sun-temple": {
+    "name": "Modhera Sun Temple, Gujarat",
+    "aliases": [
+      "modhera",
+      "modhera-surya-mandir"
+    ],
+    "categories": [
+      "Sun Temple, Modhera",
+      "Modhera Sun Temple stepwell",
+      "Sabha Mandap",
+      "Guda Mandap"
+    ],
+    "must": "modhera",
+    "not": "people|nude|couple|festival crowd|dance"
+  },
+  "deo-surya-mandir": {
+    "name": "Deo Surya Mandir, Aurangabad, Bihar",
+    "aliases": [
+      "deo-sun-temple",
+      "deo-surya"
+    ],
+    "categories": [
+      "Deo Surya Mandir",
+      "Sun Temple, Aurangabad district, Bihar"
+    ],
+    "must": "deo|surya|sun temple",
+    "place": "aurangabad|bihar|deo",
+    "not": "people|maharashtra"
   }
 }

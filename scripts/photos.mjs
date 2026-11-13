@@ -262,8 +262,24 @@ function recentVideoTemple(date, list) {
 const QUOTES = () => JSON.parse(fs.readFileSync(path.join(ROOT, 'automation', 'vichar.json'), 'utf8')).quotes;
 export const quoteIndex = (date, n) => Math.round((Date.parse(`${date}T00:00:00Z`) - Date.parse('2026-11-01T00:00:00Z')) / 86400e3) % n;
 
+// Chhath 2026 (owner, 13 Nov 2026: every post of 14-16 Nov Chhath themed; automation/chhath-2026.json `photos.days`):
+// post 2 and post 4 become Chhath greeting cards (AI bank pictures, labelled), post 3 the carousel of a Surya temple.
+export function chhathDay(date) {
+  try { return JSON.parse(fs.readFileSync(path.join(ROOT, 'automation', 'chhath-2026.json'), 'utf8')).photos?.days?.[date] || null; } catch { return null; }
+}
+const CHHATH_TAGS = ['#ChhathPuja', '#ChhathiMaiya', '#SuryaDev'];
+
 export function plan(date, slots = [1, 2, 3, 4]) {
   const h = history(date);
+  const ch = chhathDay(date);
+  const takenBank = [];
+  const chhathCard = (base, c) => {
+    const free = bankFiles('chhath').filter((f) => !takenBank.includes(f)).sort((a, b) => (h.photo[a] || 0) - (h.photo[b] || 0) || a.localeCompare(b));
+    const bank = (c.img && free.find((f) => new RegExp(`-${c.img}\\.jpe?g$`).test(f))) || free[0] || null;
+    if (bank) takenBank.push(bank);
+    return { ...base, kind: 'festival', festival: { key: 'chhath', name: c.name, big: c.big, line: c.line, blessing: c.text, tags: CHHATH_TAGS },
+      ...(bank ? { bank } : { flux: c.flux }), write: ['big', 'line', 'place', 'text', 'caption', 'hashtags'] };
+  };
   const list = photoTemples();
   const fest = festivalOn(date);
   const cats = DAY_CATS[weekday(date)];
@@ -273,9 +289,19 @@ export function plan(date, slots = [1, 2, 3, 4]) {
   for (const n of slots) {
     const s = SLOTS.find((x) => x.n === n);
     const base = { n, fbAt: s.fb ? new Date(istAt(date, s.fb)).toISOString() : null, igAt: new Date(istAt(date, s.ig)).toISOString() };
+    if (ch && ch[`p${n}`] && !ch[`p${n}`].temple) {
+      posts.push(chhathCard(base, ch[`p${n}`]));
+      continue;
+    }
+    const chT = ch?.[`p${n}`]?.temple && list.find((x) => x.slug === ch[`p${n}`].temple);
+    if (n === 3 && chT) {
+      used.push(chT.slug);
+      posts.push({ ...base, kind: 'facts', temple: chT.slug, templeName: chT.name, category: chT.category, photos: pickPhotos(chT, h, date, 4).map(photoInfo), write: ['title', 'line', 'facts', 'sources', 'caption', 'hashtags'] });
+      continue;
+    }
     if (n === 1 && fest) {
       const t = fest.temple && list.find((x) => x.slug === fest.temple);
-      const bank = !t && pickBank(fest.bank || [fest.key], h);
+      const bank = !t && (fest.key === 'chhath' ? (() => { const b = (ch?.p1img && bankFiles('chhath').find((f) => new RegExp(`-${ch.p1img}\\.jpe?g$`).test(f))) || pickBank([fest.key], h); if (b) takenBank.push(b); return b; })() : pickBank(fest.bank || [fest.key], h));
       posts.push({ ...base, kind: 'festival', festival: { key: fest.key, name: fest.calendar, big: fest.big, line: fest.line, blessing: fest.text, tags: fest.tags },
         ...(t ? { temple: t.slug, templeName: t.name, photos: pickPhotos(t, h, date, 1).map(photoInfo) } : bank ? { bank } : { flux: fest.flux || `${KHATU_SHEESH}, festive diyas and flowers` }),
         write: ['big', 'line', 'place', 'text', 'caption', 'hashtags', 'fb_caption'] });

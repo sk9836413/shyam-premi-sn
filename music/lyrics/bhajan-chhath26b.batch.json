@@ -1,0 +1,135 @@
+{
+ "batch": "bhajan-chhath26b",
+ "note": "Chhath Puja 2026 bhajans, second batch (music/lyrics/bhajan-chhath26b.json): original lyrics, ACE-Step 1.5 (MIT), 3 takes per song; parana first (the only song for 16 Nov evening).",
+ "singer": {
+  "male": "solo male vocalist, warm clear folk tenor voice, Indian devotional folk singing, Hindi Bhojpuri",
+  "female": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri"
+ },
+ "jobs": [
+  {
+   "id": "b-chhath26b-09-devi",
+   "kind": "vocal",
+   "slot": 9,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "title_hi": "छठी मइया तोहर किरपा",
+   "title_roman": "Chhathi Maiya Tohar Kirpa (Parana Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर\n[verse]\nचार दिन के तप पूरा, पारन के बेला\nठेकुआ, फल, प्रसाद बंटल, लागल सुख के मेला\nघाट से लौटल व्रती, मन भइल निहाल\nअगिला बरस फेर आइब, माई राखिह ख्याल\n[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर\n[verse]\nजे भी मांगल माई से, ओकर मन के आस\nछठ के ई पावन परब, लावे नया उजास\n[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर",
+   "lyrics_devanagari": "[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर\n[verse]\nचार दिन के तप पूरा, पारन के बेला\nठेकुआ, फल, प्रसाद बंटल, लागल सुख के मेला\nघाट से लौटल व्रती, मन भइल निहाल\nअगिला बरस फेर आइब, माई राखिह ख्याल\n[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर\n[verse]\nजे भी मांगल माई से, ओकर मन के आस\nछठ के ई पावन परब, लावे नया उजास\n[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर",
+   "language": "hi",
+   "singer": "female",
+   "caption": "traditional Bhojpuri Chhath puja folk geet, Indian devotional folk song, slow sweet melody, soft dholak, harmonium, shehnai, bansuri, manjira, river ghat at dusk, heartfelt prayer, catchy chorus",
+   "bpm": 82,
+   "duration": 75,
+   "seeds": [
+    2222,
+    1191,
+    5365
+   ],
+   "chhath_day": "parana",
+   "singer_caption": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri"
+  },
+  {
+   "id": "b-chhath26b-06-devi",
+   "kind": "vocal",
+   "slot": 6,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "title_hi": "खरना के खीर",
+   "title_roman": "Kharna Ke Kheer (Chhath Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस\n[verse]\nआम के लकड़ी जरे, माटी के चूल्हा\nघी में डूबल रोटी, सजल बा थरिया\nभोग लगा के व्रती खइली, एके बेर प्रसाद\nघर भर में बंटल खुशी, बरसल आशीर्वाद\n[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस\n[verse]\nअब से निर्जल व्रत, सूरज देव के आस\nछठी मइया राखिह, हमनी के विश्वास\n[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस",
+   "lyrics_devanagari": "[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस\n[verse]\nआम के लकड़ी जरे, माटी के चूल्हा\nघी में डूबल रोटी, सजल बा थरिया\nभोग लगा के व्रती खइली, एके बेर प्रसाद\nघर भर में बंटल खुशी, बरसल आशीर्वाद\n[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस\n[verse]\nअब से निर्जल व्रत, सूरज देव के आस\nछठी मइया राखिह, हमनी के विश्वास\n[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस",
+   "language": "hi",
+   "singer": "male",
+   "caption": "festive Bhojpuri Chhath puja folk geet, Indian devotional folk song, dholak and nal groove, harmonium, jhaal cymbals, shehnai, bansuri, claps, joyful ghat celebration, catchy singalong chorus",
+   "bpm": 110,
+   "duration": 60,
+   "seeds": [
+    2222,
+    1188,
+    5356
+   ],
+   "chhath_day": "kharna",
+   "singer_caption": "solo male vocalist, warm clear folk tenor voice, Indian devotional folk singing, Hindi Bhojpuri"
+  },
+  {
+   "id": "b-chhath26b-07-devi",
+   "kind": "vocal",
+   "slot": 7,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "title_hi": "चलो चलो घाट पे",
+   "title_roman": "Chalo Chalo Ghat Pe (Sandhya Arghya Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे\n[verse]\nमाथे पे दउरा सजल, केला नारियल ठेकुआ\nआगे आगे भइया चलें, पीछे पूरा कुनबा\nपानी में ठाढ़ व्रती, सूप में दीप जरे\nडूबत सूरज लाली में, सगरे घाट निखरे\n[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे\n[verse]\nढोल मंजीरा बाजे, गूंजे जयकार\nछठ के ई परब में, एक भइल संसार\n[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे",
+   "lyrics_devanagari": "[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे\n[verse]\nमाथे पे दउरा सजल, केला नारियल ठेकुआ\nआगे आगे भइया चलें, पीछे पूरा कुनबा\nपानी में ठाढ़ व्रती, सूप में दीप जरे\nडूबत सूरज लाली में, सगरे घाट निखरे\n[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे\n[verse]\nढोल मंजीरा बाजे, गूंजे जयकार\nछठ के ई परब में, एक भइल संसार\n[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे",
+   "language": "hi",
+   "singer": "female",
+   "caption": "festive Bhojpuri Chhath puja folk geet, Indian devotional folk song, dholak and nal groove, harmonium, jhaal cymbals, shehnai, bansuri, claps, joyful ghat celebration, catchy singalong chorus",
+   "bpm": 112,
+   "duration": 59,
+   "seeds": [
+    2222,
+    1189,
+    5359
+   ],
+   "chhath_day": "sandhya-arghya",
+   "singer_caption": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri"
+  },
+  {
+   "id": "b-chhath26b-08-devi",
+   "kind": "vocal",
+   "slot": 8,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "title_hi": "पूरब में लाली छाइल",
+   "title_roman": "Purab Mein Laali Chhail (Usha Arghya Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट\n[verse]\nठंडा ठंडा पानी में, खाड़ बाड़ी माई\nहाथ जोड़ के मांगे, सबके भलाई\nकोहरा में दीप जरे, सूप में फल फूल\nकिरन पड़ल पानी पर, मिटल सब भूल\n[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट\n[verse]\nअरघ देके व्रत पूरा, मन में संतोष\nछठी मइया हरिह, सबके दुख दोष\n[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट",
+   "lyrics_devanagari": "[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट\n[verse]\nठंडा ठंडा पानी में, खाड़ बाड़ी माई\nहाथ जोड़ के मांगे, सबके भलाई\nकोहरा में दीप जरे, सूप में फल फूल\nकिरन पड़ल पानी पर, मिटल सब भूल\n[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट\n[verse]\nअरघ देके व्रत पूरा, मन में संतोष\nछठी मइया हरिह, सबके दुख दोष\n[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट",
+   "language": "hi",
+   "singer": "female",
+   "caption": "traditional Bhojpuri Chhath puja folk geet, Indian devotional folk song, slow sweet melody, soft dholak, harmonium, shehnai, bansuri, manjira, river ghat at dusk, heartfelt prayer, catchy chorus",
+   "bpm": 78,
+   "duration": 75,
+   "seeds": [
+    2222,
+    1190,
+    5362
+   ],
+   "chhath_day": "usha-arghya",
+   "singer_caption": "solo female vocalist, sweet clear Indian folk voice, devotional folk singing, Hindi Bhojpuri"
+  },
+  {
+   "id": "b-chhath26b-10-devi",
+   "kind": "vocal",
+   "slot": 10,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "title_hi": "माई के घाट पे",
+   "title_roman": "Maai Ke Ghat Pe (Chhath Geet)",
+   "public_domain_text": null,
+   "lyrics": "[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं\n[verse]\nपरदेस से लौटल, बेटा माई के पास\nगांव के माटी में, फेर जागल आस\nनदी किनारे बइठ के, सुनीं लोकगीत\nछठ के ई परब से, बढ़ल सबके प्रीत\n[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं\n[verse]\nसूरज देव के किरन से, उजियार भइल मन\nछठी मइया के दया से, सुखी रहे जन जन\n[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं",
+   "lyrics_devanagari": "[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं\n[verse]\nपरदेस से लौटल, बेटा माई के पास\nगांव के माटी में, फेर जागल आस\nनदी किनारे बइठ के, सुनीं लोकगीत\nछठ के ई परब से, बढ़ल सबके प्रीत\n[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं\n[verse]\nसूरज देव के किरन से, उजियार भइल मन\nछठी मइया के दया से, सुखी रहे जन जन\n[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं",
+   "language": "hi",
+   "singer": "male",
+   "caption": "traditional Bhojpuri Chhath puja folk geet, Indian devotional folk song, slow sweet melody, soft dholak, harmonium, shehnai, bansuri, manjira, river ghat at dusk, heartfelt prayer, catchy chorus",
+   "bpm": 76,
+   "duration": 75,
+   "seeds": [
+    2222,
+    1192,
+    5368
+   ],
+   "chhath_day": "chhath",
+   "singer_caption": "solo male vocalist, warm clear folk tenor voice, Indian devotional folk singing, Hindi Bhojpuri"
+  }
+ ]
+}
