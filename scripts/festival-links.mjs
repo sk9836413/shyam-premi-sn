@@ -7,18 +7,20 @@
 // Photo posts (scripts/photos.mjs) use linkLines() from this file, so videos and photos share one list.
 //
 // Links (coordinator):
-// - 6-11 Nov 2026: the EpiFive Diwali greeting card (Jai Shree Shyam theme) on the status and noon Shorts.
+// - 6-11 Nov 2026: the Diwali greeting card (Jai Shree Shyam theme) on the status and noon Shorts.
 // - 17-20 Nov 2026 (Khatu Shyam Janmotsav = Dev Uthani Ekadashi, Fri 20 Nov 2026; Drik Panchang + Prokerala): the
-//   EpiFive Khatu Shyam Janmotsav card tool on every upload (all slots, long video, movie and Kalyug parts) and on the
+//   Khatu Shyam Janmotsav card on every upload (all slots, long video, movie and Kalyug parts) and on the
 //   festival and Khatu sandhya photo posts, with utm_source per platform (youtube / instagram / facebook). The status
 //   engine's Janmotsav variants (eve 18 + 19 Nov 20:00, status 20 Nov 00:30, statusday 20 Nov 08:30) carry it too.
+// The cards live on the channel's own site (site/ in this repo, GitHub Pages, .github/workflows/pages.yml). Shyam Premi
+// SN is a separate entity from any other brand: never link or co-brand another site here.
 import fs from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 export const LINKS = [
   {
     from: '2026-11-06', to: '2026-11-11', slots: ['status', 'noon'],
-    url: 'https://www.epifive.com/tools/diwali-greeting-card-with-name?theme=shyam',
+    url: 'https://sk9836413.github.io/shyam-premi-sn/diwali/?theme=shyam',
     line: (url) => `Apne naam aur photo wala Jai Shree Shyam Diwali card banayein (free): ${url}`,
   },
   {
@@ -26,7 +28,7 @@ export const LINKS = [
     slots: ['morning', 'evening', 'noon', 'status', 'eve', 'statusday', 'long', 'movie', 'kalyug'],
     // photo posts (photos.mjs): calendar-festival posts, the morning darshan and the Khatu sandhya aarti post
     photoKinds: ['darshan', 'aarti'],
-    url: 'https://www.epifive.com/tools/khatu-shyam-janmotsav-greeting-card',
+    url: 'https://sk9836413.github.io/shyam-premi-sn/janmotsav/',
     campaign: 'janmotsav2026',
     line: (url) => `🙏 Shyam Janmotsav (20 Nov) ka card apne naam aur photo ke saath banayein, free: ${url}`,
   },

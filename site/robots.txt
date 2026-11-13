@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sk9836413.github.io/shyam-premi-sn/sitemap.xml

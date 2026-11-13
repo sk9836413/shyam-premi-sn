@@ -136,7 +136,7 @@ const FESTIVALS = [
   { key: 'ekadashi', bank: ['khatu'], match: /ekadashi/i, big: 'शुभ एकादशी', line: 'जय श्री श्याम 🙏', text: 'भगवान श्री हरि की कृपा सदा बनी रहे', tags: ['#Ekadashi', '#JaiShreeHari'], temple: null },
 ];
 
-// Festival links (EpiFive card tools) come from scripts/festival-links.mjs, shared with the videos: the Diwali card on
+// Festival links (the card pages on the channel's own site, site/) come from scripts/festival-links.mjs, shared with the videos: the Diwali card on
 // festival posts 6-11 Nov, the Khatu Shyam Janmotsav card on festival, morning darshan and Khatu sandhya posts 17-20 Nov,
 // tagged per platform (utm_source=facebook / instagram), only while the page returns 200.
 

@@ -59,6 +59,6 @@ Write only the posts listed in plan.json. Fields (all strings unless shown):
   caption. Never write "asli darshan", "live darshan", "real photo" or "aaj ki taaza tasveer" for an AI picture, and
   never say a real photo was taken today.
 - **Khatu Shyam ji** is worshipped as the SHEESH (head) only: never describe him with a body, arms or a flute.
-- Festival dates come from automation/calendar.md only. The script adds the festival links (e.g. the EpiFive Diwali
-  card tool) and the photo credits itself: do not write URLs in captions.
+- Festival dates come from automation/calendar.md only. The script adds the festival links (the card pages on the
+  channel's own site, site/) and the photo credits itself: do not write URLs in captions.
 - Tone: warm, respectful, simple. Hinglish spelled out ("hai", not "h"). Emojis at most 3 per caption.

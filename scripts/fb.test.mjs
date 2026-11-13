@@ -128,7 +128,7 @@ describe('caption template', () => {
     assert.ok(checkFbCaption(good.replace('\n\n#', '\nhttps://x.com\n\n#'), { draft: true }).some((e) => /URL/.test(e)));
   });
   test('link, AI line and credits go between the body and the hashtags', () => {
-    const t = assemble({ lines: good.split('\n').slice(0, 3), tag: '#Somnath', links: ['🙏 card: https://www.epifive.com/tools/khatu-shyam-janmotsav-greeting-card?utm_source=facebook'], credits: ['📷 Photo: A, CC BY 4.0, via Wikimedia Commons'], ai: true });
+    const t = assemble({ lines: good.split('\n').slice(0, 3), tag: '#Somnath', links: ['🙏 card: https://sk9836413.github.io/shyam-premi-sn/janmotsav/?utm_source=facebook'], credits: ['📷 Photo: A, CC BY 4.0, via Wikimedia Commons'], ai: true });
     assert.deepEqual(checkFbCaption(t), []);
     assert.equal(splitCaption(t).links.length, 1);
   });

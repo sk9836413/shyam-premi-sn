@@ -1,0 +1,566 @@
+/* Shyam Premi SN card pages: navy and gold like the channel logo, saffron for actions. */
+:root {
+  --ink: #1d1a33;
+  --muted: #5d5872;
+  --paper: #fffaf0;
+  --card: #ffffff;
+  --navy: #14205a;
+  --gold: #d9a640;
+  --accent: #c2410c;
+  --rule: #eadfca;
+  --rule-strong: #cdbb98;
+  --radius: 10px;
+  color-scheme: light;
+}
+* {
+  box-sizing: border-box;
+}
+[hidden] {
+  display: none !important;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Noto Sans Devanagari', 'Nirmala UI', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--paper);
+}
+a {
+  color: var(--accent);
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.wrap {
+  width: min(100% - 2rem, 68rem);
+  margin-inline: auto;
+}
+
+/* header and footer */
+.site-head {
+  background: linear-gradient(135deg, #0b1440, var(--navy) 60%, #24307a);
+  color: #fff6dc;
+  border-bottom: 3px solid var(--gold);
+}
+.site-head .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-block: 0.6rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #ffe7a6;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  font-size: 0.95rem;
+}
+.site-nav a {
+  color: #fff6dc;
+  text-decoration: none;
+}
+.site-nav a:hover,
+.site-nav a[aria-current='page'] {
+  color: #ffd15c;
+  text-decoration: underline;
+}
+.site-foot {
+  margin-top: 3rem;
+  padding: 1.75rem 0 2.5rem;
+  background: var(--navy);
+  color: #e9e3ff;
+  font-size: 0.95rem;
+}
+.site-foot a {
+  color: #ffd15c;
+}
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0.75rem 0;
+  list-style: none;
+}
+.social a {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 209, 92, 0.6);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* page body */
+main {
+  padding-top: 1.5rem;
+}
+h1 {
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  line-height: 1.25;
+  margin: 0.25rem 0 0.75rem;
+  color: var(--navy);
+}
+h2 {
+  font-size: 1.35rem;
+  line-height: 1.3;
+  margin: 2rem 0 0.6rem;
+  color: var(--navy);
+}
+.lede {
+  font-size: 1.1rem;
+  max-width: 48rem;
+}
+.kicker {
+  display: inline-block;
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  background: #ffe7a6;
+  color: #6a3b00;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.privacy {
+  max-width: 48rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 4px solid #1a8d4a;
+  background: #eefaf2;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+.about {
+  max-width: 48rem;
+}
+.faq details {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.6rem 0;
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.related {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  padding: 0;
+  list-style: none;
+}
+.related a {
+  display: block;
+  height: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--card);
+  text-decoration: none;
+  color: var(--ink);
+}
+.related strong {
+  display: block;
+  color: var(--accent);
+}
+.related span {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.alt-lang {
+  font-size: 0.95rem;
+}
+
+/* home */
+.hero {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+}
+.hero img {
+  width: 140px;
+  border-radius: 50%;
+}
+@media (min-width: 44rem) {
+  .hero {
+    grid-template-columns: 160px minmax(0, 1fr);
+  }
+}
+
+/* shared tool controls */
+.tool {
+  margin-top: 1.5rem;
+  padding: 1.1rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 14px;
+  background: var(--card);
+}
+.tool-form {
+  display: grid;
+  gap: 1rem;
+}
+.tool-form__row {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+.tool-label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.meta {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.input,
+.tool-textarea {
+  width: 100%;
+  font: inherit;
+  font-weight: 400;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+}
+.tool-textarea {
+  resize: vertical;
+}
+.input:focus,
+.tool-textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.tool-segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.tool-segmented legend {
+  width: 100%;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.tool-segmented label {
+  position: relative;
+}
+.tool-segmented input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.tool-segmented span {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  font-size: 0.92rem;
+  background: #fff;
+}
+.tool-segmented input:checked + span {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #ffe7a6;
+  font-weight: 700;
+}
+.tool-segmented input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.tool-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.button:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+.button--ghost {
+  background: #fff;
+  color: var(--navy);
+  border-color: var(--rule-strong);
+}
+.button--small {
+  min-height: 2.25rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.875rem;
+}
+.text-link {
+  font-weight: 600;
+}
+.tool-privacy,
+.tool-note {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.tool-error {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+/* card maker */
+.dw-received {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+  padding: 1rem 1.15rem;
+  margin-bottom: 1.5rem;
+  border-radius: 10px;
+  color: #fff6e3;
+  background: linear-gradient(135deg, #2b0b4f, #7a1d3d);
+}
+.dw-received p {
+  margin: 0;
+}
+.dw-received__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffd27a;
+}
+.dw-received .button {
+  background: #ffd15c;
+  color: #2b0b4f;
+}
+.dw-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+.dw-grid > * {
+  min-width: 0;
+}
+.dw-form {
+  align-content: start;
+}
+.dw-stage {
+  position: relative;
+  width: 100%;
+  max-width: 21rem;
+  margin-inline: auto;
+}
+.dw-stage[data-format='square'] {
+  max-width: 26rem;
+}
+.dw-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  background: #2b0b4f;
+  box-shadow: 0 6px 24px rgba(40, 10, 40, 0.25);
+}
+.dw-canvas[data-photos] {
+  cursor: grab;
+}
+.dw-loading {
+  position: absolute;
+  inset: 40% 0 auto;
+  margin: 0;
+  text-align: center;
+  color: #fff6e3;
+  font-size: 0.875rem;
+}
+.dw-next {
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+.dw-label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 1rem 0 0;
+}
+.dw-designs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.35rem 0.1rem 0.5rem;
+  scroll-snap-type: x proximity;
+}
+.dw-design {
+  flex: 0 0 auto;
+  width: 4.75rem;
+  display: grid;
+  gap: 0.25rem;
+  padding: 3px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+.dw-design canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 7px;
+  background: #2b0b4f;
+}
+.dw-design[aria-checked='true'] {
+  border-color: var(--accent);
+  font-weight: 700;
+}
+.dw-design:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.dw-actions {
+  margin-top: 1rem;
+}
+.dw-share {
+  background: #1a8d4a;
+  color: #fff;
+}
+.dw-share:hover {
+  background: #137038;
+}
+.dw-edit summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+@media (min-width: 60rem) {
+  .dw-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 27rem);
+    align-items: start;
+  }
+  .dw-preview {
+    position: sticky;
+    top: 1rem;
+  }
+}
+.dw-photo {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: start;
+  border: 1px dashed var(--rule-strong);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem 0.9rem;
+  margin: 0;
+  min-width: 0;
+}
+.dw-photo legend {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding-inline: 0.3rem;
+}
+.dw-photo legend .meta {
+  display: inline;
+}
+.dw-photo__rows,
+.dw-photo__frame {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+}
+.dw-photo__frame p {
+  margin: 0;
+}
+.dw-photo__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  width: 100%;
+}
+.dw-photo__name {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+.dw-photo__zoom {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  flex: 1 1 9rem;
+}
+.dw-photo__zoom input {
+  flex: 1;
+  accent-color: var(--accent);
+}
+.dw-file {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.dw-file input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.dw-file:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.dw-photo__privacy {
+  margin: 0;
+}
+
+/* Page text font: the same OFL Noto Sans Devanagari files the cards use (fonts/README.txt). */
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('../fonts/noto-sans-devanagari-500-deva.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF;
+}
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  font-weight: 600 700;
+  font-display: swap;
+  src: url('../fonts/noto-sans-devanagari-700-deva.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF;
+}
