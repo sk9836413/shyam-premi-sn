@@ -4,7 +4,7 @@
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { FB_TIMES, assemble, checkFbCaption, fbDay, fbDecision, fbPhotoCaption, fbVideoCaption, hindiName, istAt, splitCaption } from './fb.mjs';
+import { FB_TIMES, assemble, checkFbCaption, fbDay, fbDecision, fbLongText, fbPhotoCaption, fbVideoCaption, hindiName, istAt, splitCaption } from './fb.mjs';
 import { addDays, loadInputs } from './day-plan.mjs';
 import { placements } from './status-engine.mjs';
 import { fbAtOption, planShort } from './meta.mjs';
@@ -56,6 +56,8 @@ describe('the Facebook day plan: at most 2 videos + 1 photo', () => {
         assert.ok(Math.abs(a - b) >= 2 * 3600e3, `${d}: ${vids(p)}`);
       }
       assert.ok(!p.videos.some((v) => ['kalyug', 'long', 'noon', 'statusday'].includes(v.slot)), `${d}: ${vids(p)}`);
+      // + the daily long katha as a feed Page video at 12:30, outside the 2 Reels (owner, 13 Nov 2026)
+      assert.deepEqual(p.feed.map((v) => `${v.slot} ${v.at} ${v.type} ${v.role}`), ['long 12:30 video feed'], d);
     }
   });
 });
@@ -78,8 +80,30 @@ describe('fbDecision: the flag each workflow step passes', () => {
     assert.equal(fbDecision({ date: '2026-12-03', slot: 'eve', festivalDate: '2026-12-04', now: at('2026-12-03', '12:30'), inputs: i }).at, '2026-12-03T20:00');
     assert.equal(fbDecision({ date: '2026-12-04', slot: 'statusday', now: at('2026-12-03', '19:00'), inputs: i }).post, false);
   });
-  test('noon, kalyug and long never go to Facebook', () => {
-    for (const slot of ['noon', 'kalyug', 'long']) assert.equal(fbDecision({ date: '2026-12-02', slot, now: at('2026-12-02', '10:00'), inputs: i }).post, false, slot);
+  test('noon and kalyug never go to Facebook', () => {
+    for (const slot of ['noon', 'kalyug']) assert.equal(fbDecision({ date: '2026-12-02', slot, now: at('2026-12-02', '10:00'), inputs: i }).post, false, slot);
+  });
+  test('the long katha: a 12:30 feed video every day, on top of the 2 Reels (normal, festival and movie days)', () => {
+    const m = synth([fest('2026-12-04', 'x', 'big')], { movies: new Map([['2026-12-15', 's part 1']]) });
+    for (const d of ['2026-12-02', '2026-12-04', '2026-12-15']) {
+      const day = fbDay(d, m);
+      assert.equal(day.videos.length, 2, d);
+      assert.deepEqual(day.feed, [{ slot: 'long', at: '12:30', kind: 'long', role: 'feed', type: 'video' }], d);
+      assert.deepEqual(fbDecision({ date: d, slot: 'long', now: at(d, '10:00'), inputs: m }), { post: true, at: `${d}T12:30`, why: 'feed 12:30 IST' });
+    }
+  });
+  test('the long katha after 12:30: straight away up to 6 h late, then not at all', () => {
+    assert.equal(fbDecision({ date: '2026-12-02', slot: 'long', now: at('2026-12-02', '12:20'), inputs: i }).at, 'now');
+    assert.equal(fbDecision({ date: '2026-12-02', slot: 'long', now: at('2026-12-02', '18:00'), inputs: i }).at, 'now');
+    assert.equal(fbDecision({ date: '2026-12-02', slot: 'long', now: at('2026-12-02', '18:45'), inputs: i }).post, false);
+  });
+  test('the long katha Facebook text: no like/share/subscribe line, the 3 template hashtags', () => {
+    const yt = 'Chhath Puja ke chaar din.\nYe katha lok manyata ke anusar hai.\nJai Shree Shyam 🙏\nVideo achha laga ho to Like, Share aur Shyam Premi SN ko Subscribe karein.\n#ChhathPuja #NahayKhay #ChhathiMaiya';
+    const t = fbLongText(yt);
+    assert.doesNotMatch(t, /Like|Share|Subscribe/);
+    assert.equal(t.split('\n').at(-1), '#KhatuShyam #JaiShreeShyam #ChhathPuja');
+    assert.match(t, /^Chhath Puja ke chaar din\.\nYe katha/);
+    assert.equal(fbLongText('Katha.\n#JaiShreeShyam #KhatuShyam').split('\n').at(-1), '#KhatuShyam #JaiShreeShyam #Bhakti');
   });
 });
 

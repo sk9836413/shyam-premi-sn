@@ -33,7 +33,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { fbVideoCaption } from './fb.mjs';
+import { fbLongText, fbVideoCaption } from './fb.mjs';
 
 export const FB_REEL_MAX = 90;
 export const IG_REEL_MAX = 15 * 60;
@@ -372,6 +372,7 @@ async function postLong({ video, spec, meta, thumbnail, publishAt, noFb, dryRun 
   if (!configured()) return { status: 'not-configured' };
   if (noFb) return { status: 'ok', slug: spec.slug, facebook: { skipped: 'not in the Facebook plan' } };
   const post = longPost(spec, meta);
+  post.description = fbLongText(post.description); // fb.mjs: no like/share/subscribe lines, the 3 template hashtags
   const at = istAt(publishAt);
   const schedule = at ? { published: 'false', scheduled_publish_time: String(Math.floor(at / 1000)) } : {};
   if (dryRun) {

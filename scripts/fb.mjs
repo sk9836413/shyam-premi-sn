@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Facebook Page plan for reach (owner, 11 Nov 2026: Facebook monetization challenge, 1,000,000 views in 30 days from
 // 11 Nov; the Page had 0-9 views a day while it got ~3 Reels + 4-5 photo posts a day). Facebook now gets at most
-// 2 videos + 1 photo a day, at fixed times, with one caption template. YouTube and Instagram are NOT changed by this file.
+// 2 Reels + 1 photo a day, at fixed times, with one caption template, plus (since 13 Nov 2026) the daily long katha
+// as a 12:30 feed video. YouTube and Instagram are NOT changed by this file.
 //
 //   Photo   06:30 IST  the morning darshan photo (photos.mjs post 1; the festival greeting on festival days). Posts 2-4
 //                      (vichar, temple carousel, Khatu sandhya aarti) stay on Instagram only.
@@ -12,8 +13,13 @@
 //   Reel 2  20:30 IST  the evening Khatu / famous-temple darshan Short (18:00 when Reel 1 is the 20:00 `eve` status, so
 //                      the two are 2.5 h apart); without an evening Short: the festival morning's temple darshan, else
 //                      the other festival status variant, else the movie part.
-//   Everything else (statusday 08:30, the second status of a day, Kalyug, the long katha, the Dadi-Chhotu Short, the
-//   festival-day morning temple Short when the evening one exists) is not posted to Facebook.
+//   Feed    12:30 IST  the daily LONG katha video (owner, 13 Nov 2026: "long video to facebook me bhi dal sakte ho") as a
+//                      normal Page feed video (not a Reel; meta.mjs resumable upload), scheduled for 12:30 like YouTube,
+//                      or as soon as it is ready (up to 6 h late). A different format from the Reels, so it is NOT one of
+//                      the 2 Reels a day. Its text is the YouTube description cleaned for Facebook (fbLongText: no
+//                      like/share/subscribe lines, the template's 3 hashtags). Old long videos are never reposted.
+//   Everything else (statusday 08:30, the second status of a day, Kalyug, the Dadi-Chhotu Short, the festival-day
+//   morning temple Short when the evening one exists) is not posted to Facebook.
 //
 // Caption template (checkFbCaption; validate.mjs checks Claude's `facebook_caption`, photos.mjs post 1's `fb_caption`):
 //   line 1   a Hindi bhaav line + one genuine question (Devanagari, e.g. "हारे का सहारा, बाबा श्याम हमारा 🙏 आप खाटू धाम कब गए थे?")
@@ -32,18 +38,19 @@ import { pathToFileURL } from 'node:url';
 import { LINKS } from './festival-links.mjs';
 import { loadInputs, planDay, addDays, istToday } from './day-plan.mjs';
 
-export const FB_TIMES = { photo: '06:30', reel1: '07:30', reel2: '20:30', reel2BeforeEve: '18:00', reel2Late: '21:30' };
+export const FB_TIMES = { photo: '06:30', reel1: '07:30', long: '12:30', reel2: '20:30', reel2BeforeEve: '18:00', reel2Late: '21:30' };
 const LEAD_MS = 15 * 60e3; // meta.mjs schedules only when the time is at least 15 minutes ahead
 // How long after its planned time a video may still go out at once (render ran late): morning status/movie until
 // ~16:00 IST, the evening darshan 2 h, a festival status 3 h; later than that it is not posted to Facebook.
-const GRACE_H = { daystatus: 8.5, movie: 8.5, temple: 2, status: 3 };
+const GRACE_H = { daystatus: 8.5, movie: 8.5, temple: 2, status: 3, long: 6 };
 const IST = 5.5 * 3600e3;
 export const istAt = (date, hm) => Date.parse(`${date}T${hm}:00Z`) - IST;
 const TIER = { big: 0, status: 1 };
 
 // ---------------------------------------------------------------- the plan
 
-/** Facebook posts of one IST date: { date, photo: {at}, videos: [{ slot, at, kind, role, festival?, festivalDate?, type }] }. */
+/** Facebook posts of one IST date: { date, photo: {at}, videos: [{ slot, at, kind, role, festival?, festivalDate?, type }],
+ *  feed: [the long katha Page video] }. `videos` are the (at most 2) Reel slots; `feed` is not counted in them. */
 export function fbDay(date, inputs) {
   const p = planDay(date, inputs);
   const pl = inputs.placements || [];
@@ -67,14 +74,15 @@ export function fbDay(date, inputs) {
         : movieVideo && r1?.slot !== 'movie' ? movieVideo : null;
   if (r2) out.push({ ...r2, role: 'reel2' });
   out.sort((a, b) => a.at.localeCompare(b.at));
-  return { date, day: p.day, type: p.type, festival: p.festival, photo: { at: FB_TIMES.photo }, videos: out };
+  const feed = p.uploads.some((u) => u.slot === 'long') ? [{ slot: 'long', at: FB_TIMES.long, kind: 'long', role: 'feed', type: 'video' }] : [];
+  return { date, day: p.day, type: p.type, festival: p.festival, photo: { at: FB_TIMES.photo }, videos: out, feed };
 }
 
 /** The Facebook decision for one video: { post, at: 'YYYY-MM-DDTHH:MM' | 'now' | null, why }. */
 export function fbDecision({ date, slot, festivalDate = null, now = Date.now(), inputs }) {
   const day = fbDay(date, inputs);
-  const v = day.videos.find((x) => x.slot === slot && (!festivalDate || !x.festivalDate || x.festivalDate === festivalDate));
-  if (!v) return { post: false, at: null, why: `${date} ${slot}${festivalDate ? ` (${festivalDate})` : ''} is not in the Facebook plan (${day.videos.map((x) => `${x.slot} ${x.at}`).join(', ') || 'no videos'})` };
+  const v = [...day.videos, ...day.feed].find((x) => x.slot === slot && (!festivalDate || !x.festivalDate || x.festivalDate === festivalDate));
+  if (!v) return { post: false, at: null, why: `${date} ${slot}${festivalDate ? ` (${festivalDate})` : ''} is not in the Facebook plan (${[...day.videos, ...day.feed].map((x) => `${x.slot} ${x.at}`).join(', ') || 'no videos'})` };
   const tries = [v.at, ...(v.role === 'reel2' && v.at === FB_TIMES.reel2BeforeEve ? [FB_TIMES.reel2Late] : [])];
   for (const hm of tries) if (istAt(date, hm) - now >= LEAD_MS) return { post: true, at: `${date}T${hm}`, why: `${v.role} ${hm} IST` };
   const graceEnd = istAt(date, tries.at(-1)) + (GRACE_H[v.kind] ?? 2) * 3600e3;
@@ -97,6 +105,24 @@ const FB_BAIT = new RegExp([
   String.raw`paisa\s*aayega|dhan\s*varsha|guaranteed|100\s*%|bad\s*luck|ignore\s*mat|miracle|chamatkar\s*pakka|चमत्कार\s*पक्का`,
 ].join('|'), 'i');
 const isTagLine = (l) => l.split(/\s+/).filter(Boolean).every((w) => TAG.test(w));
+
+/** The Facebook text of the long katha video from its YouTube description: lines asking for likes/shares/subscribes
+ *  (engagement bait, demoted by Meta) are dropped and the hashtags become the template's 3 (#KhatuShyam #JaiShreeShyam
+ *  + the first topical tag of the description). */
+export function fbLongText(description) {
+  const lines = String(description ?? '').split(/\r?\n/);
+  const base = BASE_TAGS.map((t) => t.toLowerCase());
+  let topical = null;
+  for (let i = lines.length - 1; i >= 0; i--) {
+    const l = lines[i].trim();
+    if (!l || !isTagLine(l)) continue;
+    topical ??= l.split(/\s+/).find((t) => !base.includes(t.toLowerCase())) || null;
+    lines.splice(i, 1);
+  }
+  const kept = lines.filter((l) => !FB_BAIT.test(l));
+  while (kept.length && !kept.at(-1).trim()) kept.pop();
+  return [...kept, '', [...BASE_TAGS, topical || '#Bhakti'].join(' ')].join('\n');
+}
 const isLink = (l) => /https?:\/\//.test(l);
 const isCredit = (l) => /^(📷\s*)?(Photo|Photos|Foto)\b.*:|Wikimedia Commons|^📷/i.test(l);
 const isAi = (l) => /sanketik|सांकेतिक|\bAI\s+(se|dwara|द्वारा|से)\b/i.test(l);
@@ -281,7 +307,9 @@ async function main() {
     const from = opt('--from') || istToday();
     for (let i = 0; i < Number(opt('--days') || 14); i++) {
       const d = fbDay(addDays(from, i), inputs);
-      console.log(`${d.date} ${d.day} ${d.type.padEnd(8)} photo ${d.photo.at} | ${d.videos.map((v) => `${v.role} ${v.at} ${v.slot}${v.festival ? `(${v.festival})` : ''}${v.type === 'video' ? ' [page video]' : ''}`).join(' | ') || 'no videos'}`);
+      const reels = d.videos.map((v) => `${v.role} ${v.at} ${v.slot}${v.festival ? `(${v.festival})` : ''}${v.type === 'video' ? ' [page video]' : ''}`).join(' | ') || 'no reels';
+      const feed = d.feed.map((v) => ` || feed ${v.at} ${v.slot} [page video, not a Reel]`).join('');
+      console.log(`${d.date} ${d.day} ${d.type.padEnd(8)} photo ${d.photo.at} | ${reels}${feed}`);
     }
     return 0;
   }

@@ -324,7 +324,9 @@ bhakts search YouTube in Hindi, so the YouTube fields also carry the main keywor
 
 ### Facebook caption (all formats; owner, 11 Nov 2026: Facebook monetization challenge)
 
-Facebook gets at most 2 videos and 1 photo a day (scripts/fb.mjs), and Meta demotes engagement bait, so every
+Facebook gets at most 2 Reels and 1 photo a day, plus the daily long katha as a 12:30 feed video (scripts/fb.mjs; its
+text is your `youtube_description` with like/share/subscribe lines removed and the 3 template hashtags, so keep the
+description free of other bait). Meta demotes engagement bait, so every
 `facebook_caption` is written the same way (`node scripts/validate.mjs` checks it):
 
 1. **Line 1:** a Hindi bhaav line in Devanagari plus ONE genuine question to the viewer about their own experience or

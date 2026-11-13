@@ -49,9 +49,9 @@
 # missed by over 6 hours is skipped. The long katha video is a normal Facebook Page video scheduled for 12:30 IST
 # (in-stream ads later; resumable chunked upload, scripts/meta.mjs) when scripts/fb.mjs lets it; not on Instagram.
 # FACEBOOK PLAN (owner, 11 Nov 2026, monetization challenge; scripts/fb.mjs): Facebook gets at most 2 videos + 1 photo a
-# day. Every Facebook step asks `node scripts/fb.mjs flags` for its own Facebook time (--fb-at: Reel 1 = the status
+# day (+ the daily long katha as a 12:30 feed video since 13 Nov, not one of the 2). Every Facebook step asks `node scripts/fb.mjs flags` for its own Facebook time (--fb-at: Reel 1 = the status
 # Short at its status time or the day-status Short ~07:30/as soon as ready, Reel 2 = the evening darshan 20:30, 18:00 on
-# a 20:00 eve-status day) or --no-fb; YouTube and Instagram times are unchanged. Kalyug and the long katha: no Facebook.
+# a 20:00 eve-status day; Feed = the long katha 12:30) or --no-fb; YouTube and Instagram times are unchanged. Kalyug: no Facebook.
 name: Daily story video
 
 on:
@@ -819,7 +819,7 @@ jobs:
           node scripts/youtube.mjs upload --long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json \
             --meta "story/long/out/$SLUG.json" --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/yt.json"
 
-      # The same video as a normal Facebook Page video (not a Reel; resumable chunked upload), scheduled for 12:30 IST like YouTube; its line in
+      # The same video as a normal Facebook Page feed video (not a Reel; resumable chunked upload), 12:30 IST like YouTube; its line in
       # published.md is committed by Record. Never fails the job; skipped without the META_* secrets.
       - name: Facebook Page video (Graph API)
         if: steps.render.outcome == 'success' && steps.claim.outputs.go == 'true'
@@ -830,10 +830,14 @@ jobs:
         run: |
           [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; no Facebook copy"; exit 0; }
           grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" 2>/dev/null && { echo "::notice::YouTube already had it (earlier run): no second Facebook copy"; exit 0; }
-          # Facebook plan (scripts/fb.mjs): at most 2 videos a day, and the long katha is not one of them.
-          if [ "$(node scripts/fb.mjs flags --date "$(TZ=Asia/Kolkata date +%F)" --slot long || echo --no-fb)" = --no-fb ]; then echo "::notice::Facebook plan: the long katha video is YouTube only"; exit 0; fi
+          # Facebook plan (scripts/fb.mjs, owner 13 Nov 2026): the long katha is a daily FEED video at 12:30 IST, not one of
+          # the 2 Reels a day; fb.mjs gives its time ("--fb-at <date>T12:30", "--fb-at now" when 12:30 has passed and it
+          # is under 6 h late, else --no-fb).
+          fb=$(node scripts/fb.mjs flags --date "${{ steps.date.outputs.today }}" --slot long || echo --no-fb)
+          if [ "$fb" = --no-fb ]; then echo "::notice::Facebook plan: no Facebook copy of this long video"; exit 0; fi
+          at=${fb#--fb-at }; pa=(); [ "$at" = now ] || pa=(--publish-at "$at")
           node scripts/meta.mjs long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json --meta "story/long/out/$SLUG.json" \
-            --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/fb.json" || true
+            --thumbnail "story/long/out/$SLUG-thumb.jpg" "${pa[@]}" | tee "$RUNNER_TEMP/fb.json" || true
           echo "- $SLUG | facebook: $(node -p "try{const j=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/fb.json','utf8'));j.facebook?j.facebook.url+(j.facebook.scheduled?' (scheduled '+j.facebook.scheduled+')':''):'error '+(j.error||j.status)}catch{'failed'}")" >> automation/published.md
           grep -q '"status":"ok"' "$RUNNER_TEMP/fb.json" || echo "::warning::Facebook Page video failed: $(head -c 300 "$RUNNER_TEMP/fb.json")"
 
