@@ -86,3 +86,4 @@
 - 2026-11-13-long-chhath-nahay-khay-kaddu-bhaat-katha | claim: 2026-11-13 long by run 43372721428.1 at 2026-11-13T06:04:13.795Z
 - 2026-11-13-long-chhath-nahay-khay-kaddu-bhaat-katha | youtube: https://youtu.be/CUdwgaJkepg (public at 15:00 IST) | long 5:51, 47 scenes, render 9 min, 0 neurons
 - 2026-11-13-bhajan-chhath-nahay-khay-geet | claim: 2026-11-13 bhajan by run 43427354476.1 at 2026-11-13T12:45:54.942Z
+- 2026-11-13-bhajan-chhath-nahay-khay-geet | youtube: https://youtube.com/shorts/bHoVaWI2LFY (public at 2026-11-13T14:15:00.000Z) | bhajan Short, made 13 Nov 18:16 IST | social: fb: https://www.facebook.com/reel/1147704101182680 (scheduled 2026-11-13T14:15:00.000Z) | ig: pending 2026-11-13T14:15:00.000Z
