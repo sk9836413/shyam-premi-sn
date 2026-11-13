@@ -79,3 +79,4 @@
 - 2026-11-12-evening-khatu-shyam-mandir-darshan | instagram: https://www.instagram.com/reel/DfpKsmcBRqw/
 - 2026-11-12-eve-nahay-khay | instagram: https://www.instagram.com/reel/Dfp3orahrqh/
 - 2026-11-13-status-chhath-puja-nahay-khay | instagram: https://www.instagram.com/reel/Dfp3uO7pR1s/
+- 2026-11-13-morning-deo-surya-mandir-darshan | claim: 2026-11-13 morning by run 43360854418.1 at 2026-11-13T04:50:40.814Z
