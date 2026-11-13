@@ -83,3 +83,4 @@
 - 2026-11-13-morning-deo-surya-mandir-darshan | youtube: https://youtube.com/shorts/jdxMVoYYFF0 | social: fb: skipped (not in the Facebook plan) | ig: error upload failed: Request processing failed | animated 3/4
 - 2026-11-13-evening-vaishno-devi-darshan | claim: 2026-11-13 evening by run 43370570796.1 at 2026-11-13T05:18:16.084Z
 - 2026-11-13-evening-vaishno-devi-darshan | youtube: https://youtube.com/shorts/iTfxCVn_VqE (public at 2026-11-13T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1472895881618228 (scheduled 2026-11-13T15:00:00.000Z) | ig: pending 2026-11-13T13:30:00.000Z
+- 2026-11-13-long-chhath-nahay-khay-kaddu-bhaat-katha | claim: 2026-11-13 long by run 43372721428.1 at 2026-11-13T06:04:13.795Z
