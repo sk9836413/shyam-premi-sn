@@ -16,6 +16,11 @@ QA_DEADLINE = float(os.environ.get('SPS_QA_DEADLINE', '50'))
 OUT = '/kaggle/working/out'
 os.makedirs(OUT, exist_ok=True)
 JOBS = json.loads(r'''__JOBS__''')
+# A batch may raise the budget on its first job (13 Nov 2026: 12 full-length Chhath bhajans, ~95 min session).
+if JOBS and JOBS[0].get('gen_deadline'):
+    GEN_DEADLINE = float(JOBS[0]['gen_deadline'])
+if JOBS and JOBS[0].get('qa_deadline'):
+    QA_DEADLINE = float(JOBS[0]['qa_deadline'])
 results = {'model': 'ACE-Step 1.5 (acestep-v15-turbo DiT fp32 + acestep-5Hz-lm-1.7B fp32)', 'licence': 'MIT', 'experiment': 'bhajan-weekly', 'takes': [], 'log': []}
 CLAP_LABELS = ['Indian devotional bhajan', 'Hindi devotional song with harmonium and dholak', 'Indian folk song with dhol drums',
                'Indian classical music', 'Bollywood song', 'western rock music', 'heavy metal music', 'electronic dance music',

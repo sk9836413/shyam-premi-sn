@@ -185,7 +185,9 @@ export function checkSong(song, { plan = null, others = [], rules = RULES } = {}
   if (tags.some((t) => !/^\[(chorus|verse|bridge)\]$/i.test(t))) e.push('lyrics: only [chorus] / [verse] / [bridge] tags');
   if (tags.filter((t) => /chorus/i.test(t)).length < 2) e.push('lyrics: the chorus comes back at least once ([chorus] twice)');
   const lines = sungLines(lyr);
-  if (lines.length < 6 || lines.length > 16) e.push(`lyrics: 6-16 sung lines (has ${lines.length})`);
+  // full-length songs (song.full, 13 Nov 2026 Chhath jukebox: 2-3 min, verse-chorus-verse-chorus) may have up to 24 lines
+  const maxLines = song.full ? 24 : 16;
+  if (lines.length < 6 || lines.length > maxLines) e.push(`lyrics: 6-${maxLines} sung lines (has ${lines.length})`);
   for (const l of lines) if ([...l].length < 6 || [...l].length > 48) e.push(`line "${l}": 6-48 characters`);
   const words = lyr.replace(/\[[^\]]*\]/g, ' ');
   for (const f of rules.forbidden) if (new RegExp(f.re, 'u').test(words)) e.push(`lyrics: ${f.why}`);
@@ -337,7 +339,8 @@ export function gate(batch, results, { cerMax = CER_MAX } = {}) {
         if (clap.western > 0.3) why.push(`CLAP hears western rock/pop (${clap.western})`);
       }
       return { seed: t.seed, file: t.file, ok: !why.length, why, cer: t.cer, names, clap, seconds: t.seconds, lufs: t.lufs, true_peak: t.true_peak, clip_share: t.clip_share,
-        chorus_at: chorusAt(t.segments, j.lyrics_devanagari), whisper: t.whisper };
+        chorus_at: chorusAt(t.segments, j.lyrics_devanagari), whisper: t.whisper,
+        segments: (t.segments || []).filter((x) => x && typeof x.start === 'number').map((x) => ({ start: Math.round(x.start * 100) / 100, end: Math.round(x.end * 100) / 100, text: String(x.text || '').trim() })) };
     });
     const pass = rows.filter((r) => r.ok).sort((a, b) => a.cer - b.cer);
     return { id: j.id, slot: j.slot, deity: j.deity, mood: j.mood, festival: j.festival, winner: pass[0] || null, takes: rows };
@@ -352,6 +355,7 @@ export function licenceJson({ id, job, take, batchName, kernel = 'sk9846413/sps-
     source: 'original', licence: LICENCE, licence_url: 'https://huggingface.co/ACE-Step/Ace-Step1.5', model: MODEL, model_licence: 'MIT',
     bhajan: { deity: job.deity, mood: job.mood, festival: job.festival || null, ...(job.chhath_day ? { day: job.chhath_day } : {}), title_hi: job.title_hi, title_roman: job.title_roman,
       lyrics: job.lyrics_devanagari, lyrics_sung: job.lyrics, chorus_at: take.chorus_at, seconds: take.seconds, public_domain_text: job.public_domain_text || null,
+      ...(take.segments?.length ? { segments: take.segments } : {}),
       singer: `AI voice (ACE-Step 1.5 caption: ${job.singer === 'female' ? 'female folk voice' : 'male tenor'}); no real singer cloned, no owner voice`, ...(approvedBy ? { approved_by: approvedBy } : {}) },
     generated: { batch: batchName, seed: take.seed, caption: `${job.caption}, ${job.singer_caption || SINGER}`, kaggle_kernel: kernel },
     qa: { seconds: take.seconds, lufs: take.lufs ?? null, true_peak: take.true_peak ?? null, clip_share: take.clip_share ?? null, cer: take.cer ?? null,
@@ -424,7 +428,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     }
     const report = { batch: batch.batch, run: res.run || null, minutes: res.minutes ?? null, median_cer: g.median, kept,
       songs: g.songs.map((s) => ({ id: s.id, deity: s.deity, mood: s.mood, festival: s.festival, winner: s.winner?.seed ?? null,
-        takes: s.takes.map(({ file, whisper, ...t }) => ({ ...t, whisper: (whisper || '').slice(0, 300) })) })) };
+        takes: s.takes.map(({ file, whisper, segments, ...t }) => ({ ...t, whisper: (whisper || '').slice(0, 300) })) })) };
     if (opt('--report')) writeJson(opt('--report'), report);
     console.log(`${batch.batch}: ${kept.length}/${batch.jobs.length} songs passed QA (median CER ${g.median})`);
     for (const s of g.songs) console.log(`- ${s.id}: ${s.winner ? `KEPT seed ${s.winner.seed} (CER ${s.winner.cer})` : `none (${s.takes.map((t) => `${t.seed}: ${t.why.join('; ')}`).join(' | ') || 'no takes'})`}`);

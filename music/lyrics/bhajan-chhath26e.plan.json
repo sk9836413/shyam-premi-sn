@@ -1,0 +1,132 @@
+{
+ "batch": "bhajan-chhath26e",
+ "from": "2026-11-14",
+ "to": "2026-11-16",
+ "count": 12,
+ "songs": [
+  {
+   "slot": 1,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "chhath_day": "nahay-khay",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 104,
+   "singer": "female"
+  },
+  {
+   "slot": 2,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "chhath_day": "kharna",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 82,
+   "singer": "female"
+  },
+  {
+   "slot": 3,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "chhath_day": "kharna",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 108,
+   "singer": "male"
+  },
+  {
+   "slot": 4,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "chhath_day": "sandhya-arghya",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 80,
+   "singer": "female"
+  },
+  {
+   "slot": 5,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "chhath_day": "sandhya-arghya",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 112,
+   "singer": "female"
+  },
+  {
+   "slot": 6,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "chhath_day": "usha-arghya",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 82,
+   "singer": "female"
+  },
+  {
+   "slot": 7,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "chhath_day": "usha-arghya",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 110,
+   "singer": "male"
+  },
+  {
+   "slot": 8,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "chhath_day": "parana",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 86,
+   "singer": "female"
+  },
+  {
+   "slot": 9,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "chhath_day": "chhath",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 78,
+   "singer": "male"
+  },
+  {
+   "slot": 10,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "chhath_day": "chhath",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 112,
+   "singer": "male"
+  },
+  {
+   "slot": 11,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "chhath_day": "chhath",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 106,
+   "singer": "female"
+  },
+  {
+   "slot": 12,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "chhath_day": "chhath",
+   "deity_name": "Chhathi Maiya / Suruj Dev",
+   "bpm": 80,
+   "singer": "male"
+  }
+ ],
+ "avoid_first_lines": [
+  "नहाय खाय के पावन दिन, छठी मइया आईं",
+  "जय श्री श्याम, जय श्री श्याम"
+ ]
+}
