@@ -58,3 +58,4 @@
 2026-11-13 | status | 2026-11-13-status-chhath-puja-nahay-khay | Chhath Puja (Nahay Khay) | status Short variant 2 "Chhath Puja Nahay Khay Status 2026" (15-25 s loop, download link), public 00:30 IST
 2026-11-13 | morning | 2026-11-13-morning-deo-surya-mandir-darshan | Surya dev / Deo Surya Mandir, Aurangabad Bihar (Chhath Nahay Khay) | Deo Surya Mandir darshan: pashchim mukhi mandir, Vishwakarma ek raat mein (manyata), Chhath, Om Suryaya Namah; agla: Kharna
 2026-11-13 | evening | 2026-11-13-evening-vaishno-devi-darshan | Maa Durga / Vaishno Devi Mata, Katra | Vaishno Devi Mata darshan: Trikuta parvat, Katra, teen pindiyan Mahakali-Mahalakshmi-Mahasaraswati (manyata), Jai Mata Di; agla: naya dham
+2026-11-13 | long | 2026-11-13-long-chhath-nahay-khay-kaddu-bhaat-katha | Surya dev / Chhathi Maiya (Chhath Puja, Nahay Khay) | Chhath Puja ke chaar din, Nahay Khay par kaddu bhaat, Raja Priyavrat aur Shashthi Devi ki katha, Kharna, Sandhya aur Usha Arghya

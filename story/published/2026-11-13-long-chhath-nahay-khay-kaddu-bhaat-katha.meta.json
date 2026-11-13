@@ -1,0 +1,61 @@
+{
+  "slug": "2026-11-13-long-chhath-nahay-khay-kaddu-bhaat-katha",
+  "seconds": 351.2,
+  "scenes": 47,
+  "chapters": [
+    {
+      "title": "Chhath Puja ka Pehla Din",
+      "start": 0
+    },
+    {
+      "title": "Chhath ke Chaar Din",
+      "start": 19.13
+    },
+    {
+      "title": "Nahay Khay aur Kaddu Bhaat",
+      "start": 54
+    },
+    {
+      "title": "Raja Priyavrat aur Shashthi Maiya",
+      "start": 106.7
+    },
+    {
+      "title": "Kharna aur Nirjala Vrat",
+      "start": 189.2
+    },
+    {
+      "title": "Sandhya aur Usha Arghya",
+      "start": 223.77
+    },
+    {
+      "title": "Ram, Sita aur Draupadi ki Manyata",
+      "start": 284.63
+    },
+    {
+      "title": "Chhath ka Sandesh",
+      "start": 318
+    }
+  ],
+  "images": 14,
+  "images_generated": 0,
+  "neurons": 0,
+  "render_seconds": 526,
+  "real_photos": 0,
+  "thumbnail_variants": {
+    "winner": "b",
+    "scores": [
+      {
+        "kind": "a",
+        "score": 70,
+        "contrast": 0.676,
+        "face": 0.36
+      },
+      {
+        "kind": "b",
+        "score": 85,
+        "contrast": 0.896,
+        "face": 0.39
+      }
+    ]
+  }
+}

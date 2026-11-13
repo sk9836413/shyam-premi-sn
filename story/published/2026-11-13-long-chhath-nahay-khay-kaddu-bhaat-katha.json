@@ -1,0 +1,454 @@
+{
+  "slug": "2026-11-13-long-chhath-nahay-khay-kaddu-bhaat-katha",
+  "format": "long",
+  "title": "Chhath Puja: Kaddu Bhaat aur Chhathi Maiya",
+  "kicker": "Chhath · Nahay Khay",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Chhath Puja: kaddu bhaat kyun?",
+  "source": "Brahmavaivarta Purana aur lok manyata (Chhath parampara) ke anusar",
+  "deity": "Surya dev / Chhathi Maiya (Chhath Puja, Nahay Khay)",
+  "summary": "Chhath Puja ke chaar din, Nahay Khay par kaddu bhaat, Raja Priyavrat aur Shashthi Devi ki katha, Kharna, Sandhya aur Usha Arghya",
+  "thumbnail": {
+    "image": 1,
+    "focus": "center",
+    "text": "Chhath ke chaar din ki katha",
+    "hi": "छठ पूजा की सम्पूर्ण कथा"
+  },
+  "images": [
+    {
+      "prompt": "Wide scene of a river ghat at sunset during Chhath Puja, many devotees in simple clothes standing waist-deep in calm water, holding bamboo soop baskets towards the glowing orange sun, rows of small diyas on the steps, the main subject in the middle band, warm golden light"
+    },
+    {
+      "prompt": "Close-up portrait of Surya dev, radiant golden-skinned sun god with a glowing halo of sun rays, a tall golden crown, calm kind face in the middle third, seven horses of his chariot softly visible behind, saffron and gold sky"
+    },
+    {
+      "prompt": "An Indian woman in a bright yellow saree taking a holy dip at a river bank at early morning, folding her hands towards the rising sun, soft mist on the water, steps of the ghat, peaceful and pure atmosphere"
+    },
+    {
+      "prompt": "A clean village kitchen courtyard, a woman cooking on a traditional clay chulha with mango wood, brass and clay pots, a bottle gourd (lauki) and bowls of chana dal and rice beside her, warm fire glow, devotional and pure mood"
+    },
+    {
+      "prompt": "A banana leaf plate with simple pure meal of rice, golden chana dal cooked with bottle gourd, and a small pile of rock salt beside it, brass lota and diya nearby, family kneeling around, warm homely light, no onion or garlic"
+    },
+    {
+      "prompt": "Evening at home courtyard, a woman offering a plate of gud ki kheer and soft rotis to the sun at dusk, small clay lamp, family members waiting with folded hands, mango leaves, golden twilight"
+    },
+    {
+      "prompt": "An ancient Indian palace garden, King Priyavrat and Queen Malini sitting in deep sorrow with sad faces, a sage in saffron robes standing near them with a calm blessing hand, soft evening light, traditional royal clothing"
+    },
+    {
+      "prompt": "Divine Goddess Shashthi Devi, Chhathi Maiya, a gentle motherly goddess in red and gold saree with a kind glowing face, a small smiling baby in her arms, seated on a lotus, peacock nearby, soft divine light, the face in the middle third"
+    },
+    {
+      "prompt": "Chhath Puja evening arghya, a woman standing in river water holding a bamboo soop filled with fruits, thekua, sugarcane stalks and a lit diya towards the setting sun, reflection of golden sky on the water, family on the bank"
+    },
+    {
+      "prompt": "Sunrise over the river, devotees standing in the shining water, offering arghya with folded hands to the rising golden sun, soft mist, birds in the sky, hopeful and peaceful mood"
+    },
+    {
+      "prompt": "Lord Ram and Mata Sita standing at a river bank in Ayodhya style, hands folded in prayer towards the sun, soft golden light, simple traditional clothes, calm devotional mood"
+    },
+    {
+      "prompt": "A joyful family at home after the Chhath fast, the elder woman giving prasad of thekua and fruit to children and neighbours, smiling faces, diyas glowing, warm happy light"
+    },
+    {
+      "prompt": "King Priyavrat sitting alone at a quiet river bank at dusk holding a swaddled baby in his arms with a sorrowful face, grey-orange sky, tall grass, calm and gentle mood, traditional royal clothes, no gore"
+    },
+    {
+      "prompt": "Goddess Shashthi Devi in red and gold saree with a glowing kind face blessing King Priyavrat who kneels with folded hands and tears of joy, a smiling baby between them, soft divine golden light, river bank at dawn"
+    }
+  ],
+  "chapters": [
+    {
+      "title": "Chhath Puja ka Pehla Din",
+      "scenes": [
+        {
+          "img": 0,
+          "focus": "center",
+          "motion": "in",
+          "tts": "छठ पूजा! कमर तक पानी में खड़ी व्रती, और सामने ढलता सूरज।",
+          "sub": "Chhath Puja! Kamar tak paani mein khadi vrati, aur saamne dhalta suraj.",
+          "mood": "wonder"
+        },
+        {
+          "img": 3,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "आज नहाय खाय है, छठ का पहला दिन। आज हर घर में बनेगा कद्दू भात।",
+          "sub": "Aaj Nahay Khay hai, Chhath ka pehla din. Aaj har ghar mein banega kaddu bhaat.",
+          "mood": "calm"
+        },
+        {
+          "img": 1,
+          "focus": "top",
+          "motion": "out",
+          "tts": "इस कथा में जानिए, छठ के चारों दिन, कद्दू भात का महत्व, और छठी मइया की कथा।",
+          "sub": "Is katha mein jaaniye, Chhath ke chaaron din, kaddu bhaat ka mahatva, aur Chhathi Maiya ki katha."
+        }
+      ]
+    },
+    {
+      "title": "Chhath ke Chaar Din",
+      "scenes": [
+        {
+          "img": 1,
+          "focus": "center",
+          "motion": "in",
+          "tts": "छठ सूर्य देव और छठी मइया की पूजा है। यह कार्तिक महीने की षष्ठी को होती है।",
+          "sub": "Chhath Surya dev aur Chhathi Maiya ki pooja hai. Ye Kartik mahine ki Shashthi ko hoti hai."
+        },
+        {
+          "img": 9,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "बिहार, पूर्वांचल और झारखंड में इसे बड़ी श्रद्धा से मनाते हैं। अब तो देश-विदेश में भी।",
+          "sub": "Bihar, Purvanchal aur Jharkhand mein ise badi shraddha se manate hain. Ab to desh-videsh mein bhi."
+        },
+        {
+          "img": 2,
+          "focus": "bottom",
+          "motion": "panl",
+          "tts": "इस साल चार दिन हैं। तेरह नवंबर को नहाय खाय, चौदह को खरना।",
+          "sub": "Is saal chaar din hain. Terah November ko Nahay Khay, chaudah ko Kharna."
+        },
+        {
+          "img": 8,
+          "focus": "center",
+          "motion": "in",
+          "tts": "पंद्रह को संध्या अर्घ्य, और सोलह की सुबह उषा अर्घ्य। तब जाकर व्रत पूरा होता है।",
+          "sub": "Pandrah ko Sandhya Arghya, aur solah ki subah Usha Arghya. Tab jaakar vrat poora hota hai."
+        },
+        {
+          "img": 7,
+          "focus": "center",
+          "motion": "out",
+          "tts": "पर छठी मइया कौन हैं? यह व्रत शुरू कैसे हुआ? पहले आज की विधि, फिर उनकी कथा।",
+          "sub": "Par Chhathi Maiya kaun hain? Ye vrat shuru kaise hua? Pehle aaj ki vidhi, phir unki katha.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Nahay Khay aur Kaddu Bhaat",
+      "scenes": [
+        {
+          "img": 2,
+          "focus": "center",
+          "motion": "in",
+          "tts": "नहाय खाय का मतलब है, नहाना और खाना। सुबह व्रती नदी या तालाब में स्नान करती हैं।",
+          "sub": "Nahay Khay ka matlab hai, nahana aur khana. Subah vrati nadi ya talab mein snan karti hain.",
+          "mood": "calm"
+        },
+        {
+          "img": 2,
+          "focus": "top",
+          "motion": "panl",
+          "tts": "जहाँ नदी दूर हो, वहाँ घर पर ही गंगाजल से नहा लेते हैं। मन की शुद्धि सबसे ज़रूरी है।",
+          "sub": "Jahan nadi door ho, wahan ghar par hi Gangajal se naha lete hain. Man ki shuddhi sabse zaroori hai."
+        },
+        {
+          "img": 3,
+          "focus": "center",
+          "motion": "out",
+          "tts": "फिर पूरे घर की सफाई होती है। रसोई धुलती है, और मिट्टी के चूल्हे पर आम की लकड़ी जलती है।",
+          "sub": "Phir poore ghar ki safai hoti hai. Rasoi dhulti hai, aur mitti ke chulhe par aam ki lakdi jalti hai."
+        },
+        {
+          "img": 4,
+          "focus": "center",
+          "motion": "in",
+          "tts": "आज का भोजन है कद्दू भात। यानी लौकी की सब्ज़ी, चने की दाल और चावल।",
+          "sub": "Aaj ka bhojan hai kaddu bhaat. Yaani lauki ki sabzi, chane ki daal aur chaawal."
+        },
+        {
+          "img": 4,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "इसमें सेंधा नमक पड़ता है। प्याज़ और लहसुन नहीं। खाना बहुत सादा और सात्विक होता है।",
+          "sub": "Isme sendha namak padta hai. Pyaaz aur lahsun nahin. Khana bahut saada aur satvik hota hai."
+        },
+        {
+          "img": 11,
+          "focus": "center",
+          "motion": "panl",
+          "tts": "पहले व्रती खाती हैं, फिर पूरा परिवार प्रसाद की तरह खाता है। हैं ना सुंदर परंपरा?",
+          "sub": "Pehle vrati khati hain, phir poora parivar prasad ki tarah khata hai. Hain na sundar parampara?",
+          "mood": "emotional"
+        },
+        {
+          "img": 5,
+          "focus": "center",
+          "motion": "out",
+          "tts": "कद्दू भात ही क्यों? मान्यता है कि हल्का, शुद्ध भोजन, आगे के कठिन व्रत के लिए तैयार करता है।",
+          "sub": "Kaddu bhaat hi kyon? Manyata hai ki halka, shuddh bhojan, aage ke kathin vrat ke liye taiyaar karta hai."
+        }
+      ]
+    },
+    {
+      "title": "Raja Priyavrat aur Shashthi Maiya",
+      "scenes": [
+        {
+          "img": 6,
+          "focus": "center",
+          "motion": "in",
+          "tts": "अब सुनिए छठी मइया की कथा। पुराणों में एक राजा का नाम आता है, प्रियव्रत।",
+          "sub": "Ab suniye Chhathi Maiya ki katha. Puranon mein ek raja ka naam aata hai, Priyavrat.",
+          "mood": "calm"
+        },
+        {
+          "img": 6,
+          "focus": "top",
+          "motion": "panl",
+          "tts": "रानी का नाम मालिनी था। राजा रानी के पास सब कुछ था, बस संतान का सुख नहीं था।",
+          "sub": "Rani ka naam Malini tha. Raja-rani ke paas sab kuch tha, bas santaan ka sukh nahin tha."
+        },
+        {
+          "img": 6,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "तब महर्षि कश्यप ने उनसे पुत्रेष्टि यज्ञ करवाया। यज्ञ की खीर रानी ने खाई।",
+          "sub": "Tab Maharshi Kashyap ne unse putreshti yagya karwaya. Yagya ki kheer rani ne khayi."
+        },
+        {
+          "img": 6,
+          "focus": "bottom",
+          "motion": "out",
+          "tts": "कुछ समय बाद पुत्र हुआ। पर वह जीवित नहीं था। महल में सन्नाटा छा गया… राजा का मन टूट गया।",
+          "sub": "Kuch samay baad putra hua. Par wo jeevit nahin tha. Mahal mein sannata chha gaya... Raja ka man toot gaya.",
+          "mood": "emotional"
+        },
+        {
+          "img": 12,
+          "focus": "center",
+          "motion": "in",
+          "tts": "राजा बालक को लेकर श्मशान गए, और वहीं बैठकर रोने लगे। जीने की इच्छा भी छूटने लगी।",
+          "sub": "Raja baalak ko lekar shmashan gaye, aur wahin baithkar rone lage. Jeene ki ichchha bhi chhootne lagi.",
+          "mood": "emotional"
+        },
+        {
+          "img": 7,
+          "focus": "center",
+          "motion": "in",
+          "tts": "तभी एक दिव्य देवी प्रकट हुईं। तेज ऐसा, जैसे सुबह की पहली किरण।",
+          "sub": "Tabhi ek divya devi prakat huin. Tej aisa, jaise subah ki pehli kiran.",
+          "mood": "wonder",
+          "teaser": true
+        },
+        {
+          "img": 7,
+          "focus": "top",
+          "motion": "out",
+          "tts": "उन्होंने कहा, मैं षष्ठी देवी हूँ। ब्रह्मा जी की मानस पुत्री, और बालकों की रक्षा करने वाली।",
+          "sub": "Unhone kaha, main Shashthi Devi hoon. Brahma ji ki maanas putri, aur baalakon ki raksha karne wali."
+        },
+        {
+          "img": 13,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "देवी ने बालक को प्यार से छुआ… और वह जीवित हो उठा। राजा की आँखें भर आईं।",
+          "sub": "Devi ne baalak ko pyaar se chhua... aur wo jeevit ho utha. Raja ki aankhen bhar aayin.",
+          "mood": "wonder"
+        },
+        {
+          "img": 13,
+          "focus": "top",
+          "motion": "panl",
+          "tts": "देवी बोलीं, तुम मेरी पूजा करो, और सबसे कहो कि वे भी करें। यही तुम्हारा कल्याण है।",
+          "sub": "Devi boli, tum meri pooja karo, aur sabse kaho ki ve bhi karein. Yahi tumhara kalyan hai."
+        },
+        {
+          "img": 11,
+          "focus": "top",
+          "motion": "in",
+          "tts": "राजा प्रियव्रत ने श्रद्धा से षष्ठी देवी की पूजा की। मान्यता है, तभी से यह परंपरा चली।",
+          "sub": "Raja Priyavrat ne shraddha se Shashthi Devi ki pooja ki. Manyata hai, tabhi se ye parampara chali."
+        },
+        {
+          "img": 7,
+          "focus": "center",
+          "motion": "out",
+          "tts": "लोक में यही देवी छठी मइया कहलाती हैं। यह कथा ब्रह्मवैवर्त पुराण के अनुसार कही जाती है।",
+          "sub": "Lok mein yahi devi Chhathi Maiya kehlati hain. Ye katha Brahmavaivarta Purana ke anusar kahi jaati hai."
+        }
+      ]
+    },
+    {
+      "title": "Kharna aur Nirjala Vrat",
+      "scenes": [
+        {
+          "img": 5,
+          "focus": "center",
+          "motion": "in",
+          "tts": "अब दूसरा दिन, खरना। इस दिन व्रती सुबह से निर्जल उपवास रखती हैं।",
+          "sub": "Ab doosra din, Kharna. Is din vrati subah se nirjal upvas rakhti hain."
+        },
+        {
+          "img": 5,
+          "focus": "top",
+          "motion": "pan",
+          "tts": "शाम को मिट्टी के चूल्हे पर गुड़ की खीर बनती है। साथ में रोटी और केले।",
+          "sub": "Shaam ko mitti ke chulhe par gud ki kheer banti hai. Saath mein roti aur kele."
+        },
+        {
+          "img": 5,
+          "focus": "bottom",
+          "motion": "panl",
+          "tts": "पहले सूर्य देव को भोग लगता है। फिर व्रती प्रसाद खाती हैं, और घर के सब लोग भी।",
+          "sub": "Pehle Surya dev ko bhog lagta hai. Phir vrati prasad khati hain, aur ghar ke sab log bhi."
+        },
+        {
+          "img": 11,
+          "focus": "center",
+          "motion": "out",
+          "tts": "इसके बाद शुरू होता है, छत्तीस घंटे का निर्जला व्रत। न अन्न, न जल।",
+          "sub": "Iske baad shuru hota hai, chhattis ghante ka nirjala vrat. Na ann, na jal.",
+          "mood": "serious"
+        },
+        {
+          "img": 0,
+          "focus": "bottom",
+          "motion": "out",
+          "tts": "इसी बीच घर में ठेकुआ बनता है। बाँस के सूप सजते हैं, और छठ के गीत गूँजते हैं।",
+          "sub": "Isi beech ghar mein thekua banta hai. Baans ke soop sajte hain, aur Chhath ke geet goonjte hain.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Sandhya aur Usha Arghya",
+      "scenes": [
+        {
+          "img": 8,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "तीसरे दिन सूप में ठेकुआ, केले, नारियल, गन्ना और मौसमी फल रखे जाते हैं।",
+          "sub": "Teesre din soop mein thekua, kele, nariyal, ganna aur mausami phal rakhe jaate hain."
+        },
+        {
+          "img": 2,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "ये सब उसी मौसम की उपज है। जो प्रकृति ने दिया, वही उसे लौटाते हैं।",
+          "sub": "Ye sab usi mausam ki upaj hai. Jo prakriti ne diya, wahi use lautate hain."
+        },
+        {
+          "img": 0,
+          "focus": "center",
+          "motion": "in",
+          "tts": "शाम को पूरा परिवार घाट पर पहुँचता है। व्रती पानी में उतरती हैं, और डूबते सूरज को अर्घ्य देती हैं।",
+          "sub": "Shaam ko poora parivar ghat par pahunchta hai. Vrati paani mein utarti hain, aur doobte suraj ko arghya deti hain.",
+          "mood": "wonder"
+        },
+        {
+          "img": 8,
+          "focus": "center",
+          "motion": "panl",
+          "tts": "सोचो… जिस सूरज को सब ढलता देखते हैं, उसे भी यहाँ प्रणाम किया जाता है।",
+          "sub": "Socho... Jis suraj ko sab dhalta dekhte hain, use bhi yahan pranam kiya jaata hai.",
+          "mood": "emotional"
+        },
+        {
+          "img": 8,
+          "focus": "top",
+          "motion": "pan",
+          "tts": "रात को घाट पर दीये जलते हैं, और घर में कोसी भरी जाती है। फिर सब सुबह का इंतज़ार करते हैं।",
+          "sub": "Raat ko ghat par diye jalte hain, aur ghar mein kosi bhari jaati hai. Phir sab subah ka intezaar karte hain."
+        },
+        {
+          "img": 9,
+          "focus": "center",
+          "motion": "in",
+          "tts": "चौथे दिन, भोर से पहले ही सब घाट पर होते हैं। पानी में खड़े होकर, उगते सूरज की राह देखते हैं।",
+          "sub": "Chauthe din, bhor se pehle hi sab ghat par hote hain. Paani mein khade hokar, ugte suraj ki raah dekhte hain."
+        },
+        {
+          "img": 9,
+          "focus": "bottom",
+          "motion": "out",
+          "tts": "सूरज की पहली किरण निकलती है, और उषा अर्घ्य दिया जाता है। सबके हाथ जुड़ जाते हैं।",
+          "sub": "Suraj ki pehli kiran nikalti hai, aur Usha Arghya diya jaata hai. Sabke haath jud jaate hain.",
+          "mood": "emotional"
+        },
+        {
+          "img": 11,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "फिर पारण होता है। व्रती प्रसाद और जल लेकर, छत्तीस घंटे का व्रत पूरा करती हैं।",
+          "sub": "Phir paran hota hai. Vrati prasad aur jal lekar, chhattis ghante ka vrat poora karti hain."
+        }
+      ]
+    },
+    {
+      "title": "Ram, Sita aur Draupadi ki Manyata",
+      "scenes": [
+        {
+          "img": 10,
+          "focus": "center",
+          "motion": "in",
+          "tts": "छठ से जुड़ी और भी मान्यताएँ हैं। कहते हैं, लंका से लौटकर श्री राम और माता सीता ने भी सूर्य की उपासना की।",
+          "sub": "Chhath se judi aur bhi manyataayein hain. Kehte hain, Lanka se lautkar Shri Ram aur Mata Sita ne bhi Surya ki upasana ki."
+        },
+        {
+          "img": 10,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "कुछ कथाओं में द्रौपदी और पांडवों का भी नाम आता है। कहा जाता है, उन्होंने भी यह व्रत किया।",
+          "sub": "Kuch kathaon mein Draupadi aur Pandavon ka bhi naam aata hai. Kaha jaata hai, unhone bhi ye vrat kiya."
+        },
+        {
+          "img": 10,
+          "focus": "top",
+          "motion": "panl",
+          "tts": "ये सब लोक मान्यताएँ हैं, और अलग-अलग जगह अलग तरह से कही जाती हैं। हम बस श्रद्धा से सुनते हैं।",
+          "sub": "Ye sab lok manyataayein hain, aur alag-alag jagah alag tarah se kahi jaati hain. Hum bas shraddha se sunte hain."
+        },
+        {
+          "img": 1,
+          "focus": "bottom",
+          "motion": "out",
+          "tts": "पर एक बात सब कथाओं में एक है। सूर्य देव जीवन देते हैं, इसलिए उन्हें धन्यवाद कहना है।",
+          "sub": "Par ek baat sab kathaon mein ek hai. Surya dev jeevan dete hain, isliye unhe dhanyavaad kehna hai."
+        }
+      ]
+    },
+    {
+      "title": "Chhath ka Sandesh",
+      "scenes": [
+        {
+          "img": 0,
+          "focus": "top",
+          "motion": "in",
+          "tts": "छठ में न कोई बड़ा, न कोई छोटा। सब एक ही घाट पर, एक ही सूरज के सामने खड़े होते हैं।",
+          "sub": "Chhath mein na koi bada, na koi chhota. Sab ek hi ghat par, ek hi suraj ke saamne khade hote hain.",
+          "mood": "emotional"
+        },
+        {
+          "img": 10,
+          "focus": "top",
+          "motion": "panl",
+          "tts": "सफाई, सादगी, संयम, और प्रकृति के लिए आभार। यही छठ की असली सीख है।",
+          "sub": "Safai, saadgi, sanyam, aur prakriti ke liye aabhaar. Yahi Chhath ki asli seekh hai."
+        },
+        {
+          "img": 1,
+          "focus": "center",
+          "motion": "in",
+          "tts": "सूर्य देव का मंत्र है, ॐ सूर्याय नमः। चाहें तो आज शाम इसे एक बार मन में दोहराइए।",
+          "sub": "Surya dev ka mantra hai, Om Suryaya Namah. Chahein to aaj shaam ise ek baar man mein dohraiye.",
+          "mood": "calm"
+        },
+        {
+          "endcard": true,
+          "tts": "जय छठी मइया, जय सूर्य देव! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और सब्सक्राइब करें।",
+          "sub": "Jai Chhathi Maiya, Jai Surya dev! Katha achhi lagi ho to Like, Share aur Subscribe karein."
+        }
+      ]
+    }
+  ],
+  "youtube_title": "Chhath Puja Nahay Khay Kaddu Bhaat ki Katha | छठ पूजा नहाय खाय कद्दू भात की कथा | Sampoorn Katha",
+  "youtube_description": "Chhath Puja ke chaar din: Nahay Khay (13 Nov), Kharna (14 Nov), Sandhya Arghya (15 Nov) aur Usha Arghya (16 Nov 2026).\nIs video mein jaaniye Nahay Khay par kaddu bhaat kyun banta hai, Raja Priyavrat aur Shashthi Devi (Chhathi Maiya) ki katha, aur Kharna, Sandhya aur Usha Arghya ki vidhi.\nYe katha Brahmavaivarta Purana aur lok manyata (Chhath parampara) ke anusar hai. Kathayein manyata par aadharit hain.\nछठ पूजा नहाय खाय, कद्दू भात और छठी मइया की कथा।\nMantra: ॐ सूर्याय नमः\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nJai Shree Shyam 🙏\nVideo achha laga ho to Like, Share aur Shyam Premi SN ko Subscribe karein.\n#ChhathPuja #NahayKhay #ChhathiMaiya #SuryaDev",
+  "youtube_tags": "Chhath Puja katha, छठ पूजा कथा, nahay khay kaddu bhaat, नहाय खाय कद्दू भात, Chhathi Maiya ki katha, छठी मइया की कथा, Chhath Puja vidhi, छठ पूजा विधि, Chhath Puja 2026, Surya dev ki katha, सूर्य देव, Kharna, Sandhya Arghya, Usha Arghya, Shyam Premi SN"
+}
