@@ -91,6 +91,8 @@ permissions:
 # render-story.mjs Short instead of the synthesized drone; unset = old sound.
 env:
   MUSIC_ENGINE: ${{ vars.MUSIC_ENGINE }}
+  # Owner's one-day cap exception for scripts/upload-guard.mjs (YYYY-MM-DD; any other day = normal cap of 3).
+  EXTRA_UPLOAD_DAY: ${{ vars.EXTRA_UPLOAD_DAY }}
 
 # Evening runs have their own queue, so the long animated evening job can run beside the morning one; within a
 # slot, runs queue and the later one skips once the slot is in log.md. log.md and published.md merge as unions.

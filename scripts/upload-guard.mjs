@@ -132,7 +132,9 @@ function main() {
       return { status: 'error', error: e.message };
     }
   }
-  const check = () => decide({ log: show('automation/log.md'), pub: show('automation/published.md'), day, slot, slug, run });
+  // Owner's one-day exception (repo variable EXTRA_UPLOAD_DAY=YYYY-MM-DD, e.g. a big festival): one extra upload that day only.
+  const cap = process.env.EXTRA_UPLOAD_DAY && process.env.EXTRA_UPLOAD_DAY.trim() === day ? DAILY_CAP + 1 : DAILY_CAP;
+  const check = () => decide({ log: show('automation/log.md'), pub: show('automation/published.md'), day, slot, slug, run, cap });
   try {
     const r = pushLine(claimLine({ day, slot, slug, run }), `Claim ${day} ${slot}: ${slug}`, check);
     if (r.go) return { go: true, claimed: `${day} ${slot}`, slug, run };
