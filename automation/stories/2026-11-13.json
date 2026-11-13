@@ -6,17 +6,18 @@
       "type": "video",
       "source": "2026-11-13-status-chhath-puja-nahay-khay",
       "fb": {
-        "claim": {
-          "run": "43451939274.1",
-          "at": "2026-11-13T15:22:48.359Z"
-        }
+        "id": "2591593954640865",
+        "at": "2026-11-13T15:23:12.589Z"
       },
       "ig": {
-        "claim": {
-          "run": "43451939274.1",
-          "at": "2026-11-13T15:22:48.359Z"
-        }
-      }
+        "id": "18076773515741348",
+        "at": "2026-11-13T15:24:10.463Z"
+      },
+      "seconds": {
+        "source": 20,
+        "story": 20.2
+      },
+      "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-13-video.mp4"
     }
   ]
 }
