@@ -328,10 +328,59 @@ for (const [c, ch] of spec.chapters.entries()) {
 // Two chapters at a time: each x264 encode already uses several cores.
 await pool(jobs, 2, (job) => job());
 
-const total = at;
+const katha = at; // the narrated katha
+// AI-sung bhajan (music/bhajan.mjs; repo variable BHAJAN_VOCALS=on): ~20-30 s of the chorus BEFORE the katha starts and the
+// whole bhajan AFTER it has ended; the narration only ever plays between the two (no voice under the singing).
+let bhajan = null, bh = null;
+if (process.env.BHAJAN_VOCALS === 'on') {
+  try {
+    const m = await import('../music/bhajan.mjs');
+    bhajan = m.bhajanFor(spec);
+    bh = bhajan && m.longTimeline({ katha, track: bhajan.track });
+    if (bhajan && !bh) { console.log(`bhajan ${bhajan.meta.id} too short for a 20 s intro: instrumental only`); bhajan = null; }
+  } catch (e) { console.log(`bhajan skipped: ${e.message}`); bhajan = null; bh = null; }
+}
+const OFF = bh ? bh.kathaStart : 0; // where the katha starts in the final video
+const total = bh ? bh.total : katha;
+const bhClips = [];
+if (bh) {
+  // Same encoder settings as the chapters, so the concat below still needs no re-encode.
+  const enc = (frames, out) => ['-map', '[v]', '-frames:v', String(frames), '-r', String(FPS), '-c:v', 'libx264', '-preset', 'fast', '-crf', '21', '-g', '60', '-pix_fmt', 'yuv420p', '-an', out];
+  const frameOf = (k) => (photoOf.has(k) || fbOf.has(k) ? 'scale=2880:1620:force_original_aspect_ratio=increase:flags=lanczos,crop=2880:1620,setsar=1'
+    : `scale=2880:2880:flags=lanczos,crop=2880:1620:0:${FOCUS_Y.center}`);
+  const label = textFile('bhajan-label.txt', `Bhajan  ·  ${bhajan.meta.title}`.slice(0, 80));
+  const labelDraw = draw(label, 'fontsize=40:fontcolor=0xFFE27A:box=1:boxcolor=0x1a0b00@0.7:boxborderw=18:x=70:y=h-text_h-70');
+  const thumbIdx = spec.thumbnail?.image ?? 0;
+  // Intro: the thumbnail picture, slow zoom, the hook for 3.2 s, the bhajan label; dips to black into chapter 1.
+  const iFrames = Math.round(bh.intro * FPS);
+  const intro = path.join(work, 'bhajan-intro.mp4');
+  const hook = spec.hook ? draw(textFile('bhajan-hook.txt', wrap(spec.hook, 22)), `fontsize=100:fontcolor=0xFFE27A:line_spacing=16:box=1:boxcolor=0x1a0b00@0.72:boxborderw=40:x=(w-text_w)/2:y=h-text_h-220:enable='lt(t,3.2)'`) + ',' : '';
+  await ff(['-i', imageFiles[thumbIdx], '-i', LOGO, '-filter_complex', [
+    `[0:v]${frameOf(thumbIdx)},zoompan=${motion('in', iFrames)}:d=${iFrames}:s=${W}x${H}:fps=${FPS},setsar=1[bg]`, `[1:v]scale=96:96[lg]`,
+    `[bg][lg]overlay=40:30,${hook}${labelDraw},fade=t=out:st=${(bh.intro - FADE).toFixed(4)}:d=${FADE.toFixed(4)}[v]`,
+  ].join(';'), ...enc(iFrames, intro)]);
+  // Outro: the whole bhajan over 2-4 of the katha's pictures (crossfades), logo, sign-off and the bhajan label.
+  const oSecs = total - bh.kathaEnd;
+  const pics = [...new Set([thumbIdx, ...scenes.filter((x) => !x.endcard).map((x) => x.img)])].filter((k) => imageFiles[k])
+    .slice(0, Math.max(2, Math.min(4, Math.round(oSecs / 15))));
+  const seg = (oSecs + (pics.length - 1)) / pics.length; // 1 s crossfades
+  const sFrames = Math.round(seg * FPS) + 2;
+  const oFrames = Math.round(oSecs * FPS);
+  const outro = path.join(work, 'bhajan-outro.mp4');
+  const sign = textFile('bhajan-sign.txt', spec.signoff || 'Jai Shree Shyam');
+  const xf = pics.slice(1).map((_, k) => `[${k === 0 ? 'p0' : `x${k}`}][p${k + 1}]xfade=transition=fade:duration=1:offset=${((k + 1) * (seg - 1)).toFixed(3)}[x${k + 1}]`);
+  await ff([...pics.flatMap((k) => ['-i', imageFiles[k]]), '-i', LOGO, '-filter_complex', [
+    ...pics.map((k, j) => `[${j}:v]${frameOf(k)},zoompan=${motion(j % 2 ? 'out' : 'in', sFrames)}:d=${sFrames}:s=${W}x${H}:fps=${FPS},eq=brightness=-0.12,setsar=1[p${j}]`),
+    ...xf, `[${pics.length}:v]scale=200:200[lg]`,
+    `[${pics.length > 1 ? `x${pics.length - 1}` : 'p0'}][lg]overlay=W-w-50:40,${draw(sign, 'fontsize=72:fontcolor=0xFFD877:shadowcolor=0x000000@0.8:shadowx=3:shadowy=3:box=1:boxcolor=0x1a0b00@0.55:boxborderw=20:x=(w-text_w)/2:y=h-text_h-190')},${labelDraw},` +
+      `fade=t=in:st=0:d=${FADE.toFixed(4)},tpad=stop_mode=clone:stop_duration=3,trim=duration=${(oFrames / FPS).toFixed(4)}[v]`,
+  ].join(';'), ...enc(oFrames, outro)]);
+  bhClips.push(intro, outro);
+}
 const vlist = path.join(work, 'video.txt');
 const alist = path.join(work, 'audio.txt');
-fs.writeFileSync(vlist, chapters.map((c) => `file '${c.video.replace(/\\/g, '/')}'`).join('\n'));
+const vfiles = [...(bh ? [bhClips[0]] : []), ...chapters.map((c) => c.video), ...(bh ? [bhClips[1]] : [])];
+fs.writeFileSync(vlist, vfiles.map((v) => `file '${v.replace(/\\/g, '/')}'`).join('\n'));
 fs.writeFileSync(alist, chapters.map((c) => `file '${c.audio.replace(/\\/g, '/')}'`).join('\n'));
 const joined = path.join(work, 'video.mp4');
 const narration = path.join(work, 'narration.wav');
@@ -339,7 +388,14 @@ await ff(['-f', 'concat', '-safe', '0', '-i', vlist, '-c', 'copy', joined]);
 await ff(['-f', 'concat', '-safe', '0', '-i', alist, '-c', 'copy', narration]);
 
 // Music: a soft tanpura-like drone under everything and a temple bell at every chapter start.
-const drone = `aevalsrc='0.09*sin(2*PI*138.59*t)*(1+0.25*sin(2*PI*0.18*t))+0.06*sin(2*PI*207.65*t)*(1+0.25*sin(2*PI*0.23*t))+0.045*sin(2*PI*277.18*t)|0.09*sin(2*PI*138.59*t+0.4)*(1+0.25*sin(2*PI*0.21*t))+0.06*sin(2*PI*207.65*t+0.3)+0.045*sin(2*PI*277.18*t+0.2)':s=48000:d=${total.toFixed(3)}`;
+const drone = `aevalsrc='0.09*sin(2*PI*138.59*t)*(1+0.25*sin(2*PI*0.18*t))+0.06*sin(2*PI*207.65*t)*(1+0.25*sin(2*PI*0.23*t))+0.045*sin(2*PI*277.18*t)|0.09*sin(2*PI*138.59*t+0.4)*(1+0.25*sin(2*PI*0.21*t))+0.06*sin(2*PI*207.65*t+0.3)+0.045*sin(2*PI*277.18*t+0.2)':s=48000:d=${katha.toFixed(3)}`;
+// Music engine (music/engine.mjs, repo variable MUSIC_ENGINE=on): a licence-checked instrumental library track replaces
+// the drone under the narration (same ducking); any problem keeps the drone.
+let music = null;
+if (process.env.MUSIC_ENGINE === 'on') {
+  try { music = (await import('../music/engine.mjs')).musicFor(spec); } catch (e) { console.log(`music engine skipped: ${e.message}`); }
+  if (music) { spec.music = music.meta; console.log(`music: ${music.meta.id} (${music.meta.mood})`); }
+}
 const bell = `aevalsrc='0.45*sin(2*PI*1046*t)*exp(-2.2*t)+0.25*sin(2*PI*2093*t)*exp(-3.5*t)+0.15*sin(2*PI*1568*t)*exp(-2.8*t)':s=48000:d=4`;
 const K = chapters.length;
 // Ambience under the voice (10 Nov 2026, as in the Shorts; all synthesized, no third-party audio): temple air always,
@@ -350,26 +406,35 @@ const promptWords = (spec.images || []).map((im) => im.prompt || '').join(' ').t
 const PLACE = /temple|mandir|courtyard|devotee|darshan|murti/;
 const amb = spec.ambience || (/aarti|diya|lamp|flame/.test(promptWords) && PLACE.test(promptWords) ? 'aarti'
   : PLACE.test(promptWords) ? 'temple' : /forest|grove|river|mountain|field|village|sky|garden/.test(promptWords) ? 'nature' : 'quiet');
-const TT = total.toFixed(3);
+const TT = katha.toFixed(3); // the bed lasts the katha only; it is placed at OFF
 const ambLayers = amb === 'none' ? [] : [
   `anoisesrc=color=brown:amplitude=0.6:seed=7:d=${TT},lowpass=f=${amb === 'nature' ? 900 : 380},tremolo=f=0.11:d=0.55,volume=${amb === 'nature' ? 0.14 : 0.08}`,
   ...(['temple', 'aarti'].includes(amb) ? [`anoisesrc=color=pink:amplitude=0.5:seed=11:d=${TT},bandpass=f=520:width_type=h:w=520,tremolo=f=3.3:d=0.55,tremolo=f=0.31:d=0.6,lowpass=f=1400,volume=0.06`] : []),
   ...(['aarti', 'temple'].includes(amb) ? [`aevalsrc='if(lt(random(0),${amb === 'aarti' ? 0.0008 : 0.0003}),(random(1)-0.5)*1.4,0)':s=48000:d=${TT},highpass=f=1800,lowpass=f=7500,volume=${amb === 'aarti' ? 0.45 : 0.25}`] : []),
 ];
+const OFFMS = Math.round(OFF * 1000);
+const at0 = (ms) => (ms > 0 ? `,adelay=${ms}|${ms}` : '');
+const TF = total.toFixed(3);
+const BI = 4 + ambLayers.length; // bhajan inputs: the intro cut, then the whole song
 const mix = [
-  `[2:a]volume=0.42[dr]`,
+  `[2:a]${music ? `${music.filter},atrim=duration=${TT},afade=t=out:st=${Math.max(0, katha - 2.5).toFixed(2)}:d=2.5` : 'volume=0.42'}${at0(OFFMS)},apad=whole_dur=${TF}[dr]`,
   `[3:a]aformat=channel_layouts=stereo,volume=0.7,asplit=${K}${chapters.map((_, k) => `[b${k}]`).join('')}`,
-  ...chapters.map((c, k) => `[b${k}]adelay=${Math.round(c.start * 1000)}|${Math.round(c.start * 1000)}[bb${k}]`),
-  ...ambLayers.map((_, k) => `[${4 + k}:a]aformat=sample_rates=48000:channel_layouts=stereo[am${k}]`),
-  `[1:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[vox][key]`,
+  ...chapters.map((c, k) => `[b${k}]adelay=${Math.round((c.start + OFF) * 1000)}|${Math.round((c.start + OFF) * 1000)}[bb${k}]`),
+  ...ambLayers.map((_, k) => `[${4 + k}:a]aformat=sample_rates=48000:channel_layouts=stereo${at0(OFFMS)}[am${k}]`),
+  `[1:a]aformat=sample_rates=48000:channel_layouts=stereo${at0(OFFMS)},apad=whole_dur=${TF},asplit=2[vox][key]`,
   `[dr]${chapters.map((_, k) => `[bb${k}]`).join('')}${ambLayers.map((_, k) => `[am${k}]`).join('')}amix=inputs=${K + 1 + ambLayers.length}:duration=first:normalize=0[bed]`,
   '[bed][key]sidechaincompress=threshold=0.02:ratio=4:attack=25:release=500:makeup=1[duck]',
-  `[vox][duck]amix=inputs=2:duration=first:normalize=0,` +
+  ...(bh ? [
+    `[${BI}:a]aresample=48000,aformat=sample_rates=48000:channel_layouts=stereo,atrim=duration=${bh.intro},afade=t=in:d=0.04,afade=t=out:st=${(bh.intro - 2.5).toFixed(2)}:d=2.5,apad=whole_dur=${TF}[bhi]`,
+    `[${BI + 1}:a]aresample=48000,aformat=sample_rates=48000:channel_layouts=stereo,afade=t=in:d=0.5,adelay=${Math.round(bh.outroStart * 1000)}|${Math.round(bh.outroStart * 1000)},apad=whole_dur=${TF}[bho]`,
+  ] : []),
+  `[vox][duck]${bh ? '[bhi][bho]' : ''}amix=inputs=${bh ? 4 : 2}:duration=first:normalize=0,atrim=duration=${TF},` +
     `afade=t=out:st=${(total - 2.5).toFixed(2)}:d=2.5,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]`,
 ];
 const out = path.join(base, 'out', `${spec.slug}.mp4`);
-await ff(['-i', joined, '-i', narration, '-f', 'lavfi', '-i', drone, '-f', 'lavfi', '-i', bell, ...ambLayers.flatMap((l) => ['-f', 'lavfi', '-i', l]), '-filter_complex', mix.join(';'),
-  '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2', '-t', total.toFixed(3), '-movflags', '+faststart', out]);
+await ff(['-i', joined, '-i', narration, ...(music ? music.input : ['-f', 'lavfi', '-i', drone]), '-f', 'lavfi', '-i', bell, ...ambLayers.flatMap((l) => ['-f', 'lavfi', '-i', l]),
+  ...(bh ? ['-ss', String(bh.introFrom), '-i', bhajan.track.file, '-i', bhajan.track.file] : []), '-filter_complex', mix.join(';'),
+  '-map', '0:v', '-map', '[a]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2', '-t', TF, '-movflags', '+faststart', out]);
 
 // Thumbnail 1280x720: the chosen scene image, darkened at the bottom, big gold text and the logo.
 const th = spec.thumbnail || {};
@@ -404,7 +469,9 @@ const meta = {
   thumbnail: thumb,
   seconds: Number(total.toFixed(1)),
   scenes: scenes.length,
-  chapters: chapters.map((c) => ({ title: c.title, start: Number(c.start.toFixed(2)) })),
+  // With a bhajan: "Bhajan" at 0:00, the katha chapters after the intro, the full bhajan at the end (YouTube chapters).
+  chapters: [...(bh ? [{ title: 'Bhajan', start: 0 }] : []), ...chapters.map((c) => ({ title: c.title, start: Number((c.start + OFF).toFixed(2)) })),
+    ...(bh ? [{ title: `Bhajan: ${bhajan.meta.title}`.slice(0, 90), start: bh.outroStart }] : [])],
   images: spec.images.length,
   images_generated: generated,
   neurons: Math.round(generated * NEURONS_PER_IMAGE),
@@ -413,9 +480,15 @@ const meta = {
 meta.real_photos = usedPhotos.size;
 if (thumbVariants) meta.thumbnail_variants = { winner: thumbVariants.winner, scores: thumbVariants.variants.map(({ kind, score, contrast, face }) => ({ kind, score, contrast, face })) };
 fs.writeFileSync(path.join(base, 'out', `${spec.slug}.json`), JSON.stringify(meta, null, 2));
+if (bh) {
+  meta.bhajan = { id: bhajan.meta.id, intro: [0, bh.intro], katha: [bh.kathaStart, bh.kathaEnd], outro: [bh.outroStart, bh.total] };
+  spec.bhajan = { ...bhajan.meta, intro: bh.intro, from: bh.introFrom, outro_start: bh.outroStart, seconds: bh.outroDur, narration: true };
+  (await import('../music/bhajan.mjs')).discloseBhajan(spec);
+  fs.writeFileSync(path.join(base, 'out', `${spec.slug}.json`), JSON.stringify(meta, null, 2));
+}
 if (usedPhotos.size) {
   const credit = [...usedPhotos].map(creditLine).join('\n');
   if (!spec.youtube_description.includes(credit)) spec.youtube_description = `${spec.youtube_description.trimEnd()}\n\n${credit}`;
-  fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
 }
+if (usedPhotos.size || bh || music) fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
 console.log(JSON.stringify(meta));

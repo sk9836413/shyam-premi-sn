@@ -1,14 +1,35 @@
-# Weekly original instrumentals for the music library (music/weekly.mjs + music/gen.mjs, ACE-Step 1.5 MIT on Kaggle).
-# Runs only with the repo variable MUSIC_GEN=on. Monday 02:10 IST, outside the no-extra-Kaggle windows (09:00-11:30,
-# 18:30-21:00 IST); gen.mjs also waits for any other sps-* GPU kernel and refuses under 8 GPU-hours left. One T4
-# session of ~15-25 min. Tracks that pass QA (duration, loudness, true peak, clipping) are added with a licence JSON,
-# the library keeps the newest 48 generated tracks, and the licence gate must pass before anything is committed.
+# Weekly music for the library (ACE-Step 1.5, MIT, on Kaggle's free T4; the repo variable MUSIC_GEN picks what the
+# Monday 02:10 IST run makes):
+#   MUSIC_GEN=vocals  AI-sung bhajans (job `bhajan`, owner 13 Nov 2026: "1 no h" for the ZWJ take): music/bhajan-batch.mjs
+#                     plans ~13 songs for the coming week (Khatu Shyam most, then Mahadev/Bhole, Hanuman/Salasar Balaji,
+#                     Krishna, Ganesh + the week's festivals; moods thaath / bhaavuk), Claude writes ORIGINAL lyrics
+#                     (validated: chorus first, deity name in a checkable position, no existing bhajan lines, no Rani Sati),
+#                     3 takes per song (music/kaggle/bhajan_batch.py, ~45-55 GPU min), the QA gate keeps the best take
+#                     per song or none, winners -> music/library/bhajan-*.ogg (+ licence JSON). Used in the videos only
+#                     with BHAJAN_VOCALS=on (music/bhajan.mjs).
+#   MUSIC_GEN=on      instrumental batch (job `batch`, as before, ~15-25 GPU min).
+#   MUSIC_GEN=both    both, one after the other (they share the sps-music kernel).
+# Kaggle rules (music/gen.mjs push): never inside or running into 09:00-11:30 / 18:30-21:00 IST, waits up to 60 min for
+# any other sps-* GPU kernel (lock), refuses under 8 GPU-hours left this week (the quota resets Sat 05:30 IST).
+# First bhajan batch: one run on Sat 14 Nov 2026 06:00 IST, right after the weekly quota reset (cron '30 0 14 11 *',
+# guarded to 2026 only), so the videos can use bhajans that weekend.
 name: Music weekly batch
 
 on:
   schedule:
     - cron: '40 20 * * 0'   # Monday 02:10 IST
+    - cron: '30 0 14 11 *'  # once: Sat 14 Nov 2026 06:00 IST, first bhajan batch (the job skips in other years)
   workflow_dispatch:
+    inputs:
+      mode:
+        description: vocals (AI bhajans) or instrumental
+        type: choice
+        options: [vocals, instrumental]
+        default: vocals
+      from:
+        description: First day the bhajans are for (YYYY-MM-DD, IST); empty = today
+        type: string
+        default: ''
 
 permissions:
   contents: write
@@ -18,14 +39,122 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  bhajan:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.mode == 'vocals') ||
+      (github.event_name == 'schedule' && github.event.schedule == '30 0 14 11 *') ||
+      (github.event_name == 'schedule' && github.event.schedule == '40 20 * * 0' && (vars.MUSIC_GEN == 'vocals' || vars.MUSIC_GEN == 'both'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Plan the week
+        id: plan
+        run: |
+          if [ "${{ github.event.schedule }}" = '30 0 14 11 *' ] && [ "$(date -u +%Y)" != 2026 ]; then echo "one-off first batch: not this year"; echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          from="${{ inputs.from }}"; [ -n "$from" ] || from=$(TZ=Asia/Kolkata date +%F)
+          node music/bhajan-batch.mjs plan --from "$from" --out "$RUNNER_TEMP/plan.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          batch=$(node -p "require('$RUNNER_TEMP/plan.json').batch")
+          cp "$RUNNER_TEMP/plan.json" "music/lyrics/$batch.plan.json"
+          echo "batch=$batch" >> "$GITHUB_OUTPUT"
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Claude writes the lyrics
+        if: steps.plan.outputs.skip != 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --max-turns 60
+            --allowedTools "Read,Write,Edit,Glob,Grep,Bash(node music/bhajan-batch.mjs validate:*)"
+          prompt: |
+            Write the lyrics of this week's ORIGINAL Hindi bhajans for the Shyam Premi SN channel (AI-sung by ACE-Step).
+            The plan is music/lyrics/${{ steps.plan.outputs.batch }}.plan.json: one song per slot, with its deity, mood,
+            festival (or null) and bpm. Write music/lyrics/${{ steps.plan.outputs.batch }}.json as
+            {"batch": "${{ steps.plan.outputs.batch }}", "songs": [{"slot", "deity", "mood", "festival", "title_hi", "title_roman",
+            "lyrics", "public_domain_text"}]} with deity / mood / festival copied from the plan slot, then run
+            `node music/bhajan-batch.mjs validate music/lyrics/${{ steps.plan.outputs.batch }}.json --plan music/lyrics/${{ steps.plan.outputs.batch }}.plan.json`
+            and fix every problem it lists until all songs pass. Change no other file.
+            Rules:
+            - ALL lyrics are your own new words. Never use or lightly change a line of any existing bhajan, film song or
+              singer's song (Kanhaiya Mittal style is only a mood reference: simple, heartfelt, singable; Rajasthani /
+              Hindi bhakti words like सांवरा, धणी, लखदातार, शीश के दानी, हारे का सहारा, नीले का सवार are fine).
+              public_domain_text: null, unless the song quotes a public-domain text (Tulsidas's Hanuman Chalisa, "Om Jai
+              Jagdish Hare" by Shardha Ram Phillauri, Vedic mantras): then name the text there.
+            - Devanagari only, plain spelling (no ZWJ or special characters; numbers as words). The script adds the singing
+              spellings itself.
+            - Shape: [chorus] FIRST (2-4 short lines, the hook), then [verse] (2-4 lines), then [chorus] again; optionally
+              a second [verse] + [chorus]. 6-16 sung lines in total, each 6-48 characters, easy to sing.
+            - The chorus must name the deity at least once NOT right after "श्री" (Whisper cannot check "श्री श्याम"):
+              Khatu Shyam: "श्याम", e.g. "खाटू वाले श्याम", "मेरे श्याम", "श्याम धणी"; Mahadev: "भोले" / "शिव" / "महादेव" /
+              "शंकर"; Hanuman: "हनुमान" / "बालाजी" / "बजरंग"; Krishna: "कान्हा" / "कृष्ण" / "गोविंद"; Ganesh: "गणपति" / "गणेश";
+              devi (Chhath): "छठी" (छठी मइया); vishnu (Tulsi Vivah): "तुलसी" / "नारायण".
+            - Mood "thaath": dhol/DJ bhajan-sandhya energy, celebration, jaikaras, call and response. Mood "bhaavuk":
+              emotional, the haara-hua bhakt who finds strength in the deity, tender and hopeful.
+            - Khatu Shyam ji is the sheesh (head) only: no flute / murli / bansuri in Khatu songs. Krishna songs may
+              mention the flute.
+            - Never write about Rani Sati / sati in any form. No fear, threats, miracles-for-money or "share this" lines.
+            - Every chorus first line must differ from the others and from plan.avoid_first_lines.
+            - title_roman: plain ASCII Hinglish title (e.g. "Khatu Wale Shyam Dhani"); title_hi: the Devanagari title.
+
+      - name: Kaggle jobs
+        if: steps.plan.outputs.skip != 'true'
+        run: |
+          B=${{ steps.plan.outputs.batch }}
+          node music/bhajan-batch.mjs batch --plan "music/lyrics/$B.plan.json" --lyrics "music/lyrics/$B.json" --out "music/lyrics/$B.batch.json" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Kaggle CLI
+        if: steps.plan.outputs.skip != 'true'
+        run: pip install -q 'kaggle>=2.2' six
+      - name: Push the Kaggle session
+        if: steps.plan.outputs.skip != 'true'
+        run: node music/gen.mjs push --batch "music/lyrics/${{ steps.plan.outputs.batch }}.batch.json" --code music/kaggle/bhajan_batch.py --push-dir "$RUNNER_TEMP/push" --lock-minutes 60 --needs-minutes 60 | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Wait
+        if: steps.plan.outputs.skip != 'true'
+        run: node music/gen.mjs wait --minutes 75
+      - name: Fetch, QA gate and import
+        if: steps.plan.outputs.skip != 'true'
+        run: |
+          B=${{ steps.plan.outputs.batch }}
+          node music/gen.mjs fetch --to "$RUNNER_TEMP/out"
+          node music/bhajan-batch.mjs import --from "$RUNNER_TEMP/out" --batch "music/lyrics/$B.batch.json" --report "music/lyrics/$B.qa.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          node music/weekly.mjs prune --prefix bhajan- --keep 80
+          rm -rf "$RUNNER_TEMP/out"
+      - name: Licence gate and tests
+        if: steps.plan.outputs.skip != 'true'
+        run: node music/check-licences.mjs && node --test music/engine.test.mjs music/bhajan.test.mjs
+      - name: Commit
+        if: always() && steps.plan.outputs.skip == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          B=${{ steps.plan.outputs.batch }}
+          node music/check-licences.mjs > /dev/null || { git checkout -- music/library; git clean -fdq music/library; }
+          git add music/library
+          for f in "music/lyrics/$B.json" "music/lyrics/$B.plan.json" "music/lyrics/$B.batch.json" "music/lyrics/$B.qa.json"; do [ -f "$f" ] && git add "$f"; done
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -qm "Music library: AI bhajans $B"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
   batch:
-    if: vars.MUSIC_GEN == 'on'
+    needs: bhajan
+    if: >-
+      always() && (
+      (github.event_name == 'workflow_dispatch' && inputs.mode == 'instrumental') ||
+      (github.event_name == 'schedule' && github.event.schedule == '40 20 * * 0' && (vars.MUSIC_GEN == 'on' || vars.MUSIC_GEN == 'both')))
     runs-on: ubuntu-latest
     timeout-minutes: 150
     env:
       KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -34,13 +163,13 @@ jobs:
       - name: Batch
         run: node music/weekly.mjs batch --out "$RUNNER_TEMP/batch.json"
       - name: Push the Kaggle session
-        run: node music/gen.mjs push --batch "$RUNNER_TEMP/batch.json" --push-dir "$RUNNER_TEMP/push" --lock-minutes 60
+        run: node music/gen.mjs push --batch "$RUNNER_TEMP/batch.json" --push-dir "$RUNNER_TEMP/push" --lock-minutes 60 --needs-minutes 45
       - name: Wait
         run: node music/gen.mjs wait --minutes 55
       - name: Fetch and import
         run: |
           node music/gen.mjs fetch --to "$RUNNER_TEMP/out"
-          node music/gen.mjs import --from "$RUNNER_TEMP/out" --batch "$RUNNER_TEMP/batch.json" ${{ vars.MUSIC_VOCALS == 'on' && '--vocals' || '' }} | tee -a "$GITHUB_STEP_SUMMARY"
+          node music/gen.mjs import --from "$RUNNER_TEMP/out" --batch "$RUNNER_TEMP/batch.json" | tee -a "$GITHUB_STEP_SUMMARY"
           node music/weekly.mjs prune --keep 48
       - name: Licence gate
         run: node music/check-licences.mjs && node --test music/engine.test.mjs

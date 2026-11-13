@@ -96,6 +96,9 @@ permissions:
 # render-story.mjs Short instead of the synthesized drone; unset = old sound.
 env:
   MUSIC_ENGINE: ${{ vars.MUSIC_ENGINE }}
+  # AI-sung bhajans (music/bhajan.mjs, owner 13 Nov 2026): repo variable BHAJAN_VOCALS=on puts a QA-passed library bhajan
+  # (deity / festival match, no repeat within 5 days) into the Shorts and the long video; the voice never overlaps it.
+  BHAJAN_VOCALS: ${{ vars.BHAJAN_VOCALS }}
   # Owner's one-day cap exception for scripts/upload-guard.mjs (YYYY-MM-DD; any other day = normal cap of 3).
   EXTRA_UPLOAD_DAY: ${{ vars.EXTRA_UPLOAD_DAY }}
 

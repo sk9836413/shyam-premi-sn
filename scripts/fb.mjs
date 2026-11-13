@@ -37,6 +37,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { LINKS } from './festival-links.mjs';
 import { loadInputs, planDay, addDays, istToday } from './day-plan.mjs';
+import { BHAJAN_LINE } from '../music/bhajan.mjs';
 
 export const FB_TIMES = { photo: '06:30', reel1: '07:30', long: '12:30', reel2: '20:30', reel2BeforeEve: '18:00', reel2Late: '21:30' };
 const LEAD_MS = 15 * 60e3; // meta.mjs schedules only when the time is at least 15 minutes ahead
@@ -125,7 +126,8 @@ export function fbLongText(description) {
 }
 const isLink = (l) => /https?:\/\//.test(l);
 const isCredit = (l) => /^(📷\s*)?(Photo|Photos|Foto)\b.*:|Wikimedia Commons|^📷/i.test(l);
-const isAi = (l) => /sanketik|सांकेतिक|\bAI\s+(se|dwara|द्वारा|से)\b/i.test(l);
+// (\b is ASCII-only in JS: after a Devanagari word it never matches, so the Hindi forms are checked without it.)
+const isAi = (l) => /sanketik|सांकेतिक|\bAI\s+(se|dwara)\b|\bAI\s+(द्वारा|से)(?![ऀ-ॿ])/i.test(l);
 const devShare = (t) => { const d = (t.match(DEV_G) || []).length; const l = (t.match(LAT_G) || []).length; return d + l ? d / (d + l) : 0; };
 
 /** Problems with a Facebook caption (empty = OK). draft: Claude's text before the script adds links/credits (no URLs). */
@@ -236,10 +238,10 @@ export function composeVideoBody(spec, kind = 'temple') {
 export const festivalLinkLines = (text) => String(text || '').split(/\r?\n/).map((l) => l.trim())
   .filter((l) => isLink(l) && LINKS.some((x) => l.includes(new URL(x.url).origin + new URL(x.url).pathname)));
 
-/** Assembles body + link + credits + 3 hashtags. */
-export function assemble({ lines, tag, links = [], credits = [], ai = false, aiLine = 'Chitra AI dwara banaye gaye hain (sanketik).' }) {
+/** Assembles body + link + credits + 3 hashtags. bhajan: the video carries an AI-sung bhajan (music/bhajan.mjs). */
+export function assemble({ lines, tag, links = [], credits = [], ai = false, aiLine = 'Chitra AI dwara banaye gaye hain (sanketik).', bhajan = false }) {
   const third = !tag || /^#(khatushyam|jaishreeshyam)$/i.test(tag) ? '#ShyamBaba' : tag;
-  const meta = [...links, ...(ai ? [aiLine] : []), ...credits];
+  const meta = [...links, ...(ai ? [aiLine] : []), ...(bhajan ? [BHAJAN_LINE] : []), ...credits];
   return [lines.join('\n'), ...(meta.length ? [meta.join('\n')] : []), [...BASE_TAGS, third].join(' ')].join('\n\n');
 }
 
@@ -260,10 +262,11 @@ export function fbVideoCaption(spec, { kind } = {}) {
   const k = kind || (spec.format === 'status' ? (spec.slot === 'eve' ? 'eve' : spec.day_status ? 'daystatus' : 'status') : spec.format === 'movie' ? 'movie' : 'temple');
   const own = splitCaption(spec.facebook_caption);
   const { credits } = own;
-  const mine = assemble({ lines: own.body, tag: own.tags.find((x) => !/^#(khatushyam|jaishreeshyam)$/i.test(x)), links: own.links, credits, ai: true });
+  const bhajan = Boolean(spec.bhajan?.id);
+  const mine = assemble({ lines: own.body, tag: own.tags.find((x) => !/^#(khatushyam|jaishreeshyam)$/i.test(x)), links: own.links, credits, ai: true, bhajan });
   if (own.tags.length === 3 && !checkFbCaption(mine).length) return { text: mine, source: 'spec' };
   const c = composeVideoBody(spec, k);
-  const text = assemble({ ...c, links: own.links, credits, ai: true });
+  const text = assemble({ ...c, links: own.links, credits, ai: true, bhajan });
   return { text, source: 'composed', problems: checkFbCaption(mine) };
 }
 

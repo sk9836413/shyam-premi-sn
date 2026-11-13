@@ -137,6 +137,7 @@ const HUMAN = process.env.SPS_HUMAN_VOICE !== '0';
 const HUMAN_LEAD = 0.3;
 const leads = spec.scenes.map(() => 0);
 const extraHold = spec.scenes.map(() => 0);
+const bhajanHold = spec.scenes.map(() => 0); // seconds the bhajan timeline adds to the last scene (outro / whole bars)
 function ttsHuman() {
   const items = spec.scenes.map((s, i) => ({
     text: s.tts, voice: s.voice || spec.voice || 'hm_omega', mood: s.mood, out: path.join(work, `voice-${i}.wav`), lead: i === 0 ? 0 : HUMAN_LEAD,
@@ -263,9 +264,23 @@ const videoFor = (scene) => {
 };
 const probeSeconds = (file) => Number(spawnSync(FFPROBE, ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', file], { encoding: 'utf8' }).stdout.trim());
 
-const durations = tts();
+// AI-sung bhajan (music/bhajan.mjs; repo variable BHAJAN_VOCALS=on): picked by deity / festival with a 5-day no-repeat.
+// A festival status Short gets the bhajan as its whole soundtrack and NO narration; a narrated Short keeps its narration
+// over the instrumental bed and ends on 8-15 s of the bhajan chorus after the last line. Voice and singing never overlap.
+let bhajan = null;
+if (process.env.BHAJAN_VOCALS === 'on') {
+  try { bhajan = (await import('../music/bhajan.mjs')).bhajanFor(spec); } catch (e) { console.log(`bhajan skipped: ${e.message}`); }
+}
+let BH_SONG = Boolean(bhajan && bhajan.mode === 'status');
+function silentVoices() {
+  spec.scenes.forEach((_, i) => run(['-f', 'lavfi', '-i', 'anullsrc=r=48000:cl=stereo', '-t', '0.1', path.join(work, `voice-${i}.wav`)]));
+  voiceExt = 'wav';
+  console.log(`voice: none (the bhajan ${bhajan.meta.id} is the soundtrack)`);
+  return spec.scenes.map(() => 0);
+}
+const durations = BH_SONG ? silentVoices() : tts();
 // `hold` (status videos) keeps a scene on screen longer than its narration.
-const sceneSeconds = (i) => Math.max(2.6, spec.scenes[i].hold || 0, durations[i] + 0.7 + extraHold[i]);
+const sceneSeconds = (i) => Math.max(2.6, spec.scenes[i].hold || 0, durations[i] + 0.7 + extraHold[i]) + bhajanHold[i];
 
 // --prepare: only make the FLUX images and measure each scene's length, for the image-to-video step
 // (animate/kaggle.mjs prepare --plan). Writes build/<slug>/plan.json; the full render runs later.
@@ -291,6 +306,25 @@ if (!STATUS) {
 }
 const COVER_END = 0.4; // seconds the cover words stay before they fade out (0.08 s)
 const VOICE_START = 0.12; // the first line starts almost at once: no dead air
+// Bhajan timeline (before the scenes are cut: the outro holds the last scene longer, a status song rounds up to bars).
+let bhPlan = null;
+if (bhajan) {
+  const { shortTimeline } = await import('../music/bhajan.mjs');
+  const secs = spec.scenes.map((_, i) => sceneSeconds(i));
+  const at = secs.map((_, i) => secs.slice(0, i).reduce((a, x) => a + x - FADE, 0));
+  const total0 = secs.reduce((a, x) => a + x, 0) - FADE * (secs.length - 1);
+  const voiceEnd = BH_SONG ? 0 : Math.max(0, ...spec.scenes.map((_, i) => at[i] + (i === 0 ? VOICE_START : FADE + 0.15) - leads[i]
+    + (probeSeconds(path.join(work, `voice-${i}.${voiceExt}`)) || durations[i] + 0.5)));
+  bhPlan = shortTimeline({ mode: bhajan.mode === 'status' ? 'status' : 'outro', voiceEnd, total: total0, track: bhajan.track });
+  if (!bhPlan) {
+    console.log(`bhajan ${bhajan.meta.id}: does not fit (voice ends ${voiceEnd.toFixed(1)} s), instrumental only`);
+    if (BH_SONG) { tts().forEach((d, i) => { durations[i] = d; }); BH_SONG = false; } // back to the narrated status Short
+    bhajan = null;
+  } else {
+    bhajanHold[spec.scenes.length - 1] += bhPlan.extend;
+    console.log(`bhajan: ${bhajan.meta.id} (${bhajan.meta.match} match, ${bhajan.mode}) ${bhPlan.start}-${(bhPlan.start + bhPlan.dur).toFixed(2)} s of ${bhPlan.total} s, voice ends ${voiceEnd.toFixed(2)} s`);
+  }
+}
 const clips = [];
 for (const [i, scene] of spec.scenes.entries()) {
   const photo = scene.endcard ? null : photoFor(i);
@@ -411,13 +445,13 @@ const starts = clips.map((_, i) => clips.slice(0, i).reduce((a, c) => a + c.seco
 // nature | quiet | none).
 const words = spec.scenes.map((s) => `${s.prompt || ''} ${s.animate || ''}`).join(' ').toLowerCase();
 const PLACE = /temple|mandir|courtyard|devotee|darshan|murti/;
-const amb = spec.ambience || (/aarti|diya|lamp|flame/.test(words) && PLACE.test(words) ? 'aarti'
+const amb = BH_SONG ? 'none' : spec.ambience || (/aarti|diya|lamp|flame/.test(words) && PLACE.test(words) ? 'aarti'
   : PLACE.test(words) ? 'temple' : /forest|grove|river|mountain|field|village|sky|garden/.test(words) ? 'nature' : 'quiet');
 const T = total.toFixed(2);
 // Music engine (music/engine.mjs, off unless the repo variable MUSIC_ENGINE=on): a licence-checked library track takes
 // the drone's place in the ducked bed; any problem keeps the drone. The pick is saved as spec.music (7-day no-repeat).
 let music = null;
-if (process.env.MUSIC_ENGINE === 'on') {
+if (process.env.MUSIC_ENGINE === 'on' && !BH_SONG) {
   try { music = (await import('../music/engine.mjs')).musicFor(spec); } catch (e) { console.log(`music engine skipped: ${e.message}`); }
   if (music) { spec.music = music.meta; console.log(`music: ${music.meta.id} (${music.meta.mood})`); }
 }
@@ -445,19 +479,27 @@ clips.forEach((c, i) => {
 // Voice bus; music + ambience bus ducked under it (sidechain), then the whole mix normalised to -14 LUFS.
 const A0 = 2 * n + 2; // first ambience input
 f.push(`${mix.join('')}amix=inputs=${n}:duration=longest:normalize=0,apad=whole_dur=${T},asplit=2[vox][key]`);
-f.push(`[${n}:a]${music ? `${music.filter},atrim=duration=${T}` : 'volume=0.5'}[dr]`, `[${n + 1}:a]aformat=channel_layouts=stereo[bl]`);
+f.push(`[${n}:a]${music ? `${music.filter},atrim=duration=${T}` : `volume=${BH_SONG ? 0 : 0.5}`}[dr]`, `[${n + 1}:a]aformat=channel_layouts=stereo${BH_SONG ? ',volume=0' : ''}[bl]`);
 layers.forEach((_, k) => f.push(`[${A0 + k}:a]aformat=sample_rates=48000:channel_layouts=stereo[am${k}]`));
 bellAt.forEach((t, k) => { const ms = Math.round(t * 1000); f.push(`[${A0 + layers.length + k}:a]aformat=channel_layouts=stereo,adelay=${ms}|${ms}[bb${k}]`); });
 const bedIns = ['[dr]', '[bl]', ...layers.map((_, k) => `[am${k}]`), ...bellAt.map((_, k) => `[bb${k}]`)];
-f.push(`${bedIns.join('')}amix=inputs=${bedIns.length}:duration=first:normalize=0[bed]`);
+// Outro bhajan: the bed fades out just before the chorus comes in (never under the singing).
+const bedFade = bhajan && !BH_SONG ? `,afade=t=out:st=${bhPlan.bedFadeAt}:d=1.2` : '';
+f.push(`${bedIns.join('')}amix=inputs=${bedIns.length}:duration=first:normalize=0${bedFade}[bed]`);
 f.push('[bed][key]sidechaincompress=threshold=0.02:ratio=5:attack=25:release=450:makeup=1[duck]');
 const OUTFADE = STATUS && spec.loop ? 0.6 : 2; // a loop status Short only dips at the end, then replays
-f.push(`[duck][vox]amix=inputs=2:duration=first:normalize=0,atrim=duration=${T},afade=t=out:st=${(total - OUTFADE).toFixed(2)}:d=${OUTFADE},loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]`);
+const BH = A0 + layers.length + bellAt.length; // bhajan input (after the bells)
+if (bhajan) {
+  const ms = Math.round(bhPlan.start * 1000);
+  f.push(`[${BH}:a]aresample=48000,aformat=sample_rates=48000:channel_layouts=stereo,atrim=duration=${bhPlan.dur},afade=t=in:d=${BH_SONG ? 0.04 : 0.3}${ms ? `,adelay=${ms}|${ms}` : ''},apad=whole_dur=${T}[bh]`);
+}
+f.push(`[duck][vox]${bhajan ? '[bh]' : ''}amix=inputs=${bhajan ? 3 : 2}:duration=first:normalize=0,atrim=duration=${T},afade=t=out:st=${(total - OUTFADE).toFixed(2)}:d=${OUTFADE},loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]`);
 fs.mkdirSync(path.join(base, 'out'), { recursive: true });
 const out = path.join(base, 'out', `${spec.slug}.mp4`);
 run([
   ...clips.flatMap((c) => ['-i', c.file]), ...(music ? music.input : ['-f', 'lavfi', '-i', drone]), '-f', 'lavfi', '-i', bell, ...clips.flatMap((c) => ['-i', c.voice]),
   ...layers.flatMap((l) => ['-f', 'lavfi', '-i', l]), ...bellAt.flatMap(() => ['-f', 'lavfi', '-i', bell2]),
+  ...(bhajan ? ['-ss', String(bhPlan.from), '-i', bhajan.track.file] : []),
   '-filter_complex', f.join(';'), '-map', `[${prev}]`, '-map', '[a]',
   '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-crf', '23', '-c:a', 'aac', '-b:a', '160k', '-ar', '48000', '-ac', '2',
   '-t', total.toFixed(2), '-movflags', '+faststart', out,
@@ -475,7 +517,12 @@ if (STATUS && spec.loop) {
   fs.renameSync(tmp, out);
   console.log('loop: the last 0.5 s fades into the first frame');
 }
-if (music && !usedPhotos.length) fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
+if (bhajan) {
+  const { discloseBhajan } = await import('../music/bhajan.mjs');
+  spec.bhajan = { ...bhajan.meta, from: bhPlan.from, start: bhPlan.start, seconds: bhPlan.dur, narration: !BH_SONG };
+  discloseBhajan(spec);
+}
+if ((music || bhajan) && !usedPhotos.length) fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
 // Credit every real photo shown: "Photo: <author>, <licence>, via Wikimedia Commons (<file page>)".
 if (usedPhotos.length) {
   const credit = usedPhotos.map(creditLine).join('\n');

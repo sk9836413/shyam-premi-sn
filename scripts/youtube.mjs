@@ -31,6 +31,7 @@ import fs from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const ENV_FILE = path.join(os.homedir(), '.shyampremisk', 'youtube.env');
 const DEFAULT_CLIENT = path.join(os.homedir(), '.epifive', 'youtube-client.json');
@@ -90,7 +91,15 @@ const stamp = (sec) => {
   return h ? `${h}:${String(m).padStart(2, '0')}:${String(x).padStart(2, '0')}` : `${m}:${String(x).padStart(2, '0')}`;
 };
 
-function metaFromScenes(file, metaFile) {
+// YouTube's altered / synthetic content disclosure (videos.insert status.containsSyntheticMedia, Data API v3): the
+// pictures, the narration voice and, since 14 Nov 2026, the AI-sung bhajans (spec.bhajan, music/bhajan.mjs) are
+// generated, so every upload declares it; a video with a bhajan can never go up without it.
+// eslint-disable-next-line no-unused-vars
+export function syntheticMedia(spec = {}) {
+  return true; // AI pictures + AI narration on every video, and AI singing when spec.bhajan is set
+}
+
+export function metaFromScenes(file, metaFile) {
   const s = JSON.parse(fs.readFileSync(file, 'utf8'));
   const title = String(s.youtube_title || '').replace(/[<>]/g, '').trim();
   let description = String(s.youtube_description || '').replace(/[<>]/g, '').trim();
@@ -103,7 +112,7 @@ function metaFromScenes(file, metaFile) {
   const tags = String(s.youtube_tags || '').split(',').map((t) => t.replace(/[<>]/g, '').trim()).filter(Boolean);
   while (tags.join(',').length > 450) tags.pop();
   if (!title || title.length > 100) throw new Error(`youtube_title must be 1-100 characters (is ${title.length})`);
-  return { title, description, tags };
+  return { title, description, tags, synthetic: syntheticMedia(s) };
 }
 
 // The long video (and the evening Short, made early) is uploaded private with publishAt (today at the given IST time); when that time is under
@@ -119,6 +128,14 @@ function publishAt(hhmm) {
   return at - Date.now() > 15 * 60e3 ? new Date(at).toISOString() : null;
 }
 
+// The visuals, voice and bhajans are AI-generated, so the video carries YouTube's synthetic-content label.
+export function uploadStatus(meta, opts = {}) {
+  return {
+    ...(opts.publishAt ? { privacyStatus: 'private', publishAt: opts.publishAt } : { privacyStatus: 'public' }),
+    selfDeclaredMadeForKids: false, embeddable: true, containsSyntheticMedia: meta.synthetic !== false,
+  };
+}
+
 async function upload(env, videoFile, meta, opts = {}) {
   const token = await accessToken(env);
   const data = fs.readFileSync(videoFile);
@@ -132,11 +149,7 @@ async function upload(env, videoFile, meta, opts = {}) {
     },
     body: JSON.stringify({
       snippet: { title: meta.title, description: meta.description, tags: meta.tags, categoryId: CATEGORY_PEOPLE_BLOGS, defaultLanguage: 'hi', defaultAudioLanguage: 'hi' },
-      // The visuals and voice are AI-generated, so the video carries YouTube's synthetic-content label.
-      status: {
-        ...(opts.publishAt ? { privacyStatus: 'private', publishAt: opts.publishAt } : { privacyStatus: 'public' }),
-        selfDeclaredMadeForKids: false, embeddable: true, containsSyntheticMedia: true,
-      },
+      status: uploadStatus(meta, opts),
     }),
   });
   if (!start.ok) await json(start, 'Upload session');
@@ -296,9 +309,12 @@ async function main() {
   throw new Error('Usage: youtube.mjs auth|check|upload (see the top of this file)');
 }
 
-try {
-  console.log(JSON.stringify(await main()));
-} catch (e) {
-  console.log(JSON.stringify({ status: 'error', error: e.message }));
-  process.exitCode = 1;
+// CLI only when run directly (the tests import syntheticMedia / metaFromScenes / uploadStatus).
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try {
+    console.log(JSON.stringify(await main()));
+  } catch (e) {
+    console.log(JSON.stringify({ status: 'error', error: e.message }));
+    process.exitCode = 1;
+  }
 }

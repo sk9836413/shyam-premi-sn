@@ -2,8 +2,8 @@
 //   node music/weekly.mjs batch --out <file> [--date YYYY-MM-DD] [--count 12]
 //        -> a batch JSON of instrumental jobs: the prompts in music/lyrics/instrumental-prompts.json, rotated by ISO week,
 //           fresh seeds each week (so every week's tracks are new originals)
-//   node music/weekly.mjs prune [--keep 48]
-//        -> keeps the newest --keep generated tracks (gen-*) in music/library, deletes older ones (repo size)
+//   node music/weekly.mjs prune [--keep 48] [--prefix gen-|bhajan-]
+//        -> keeps the newest --keep generated tracks (gen-* / bhajan-*) in music/library, deletes older ones (repo size)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -31,11 +31,12 @@ export function weeklyBatch(prompts, date, count = 12) {
   return { batch: `weekly-${tag}`, note: 'Weekly instrumental batch (music/weekly.mjs).', jobs };
 }
 
-export function prune(dir, keep) {
-  const gen = fs.readdirSync(dir).filter((f) => /^gen-.*\.licence\.json$/.test(f)).map((f) => {
+// prefix "gen-" = generated instrumentals, "bhajan-" = AI bhajans (an owner-approved bhajan, bhajan.approved_by, is kept).
+export function prune(dir, keep, prefix = 'gen-') {
+  const gen = fs.readdirSync(dir).filter((f) => f.startsWith(prefix) && f.endsWith('.licence.json')).map((f) => {
     const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
-    return { stem: f.slice(0, -13), checked: j.checked || '' };
-  }).sort((a, b) => b.checked.localeCompare(a.checked) || b.stem.localeCompare(a.stem));
+    return { stem: f.slice(0, -13), checked: j.checked || '', pinned: Boolean(j.bhajan?.approved_by) };
+  }).filter((g) => !g.pinned).sort((a, b) => b.checked.localeCompare(a.checked) || b.stem.localeCompare(a.stem));
   const gone = gen.slice(keep);
   for (const g of gone) for (const f of fs.readdirSync(dir).filter((x) => x.startsWith(`${g.stem}.`))) fs.rmSync(path.join(dir, f));
   return gone.map((g) => g.stem);
@@ -48,6 +49,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     fs.writeFileSync(opt('--out'), `${JSON.stringify(b, null, 1)}\n`);
     console.log(`${b.batch}: ${b.jobs.length} jobs`);
   } else if (args[0] === 'prune') {
-    console.log(JSON.stringify({ removed: prune(path.join(DIR, 'library'), Number(opt('--keep', 48))) }));
+    console.log(JSON.stringify({ removed: prune(path.join(DIR, 'library'), Number(opt('--keep', 48)), opt('--prefix', 'gen-')) }));
   }
 }

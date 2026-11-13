@@ -35,6 +35,16 @@ export function istWindowBlocked(d) {
   return null;
 }
 
+// The blocked window a session starting at `d` and running `minutes` would touch (null = none): a batch must END before
+// 09:00 / 18:30 IST too, not only start outside the windows.
+export function windowAhead(d, minutes = 0) {
+  for (let m = 0; m <= minutes; m += 5) {
+    const w = istWindowBlocked(new Date(d.getTime() + m * 60e3));
+    if (w) return w;
+  }
+  return null;
+}
+
 export const sha256 = (file) => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 
 // Returns a list of problems (empty = valid). `audio` = path of the track's audio file (checked for the sha256).
@@ -149,7 +159,8 @@ export function pickTrack(tracks, { mood, date, slug, history = [] }) {
 const GAIN_DB = { festive: -2, aarti: -4, calm: -5, emotional: -5 };
 export function musicFor(spec, { date, publishedDir, library = LIBRARY, env = process.env } = {}) {
   if (env.MUSIC_ENGINE !== 'on') return null;
-  const tracks = loadLibrary(library);
+  // Instrumental beds only: the sung bhajans (kind "vocal", music/bhajan.mjs) never go under a narration.
+  const tracks = loadLibrary(library).filter((t) => t.kind !== 'vocal');
   const day = date || spec.date || `${spec.slug || ''}`.slice(0, 10) || new Date().toISOString().slice(0, 10);
   const pick = pickTrack(tracks, { mood: moodFor(spec), date: day, slug: spec.slug, history: historyFrom(publishedDir || path.join(DIR, '..', 'story', 'published')) });
   if (!pick) return null;

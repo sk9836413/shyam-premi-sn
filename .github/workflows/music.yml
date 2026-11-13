@@ -1,12 +1,12 @@
 # Music library gate (music/engine.mjs): fails when any music/library file lacks a valid licence JSON (allowed licence,
-# source URLs, date checked, attribution field, matching sha256) or the selector tests break.
+# source URLs, date checked, attribution field, matching sha256) or the selector / AI-bhajan tests (music/bhajan.test.mjs) break.
 name: Music library check
 
 on:
   push:
-    paths: ['music/**', 'story/render-story.mjs', '.github/workflows/music.yml']
+    paths: ['music/**', 'story/render-story.mjs', 'story/render-long.mjs', 'scripts/fb.mjs', 'scripts/youtube.mjs', '.github/workflows/music.yml']
   pull_request:
-    paths: ['music/**', 'story/render-story.mjs']
+    paths: ['music/**', 'story/render-story.mjs', 'story/render-long.mjs', 'scripts/fb.mjs', 'scripts/youtube.mjs']
   workflow_dispatch:
 
 permissions:
@@ -23,5 +23,5 @@ jobs:
           node-version: 22
       - name: Licence manifest
         run: node music/check-licences.mjs
-      - name: Selector and licence tests
-        run: node --test music/engine.test.mjs
+      - name: Selector, licence and AI-bhajan tests
+        run: node --test music/engine.test.mjs music/bhajan.test.mjs

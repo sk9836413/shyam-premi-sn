@@ -1,0 +1,67 @@
+{
+ "about": "Per-word spelling rules for ACE-Step 1.5 Hindi bhajans (music/bhajan-batch.mjs singLyrics) and the deity-name QA (nameCheck). Source: pronunciation A/B pron-ab-001 (13 Nov 2026, music/lyrics/pron-ab-001.qa.json): श्‍याम with a zero-width joiner (U+200D between the virama and य) gave the 'Shy' glide in 3/3 takes (owner liked zwj-hi seed 2222: '1 no h'); plain Devanagari kept भोले aspirated in 2/3 takes while the ZWJ take lost it, so every other word stays plain. Lyrics are WRITTEN plain; `sing` is only what ACE-Step reads.",
+ "sing": [
+  { "word": "श्याम", "sing": "श्‍याम", "why": "ZWJ form: y-glide 3/3 (pron-ab-001 zwj-hi)" }
+ ],
+ "plain": ["भोले", "भोलेनाथ", "शिव", "शंकर", "महादेव", "भक्त", "भक्तों"],
+ "names": {
+  "श्याम": { "deity": "khatu", "ok": "^श्?य", "note": "Shaam/Sham (no y) = wrong; Whisper writes श्री श्याम as शाम by itself, so श्री-positions are never checked" },
+  "भोले": { "deity": "shiv", "ok": "^भ", "note": "बोले (lost aspirate) = wrong" },
+  "भोलेनाथ": { "deity": "shiv", "ok": "^भ" },
+  "शिव": { "deity": "shiv", "ok": "^शि?व" },
+  "शंकर": { "deity": "shiv", "ok": "^श[ंन]?क" },
+  "महादेव": { "deity": "shiv", "ok": "^मह" },
+  "हनुमान": { "deity": "hanuman", "ok": "^ह[नण]ु?म" },
+  "बालाजी": { "deity": "hanuman", "ok": "^बा?ला?ज" },
+  "बजरंग": { "deity": "hanuman", "ok": "^ब[जज़]र" },
+  "कान्हा": { "deity": "krishna", "ok": "^का?न्?ह", "note": "काना (lost aspirate) = wrong" },
+  "कृष्ण": { "deity": "krishna", "ok": "^क(ृ|्र|ि|र)?[षश]" },
+  "गोविंद": { "deity": "krishna", "ok": "^गो?वि?[ंन]?द" },
+  "गणपति": { "deity": "ganesh", "ok": "^ग[णन]प" },
+  "गणेश": { "deity": "ganesh", "ok": "^ग[णन]े?श", "note": "Ganej = wrong (Chatterbox A/B)" },
+  "छठी": { "deity": "devi", "ok": "^छ" },
+  "तुलसी": { "deity": "vishnu", "ok": "^तुल" },
+  "नारायण": { "deity": "vishnu", "ok": "^ना?रा?य" }
+ },
+ "primary": {
+  "khatu": ["श्याम"],
+  "shiv": ["भोले", "भोलेनाथ", "शिव", "शंकर", "महादेव"],
+  "hanuman": ["हनुमान", "बालाजी", "बजरंग"],
+  "krishna": ["कान्हा", "कृष्ण", "गोविंद"],
+  "ganesh": ["गणपति", "गणेश"],
+  "devi": ["छठी"],
+  "vishnu": ["तुलसी", "नारायण"]
+ },
+ "forbidden": [
+  { "re": "सती|झुंझुनू|झुन्झुनू|झुंझनू", "why": "no Rani Sati bhajans (Sati Prevention Act rule)" },
+  { "re": "[A-Za-z]", "why": "Devanagari only (ACE-Step reads Roman Hindi worse)" },
+  { "re": "[0-9०-९]", "why": "no digits: write numbers as words" }
+ ],
+ "forbidden_khatu": [
+  { "re": "मुरली|बांसुरी|बाँसुरी|बंसी|बंसुरी", "why": "Khatu Shyam ji = the sheesh only: no flute (channel iconography rule)" }
+ ],
+ "jaikaras": ["जय श्री श्याम", "हारे का सहारा", "हर हर महादेव", "बोल बम", "जय बजरंगबली", "गणपति बप्पा मोरया", "जय श्री कृष्ण", "राधे राधे", "जय श्री राम", "जय छठी मइया", "जय माता दी", "शीश के दानी", "लखदातार", "खाटू वाले श्याम"],
+ "known_lines": [
+  "हारा हूँ बाबा पर तुझपे भरोसा है",
+  "जो राम को लाए हैं हम उनको लाएंगे",
+  "मेरा आपकी कृपा से सब काम हो रहा है",
+  "कभी राम बनके कभी श्याम बनके",
+  "अच्युतम केशवम कृष्ण दामोदरम",
+  "श्याम तेरी बंसी पुकारे राधा नाम",
+  "शिव शंकर को जिसने पूजा उसका ही उद्धार हुआ",
+  "लाल लंगोटा हाथ में घोटा",
+  "मेरे बांके बिहारी लाल तू इतना ना करियो श्रृंगार",
+  "तेरी मंद मंद मुस्कनिया पे बलिहार",
+  "बाबा श्याम के दरबार में मची रे होली",
+  "श्याम धणी को मना ले मेरे भाई",
+  "सांवरे की महफिल को सांवरा सजाता है",
+  "किस्मत वालों को मिलता है श्याम तेरा दरबार",
+  "आओ सांवरिया हम तुम्हारे दर पे आए",
+  "मेरी झोपड़ी के भाग आज खुल जाएंगे",
+  "भोले बाबा पार करेगा",
+  "बम बम बोले मस्ती में डोले",
+  "मेरा भोला है भंडारी करे नंदी की सवारी",
+  "बजरंग बाला जपूं थारी माला",
+  "दुनिया चले ना श्री राम के बिना"
+ ]
+}

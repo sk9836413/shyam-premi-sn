@@ -34,6 +34,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { fbLongText, fbVideoCaption } from './fb.mjs';
+import { BHAJAN_LINE } from '../music/bhajan.mjs';
 
 export const FB_REEL_MAX = 90;
 export const IG_REEL_MAX = 15 * 60;
@@ -116,7 +117,7 @@ export function longPost(spec, meta = {}) {
   const body = lines.join('\n');
   const hindi = String(spec.youtube_tags || '').split(',').map((t) => t.trim()).filter((t) => /[ऀ-ॿ]/.test(t) && !body.includes(t));
   if (hindi.length) extra.push('', hindi.join(' | '));
-  if (!/\bAI\b/.test(body)) extra.push('', AI_LINE);
+  if (!/\bAI\b/.test(body.replace(BHAJAN_LINE, ''))) extra.push('', AI_LINE); // the bhajan line alone does not cover the pictures/voice
   return { title, description: [body, ...extra, ...(tags ? ['', tags] : [])].join('\n') };
 }
 

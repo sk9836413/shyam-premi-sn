@@ -1,5 +1,6 @@
 // Original music batch on Kaggle's free GPU with ACE-Step 1.5 (kernel sps-music, music/kaggle/acestep_batch.py).
-//   node music/gen.mjs push  --batch music/lyrics/<batch>.json [--kind vocal|instrumental] [--qa urls.json] [--code kaggle/<script>.py] -> refuses inside the no-extra-session windows
+//   node music/gen.mjs push  --batch music/lyrics/<batch>.json [--kind vocal|instrumental] [--qa urls.json] [--code kaggle/<script>.py]
+//        [--lock-minutes 60] [--needs-minutes 60] -> refuses inside (or, with --needs-minutes, running into) the no-extra-session windows
 //        (09:00-11:30 and 18:30-21:00 IST), while another sps-* GPU kernel runs (animate/kaggle.mjs lock), or with under
 //        --min-hours (default 8) of weekly GPU quota left; then pushes one private T4 session (stops itself after ~38 min)
 //   node music/gen.mjs status
@@ -15,7 +16,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { istWindowBlocked, normaliseLoudness, sha256 } from './engine.mjs';
+import { normaliseLoudness, sha256, windowAhead } from './engine.mjs';
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(DIR, '..');
@@ -41,11 +42,15 @@ export function resolveJobs(batch) {
 function push() {
   const batchFile = opt('--batch');
   if (!batchFile) throw new Error('--batch <file> needed');
-  const blocked = istWindowBlocked(new Date());
+  // --needs-minutes N: the whole session (lock wait excluded) must fit before the next blocked window.
+  const needs = Number(opt('--needs-minutes', '0'));
+  const blocked = windowAhead(new Date(), needs);
   if (blocked) { console.log(JSON.stringify({ push: 'refused', reason: `no extra Kaggle session ${blocked} IST` })); process.exit(3); }
   const env = { ...process.env, SPS_SLOT: 'music' };
   const lock = spawnSync('node', [path.join(ROOT, 'animate', 'kaggle.mjs'), 'lock', '--minutes', opt('--lock-minutes', '0')], { encoding: 'utf8', env });
   if (lock.status !== 0) { console.log(JSON.stringify({ push: 'refused', reason: 'another GPU kernel is running', lock: (lock.stdout || '').trim() })); process.exit(3); }
+  const late = windowAhead(new Date(), needs); // the lock wait may have run into a window
+  if (late) { console.log(JSON.stringify({ push: 'refused', reason: `after the lock wait: no extra Kaggle session ${late} IST` })); process.exit(3); }
   const q = spawnSync('node', [path.join(ROOT, 'animate', 'kaggle.mjs'), 'quota', '--min', opt('--min-hours', '8')], { encoding: 'utf8', env });
   if (q.status === 2) { console.log(JSON.stringify({ push: 'refused', reason: 'GPU quota', quota: (q.stdout || '').trim() })); process.exit(3); }
   const jobs = resolveJobs(JSON.parse(fs.readFileSync(batchFile, 'utf8'))).filter((j) => !opt('--kind') || j.kind === opt('--kind'));
