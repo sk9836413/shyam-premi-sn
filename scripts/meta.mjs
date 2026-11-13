@@ -5,7 +5,7 @@
 //   node scripts/meta.mjs check                      read-only: the Page and the Instagram account
 //   node scripts/meta.mjs short --video <mp4> --scenes <json> [--video-url <hosted mp4>] [--publish-at 19:00|YYYY-MM-DDTHH:MM]
 //                              [--fb-at now|HH:MM|YYYY-MM-DDTHH:MM | --no-fb] [--dry-run]
-//   node scripts/meta.mjs long --video <mp4> --scenes <json> --meta <out/slug.json> [--thumbnail <jpg>] [--publish-at 15:00] [--no-fb] [--dry-run]
+//   node scripts/meta.mjs long --video <mp4> --scenes <json> --meta <out/slug.json> [--thumbnail <jpg>] [--publish-at 12:30] [--no-fb] [--dry-run]
 //   node scripts/meta.mjs flush [--log automation/published.md] [--dry-run]
 //
 // short  Facebook: a Reel when the video is vertical and 3-90 s (Meta's Reel limit), otherwise a normal Page video
@@ -18,6 +18,8 @@
 //        either flag Facebook follows --publish-at as before. The Facebook text is fbVideoCaption() (fb.mjs template).
 // long   The long katha video as a normal Facebook Page video (in-stream ads later), scheduled like YouTube:
 //        youtube_title, the description with chapters, the Devanagari keywords and the AI disclaimer. No Instagram.
+//        Page videos (long, movie parts, anything over 90 s) go up with the RESUMABLE chunked upload (fbVideoResumable;
+//        one single POST of a 5-8 min video failed with 413 Request Entity Too Large). --dry-run shows the upload plan.
 // flush  Publishes every queued Instagram Reel whose time is within 20 minutes (waits for it) and no more than
 //        6 hours past; appends "- <slug> | instagram: <url | error ... | skipped ...>" (2 attempts at most).
 //
@@ -192,21 +194,79 @@ async function fbReel(file, description, schedule) {
   return { id: start.video_id, url: `https://www.facebook.com/reel/${start.video_id}`, type: 'reel' };
 }
 
-// A normal Page video from the local file (non-resumable, one request, under 1 GB).
-async function fbVideo(file, { title, description, thumb, schedule }) {
+// A normal Page video (the long katha, movie parts and other videos over the 90 s Reel limit), uploaded RESUMABLY in
+// chunks (Graph API v27 POST /{page-id}/videos on graph-video.facebook.com: upload_phase start -> transfer ... ->
+// finish, Page token). Until 13 Nov 2026 this was ONE multipart POST with the whole file as `source`, and every long
+// video (7-9 Nov 2026, 5-8 min) failed with "POST /videos: Request Entity Too Large (code 413)". Now no request carries
+// more than the chunk Facebook asks for (start_offset..end_offset of each answer). Meta's newer Resumable Upload API
+// (POST /{app-id}/uploads -> fbuploader_video_file_chunk handle) needs the app id and a USER token, which this repo
+// does not have (only the never-expiring Page token), so the Page-token chunked session is used.
+export const FB_CHUNK_TRIES = 4; // per chunk (Facebook's own advice for error 6001 / 1363xxx: retry the same chunk)
+
+/** One multipart POST to graph-video.facebook.com/<version>/<page>/videos (fields + optional Blob parts). */
+async function videosPost(fields, blobs = {}) {
   const form = new FormData();
   form.append('access_token', TOKEN);
-  if (title) form.append('title', title);
-  form.append('description', description);
-  for (const [k, v] of Object.entries(schedule || {})) form.append(k, v);
-  form.append('source', await fs.openAsBlob(file, { type: 'video/mp4' }), path.basename(file));
-  if (thumb && fs.existsSync(thumb)) form.append('thumb', await fs.openAsBlob(thumb, { type: 'image/jpeg' }), path.basename(thumb));
-  const res = await fetch(`https://graph-video.facebook.com/${VERSION}/${env.META_PAGE_ID}/videos`, { method: 'POST', body: form, signal: AbortSignal.timeout(20 * 60000) })
-    .catch((e) => { throw new GraphError(`POST /videos: ${e.name === 'TimeoutError' ? 'timed out' : e.message}`); });
+  for (const [k, v] of Object.entries(fields)) if (v !== undefined && v !== null) form.append(k, String(v));
+  for (const [k, b] of Object.entries(blobs)) form.append(k, b.blob, b.name);
+  const phase = fields.upload_phase || 'upload';
+  const res = await fetch(`https://graph-video.facebook.com/${VERSION}/${env.META_PAGE_ID}/videos`, { method: 'POST', body: form, signal: AbortSignal.timeout(10 * 60000) })
+    .catch((e) => { throw new GraphError(`POST /videos (${phase}): ${e.name === 'TimeoutError' ? 'timed out' : e.message}`); });
   const json = await res.json().catch(() => ({}));
-  if (!res.ok || json.error || !json.id) throw new GraphError(`POST /videos: ${json.error?.message || res.statusText} (code ${json.error?.code ?? res.status})`, json.error?.code);
-  return { id: json.id, url: `https://www.facebook.com/${env.META_PAGE_ID}/videos/${json.id}`, type: 'video' };
+  if (!res.ok || json.error) {
+    const e = json.error || {};
+    throw new GraphError(`POST /videos (${phase}): ${e.error_user_msg || e.message || res.statusText} (code ${e.code ?? res.status}${e.error_subcode ? `/${e.error_subcode}` : ''})`, e.code);
+  }
+  return json;
 }
+
+/** The resumable upload itself; `post(fields, blobs)` is videosPost (a fake in scripts/meta.test.mjs). */
+export async function fbVideoResumable(file, { title, description, thumb, schedule = {} }, { post = videosPost, wait = sleep } = {}) {
+  const size = fs.statSync(file).size;
+  const start = await post({ upload_phase: 'start', file_size: size });
+  const session = start.upload_session_id;
+  if (!session || start.start_offset === undefined) throw new GraphError(`POST /videos (start): no upload session in the answer (${JSON.stringify(start).slice(0, 120)})`);
+  let from = Number(start.start_offset);
+  let to = Number(start.end_offset);
+  let chunks = 0;
+  const fd = fs.openSync(file, 'r');
+  try {
+    while (from < to) {
+      const buf = Buffer.alloc(to - from);
+      fs.readSync(fd, buf, 0, buf.length, from);
+      let res;
+      for (let i = 1; !res; i++) {
+        try {
+          res = await post({ upload_phase: 'transfer', upload_session_id: session, start_offset: from },
+            { video_file_chunk: { blob: new Blob([buf], { type: 'application/octet-stream' }), name: `chunk-${from}` } });
+        } catch (e) {
+          if (i >= FB_CHUNK_TRIES || isAuthError(e.code)) {
+            await post({ upload_phase: 'cancel', upload_session_id: session }).catch(() => {});
+            throw new GraphError(`${e.message} at byte ${from} of ${size} (chunk ${chunks + 1}, try ${i}; upload session cancelled)`, e.code);
+          }
+          await wait(3000 * i);
+        }
+      }
+      const next = Number(res.start_offset);
+      if (!(next > from) || Number.isNaN(Number(res.end_offset))) {
+        await post({ upload_phase: 'cancel', upload_session_id: session }).catch(() => {});
+        throw new GraphError(`POST /videos (transfer): the upload did not move on from byte ${from} (${JSON.stringify(res).slice(0, 120)})`);
+      }
+      from = next;
+      to = Number(res.end_offset);
+      chunks++;
+    }
+  } finally {
+    fs.closeSync(fd);
+  }
+  const blobs = thumb && fs.existsSync(thumb) ? { thumb: { blob: await fs.openAsBlob(thumb, { type: 'image/jpeg' }), name: path.basename(thumb) } } : {};
+  const fin = await post({ upload_phase: 'finish', upload_session_id: session, ...(title ? { title } : {}), description, ...schedule }, blobs);
+  if (fin.success === false) throw new GraphError(`POST /videos (finish): Facebook answered success=false (${JSON.stringify(fin).slice(0, 120)})`);
+  const id = start.video_id || fin.video_id || fin.id;
+  return { id, url: `https://www.facebook.com/${env.META_PAGE_ID}/videos/${id}`, type: 'video', bytes: size, chunks };
+}
+
+const fbVideo = (file, opts) => fbVideoResumable(file, opts);
 
 // Instagram: create the container, poll status_code until FINISHED (15 s steps, 10 minutes), then media_publish.
 async function igReel(caption, { file, videoUrl }) {
@@ -314,7 +374,11 @@ async function postLong({ video, spec, meta, thumbnail, publishAt, noFb, dryRun 
   const post = longPost(spec, meta);
   const at = istAt(publishAt);
   const schedule = at ? { published: 'false', scheduled_publish_time: String(Math.floor(at / 1000)) } : {};
-  if (dryRun) return { status: 'dry-run', version: VERSION, ...post, schedule, thumbnail: Boolean(thumbnail && fs.existsSync(thumbnail)) };
+  if (dryRun) {
+    const bytes = fs.statSync(video).size;
+    return { status: 'dry-run', version: VERSION, ...post, schedule, thumbnail: Boolean(thumbnail && fs.existsSync(thumbnail)),
+      upload: { method: 'resumable', endpoint: `graph-video.facebook.com/${VERSION}/<page>/videos`, phases: ['start', 'transfer (chunks Facebook asks for)', 'finish'], bytes, mb: +(bytes / 1048576).toFixed(1) } };
+  }
   try {
     const dup = await orNull(fbExisting(post.description, post.title));
     if (dup) return { status: 'ok', slug: spec.slug, facebook: dup };

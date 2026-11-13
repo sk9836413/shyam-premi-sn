@@ -1,7 +1,10 @@
 // Payload/plan building for scripts/meta.mjs (no network). Run: node --test scripts/meta.test.mjs
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { captions, igQueue, istAt, longPost, planShort, sameText, summarize } from './meta.mjs';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { captions, fbVideoResumable, igQueue, istAt, longPost, planShort, sameText, summarize } from './meta.mjs';
 
 // 2026-11-05 10:43 IST
 const NOW = Date.UTC(2026, 10, 5, 5, 13);
@@ -110,5 +113,70 @@ describe('duplicate guard', () => {
   test('summary marks a post that already existed', () => {
     assert.equal(summarize({ facebook: { url: 'https://www.facebook.com/reel/1', duplicate: true }, instagram: { pending: '2026-11-08T00:30:00.000Z' } }),
       'fb: https://www.facebook.com/reel/1 (already posted, not repeated) | ig: pending 2026-11-08T00:30:00.000Z');
+  });
+});
+
+// Facebook Page videos (long katha, movie parts) go up in chunks: one 5-8 min video in a single POST failed with
+// "Request Entity Too Large (code 413)" on 7-9 Nov 2026. A fake Graph endpoint checks the start/transfer/finish session.
+describe('fbVideoResumable', () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'meta-test-'));
+  const file = path.join(tmp, 'long.mp4');
+  const data = Buffer.from(Array.from({ length: 2500 }, (_, i) => i % 251));
+  fs.writeFileSync(file, data);
+  const fakeGraph = ({ chunk = 1000, failOnce = -1, failAlways = -1 } = {}) => {
+    const calls = [];
+    const got = [];
+    let failed = false;
+    const post = async (fields, blobs = {}) => {
+      calls.push({ ...fields, blobs: Object.keys(blobs) });
+      assert.ok(!('source' in fields) && !blobs.source, 'never the whole file in one request');
+      if (fields.upload_phase === 'start') return { upload_session_id: 's1', video_id: 'v1', start_offset: '0', end_offset: String(Math.min(chunk, Number(fields.file_size))) };
+      if (fields.upload_phase === 'transfer') {
+        const from = Number(fields.start_offset);
+        if (from === failAlways || (from === failOnce && !failed)) { failed = true; const e = new Error('POST /videos (transfer): try again (code 6001)'); e.code = 6001; throw e; }
+        const buf = Buffer.from(await blobs.video_file_chunk.blob.arrayBuffer());
+        assert.ok(buf.length <= chunk, 'chunk no bigger than Facebook asked');
+        got.push([from, buf]);
+        const next = from + buf.length;
+        return { start_offset: String(next), end_offset: String(Math.min(next + chunk, data.length)) };
+      }
+      if (fields.upload_phase === 'finish') return { success: true };
+      if (fields.upload_phase === 'cancel') return { success: true };
+      throw new Error(`unexpected ${fields.upload_phase}`);
+    };
+    return { post, calls, got };
+  };
+  const at = { published: 'false', scheduled_publish_time: '1763101800' };
+  test('start -> 3 transfers -> finish; the chunks rebuild the file; title, description and schedule go with finish', async () => {
+    const g = fakeGraph();
+    const r = await fbVideoResumable(file, { title: 'T', description: 'D', schedule: at }, { post: g.post, wait: async () => {} });
+    assert.deepEqual(g.calls.map((c) => c.upload_phase), ['start', 'transfer', 'transfer', 'transfer', 'finish']);
+    assert.equal(g.calls[0].file_size, data.length);
+    assert.deepEqual(Buffer.concat(g.got.sort((a, b) => a[0] - b[0]).map((x) => x[1])), data);
+    const fin = g.calls.at(-1);
+    assert.equal(fin.upload_session_id, 's1');
+    assert.equal(fin.title, 'T');
+    assert.equal(fin.description, 'D');
+    assert.equal(fin.published, 'false');
+    assert.equal(fin.scheduled_publish_time, '1763101800');
+    assert.equal(r.id, 'v1');
+    assert.equal(r.chunks, 3);
+    assert.equal(r.type, 'video');
+  });
+  test('a failed chunk is retried from the same offset', async () => {
+    const g = fakeGraph({ failOnce: 1000 });
+    await fbVideoResumable(file, { description: 'D' }, { post: g.post, wait: async () => {} });
+    assert.deepEqual(g.calls.filter((c) => c.upload_phase === 'transfer').map((c) => c.start_offset), [0, 1000, 1000, 2000]);
+  });
+  test('a chunk that keeps failing cancels the session and reports the byte offset', async () => {
+    const g = fakeGraph({ failAlways: 2000 });
+    await assert.rejects(fbVideoResumable(file, { description: 'D' }, { post: g.post, wait: async () => {} }), /at byte 2000 of 2500.*cancelled/);
+    assert.equal(g.calls.at(-1).upload_phase, 'cancel');
+    assert.ok(!g.calls.some((c) => c.upload_phase === 'finish'));
+  });
+  test('a small file in one chunk', async () => {
+    const g = fakeGraph({ chunk: 1e6 });
+    const r = await fbVideoResumable(file, { description: 'D' }, { post: g.post, wait: async () => {} });
+    assert.equal(r.chunks, 1);
   });
 });
