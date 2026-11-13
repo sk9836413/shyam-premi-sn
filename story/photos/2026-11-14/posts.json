@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-14",
+  "posts": {
+    "1": {
+      "big": "छठ पूजा",
+      "line": "की शुभकामनाएं 🙏",
+      "place": "खरना, छठ का दूसरा दिन",
+      "text": "छठी मैया और सूर्य देव की कृपा आप और आपके परिवार पर बनी रहे।",
+      "caption": "छठ पूजा की हार्दिक शुभकामनाएं 🙏\nAaj Chhath ka doosra din, Kharna hai.\nVratI din bhar upvas rakhte hain aur shaam ko gud ki kheer aur roti ka prasad grahan karte hain.\nछठी मैया और सूर्य देव की कृपा सब पर बनी रहे।\nAapke ghar mein Kharna ka prasad kaun banata hai?",
+      "hashtags": ["#ChhathPuja", "#ChhathiMaiya", "#SuryaDev", "#Kharna", "#JaiShreeShyam", "#KhatuShyam"],
+      "fb_caption": "छठ पूजा की शुभकामनाएं 🙏 आज खरना है। क्या आपके घर में आज गुड़ की खीर का प्रसाद बना है?\nछठ का दूसरा दिन, दिन भर के उपवास के बाद शाम को खीर-रोटी का प्रसाद। छठी मैया और सूर्य देव की कृपा बनी रहे।\n\n#KhatuShyam #JaiShreeShyam #ChhathPuja"
+    },
+    "2": {
+      "big": "खरना",
+      "line": "की शुभकामनाएं 🙏",
+      "place": "छठ पर्व का दूसरा दिन",
+      "text": "छठी मइया का आशीर्वाद आपके घर पर बना रहे।",
+      "caption": "खरना की हार्दिक शुभकामनाएं 🙏\nChhath Puja ke is doosre din vrati nirjala upvas ke baad shaam ko prasad grahan karte hain.\nSaadgi aur shuddhta isi parv ki pehchaan hai.\nछठी मइया का आशीर्वाद आपके घर पर बना रहे।\nAapke parivar mein Chhath ki kaunsi parampara sabse khaas hai?",
+      "hashtags": ["#ChhathPuja", "#Kharna", "#ChhathiMaiya", "#SuryaDev", "#JaiShreeShyam", "#KhatuShyam"]
+    },
+    "3": {
+      "title": "देव सूर्य मंदिर, बिहार",
+      "line": "3 बातें जो शायद आप नहीं जानते",
+      "facts": [
+        {
+          "dev": "औरंगाबाद (बिहार) का देव सूर्य मंदिर पश्चिममुखी है, यानी उसका मुख डूबते सूर्य की ओर है।",
+          "roman": "Aurangabad (Bihar) ka Deo Surya Mandir paschimmukhi hai, yaani uska mukh doobte Surya ki or hai."
+        },
+        {
+          "dev": "इस मंदिर की बनावट में नागर शैली दिखती है; वर्तमान मंदिर को 8वीं से 12वीं सदी के बीच का माना जाता है।",
+          "roman": "Is mandir ki banavat mein Nagar shaili dikhti hai; maujooda mandir ko 8vi se 12vi sadi ke beech ka maana jaata hai."
+        },
+        {
+          "dev": "छठ पूजा यहाँ का सबसे प्रमुख पर्व है, जब बड़ी संख्या में श्रद्धालु सूर्य देव के दर्शन को आते हैं।",
+          "roman": "Chhath Puja yahan ka sabse pramukh parv hai, jab badi sankhya mein shraddhalu Surya Dev ke darshan ko aate hain."
+        }
+      ],
+      "sources": [
+        "https://www.hindu-blog.com/2015/09/sun-temple-at-aurangabad-in-bihar-surya.html",
+        "https://mytempletrips.in/?p=3538",
+        "https://www.outlookindia.com/brand-studio/the-sun-temple-of-deo-why-aurangabad-becomes-a-major-pilgrimage-destination-during-chhath"
+      ],
+      "caption": "देव सूर्य मंदिर, औरंगाबाद, बिहार 🙏\nChhath ke in dinon mein Deo Surya Mandir ki yaad sabko aati hai.\nSlides mein 3 baatein hain: paschimmukhi mandir, Nagar shaili ki banavat aur Chhath ka mahatva.\nPehli tasveer purani painting hai, jo public domain mein hai.\nAapne kabhi Deo Surya Mandir ke darshan kiye hain?",
+      "hashtags": ["#DeoSuryaMandir", "#SuryaDev", "#ChhathPuja", "#Bihar", "#MandirDarshan", "#JaiShreeShyam"]
+    },
+    "4": {
+      "big": "कल संध्या अर्घ्य",
+      "line": "जय छठी मइया 🙏",
+      "place": "घाट पर डूबते सूर्य को अर्घ्य",
+      "text": "कल घाट पर डूबते सूर्य देव को अर्घ्य दिया जाएगा।",
+      "caption": "शुभ संध्या 🙏\nKal Chhath Puja ka sandhya arghya hai, jab ghaat par doobte Surya Dev ko arghya diya jaata hai.\nAaj ghar-ghar mein tayyari chal rahi hai: soop, daura aur thekua.\nछठी मइया और सूर्य देव की कृपा बनी रहे।\nAapke ghar ya ghaat par arghya ki tayyari kaisi chal rahi hai?",
+      "hashtags": ["#ChhathPuja", "#SandhyaArghya", "#ChhathiMaiya", "#SuryaDev", "#JaiShreeShyam", "#KhatuShyam"]
+    }
+  }
+}

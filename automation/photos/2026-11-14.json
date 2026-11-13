@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-14",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-10.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-14T01:00:00.000Z",
+      "igAt": "2026-11-14T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-14-1-1.jpg"
+      ],
+      "caption": "छठ पूजा की हार्दिक शुभकामनाएं 🙏\nAaj Chhath ka doosra din, Kharna hai.\nVratI din bhar upvas rakhte hain aur shaam ko gud ki kheer aur roti ka prasad grahan karte hain.\nछठी मैया और सूर्य देव की कृपा सब पर बनी रहे।\nAapke ghar mein Kharna ka prasad kaun banata hai?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#ChhathPuja #ChhathiMaiya #SuryaDev #Kharna #JaiShreeShyam #KhatuShyam",
+      "fbCaption": "छठ पूजा की शुभकामनाएं 🙏 आज खरना है। क्या आपके घर में आज गुड़ की खीर का प्रसाद बना है?\nछठ का दूसरा दिन, दिन भर के उपवास के बाद शाम को खीर-रोटी का प्रसाद। छठी मैया और सूर्य देव की कृपा बनी रहे।\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#KhatuShyam #JaiShreeShyam #ChhathPuja",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1605210654955232",
+        "scheduled": "2026-11-14T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-14T03:43:00.000Z"
+      }
+    },
+    {
+      "n": 2,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-7.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": null,
+      "igAt": "2026-11-14T05:13:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-14-2-1.jpg"
+      ],
+      "caption": "खरना की हार्दिक शुभकामनाएं 🙏\nChhath Puja ke is doosre din vrati nirjala upvas ke baad shaam ko prasad grahan karte hain.\nSaadgi aur shuddhta isi parv ki pehchaan hai.\nछठी मइया का आशीर्वाद आपके घर पर बना रहे।\nAapke parivar mein Chhath ki kaunsi parampara sabse khaas hai?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#ChhathPuja #Kharna #ChhathiMaiya #SuryaDev #JaiShreeShyam #KhatuShyam",
+      "fb": {
+        "skipped": "Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)"
+      },
+      "ig": {
+        "pending": "2026-11-14T05:13:00.000Z"
+      }
+    },
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "deo-surya-mandir",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/deo-surya-mandir/commons-oriental-scenery-part-5-fig-5-4b6964.jpg"
+      ],
+      "source": "claude",
+      "fbAt": null,
+      "igAt": "2026-11-14T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-14-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-14-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-14-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-14-3-4.jpg"
+      ],
+      "caption": "देव सूर्य मंदिर, औरंगाबाद, बिहार 🙏\nChhath ke in dinon mein Deo Surya Mandir ki yaad sabko aati hai.\nSlides mein 3 baatein hain: paschimmukhi mandir, Nagar shaili ki banavat aur Chhath ka mahatva.\nPehli tasveer purani painting hai, jo public domain mein hai.\nAapne kabhi Deo Surya Mandir ke darshan kiye hain?\n\n📷 Photo: Thomas Daniell, Public Domain, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Oriental_Scenery_Part_5_Fig_5.jpg\n\n#DeoSuryaMandir #SuryaDev #ChhathPuja #Bihar #MandirDarshan #JaiShreeShyam",
+      "fb": {
+        "skipped": "Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)"
+      },
+      "ig": {
+        "pending": "2026-11-14T13:16:00.000Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-3.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": null,
+      "igAt": "2026-11-14T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-14-4-1.jpg"
+      ],
+      "caption": "शुभ संध्या 🙏\nKal Chhath Puja ka sandhya arghya hai, jab ghaat par doobte Surya Dev ko arghya diya jaata hai.\nAaj ghar-ghar mein tayyari chal rahi hai: soop, daura aur thekua.\nछठी मइया और सूर्य देव की कृपा बनी रहे।\nAapke ghar ya ghaat par arghya ki tayyari kaisi chal rahi hai?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#ChhathPuja #SandhyaArghya #ChhathiMaiya #SuryaDev #JaiShreeShyam #KhatuShyam",
+      "fb": {
+        "skipped": "Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)"
+      },
+      "ig": {
+        "pending": "2026-11-14T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

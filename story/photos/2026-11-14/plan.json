@@ -1,0 +1,116 @@
+{
+  "date": "2026-11-14",
+  "weekday": "Shanivar",
+  "festival": "छठी मैया और सूर्य देव की कृपा बनी रहे",
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-14T01:00:00.000Z",
+      "igAt": "2026-11-14T03:43:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "chhath",
+        "name": "Chhath Puja day 2: Kharna (Lohanda) (no status Short).",
+        "big": "छठ पूजा",
+        "line": "की शुभकामनाएं 🙏",
+        "blessing": "छठी मैया और सूर्य देव की कृपा बनी रहे",
+        "tags": [
+          "#ChhathPuja",
+          "#ChhathiMaiya",
+          "#SuryaDev"
+        ]
+      },
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-10.jpg",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    },
+    {
+      "n": 2,
+      "fbAt": null,
+      "igAt": "2026-11-14T05:13:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "chhath",
+        "name": "Chhath Puja day 2: Kharna",
+        "big": "खरना",
+        "line": "की शुभकामनाएं 🙏",
+        "blessing": "छठी मइया का आशीर्वाद आपके घर पर बना रहे",
+        "tags": [
+          "#ChhathPuja",
+          "#ChhathiMaiya",
+          "#SuryaDev"
+        ]
+      },
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-7.jpg",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 3,
+      "fbAt": null,
+      "igAt": "2026-11-14T13:16:00.000Z",
+      "kind": "facts",
+      "temple": "deo-surya-mandir",
+      "templeName": "Deo Surya Mandir, Aurangabad, Bihar",
+      "category": "surya",
+      "photos": [
+        {
+          "file": "footage/deo-surya-mandir/commons-oriental-scenery-part-5-fig-5-4b6964.jpg",
+          "credit": "Photo: Thomas Daniell, Public Domain, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Oriental_Scenery_Part_5_Fig_5.jpg",
+          "licence": "Public Domain",
+          "author": "Thomas Daniell",
+          "title": "File:Oriental Scenery Part 5 Fig 5.jpg"
+        }
+      ],
+      "write": [
+        "title",
+        "line",
+        "facts",
+        "sources",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 4,
+      "fbAt": null,
+      "igAt": "2026-11-14T14:16:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "chhath",
+        "name": "Chhath Puja: Sandhya Arghya (kal)",
+        "big": "कल संध्या अर्घ्य",
+        "line": "जय छठी मइया 🙏",
+        "blessing": "घाट पर डूबते सूर्य देव को अर्घ्य",
+        "tags": [
+          "#ChhathPuja",
+          "#ChhathiMaiya",
+          "#SuryaDev"
+        ]
+      },
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-3.jpg",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags"
+      ]
+    }
+  ]
+}
