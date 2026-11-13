@@ -53,7 +53,10 @@ export function festivalOf(spec, festivals = []) {
   const t = `${spec.slug || ''} ${spec.family || ''} ${spec.festival_key || ''}`;
   if (spec.theme && festivals.some((f) => f.theme === spec.theme)) return spec.theme;
   const f = festivals.filter((x) => x.theme && x.key).sort((a, b) => b.key.length - a.key.length).find((x) => t.includes(x.key));
-  return f ? f.theme : null;
+  if (f) return f.theme;
+  // the theme word itself in the slug (a Chhath long video "2026-11-14-long-chhath-vrat-katha", a bhajan Short)
+  const theme = [...new Set(festivals.map((x) => x.theme).filter(Boolean))].find((th) => new RegExp(`(^|-)${th}(-|$)`).test(`${spec.slug || ''}`));
+  return theme || null;
 }
 
 /** The festival day a spec is about (Chhath 2026: nahay-khay / kharna / sandhya-arghya / usha-arghya / parana), else null. */
@@ -102,7 +105,9 @@ export function pickBhajan(bhajans, { deity, festival = null, day = null, mood =
     // Chhath 2026 (automation/chhath-2026.json): the song of the festival's own day first (kharna, sandhya-arghya, ...)
     festival && day ? fresh.filter((b) => b.bhajan.festival === festival && b.bhajan.day === day) : [],
     festival ? fresh.filter((b) => b.bhajan.festival && b.bhajan.festival === festival) : [],
-    deity ? fresh.filter((b) => b.bhajan.deity === deity) : [],
+    // a festival song never goes under another festival's / an ordinary video of the same deity (a Chhath geet is
+    // "devi", but not for a Vaishno Devi darshan)
+    deity ? fresh.filter((b) => b.bhajan.deity === deity && (!b.bhajan.festival || b.bhajan.festival === festival)) : [],
   ];
   for (const [k, pool] of tiers.entries()) {
     if (!pool.length) continue;

@@ -28,7 +28,7 @@
       "question_hi": "इस बार आप छठ के लिए किस घाट पर जा रहे हैं?",
       "images": [10, 4, 5, 3, 6, 2, 8] }
    },
-   "long": { "topic": "chhath-vrat-katha", "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Chhath vrat katha / Chhathi Maiya kaun hain\" - who Chhathi Maiya (Shashthi Devi) is, the Chhath vrat katha, Kharna today. Do NOT repeat the 13 Nov long video (Nahay Khay, kaddu bhaat, Raja Priyavrat katha told in full): tell it from another angle, with different chapters, title and images. Every fact needs a source; manyata words where it is belief." }
+   "long": { "topic": "chhath-vrat-katha", "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Chhath vrat katha / Chhathi Maiya kaun hain\" - who Chhathi Maiya (Shashthi Devi) is, the Chhath vrat katha, Kharna today. Do NOT repeat the 13 Nov long video (Nahay Khay, kaddu bhaat, Raja Priyavrat katha told in full): tell it from another angle, with different chapters, title and images. Every fact needs a source; manyata words where it is belief. The slug must start <date>-long-chhath- (the Chhath bhajan intro/outro is picked by the word chhath in the slug)." }
   },
   "2026-11-15": {
    "slots": {
@@ -39,7 +39,7 @@
       "question_hi": "आज शाम आप किस घाट पर अर्घ्य देंगे?",
       "images": [4, 3, 8, 6, 10, 2] }
    },
-   "long": { "topic": "chhath-sandhya-arghya-surya-mandir", "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Surya Dev aur Chhath: Sandhya Arghya ka mahatva + Bihar ke Surya mandir\" - why the setting sun gets arghya today, the Sandhya Arghya vidhi, and Bihar's Surya temples (Deo Surya Mandir Aurangabad, Ulaar Surya Mandir; Konark / Modhera only as context). Do NOT repeat the 13 and 14 Nov long videos (Nahay Khay katha; Chhathi Maiya / vrat katha). Verify every temple fact with a non-Wikipedia source; manyata words where it is belief." }
+   "long": { "topic": "chhath-sandhya-arghya-surya-mandir", "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Surya Dev aur Chhath: Sandhya Arghya ka mahatva + Bihar ke Surya mandir\" - why the setting sun gets arghya today, the Sandhya Arghya vidhi, and Bihar's Surya temples (Deo Surya Mandir Aurangabad, Ulaar Surya Mandir; Konark / Modhera only as context). Do NOT repeat the 13 and 14 Nov long videos (Nahay Khay katha; Chhathi Maiya / vrat katha). Verify every temple fact with a non-Wikipedia source; manyata words where it is belief. The slug must start <date>-long-chhath- (the Chhath bhajan intro/outro is picked by the word chhath in the slug)." }
   },
   "2026-11-16": {
    "slots": {
@@ -56,7 +56,7 @@
       "question_hi": "इस छठ पर छठी मइया से आपने क्या मांगा?",
       "images": [5, 8, 10, 2, 6, 3] }
    },
-   "long": { "topic": "chhath-usha-arghya-parana-niyam", "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Usha Arghya aur parana: Chhath ke niyam\" - the Usha Arghya at sunrise, how the vrat is completed (parana), and the rules of Chhath (sattvik food, purity, nirjala vrat, what vratis follow). Do NOT repeat the 13-15 Nov long videos. Every fact needs a source; manyata words where it is belief." }
+   "long": { "topic": "chhath-usha-arghya-parana-niyam", "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Usha Arghya aur parana: Chhath ke niyam\" - the Usha Arghya at sunrise, how the vrat is completed (parana), and the rules of Chhath (sattvik food, purity, nirjala vrat, what vratis follow). Do NOT repeat the 13-15 Nov long videos. Every fact needs a source; manyata words where it is belief. The slug must start <date>-long-chhath- (the Chhath bhajan intro/outro is picked by the word chhath in the slug)." }
   }
  },
  "bhajan_fallback": "If no QA-passed Chhath bhajan exists for a bhajan slot, the slot becomes a Chhath Surya temple / ghat darshan Short (Deo Surya Mandir Aurangabad, Ulaar Surya Mandir, Konark Sun Temple, Modhera Sun Temple, Patna or Varanasi Chhath ghats; STORY.md; facts verified; bhajan outro when BHAJAN_VOCALS=on), not the normal temple darshan.",

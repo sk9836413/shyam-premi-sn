@@ -361,3 +361,9 @@ test('bhajan Short: the day song first, 45-90 s from the chorus, disclosure + FB
   assert.match(s.youtube_description, /भजन: मौलिक रचना, AI द्वारा गाया गया \(ACE-Step\)/);
   assert.match(s.facebook_caption.split('\n').pop(), /^#KhatuShyam #JaiShreeShyam #ChhathPuja$/);
 });
+test('a festival bhajan (Chhath geet, deity devi) is not used for another devi video', () => {
+  const b = (id, festival) => ({ id, bhajan: { deity: 'devi', mood: 'thaath', festival, chorus_at: 1 } });
+  const lib = [b('bhajan-chhath', 'chhath')];
+  assert.equal(pickBhajan(lib, { deity: 'devi', festival: null, date: '2026-11-13', slug: 'x-vaishno-devi' }), null);
+  assert.equal(pickBhajan(lib, { deity: 'devi', festival: 'chhath', date: '2026-11-14', slug: 'x-chhath' }).track.id, 'bhajan-chhath');
+});
