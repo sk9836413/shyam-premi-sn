@@ -9,6 +9,9 @@
 #                     with BHAJAN_VOCALS=on (music/bhajan.mjs).
 #   MUSIC_GEN=on      instrumental batch (job `batch`, as before, ~15-25 GPU min).
 #   MUSIC_GEN=both    both, one after the other (they share the sps-music kernel).
+# Mantra jaap (job `mantra`, owner 13 Nov 2026; music/mantra-takes.mjs): every Monday run, after the above, also makes
+# the ACE-Step takes of the coming week's mantra-jaap long video (one per mala; repo variable MANTRA_JAAP=off stops it);
+# the first video's takes once on Sat 21 Nov 2026 05:45 IST (cron '15 0 21 11 *', guarded to 2026 only).
 # Kaggle rules (music/gen.mjs push): never inside or running into 09:00-11:30 / 18:30-21:00 IST, waits up to 60 min for
 # any other sps-* GPU kernel (lock), refuses under 8 GPU-hours left this week (the quota resets Sat 05:30 IST).
 # First bhajan batch: one run on Sat 14 Nov 2026 06:00 IST, right after the weekly quota reset (cron '30 0 14 11 *',
@@ -19,15 +22,16 @@ on:
   schedule:
     - cron: '40 20 * * 0'   # Monday 02:10 IST
     - cron: '30 0 14 11 *'  # once: Sat 14 Nov 2026 06:00 IST, first bhajan batch (the job skips in other years)
+    - cron: '15 0 21 11 *'  # once: Sat 21 Nov 2026 05:45 IST, takes of the first mantra video (Sun 22 Nov; job `mantra`)
   workflow_dispatch:
     inputs:
       mode:
-        description: vocals (AI bhajans) or instrumental
+        description: vocals (AI bhajans), instrumental, or mantra (the mantra-jaap takes of the next 7 days)
         type: choice
-        options: [vocals, instrumental]
+        options: [vocals, instrumental, mantra]
         default: vocals
       from:
-        description: First day the bhajans are for (YYYY-MM-DD, IST); empty = today
+        description: First day the bhajans are for (YYYY-MM-DD, IST; mantra mode - the day the next 7 days count from); empty = today
         type: string
         default: ''
 
@@ -180,4 +184,72 @@ jobs:
           git add music/library
           git diff --cached --quiet && { echo "nothing new"; exit 0; }
           git commit -qm "Music library: weekly batch $(date -u +%G-W%V)"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # Weekly mantra-jaap takes (owner, 13 Nov 2026; music/mantra-takes.mjs, automation/mantras.json): the ACE-Step takes of
+  # the mantra video(s) of the next 7 days (one take per mala + 2 spares, a different raag / tempo / instruments each;
+  # 3 malas + 1 spare when under 12 GPU hours are left), in the same sps-music kernel after the bhajans (~25-40 GPU min).
+  # Whisper deity-name gate + CLAP + a steady 108-divisor loop per take; passing takes -> music/mantra/takes/ + the
+  # ledger music/mantra/takes.json (never reused). Mondays 02:10 IST (repo variable MANTRA_JAAP=off stops it), and once on
+  # Sat 21 Nov 2026 05:45 IST for the first video (Sun 22 Nov): after the movie series' GPU days (17-20 Nov), right after
+  # the weekly quota reset (Sat 05:30 IST), done before the 09:00 IST blocked window. gen.mjs push keeps the rules: no
+  # session in or into 09:00-11:30 / 18:30-21:00 IST, waits for the Kaggle lock, refuses under --min-hours.
+  mantra:
+    needs: bhajan
+    if: >-
+      always() && (
+      (github.event_name == 'workflow_dispatch' && inputs.mode == 'mantra') ||
+      (github.event_name == 'schedule' && github.event.schedule == '15 0 21 11 *') ||
+      (github.event_name == 'schedule' && github.event.schedule == '40 20 * * 0' && vars.MANTRA_JAAP != 'off'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 160
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tools (Kaggle CLI, ffmpeg)
+        run: |
+          pip install -q 'kaggle>=2.2' six
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - name: Plan the takes
+        id: plan
+        run: |
+          if [ "${{ github.event.schedule }}" = '15 0 21 11 *' ] && [ "$(date -u +%Y)" != 2026 ]; then echo "one-off first mantra takes: not this year"; echo "need=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          today="${{ inputs.from }}"; [ -n "$today" ] || today=$(TZ=Asia/Kolkata date +%F)
+          left=$(node animate/kaggle.mjs quota 2>/dev/null | tail -1 | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).left??'')}catch{console.log('')}})")
+          echo "GPU hours left this week: ${left:-unknown}" | tee -a "$GITHUB_STEP_SUMMARY"
+          node music/mantra-takes.mjs plan --today "$today" ${left:+--hours-left "$left"} --out "$RUNNER_TEMP/mantra-batch.json" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Push the Kaggle session
+        if: steps.plan.outputs.need == 'true'
+        run: |
+          B=${{ steps.plan.outputs.batch }}
+          mkdir -p music/mantra/batches
+          cp "$RUNNER_TEMP/mantra-batch.json" "music/mantra/batches/$B.batch.json"
+          node music/gen.mjs push --batch "music/mantra/batches/$B.batch.json" --code music/kaggle/bhajan_batch.py --push-dir "$RUNNER_TEMP/push" --lock-minutes 60 --needs-minutes 50 --min-hours 3 | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Wait
+        if: steps.plan.outputs.need == 'true'
+        run: node music/gen.mjs wait --minutes 65
+      - name: Fetch, Whisper gate, loops and import
+        if: steps.plan.outputs.need == 'true'
+        run: |
+          B=${{ steps.plan.outputs.batch }}
+          node music/gen.mjs fetch --to "$RUNNER_TEMP/out"
+          node music/mantra-takes.mjs import --from "$RUNNER_TEMP/out" --batch "music/mantra/batches/$B.batch.json" --report "music/mantra/batches/$B.qa.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          rm -rf "$RUNNER_TEMP/out"
+      - name: Tests
+        if: steps.plan.outputs.need == 'true'
+        run: node --test scripts/mantra.test.mjs
+      - name: Commit
+        if: always() && steps.plan.outputs.need == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A music/mantra
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -qm "Mantra takes ${{ steps.plan.outputs.batch }}"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done

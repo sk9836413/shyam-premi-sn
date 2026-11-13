@@ -10,7 +10,7 @@
 //   caption: scripts/validate.mjs fails a spec that has one, youtube.mjs refuses the upload, and trend-signals.mjs
 //   marks them in the trend file. ("Shyam Sangeet Studio" is a real channel of the singer Shyam Prajapati, checked
 //   13 Nov 2026; "Shyam Sangeet" alone is a generic phrase.)
-// - Every bhajan video (bhajan Shorts, the nonstop jukebox) also goes into the public playlist BHAKTI_PLAYLIST
+// - Every bhajan video (bhajan Shorts, the nonstop jukebox, the weekly mantra jaap) also goes into the public playlist BHAKTI_PLAYLIST
 //   (youtube.mjs, created once when missing); playlists rank in YouTube search.
 
 export const BHAKTI_PLAYLIST = 'Bhakti Geet | Shyam Bhajan | भक्ति गीत';
@@ -68,9 +68,9 @@ export function bhaktiTitle(title, opts = {}, max = 90) {
   return out.length <= max ? out : t;
 }
 
-/** A bhajan video (its soundtrack is our song): bhajan Shorts and the nonstop jukebox. Narrated Shorts with only a
- *  chorus outro are not. */
-export const isBhajanVideo = (spec = {}) => spec.bhajan_short === true || spec.kind === 'jukebox' || spec.bhajan?.mode === 'jukebox';
+/** A bhajan video (its soundtrack is our song): bhajan Shorts, the nonstop jukebox and the weekly mantra jaap
+ *  (scripts/mantra-long.mjs). Narrated Shorts with only a chorus outro are not. */
+export const isBhajanVideo = (spec = {}) => spec.bhajan_short === true || ['jukebox', 'mantra'].includes(spec.kind) || ['jukebox', 'mantra'].includes(spec.bhajan?.mode);
 
 /** The generic tags of a bhajan video (added once; Shyam songs get the Shyam phrases too). */
 export function bhaktiTags({ deity = '', festival = '', date = '' } = {}) {

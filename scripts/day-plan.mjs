@@ -24,6 +24,10 @@
 // (longSubject): on a festival day the festival's katha or vidhi, unless a long video told that festival in the last
 // LONG_REPEAT_DAYS = 30 days; otherwise STORY.md section 5's order (the Mandir Itihas series). Movie days keep the movie
 // part (a vertical Short-type upload) and still get the long video.
+// MANTRA JAAP (owner, 13 Nov 2026; scripts/mantra.mjs, automation/mantras.json): once a week the long video is a
+// 108-count mantra jaap (kind "mantra"): Sundays from 22 Nov 2026, a Vishnu/Krishna mantra on the week's Ekadashi from
+// 23 Nov; never on Chhath / Janmotsav / movie days, a date-scoped override long or a big festival. Made the evening before
+// by daily.yml job `mantra` (scripts/mantra-long.mjs); if it is missing, the long job tells a katha instead (`what`).
 //
 //   node scripts/day-plan.mjs --date 2026-11-11 --slot noon --check   exit 0 when planned, 1 when not (GITHUB_OUTPUT
 //                                                                     planned, why, what, kind, theme)
@@ -33,6 +37,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { loadFestivals, placements } from './status-engine.mjs';
 import { DAY_THEMES } from './status-themes.mjs';
+import { loadMantras, mantraFor } from './mantra.mjs';
 
 const WEEKDAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 export const CAP = 3; // Shorts: every vertical upload (status, morning, evening, noon, kalyug, movie parts)
@@ -80,7 +85,7 @@ export function loadInputs(root = '.') {
   let override = null;
   try { override = JSON.parse(read(path.join(root, OVERRIDE_FILE))); } catch { /* none */ }
   return { festivals, placements: placements(list), movies, kalyug: process.env.KALYUG === 'on', kalyugLogged, longs: longsOf(log), today: istToday(),
-    override, extraDay: (process.env.EXTRA_UPLOAD_DAY || '').trim() };
+    override, extraDay: (process.env.EXTRA_UPLOAD_DAY || '').trim(), mantras: loadMantras(root) };
 }
 
 /** The long videos in log.md: [{ date, text }] (text = slug, deity and summary, lower case). */
@@ -111,7 +116,7 @@ export function longSubject(date, inputs = {}) {
     let covered = logged?.date;
     for (let d = addDays(date, -1); !covered && d >= from && d >= (inputs.today || from); d = addDays(d, -1)) {
       const g = inputs.festivals.get(d);
-      if (g && sameFestival(g.key || g.name, key) && longSubject(d, inputs).festival) covered = d;
+      if (g && sameFestival(g.key || g.name, key) && longSubject(d, inputs).festival && !mantraOf(d, inputs)) covered = d;
     }
     r = covered ? { festival: null, name: f.name, covered } : { festival: key, name: f.name };
   }
@@ -173,11 +178,19 @@ export function planDay(date, inputs = {}) {
   return { date, day: WEEKDAY[wd], type, festival: f?.name, uploads: kept.map(({ logged, ...u }) => ({ ...u, at: u.at || AT[u.slot] })), dropped };
 }
 
+/** The weekly mantra video of the date (scripts/mantra.mjs), or null. */
+export const mantraOf = (date, inputs = {}) => (inputs.mantras ? mantraFor(date, inputs) : null);
+
 /** The day's long video (every day, 12:30 IST, outside the Shorts cap). `what` goes into the long job's story prompt. */
 function longUpload(date, inputs, movie) {
   const sub = longSubject(date, inputs);
   const base = 'long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5)';
   const notMovie = movie ? '; today is a mini-movie day, so not the story of the movie part' : '';
+  const m = mantraOf(date, inputs);
+  if (m) {
+    return { slot: 'long', kind: 'mantra', topic: `mantra:${m.id}`, mantra: m.id,
+      what: `weekly mantra jaap long video "${m.text}" (${m.why}; 108-count malas, made the evening before by daily.yml job mantra, scripts/mantra-long.mjs; public 12:30 IST). Only if it is missing: a ${base} on ${m.deity} and the meaning of ${m.roman} (${m.source_en})` };
+  }
   if (sub.festival) {
     return { slot: 'long', kind: 'long', topic: sub.festival,
       what: `${base}: today is ${sub.name}, so tell its katha or vidhi (no long video on it in the last ${LONG_REPEAT_DAYS} days)${notMovie}` };
@@ -203,7 +216,7 @@ export function isPlanned(date, slot, inputs) {
   return { planned: false, plan: p, why };
 }
 
-const describe = (u) => `${u.slot} ${u.at}${u.festival ? ` (${u.festival})` : u.topic ? ` (${u.topic === 'series' ? 'section 5 / mandir series' : `${u.topic} katha`})` : u.kind ? ` (${u.kind}${u.theme !== undefined ? `:${u.theme}` : ''})` : ''}`;
+const describe = (u) => `${u.slot} ${u.at}${u.festival ? ` (${u.festival})` : u.mantra ? ` (${u.topic})` : u.topic ? ` (${u.topic === 'series' ? 'section 5 / mandir series' : `${u.topic} katha`})` : u.kind ? ` (${u.kind}${u.theme !== undefined ? `:${u.theme}` : ''})` : ''}`;
 
 function main() {
   const args = process.argv.slice(2);

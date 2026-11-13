@@ -9,6 +9,7 @@ import fs from 'node:fs';
 import { topicWarnings } from './topics.mjs';
 import { checkFbCaption } from './fb.mjs';
 import { thirdPartyNames } from './bhakti-seo.mjs';
+import { checkMantraSpec, loadMantras } from './mantra.mjs';
 
 const longMode = process.argv.includes('--long');
 const file = process.argv.slice(2).find((a) => !a.startsWith('--')) || 'story/today/scenes.json';
@@ -180,6 +181,20 @@ for (const p of allPrompts) {
   const bad = p.replace(/\bno (body|flute|hands|arms)\b/gi, '');
   need(/(sheesh|head only|divine head)/i.test(p) && /(mukut|crown)/i.test(p) && /garland/i.test(p) && !/\b(flute|bansuri|full[- ]body|full[- ]length|whole body|torso|his body|his hands|his arms)\b/i.test(bad),
     `Khatu Shyam ji image: show only the SHEESH (head): "the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum" (prompt: "${p.slice(0, 80)}...")`);
+}
+
+// ---- Mantra-jaap long video (scripts/mantra-long.mjs, automation/mantras.json; owner 13 Nov 2026) --------------------
+// Made by the script, not written by Claude, so its own rules instead of the katha's: title with the mantra, "108" and a
+// searched generic phrase (Krishna Mantra / Bhakti Geet), the meaning, the traditional source and the AI disclosure in
+// the description, 1-5 malas of exactly 108 chants from different takes and arrangements, 18-62 min, synthetic media.
+if (s.kind === 'mantra') {
+  for (const p of checkMantraSpec(s, loadMantras('.'))) problems.push(p);
+  if (problems.length) {
+    console.log(problems.map((p) => `- ${p}`).join('\n'));
+    process.exit(1);
+  }
+  console.log(`OK: ${file} (mantra ${s.mantra}, ${s.malas.length} malas x 108, ~${Math.round(s.seconds / 60)} min)`);
+  process.exit(0);
 }
 
 // ---- Long video (16:9, 5-10 min) ----------------------------------------------------------------
