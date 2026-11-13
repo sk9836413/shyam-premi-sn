@@ -1,0 +1,1700 @@
+{
+ "run": "Kaggle sps-music v4, 13 Nov 2026 14:24-15:05 IST, T4x2, DiT fp32 (cuda:0), LM 1.7B fp32 (cuda:1); 38.8 min session",
+ "ace_commit": "ca1e85fe9430179831e6bc6be790c332190a3866",
+ "batch": "music/lyrics/pron-ab-001.json",
+ "calibration": "Positive control = edge-tts hi-IN-MadhurNeural speaking the same chorus: Whisper large-v3 wrote \"जय श्री शाम\" 6/6 times but \"खाटू वाले श्याम\" 2/2 and CER 0.127. So the strict whole-transcript Shyam count is biased against \"श्री श्याम\"; khatu_slot_* (the word after \"खाटू वाले\") is the fair Shyam test, and CER ~0.13 is the floor of this Demucs+Whisper chain.",
+ "not_run": "rom-ipa-hi, bho-le-hi, rom-bholay-hi, rom-bh-ole-hi, deva-diction, rom-nolm, deva-lm4b, rom-lm4b: generation deadline (ace-step clamps the batch to 2 on a T4, the 3-seed batch was then redone seed by seed; fixed in pron_ab.py)",
+ "verdict": "NOT publishable: no variant has Shyam right in 3/3 takes and no take reaches CER < 0.12. Best lead: श्‍याम with ZWJ (y-glide in the Khatu slot 3/3, exact श्याम 1/3, but Bhole lost in 3/3).",
+ "ranking": [
+  {
+   "variant": "zwj-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 1,
+   "khatu_slot_y_glide": 3,
+   "bhole_ok": 0,
+   "bhakt_ok": 2,
+   "cer_mean": 0.219,
+   "cer_min": 0.177,
+   "cer_max": 0.247,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "rom-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 1,
+   "khatu_slot_y_glide": 1,
+   "bhole_ok": 1,
+   "bhakt_ok": 3,
+   "cer_mean": 0.319,
+   "cer_min": 0.209,
+   "cer_max": 0.494,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "rom-shi-yaam-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 3,
+   "bhole_ok": 2,
+   "bhakt_ok": 1,
+   "cer_mean": 0.333,
+   "cer_min": 0.177,
+   "cer_max": 0.443,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "sa-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 2,
+   "bhole_ok": 2,
+   "bhakt_ok": 3,
+   "cer_mean": 0.363,
+   "cer_min": 0.177,
+   "cer_max": 0.703,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "shiyaam-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 2,
+   "bhole_ok": 2,
+   "bhakt_ok": 3,
+   "cer_mean": 0.542,
+   "cer_min": 0.304,
+   "cer_max": 1.006,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "elong-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 0,
+   "bhole_ok": 2,
+   "bhakt_ok": 3,
+   "cer_mean": 0.198,
+   "cer_min": 0.152,
+   "cer_max": 0.228,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "deva-en",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 0,
+   "bhole_ok": 2,
+   "bhakt_ok": 2,
+   "cer_mean": 0.291,
+   "cer_min": 0.241,
+   "cer_max": 0.329,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "deva-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 0,
+   "bhole_ok": 2,
+   "bhakt_ok": 2,
+   "cer_mean": 0.295,
+   "cer_min": 0.247,
+   "cer_max": 0.335,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "rom-shyaa-m-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 0,
+   "bhole_ok": 2,
+   "bhakt_ok": 3,
+   "cer_mean": 0.451,
+   "cer_min": 0.424,
+   "cer_max": 0.481,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "hyph-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 0,
+   "bhole_ok": 2,
+   "bhakt_ok": 3,
+   "cer_mean": 0.548,
+   "cer_min": 0.297,
+   "cer_max": 1.013,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "rom-en",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 0,
+   "bhole_ok": 1,
+   "bhakt_ok": 3,
+   "cer_mean": 0.251,
+   "cer_min": 0.139,
+   "cer_max": 0.399,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "mixed-hi",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 0,
+   "bhole_ok": 1,
+   "bhakt_ok": 3,
+   "cer_mean": 0.329,
+   "cer_min": 0.215,
+   "cer_max": 0.437,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "deva-nolm",
+   "takes": 3,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 0,
+   "khatu_slot_y_glide": 0,
+   "bhole_ok": 1,
+   "bhakt_ok": 2,
+   "cer_mean": 0.47,
+   "cer_min": 0.348,
+   "cer_max": 0.601,
+   "audio_ok": 3,
+   "publishable": false
+  },
+  {
+   "variant": "control-edge-tts",
+   "takes": 1,
+   "shyam_ok_whisper_strict": 0,
+   "khatu_slot_shyam": 1,
+   "khatu_slot_y_glide": 1,
+   "bhole_ok": 1,
+   "bhakt_ok": 1,
+   "cer_mean": 0.127,
+   "cer_min": 0.127,
+   "cer_max": 0.127,
+   "audio_ok": 1,
+   "publishable": false
+  }
+ ],
+ "takes": [
+  {
+   "variant": "deva-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.33,
+   "true_peak": -0.89,
+   "clip_share": 0.0,
+   "cer": 0.335,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशम्",
+     "श्रीशम्",
+     "श्रीशम्",
+     "श्रीशम्",
+     "श्रीशम्"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 0,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": false,
+   "audio_ok": true,
+   "whisper": "जय श्रीशम् जय श्रीशम् खतुवाल शम्धनी हार का सहारा तू भोले भत्तों की सुनले जय श्रीशम् जय श्रीशम् जय श्रीशम् खतुवाल शम्धनी हार का सहारा तू बोले घतों की सुन ले ये चेशी श्रम।",
+   "file": "deva-hi__1111.mp3",
+   "khatu_slot": [
+    "शम्धनी",
+    "शम्धनी"
+   ]
+  },
+  {
+   "variant": "deva-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.54,
+   "true_peak": -0.9,
+   "clip_share": 0.0,
+   "cer": 0.247,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीशाम जय श्रीशाम खटुबले शमधानी हारे का सहारा तु भोले भक्तों की सुनले जय श्रीशाम जय श्रीशाम जय श्रीशाम खटुबले शमधानी हारे का सहारा तु भोले भक्तों की सुनले अजय को अजय को",
+   "file": "deva-hi__2222.mp3",
+   "khatu_slot": [
+    "शमधानी",
+    "शमधानी"
+   ]
+  },
+  {
+   "variant": "deva-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -13.59,
+   "true_peak": -0.86,
+   "clip_share": 0.0,
+   "cer": 0.304,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शाम",
+     "शाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 1,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय शीषम जय शीषम खटू वाले शाम धनि हारे का सहार तू भोले भक्तों की सुनले जय शीषम जय शीशाम जय शीशाम खटू वाले शाम धनी हरे का साधारप भोले गप्तों की सुनने जय शीशाम",
+   "file": "deva-hi__3333.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "rom-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.72,
+   "true_peak": -0.9,
+   "clip_share": 0.0,
+   "cer": 0.494,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्री शाम खतुआले शाम धानी हारे का सहरा तू भोले भक्तों की सुनले जय श्री शाम जय श्री शाम खतुआले शाम धानी हारे का सहरा तू भोले भक्तों की सुनले जय श्री शाम कर दो कर दो कर दो कर दो कर दो कर दो कर दो",
+   "file": "rom-hi__1111.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "rom-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.61,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.253,
+   "names": {
+    "shyam": 2,
+    "shyam_wrong": [
+     "श्रीश्यम",
+     "श्रीश्यम",
+     "श्रीश्यम",
+     "श्रीश्यम",
+     "श्रीश्यम",
+     "श्रीश्यम"
+    ],
+    "bhole": 0,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीश्यम जय श्रीश्यम खत्तु वाले श्याम धानी हारे का सहारा तू भूले भक्तों की सुनले जय श्रीश्यम जय श्रीश्यम जय श्रीश्यम खत्तु वाले श्याम धानी हारे का सहारा तू भूले भक्तों की सुनले जय श्रीश्यम कर दो कर दो कर दो कर दो कर दो",
+   "file": "rom-hi__2222.mp3",
+   "khatu_slot": [
+    "श्याम",
+    "श्याम"
+   ]
+  },
+  {
+   "variant": "rom-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.38,
+   "true_peak": -0.75,
+   "clip_share": 0.0,
+   "cer": 0.209,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशाम",
+     "श्रीशाम",
+     "शम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "शम"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीशाम जय श्रीशाम खतुवाले शम धनिहारे का सहारा तू बोले भक्तों की सुनले जय श्रीशाम जय श्रीशाम जय श्रीशाम खतुवाले शम धनिहारे का सहारा तू भोले भक्तों की सुनले जय शीषाम।",
+   "file": "rom-hi__3333.mp3",
+   "khatu_slot": [
+    "शम",
+    "शम"
+   ]
+  },
+  {
+   "variant": "deva-en",
+   "seed": 1111,
+   "language": "en",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.41,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.329,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशम्",
+     "श्रीशम्",
+     "श्रीशम्",
+     "श्रीशम्",
+     "श्रीशम्"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 0,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": false,
+   "audio_ok": true,
+   "whisper": "जय श्रीशम् जय श्रीशम् खतुवाले शम्धनी आरे का सहारा तू भोले भत्तों की सुनले जय श्रीशम् जय श्रीशम् जय श्रीशम् खतुवाले शम्धनी आरे का सहारा तू बोले घत्तों की सुन ले ये चेशी श्रम।",
+   "file": "deva-en__1111.mp3",
+   "khatu_slot": [
+    "शम्धनी",
+    "शम्धनी"
+   ]
+  },
+  {
+   "variant": "deva-en",
+   "seed": 2222,
+   "language": "en",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.43,
+   "true_peak": -0.91,
+   "clip_share": 0.0,
+   "cer": 0.241,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जये श्रीशाम जये श्रीशाम खटू वले श्राम धानी हारे का सहारा तू भोले भक्तों की सुनले जये श्रीशाम जये श्रीशाम जये श्रीशाम खटू वले श्राम धानी हारे का सहारा तू खोले भक्तों की सुनले जये श्री शंद जये श्री शंद",
+   "file": "deva-en__2222.mp3",
+   "khatu_slot": [
+    "श्राम",
+    "श्राम"
+   ]
+  },
+  {
+   "variant": "deva-en",
+   "seed": 3333,
+   "language": "en",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -13.68,
+   "true_peak": -0.87,
+   "clip_share": 0.0,
+   "cer": 0.304,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शाम",
+     "शाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 1,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय शीषाम जय शीषाम खटू वाले शाम धनि हारे का सहार तू भोले भक्तों पी सुनले जय शीषाम जय शीशाम जय शीशाम खटू वाले शाम धनी हरे कसा गारप भोले गप्तों पी सुनने जय शीशाम",
+   "file": "deva-en__3333.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "rom-en",
+   "seed": 1111,
+   "language": "en",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -16.01,
+   "true_peak": -0.46,
+   "clip_share": 0.0,
+   "cer": 0.399,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्री शाम खत्वाले शाम धानी हारे का सहरा तू भोले भक्तों की सुनले जय श्री शाम जय श्री शाम खत्वाले शाम धानी हारे का सहरा तू भोले भक्तों की सुनले जय श्री शाम प्रस्तुति प्रस्तुति",
+   "file": "rom-en__1111.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "rom-en",
+   "seed": 2222,
+   "language": "en",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.68,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.139,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीश्यम",
+     "श्रीश्यम",
+     "शाम",
+     "श्रीश्यम",
+     "श्रीश्यम",
+     "श्रीश्यम",
+     "शाम",
+     "श्रीश्यम"
+    ],
+    "bhole": 0,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीश्यम जय श्रीश्यम खत्वाले शाम धानी हारे का सहारा तू भूले भक्तों की सुनले जय श्रीश्यम जय श्रीश्यम जय श्रीश्यम खत्वाले शाम धानी हारे का सहारा तू भूले भक्तों की सुनले जय श्रीश्यम",
+   "file": "rom-en__2222.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "rom-en",
+   "seed": 3333,
+   "language": "en",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -16.17,
+   "true_peak": -0.94,
+   "clip_share": 0.0,
+   "cer": 0.215,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशाम",
+     "श्रीशाम",
+     "शम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "शम"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीशाम जय श्रीशाम खतुवाले शम धनिहारे का सहारा तू बोले भक्तों की सुनले जय श्रीशाम जय श्रीशाम जय श्रीशाम खतुवाले शम धनिहारे का सहारा तू भोले भक्तों की सुनले जैशी शंगू",
+   "file": "rom-en__3333.mp3",
+   "khatu_slot": [
+    "शम",
+    "शम"
+   ]
+  },
+  {
+   "variant": "deva-nolm",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": false,
+   "lm": null,
+   "seconds": 40.0,
+   "lufs": -13.9,
+   "true_peak": -0.8,
+   "clip_share": 0.0,
+   "cer": 0.348,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशम",
+     "श्रीशम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जये श्रीशम खाटुवाले शम्दनिहार का सहारा तु भोले भक्तों की सुनले जये श्रीशम जय शीशम खाटू वाले शम्दिहार का सहारा तू भोले भक्तों की सुन ले जय शीशम",
+   "file": "deva-nolm__1111.mp3",
+   "khatu_slot": [
+    "शम्दनिहार",
+    "शम्दिहार"
+   ]
+  },
+  {
+   "variant": "deva-nolm",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": false,
+   "lm": null,
+   "seconds": 40.0,
+   "lufs": -14.66,
+   "true_peak": -0.63,
+   "clip_share": 0.0,
+   "cer": 0.601,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शाम"
+    ],
+    "bhole": 0,
+    "bhole_wrong": [],
+    "bhakt": 0,
+    "bhakt_wrong": [
+     "फक्तों"
+    ]
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": false,
+   "audio_ok": true,
+   "whisper": "जय शीशाम, जय शीशाम जय शीशाम, जय शीशाम खटू वाले शाम देनी आरे का सहारा तू जय शीशाम खटू वाले शहर तू खुड़े फक्तों की संगले जय श्री",
+   "file": "deva-nolm__2222.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शहर"
+   ]
+  },
+  {
+   "variant": "deva-nolm",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": false,
+   "lm": null,
+   "seconds": 40.0,
+   "lufs": -15.63,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.462,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [],
+    "bhole": 1,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जेरिशम जैशीशम काटुआले का सहारतु भोले भक्तों की सुनले जैशीशम जैशीशम जैशीशम खातु आले शम्धारे का सहारतु बोले भक्तु की सुनले जैशे शम्धु",
+   "file": "deva-nolm__3333.mp3",
+   "khatu_slot": [
+    "का",
+    "शम्धारे"
+   ]
+  },
+  {
+   "variant": "zwj-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -13.82,
+   "true_peak": -0.65,
+   "clip_share": 0.0,
+   "cer": 0.234,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शयाम",
+     "शयाम",
+     "शयाम",
+     "शयाम",
+     "शयाम",
+     "शयाम",
+     "शयाम"
+    ],
+    "bhole": 0,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 1,
+    "bhakt_wrong": [
+     "बक्तों"
+    ]
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": false,
+   "audio_ok": true,
+   "whisper": "जय शी शयाम जय शी शयाम खाटू वाले शयाम उधानी हारे का सहारतु बोले भक्तों की सुनले जय शी शयाम जय शी शयाम जय शी शयाम खाटू वाले शयाम उधानी हारे का सहारतु भूले बक्तों की सुने चाये शीश्या",
+   "file": "zwj-hi__1111.mp3",
+   "khatu_slot": [
+    "शयाम",
+    "शयाम"
+   ]
+  },
+  {
+   "variant": "zwj-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -16.26,
+   "true_peak": -0.76,
+   "clip_share": 0.0,
+   "cer": 0.247,
+   "names": {
+    "shyam": 7,
+    "shyam_wrong": [
+     "श्रीश्यम",
+     "श्रीश्यम",
+     "श्रीश्यम"
+    ],
+    "bhole": 0,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीश्याम जय श्रीश्याम खटूबल श्याम धनिहारे का सहारा तू भौले भक्तों की सुनले जय श्रीश्याम जय श्रीश्याम जय श्रीश्याम खटूबल श्याम धनिहारे का सहारा तू भगतों की सुनले जय श्रीश्यम जय श्रीश्यम जय श्रीश्यम",
+   "file": "zwj-hi__2222.mp3",
+   "khatu_slot": [
+    "श्याम",
+    "श्याम"
+   ]
+  },
+  {
+   "variant": "zwj-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.78,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.177,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शम",
+     "शम",
+     "श्यम",
+     "शम",
+     "शम",
+     "शम",
+     "श्यम"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 1,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्री शम जय श्री शम खटू वाले श्यम धनी हारे का सहारा तू भोले भक्तों की सुनले जय श्री शम जय श्री शम जय श्री शम खटू वाले श्यम धनी हारे का सहारा तू बोले भप्पों की सुनले जैश्री शाओ",
+   "file": "zwj-hi__3333.mp3",
+   "khatu_slot": [
+    "श्यम",
+    "श्यम"
+   ]
+  },
+  {
+   "variant": "hyph-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -13.47,
+   "true_peak": -0.87,
+   "clip_share": 0.0,
+   "cer": 1.013,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शम"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [],
+    "bhakt": 1,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय शिष्याम खाटू वाले शम धनि हारे का सहारा कूँ भोले भक्तों की सुन ले जय शिष्याम प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्रशान पर प्",
+   "file": "hyph-hi__1111.mp3",
+   "khatu_slot": [
+    "शम"
+   ]
+  },
+  {
+   "variant": "hyph-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.27,
+   "true_peak": -0.87,
+   "clip_share": 0.0,
+   "cer": 0.335,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [],
+    "bhole": 1,
+    "bhole_wrong": [
+     "होले"
+    ],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्री शम्म जय श्री शम्म खटुवाले शम्म धनिहारे का सहारतु होले भक्तों की सुनले जय श्री शम्म जय श्री शम्म जय श्री शम्म खटुवाले शम्म धनिहारे का सहारतु भोले भक्तों की सुनले जय श्री शाम। जय श्री शाम। जय श्री शाम।",
+   "file": "hyph-hi__2222.mp3",
+   "khatu_slot": [
+    "शम्म",
+    "शम्म"
+   ]
+  },
+  {
+   "variant": "hyph-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.86,
+   "true_peak": -0.91,
+   "clip_share": 0.0,
+   "cer": 0.297,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्री शामू जय श्री शामू खटू वाले शामाधानी हारे का सहारा तू भोले भक्तों की सुनले जय श्री शामू जय श्री शामू जय श्री शामू खटू वाले शामाधानी हारे का सहारा तू भोले भक्तों की सुनले जय श्री शामू प्रस्तुति प्रस्तुति",
+   "file": "hyph-hi__3333.mp3",
+   "khatu_slot": [
+    "शामाधानी",
+    "शामाधानी"
+   ]
+  },
+  {
+   "variant": "shiyaam-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -16.27,
+   "true_peak": -0.62,
+   "clip_share": 0.0,
+   "cer": 0.316,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शियाम",
+     "शियाम",
+     "शियाम",
+     "शियाम",
+     "शियाम",
+     "शियाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्री शियाम खाटू वाले शियाम धनी हारे का सहारा तो भोले भक्तों की सुनले जय श्री शियाम जय श्री शियाम खाटू वाले शियाम धनी हारे का सहारा तो भोले भक्तों की सुनले जय श्री शियाम प्रस्तुति प्रस्तुति",
+   "file": "shiyaam-hi__1111.mp3",
+   "khatu_slot": [
+    "शियाम",
+    "शियाम"
+   ]
+  },
+  {
+   "variant": "shiyaam-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.56,
+   "true_peak": -0.99,
+   "clip_share": 0.0,
+   "cer": 1.006,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशियाम",
+     "श्रीशियाम",
+     "श्रीशियाम",
+     "श्रीशियाम",
+     "श्रीशियाम",
+     "श्रीशियाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीशियाम जय श्रीशियाम खटुवाल श्रीयाम धनिहारे का सहारा तू भोले भक्तों की सुनले जय श्रीशियाम जय श्रीशियाम जय श्रीशियाम खटुवाल श्रीयाम धनिहारे का सहारा तू भोले भक्तों की सुनले जय श्रीशियाम कि शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शुश्य शु�",
+   "file": "shiyaam-hi__2222.mp3",
+   "khatu_slot": [
+    "श्रीयाम",
+    "श्रीयाम"
+   ]
+  },
+  {
+   "variant": "shiyaam-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.35,
+   "true_peak": -0.97,
+   "clip_share": 0.0,
+   "cer": 0.304,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [],
+    "bhole": 0,
+    "bhole_wrong": [
+     "बोले",
+     "बोले"
+    ],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्री शियाम। जय श्री शियाम। खटुवाले शियाम। धानी हारे का सहारा तु। बोले भक्तों की सुनले जय श्री शियाम। जय श्री शियाम। जय श्री शियाम। खटुवाले शियाम। धानी हारे का सहारा तु। बोले भक्तों की सुनले जय श्री शियाम। प्रस्तुति प्रस्तुति",
+   "file": "shiyaam-hi__3333.mp3",
+   "khatu_slot": [
+    "शियाम।",
+    "शियाम।"
+   ]
+  },
+  {
+   "variant": "sa-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.75,
+   "true_peak": -0.88,
+   "clip_share": 0.0,
+   "cer": 0.703,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [],
+    "bhole": 3,
+    "bhole_wrong": [],
+    "bhakt": 3,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय शिरी सम्म जय शिरी सम्म भोले भक्त कि सुनले जय शिरी सम्म जय शिरी सम्म जय शिरी सम्म भोले भक्त कि सुनले जय शिरी सम्म जय शिरी सम्म जय शिरी सम्म भोले भक्त कि सुनले जय शिरी सम्म प्रश्न प्रश्न",
+   "file": "sa-hi__1111.mp3",
+   "khatu_slot": []
+  },
+  {
+   "variant": "sa-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -16.43,
+   "true_peak": -0.95,
+   "clip_share": 0.0,
+   "cer": 0.177,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "स्याम",
+     "स्याम",
+     "स्याम",
+     "स्याम",
+     "स्याम",
+     "स्याम",
+     "स्याम",
+     "स्याम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्री स्याम जय श्री स्याम खटू वाले स्याम धानी हाले का सहारा तू भोले भक्तों की सुनले जय श्री स्याम जय श्री स्याम जय श्री स्याम खटू वाले स्याम धानी हाले का सहारा तू भोले भक्तों की सुनले जय श्री स्याम प्रश्न प्रश्न",
+   "file": "sa-hi__2222.mp3",
+   "khatu_slot": [
+    "स्याम",
+    "स्याम"
+   ]
+  },
+  {
+   "variant": "sa-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.19,
+   "true_peak": -0.84,
+   "clip_share": 0.0,
+   "cer": 0.209,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "स्याम",
+     "स्याम",
+     "स्याम",
+     "स्याम",
+     "स्याम",
+     "स्याम",
+     "स्याम"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय शी स्याम जय शी स्याम खटूवल स्याम धनिहारे का सहारा तू भोले भक्तों की सुनले जय शी स्याम जय शी स्याम जय शी स्याम खटूवल स्याम धनिहारे का सहारा तू बोले भक्तों की सुनले जैशी स्याँ",
+   "file": "sa-hi__3333.mp3",
+   "khatu_slot": [
+    "स्याम",
+    "स्याम"
+   ]
+  },
+  {
+   "variant": "elong-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -16.71,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.228,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय स्वी शाम जय स्वी शाम खाटू वाले शाम धनि हर का सहारा तू घोले भक्तों की सुनले जय स्वी शाम जय स्वी शाम जय स्वी शाम खाटू वाले शाम धनि हर का सहारा तू भोले भक्तों की सुनले जय स्रीशाम",
+   "file": "elong-hi__1111.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "elong-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.29,
+   "true_peak": -0.95,
+   "clip_share": 0.0,
+   "cer": 0.215,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशम",
+     "श्रीशम",
+     "शाम",
+     "श्रीशम",
+     "श्रीशम",
+     "श्रीशम",
+     "शाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 1,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीशम जय श्रीशम खटुवाले शाम धनिहारे का सहारा तू भोले भक्तों की सुनले जय श्रीशम जय श्रीशम जय श्रीशम खटुवाले शाम धनिहारे का सहारा तू भोले भप्तों की सुने जय शीशा",
+   "file": "elong-hi__2222.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "elong-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -13.87,
+   "true_peak": -0.62,
+   "clip_share": 0.0,
+   "cer": 0.152,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशाम",
+     "श्रीशाम",
+     "शाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम"
+    ],
+    "bhole": 1,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीशाम जय श्रीशाम खातुवले शाम धनी हारे का सहारा तू भोले भक्तों की सुनले जय श्रीशाम जय श्रीशाम जय श्रीशाम खाटू वले शामधनी हारे का सहाला तू बोले भक्तों की सुनले जय श्रीशाम",
+   "file": "elong-hi__3333.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शामधनी"
+   ]
+  },
+  {
+   "variant": "mixed-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.26,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.437,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शम्",
+     "शम्"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय स्वीशम् जय स्वीशम् खटुवाले शम् धनिहारी का सहारा तू भोले भक्तों की सुनले जय स्वीशम् जय स्वीशम् जय स्वीशम् खटुवाले शम् धनिहारी का सहारा तू भोले भक्तों की सुनले जय स्वीशम् प्रस्तुति प्रस्तुति",
+   "file": "mixed-hi__1111.mp3",
+   "khatu_slot": [
+    "शम्",
+    "शम्"
+   ]
+  },
+  {
+   "variant": "mixed-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.22,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.215,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशाम",
+     "श्रीशाम",
+     "शाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "श्रीशाम",
+     "शाम"
+    ],
+    "bhole": 0,
+    "bhole_wrong": [
+     "होले",
+     "बोलें"
+    ],
+    "bhakt": 1,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीशाम जय श्रीशाम खटुवाले शाम धनिहारे का सहारा तू होले भक्तों की सुनले जय श्रीशाम जय श्रीशाम जय श्रीशाम खटुवाले शाम धनिहारे का सहारा तू बोलें अपतों की सुनलें जय पीशा",
+   "file": "mixed-hi__2222.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "mixed-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.49,
+   "true_peak": -0.34,
+   "clip_share": 0.0,
+   "cer": 0.335,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "श्रीशम",
+     "शाम",
+     "श्रीशम",
+     "श्रीशम",
+     "शाम"
+    ],
+    "bhole": 0,
+    "bhole_wrong": [
+     "बोले",
+     "बोले"
+    ],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय श्रीशम खाटू वाले शाम धनिहारे का सहारा तू बोले भक्तों की सुन ले जय श्रीशम जय श्रीशम खाटू वाले शाम धनिहारे का सहारा तू बोले भक्तों की सुन ले जय चीशा जय चीशा जय चीशा",
+   "file": "mixed-hi__3333.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "rom-shi-yaam-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.6,
+   "true_peak": -0.49,
+   "clip_share": 0.0,
+   "cer": 0.38,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शियाम",
+     "शियाम",
+     "शियाम",
+     "शियाम",
+     "शियाम",
+     "शियाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय शी शियाम खातु वाले शियाम धनी हरे का सहारतु भोले भक्तों की सुनले जय शी शियाम जय शी शियाम खातु वाले शियाम धनी हरे का सहारतु भोले भक्तों की सुनले जय शी शियाम कर दो कर दो कर दो",
+   "file": "rom-shi-yaam-hi__1111.mp3",
+   "khatu_slot": [
+    "शियाम",
+    "शियाम"
+   ]
+  },
+  {
+   "variant": "rom-shi-yaam-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.32,
+   "true_peak": -0.53,
+   "clip_share": 0.0,
+   "cer": 0.177,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शियाम",
+     "शियाम",
+     "शियाम",
+     "शियाम",
+     "शियाम",
+     "शियाम"
+    ],
+    "bhole": 0,
+    "bhole_wrong": [
+     "बोले"
+    ],
+    "bhakt": 1,
+    "bhakt_wrong": [
+     "बक्तों"
+    ]
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": false,
+   "audio_ok": true,
+   "whisper": "जय श्वी शियाम जय श्वी शियाम खाटू वाले शियाम धनि हार का सहारा तू बोले भक्तों की सुनले जय श्वी शियाम जय श्वी शियाम जय श्वी शियाम खाटू आले शियां धनी आरे का सहारा तू खोले बक्तों की सुन दे जैश्री शियां",
+   "file": "rom-shi-yaam-hi__2222.mp3",
+   "khatu_slot": [
+    "शियाम",
+    "शियां"
+   ]
+  },
+  {
+   "variant": "rom-shi-yaam-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -14.08,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.443,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शियम",
+     "शियम",
+     "शियम",
+     "शियम",
+     "शियम",
+     "शियम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 0,
+    "bhakt_wrong": [
+     "बक्तों",
+     "बक्तों"
+    ]
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": false,
+   "audio_ok": true,
+   "whisper": "जय शी शियम खातु वाले शियम धानी हारे का सहरा तू भोले बक्तों की सुनले जय शी शियम जय शी शियम खातु वाले शियम धानी हारे का सहरा तू भोले बक्तों की सुनले जय शी शियम प्रस्तुति प्रस्तुति",
+   "file": "rom-shi-yaam-hi__3333.mp3",
+   "khatu_slot": [
+    "शियम",
+    "शियम"
+   ]
+  },
+  {
+   "variant": "rom-shyaa-m-hi",
+   "seed": 1111,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -16.18,
+   "true_peak": -0.8,
+   "clip_share": 0.0,
+   "cer": 0.424,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शम",
+     "शाम",
+     "शम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय शीषम खतुवाले शामधनी हरे का सहारा तु भोले भक्तों की सुनले जय शीषम जैशी शम खतुवाले शाम धनिहाले का सहारा तु भोले भक्तों की संभेव जैशी शम",
+   "file": "rom-shyaa-m-hi__1111.mp3",
+   "khatu_slot": [
+    "शामधनी",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "rom-shyaa-m-hi",
+   "seed": 2222,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.11,
+   "true_peak": -0.81,
+   "clip_share": 0.0,
+   "cer": 0.449,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम"
+    ],
+    "bhole": 3,
+    "bhole_wrong": [],
+    "bhakt": 3,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय शीषयम जय शीषीषयम खतुवल शाम धनि हारि का सहरा तू भोले भक्तों की सुनने जय शीषयम जय शीषयम जय शीषीषयम खतुवाले शाम धनिहारे का सहरा तु भोले भक्तों की सुनने जैशी शाम भोले भक्तों की सुनने जैशी शाम",
+   "file": "rom-shyaa-m-hi__2222.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "rom-shyaa-m-hi",
+   "seed": 3333,
+   "language": "hi",
+   "thinking": true,
+   "lm": "acestep-5Hz-lm-1.7B",
+   "seconds": 40.0,
+   "lufs": -15.93,
+   "true_peak": -1.0,
+   "clip_share": 0.0,
+   "cer": 0.481,
+   "names": {
+    "shyam": 0,
+    "shyam_wrong": [
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम"
+    ],
+    "bhole": 0,
+    "bhole_wrong": [
+     "बोले",
+     "बोले"
+    ],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": false,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जय शी शाम जय शी शी शाम खतुवाले शाम धनिहारे का सहारतो बोले भगतों की सुनले जय शी शी शाम जय शी शाम जय शी शी शाम खतुवाले शाम धनिहारे का सहारतो बोले भगतों की सुनले जय शी शी शाम कर दो कर दो कर दो कर दो कर दो कर दो कर दो",
+   "file": "rom-shyaa-m-hi__3333.mp3",
+   "khatu_slot": [
+    "शाम",
+    "शाम"
+   ]
+  },
+  {
+   "variant": "rom-ipa-hi",
+   "skipped": "deadline"
+  },
+  {
+   "variant": "bho-le-hi",
+   "skipped": "deadline"
+  },
+  {
+   "variant": "rom-bholay-hi",
+   "skipped": "deadline"
+  },
+  {
+   "variant": "rom-bh-ole-hi",
+   "skipped": "deadline"
+  },
+  {
+   "variant": "deva-diction",
+   "skipped": "deadline"
+  },
+  {
+   "variant": "rom-nolm",
+   "skipped": "deadline"
+  },
+  {
+   "variant": "deva-lm4b",
+   "skipped": "deadline"
+  },
+  {
+   "variant": "rom-lm4b",
+   "skipped": "deadline"
+  },
+  {
+   "variant": "control-edge-tts",
+   "seed": 0,
+   "language": null,
+   "thinking": null,
+   "lm": null,
+   "seconds": 21.408,
+   "lufs": null,
+   "true_peak": null,
+   "clip_share": 0.0,
+   "cer": 0.127,
+   "names": {
+    "shyam": 2,
+    "shyam_wrong": [
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम",
+     "शाम"
+    ],
+    "bhole": 2,
+    "bhole_wrong": [],
+    "bhakt": 2,
+    "bhakt_wrong": []
+   },
+   "shyam_ok": false,
+   "bhole_ok": true,
+   "bhakt_ok": true,
+   "audio_ok": true,
+   "whisper": "जै श्री शाम, जै श्री शाम, खाटू वाले श्याम धनी, हारे का सहारा तू, भोले भक्तों की सुनले, जै श्री शाम, जै श्री शाम, जै श्री शाम, खाटू वाले श्याम धनी, हारे का सहारा तू, भोले भक्तों की सुनले, जै श्री शाम,",
+   "file": "control-edge-tts__0.mp3",
+   "khatu_slot": [
+    "श्याम",
+    "श्याम"
+   ]
+  }
+ ]
+}

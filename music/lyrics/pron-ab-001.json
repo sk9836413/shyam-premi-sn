@@ -1,0 +1,459 @@
+{
+ "batch": "pron-ab-001",
+ "note": "Pronunciation A/B (13 Nov 2026): same original chorus (own words; \"Haare ka sahara\" is a traditional epithet of Khatu Shyam ji) with lyric spelling variants for Shyam / Bhole, vocal_language hi vs en, LM on/off, LM 1.7B vs 4B. Singer description identical to batch-001 (male). Measured by Demucs + Whisper large-v3 (hi).",
+ "singer": {
+  "male": "solo male vocalist, warm clear tenor voice, Indian devotional bhajan singing, Hindi"
+ },
+ "expect": {
+  "श्याम": 8,
+  "भोले": 2,
+  "भक्त": 2
+ },
+ "jobs": [
+  {
+   "id": "deva-hi",
+   "lyrics": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "rom-hi",
+   "lyrics": "[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaam\n\n[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaam",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "deva-en",
+   "lyrics": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "language": "en",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "rom-en",
+   "lyrics": "[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaam\n\n[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaam",
+   "language": "en",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "deva-nolm",
+   "lyrics": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "language": "hi",
+   "thinking": false,
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "zwj-hi",
+   "lyrics": "[chorus]\nजय श्री श्‍याम, जय श्री श्‍याम\nखाटू वाले श्‍याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्‍याम\n\n[chorus]\nजय श्री श्‍याम, जय श्री श्‍याम\nखाटू वाले श्‍याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्‍याम",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "hyph-hi",
+   "lyrics": "[chorus]\nजय श्री श्या-म, जय श्री श्या-म\nखाटू वाले श्या-म धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्या-म\n\n[chorus]\nजय श्री श्या-म, जय श्री श्या-म\nखाटू वाले श्या-म धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्या-म",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "shiyaam-hi",
+   "lyrics": "[chorus]\nजय श्री शियाम, जय श्री शियाम\nखाटू वाले शियाम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री शियाम\n\n[chorus]\nजय श्री शियाम, जय श्री शियाम\nखाटू वाले शियाम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री शियाम",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "sa-hi",
+   "lyrics": "[chorus]\nजय श्री स्याम, जय श्री स्याम\nखाटू वाले स्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री स्याम\n\n[chorus]\nजय श्री स्याम, जय श्री स्याम\nखाटू वाले स्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री स्याम",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "elong-hi",
+   "lyrics": "[chorus]\nजय श्री श्यााम, जय श्री श्यााम\nखाटू वाले श्यााम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्यााम\n\n[chorus]\nजय श्री श्यााम, जय श्री श्यााम\nखाटू वाले श्यााम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्यााम",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "mixed-hi",
+   "lyrics": "[chorus]\nजय श्री Shyaam, जय श्री Shyaam\nखाटू वाले Shyaam धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री Shyaam\n\n[chorus]\nजय श्री Shyaam, जय श्री Shyaam\nखाटू वाले Shyaam धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री Shyaam",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "rom-shi-yaam-hi",
+   "lyrics": "[chorus]\nJai Shree Shi-yaam, Jai Shree Shi-yaam\nKhaatu waale Shi-yaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shi-yaam\n\n[chorus]\nJai Shree Shi-yaam, Jai Shree Shi-yaam\nKhaatu waale Shi-yaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shi-yaam",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "rom-shyaa-m-hi",
+   "lyrics": "[chorus]\nJai Shree Shyaa-m, Jai Shree Shyaa-m\nKhaatu waale Shyaa-m Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaa-m\n\n[chorus]\nJai Shree Shyaa-m, Jai Shree Shyaa-m\nKhaatu waale Shyaa-m Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaa-m",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "rom-ipa-hi",
+   "lyrics": "[chorus]\nJai Shree ʃjaːm, Jai Shree ʃjaːm\nKhaatu waale ʃjaːm Dhani, haare ka sahaara tu\nbʱoːle bhakton ki sun le, Jai Shree ʃjaːm\n\n[chorus]\nJai Shree ʃjaːm, Jai Shree ʃjaːm\nKhaatu waale ʃjaːm Dhani, haare ka sahaara tu\nbʱoːle bhakton ki sun le, Jai Shree ʃjaːm",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "bho-le-hi",
+   "lyrics": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभो-ले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभो-ले भक्तों की सुन ले, जय श्री श्याम",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "rom-bholay-hi",
+   "lyrics": "[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBholay bhakton ki sun le, Jai Shree Shyaam\n\n[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBholay bhakton ki sun le, Jai Shree Shyaam",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "rom-bh-ole-hi",
+   "lyrics": "[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBh-ole bhakton ki sun le, Jai Shree Shyaam\n\n[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBh-ole bhakton ki sun le, Jai Shree Shyaam",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "deva-diction",
+   "lyrics": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "language": "hi",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus, clear Hindi diction, every word pronounced clearly",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "rom-nolm",
+   "lyrics": "[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaam\n\n[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaam",
+   "language": "hi",
+   "thinking": false,
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "deva-lm4b",
+   "lyrics": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "language": "hi",
+   "lm": "acestep-5Hz-lm-4B",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  },
+  {
+   "id": "rom-lm4b",
+   "lyrics": "[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaam\n\n[chorus]\nJai Shree Shyaam, Jai Shree Shyaam\nKhaatu waale Shyaam Dhani, haare ka sahaara tu\nBhole bhakton ki sun le, Jai Shree Shyaam",
+   "language": "hi",
+   "lm": "acestep-5Hz-lm-4B",
+   "kind": "vocal",
+   "singer": "male",
+   "caption": "devotional Indian bhajan, harmonium, dholak, manjira, soft claps, warm kirtan groove, catchy chorus",
+   "bpm": 96,
+   "duration": 40,
+   "seeds": [
+    1111,
+    2222,
+    3333
+   ],
+   "lyrics_devanagari": "[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम\n\n[chorus]\nजय श्री श्याम, जय श्री श्याम\nखाटू वाले श्याम धणी, हारे का सहारा तू\nभोले भक्तों की सुन ले, जय श्री श्याम",
+   "expect": {
+    "श्याम": 8,
+    "भोले": 2,
+    "भक्त": 2
+   }
+  }
+ ]
+}

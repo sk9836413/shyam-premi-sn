@@ -1,5 +1,5 @@
 // Original music batch on Kaggle's free GPU with ACE-Step 1.5 (kernel sps-music, music/kaggle/acestep_batch.py).
-//   node music/gen.mjs push  --batch music/lyrics/<batch>.json [--kind vocal|instrumental] [--qa urls.json] -> refuses inside the no-extra-session windows
+//   node music/gen.mjs push  --batch music/lyrics/<batch>.json [--kind vocal|instrumental] [--qa urls.json] [--code kaggle/<script>.py] -> refuses inside the no-extra-session windows
 //        (09:00-11:30 and 18:30-21:00 IST), while another sps-* GPU kernel runs (animate/kaggle.mjs lock), or with under
 //        --min-hours (default 8) of weekly GPU quota left; then pushes one private T4 session (stops itself after ~38 min)
 //   node music/gen.mjs status
@@ -54,7 +54,8 @@ function push() {
   const dir = path.resolve(opt('--push-dir', path.join(os.tmpdir(), 'sps-music-push')));
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(dir, { recursive: true });
-  const code = fs.readFileSync(path.join(DIR, 'kaggle', 'acestep_batch.py'), 'utf8').replace('__JOBS__', JSON.stringify(jobs).replace(/'''/g, ''))
+  // --code <file>: another kernel script with the same __JOBS__ slot (e.g. music/kaggle/pron_ab.py, the pronunciation A/B)
+  const code = fs.readFileSync(opt('--code', path.join(DIR, 'kaggle', 'acestep_batch.py')), 'utf8').replace('__JOBS__', JSON.stringify(jobs).replace(/'''/g, ''))
     .replace('__QA__', JSON.stringify(qa).replace(/'''/g, ''));
   fs.writeFileSync(path.join(dir, 'acestep_batch.py'), code);
   fs.writeFileSync(path.join(dir, 'kernel-metadata.json'), JSON.stringify({
