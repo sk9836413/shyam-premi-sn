@@ -1,0 +1,98 @@
+{
+  "slug": "2026-11-14-long-chhath-geet-nonstop",
+  "format": "long",
+  "date": "2026-11-14",
+  "festival": "Chhath Puja 2026",
+  "deity": "Chhathi Maiya / Surya dev",
+  "kind": "jukebox",
+  "youtube_title": "Chhath Puja Geet 2026 Nonstop | 10 Chhath Geet | Bhakti Geet | छठ पूजा गीत | Chhath Puja Song",
+  "youtube_description": "छठ पूजा 2026 के 10 नए छठ गीत, एक साथ नॉनस्टॉप। नहाय खाय और खरना से संध्या अर्घ्य, उषा अर्घ्य और पारण तक, छठी मइया और सूर्य देव के भक्ति गीत।\nघाट पर, घर में या स्टेटस पर, पूरे परिवार के साथ सुनिए। जय छठी मइया, जय सूर्य देव 🙏\n\nChhath Puja Geet 2026 Nonstop: 10 original Chhath geet in one video, Nahay Khay se Usha Arghya aur Parana tak.\n\nगीत सूची:\n1. नहाय खाय से शुरू भइल\n2. सांझ भइल खरना के\n3. खरना के खीर पकल\n4. डूबत सुरुज के लाली में\n5. चलो चलो घाट पे\n6. भोर भइल घाट सजल\n7. पूरब में लाली छाइल\n8. छठी मइया तोहर किरपा\n9. माई के घाट पे\n10. जय हो सूरज देव\n\nBhakti Geet | भक्ति गीत: Shyam Premi SN ke naye maulik bhajan.\nभजन: मौलिक रचना, AI द्वारा गाया गया (ACE-Step)\nSabhi geet Shyam Premi SN ki maulik rachna hain (kisi gayak ki awaaz ki nakal nahi). Chitra AI dwara banaye gaye hain (sanketik).\n\nAise hi bhajan aur darshan ke liye subscribe karein: Shyam Premi SN\n\n#ChhathPuja #ChhathGeet #छठपूजा",
+  "youtube_tags": "chhath puja geet 2026, chhath geet nonstop, chhath puja song, chhath puja song 2026, chhath geet, chhathi maiya song, nahay khay geet, kharna geet, sandhya arghya geet, usha arghya geet, छठ पूजा गीत, छठ गीत, छठी मइया के गीत, छठ पूजा 2026, bhakti geet, भक्ति गीत, bhojpuri chhath geet",
+  "facebook_caption": "",
+  "songs": [
+    {
+      "id": "bhajan-chhath26g-01-devi",
+      "start": 0,
+      "seconds": 135.0065,
+      "title_hi": "नहाय खाय से शुरू भइल",
+      "title_roman": "Nahay Khay Se Shuru Bhail",
+      "day": "nahay-khay"
+    },
+    {
+      "id": "bhajan-chhath26g-02-devi",
+      "start": 136.21,
+      "seconds": 135.0065,
+      "title_hi": "सांझ भइल खरना के",
+      "title_roman": "Saanjh Bhail Kharna Ke",
+      "day": "kharna"
+    },
+    {
+      "id": "bhajan-chhath26f-03-devi",
+      "start": 272.41,
+      "seconds": 135.0065,
+      "title_hi": "खरना के खीर पकल",
+      "title_roman": "Kharna Ke Kheer Pakal",
+      "day": "kharna"
+    },
+    {
+      "id": "bhajan-chhath26f-04-devi",
+      "start": 408.62,
+      "seconds": 135.0065,
+      "title_hi": "डूबत सुरुज के लाली में",
+      "title_roman": "Doobat Suruj Ke Laali Mein",
+      "day": "sandhya-arghya"
+    },
+    {
+      "id": "bhajan-chhath26e-05-devi",
+      "start": 544.83,
+      "seconds": 135.0065,
+      "title_hi": "चलो चलो घाट पे",
+      "title_roman": "Chalo Chalo Ghat Pe",
+      "day": "sandhya-arghya"
+    },
+    {
+      "id": "bhajan-chhath26e-07-devi",
+      "start": 681.03,
+      "seconds": 135.0065,
+      "title_hi": "भोर भइल घाट सजल",
+      "title_roman": "Bhor Bhail Ghat Sajal",
+      "day": "usha-arghya"
+    },
+    {
+      "id": "bhajan-chhath26f-06-devi",
+      "start": 817.24,
+      "seconds": 135.0065,
+      "title_hi": "पूरब में लाली छाइल",
+      "title_roman": "Purab Mein Laali Chhail",
+      "day": "usha-arghya"
+    },
+    {
+      "id": "bhajan-chhath26g-08-devi",
+      "start": 953.45,
+      "seconds": 135.0065,
+      "title_hi": "छठी मइया तोहर किरपा",
+      "title_roman": "Chhathi Maiya Tohar Kirpa",
+      "day": "parana"
+    },
+    {
+      "id": "bhajan-chhath26f-12-devi",
+      "start": 1089.65,
+      "seconds": 135.0065,
+      "title_hi": "माई के घाट पे",
+      "title_roman": "Maai Ke Ghat Pe",
+      "day": "chhath"
+    },
+    {
+      "id": "bhajan-chhath26e-10-devi",
+      "start": 1225.86,
+      "seconds": 135.0065,
+      "title_hi": "जय हो सूरज देव",
+      "title_roman": "Jai Ho Suraj Dev",
+      "day": "chhath"
+    }
+  ],
+  "bhajan": {
+    "id": "bhajan-chhath26g-01-devi,bhajan-chhath26g-02-devi,bhajan-chhath26f-03-devi,bhajan-chhath26f-04-devi,bhajan-chhath26e-05-devi,bhajan-chhath26e-07-devi,bhajan-chhath26f-06-devi,bhajan-chhath26g-08-devi,bhajan-chhath26f-12-devi,bhajan-chhath26e-10-devi",
+    "mode": "jukebox"
+  }
+}
