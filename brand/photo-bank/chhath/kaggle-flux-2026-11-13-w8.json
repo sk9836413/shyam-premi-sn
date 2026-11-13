@@ -2,5 +2,6 @@
   "ai": true,
   "source": "Kaggle FLUX.1-schnell Q6_K 1344x768 (sps-frames-bank16, 13 Nov 2026, Chhath jukebox)",
   "prompt": "Wide painterly devotional art of a radiant golden sun disc rising over a peaceful river with lotus flowers, rays of light spreading across a saffron sky, a few floating diyas on the water, divine calm morning, no people, no text, no letters",
-  "made": "2026-11-13"
+  "made": "2026-11-13",
+  "edited": "2026-11-14: cropped to remove a fake signature the model drew in the bottom-right corner"
 }

@@ -2,5 +2,6 @@
   "ai": true,
   "source": "Kaggle FLUX.1-schnell Q6_K (sps-frames-bank, 13 Nov 2026, Chhath bhajan Shorts)",
   "prompt": "A grand radiant sun disc rising behind a calm river with lotus flowers in the foreground, golden rays spreading across a saffron sky, divine peaceful Surya dev morning, a small lit clay diya floating on the water, painterly devotional art, no people, no text, no letters",
-  "made": "2026-11-13"
+  "made": "2026-11-13",
+  "edited": "2026-11-14: cropped to remove a fake signature the model drew in the bottom-right corner"
 }
