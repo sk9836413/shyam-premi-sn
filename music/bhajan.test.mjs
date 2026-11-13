@@ -350,6 +350,7 @@ test('Chhath names: छठी right, चटी wrong; सूरज checked in de
 test('bhajan Short: the day song first, 45-90 s from the chorus, disclosure + FB template', () => {
   const mk = (id, day, cer) => ({ id, title: id, qa: { cer }, bhajan: { festival: 'chhath', day, chorus_at: 4, seconds: 70, lyrics: '[chorus]\nछठी मइया आईं\n', title_hi: 'गीत', title_roman: 'Geet' } });
   const lib = [mk('bhajan-a', 'kharna', 0.2), mk('bhajan-b', 'nahay-khay', 0.3), mk('bhajan-c', 'nahay-khay', 0.25)];
+  assert.equal(chooseBhajan(lib.slice(1), { festival: 'chhath', day: 'kharna', date: '2026-11-14' }), null);
   assert.equal(chooseBhajan(lib, { festival: 'chhath', day: 'nahay-khay', date: '2026-11-13' }).id, 'bhajan-c');
   assert.equal(chooseBhajan(lib, { festival: 'chhath', day: 'nahay-khay', date: '2026-11-13', history: [{ date: '2026-11-12', id: 'bhajan-c' }] }).id, 'bhajan-b');
   const o = { day: 'nahay-khay', title: 'Chhath Puja Song 2026 | X | छठ गीत #Shorts', hook: 'नहाय खाय 🙏', kicker: 'Chhath', festival: 'Chhath Puja', intro_hi: 'आज नहाय खाय है।', question_hi: 'आपके घर कद्दू भात कौन बनाता है?', images: [1, 2] };
@@ -366,4 +367,11 @@ test('a festival bhajan (Chhath geet, deity devi) is not used for another devi v
   const lib = [b('bhajan-chhath', 'chhath')];
   assert.equal(pickBhajan(lib, { deity: 'devi', festival: null, date: '2026-11-13', slug: 'x-vaishno-devi' }), null);
   assert.equal(pickBhajan(lib, { deity: 'devi', festival: 'chhath', date: '2026-11-14', slug: 'x-chhath' }).track.id, 'bhajan-chhath');
+});
+test('festival days: a day song only on its own day; general songs on any day of the festival', () => {
+  const b = (id, day) => ({ id, bhajan: { deity: 'devi', mood: 'thaath', festival: 'chhath', day, chorus_at: 1 } });
+  const lib = [b('bhajan-nahay', 'nahay-khay'), b('bhajan-general', 'chhath')];
+  assert.equal(pickBhajan(lib, { deity: 'devi', festival: 'chhath', day: 'sandhya-arghya', date: '2026-11-15', slug: 's' }).track.id, 'bhajan-general');
+  assert.equal(pickBhajan([lib[0]], { deity: 'devi', festival: 'chhath', day: 'sandhya-arghya', date: '2026-11-15', slug: 's' }), null);
+  assert.equal(pickBhajan(lib, { deity: 'devi', festival: 'chhath', day: 'nahay-khay', date: '2026-11-13', slug: 's' }).track.id, 'bhajan-nahay');
 });

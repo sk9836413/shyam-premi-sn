@@ -101,13 +101,14 @@ export function pickBhajan(bhajans, { deity, festival = null, day = null, mood =
     return d <= today && today - d < REPEAT_DAYS;
   }).map((h) => h.id));
   const fresh = bhajans.filter((b) => !recent.has(b.id)).sort((a, b) => a.id.localeCompare(b.id));
+  // A festival song only fits its own festival (a Chhath geet is "devi", but never under a Vaishno Devi darshan), and a
+  // song of one festival day (the Nahay Khay geet) only that day; general songs of the festival fit every day of it.
+  const fits = (b) => !b.bhajan.festival || (b.bhajan.festival === festival && (!b.bhajan.day || b.bhajan.day === festival || b.bhajan.day === day));
   const tiers = [
     // Chhath 2026 (automation/chhath-2026.json): the song of the festival's own day first (kharna, sandhya-arghya, ...)
     festival && day ? fresh.filter((b) => b.bhajan.festival === festival && b.bhajan.day === day) : [],
-    festival ? fresh.filter((b) => b.bhajan.festival && b.bhajan.festival === festival) : [],
-    // a festival song never goes under another festival's / an ordinary video of the same deity (a Chhath geet is
-    // "devi", but not for a Vaishno Devi darshan)
-    deity ? fresh.filter((b) => b.bhajan.deity === deity && (!b.bhajan.festival || b.bhajan.festival === festival)) : [],
+    festival ? fresh.filter((b) => b.bhajan.festival === festival && fits(b)) : [],
+    deity ? fresh.filter((b) => b.bhajan.deity === deity && fits(b)) : [],
   ];
   for (const [k, pool] of tiers.entries()) {
     if (!pool.length) continue;

@@ -31,7 +31,8 @@ export function slotOverride(date, slot, cfg = loadOverride()) {
 /** Library bhajans of the festival, best first for a day: the day's own song, then the general ones, then the rest;
  *  inside a tier the one used least recently (history: [{date, id}]), then the lowest CER. */
 export function chooseBhajan(bhajans, { festival, day, date, history = [] }) {
-  const pool = bhajans.filter((b) => b.bhajan?.festival === festival);
+  // only the day's own song or a general one of the festival (never the Nahay Khay song under a Kharna title)
+  const pool = bhajans.filter((b) => b.bhajan?.festival === festival && (b.bhajan.day === day || b.bhajan.day === festival || !b.bhajan.day));
   if (!pool.length) return null;
   const last = (id) => history.filter((h) => h.id === id && h.date <= date).map((h) => h.date).sort().pop() || '0000';
   const tier = (b) => (b.bhajan.day === day ? 0 : b.bhajan.day === festival || !b.bhajan.day ? 1 : 2);
