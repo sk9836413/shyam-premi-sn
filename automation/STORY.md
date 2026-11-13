@@ -171,6 +171,15 @@ name in the first words of the title AND of the narration, a darshan picture fir
   characters (60 for the long video), the name within its first 3 words, plus **one value or emotional word**
   (Darshan, Katha, Status, Rahasya, Itihas, Shubh, Divya, Adbhut, Sampoorn, Vishesh…). E.g. `Salasar Balaji Dham
   Darshan, Churu | सालासर बालाजी धाम दर्शन #Shorts`, `Choti Diwali ki Katha | छोटी दिवाली की कथा #Shorts`.
+- **Searched phrases and other channels' names (YouTube Studio search terms, 13 Nov 2026; `scripts/bhakti-seo.mjs`).**
+  Viewers find us with generic intents: "Bhakti Geet", "Shyam Bhajan 2026", "Shyam Baba Song", "Shyam Sangeet",
+  "Krishna Mantra". Bhajan videos (bhajan Shorts, the jukebox) get one of them added automatically (e.g. `Chhath Puja
+  Geet 2026 | Bhakti Geet | छठ पूजा गीत #Shorts`; Shyam songs alternate "Shyam Bhajan 2026" / "Shyam Baba Song") and go
+  into the "Bhakti Geet | Shyam Bhajan | भक्ति गीत" playlist. Use one in other titles or descriptions only when it is
+  true and reads naturally; never stack them. **Never** write other channels', organisations' or people's names in a
+  title, tag, description or caption, even when they bring viewers (YouTube spam and deceptive-practices policy):
+  Ganesh Youth Association, Shyam Sangeet Studio, Ganpati Official, Sawariya Sarkar Official, Shri Balaji Film City,
+  Ganesh Subramaniam, Mee Phanasgaonkar, or any "<name> Official / Studio / Records / Films". validate.mjs fails them.
 - **Retention.** The voice starts at once (0.12 s, no dead air); long subtitles are split so the on-screen text changes
   every 2-3 s (automatic); the **end card's last words are a jaikara naming the same deity/temple as the hook**
   ("…Subscribe karein. Jai Salasar Balaji!"), so the loop flows back into scene 1.

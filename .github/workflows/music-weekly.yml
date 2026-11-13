@@ -76,7 +76,7 @@ jobs:
           prompt: |
             Write the lyrics of this week's ORIGINAL Hindi bhajans for the Shyam Premi SN channel (AI-sung by ACE-Step).
             The plan is music/lyrics/${{ steps.plan.outputs.batch }}.plan.json: one song per slot, with its deity, mood,
-            festival (or null) and bpm. Write music/lyrics/${{ steps.plan.outputs.batch }}.json as
+            festival (or null) and bpm (and sometimes a "subject": the song's theme, follow it). Write music/lyrics/${{ steps.plan.outputs.batch }}.json as
             {"batch": "${{ steps.plan.outputs.batch }}", "songs": [{"slot", "deity", "mood", "festival", "title_hi", "title_roman",
             "lyrics", "public_domain_text"}]} with deity / mood / festival copied from the plan slot, then run
             `node music/bhajan-batch.mjs validate music/lyrics/${{ steps.plan.outputs.batch }}.json --plan music/lyrics/${{ steps.plan.outputs.batch }}.plan.json`

@@ -236,6 +236,9 @@ export function checkLyrics(doc, plan = null, libraryFirstLines = []) {
 const FEST_DEITY = { janmotsav: 'khatu', ekadashi: 'khatu', gyaras: 'khatu', chhath: 'devi', tulsi: 'vishnu', pradosh: 'shiv', devdeepawali: 'shiv', shivratri: 'shiv', sankashti: 'ganesh', ganesh: 'ganesh', hanuman: 'hanuman', janmashtami: 'krishna', gopashtami: 'krishna', govardhan: 'krishna' };
 const BASE = [['khatu', 'thaath'], ['khatu', 'bhaavuk'], ['shiv', 'thaath'], ['hanuman', 'thaath'], ['khatu', 'thaath'], ['krishna', 'bhaavuk'],
   ['ganesh', 'thaath'], ['khatu', 'bhaavuk'], ['shiv', 'bhaavuk'], ['hanuman', 'bhaavuk'], ['khatu', 'thaath'], ['krishna', 'thaath'], ['khatu', 'bhaavuk'], ['shiv', 'thaath']];
+// "krishna mantra channel" brings viewers to the channel (YouTube Studio search terms, 13 Nov 2026): the week's first
+// Krishna song is a mantra bhajan, a public-domain mantra refrain with our own verses (scripts/bhakti-seo.mjs).
+const SUBJECT = { krishna: 'Krishna mantra bhajan: the chorus may use a public-domain mantra ("हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे, हरे राम हरे राम राम राम हरे हरे" or "ॐ नमो भगवते वासुदेवाय"; name it in public_domain_text); the verses are your own' };
 const addDays = (iso, n) => new Date(Date.parse(`${iso}T00:00:00Z`) + n * 864e5).toISOString().slice(0, 10);
 
 export function planWeek({ from, days = 7, count = 13, festivals = [], libraryFirstLines = [], libraryFestivals = {} }) {
@@ -255,7 +258,7 @@ export function planWeek({ from, days = 7, count = 13, festivals = [], libraryFi
   }
   for (const [deity, mood] of BASE) {
     if (songs.length >= count) break;
-    songs.push({ deity, mood, festival: null });
+    songs.push({ deity, mood, festival: null, ...(SUBJECT[deity] && !songs.some((x) => x.subject) ? { subject: SUBJECT[deity] } : {}) });
   }
   const { year, week } = isoWeek(from);
   const tag = `${year}w${String(week).padStart(2, '0')}`;

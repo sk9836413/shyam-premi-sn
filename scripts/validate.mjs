@@ -8,6 +8,7 @@
 import fs from 'node:fs';
 import { topicWarnings } from './topics.mjs';
 import { checkFbCaption } from './fb.mjs';
+import { thirdPartyNames } from './bhakti-seo.mjs';
 
 const longMode = process.argv.includes('--long');
 const file = process.argv.slice(2).find((a) => !a.startsWith('--')) || 'story/today/scenes.json';
@@ -63,6 +64,17 @@ const trendPhrases = (() => {
   return [...fs.readFileSync(`${dir}/${f}`, 'utf8').matchAll(/`([^`]+)`\s*\|\s*`([^`]+)`/g)].map((m) => m[1].toLowerCase());
 })();
 const notes = [];
+
+// ---- Other channels' names (scripts/bhakti-seo.mjs; YouTube Studio search terms of 13 Nov 2026) ---------------------
+// "Ganesh Youth Association", "Shyam Sangeet Studio", "Ganpati Official"... are other channels', organisations' or
+// people's names that brought viewers to us. YouTube's spam and deceptive-practices policy forbids borrowing them in
+// titles, tags or descriptions, so they are never in any of our texts (every format). Generic intents are fine:
+// "Bhakti Geet", "Shyam Bhajan 2026", "Shyam Baba Song", "Shyam Sangeet" (without "Studio"), "Krishna Mantra".
+{
+  const named = thirdPartyNames(['youtube_title', 'youtube_description', 'youtube_tags', 'instagram_caption', 'facebook_caption', 'title']
+    .map((k) => (typeof s[k] === 'string' ? s[k] : '')).join(' '));
+  need(!named.length, `remove other channels' / organisations' names from the title, tags, description and captions (${named.join(', ')}): YouTube spam & deceptive-practices policy`);
+}
 
 // ---- One subject per day (scripts/topics.mjs, STORY.md section 1) ----------------------------------------------------
 // No two uploads of the same day (any slot, the long video, the status Short by title) and none of the 2 days before

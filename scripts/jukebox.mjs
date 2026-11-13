@@ -17,6 +17,7 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { bhaktiTags, bhaktiTitle, withTags } from './bhakti-seo.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FF = process.env.FFMPEG_PATH || 'ffmpeg';
@@ -141,7 +142,8 @@ function main() {
   const listHi = plan.map((s, i) => `${i + 1}. ${s.title_hi}`).join('\n');
   const spec = {
     slug, format: 'long', date, festival: 'Chhath Puja 2026', deity: 'Chhathi Maiya / Surya dev', kind: 'jukebox',
-    youtube_title: `Chhath Puja Geet 2026 Nonstop | ${n} Chhath Geet | छठ पूजा गीत | Chhath Puja Song`,
+    // + "Bhakti Geet" (a searched generic phrase, scripts/bhakti-seo.mjs)
+    youtube_title: bhaktiTitle(`Chhath Puja Geet 2026 Nonstop | ${n} Chhath Geet | छठ पूजा गीत | Chhath Puja Song`, { date, festival }, 100),
     youtube_description: [
       `छठ पूजा 2026 के ${n} नए छठ गीत, एक साथ नॉनस्टॉप। नहाय खाय और खरना से संध्या अर्घ्य, उषा अर्घ्य और पारण तक, छठी मइया और सूर्य देव के भक्ति गीत।`,
       'घाट पर, घर में या स्टेटस पर, पूरे परिवार के साथ सुनिए। जय छठी मइया, जय सूर्य देव 🙏',
@@ -150,6 +152,7 @@ function main() {
       '',
       'गीत सूची:', listHi,
       '',
+      'Bhakti Geet | भक्ति गीत: Shyam Premi SN ke naye maulik bhajan.',
       'भजन: मौलिक रचना, AI द्वारा गाया गया (ACE-Step)',
       'Sabhi geet Shyam Premi SN ki maulik rachna hain (kisi gayak ki awaaz ki nakal nahi). Chitra AI dwara banaye gaye hain (sanketik).',
       '',
@@ -157,8 +160,8 @@ function main() {
       '',
       '#ChhathPuja #ChhathGeet #छठपूजा',
     ].join('\n'),
-    youtube_tags: ['chhath puja geet 2026', 'chhath geet nonstop', 'chhath puja song', 'chhath puja song 2026', 'chhath geet', 'chhathi maiya song', 'nahay khay geet', 'kharna geet',
-      'sandhya arghya geet', 'usha arghya geet', 'छठ पूजा गीत', 'छठ गीत', 'छठी मइया के गीत', 'छठ पूजा 2026', 'bhojpuri chhath geet'].join(', '),
+    youtube_tags: withTags(['chhath puja geet 2026', 'chhath geet nonstop', 'chhath puja song', 'chhath puja song 2026', 'chhath geet', 'chhathi maiya song', 'nahay khay geet', 'kharna geet',
+      'sandhya arghya geet', 'usha arghya geet', 'छठ पूजा गीत', 'छठ गीत', 'छठी मइया के गीत', 'छठ पूजा 2026', 'bhojpuri chhath geet'].join(', '), bhaktiTags({ festival, date })),
     facebook_caption: '',
     songs: plan.map((s) => ({ id: s.id, start: s.start, seconds: s.seconds, title_hi: s.title_hi, title_roman: s.title_roman, day: s.day })),
     bhajan: { id: plan.map((s) => s.id).join(','), mode: 'jukebox' },

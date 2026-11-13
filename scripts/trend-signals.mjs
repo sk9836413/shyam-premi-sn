@@ -17,6 +17,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { OTHER_CHANNEL_NAMES, otherChannelTerm } from './bhakti-seo.mjs';
 
 const args = process.argv.slice(2);
 const option = (name) => (args.includes(name) ? args[args.indexOf(name) + 1] : undefined);
@@ -41,7 +42,7 @@ const PHRASES = {
   'choti diwali': 'छोटी दिवाली', 'chhoti diwali': 'छोटी दिवाली', 'bhai dooj': 'भाई दूज', 'sai baba': 'साईं बाबा',
 };
 const WORDS = Object.fromEntries(`
-khatu खाटू|shyam श्याम|baba बाबा|ji जी|jai जय|shree श्री|shri श्री|sri श्री|barbarik बर्बरीक|barbareek बर्बरीक|janmotsav जन्मोत्सव|janmdin जन्मदिन
+bhakti भक्ति|geet गीत|bhajan भजन|sangeet संगीत|song सॉन्ग|channel चैनल|khatu खाटू|shyam श्याम|baba बाबा|ji जी|jai जय|shree श्री|shri श्री|sri श्री|barbarik बर्बरीक|barbareek बर्बरीक|janmotsav जन्मोत्सव|janmdin जन्मदिन
 hanuman हनुमान|shiv शिव|shiva शिव|ganesh गणेश|ganpati गणपति|krishna कृष्ण|lakshmi लक्ष्मी|laxmi लक्ष्मी|durga दुर्गा|shani शनि|sai साईं|vishnu विष्णु|surya सूर्य|ram राम|sita सीता|radha राधा|bhagwan भगवान|mata माता|maa माँ|devi देवी|dev देव|santoshi संतोषी|balaji बालाजी|bholenath भोलेनाथ|mahadev महादेव|kuber कुबेर|dhanvantari धन्वंतरि|yamraj यमराज|tulsi तुलसी|gopal गोपाल|bal बाल|kanha कान्हा
 ki की|ka का|ke के|aur और|se से|me में|mein में|par पर|katha कथा|kahani कहानी|kahaniyan कहानियाँ|itihas इतिहास|mandir मंदिर|temple मंदिर|history इतिहास|story स्टोरी|darshan दर्शन|dham धाम|status स्टेटस|vrat व्रत|puja पूजा|pooja पूजा|vidhi विधि|kab कब|hai है|h है|hain हैं|kyu क्यों|kyon क्यों|kyun क्यों|kaise कैसे|kaun कौन|kya क्या|kahan कहाँ|manate मनाते|manaya मनाया|jata जाता|jati जाती|hota होता|hoti होती|tha था|the थे|aaj आज|kal कल|sheesh शीश|daan दान|rahasya रहस्य|mahima महिमा|janm जन्म|nishan निशान|kund कुंड|leela लीला|mantra मंत्र|naam नाम|sampoorn संपूर्ण|sampurn संपूर्ण|pauranik पौराणिक|prachin प्राचीन|kahaniya कहानियाँ|vrat-katha व्रत-कथा|din दिन|tithi तिथि|2026 2026|shubh शुभ|parikrama परिक्रमा|vishesh विशेष|yatra यात्रा|mela मेला
 dhanteras धनतेरस|diwali दिवाली|deepawali दीपावली|dipawali दीपावली|naraka नरक|narak नरक|chaturdashi चतुर्दशी|govardhan गोवर्धन|bhai भाई|dooj दूज|chhath छठ|chhat छठ|uthani उठनी|prabodhini प्रबोधिनी|ekadashi एकादशी|vivah विवाह|karwa करवा|chauth चौथ|ahoi अहोई|ashtami अष्टमी|rama रमा|sandhya संध्या|usha उषा|arghya अर्घ्य|nahay नहाय|khay खाय|purnima पूर्णिमा|amavasya अमावस्या|kartik कार्तिक|sankashti संकष्टी|chaturthi चतुर्थी|annakut अन्नकूट|yamdeep यमदीप|dev-uthani देवउठनी|gopashtami गोपाष्टमी|akshay अक्षय|navami नवमी|vaikuntha वैकुंठ|guru गुरु|nanak नानक|jayanti जयंती|kalbhairav कालभैरव|bhairav भैरव|margashirsha मार्गशीर्ष|utpanna उत्पन्ना|vivah-panchami विवाह-पंचमी|panchami पंचमी|dev-deepawali देव-दीपावली|deepawali दीपावली|tulsi-vivah तुलसी-विवाह
@@ -61,6 +62,9 @@ const KHATU_ROMAN = ['khatu shyam', 'shyam baba', 'khatu shyam bhajan', 'khatu s
   'khatu shyam mandir', 'khatu shyam ka itihas', 'khatu shyam janmotsav', 'barbarik'];
 const KHATU_DEVA = ['खाटू श्याम', 'श्याम बाबा', 'खाटू श्याम भजन', 'खाटू श्याम कथा', 'खाटू श्याम स्टेटस', 'जय श्री श्याम', 'बर्बरीक'];
 const GENERIC = ['mandir', 'ki katha', 'ka itihas', 'मंदिर', 'की कथा', 'का इतिहास'];
+// Searched generic phrases for the bhajan videos' titles (YouTube Studio search terms, 13 Nov 2026; scripts/bhakti-seo.mjs).
+// Never seed other channels' names (Shyam Sangeet Studio, Ganesh Youth Association...): only the generic intent.
+const BHAKTI = ['bhakti geet', `shyam bhajan ${DATE.slice(0, 4)}`, 'shyam baba song', 'shyam sangeet', 'krishna mantra', 'krishna bhajan', 'भक्ति गीत', 'श्याम भजन', 'कृष्ण मंत्र'];
 const DEITIES = [
   { key: 'hanuman', roman: 'hanuman ji' }, { key: 'shiv', roman: 'shiv ji' }, { key: 'ganesh', roman: 'ganesh ji' },
   { key: 'krishna', roman: 'krishna' }, { key: 'lakshmi', roman: 'lakshmi ji' }, { key: 'durga', roman: 'durga maa' },
@@ -298,7 +302,8 @@ function recommend({ sugg, rising, cal, temps, ch, stats, trends }) {
   const factor = (fmt) => { const s = stats.find((x) => x.tag === FORMAT_TAG[fmt]); return s && avgAll ? Math.min(1.3, Math.max(0.8, s.avg / avgAll)) : 1; };
   const allSugg = new Set([...sugg.values()].flatMap((e) => e.list));
   const hindiSeen = (dv) => allSugg.has(dv);
-  const searchTerms = (ch?.search || []).map((r) => String(r.insightTrafficSourceDetail).toLowerCase());
+  // other channels' names (otherChannelTerm) never steer a topic or a title
+  const searchTerms = (ch?.search || []).map((r) => String(r.insightTrafficSourceDetail).toLowerCase()).filter((t) => !otherChannelTerm(t));
   const add = (c) => {
     const ev = [...c.why];
     const p = posOf(c.seed, c.phrase);
@@ -423,6 +428,7 @@ async function main() {
     [`Festivals (${DATE} to ${addDays(DATE, 14)})`, [...festSeeds, ...festSeeds.map(deva).filter(Boolean)]],
     ['Deities', DEITIES.flatMap((d) => [d.roman, `${d.roman} ki katha`, `${d.key} mandir`, deva(`${d.roman} ki katha`), deva(`${d.key} mandir`)]).filter(Boolean)],
     ['Generic', GENERIC],
+    ['Bhajan and bhakti geet (generic searched phrases)', BHAKTI],
     ['Temples (mandir-series.md)', temps.map((t) => t.name.toLowerCase())],
   ];
   const seeds = [...new Set(groups.flatMap(([, s]) => s))];
@@ -469,6 +475,18 @@ async function main() {
   L.push('');
   L.push('Use the phrase naturally in the title (Roman ` | ` Devanagari). Skip any item that is off-topic, political, controversial or needs a claim you cannot source.', '');
 
+  // Bhajan videos (bhajan Shorts, jukebox): the generic searched phrases, and the autocomplete suggestions for them made
+  // only of known generic words (no singer, label or channel names; no dj / remix / ringtone / download).
+  L.push('## Searched phrases for bhajan video titles', '');
+  L.push('Bhajan Shorts and the jukebox carry ONE of these naturally (scripts/bhakti-seo.mjs adds it): Bhakti Geet, Shyam Bhajan <year> / Shyam Baba Song (alternate), Shyam Sangeet, Krishna Mantra (mantra jaap only).');
+  L.push(`Never use other channels' or organisations' names, even when they bring viewers: ${OTHER_CHANNEL_NAMES.join(', ')} (YouTube spam & deceptive-practices policy).`, '');
+  const generic = (x) => !otherChannelTerm(x) && !/\b(dj|remix|ringtone|mp3|download|lyrics|karaoke|status)\b/.test(x) && deva(x) !== null;
+  for (const seed of BHAKTI) {
+    const ok = (sugg.get(seed)?.list || []).filter(generic).slice(0, 8);
+    if (ok.length) L.push(`- ${seed}: ${ok.join(' · ')}`);
+  }
+  L.push('');
+
   L.push('## Rising in YouTube autocomplete (new vs the last 7 days)', '');
   if (!files) L.push('_First file (no earlier trend files): today is the baseline; rising starts tomorrow._');
   else if (!rising.size) L.push(`_Nothing new vs ${files} earlier file(s)._`);
@@ -505,7 +523,7 @@ async function main() {
     stats.forEach((s) => L.push(`- ${s.tag}: ${Math.round(s.avg)} views avg over ${s.n} video(s)${s.pct != null ? `, ${Math.round(s.pct)}% watched` : ''}`));
   }
   L.push('', '**YouTube search terms that brought viewers:**', '');
-  if (ch.search?.length) ch.search.forEach((r) => L.push(`- ${r.insightTrafficSourceDetail}: ${r.views} views`));
+  if (ch.search?.length) ch.search.forEach((r) => L.push(`- ${r.insightTrafficSourceDetail}: ${r.views} views${otherChannelTerm(r.insightTrafficSourceDetail) ? ' (another channel / organisation name: NEVER in our titles, tags or descriptions)' : ''}`));
   else L.push(`_${ch.searchNote || (ch.mode === 'analytics' ? 'None in the last 28 days.' : 'Needs the yt-analytics.readonly scope (owner re-auth, see the note above).')}_`);
   L.push('');
 

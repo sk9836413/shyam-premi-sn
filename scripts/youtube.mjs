@@ -7,6 +7,8 @@
 //   node scripts/youtube.mjs upload --video <mp4> --scenes story/today/scenes.json [--publish-at 19:00 | 2026-11-06T06:00] [--dry-run] [--allow-duplicate]
 //   node scripts/youtube.mjs upload --long --video <mp4> --scenes story/long/scenes.json --meta <out/slug.json>
 //        [--thumbnail <jpg>] [--publish-at 15:00]   regular video, chapters from --meta, scheduled at that IST time
+//   node scripts/youtube.mjs playlist-ensure [--add <videoId,...>]   the public "Bhakti Geet | Shyam Bhajan | भक्ति गीत"
+//        playlist (created once, idempotent; scripts/bhakti-seo.mjs); --add puts already-uploaded BHAJAN videos in it
 //
 // Quota (developers.google.com/youtube/v3/determine_quota_cost, updated 2026-10-15): videos.insert has its
 // own bucket (100 calls a day, 1 per call). From the shared 10,000 units: playlists.list 1, playlistItems.insert
@@ -32,6 +34,7 @@ import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { BHAKTI_PLAYLIST, BHAKTI_PLAYLIST_DESCRIPTION, isBhajanVideo, thirdPartyNames } from './bhakti-seo.mjs';
 
 const ENV_FILE = path.join(os.homedir(), '.shyampremisk', 'youtube.env');
 const DEFAULT_CLIENT = path.join(os.homedir(), '.epifive', 'youtube-client.json');
@@ -109,7 +112,11 @@ export function metaFromScenes(file, metaFile) {
       description += `\n\nAdhyay (Chapters):\n${chapters.map((c, i) => `${stamp(i === 0 ? 0 : c.start)} ${c.title}`).join('\n')}`;
     }
   }
-  const tags = String(s.youtube_tags || '').split(',').map((t) => t.replace(/[<>]/g, '').trim()).filter(Boolean);
+  // Other channels' / organisations' names never go up (YouTube spam & deceptive-practices policy; scripts/bhakti-seo.mjs):
+  // such a tag is dropped, such a title or description stops the upload.
+  const tags = String(s.youtube_tags || '').split(',').map((t) => t.replace(/[<>]/g, '').trim()).filter((t) => t && !thirdPartyNames(t).length);
+  const named = thirdPartyNames(`${title} ${description}`);
+  if (named.length) throw new Error(`youtube_title/description name another channel or organisation (${named.join(', ')}): remove it`);
   while (tags.join(',').length > 450) tags.pop();
   if (!title || title.length > 100) throw new Error(`youtube_title must be 1-100 characters (is ${title.length})`);
   return { title, description, tags, synthetic: syntheticMedia(s) };
@@ -200,23 +207,63 @@ async function setThumbnail(env, videoId, file) {
 
 // Each Short also goes into its deity's public playlist (created when missing), so a viewer who liked
 // one katha finds the next one. Best effort: a failure is reported, not thrown.
-async function addToPlaylist(env, videoId, title) {
-  const token = await accessToken(env);
-  const api = (url, init = {}) => fetch(`https://www.googleapis.com/youtube/v3/${url}`, {
+function playlistApi(token) {
+  return (url, init = {}) => fetch(`https://www.googleapis.com/youtube/v3/${url}`, {
     ...init, headers: { Authorization: `Bearer ${token}`, ...(init.body ? { 'Content-Type': 'application/json' } : {}) },
   });
-  const { items = [] } = await json(await api('playlists?part=snippet&mine=true&maxResults=50'), 'Playlist lookup');
-  let id = items.find((p) => p.snippet.title === title)?.id;
-  if (!id) {
-    id = (await json(await api('playlists?part=snippet,status', {
-      method: 'POST',
-      body: JSON.stringify({ snippet: { title, description: `${title}: Shyam Premi SN ki kathayein. Jai Shree Shyam 🙏`, defaultLanguage: 'hi' }, status: { privacyStatus: 'public' } }),
-    }), 'Playlist create')).id;
+}
+// The channel's playlist with this exact title, created (public) when missing: { id, created }. Every page is read
+// (1 unit each), so it stays idempotent past 50 playlists.
+async function ensurePlaylist(api, title, description) {
+  let page = '';
+  do {
+    const r = await json(await api(`playlists?part=snippet&mine=true&maxResults=50${page ? `&pageToken=${page}` : ''}`), 'Playlist lookup');
+    const hit = (r.items || []).find((p) => p.snippet.title === title);
+    if (hit) return { id: hit.id, created: false };
+    page = r.nextPageToken || '';
+  } while (page);
+  const id = (await json(await api('playlists?part=snippet,status', {
+    method: 'POST',
+    body: JSON.stringify({ snippet: { title, description: description || `${title}: Shyam Premi SN ki kathayein. Jai Shree Shyam 🙏`, defaultLanguage: 'hi' }, status: { privacyStatus: 'public' } }),
+  }), 'Playlist create')).id;
+  return { id, created: true };
+}
+// A playlist created a moment ago answers playlistNotFound for a few seconds (seen 13 Nov 2026): retry then.
+async function insertItem(api, playlistId, videoId) {
+  for (let k = 0; ; k++) {
+    try {
+      return await json(await api('playlistItems?part=snippet', {
+        method: 'POST', body: JSON.stringify({ snippet: { playlistId, resourceId: { kind: 'youtube#video', videoId } } }),
+      }), 'Playlist add');
+    } catch (e) {
+      if (k >= 3 || !/playlistNotFound/.test(e.message)) throw e;
+      await new Promise((r) => setTimeout(r, 8000));
+    }
   }
-  await json(await api('playlistItems?part=snippet', {
-    method: 'POST', body: JSON.stringify({ snippet: { playlistId: id, resourceId: { kind: 'youtube#video', videoId } } }),
-  }), 'Playlist add');
+}
+async function addToPlaylist(env, videoId, title, description) {
+  const api = playlistApi(await accessToken(env));
+  const { id } = await ensurePlaylist(api, title, description);
+  await insertItem(api, id, videoId);
   return title;
+}
+// `playlist-ensure`: the Bhakti Geet playlist exists (created once), plus the --add ids that are not in it yet.
+async function bhaktiPlaylist(env, add = []) {
+  const api = playlistApi(await accessToken(env));
+  const { id, created } = await ensurePlaylist(api, BHAKTI_PLAYLIST, BHAKTI_PLAYLIST_DESCRIPTION);
+  const have = new Set();
+  let page = '';
+  if (!created) do {
+    const r = await json(await api(`playlistItems?part=contentDetails&maxResults=50&playlistId=${id}${page ? `&pageToken=${page}` : ''}`), 'Playlist items');
+    (r.items || []).forEach((i) => have.add(i.contentDetails.videoId));
+    page = r.nextPageToken || '';
+  } while (page);
+  const added = [];
+  for (const v of add.filter((x) => x && !have.has(x))) {
+    await insertItem(api, id, v);
+    added.push(v);
+  }
+  return { status: 'ok', playlist: BHAKTI_PLAYLIST, id, url: `https://www.youtube.com/playlist?list=${id}`, created, items: have.size + added.length, added };
 }
 
 async function auth(clientFile) {
@@ -268,6 +315,7 @@ async function main() {
   const env = loadEnv();
   if (!KEYS.every((k) => env[k])) return { status: 'not-configured', envFile: ENV_FILE };
   if (command === 'check') return { status: 'ok', channel: await channel(await accessToken(env)) };
+  if (command === 'playlist-ensure') return bhaktiPlaylist(env, String(option('--add') || '').split(',').map((x) => x.trim()));
   if (command === 'find') return { status: 'ok', match: await findRecentUpload(env, option('--title'), Number(option('--hours') || 36)) };
   if (command === 'upload') {
     const video = option('--video');
@@ -300,9 +348,14 @@ async function main() {
       units += 50;
       try { youtube.thumbnail = await setThumbnail(env, youtube.id, thumb); } catch (e) { youtube.thumbnailError = e.message; }
     }
-    const playlist = JSON.parse(fs.readFileSync(scenes, 'utf8')).playlist;
-    if (playlist) {
-      try { youtube.playlist = await addToPlaylist(env, youtube.id, playlist); } catch (e) { youtube.playlistError = e.message; }
+    const spec = JSON.parse(fs.readFileSync(scenes, 'utf8'));
+    if (spec.playlist) {
+      try { youtube.playlist = await addToPlaylist(env, youtube.id, spec.playlist); } catch (e) { youtube.playlistError = e.message; }
+    }
+    // Bhajan videos (bhajan Shorts, the jukebox) also go into the Bhakti Geet playlist (scripts/bhakti-seo.mjs).
+    if (isBhajanVideo(spec)) {
+      units += 51;
+      try { youtube.bhaktiPlaylist = await addToPlaylist(env, youtube.id, BHAKTI_PLAYLIST, BHAKTI_PLAYLIST_DESCRIPTION); } catch (e) { youtube.bhaktiPlaylistError = e.message; }
     }
     return { status: 'ok', youtube, units };
   }
