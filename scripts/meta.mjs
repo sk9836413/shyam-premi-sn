@@ -13,7 +13,7 @@
 //        facebook_caption / instagram_caption. With --publish-at (IST, like youtube.mjs) at least 15 minutes ahead,
 //        Facebook is SCHEDULED for that time and Instagram, which has no scheduled publishing, is queued: the line
 //        "ig: pending <ISO>" goes into automation/published.md and `flush` publishes it from --video-url.
-//        Facebook plan (scripts/fb.mjs, 11 Nov 2026: at most 2 videos + 1 photo a day): --fb-at gives Facebook its own
+//        Facebook plan (scripts/fb.mjs; since 13 Nov 2026 every Short, 90 min apart): --fb-at gives Facebook its own
 //        time ("now" = straight away) and --no-fb leaves Facebook out; Instagram keeps following --publish-at. Without
 //        either flag Facebook follows --publish-at as before. The Facebook text is fbVideoCaption() (fb.mjs template).
 // long   The long katha video as a normal Facebook Page video (in-stream ads later), scheduled like YouTube:
@@ -33,7 +33,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { fbLongText, fbVideoCaption } from './fb.mjs';
+import { fbLongText, fbVideoCaption, igHashtags } from './fb.mjs';
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
 
 export const FB_REEL_MAX = 90;
@@ -125,7 +125,8 @@ export function captions(spec) {
   const fallback = String(spec.youtube_description || spec.title || '').trim();
   return {
     facebook: String(spec.facebook_caption || fallback).trim(),
-    instagram: String(spec.instagram_caption || fallback).trim().slice(0, 2200),
+    // the Khatu Shyam tags only on Khatu Shyam content (fb.mjs igHashtags; owner, 13 Nov 2026)
+    instagram: igHashtags(String(spec.instagram_caption || fallback).trim(), spec).slice(0, 2200),
   };
 }
 
@@ -373,7 +374,7 @@ async function postLong({ video, spec, meta, thumbnail, publishAt, noFb, dryRun 
   if (!configured()) return { status: 'not-configured' };
   if (noFb) return { status: 'ok', slug: spec.slug, facebook: { skipped: 'not in the Facebook plan' } };
   const post = longPost(spec, meta);
-  post.description = fbLongText(post.description); // fb.mjs: no like/share/subscribe lines, the 3 template hashtags
+  post.description = fbLongText(post.description, spec); // fb.mjs: no like/share/subscribe lines, the subject's 3 hashtags
   const at = istAt(publishAt);
   const schedule = at ? { published: 'false', scheduled_publish_time: String(Math.floor(at / 1000)) } : {};
   if (dryRun) {

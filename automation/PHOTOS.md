@@ -28,12 +28,16 @@ Write only the posts listed in plan.json. Fields (all strings unless shown):
 - `caption`: the post text without hashtags, 3-7 short lines, Hinglish (Roman) with one or two Devanagari lines,
   ending with ONE genuine question to the reader (a real question about their experience or devotion, e.g. "Aap Khatu
   Dham kab gaye the?", "Aapke ghar mein aaj kaunsi aarti hui?"). 120-900 characters.
-- `hashtags`: array of 5-10 relevant hashtags, always including `#JaiShreeShyam` or `#KhatuShyam`, plus the deity,
-  temple or festival (`#Somnath`, `#HarHarMahadev`, `#Diwali2026` ...). No banned or unrelated trending tags.
+- `hashtags`: array of 5-10 relevant hashtags that MATCH THE SUBJECT (owner, 13 Nov 2026): Khatu Shyam ji posts (and
+  vichar / sandhya aarti) include `#JaiShreeShyam` or `#KhatuShyam`; a post about another deity, temple or festival uses
+  its own tags (`#Somnath`, `#HarHarMahadev`, `#ChhathPuja`, `#Diwali2026` ...) and NO Khatu Shyam tags (the script drops
+  them there). No banned or unrelated trending tags.
 - darshan / festival (post 1) also goes to Facebook, so it has `fb_caption`: the Facebook template of
   automation/STORY.md "Facebook caption": line 1 = a Hindi (Devanagari) bhaav line + ONE genuine question ending in `?`
   (e.g. `सुप्रभात 🙏 हर हर महादेव। क्या आपने कभी सोमनाथ ज्योतिर्लिंग के दर्शन किए हैं?`), then 1-2 context lines (mostly
-  Devanagari), then a blank line and exactly 3 hashtags `#KhatuShyam #JaiShreeShyam #<topical>`. No URL, no credit or
+  Devanagari), then a blank line and exactly 3 hashtags matching the subject (scripts/fb.mjs fbHashtags): Khatu Shyam ji
+  `#KhatuShyam #JaiShreeShyam #<topical>`; a festival not about Khatu `#ChhathPuja #ChhathiMaiya #Bhakti`; a deity/temple
+  `#Mahadev #HarHarMahadev #Somnath` (never the Khatu tags on a non-Khatu post). No URL, no credit or
   AI line (the script adds them), no asks of any kind (like/share/comment/tag/follow/"likhein"/"bhejein").
 - darshan / festival (post 1): `big` (Devanagari, max 16 characters, e.g. `सुप्रभात`, `शुभ दीपावली`), `line` (max 30, e.g.
   `जय श्री श्याम 🙏`), `place` (temple name in Devanagari, max 34, e.g. `सोमनाथ ज्योतिर्लिंग, गुजरात`; festival: a short

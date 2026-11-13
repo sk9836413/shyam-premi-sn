@@ -31,7 +31,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { linkLines } from './festival-links.mjs';
-import { checkFbCaption, fbPhotoCaption } from './fb.mjs';
+import { checkFbCaption, fbPhotoCaption, fbSubject, igTagList, photoSubject } from './fb.mjs';
 import { cardHtml, imageSize, renderCards } from './photo-cards.mjs';
 import { photosFor, FOOTAGE } from './real-photos.mjs';
 
@@ -354,7 +354,10 @@ export function checkPost(p, entry) {
     const tags = Array.isArray(p.hashtags) ? p.hashtags : [];
     need(tags.length >= 5 && tags.length <= 10, `hashtags: 5-10 (${tags.length})`);
     need(tags.every((t) => /^#[\p{L}\p{N}_]+$/u.test(t)), 'hashtags: each one word starting with #');
-    need(tags.some((t) => /^#(JaiShreeShyam|KhatuShyam)$/i.test(t)), 'hashtags: include #JaiShreeShyam or #KhatuShyam');
+    // Khatu Shyam content (and posts without a clear subject: vichar, aarti) carry #JaiShreeShyam / #KhatuShyam; other
+    // subjects get their own tags (fb.mjs; owner, 13 Nov 2026), and caption() swaps any Khatu-only tag out at posting.
+    const subj = fbSubject(entrySubject(entry, tags));
+    if (subj.kind === 'khatu' || subj.kind === 'none') need(tags.some((t) => /^#(JaiShreeShyam|KhatuShyam)$/i.test(t)), 'hashtags: include #JaiShreeShyam or #KhatuShyam');
     const all = JSON.stringify(p);
     need(!BAIT.test(all) && !BAIT2.test(all), 'remove engagement bait (share/tag/like/comment-YES/type requests, threats, money/miracle promises)');
     need(!/(sati)/i.test(entry.temple || '') || !/(mela|yatra|juloos|procession|amavasya)|मेला|यात्रा|अमावस्या/i.test(all), 'sati temple: no mela/yatra/procession');
@@ -384,8 +387,11 @@ export function checkPost(p, entry) {
 export function checkFbPost(p, entry) {
   if (!entry.fbAt) return [];
   if (!p?.fb_caption) return ['fb_caption: missing (the Facebook text of this post; PHOTOS.md "Facebook caption")'];
-  return checkFbCaption(p.fb_caption, { draft: true }).map((m) => `fb_caption: ${m}`);
+  return checkFbCaption(p.fb_caption, { draft: true, subject: entrySubject(entry, p.hashtags) }).map((m) => `fb_caption: ${m}`);
 }
+
+/** The subject of a planned post (its festival, temple) for fb.mjs fbSubject: the hashtags must match it. */
+export const entrySubject = (entry = {}, hashtags = []) => photoSubject({ festival: entry.festival ? { key: entry.festival.key || entry.festival, name: entry.festival.name || '' } : null, temple: entry.temple, templeName: entry.templeName, hashtags });
 
 const AARTI_Q = [
   ['Aapke ghar mein aaj kaunsi aarti hui?', 'आपके घर में आज कौन सी आरती हुई?'],
@@ -542,7 +548,8 @@ export function caption(post, links = []) {
   if (links.length) parts.push(links.join('\n'));
   if (post.ai) parts.push('Chitra AI dwara banaya gaya hai (sanketik).');
   if (post.credits?.length) parts.push(post.credits.map((c) => `📷 ${c}`).join('\n'));
-  parts.push(post.text.hashtags.join(' '));
+  // Instagram: the Khatu Shyam tags only on Khatu Shyam content (fb.mjs igTagList; owner, 13 Nov 2026)
+  parts.push(igTagList(post.text.hashtags, entrySubject({ festival: post.festival, temple: post.temple, templeName: post.fbInfo?.templeName }, post.text.hashtags)).join(' '));
   return parts.join('\n\n').slice(0, 2200);
 }
 

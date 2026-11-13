@@ -15,6 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { bhaktiTags, bhaktiTitle, withTags } from './bhakti-seo.mjs';
+import { fbHashtags } from './fb.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const CONFIG = path.join(ROOT, 'automation', 'chhath-2026.json');
@@ -99,7 +100,8 @@ export function buildSpec({ date, slot, o, track, bank, festival = 'chhath', has
     youtube_tags: withTags(['chhath puja song', 'chhath puja geet 2026', 'chhath geet', 'chhathi maiya song', 'chhath bhajan', `${o.day.replace(/-/g, ' ')} geet`,
       'छठ पूजा गीत', 'छठ गीत', 'छठी मइया', 'छठ पूजा 2026', 'surya dev', 'bhojpuri chhath geet', 'shyam premi sn'].join(', '), bhaktiTags({ festival, date })),
     instagram_caption: `${o.festival} 🙏 Naya Chhath geet "${track.bhajan.title_roman || track.title}". Jai Chhathi Maiya, Jai Surya Dev.\n\nBhajan: maulik rachna, AI dwara gaya gaya (ACE-Step). Chitra AI dwara (sanketik).\n\n${hashtag} #ChhathGeet #ChhathiMaiya #Chhath2026 #ShyamPremiSN`,
-    facebook_caption: `${o.question_hi.startsWith('जय') ? '' : 'जय छठी मइया 🙏 '}${o.question_hi}\n${o.intro_hi}\n\n#KhatuShyam #JaiShreeShyam ${hashtag}`,
+    // the subject's 3 hashtags (scripts/fb.mjs; owner, 13 Nov 2026: no Khatu Shyam tags on a Chhath bhajan)
+    facebook_caption: `${o.question_hi.startsWith('जय') ? '' : 'जय छठी मइया 🙏 '}${o.question_hi}\n${o.intro_hi}\n\n${fbHashtags({ festival: o.festival, theme: festival, bhajan_short: true }).join(' ')}`,
     song: { id: track.id, from, seconds: Math.round((n * hold + endHold - FADE * n) * 100) / 100 },
   };
 }

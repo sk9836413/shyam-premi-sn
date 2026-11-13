@@ -14,8 +14,9 @@
 //         post_video_followers, post_video_social_actions. Rejected: post_impressions_unique, total_video_impressions,
 //         video_views. The video's own `views` field works for Reels and normal Page videos (movie parts).
 //   node scripts/fb-daily.mjs share-kit [--date YYYY-MM-DD] [--dry] [--no-send]
-//       Today's "Share kit" for sharing the day's Facebook Reels by hand into public groups: the Reel URLs (from
-//       automation/published.md), a ready-to-paste Hindi share line per Reel, today's groups from automation/fb-groups.json
+//       Today's "Share kit" for sharing the day's Facebook Reels by hand into public groups: the best 2 of the day's Reel
+//       URLs (from automation/published.md; every Short is a Reel since 13 Nov 2026, so bestVideos picks: festival status
+//       first, then bhajan / temple darshan, then plays), a ready-to-paste Hindi share line per Reel, today's groups from automation/fb-groups.json
 //       (rotated so each group gets at most 1 share every 2 days), one etiquette line. Always written to
 //       automation/share-kit/<date>.md; emailed to epifive2@gmail.com via Resend when RESEND_API_KEY is set (the same
 //       path as scripts/veo-kit.mjs) and added as a daily CRM task when INGEST_TOKEN is set. photos.yml runs it ~20:45 IST.
@@ -157,6 +158,28 @@ export function todaysVideos(text, date) {
   return out;
 }
 
+// Share-kit order (13 Nov 2026: every Short is a Facebook Reel now, 3-4 a day, so the kit picks the best 2). The
+// channel's data (scripts/day-plan.mjs header): festival status Shorts first, then the bhajan Shorts and famous-temple
+// darshan (Khatu Shyam ji first), then the movie part, Kalyug, the weekday day status and Dadi-Chhotu.
+const SHARE_RANK = { status: 0, eve: 0, statusday: 0, bhajan: 1, evening: 2, morning: 2, movie: 3, kalyug: 4, daystatus: 5, noon: 6 };
+const reelId = (url) => String(url).match(/(?:reel\/|videos\/)(\d+)/)?.[1];
+
+/** Today's Facebook videos best first: format rank, Khatu Shyam ji darshan first, then plays so far
+ *  (automation/fb-insights.json), then the earlier one. */
+export function bestVideos(videos, { specOf = () => null, reels = {} } = {}) {
+  const score = (v) => {
+    const spec = specOf(v.slug);
+    const slot = v.slug.match(/^\d{4}-\d{2}-\d{2}-([a-z]+)-/)?.[1] || '';
+    const kind = spec?.day_status ? 'daystatus' : spec?.bhajan_short ? 'bhajan' : slot;
+    const khatu = /khatu|shyam/i.test(`${spec?.temple || ''} ${v.slug}`) && kind !== 'daystatus' ? -0.5 : 0;
+    const r = reels[reelId(v.url)] || {};
+    return { rank: (SHARE_RANK[kind] ?? 5) + khatu, plays: Number(r.fb_reels_total_plays ?? r.views ?? 0), at: v.at ? Date.parse(v.at) : 0 };
+  };
+  return videos.map((v) => ({ v, s: score(v) }))
+    .sort((a, b) => a.s.rank - b.s.rank || b.s.plays - a.s.plays || a.s.at - b.s.at)
+    .map((x) => x.v);
+}
+
 /** Groups for `date`: every group every second day (group i on days where (day + i) is even). */
 export function groupsFor(groups, date) {
   return groups.filter((g, i) => (dayNo(date) + i) % 2 === 0);
@@ -201,10 +224,13 @@ export function kitMarkdown({ date, videos, groups, progressLine }) {
 export async function shareKit({ date = istDate(), dry = false, send = true, log = console.log, progressLine = null } = {}) {
   const published = fs.existsSync(PUBLISHED) ? fs.readFileSync(PUBLISHED, 'utf8') : '';
   const specOf = (slug) => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, 'story', 'published', `${slug}.json`), 'utf8')); } catch { return null; } };
-  const videos = todaysVideos(published, date).slice(0, 2).map((v) => ({ ...v, line: shareLine(specOf(v.slug), v.slug) }));
+  let insights = {};
+  if (fs.existsSync(INSIGHTS)) { try { insights = JSON.parse(fs.readFileSync(INSIGHTS, 'utf8')); } catch { /* none */ } }
+  const videos = bestVideos(todaysVideos(published, date), { specOf, reels: insights.reels || {} }).slice(0, 2)
+    .map((v) => ({ ...v, line: shareLine(specOf(v.slug), v.slug) }));
   const all = JSON.parse(fs.readFileSync(GROUPS, 'utf8')).groups || [];
   const groups = groupsFor(all, date);
-  if (!progressLine && fs.existsSync(INSIGHTS)) { try { progressLine = JSON.parse(fs.readFileSync(INSIGHTS, 'utf8')).challenge?.line; } catch { /* none */ } }
+  progressLine ||= insights.challenge?.line || null;
   const md = kitMarkdown({ date, videos, groups, progressLine });
   const file = path.join(KITS, `${date}.md`);
   if (dry) { log(md); return { file: null, videos, groups: groups.length }; }

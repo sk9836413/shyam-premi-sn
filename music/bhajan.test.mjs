@@ -360,7 +360,7 @@ test('bhajan Short: the day song first, 45-90 s from the chorus, disclosure + FB
   assert.ok(secs >= 45 && secs <= 66.3 - 0.5, `${secs}`); // the song lasts 66.3 s after the chorus lead-in
   assert.equal(s.bhajan_id, 'bhajan-c');
   assert.match(s.youtube_description, /भजन: मौलिक रचना, AI द्वारा गाया गया \(ACE-Step\)/);
-  assert.match(s.facebook_caption.split('\n').pop(), /^#KhatuShyam #JaiShreeShyam #ChhathPuja$/);
+  assert.match(s.facebook_caption.split('\n').pop(), /^#ChhathPuja #ChhathGeet #Bhakti$/); // the subject's tags (scripts/fb.mjs)
 });
 test('a festival bhajan (Chhath geet, deity devi) is not used for another devi video', () => {
   const b = (id, festival) => ({ id, bhajan: { deity: 'devi', mood: 'thaath', festival, chorus_at: 1 } });

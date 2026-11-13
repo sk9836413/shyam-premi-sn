@@ -328,14 +328,16 @@ bhakts search YouTube in Hindi, so the YouTube fields also carry the main keywor
 - `youtube_tags`: 10–15 comma-separated search phrases, about half Roman and half Devanagari
   (`Hanuman ji ki katha, हनुमान जी की कथा, संजीवनी बूटी, Khatu Shyam, खाटू श्याम …`).
 - `instagram_caption`: hook line, 2–3 lines of the story's message, the mantra, then 5–10 relevant
-  hashtags (`#KhatuShyam #JaiShreeShyam #Navratri …`). Max 2,200 characters.
+  hashtags that match the subject (Khatu Shyam ji: `#KhatuShyam #JaiShreeShyam #KhatuDham …`; anything else its own
+  tags, e.g. `#Somnath #HarHarMahadev #Jyotirlinga …` or `#ChhathPuja #ChhathiMaiya …`, never the Khatu Shyam tags on
+  another subject: the script drops them there). Max 2,200 characters.
 - `facebook_caption`: the Facebook template below.
 
 ### Facebook caption (all formats; owner, 11 Nov 2026: Facebook monetization challenge)
 
-Facebook gets at most 2 Reels and 1 photo a day, plus the daily long katha as a 12:30 feed video (scripts/fb.mjs; its
-text is your `youtube_description` with like/share/subscribe lines removed and the 3 template hashtags, so keep the
-description free of other bait). Meta demotes engagement bait, so every
+Every Short is also a Facebook Reel (owner, 13 Nov 2026; at least 90 min apart), plus 1 photo a day and the daily long
+katha as a 12:30 feed video (scripts/fb.mjs; its text is your `youtube_description` with like/share/subscribe lines
+removed and the subject's 3 hashtags, so keep the description free of other bait). Meta demotes engagement bait, so every
 `facebook_caption` is written the same way (`node scripts/validate.mjs` checks it):
 
 1. **Line 1:** a Hindi bhaav line in Devanagari plus ONE genuine question to the viewer about their own experience or
@@ -345,8 +347,12 @@ description free of other bait). Meta demotes engagement bait, so every
    `प्रभास पाटन में समुद्र किनारे बारह ज्योतिर्लिंगों में पहला (मान्यता)।` / `Somnath Jyotirlinga, Gujarat ke darshan.`
 3. Nothing else: no URL (the script adds the Janmotsav / festival link and the photo credits when they apply), no AI
    line (added automatically).
-4. **Last line: exactly 3 hashtags**: `#KhatuShyam #JaiShreeShyam` plus ONE topical tag (`#Somnath`, `#BhaiDooj`,
-   `#HarHarMahadev` …). No hashtags anywhere else.
+4. **Last line: exactly 3 hashtags that match the subject** (owner, 13 Nov 2026; `node scripts/fb.mjs tags <spec>`
+   prints them): Khatu Shyam ji content `#KhatuShyam #JaiShreeShyam` + ONE topical tag (`#KhatuShyamMandir`,
+   `#KhatuShyamJanmotsav`, `#Gyaras`); a festival not about Khatu Shyam ji its tag + 2 relevant generic ones
+   (`#ChhathPuja #ChhathGeet #Bhakti`, `#BhaiDooj #YamDwitiya #Bhakti`); a deity or temple its tags
+   (`#Mahadev #HarHarMahadev #Somnath`, `#MataRani #JaiMataDi #VaishnoDevi`). Never `#KhatuShyam` / `#JaiShreeShyam` on
+   a post that is not about Khatu Shyam ji. No hashtags anywhere else.
 
 Mostly Devanagari, a little Hinglish. **No engagement bait of any kind**: no like/share/comment/tag/follow/subscribe/
 forward asks, no "Jai Shree Shyam likhein", no "apno ko bhejein", no "warna", no luck/money/miracle promises. A plain

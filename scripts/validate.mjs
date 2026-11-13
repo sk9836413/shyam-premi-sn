@@ -124,13 +124,17 @@ const MAX_WORDS = 18;
 
 // ---- Facebook caption (scripts/fb.mjs; owner, 11 Nov 2026: Facebook monetization challenge) --------------------------
 // facebook_caption: line 1 = a Hindi (Devanagari) bhaav line + one genuine question, then 1-2 context lines, then exactly
-// 3 hashtags on the last line (#KhatuShyam #JaiShreeShyam + 1 topical); mostly Devanagari with a little Hinglish; no
-// URLs (the script adds the festival link and photo credits); no engagement bait of any kind. A problem while writing,
-// a warning with --soft-topics (the workflow): at publish time a caption that fails is replaced by the one fb.mjs
-// composes, so it never stops a post. Status Shorts are made by the engine, not Claude: fb.mjs composes theirs. The long
-// katha, Kalyug and Dadi-Chhotu Shorts are not in the Facebook plan (scripts/fb.mjs), so their caption is not checked.
+// 3 hashtags on the last line that MATCH THE SUBJECT (fb.mjs fbHashtags; owner, 13 Nov 2026): Khatu Shyam ji content
+// #KhatuShyam #JaiShreeShyam + 1 topical, a festival not about Khatu its tag + 2 relevant ones (#ChhathPuja #ChhathGeet
+// #Bhakti), a deity / temple its tags (#Mahadev #HarHarMahadev #Somnath), never the Khatu tags on another subject;
+// mostly Devanagari with a little Hinglish; no URLs (the script adds the festival link and photo credits); no engagement
+// bait of any kind. A problem while writing, a warning with --soft-topics (the workflow): at publish time a caption that
+// fails is replaced by the one fb.mjs composes (wrong hashtags by the subject's), so it never stops a post. Status Shorts
+// are made by the engine, not Claude: fb.mjs composes theirs. Every Short goes to Facebook (13 Nov 2026); Kalyug and
+// Dadi-Chhotu captions follow their own (Roman) rules below and fb.mjs composes their Facebook text; the long katha's
+// Facebook text is its description (fbLongText).
 if (!longMode && !/^\d{4}-\d{2}-\d{2}-long-/.test(s.slug || '') && !['status', 'long', 'kalyug', 'dialogue'].includes(s.format)) {
-  for (const m of checkFbCaption(s.facebook_caption, { draft: true })) {
+  for (const m of checkFbCaption(s.facebook_caption, { draft: true, subject: s })) {
     const w = `facebook_caption: ${m} (STORY.md "Facebook caption")`;
     if (process.argv.includes('--soft-topics')) console.log(`${process.env.GITHUB_ACTIONS ? '::warning::' : 'warning: '}${w}`);
     else problems.push(w);
@@ -338,7 +342,7 @@ if (s.bhajan_short === true) {
   const desc = s.youtube_description || '';
   need(DEVANAGARI.test(desc.split(/\r?\n/)[0]), 'youtube_description: Hindi (Devanagari) first');
   need(desc.includes('भजन: मौलिक रचना, AI द्वारा गाया गया (ACE-Step)') && /sanketik/i.test(desc), 'youtube_description: the bhajan disclosure line and "Chitra AI dwara banaye gaye hain (sanketik)"');
-  for (const m of checkFbCaption(s.facebook_caption, { draft: true })) problems.push(`facebook_caption: ${m}`);
+  for (const m of checkFbCaption(s.facebook_caption, { draft: true, subject: s })) problems.push(`facebook_caption: ${m}`);
   need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
   if (problems.length) {
     console.log(problems.map((p) => `- ${p}`).join(String.fromCharCode(10)));
