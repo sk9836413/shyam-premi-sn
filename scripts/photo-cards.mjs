@@ -187,7 +187,8 @@ function findChrome() {
   return hit;
 }
 
-/** Renders [{html, file}] to JPEG files with one browser; returns [{file, overflow}] (.fit elements that overflow). */
+/** Renders [{html, file, width?, height?}] to JPEG files with one browser (default 1080x1350; the 9:16 stories of
+ *  scripts/stories.mjs pass 1080x1920); returns [{file, overflow}] (.fit elements that overflow). */
 export async function renderCards(pages) {
   const work = fs.mkdtempSync(path.join(os.tmpdir(), 'sps-photo-'));
   const proc = spawn(findChrome(), ['--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check', '--hide-scrollbars',
@@ -213,10 +214,12 @@ export async function renderCards(pages) {
     const once = (method) => new Promise((resolve) => { const l = (m) => { if (m.method === method) { listeners.delete(l); resolve(m.params); } }; listeners.add(l); });
     const { targetId } = await send('Target.createTarget', { url: 'about:blank' });
     const { sessionId } = await send('Target.attachToTarget', { targetId, flatten: true });
-    await send('Emulation.setDeviceMetricsOverride', { width: W, height: H, deviceScaleFactor: 1, mobile: false }, sessionId);
     await send('Page.enable', {}, sessionId);
     const out = [];
+    let size = '';
     for (const [i, p] of pages.entries()) {
+      const [w, h] = [p.width || W, p.height || H];
+      if (size !== `${w}x${h}`) { await send('Emulation.setDeviceMetricsOverride', { width: w, height: h, deviceScaleFactor: 1, mobile: false }, sessionId); size = `${w}x${h}`; }
       const htmlFile = path.join(work, `card-${i}.html`);
       fs.writeFileSync(htmlFile, p.html);
       const loaded = once('Page.loadEventFired');
@@ -225,10 +228,10 @@ export async function renderCards(pages) {
       const { result } = await send('Runtime.evaluate', {
         expression: `document.fonts.ready.then(() => Promise.all([...document.images].map((im) => im.decode().catch(() => null)))).then(() => { window.fit && window.fit();
           return [...document.querySelectorAll('.fit,[data-fixed]')].some((el) => { const r = el.getBoundingClientRect();
-            return (el.hasAttribute('data-fixed') && el.scrollHeight > el.clientHeight + 2) || r.top < 10 || r.bottom > ${H - 10}; }); })`,
+            return (el.hasAttribute('data-fixed') && el.scrollHeight > el.clientHeight + 2) || r.top < 10 || r.bottom > ${h - 10}; }); })`,
         awaitPromise: true, returnByValue: true,
       }, sessionId);
-      const { data } = await send('Page.captureScreenshot', { format: 'jpeg', quality: 90, clip: { x: 0, y: 0, width: W, height: H, scale: 1 } }, sessionId);
+      const { data } = await send('Page.captureScreenshot', { format: 'jpeg', quality: 90, clip: { x: 0, y: 0, width: w, height: h, scale: 1 } }, sessionId);
       fs.mkdirSync(path.dirname(p.file), { recursive: true });
       fs.writeFileSync(p.file, Buffer.from(data, 'base64'));
       out.push({ file: p.file, overflow: Boolean(result.value) });

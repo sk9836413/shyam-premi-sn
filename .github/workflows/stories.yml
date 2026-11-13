@@ -1,0 +1,94 @@
+# Facebook Page Stories + Instagram Stories (scripts/stories.mjs; owner 13 Nov 2026). Max 4 per platform per day:
+# morning darshan / festival card 06:45, the day's best Short as a video story once it is public, a second festival card
+# on festival days 10:40, the Sandhya aarti card 19:30 (IST). ONE story per run, 25 min apart, deduped through
+# automation/stories/<date>.json (claim pushed before posting).
+# NO cron of its own: daily.yml (its schedule polls and every dispatch) and photos.yml (the scheduler Worker's 09:13,
+# 10:13, 10:43, 18:46 and 19:46 IST dispatches) call this workflow when the repo variable STORIES=on. Takes ~20 s when
+# nothing is due. Manual: dry_run renders/cuts every story of the day (artifact) and posts nothing; probe is a live check
+# of the token and the story endpoints that publishes nothing.
+name: Stories
+
+on:
+  workflow_call:
+    inputs:
+      dry_run: { type: boolean, default: false }
+      probe: { type: boolean, default: false }
+      date: { type: string, default: '' }
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Render the day's story cards and cut the video story (artifact); post nothing, write nothing
+        type: boolean
+        default: true
+      probe:
+        description: Live check (token scopes, story endpoints, an unpublished container); publishes nothing
+        type: boolean
+        default: false
+      date:
+        description: IST date for dry_run (YYYY-MM-DD, empty = today)
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  stories:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: shyam-stories
+      cancel-in-progress: false
+    env:
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+      META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      FFMPEG_PATH: ffmpeg
+      DATE: ${{ inputs.date }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Work folder
+        run: echo "STORIES_WORK=$RUNNER_TEMP/stories-out" >> "$GITHUB_ENV"
+
+      - name: What is due
+        id: due
+        if: ${{ !inputs.dry_run && vars.STORIES == 'on' }}
+        run: node scripts/stories.mjs due | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Fonts and ffmpeg (only when a story is made)
+        if: inputs.dry_run || inputs.probe || steps.due.outputs.due != ''
+        run: |
+          pkgs="fonts-noto-color-emoji"
+          if [ -n "${{ inputs.dry_run && '1' || '' }}" ] || [ "${{ steps.due.outputs.video }}" = 1 ]; then pkgs="$pkgs ffmpeg"; fi
+          sudo apt-get update -qq && sudo apt-get install -y -qq $pkgs > /dev/null
+
+      - name: Live check (publishes nothing)
+        if: inputs.probe
+        continue-on-error: true
+        run: node scripts/stories.mjs probe | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Dry run (every story of the day, nothing posted)
+        if: inputs.dry_run
+        run: node scripts/stories.mjs run --dry-run --all ${DATE:+--date "$DATE"} | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Post the due story (claim, post, record)
+        if: ${{ !inputs.dry_run && steps.due.outputs.due != '' }}
+        continue-on-error: true
+        run: node scripts/stories.mjs run --push | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always() && (inputs.dry_run || inputs.probe)
+        with:
+          name: stories
+          path: ${{ runner.temp }}/stories-out
+          retention-days: 5
+          if-no-files-found: ignore

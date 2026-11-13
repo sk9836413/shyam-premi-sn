@@ -220,3 +220,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -qm "Facebook share kit $(TZ=Asia/Kolkata date +%F)"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # Facebook Page + Instagram Stories (repo variable STORIES=on; scripts/stories.mjs via .github/workflows/stories.yml):
+  # the scheduler's dispatches of this workflow (09:13 ... 19:46 IST) post the story that is due, if any. No new cron.
+  stories:
+    if: ${{ vars.STORIES == 'on' && !inputs.dry_run }}
+    uses: ./.github/workflows/stories.yml
+    secrets: inherit

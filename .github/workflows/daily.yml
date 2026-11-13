@@ -2024,3 +2024,10 @@ jobs:
           git add automation/published.md
           git commit -qm "Instagram queue"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # Facebook Page + Instagram Stories (repo variable STORIES=on; scripts/stories.mjs via .github/workflows/stories.yml):
+  # every trigger of this workflow posts the story that is due, if any (max 4 per platform a day, deduped). No new cron.
+  stories:
+    if: ${{ vars.STORIES == 'on' && !inputs.dry_run }}
+    uses: ./.github/workflows/stories.yml
+    secrets: inherit
