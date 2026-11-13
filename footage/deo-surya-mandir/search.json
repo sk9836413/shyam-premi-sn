@@ -1,0 +1,22 @@
+{
+  "temple": "deo-surya-mandir",
+  "name": "deo-surya-mandir",
+  "searched": "2026-11-13",
+  "candidates": 50,
+  "usable": 0,
+  "saved": 0,
+  "rejected": {
+    "not this temple (title/categories)": 46,
+    "search hit without the temple in its title": 3,
+    "under 1000 px": 1
+  },
+  "openverse": {
+    "query": "deo-surya-",
+    "results": 0,
+    "result_count": 0,
+    "usable": 0,
+    "rejected": {},
+    "saved": 0
+  },
+  "files": []
+}

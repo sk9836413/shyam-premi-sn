@@ -80,3 +80,4 @@
 - 2026-11-12-eve-nahay-khay | instagram: https://www.instagram.com/reel/Dfp3orahrqh/
 - 2026-11-13-status-chhath-puja-nahay-khay | instagram: https://www.instagram.com/reel/Dfp3uO7pR1s/
 - 2026-11-13-morning-deo-surya-mandir-darshan | claim: 2026-11-13 morning by run 43360854418.1 at 2026-11-13T04:50:40.814Z
+- 2026-11-13-morning-deo-surya-mandir-darshan | youtube: https://youtube.com/shorts/jdxMVoYYFF0 | social: fb: skipped (not in the Facebook plan) | ig: error upload failed: Request processing failed | animated 3/4
