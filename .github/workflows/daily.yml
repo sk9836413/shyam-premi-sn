@@ -1,13 +1,18 @@
-# Shyam Premi SN: at most 3 YouTube uploads a day (owner, 9 Nov 2026; scripts/day-plan.mjs decides which, and
-# scripts/upload-guard.mjs enforces a hard cap of 3 per IST date): 5-6 a day (7-9 Nov) collapsed views to 0-15.
+# Shyam Premi SN: at most 3 YouTube Shorts a day (owner, 9 Nov 2026; scripts/day-plan.mjs decides which, and
+# scripts/upload-guard.mjs enforces a hard cap of 3 Shorts per IST date): 5-6 a day (7-9 Nov) collapsed views to 0-15.
+# PLUS one long katha video EVERY day (owner, 13 Nov 2026), outside the Shorts cap with its own cap of 1: long videos
+# are the only source of watch hours (YPP 4,000 h before 31 Jan 2027), and inside the cap (Mon/Fri of normal days only)
+# festivals pushed them out for 3 days (10-12 Nov).
 # Re-planned 11 Nov 2026 around the festival "status" Short, the only format that went viral (Choti Diwali Status 798
 # views, Dhanteras Status 456; katha Shorts avg 18): day-plan fills each day by priority, max 3:
 #   movie part 07:00 > festival status Shorts (job `status`, scripts/status-engine.mjs: `eve` 20:00 the evening before,
 #   `status` 00:30 on the day, `statusday` 08:30 on big festivals) > morning (weekday "day status" Short made by the
 #   status engine, or a famous-temple darshan on festival days) > evening famous-temple darshan 19:00 > Kalyug ke
-#   Bhagwan (Tue/Thu/Sat, KALYUG=on) > long katha (Mon/Fri) / Dadi-Chhotu (Wed). Katha Shorts are cut.
+#   Bhagwan (Tue/Thu/Sat, KALYUG=on) > Dadi-Chhotu (Wed). Katha Shorts are cut. The long katha is not in this cap.
 # A slot that is not planned for the day skips at once (no render). Photo posts and the Veo kit are not uploads.
-# The long katha video (16:9, 5-10 min, YouTube only, scheduled for 15:00 IST) is made after the morning Short.
+# The long katha video (16:9, 5-10 min, scheduled for 12:30 IST, every day) is made by job `long` after every
+# morning-slot run: the scheduler Worker dispatches slot=morning at 09:13 and 10:13 IST daily (and the schedule polls
+# here), so it fires every day; the first run makes it, the rest skip (log.md). Subject from day-plan (the prompt).
 # Morning window 05:30-11:59 IST, evening window 17:30-22:59 IST. GitHub's schedule often fires hours
 # late, so it is polled every 30 minutes inside both windows; the first run in a window publishes and the
 # rest skip (slot already in automation/log.md). Runs outside a window do nothing, so nothing posts at night.
@@ -41,8 +46,8 @@
 # ("ig: pending <time>" in automation/published.md) and the `instagram` job, which runs on every trigger (no new cron),
 # publishes them within 20 minutes of that time: the 18:46 IST evening dispatch waits for 19:00, the status Short goes
 # out with the first run after 06:00 IST (the 05:47 IST schedule poll or the 09:13 IST morning dispatch), and a slot
-# missed by over 6 hours is skipped. The long katha video is a normal Facebook Page video scheduled for 15:00 IST
-# (in-stream ads later); it is not posted to Instagram.
+# missed by over 6 hours is skipped. The long katha video is a normal Facebook Page video scheduled for 12:30 IST
+# (in-stream ads later; resumable chunked upload, scripts/meta.mjs) when scripts/fb.mjs lets it; not on Instagram.
 # FACEBOOK PLAN (owner, 11 Nov 2026, monetization challenge; scripts/fb.mjs): Facebook gets at most 2 videos + 1 photo a
 # day. Every Facebook step asks `node scripts/fb.mjs flags` for its own Facebook time (--fb-at: Reel 1 = the status
 # Short at its status time or the day-status Short ~07:30/as soon as ready, Reel 2 = the evening darshan 20:30, 18:00 on
@@ -553,8 +558,10 @@ jobs:
           echo "::error::YouTube: ${{ steps.yt.outcome }}, Make: ${{ steps.make.outcome }}"
           exit 1
 
-  # Long katha video (automation/STORY.md section 5) on Mondays and Fridays of normal days (scripts/day-plan.mjs):
-  # 16:9, 5-10 min, YouTube only, private with publishAt 15:00 IST. Runs after the morning Short (whatever its result) or alone with slot=long, so the
+  # Long katha video (automation/STORY.md section 5) EVERY day (owner, 13 Nov 2026; scripts/day-plan.mjs, outside the
+  # 3-Shorts cap, upload guard cap 1 long a day): 16:9, 5-10 min, private with publishAt 12:30 IST (straight away when
+  # that has passed). Subject: day-plan's `what` (festival katha/vidhi on a festival day unless a long video told it in
+  # the last 30 days, else the section 5 order / Mandir Itihas series). Runs after the morning Short (whatever its result) or alone with slot=long, so the
   # Shorts never wait for it or fail because of it. Story and images are cached per day, so a retry costs no
   # extra neurons; after 3 failed attempts it waits for the next day. If the upload fails (quotaExceeded or
   # an error) the mp4 is parked on the media Worker and the next run retries it (scripts/long-pending.mjs).
@@ -610,11 +617,13 @@ jobs:
         run: |
           today=$(TZ=Asia/Kolkata date +%F)
           echo "today=$today" >> "$GITHUB_OUTPUT"
+          # Every day (day-plan); it also writes `what` = today's subject for the story prompt. An explicit slot=long
+          # dispatch always runs; the upload guard allows 1 long video a day.
+          node scripts/day-plan.mjs --date "$today" --slot long > "$RUNNER_TEMP/plan.json" || true
           if grep -q "^$today | long |" automation/log.md; then
             echo "::notice::$today long video already made"
-          elif [ "${{ inputs.slot }}" != long ] && ! node scripts/day-plan.mjs --date "$today" --slot long --check > "$RUNNER_TEMP/plan.json"; then
-            # Mon/Fri of normal days only (an explicit slot=long dispatch still runs; the upload guard's daily cap applies).
-            echo "::notice::No long video today: $(node -p "require(process.env.RUNNER_TEMP + '/plan.json').why")"
+          elif [ "${{ inputs.slot }}" != long ] && [ "$(node -p "require(process.env.RUNNER_TEMP + '/plan.json').planned" 2>/dev/null)" != true ]; then
+            echo "::notice::No long video today: $(node -p "require(process.env.RUNNER_TEMP + '/plan.json').why" 2>/dev/null)"
           else
             echo "GO=1" >> "$GITHUB_ENV"
           fi
@@ -688,7 +697,9 @@ jobs:
             Follow automation/STORY.md exactly: sections 1-2 for choosing and researching the subject, and section 5
             "Long video" for everything else. Today's trend research is automation/trends/${{ steps.date.outputs.today }}.md
             (if it is missing, the newest file in automation/trends/): read its first 100 lines and prefer a "long part" topic
-            from it when it fits the section 5 subject order. Narrate in the warm spoken style of STORY.md "Spoken
+            from it when it fits the section 5 subject order. Today's plan (scripts/day-plan.mjs) for this video:
+            ${{ steps.date.outputs.what || 'follow the section 5 subject order' }}.
+            Narrate in the warm spoken style of STORY.md "Spoken
             style" (short sentences, max 18 words, like telling the katha to family). Write story/long/scenes.json and make
             `node scripts/validate.mjs story/long/scenes.json` pass. You may add confirmed festivals to
             automation/calendar.md. Change nothing else (do not edit automation/log.md: the workflow records it).
@@ -806,9 +817,9 @@ jobs:
         continue-on-error: true
         run: |
           node scripts/youtube.mjs upload --long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json \
-            --meta "story/long/out/$SLUG.json" --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 15:00 | tee "$RUNNER_TEMP/yt.json"
+            --meta "story/long/out/$SLUG.json" --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/yt.json"
 
-      # The same video as a normal Facebook Page video (not a Reel), scheduled for 15:00 IST like YouTube; its line in
+      # The same video as a normal Facebook Page video (not a Reel; resumable chunked upload), scheduled for 12:30 IST like YouTube; its line in
       # published.md is committed by Record. Never fails the job; skipped without the META_* secrets.
       - name: Facebook Page video (Graph API)
         if: steps.render.outcome == 'success' && steps.claim.outputs.go == 'true'
@@ -822,7 +833,7 @@ jobs:
           # Facebook plan (scripts/fb.mjs): at most 2 videos a day, and the long katha is not one of them.
           if [ "$(node scripts/fb.mjs flags --date "$(TZ=Asia/Kolkata date +%F)" --slot long || echo --no-fb)" = --no-fb ]; then echo "::notice::Facebook plan: the long katha video is YouTube only"; exit 0; fi
           node scripts/meta.mjs long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json --meta "story/long/out/$SLUG.json" \
-            --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 15:00 | tee "$RUNNER_TEMP/fb.json" || true
+            --thumbnail "story/long/out/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/fb.json" || true
           echo "- $SLUG | facebook: $(node -p "try{const j=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/fb.json','utf8'));j.facebook?j.facebook.url+(j.facebook.scheduled?' (scheduled '+j.facebook.scheduled+')':''):'error '+(j.error||j.status)}catch{'failed'}")" >> automation/published.md
           grep -q '"status":"ok"' "$RUNNER_TEMP/fb.json" || echo "::warning::Facebook Page video failed: $(head -c 300 "$RUNNER_TEMP/fb.json")"
 
@@ -843,7 +854,7 @@ jobs:
             const fs=require('fs'); const s=require('./story/long/scenes.json'); const m=require('./story/long/out/$SLUG.json');
             let y={}; try { y=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+'/yt.json','utf8')); } catch {}
             const len=Math.floor(m.seconds/60)+':'+String(Math.floor(m.seconds%60)).padStart(2,'0');
-            const yt=y.youtube ? y.youtube.url+(y.youtube.publishAt?' (public at 15:00 IST)':'')+(y.youtube.thumbnailError?' (thumbnail failed: '+y.youtube.thumbnailError.slice(0,80)+')':'') : 'pending, retried next run ('+(y.status||'failed')+')';
+            const yt=y.youtube ? y.youtube.url+(y.youtube.publishAt?' (public at 12:30 IST)':'')+(y.youtube.thumbnailError?' (thumbnail failed: '+y.youtube.thumbnailError.slice(0,80)+')':'') : 'pending, retried next run ('+(y.status||'failed')+')';
             const out={log:'${{ steps.date.outputs.today }} | long | '+s.slug+' | '+s.deity+' | '+s.summary,
               pub:'- '+s.slug+' | youtube: '+yt+' | long '+len+', '+m.scenes+' scenes, render '+Math.round(m.render_seconds/60)+' min, '+m.neurons+' neurons',
               sum:'### Long video '+s.slug+'\n\n- Length: '+len+' ('+m.scenes+' scenes, '+m.chapters.length+' chapters)\n- Render: '+m.render_seconds+' s\n- Images: '+m.images+' ('+m.images_generated+' generated, ~'+m.neurons+' neurons)\n- YouTube: '+yt+'\n- Artifact: long-'+s.slug+' (7 days)\n'};

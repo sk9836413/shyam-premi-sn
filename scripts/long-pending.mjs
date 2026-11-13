@@ -61,7 +61,7 @@ async function retry() {
   const hasThumb = await get(`${slug}-thumb.jpg`).then((b) => (fs.writeFileSync(thumb, b), true), () => false);
   const r = spawnSync(process.execPath, ['scripts/youtube.mjs', 'upload', '--long', '--video', video,
     '--scenes', `story/published/${slug}.json`, '--meta', `story/published/${slug}.meta.json`,
-    ...(hasThumb ? ['--thumbnail', thumb] : []), ...(date === today() ? ['--publish-at', '15:00'] : [])], { encoding: 'utf8', env: process.env });
+    ...(hasThumb ? ['--thumbnail', thumb] : []), ...(date === today() ? ['--publish-at', '12:30'] : [])], { encoding: 'utf8', env: process.env });
   const out = JSON.parse(r.stdout.trim().split('\n').pop() || '{}');
   if (out.status !== 'ok') return { status: out.status === 'quota' ? 'quota' : 'error', slug, error: out.error };
   writePending(lines.slice(1));

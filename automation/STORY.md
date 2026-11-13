@@ -12,7 +12,7 @@ upload must be high quality and clearly different.
 views (Choti Diwali Status 2026: 798, Dhanteras Status: 456; the big festivals, out the night before or just after
 midnight); famous-temple darshan Shorts 60 (Moravinandan Khatu Shyam 173, Shakambhari Sakrai 163, Salasar Balaji 133);
 katha Shorts 18, the worst: **no more katha Shorts**. Generic "X Darshan" Shorts of the last days got 1-10. The workflow
-(`scripts/day-plan.mjs`) fills every day by priority, max 3:
+(`scripts/day-plan.mjs`) fills every day by priority, max 3 Shorts, plus one long video every day:
 
 | Priority | Upload | Made by |
 |---|---|---|
@@ -22,12 +22,13 @@ katha Shorts 18, the worst: **no more katha Shorts**. Generic "X Darshan" Shorts
 | 2 | `morning` on other festival days: a **famous-temple darshan** Short tied to the festival's deity | you (sections 1-4) |
 | 3 | `evening` 19:00: a **famous-temple darshan** Short | you (sections 1-4) |
 | 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`) | `kalyug` job (section 8) |
-| 5 | `long` katha video Mon/Fri 15:00; `noon` Dadi-Chhotu Wed 15:00 | you (sections 5, 6) |
+| 5 | `noon` Dadi-Chhotu Wed 15:00 | you (section 6) |
+| own cap | `long` katha video **every day** 12:30 (16:9; outside the 3 Shorts, 1 a day) | you (section 5) |
 
-Anything below the first three that day is left out (the prompt tells you your slot's plan). Movie days and big-festival
+Any Short below the first three that day is left out (the prompt tells you your slot's plan). Movie days and big-festival
 days have no `morning` Short of yours.
 
-`scripts/upload-guard.mjs` skips (and logs) any 4th YouTube upload of an IST date. Everything published is in the brand's name only. There is no human review, so every
+`scripts/upload-guard.mjs` skips (and logs) any 4th YouTube Short or 2nd long video of an IST date. Everything published is in the brand's name only. There is no human review, so every
 rule below is a hard requirement.
 
 ## Spoken style (every `tts`, every format)
@@ -350,15 +351,22 @@ Do not render, upload, publish, commit or push: later workflow steps do that.
 
 ## 5. Long video (slot `long` only)
 
-Only when the prompt says the slot is `long`. On Mondays and Fridays of normal days (not festival or movie days), after
-the morning Short, you write one **long katha video**: 16:9, **5-10 minutes**, YouTube only (a regular video, not a
-Short), published at 15:00 IST. Sections 3-4 do not apply to it; everything else below does.
+Only when the prompt says the slot is `long`. **Every day** (owner, 13 Nov 2026: long videos are the channel's only
+source of watch hours), after the morning Short, you write one **long katha video**: 16:9, **5-10 minutes**, a regular
+YouTube video (not a Short), published at 12:30 IST. It is outside the 3-Shorts-a-day cap. Movie days keep their movie
+part and still get the long video (a different story from the part). Sections 3-4 do not apply to it; everything else
+below does.
 
-**Subject.** Same order as section 1: a festival or vrat today or in the next 3 days (tell the story
-behind it, e.g. why Dhanteras is celebrated), then a `long part` item from today's trend research (section 1, item 2;
-same title rule: Roman search phrase ` | ` Devanagari), otherwise the weekday deity, and at least twice a week a
-Khatu Shyam ji / Barbarik katha. Tell the **full** katha, beginning to end, not one scene of it. **Mandir Itihas series:** on days with no festival in the next 3 days and no Khatu Shyam katha
-due, write the next part of the temple series in `automation/mandir-series.md`. Aim for about 3 days a week.
+**Subject.** The prompt gives today's plan from `scripts/day-plan.mjs`; follow it.
+- **Festival day** (a date in `automation/festivals.json` / `calendar.md`): tell that festival's katha or vidhi (why it
+  is celebrated, the vrat katha, how the puja is done), unless a long video told that festival in the last 30 days
+  (the plan says so; then use the order below). Pick a clearly different angle from today's status/temple Shorts.
+- **Otherwise** this order: a `long part` item from today's trend research (section 1, item 2; same title rule: Roman
+  search phrase ` | ` Devanagari) when it fits, at least twice a week a Khatu Shyam ji / Barbarik katha, and on the
+  other days the next part of the **Mandir Itihas series** (below; the default). Do not take a festival of the next
+  few days: it gets its own long video on its day. The weekday deity is the last resort.
+Tell the **full** katha, beginning to end, not one scene of it. **Mandir Itihas series:** write the next part of the
+temple series in `automation/mandir-series.md`.
 That file sets the part order, slug pattern, sources, the AI-image disclaimer and the legal rule for sati temples. It may
 share today's deity with the morning Short. Do not repeat a story that has a `| long |` line in
 `automation/log.md` within the last 120 days. "One subject per day" (section 1) applies: not the same story or title

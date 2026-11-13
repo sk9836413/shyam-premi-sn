@@ -1,7 +1,7 @@
 // scripts/upload-guard.mjs decisions (no git, no network). Run: node --test scripts/upload-guard.test.mjs
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { claimLine, decide } from './upload-guard.mjs';
+import { DAILY_CAP, LONG_CAP, claimLine, decide, kindOf, shortsCap } from './upload-guard.mjs';
 
 const NOW = Date.parse('2026-11-07T13:17:05Z');
 const base = { day: '2026-11-08', slot: 'status', slug: '2026-11-08-status-diwali', run: '42376221296.1', now: NOW };
@@ -46,8 +46,11 @@ describe('decide', () => {
     const r = decide({ ...d, log, pub });
     assert.equal(r.go, false); assert.equal(r.cap, true); assert.match(r.reason, /noon/);
     // a live claim of another slot counts too; another day's uploads do not
-    const claim = `${claimLine({ ...d, slot: 'long', slug: '2026-11-11-long-c', run: '5.1', now: NOW - 60e3 })}\n`;
+    const claim = `${claimLine({ ...d, slot: 'kalyug', slug: '2026-11-11-kalyug-c', run: '5.1', now: NOW - 60e3 })}\n`;
     assert.equal(decide({ ...d, log, pub: claim }).go, false);
+    // a live claim of the long video does not (it has its own cap)
+    const longClaim = `${claimLine({ ...d, slot: 'long', slug: '2026-11-11-long-c', run: '5.1', now: NOW - 60e3 })}\n`;
+    assert.equal(decide({ ...d, log, pub: longClaim }).go, true);
     assert.equal(decide({ ...d, log, pub: pub.replace('11-11', '11-12') }).go, true);
   });
   test('daily cap: a movie day counts the movie part once (morning line repeats its slug)', () => {
@@ -61,5 +64,61 @@ describe('decide', () => {
     const log = '2026-11-19 | movie | 2026-11-19-movie-k-part-3 | K | m\n';
     assert.equal(decide({ ...d, log, pub }).go, true); // movie + eve = 2 on 19 Nov; the 20 Nov status does not count here
     assert.equal(decide({ ...d, log: `${log}2026-11-19 | statusday | 2026-11-19-statusday-z | z | z\n`, pub }).go, false);
+  });
+});
+
+// Owner, 13 Nov 2026: 3 Shorts + 1 long video per IST date; the long video never counts against the Shorts cap.
+describe('daily cap per kind: 3 Shorts + 1 long', () => {
+  const day = '2026-11-14';
+  const three = `${day} | morning | ${day}-morning-a | x | y\n${day} | evening | ${day}-evening-b | x | y\n${day} | eve | ${day}-eve-c | x | y\n`;
+  const longLine = `${day} | long | ${day}-long-mandir-part-1 | x | y\n`;
+  const at = (slot, slug, o = {}) => decide({ day, slot, slug, run: '7.1', now: NOW, ...o });
+  test('kinds: only `long` is a long video; status/morning/evening/noon/kalyug/movie are Shorts', () => {
+    assert.equal(kindOf('long'), 'long');
+    for (const s of ['status', 'eve', 'statusday', 'morning', 'evening', 'noon', 'kalyug', 'movie']) assert.equal(kindOf(s), 'short', s);
+    assert.equal(DAILY_CAP, 3);
+    assert.equal(LONG_CAP, 1);
+  });
+  test('3 Shorts + 1 long are allowed (in either order)', () => {
+    assert.equal(at('long', `${day}-long-mandir-part-1`, { log: three }).go, true);
+    const twoAndLong = `${day} | morning | ${day}-morning-a | x | y\n${longLine}`;
+    assert.equal(at('evening', `${day}-evening-b`, { log: twoAndLong, pub: `- ${day}-eve-c | youtube: https://youtube.com/shorts/c\n` }).go, true);
+  });
+  test('a 4th Short is blocked, also after the long video', () => {
+    const r = at('noon', `${day}-noon-d`, { log: three + longLine });
+    assert.equal(r.go, false);
+    assert.equal(r.cap, true);
+    assert.equal(r.kind, 'short');
+    assert.doesNotMatch(r.reason, /long/);
+  });
+  test('a 2nd long video the same day is blocked (log line, published.md line or live claim)', () => {
+    assert.equal(at('long', `${day}-long-other`, { log: longLine }).go, false);
+    const viaPub = at('long', `${day}-long-other`, { pub: `- ${day}-long-first | youtube: https://youtu.be/x\n` });
+    assert.equal(viaPub.go, false);
+    assert.equal(viaPub.cap, true);
+    assert.equal(viaPub.kind, 'long');
+    assert.match(viaPub.reason, /max 1 long video a day/);
+    const viaClaim = at('long', `${day}-long-other`, { pub: `${claimLine({ day, slot: 'long', slug: `${day}-long-first`, run: '8.1', now: NOW - 60e3 })}\n` });
+    assert.equal(viaClaim.go, false);
+  });
+  test("another day's long video does not count", () => {
+    assert.equal(at('long', `${day}-long-x`, { pub: '- 2026-11-13-long-chhath | youtube: https://youtu.be/y\n' }).go, true);
+  });
+  test('EXTRA_UPLOAD_DAY adds one Short that date only; the long video keeps its own cap of 1', () => {
+    assert.equal(shortsCap(day, day), 4);
+    assert.equal(shortsCap(day, ' 2026-11-14 '), 4);
+    assert.equal(shortsCap(day, '2026-11-13'), 3);
+    assert.equal(shortsCap(day, ''), 3);
+    assert.equal(shortsCap(day, undefined), 3);
+    assert.equal(at('noon', `${day}-noon-d`, { log: three + longLine, cap: shortsCap(day, day) }).go, true);
+    const four = `${three}${day} | noon | ${day}-noon-d | x | y\n`;
+    assert.equal(at('kalyug', `${day}-kalyug-e`, { log: four + longLine, cap: shortsCap(day, day) }).go, false);
+    assert.equal(at('long', `${day}-long-2`, { pub: `- ${day}-long-1 | youtube: https://youtu.be/x\n`, log: four, cap: shortsCap(day, day) }).go, false);
+  });
+  test('13 Nov 2026 (EXTRA_UPLOAD_DAY): status + morning + evening Shorts and the Chhath long video all go', () => {
+    const d13 = '2026-11-13';
+    const log = `${d13} | status | ${d13}-status-chhath | c | s\n${d13} | morning | ${d13}-morning-deo | d | m\n${d13} | evening | ${d13}-evening-vaishno | v | e\n`;
+    assert.equal(decide({ day: d13, slot: 'long', slug: `${d13}-long-chhath-nahay-khay`, run: '9.1', now: NOW, log, cap: shortsCap(d13, d13) }).go, true);
+    assert.equal(decide({ day: d13, slot: 'noon', slug: `${d13}-noon-x`, run: '9.1', now: NOW, log, cap: shortsCap(d13, d13) }).go, true);
   });
 });
