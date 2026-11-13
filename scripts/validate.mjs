@@ -287,6 +287,40 @@ if (longMode || s.format === 'long' || /^\d{4}-\d{2}-\d{2}-long-/.test(s.slug ||
   process.exit(0);
 }
 
+// ---- Bhajan Short (scripts/bhajan-short.mjs; Chhath 2026): the song is the whole soundtrack -------------------------
+// Built by the script from a QA-passed library bhajan and the licence-safe picture bank, so this checks the shape only:
+// slug, the named bhajan exists, bank pictures exist, 45-90 s, the title pattern, the AI disclosure lines, FB template.
+if (s.bhajan_short === true) {
+  need(/^\d{4}-\d{2}-\d{2}-(bhajan|morning|evening)-[a-z0-9-]+$/.test(s.slug || ''), 'bhajan Short slug: <yyyy-mm-dd>-<bhajan|morning|evening>-<slug>');
+  need(s.format === 'status' && s.loop === false, 'bhajan Short: format "status", loop false (the song plays once)');
+  const lic = `music/library/${s.bhajan_id}.licence.json`;
+  need(/^bhajan-[a-z0-9-]+$/.test(s.bhajan_id || '') && fs.existsSync(lic) && fs.existsSync(`music/library/${s.bhajan_id}.ogg`), `bhajan_id: a library bhajan (${lic})`);
+  const scenes = Array.isArray(s.scenes) ? s.scenes : [];
+  need(scenes.length >= 4 && scenes.length <= 12 && scenes.at(-1)?.endcard === true, 'bhajan Short: 3-11 picture scenes + the end card');
+  let secs = 0;
+  scenes.forEach((sc, i) => {
+    secs += Math.max(2.6, sc.hold || 0) - (i ? 0.4 : 0);
+    if (sc.endcard) return;
+    need(sc.image && fs.existsSync(sc.image), `scene ${i + 1}: image must be an existing bank picture`);
+    need(sc.big && DEVANAGARI.test(sc.big) && [...sc.big].length <= 34, `scene ${i + 1}: big: Devanagari, max 34 characters`);
+    need(sc.line === undefined || (DEVANAGARI.test(sc.line) && [...sc.line].length <= 48), `scene ${i + 1}: line: Devanagari, max 48 characters`);
+  });
+  need(secs >= 45 && secs <= 90, `bhajan Short length ${Math.round(secs)} s: 45-90 s`);
+  const yt = s.youtube_title || '';
+  need(yt.length <= 90 && / \| .*#Shorts$/.test(yt) && DEVANAGARI.test(yt), 'youtube_title: "<Searched phrase> 2026 | ... | <हिंदी> #Shorts", max 90 characters');
+  const desc = s.youtube_description || '';
+  need(DEVANAGARI.test(desc.split(/\r?\n/)[0]), 'youtube_description: Hindi (Devanagari) first');
+  need(desc.includes('भजन: मौलिक रचना, AI द्वारा गाया गया (ACE-Step)') && /sanketik/i.test(desc), 'youtube_description: the bhajan disclosure line and "Chitra AI dwara banaye gaye hain (sanketik)"');
+  for (const m of checkFbCaption(s.facebook_caption, { draft: true })) problems.push(`facebook_caption: ${m}`);
+  need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
+  if (problems.length) {
+    console.log(problems.map((p) => `- ${p}`).join(String.fromCharCode(10)));
+    process.exit(1);
+  }
+  console.log(`OK: ${file} (bhajan Short ${s.bhajan_id}, ${scenes.length} scenes, ~${Math.round(secs)} s)`);
+  process.exit(0);
+}
+
 // ---- Festival "WhatsApp status" Short (story/status/<date>.json; scripts/status-engine.mjs variants) ----------------
 // 15-30 s vertical: 2-3 darshan scenes with a big Hindi blessing (Devanagari overlay), an optional well-known mantra,
 // then the end card with the fixed share/subscribe line. Written in advance, so this check is strict.

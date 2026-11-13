@@ -268,9 +268,11 @@ const probeSeconds = (file) => Number(spawnSync(FFPROBE, ['-v', 'error', '-show_
 // A festival status Short gets the bhajan as its whole soundtrack and NO narration; a narrated Short keeps its narration
 // over the instrumental bed and ends on 8-15 s of the bhajan chorus after the last line. Voice and singing never overlap.
 let bhajan = null;
-if (process.env.BHAJAN_VOCALS === 'on') {
+// A bhajan Short (scripts/bhajan-short.mjs: spec.bhajan_id) is the song itself: it never renders without it.
+if (process.env.BHAJAN_VOCALS === 'on' || spec.bhajan_id) {
   try { bhajan = (await import('../music/bhajan.mjs')).bhajanFor(spec); } catch (e) { console.log(`bhajan skipped: ${e.message}`); }
 }
+if (spec.bhajan_id && !bhajan) { console.error(`bhajan Short ${spec.slug}: bhajan ${spec.bhajan_id} missing`); process.exit(1); }
 let BH_SONG = Boolean(bhajan && bhajan.mode === 'status');
 function silentVoices() {
   spec.scenes.forEach((_, i) => run(['-f', 'lavfi', '-i', 'anullsrc=r=48000:cl=stereo', '-t', '0.1', path.join(work, `voice-${i}.wav`)]));
@@ -317,6 +319,7 @@ if (bhajan) {
     + (probeSeconds(path.join(work, `voice-${i}.${voiceExt}`)) || durations[i] + 0.5)));
   bhPlan = shortTimeline({ mode: bhajan.mode === 'status' ? 'status' : 'outro', voiceEnd, total: total0, track: bhajan.track });
   if (!bhPlan) {
+    if (spec.bhajan_id) { console.error(`bhajan Short ${spec.slug}: the song (${bhajan.track.seconds} s from ${bhajan.track.chorus_at} s) is shorter than the scenes (${total0.toFixed(1)} s)`); process.exit(1); }
     console.log(`bhajan ${bhajan.meta.id}: does not fit (voice ends ${voiceEnd.toFixed(1)} s), instrumental only`);
     if (BH_SONG) { tts().forEach((d, i) => { durations[i] = d; }); BH_SONG = false; } // back to the narrated status Short
     bhajan = null;

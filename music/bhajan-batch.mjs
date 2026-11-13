@@ -236,9 +236,12 @@ const BASE = [['khatu', 'thaath'], ['khatu', 'bhaavuk'], ['shiv', 'thaath'], ['h
   ['ganesh', 'thaath'], ['khatu', 'bhaavuk'], ['shiv', 'bhaavuk'], ['hanuman', 'bhaavuk'], ['khatu', 'thaath'], ['krishna', 'thaath'], ['khatu', 'bhaavuk'], ['shiv', 'thaath']];
 const addDays = (iso, n) => new Date(Date.parse(`${iso}T00:00:00Z`) + n * 864e5).toISOString().slice(0, 10);
 
-export function planWeek({ from, days = 7, count = 13, festivals = [], libraryFirstLines = [] }) {
+export function planWeek({ from, days = 7, count = 13, festivals = [], libraryFirstLines = [], libraryFestivals = {} }) {
   const to = addDays(from, days);
+  // A festival the library already has >= 3 bhajans for is not planned again (13 Nov 2026: the Chhath batch
+  // bhajan-chhath26 ran the evening before the first weekly batch; the weekly batch makes other deities instead).
   const fest = festivals.filter((f) => f.date >= from && f.date <= to && f.theme && ['big', 'status'].includes(f.tier) && !/sati/i.test(`${f.key} ${f.label}`))
+    .filter((f) => (libraryFestivals[f.theme] || 0) < 3)
     .map((f) => ({ ...f, deity: FEST_DEITY[f.theme] || null })).filter((f) => f.deity);
   const byTheme = [...new Map(fest.map((f) => [f.theme, f])).values()].sort((a, b) => (a.tier === 'big' ? 0 : 1) - (b.tier === 'big' ? 0 : 1) || a.date.localeCompare(b.date));
   const songs = [];
@@ -347,14 +350,24 @@ export function licenceJson({ id, job, take, batchName, kernel = 'sk9846413/sps-
   return {
     id, title: job.title_roman, moods: [job.mood === 'thaath' ? 'festive' : 'emotional'], kind: 'vocal', bpm: job.bpm || null, deity: job.deity,
     source: 'original', licence: LICENCE, licence_url: 'https://huggingface.co/ACE-Step/Ace-Step1.5', model: MODEL, model_licence: 'MIT',
-    bhajan: { deity: job.deity, mood: job.mood, festival: job.festival || null, title_hi: job.title_hi, title_roman: job.title_roman,
+    bhajan: { deity: job.deity, mood: job.mood, festival: job.festival || null, ...(job.chhath_day ? { day: job.chhath_day } : {}), title_hi: job.title_hi, title_roman: job.title_roman,
       lyrics: job.lyrics_devanagari, lyrics_sung: job.lyrics, chorus_at: take.chorus_at, seconds: take.seconds, public_domain_text: job.public_domain_text || null,
-      singer: 'AI voice (ACE-Step 1.5 caption: male tenor); no real singer cloned, no owner voice', ...(approvedBy ? { approved_by: approvedBy } : {}) },
-    generated: { batch: batchName, seed: take.seed, caption: `${job.caption}, ${SINGER}`, kaggle_kernel: kernel },
+      singer: `AI voice (ACE-Step 1.5 caption: ${job.singer === 'female' ? 'female folk voice' : 'male tenor'}); no real singer cloned, no owner voice`, ...(approvedBy ? { approved_by: approvedBy } : {}) },
+    generated: { batch: batchName, seed: take.seed, caption: `${job.caption}, ${job.singer_caption || SINGER}`, kaggle_kernel: kernel },
     qa: { seconds: take.seconds, lufs: take.lufs ?? null, true_peak: take.true_peak ?? null, clip_share: take.clip_share ?? null, cer: take.cer ?? null,
       names: take.names ? { checked: take.names.checked, right: take.names.right } : null, clap: take.clap || null },
     attribution: null, redistributable: true, content_id: 'not registered (our own generation)', checked: today, sha256: sha,
   };
+}
+
+/** Library bhajans per festival theme: { chhath: 5, ... }. */
+export function libraryFestivals(dir = path.join(DIR, 'library')) {
+  const n = {};
+  if (!fs.existsSync(dir)) return n;
+  for (const f of fs.readdirSync(dir).filter((x) => /^bhajan-.*\.licence\.json$/.test(x))) {
+    try { const fe = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')).bhajan?.festival; if (fe) n[fe] = (n[fe] || 0) + 1; } catch { /* skip */ }
+  }
+  return n;
 }
 
 export function libraryFirstLines(dir = path.join(DIR, 'library')) {
@@ -376,7 +389,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const today = new Date().toISOString().slice(0, 10);
   if (cmd === 'plan') {
     const festivals = readJson(path.join(ROOT, 'automation', 'festivals.json')).festivals || [];
-    const p = planWeek({ from: opt('--from', today), days: Number(opt('--days', 7)), count: Number(opt('--count', 13)), festivals, libraryFirstLines: libraryFirstLines(lib) });
+    const p = planWeek({ from: opt('--from', today), days: Number(opt('--days', 7)), count: Number(opt('--count', 13)), festivals, libraryFirstLines: libraryFirstLines(lib), libraryFestivals: libraryFestivals(lib) });
     writeJson(opt('--out'), p);
     console.log(`${p.batch}: ${p.count} songs (${p.songs.map((s) => `${s.deity}/${s.mood}${s.festival ? `/${s.festival}` : ''}`).join(', ')})`);
   } else if (cmd === 'validate') {

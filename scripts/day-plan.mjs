@@ -40,9 +40,14 @@ export const LONG_CAP = 1; // the long video, every day, never counted against C
 export const LONG_REPEAT_DAYS = 30; // a festival katha told in a long video within this many days is not retold
 export const NOON_DAYS = [3]; // Wednesday
 export const KALYUG_DAYS = [2, 4, 6]; // Tuesday, Thursday, Saturday
-export const AT = { status: '00:30', movie: '07:00', kalyug: '08:00', statusday: '08:30', morning: 'on render, ~10:30', long: '12:30', noon: '15:00', evening: '19:00', eve: '20:00' };
-export const PRIORITY = { movie: 0, status: 1, eve: 1, statusday: 1, morning: 2, evening: 3, kalyug: 4, noon: 5 };
-const ORDER = { status: 0, movie: 1, kalyug: 2, statusday: 3, morning: 4, long: 5, noon: 6, evening: 7, eve: 8 };
+export const AT = { status: '00:30', movie: '07:00', kalyug: '08:00', statusday: '08:30', morning: 'on render, ~10:30', long: '12:30', noon: '15:00', evening: '19:00', bhajan: '19:45', eve: '20:00' };
+export const PRIORITY = { movie: 0, status: 1, eve: 1, statusday: 1, morning: 2, evening: 3, kalyug: 4, noon: 5, bhajan: 6 };
+const ORDER = { status: 0, movie: 1, kalyug: 2, statusday: 3, morning: 4, long: 5, noon: 6, evening: 7, bhajan: 7.5, eve: 8 };
+// Date-scoped override (automation/chhath-2026.json, owner 13 Nov 2026: Chhath bhajan Shorts 13-16 Nov and every upload
+// of those dates Chhath themed): `slots.<slot>` turns that slot into a bhajan Short (kind "bhajan", scripts/bhajan-short.mjs;
+// the extra `bhajan` slot only fits on EXTRA_UPLOAD_DAY), `long` replaces the long video's subject. Other dates: untouched.
+export const OVERRIDE_FILE = 'automation/chhath-2026.json';
+export const BHAJAN_FALLBACK = 'Chhath Surya temple or ghat darshan Short (no Chhath bhajan passed QA): Deo Surya Mandir Aurangabad, Ulaar Surya Mandir, Konark Sun Temple, Modhera Sun Temple, or the Patna / Varanasi Chhath ghats; a temple not used in the last 30 days; every fact verified (STORY.md); Chhath bhajan outro when BHAJAN_VOCALS=on';
 const TIER = { big: 0, status: 1 };
 const GYARAS_THEMES = ['ekadashi', 'gita'];
 
@@ -72,7 +77,10 @@ export function loadInputs(root = '.') {
     if (!movies.has(m[1])) movies.set(m[1], m[2]);
   }
   const kalyugLogged = new Set([...log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| kalyug \| /gm)].map((m) => m[1]));
-  return { festivals, placements: placements(list), movies, kalyug: process.env.KALYUG === 'on', kalyugLogged, longs: longsOf(log), today: istToday() };
+  let override = null;
+  try { override = JSON.parse(read(path.join(root, OVERRIDE_FILE))); } catch { /* none */ }
+  return { festivals, placements: placements(list), movies, kalyug: process.env.KALYUG === 'on', kalyugLogged, longs: longsOf(log), today: istToday(),
+    override, extraDay: (process.env.EXTRA_UPLOAD_DAY || '').trim() };
 }
 
 /** The long videos in log.md: [{ date, text }] (text = slug, deity and summary, lower case). */
@@ -144,11 +152,22 @@ export function planDay(date, inputs = {}) {
     cands.push({ slot: 'kalyug', logged: kalyugLogged.has(date), what: 'Kalyug ke Bhagwan episode (08:00, made the evening before)' });
   }
   if (!fest && !movie && NOON_DAYS.includes(wd)) cands.push({ slot: 'noon', what: 'Dadi-Chhotu Short (new setting/outfits)' });
+  const ov = inputs.override?.days?.[date] || null;
+  for (const [slot, o] of Object.entries(ov?.slots || {})) {
+    if (o.kind !== 'bhajan') continue;
+    const u = { slot, kind: 'bhajan', day: o.day, ...(o.at ? { at: o.at } : {}),
+      what: `Chhath bhajan Short "${o.title}" (${o.day}; the library bhajan is the whole soundtrack; scripts/bhajan-short.mjs, automation/chhath-2026.json)`, fallback: BHAJAN_FALLBACK };
+    const k = cands.findIndex((c) => c.slot === slot);
+    if (k >= 0) cands[k] = u; else cands.push(u);
+  }
+  const cap = CAP + (inputs.extraDay && inputs.extraDay === date ? 1 : 0);
   const rank = (c) => (c.logged ? 0.5 : PRIORITY[c.slot]);
   const ranked = cands.map((c, i) => ({ c, i })).sort((a, b) => rank(a.c) - rank(b.c) || a.i - b.i).map((x) => x.c);
-  const kept = ranked.slice(0, CAP);
-  const dropped = ranked.slice(CAP).map((c) => c.slot);
-  kept.push(longUpload(date, inputs, movie));
+  const kept = ranked.slice(0, cap);
+  const dropped = ranked.slice(cap).map((c) => c.slot);
+  const long = longUpload(date, inputs, movie);
+  if (ov?.long?.what) Object.assign(long, { topic: ov.long.topic || long.topic, what: ov.long.what });
+  kept.push(long);
   kept.sort((a, b) => ORDER[a.slot] - ORDER[b.slot]);
   const type = movie ? 'movie' : fest ? 'festival' : kept.some((c) => c.slot === 'kalyug') ? 'kalyug' : 'normal';
   return { date, day: WEEKDAY[wd], type, festival: f?.name, uploads: kept.map(({ logged, ...u }) => ({ ...u, at: u.at || AT[u.slot] })), dropped };
@@ -205,10 +224,10 @@ function main() {
   if (!slot) { console.log(JSON.stringify(planDay(date, inputs), null, 1)); return; }
   const r = isPlanned(date, slot, inputs);
   const u = r.upload || {};
-  console.log(JSON.stringify({ date, slot, planned: r.planned, why: r.why || '', what: u.what || '', kind: u.kind || '', theme: u.theme ?? '', uploads: r.plan.uploads.map((x) => x.slot) }));
+  console.log(JSON.stringify({ date, slot, planned: r.planned, why: r.why || '', what: u.what || '', kind: u.kind || '', theme: u.theme ?? '', fallback: u.fallback || '', uploads: r.plan.uploads.map((x) => x.slot) }));
   if (process.env.GITHUB_OUTPUT) {
     const one = (t) => String(t ?? '').replace(/\n/g, ' ');
-    fs.appendFileSync(process.env.GITHUB_OUTPUT, `planned=${r.planned}\nwhy=${one(r.why)}\nwhat=${one(u.what)}\nkind=${one(u.kind)}\ntheme=${one(u.theme)}\n`);
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, `planned=${r.planned}\nwhy=${one(r.why)}\nwhat=${one(u.what)}\nkind=${one(u.kind)}\ntheme=${one(u.theme)}\nfallback=${one(u.fallback)}\nday=${one(u.day)}\n`);
   }
   if (args.includes('--check') && !r.planned) process.exit(1);
 }

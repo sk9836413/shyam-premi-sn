@@ -20,6 +20,9 @@
   "गणपति": { "deity": "ganesh", "ok": "^ग[णन]प" },
   "गणेश": { "deity": "ganesh", "ok": "^ग[णन]े?श", "note": "Ganej = wrong (Chatterbox A/B)" },
   "छठी": { "deity": "devi", "ok": "^छ" },
+  "छठ": { "deity": "devi", "ok": "^छ", "note": "Chhath 2026 (bhajan-chhath26): छठी / छठ / सूरज / सूर्य are the Chhath names of devi songs" },
+  "सूरज": { "deity": "devi", "ok": "^स[ुू]?र", "note": "Suraj dev in Chhath songs (सुरज/सूरज both right)" },
+  "सूर्य": { "deity": "devi", "ok": "^स[ुू]?र" },
   "तुलसी": { "deity": "vishnu", "ok": "^तुल" },
   "नारायण": { "deity": "vishnu", "ok": "^ना?रा?य" }
  },
@@ -29,7 +32,7 @@
   "hanuman": ["हनुमान", "बालाजी", "बजरंग"],
   "krishna": ["कान्हा", "कृष्ण", "गोविंद"],
   "ganesh": ["गणपति", "गणेश"],
-  "devi": ["छठी"],
+  "devi": ["छठी", "छठ", "सूरज", "सूर्य"],
   "vishnu": ["तुलसी", "नारायण"]
  },
  "forbidden": [

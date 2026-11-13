@@ -56,6 +56,13 @@ export function festivalOf(spec, festivals = []) {
   return f ? f.theme : null;
 }
 
+/** The festival day a spec is about (Chhath 2026: nahay-khay / kharna / sandhya-arghya / usha-arghya / parana), else null. */
+export const FESTIVAL_DAYS = ['nahay-khay', 'kharna', 'sandhya-arghya', 'usha-arghya', 'parana'];
+export function festivalDayOf(spec) {
+  const t = `${spec.slug || ''} ${spec.family || ''} ${spec.festival_key || ''}`.toLowerCase();
+  return FESTIVAL_DAYS.find((d) => t.includes(d)) || null;
+}
+
 export function loadFestivals(root = path.join(DIR, '..')) {
   try { return JSON.parse(fs.readFileSync(path.join(root, 'automation', 'festivals.json'), 'utf8')).festivals || []; } catch { return []; }
 }
@@ -84,7 +91,7 @@ const hash = (s) => [...`${s}`].reduce((h, c) => (Math.imul(h, 31) + c.charCodeA
  * on the channel in the REPEAT_DAYS days up to `date` (the same day included; a re-render of the same slug keeps its
  * own pick); the preferred mood first; stable for the slug.
  */
-export function pickBhajan(bhajans, { deity, festival = null, mood = null, date, slug, history = [] }) {
+export function pickBhajan(bhajans, { deity, festival = null, day = null, mood = null, date, slug, history = [] }) {
   const today = dayNo(date);
   const recent = new Set(history.filter((h) => !(h.slug && h.slug === slug)).filter((h) => {
     const d = dayNo(h.date);
@@ -92,6 +99,8 @@ export function pickBhajan(bhajans, { deity, festival = null, mood = null, date,
   }).map((h) => h.id));
   const fresh = bhajans.filter((b) => !recent.has(b.id)).sort((a, b) => a.id.localeCompare(b.id));
   const tiers = [
+    // Chhath 2026 (automation/chhath-2026.json): the song of the festival's own day first (kharna, sandhya-arghya, ...)
+    festival && day ? fresh.filter((b) => b.bhajan.festival === festival && b.bhajan.day === day) : [],
     festival ? fresh.filter((b) => b.bhajan.festival && b.bhajan.festival === festival) : [],
     deity ? fresh.filter((b) => b.bhajan.deity === deity) : [],
   ];
@@ -99,7 +108,7 @@ export function pickBhajan(bhajans, { deity, festival = null, mood = null, date,
     if (!pool.length) continue;
     const inMood = pool.filter((b) => b.bhajan.mood === mood);
     const p = inMood.length ? inMood : pool;
-    return { track: p[hash(slug || date) % p.length], match: k === 0 ? 'festival' : 'deity' };
+    return { track: p[hash(slug || date) % p.length], match: k <= 1 ? 'festival' : 'deity' };
   }
   return null;
 }
@@ -117,13 +126,21 @@ const moodPref = (spec, mode) => (mode === 'status' || spec.day_status || /-morn
  * last 5 days). meta goes into spec.bhajan (history + disclosure).
  */
 export function bhajanFor(spec, { env = process.env, date, publishedDir, library = LIBRARY, festivals } = {}) {
+  // A bhajan Short (scripts/bhajan-short.mjs, spec.bhajan_id) IS the song: it names its track and needs no BHAJAN_VOCALS.
+  if (spec.bhajan_id) {
+    const t = loadBhajans(library).find((b) => b.id === spec.bhajan_id);
+    if (!t) throw new Error(`bhajan ${spec.bhajan_id} is not a valid library bhajan`);
+    return { track: { file: t.file, seconds: t.bhajan.seconds || t.qa?.seconds || 60, chorus_at: t.bhajan.chorus_at, bpm: t.bpm || null }, mode: 'status',
+      meta: { id: t.id, title: t.title || t.id, title_hi: t.bhajan.title_hi || null, deity: t.bhajan.deity, mood: t.bhajan.mood, festival: t.bhajan.festival || null,
+        match: 'chosen', mode: 'status', licence: t.licence, model: t.model, singer: 'AI (ACE-Step 1.5), no real singer cloned' } };
+  }
   if (env.BHAJAN_VOCALS !== 'on') return null;
   const mode = modeFor(spec);
   const day = date || spec.date || `${spec.slug || ''}`.slice(0, 10) || new Date().toISOString().slice(0, 10);
   const deity = deityOf(spec);
   const festival = festivalOf(spec, festivals || loadFestivals());
   const pick = pickBhajan(loadBhajans(library), {
-    deity, festival, mood: moodPref(spec, mode), date: day, slug: spec.slug,
+    deity, festival, day: festivalDayOf(spec), mood: moodPref(spec, mode), date: day, slug: spec.slug,
     history: bhajanHistory(publishedDir || path.join(DIR, '..', 'story', 'published')),
   });
   if (!pick) return null;
