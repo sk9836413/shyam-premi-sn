@@ -161,3 +161,23 @@ describe('kalyug days', () => {
     assert.equal(decide({ day: '2026-11-12', slot: 'evening', slug: '2026-11-12-evening-y', run: '1.1', log }).go, true);
   });
 });
+
+describe('Chhath 2026 override (automation/chhath-2026.json)', () => {
+  test('14-16 Nov: morning/evening Shorts become Chhath bhajan Shorts within the cap; long subjects are Chhath; other dates untouched', () => {
+    const inputs = realInputs();
+    for (const [d, want] of [['2026-11-14', ['morning', 'evening']], ['2026-11-15', ['morning']], ['2026-11-16', ['morning', 'evening']]]) {
+      const p = planDay(d, inputs);
+      assert.ok(shorts(p).length <= CAP, `${d}: ${slots(p)}`);
+      for (const s of want) assert.equal(p.uploads.find((u) => u.slot === s)?.kind, 'bhajan', `${d} ${s}`);
+      assert.match(p.uploads.find((u) => u.slot === 'long').what, /CHHATH OVERRIDE/);
+    }
+    assert.ok(!planDay('2026-11-17', inputs).uploads.some((u) => u.kind === 'bhajan'));
+  });
+  test('13 Nov: the extra bhajan slot only fits with EXTRA_UPLOAD_DAY', () => {
+    const inputs = realInputs();
+    assert.ok(!slots(planDay('2026-11-13', { ...inputs, extraDay: '' })).includes('bhajan'));
+    const p = planDay('2026-11-13', { ...inputs, extraDay: '2026-11-13' });
+    assert.ok(slots(p).includes('bhajan'));
+    assert.equal(shorts(p).length, CAP + 1);
+  });
+});

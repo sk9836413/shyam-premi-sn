@@ -1,26 +1,61 @@
 {
  "batch": "bhajan-chhath26b",
- "note": "Chhath Puja 2026, second batch (13 Nov 2026, after 21:00 IST): ORIGINAL lyrics, Hindi with a Bhojpuri folk flavour; no line from any traditional or recorded Chhath geet.",
+ "note": "Chhath Puja 2026, second batch (13 Nov 2026, after 21:00 IST): ORIGINAL lyrics, Hindi with a Bhojpuri folk flavour; no line from any traditional or recorded Chhath geet. Revised 17:50 IST after batch 26 QA: fewer name positions (the gate checks every छठी / सूरज).",
  "songs": [
-  { "slot": 6, "deity": "devi", "mood": "thaath", "festival": "chhath", "chhath_day": "kharna",
-    "title_hi": "खरना के खीर", "title_roman": "Kharna Ke Kheer (Chhath Geet)",
-    "lyrics": "[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस\n[verse]\nआम के लकड़ी जरे, माटी के चूल्हा\nघी में डूबल रोटी, सजल बा थरिया\nभोग लगा के व्रती खइली, एके बेर प्रसाद\nघर भर में बंटल खुशी, बरसल आशीर्वाद\n[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस\n[verse]\nअब से निर्जल व्रत, सूरज देव के आस\nछठी मइया राखिह, हमनी के विश्वास\n[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस",
-    "public_domain_text": null },
-  { "slot": 7, "deity": "devi", "mood": "thaath", "festival": "chhath", "chhath_day": "sandhya-arghya",
-    "title_hi": "चलो चलो घाट पे", "title_roman": "Chalo Chalo Ghat Pe (Sandhya Arghya Geet)",
-    "lyrics": "[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे\n[verse]\nमाथे पे दउरा सजल, केला नारियल ठेकुआ\nआगे आगे भइया चलें, पीछे पूरा कुनबा\nपानी में ठाढ़ व्रती, सूप में दीप जरे\nडूबत सूरज लाली में, सगरे घाट निखरे\n[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे\n[verse]\nढोल मंजीरा बाजे, गूंजे जयकार\nछठ के ई परब में, एक भइल संसार\n[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे",
-    "public_domain_text": null },
-  { "slot": 8, "deity": "devi", "mood": "bhaavuk", "festival": "chhath", "chhath_day": "usha-arghya",
-    "title_hi": "पूरब में लाली छाइल", "title_roman": "Purab Mein Laali Chhail (Usha Arghya Geet)",
-    "lyrics": "[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट\n[verse]\nठंडा ठंडा पानी में, खाड़ बाड़ी माई\nहाथ जोड़ के मांगे, सबके भलाई\nकोहरा में दीप जरे, सूप में फल फूल\nकिरन पड़ल पानी पर, मिटल सब भूल\n[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट\n[verse]\nअरघ देके व्रत पूरा, मन में संतोष\nछठी मइया हरिह, सबके दुख दोष\n[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट",
-    "public_domain_text": null },
-  { "slot": 9, "deity": "devi", "mood": "bhaavuk", "festival": "chhath", "chhath_day": "parana",
-    "title_hi": "छठी मइया तोहर किरपा", "title_roman": "Chhathi Maiya Tohar Kirpa (Parana Geet)",
-    "lyrics": "[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर\n[verse]\nचार दिन के तप पूरा, पारन के बेला\nठेकुआ, फल, प्रसाद बंटल, लागल सुख के मेला\nघाट से लौटल व्रती, मन भइल निहाल\nअगिला बरस फेर आइब, माई राखिह ख्याल\n[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर\n[verse]\nजे भी मांगल माई से, ओकर मन के आस\nछठ के ई पावन परब, लावे नया उजास\n[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर",
-    "public_domain_text": null },
-  { "slot": 10, "deity": "devi", "mood": "bhaavuk", "festival": "chhath", "chhath_day": "chhath",
-    "title_hi": "माई के घाट पे", "title_roman": "Maai Ke Ghat Pe (Chhath Geet)",
-    "lyrics": "[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं\n[verse]\nपरदेस से लौटल, बेटा माई के पास\nगांव के माटी में, फेर जागल आस\nनदी किनारे बइठ के, सुनीं लोकगीत\nछठ के ई परब से, बढ़ल सबके प्रीत\n[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं\n[verse]\nसूरज देव के किरन से, उजियार भइल मन\nछठी मइया के दया से, सुखी रहे जन जन\n[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं",
-    "public_domain_text": null }
+  {
+   "slot": 6,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "chhath_day": "kharna",
+   "title_hi": "खरना के खीर",
+   "title_roman": "Kharna Ke Kheer (Chhath Geet)",
+   "lyrics": "[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस\n[verse]\nआम के लकड़ी जरे, माटी के चूल्हा\nघी में डूबल रोटी, सजल बा थरिया\nभोग लगा के व्रती खइली, एके बेर प्रसाद\nघर भर में बंटल खुशी, बरसल आशीर्वाद\n[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस\n[bridge]\nअब से निर्जल व्रत, माई तोहरे आस\nमाई तू ही राखिह, हमनी के विश्वास\n[chorus]\nखरना के खीर पकल, गुड़ के मिठास\nछठी मइया अइली अंगना, पूरा भइल आस",
+   "public_domain_text": null
+  },
+  {
+   "slot": 7,
+   "deity": "devi",
+   "mood": "thaath",
+   "festival": "chhath",
+   "chhath_day": "sandhya-arghya",
+   "title_hi": "चलो चलो घाट पे",
+   "title_roman": "Chalo Chalo Ghat Pe (Sandhya Arghya Geet)",
+   "lyrics": "[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे\n[verse]\nमाथे पे दउरा सजल, केला नारियल ठेकुआ\nआगे आगे भइया चलें, पीछे पूरा कुनबा\nपानी में ठाढ़ व्रती, सूप में दीप जरे\nसांझ के लाली में, सगरे घाट निखरे\n[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे\n[bridge]\nढोल मंजीरा बाजे, गूंजे जयकार\nई पावन परब में, एक भइल संसार\n[chorus]\nचलो चलो घाट पे, सांझ के अरघ देवे\nछठी मइया के गीत गा के, सूरज के नमन करे",
+   "public_domain_text": null
+  },
+  {
+   "slot": 8,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "chhath_day": "usha-arghya",
+   "title_hi": "पूरब में लाली छाइल",
+   "title_roman": "Purab Mein Laali Chhail (Usha Arghya Geet)",
+   "lyrics": "[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट\n[verse]\nठंडा ठंडा पानी में, खाड़ बाड़ी माई\nहाथ जोड़ के मांगे, सबके भलाई\nकोहरा में दीप जरे, सूप में फल फूल\nकिरन पड़ल पानी पर, मिटल सब भूल\n[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट\n[bridge]\nअरघ देके व्रत पूरा, मन में संतोष\nमाई तू ही हरिह, सबके दुख दोष\n[chorus]\nपूरब में लाली छाइल, जागल बा घाट\nछठी मइया, सूरज देव, देखीं हमनी के बाट",
+   "public_domain_text": null
+  },
+  {
+   "slot": 9,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "chhath_day": "parana",
+   "title_hi": "छठी मइया तोहर किरपा",
+   "title_roman": "Chhathi Maiya Tohar Kirpa (Parana Geet)",
+   "lyrics": "[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर\n[verse]\nचार दिन के तप पूरा, पारन के बेला\nठेकुआ, फल, प्रसाद बंटल, लागल सुख के मेला\nघाट से लौटल व्रती, मन भइल निहाल\nअगिला बरस फेर आइब, माई राखिह ख्याल\n[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर\n[bridge]\nजे भी मांगल माई से, ओकर मन के आस\nई पावन परब लावे, घर घर में उजास\n[chorus]\nछठी मइया तोहर किरपा, पूरा भइल व्रत\nसूरज देव के आशीष से, खुशहाल भइल घर",
+   "public_domain_text": null
+  },
+  {
+   "slot": 10,
+   "deity": "devi",
+   "mood": "bhaavuk",
+   "festival": "chhath",
+   "chhath_day": "chhath",
+   "title_hi": "माई के घाट पे",
+   "title_roman": "Maai Ke Ghat Pe (Chhath Geet)",
+   "lyrics": "[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं\n[verse]\nपरदेस से लौटल, बेटा माई के पास\nगांव के माटी में, फेर जागल आस\nनदी किनारे बइठ के, सुनीं लोकगीत\nई पावन परब से, बढ़ल सबके प्रीत\n[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं\n[bridge]\nभोर के किरन से, उजियार भइल मन\nमाई तोहरे दया से, सुखी रहे जन जन\n[chorus]\nमाई के घाट पे, जगमग दीया बारीं\nछठी मइया, तोहरे चरन में, जिनगी हम वारीं",
+   "public_domain_text": null
+  }
  ]
 }

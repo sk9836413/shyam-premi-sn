@@ -335,3 +335,29 @@ test('Kaggle: a 60-min bhajan session must also END before the blocked IST windo
   assert.equal(windowAhead(ist(17, 45), 60), '18:30-21:00');
   assert.equal(windowAhead(ist(2, 10), 60), null, 'Monday 02:10 IST slot');
 });
+
+// Chhath 2026 (bhajan-chhath26): छठी / छठ / सूरज are devi names; a de-aspirated "चटी" is wrong; a bhajan Short names
+// its song (bhajan_id) and is built 45-90 s from the chorus.
+import { nameCheck as chhathNames } from './bhajan-batch.mjs';
+import { buildSpec, chooseBhajan } from '../scripts/bhajan-short.mjs';
+test('Chhath names: छठी right, चटी wrong; सूरज checked in devi songs', () => {
+  const lyr = '[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं\nसूरज देव के किरन संग\n[chorus]\nनहाय खाय के पावन दिन, छठी मइया आईं';
+  assert.equal(chhathNames(lyr, 'नहाय खाय के पावन दिन छठी मैया आई सूरज देव के किरन संग नहाय खाय के पावन दिन छठी मैया आई', 'devi').ok, true);
+  const bad = chhathNames(lyr, 'नहाय खाय के पावन दिन चटी मैया आई सूरज देव के किरन संग नहाय खाय के पावन दिन छठी मैया आई', 'devi');
+  assert.equal(bad.ok, false);
+  assert.equal(bad.wrong[0].word, 'छठी');
+});
+test('bhajan Short: the day song first, 45-90 s from the chorus, disclosure + FB template', () => {
+  const mk = (id, day, cer) => ({ id, title: id, qa: { cer }, bhajan: { festival: 'chhath', day, chorus_at: 4, seconds: 70, lyrics: '[chorus]\nछठी मइया आईं\n', title_hi: 'गीत', title_roman: 'Geet' } });
+  const lib = [mk('bhajan-a', 'kharna', 0.2), mk('bhajan-b', 'nahay-khay', 0.3), mk('bhajan-c', 'nahay-khay', 0.25)];
+  assert.equal(chooseBhajan(lib, { festival: 'chhath', day: 'nahay-khay', date: '2026-11-13' }).id, 'bhajan-c');
+  assert.equal(chooseBhajan(lib, { festival: 'chhath', day: 'nahay-khay', date: '2026-11-13', history: [{ date: '2026-11-12', id: 'bhajan-c' }] }).id, 'bhajan-b');
+  const o = { day: 'nahay-khay', title: 'Chhath Puja Song 2026 | X | छठ गीत #Shorts', hook: 'नहाय खाय 🙏', kicker: 'Chhath', festival: 'Chhath Puja', intro_hi: 'आज नहाय खाय है।', question_hi: 'आपके घर कद्दू भात कौन बनाता है?', images: [1, 2] };
+  const bank = ['p-1.jpg', 'p-2.jpg', 'p-3.jpg', 'p-4.jpg', 'p-5.jpg', 'p-6.jpg'];
+  const s = buildSpec({ date: '2026-11-13', slot: 'bhajan', o, track: lib[2], bank });
+  const secs = s.scenes.reduce((a, sc, i) => a + sc.hold - (i ? 0.4 : 0), 0);
+  assert.ok(secs >= 45 && secs <= 66.3 - 0.5, `${secs}`); // the song lasts 66.3 s after the chorus lead-in
+  assert.equal(s.bhajan_id, 'bhajan-c');
+  assert.match(s.youtube_description, /भजन: मौलिक रचना, AI द्वारा गाया गया \(ACE-Step\)/);
+  assert.match(s.facebook_caption.split('\n').pop(), /^#KhatuShyam #JaiShreeShyam #ChhathPuja$/);
+});
