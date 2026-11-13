@@ -61,7 +61,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning, evening, noon, long, status, movie, kalyug or bhajan (empty = by time of day; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part; kalyug = only tomorrow's Kalyug ke Bhagwan episode)
+        description: morning, evening, noon, long, status, movie, kalyug, bhajan or jukebox (empty = by time of day; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part; kalyug = only tomorrow's Kalyug ke Bhagwan episode)
         required: false
         default: ''
       dry_run:
@@ -84,6 +84,10 @@ on:
         description: movie / kalyug slot only - render from the last finished sps-movie / sps-kalyug Kaggle session (no new GPU session)
         type: boolean
         default: false
+      jukebox_date:
+        description: jukebox slot only - the IST date whose 12:30 long video the Chhath Geet Nonstop jukebox is (empty = tomorrow)
+        required: false
+        default: ''
       force_fallback:
         description: Skip Workers AI FLUX for this run (test the Kaggle FLUX / picture-bank fallback, animate/frames.mjs)
         type: boolean
@@ -110,7 +114,7 @@ env:
 # automation/published.md with an atomic push (a second run finds the claim or the log.md line and skips). Then
 # youtube.mjs and meta.mjs look for the same title/caption among the last 36 h of uploads and posts and never repeat it.
 concurrency:
-  group: ${{ inputs.slot == 'bhajan' && 'daily-story-bhajan' || inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || inputs.slot == 'kalyug' && 'daily-story-kalyug' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
+  group: ${{ inputs.slot == 'jukebox' && 'daily-story-jukebox' || inputs.slot == 'bhajan' && 'daily-story-bhajan' || inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || inputs.slot == 'kalyug' && 'daily-story-kalyug' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
   cancel-in-progress: false
 
 jobs:
@@ -153,6 +157,8 @@ jobs:
       # Short is a library bhajan with bank pictures, made by the `bhajan` job instead of this one.
       bhajan: ${{ steps.date.outputs.bhajan }}
       bhajan_slot: ${{ steps.date.outputs.bhajan_slot }}
+      # slot=jukebox: the Chhath Geet Nonstop jukebox as the long video of jukebox_date (job `jukebox`, scripts/jukebox.mjs)
+      jukebox: ${{ steps.date.outputs.jukebox }}
       # IST date and the festival day of a status run: the long and status jobs queue per day on them.
       today: ${{ steps.date.outputs.today }}
       status_day: ${{ steps.date.outputs.status_day }}
@@ -195,6 +201,10 @@ jobs:
           if [ "$slot" = kalyug ]; then
             echo "kalyug=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Kalyug ke Bhagwan episode only"; exit 0
+          fi
+          if [ "$slot" = jukebox ]; then
+            echo "jukebox=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Chhath Geet Nonstop jukebox only"; exit 0
           fi
           if [ "$slot" = bhajan ]; then
             echo "bhajan=true" >> "$GITHUB_OUTPUT"; echo "bhajan_slot=bhajan" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
@@ -1261,6 +1271,116 @@ jobs:
           path: |
             story/bhajan/work/out/
             story/bhajan/work/scenes.json
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: ignore
+
+  # "Chhath Geet 2026 Nonstop" jukebox (owner, 13 Nov 2026; scripts/jukebox.mjs): every full-length QA-passed Chhath
+  # bhajan back to back, 1920x1080 with a chapter per song, Hindi lyric captions and bank pictures (faceless, slow Ken
+  # Burns). It IS the long video of jukebox_date (default tomorrow in IST): YouTube private with publishAt 12:30 IST of
+  # that date, Facebook Page feed video at 12:30 (resumable upload), log.md "<date> | long | <slug>", so the long job of
+  # that date skips. Same upload guard: 1 long video per IST date. Runner only (no Kaggle, no Claude).
+  jukebox:
+    needs: story
+    if: always() && needs.story.outputs.jukebox == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    concurrency:
+      group: shyam-long-jukebox
+      cancel-in-progress: false
+    env:
+      FFMPEG_PATH: ffmpeg
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      W: story/jukebox/work
+      DRY: ${{ inputs.dry_run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Date
+        run: |
+          d="${{ inputs.jukebox_date }}"; d=${d:-$(TZ=Asia/Kolkata date -d tomorrow +%F)}
+          echo "DAY=$d" >> "$GITHUB_ENV"
+          if grep -q "^$d | long |" automation/log.md; then echo "::notice::$d already has its long video"; echo "SKIP=1" >> "$GITHUB_ENV"; fi
+
+      - name: Tools
+        if: env.SKIP != '1'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+
+      - name: Build and render
+        if: env.SKIP != '1'
+        run: |
+          node scripts/jukebox.mjs --date "$DAY" --out "$W" | tee "$RUNNER_TEMP/jb.json"
+          SLUG=$(node -p "require('./$W/scenes.json').slug")
+          echo "SLUG=$SLUG" >> "$GITHUB_ENV"
+          test -s "$W/$SLUG.mp4"
+          echo "- Jukebox $SLUG: $(ffprobe -v error -show_entries format=duration -of csv=p=0 "$W/$SLUG.mp4") s, $(node -p "require('./$W/scenes.json').songs.length") songs" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload (guard, YouTube 12:30, Facebook feed 12:30) and record
+        if: env.SKIP != '1'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          SHYAM_YT_CLIENT_ID: ${{ secrets.SHYAM_YT_CLIENT_ID }}
+          SHYAM_YT_CLIENT_SECRET: ${{ secrets.SHYAM_YT_CLIENT_SECRET }}
+          SHYAM_YT_REFRESH_TOKEN: ${{ secrets.SHYAM_YT_REFRESH_TOKEN }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          file="$W/scenes.json"; video="$W/$SLUG.mp4"; meta="$W/$SLUG.json"; thumb="$W/$SLUG-thumb.jpg"
+          j() { node -p "try{const j=JSON.parse(require('fs').readFileSync('$1','utf8'));$2}catch{''}"; }
+          if [ "$DRY" = true ]; then
+            node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --publish-at "${DAY}T12:30" --dry-run | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          node scripts/upload-guard.mjs claim --day "$DAY" --slot long --slug "$SLUG" > "$RUNNER_TEMP/claim.json"
+          grep -q '"go":true' "$RUNNER_TEMP/claim.json" || { echo "::notice::$SLUG not uploaded: $(head -c 300 "$RUNNER_TEMP/claim.json")"; exit 0; }
+          if ! node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --thumbnail "$thumb" --publish-at "${DAY}T12:30" > "$RUNNER_TEMP/yt.json" || ! grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"; then
+            echo "::error::YouTube upload failed: $(head -c 300 "$RUNNER_TEMP/yt.json")"
+            node scripts/upload-guard.mjs release --day "$DAY" --slot long --slug "$SLUG" --reason "YouTube upload failed"
+            exit 1
+          fi
+          fbline=""
+          if [ -n "$META_PAGE_TOKEN" ]; then
+            fb=$(node scripts/fb.mjs flags --date "$DAY" --slot long || echo --no-fb)
+            if [ "$fb" != "--no-fb" ]; then
+              at=${fb#--fb-at }; pa=(); [ "$at" = now ] || pa=(--publish-at "$at")
+              node scripts/meta.mjs long --video "$video" --scenes "$file" --meta "$meta" --thumbnail "$thumb" "${pa[@]}" > "$RUNNER_TEMP/fb.json" || true
+              fbline="- $SLUG | facebook: $(j "$RUNNER_TEMP/fb.json" "j.facebook?j.facebook.url+(j.facebook.scheduled?' (scheduled '+j.facebook.scheduled+')':''):'error '+(j.error||j.status)")"
+            fi
+          fi
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p story/published
+          cp "$file" "story/published/$SLUG.json"
+          cp "$meta" "story/published/$SLUG.meta.json"
+          yt=$(j "$RUNNER_TEMP/yt.json" "const y=j.youtube; y.url+(y.publishAt?' (public at '+y.publishAt+')':' (public now)')")
+          echo "$DAY | long | $SLUG | Chhathi Maiya / Surya dev (Chhath Puja 2026) | Chhath Geet 2026 Nonstop jukebox: $(j "$file" "j.songs.length") original AI-sung Chhath bhajans back to back, chapters per song, public 12:30 IST" >> automation/log.md
+          echo "- $SLUG | youtube: $yt | jukebox $(j "$meta" "Math.round(j.seconds/60)") min, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST" >> automation/published.md
+          [ -n "$fbline" ] && echo "$fbline" >> automation/published.md
+          git add automation/log.md automation/published.md "story/published/$SLUG.json" "story/published/$SLUG.meta.json"
+          git commit -qm "Jukebox $SLUG"
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
+          echo "- uploaded: $yt ${fbline}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the video as an artifact (7 days)
+        if: always() && env.SKIP != '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: jukebox-${{ github.run_id }}
+          path: |
+            story/jukebox/work/*.mp4
+            story/jukebox/work/*.jpg
+            story/jukebox/work/*.json
+            story/jukebox/work/lyrics.ass
           retention-days: 7
           compression-level: 0
           if-no-files-found: ignore

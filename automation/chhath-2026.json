@@ -5,58 +5,150 @@
  "days": {
   "2026-11-13": {
    "slots": {
-    "bhajan": { "kind": "bhajan", "day": "nahay-khay", "at": "19:45", "fb": "19:45",
-      "title": "Chhath Puja Song 2026 | Nahay Khay Kaddu Bhaat Geet | छठ पूजा गीत #Shorts",
-      "hook": "नहाय खाय कद्दू भात 🙏", "kicker": "Chhath Puja Geet", "festival": "Chhath Puja (Nahay Khay)",
-      "intro_hi": "आज नहाय खाय से छठ महापर्व शुरू हो गया। गंगा स्नान के बाद कद्दू भात, चने की दाल और अरवा चावल का सात्विक भोग बनता है।",
-      "question_hi": "आपके घर नहाय खाय पर कद्दू भात कौन बनाता है?",
-      "images": [1, 2, 10, 8, 6, 5, 3] }
+    "bhajan": {
+     "kind": "bhajan",
+     "day": "nahay-khay",
+     "at": "19:45",
+     "fb": "19:45",
+     "title": "Chhath Puja Song 2026 | Nahay Khay Kaddu Bhaat Geet | छठ पूजा गीत #Shorts",
+     "hook": "नहाय खाय कद्दू भात 🙏",
+     "kicker": "Chhath Puja Geet",
+     "festival": "Chhath Puja (Nahay Khay)",
+     "intro_hi": "आज नहाय खाय से छठ महापर्व शुरू हो गया। गंगा स्नान के बाद कद्दू भात, चने की दाल और अरवा चावल का सात्विक भोग बनता है।",
+     "question_hi": "आपके घर नहाय खाय पर कद्दू भात कौन बनाता है?",
+     "images": [
+      1,
+      2,
+      10,
+      8,
+      6,
+      5,
+      3
+     ]
+    }
    }
   },
   "2026-11-14": {
    "slots": {
-    "morning": { "kind": "bhajan", "day": "kharna", "at": null,
-      "title": "Kharna Geet 2026 | Chhath Puja Song | खरना छठ गीत #Shorts",
-      "hook": "छठ पूजा खरना 🙏", "kicker": "Chhath Kharna Geet", "festival": "Chhath Puja (Kharna)",
-      "intro_hi": "छठ का दूसरा दिन खरना। दिन भर व्रत के बाद शाम को गुड़ की खीर, घी लगी रोटी का प्रसाद, फिर छत्तीस घंटे का निर्जला व्रत।",
-      "question_hi": "खरना की खीर आपके घर किस चूल्हे पर बनती है?",
-      "images": [7, 8, 1, 6, 3, 10] },
-    "evening": { "kind": "bhajan", "day": "chhath", "at": "19:00",
-      "title": "Chhathi Maiya Song 2026 | Chhath Puja Geet | छठी मइया गीत #Shorts",
-      "hook": "जय छठी मइया 🙏", "kicker": "Chhathi Maiya Geet", "festival": "Chhath Puja",
-      "intro_hi": "कल संध्या अर्घ्य है। घाट सज रहे हैं, सूप और दउरा में ठेकुआ, फल और दीये तैयार हो रहे हैं।",
-      "question_hi": "इस बार आप छठ के लिए किस घाट पर जा रहे हैं?",
-      "images": [10, 4, 5, 3, 6, 2, 8] }
+    "morning": {
+     "kind": "bhajan",
+     "day": "kharna",
+     "at": null,
+     "title": "Kharna Geet 2026 | Chhath Puja Song | खरना छठ गीत #Shorts",
+     "hook": "छठ पूजा खरना 🙏",
+     "kicker": "Chhath Kharna Geet",
+     "festival": "Chhath Puja (Kharna)",
+     "intro_hi": "छठ का दूसरा दिन खरना। दिन भर व्रत के बाद शाम को गुड़ की खीर, घी लगी रोटी का प्रसाद, फिर छत्तीस घंटे का निर्जला व्रत।",
+     "question_hi": "खरना की खीर आपके घर किस चूल्हे पर बनती है?",
+     "images": [
+      7,
+      8,
+      1,
+      6,
+      3,
+      10
+     ]
+    },
+    "evening": {
+     "kind": "bhajan",
+     "day": "chhath",
+     "at": "19:00",
+     "title": "Chhathi Maiya Song 2026 | Chhath Puja Geet | छठी मइया गीत #Shorts",
+     "hook": "जय छठी मइया 🙏",
+     "kicker": "Chhathi Maiya Geet",
+     "festival": "Chhath Puja",
+     "intro_hi": "कल संध्या अर्घ्य है। घाट सज रहे हैं, सूप और दउरा में ठेकुआ, फल और दीये तैयार हो रहे हैं।",
+     "question_hi": "इस बार आप छठ के लिए किस घाट पर जा रहे हैं?",
+     "images": [
+      10,
+      4,
+      5,
+      3,
+      6,
+      2,
+      8
+     ]
+    }
    },
-   "long": { "topic": "chhath-vrat-katha", "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Chhath vrat katha / Chhathi Maiya kaun hain\" - who Chhathi Maiya (Shashthi Devi) is, the Chhath vrat katha, Kharna today. Do NOT repeat the 13 Nov long video (Nahay Khay, kaddu bhaat, Raja Priyavrat katha told in full): tell it from another angle, with different chapters, title and images. Every fact needs a source; manyata words where it is belief. The slug must start <date>-long-chhath- (the Chhath bhajan intro/outro is picked by the word chhath in the slug)." }
+   "long": {
+    "kind": "jukebox",
+    "topic": "chhath-geet-nonstop",
+    "note": "The long video of 14 Nov is the Chhath Geet 2026 Nonstop jukebox (daily.yml slot=jukebox, scripts/jukebox.mjs), uploaded the evening before with publishAt 12:30; the long job then finds it in log.md and skips. If the jukebox is missing, the long job tells the what below.",
+    "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Chhath vrat katha / Chhathi Maiya kaun hain\" - who Chhathi Maiya (Shashthi Devi) is, the Chhath vrat katha, Kharna today. Do NOT repeat the 13 Nov long video (Nahay Khay, kaddu bhaat, Raja Priyavrat katha told in full): another angle, different chapters, title and images. Every fact needs a source; manyata words where it is belief. The slug must start <date>-long-chhath- (the Chhath bhajan intro/outro is picked by the word chhath in the slug)."
+   }
   },
   "2026-11-15": {
    "slots": {
-    "morning": { "kind": "bhajan", "day": "sandhya-arghya", "at": null,
-      "title": "Sandhya Arghya Geet 2026 | Chhath Puja Song | संध्या अर्घ्य छठ गीत #Shorts",
-      "hook": "छठ संध्या अर्घ्य 🙏", "kicker": "Sandhya Arghya Geet", "festival": "Chhath Puja (Sandhya Arghya)",
-      "intro_hi": "आज छठ का संध्या अर्घ्य है। व्रती घाट पर पानी में खड़े होकर डूबते सूरज को सूप और दउरा से अर्घ्य देते हैं।",
-      "question_hi": "आज शाम आप किस घाट पर अर्घ्य देंगे?",
-      "images": [4, 3, 8, 6, 10, 2] }
+    "morning": {
+     "kind": "bhajan",
+     "day": "sandhya-arghya",
+     "at": null,
+     "title": "Sandhya Arghya Geet 2026 | Chhath Puja Song | संध्या अर्घ्य छठ गीत #Shorts",
+     "hook": "छठ संध्या अर्घ्य 🙏",
+     "kicker": "Sandhya Arghya Geet",
+     "festival": "Chhath Puja (Sandhya Arghya)",
+     "intro_hi": "आज छठ का संध्या अर्घ्य है। व्रती घाट पर पानी में खड़े होकर डूबते सूरज को सूप और दउरा से अर्घ्य देते हैं।",
+     "question_hi": "आज शाम आप किस घाट पर अर्घ्य देंगे?",
+     "images": [
+      4,
+      3,
+      8,
+      6,
+      10,
+      2
+     ]
+    }
    },
-   "long": { "topic": "chhath-sandhya-arghya-surya-mandir", "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Surya Dev aur Chhath: Sandhya Arghya ka mahatva + Bihar ke Surya mandir\" - why the setting sun gets arghya today, the Sandhya Arghya vidhi, and Bihar's Surya temples (Deo Surya Mandir Aurangabad, Ulaar Surya Mandir; Konark / Modhera only as context). Do NOT repeat the 13 and 14 Nov long videos (Nahay Khay katha; Chhathi Maiya / vrat katha). Verify every temple fact with a non-Wikipedia source; manyata words where it is belief. The slug must start <date>-long-chhath- (the Chhath bhajan intro/outro is picked by the word chhath in the slug)." }
+   "long": {
+    "topic": "chhath-vrat-katha",
+    "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Chhath vrat katha / Chhathi Maiya kaun hain\" - who Chhathi Maiya (Shashthi Devi) is and the Chhath vrat katha, on Sandhya Arghya day. Do NOT repeat the 13 Nov long video (Nahay Khay, kaddu bhaat, Raja Priyavrat katha told in full): another angle, different chapters, title and images. If the 14 Nov long video already told the vrat katha (log.md), tell instead: Surya Dev aur Chhath, Sandhya Arghya ka mahatva + Bihar ke Surya mandir. Every fact needs a source; manyata words where it is belief. The slug must start <date>-long-chhath- (the Chhath bhajan intro/outro is picked by the word chhath in the slug)."
+   }
   },
   "2026-11-16": {
    "slots": {
-    "morning": { "kind": "bhajan", "day": "usha-arghya", "at": null,
-      "title": "Usha Arghya Geet 2026 | Chhath Puja Song | उषा अर्घ्य छठ गीत #Shorts",
-      "hook": "छठ उषा अर्घ्य 🙏", "kicker": "Usha Arghya Geet", "festival": "Chhath Puja (Usha Arghya)",
-      "intro_hi": "आज भोर में उगते सूरज को अर्घ्य के साथ छठ महापर्व पूरा होता है। फिर ठेकुआ और प्रसाद से व्रत का पारण।",
-      "question_hi": "आज भोर का अर्घ्य आपने किस घाट पर दिया?",
-      "images": [5, 10, 2, 8, 6, 4] },
-    "evening": { "kind": "bhajan", "day": "parana", "at": "19:00",
-      "title": "Chhath Parana Geet 2026 | Chhathi Maiya Dhanyavad Song | छठ पारण गीत #Shorts",
-      "hook": "छठी मइया धन्यवाद 🙏", "kicker": "Chhath Parana Geet", "festival": "Chhath Puja (Parana)",
-      "intro_hi": "चार दिन का छठ महापर्व पूरा हुआ। व्रतियों ने उषा अर्घ्य के बाद पारण किया और सबको प्रसाद बांटा।",
-      "question_hi": "इस छठ पर छठी मइया से आपने क्या मांगा?",
-      "images": [5, 8, 10, 2, 6, 3] }
+    "morning": {
+     "kind": "bhajan",
+     "day": "usha-arghya",
+     "at": null,
+     "title": "Usha Arghya Geet 2026 | Chhath Puja Song | उषा अर्घ्य छठ गीत #Shorts",
+     "hook": "छठ उषा अर्घ्य 🙏",
+     "kicker": "Usha Arghya Geet",
+     "festival": "Chhath Puja (Usha Arghya)",
+     "intro_hi": "आज भोर में उगते सूरज को अर्घ्य के साथ छठ महापर्व पूरा होता है। फिर ठेकुआ और प्रसाद से व्रत का पारण।",
+     "question_hi": "आज भोर का अर्घ्य आपने किस घाट पर दिया?",
+     "images": [
+      5,
+      10,
+      2,
+      8,
+      6,
+      4
+     ]
+    },
+    "evening": {
+     "kind": "bhajan",
+     "day": "parana",
+     "at": "19:00",
+     "title": "Chhath Parana Geet 2026 | Chhathi Maiya Dhanyavad Song | छठ पारण गीत #Shorts",
+     "hook": "छठी मइया धन्यवाद 🙏",
+     "kicker": "Chhath Parana Geet",
+     "festival": "Chhath Puja (Parana)",
+     "intro_hi": "चार दिन का छठ महापर्व पूरा हुआ। व्रतियों ने उषा अर्घ्य के बाद पारण किया और सबको प्रसाद बांटा।",
+     "question_hi": "इस छठ पर छठी मइया से आपने क्या मांगा?",
+     "images": [
+      5,
+      8,
+      10,
+      2,
+      6,
+      3
+     ]
+    }
    },
-   "long": { "topic": "chhath-usha-arghya-parana-niyam", "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Usha Arghya aur parana: Chhath ke niyam\" - the Usha Arghya at sunrise, how the vrat is completed (parana), and the rules of Chhath (sattvik food, purity, nirjala vrat, what vratis follow). Do NOT repeat the 13-15 Nov long videos. Every fact needs a source; manyata words where it is belief. The slug must start <date>-long-chhath- (the Chhath bhajan intro/outro is picked by the word chhath in the slug)." }
+   "long": {
+    "topic": "chhath-arghya-parana-niyam",
+    "what": "long katha video (16:9, 5-10 min, public 12:30 IST; STORY.md section 5): CHHATH OVERRIDE (owner, 13 Nov 2026: every upload 13-16 Nov is Chhath themed; the 30-day repeat rule does not apply on these dates): \"Surya Dev aur Chhath: Sandhya aur Usha Arghya ka mahatva, Bihar ke Surya mandir, parana aur Chhath ke niyam\" - why the setting and the rising sun get arghya, Bihar's Surya temples (Deo Surya Mandir Aurangabad, Ulaar Surya Mandir; Konark / Modhera only as context), how the vrat is completed (parana) and the rules of Chhath (sattvik food, purity, nirjala vrat). Do NOT repeat the 13-15 Nov long videos. Verify every temple fact with a non-Wikipedia source. Every fact needs a source; manyata words where it is belief. The slug must start <date>-long-chhath- (the Chhath bhajan intro/outro is picked by the word chhath in the slug)."
+   }
   }
  },
  "bhajan_fallback": "If no QA-passed Chhath bhajan exists for a bhajan slot, the slot becomes a Chhath Surya temple / ghat darshan Short (Deo Surya Mandir Aurangabad, Ulaar Surya Mandir, Konark Sun Temple, Modhera Sun Temple, Patna or Varanasi Chhath ghats; STORY.md; facts verified; bhajan outro when BHAJAN_VOCALS=on), not the normal temple darshan.",
@@ -66,21 +158,74 @@
   "days": {
    "2026-11-14": {
     "p1img": 10,
-    "p2": { "img": 7, "name": "Chhath Puja day 2: Kharna", "big": "खरना", "line": "की शुभकामनाएं 🙏", "text": "छठी मइया का आशीर्वाद आपके घर पर बना रहे", "flux": "A brass thali with gud ki kheer, ghee roti and bananas on a banana leaf beside a clay chulha and a lit diya, warm dusk light, no people" },
-    "p3": { "temple": "deo-surya-mandir" },
-    "p4": { "img": 3, "name": "Chhath Puja: Sandhya Arghya (kal)", "big": "कल संध्या अर्घ्य", "line": "जय छठी मइया 🙏", "text": "घाट पर डूबते सूर्य देव को अर्घ्य", "flux": "Bamboo soop baskets with thekua, fruits and a lit diya on a river bank at sunset, no people" }
+    "p2": {
+     "img": 7,
+     "name": "Chhath Puja day 2: Kharna",
+     "big": "खरना",
+     "line": "की शुभकामनाएं 🙏",
+     "text": "छठी मइया का आशीर्वाद आपके घर पर बना रहे",
+     "flux": "A brass thali with gud ki kheer, ghee roti and bananas on a banana leaf beside a clay chulha and a lit diya, warm dusk light, no people"
+    },
+    "p3": {
+     "temple": "deo-surya-mandir"
+    },
+    "p4": {
+     "img": 3,
+     "name": "Chhath Puja: Sandhya Arghya (kal)",
+     "big": "कल संध्या अर्घ्य",
+     "line": "जय छठी मइया 🙏",
+     "text": "घाट पर डूबते सूर्य देव को अर्घ्य",
+     "flux": "Bamboo soop baskets with thekua, fruits and a lit diya on a river bank at sunset, no people"
+    }
    },
    "2026-11-15": {
     "p1img": 4,
-    "p2": { "img": 3, "name": "Chhath Puja: Sandhya Arghya", "big": "संध्या अर्घ्य", "line": "जय सूर्य देव 🙏", "text": "डूबते सूर्य को नमन, छठी मइया सबकी रक्षा करें", "flux": "A huge orange setting sun over a calm river with bamboo soop baskets and diyas on the bank, no people" },
-    "p3": { "temple": "konark-sun-temple" },
-    "p4": { "img": 5, "name": "Chhath Puja: Usha Arghya (kal bhor)", "big": "कल उषा अर्घ्य", "line": "जय छठी मइया 🙏", "text": "भोर में उगते सूर्य देव को अर्घ्य", "flux": "Rising sun over a misty river with a soop basket and a lit diya on the bank, no people" }
+    "p2": {
+     "img": 3,
+     "name": "Chhath Puja: Sandhya Arghya",
+     "big": "संध्या अर्घ्य",
+     "line": "जय सूर्य देव 🙏",
+     "text": "डूबते सूर्य को नमन, छठी मइया सबकी रक्षा करें",
+     "flux": "A huge orange setting sun over a calm river with bamboo soop baskets and diyas on the bank, no people"
+    },
+    "p3": {
+     "temple": "konark-sun-temple"
+    },
+    "p4": {
+     "img": 5,
+     "name": "Chhath Puja: Usha Arghya (kal bhor)",
+     "big": "कल उषा अर्घ्य",
+     "line": "जय छठी मइया 🙏",
+     "text": "भोर में उगते सूर्य देव को अर्घ्य",
+     "flux": "Rising sun over a misty river with a soop basket and a lit diya on the bank, no people"
+    }
    },
    "2026-11-16": {
     "p1img": 5,
-    "p2": { "img": 10, "name": "Chhath Puja: Usha Arghya", "big": "उषा अर्घ्य", "line": "जय सूर्य देव 🙏", "text": "उगते सूर्य को प्रणाम, सबके घर में उजाला हो", "flux": "Red-gold rising sun over a river at dawn, lotus flowers and a floating diya, no people" },
-    "p3": { "img": 6, "name": "Chhath Puja: Surya Dev", "big": "जय सूर्य देव", "line": "छठ महापर्व 🙏", "text": "सूर्य देव की कृपा से सबके जीवन में उजाला रहे", "flux": "Rows of lit clay diyas on river ghat steps at night with golden reflections, no people" },
-    "p4": { "img": 8, "name": "Chhath Puja: Parana", "big": "छठ पारण", "line": "जय छठी मइया 🙏", "text": "चार दिन का महापर्व पूरा, छठी मइया की जय", "flux": "Golden thekua and fruits on a bamboo soop with a lit diya, warm light, no people" }
+    "p2": {
+     "img": 10,
+     "name": "Chhath Puja: Usha Arghya",
+     "big": "उषा अर्घ्य",
+     "line": "जय सूर्य देव 🙏",
+     "text": "उगते सूर्य को प्रणाम, सबके घर में उजाला हो",
+     "flux": "Red-gold rising sun over a river at dawn, lotus flowers and a floating diya, no people"
+    },
+    "p3": {
+     "img": 6,
+     "name": "Chhath Puja: Surya Dev",
+     "big": "जय सूर्य देव",
+     "line": "छठ महापर्व 🙏",
+     "text": "सूर्य देव की कृपा से सबके जीवन में उजाला रहे",
+     "flux": "Rows of lit clay diyas on river ghat steps at night with golden reflections, no people"
+    },
+    "p4": {
+     "img": 8,
+     "name": "Chhath Puja: Parana",
+     "big": "छठ पारण",
+     "line": "जय छठी मइया 🙏",
+     "text": "चार दिन का महापर्व पूरा, छठी मइया की जय",
+     "flux": "Golden thekua and fruits on a bamboo soop with a lit diya, warm light, no people"
+    }
    }
   }
  }
