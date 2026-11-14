@@ -16,6 +16,11 @@
 # any other sps-* GPU kernel (lock), refuses under 8 GPU-hours left this week (the quota resets Sat 05:30 IST).
 # First bhajan batch: one run on Sat 14 Nov 2026 06:00 IST, right after the weekly quota reset (cron '30 0 14 11 *',
 # guarded to 2026 only), so the videos can use bhajans that weekend.
+# Resume (mode=import, job `import`; 14 Nov 2026: bhajan-2026w46's session sat QUEUED past the Wait step, finished later
+# and was never imported): for a batch whose music/lyrics/<batch>.batch.json is in the repo, `gen.mjs verify` checks that
+# the sps-music kernel's latest version runs exactly that batch, waits (up to 60 min) if it is still going, then fetch ->
+# QA gate -> import -> licence gate + tests -> commit. It never pushes a Kaggle session (no GPU time).
+#   gh workflow run music-weekly.yml -R sk9836413/shyam-premi-sn -f mode=import -f batch=bhajan-2026w46
 name: Music weekly batch
 
 on:
@@ -26,12 +31,16 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: vocals (AI bhajans), instrumental, or mantra (the mantra-jaap takes of the next 7 days)
+        description: vocals (AI bhajans), instrumental, mantra (the mantra-jaap takes of the next 7 days), or import (resume a finished bhajan session; no Kaggle push)
         type: choice
-        options: [vocals, instrumental, mantra]
+        options: [vocals, instrumental, mantra, import]
         default: vocals
       from:
         description: First day the bhajans are for (YYYY-MM-DD, IST; mantra mode - the day the next 7 days count from); empty = today
+        type: string
+        default: ''
+      batch:
+        description: mode import only - the bhajan batch (e.g. bhajan-2026w46); music/lyrics/<batch>.batch.json must be in the repo
         type: string
         default: ''
 
@@ -52,6 +61,9 @@ jobs:
     timeout-minutes: 200
     env:
       KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+    defaults:
+      run:
+        shell: bash  # = bash -eo pipefail: a failing import before `| tee` fails the step (14 Nov 2026 it was hidden)
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -64,6 +76,12 @@ jobs:
           from="${{ inputs.from }}"; [ -n "$from" ] || from=$(TZ=Asia/Kolkata date +%F)
           node music/bhajan-batch.mjs plan --from "$from" --out "$RUNNER_TEMP/plan.json" | tee -a "$GITHUB_STEP_SUMMARY"
           batch=$(node -p "require('$RUNNER_TEMP/plan.json').batch")
+          # A late schedule must not make the same week again (14 Nov 2026: the 06:00 IST one-off fired at 12:23 IST,
+          # after a manual run had already made bhajan-2026w46, and its push replaced that session's output).
+          if [ "${{ github.event_name }}" = schedule ] && [ -f "music/lyrics/$batch.batch.json" ]; then
+            echo "$batch was already made (music/lyrics/$batch.batch.json): skip. Re-make it with a manual vocals run, or import a finished session with mode=import." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
           cp "$RUNNER_TEMP/plan.json" "music/lyrics/$batch.plan.json"
           echo "batch=$batch" >> "$GITHUB_OUTPUT"
           echo "skip=false" >> "$GITHUB_OUTPUT"
@@ -112,15 +130,25 @@ jobs:
         run: |
           B=${{ steps.plan.outputs.batch }}
           node music/bhajan-batch.mjs batch --plan "music/lyrics/$B.plan.json" --lyrics "music/lyrics/$B.json" --out "music/lyrics/$B.batch.json" | tee -a "$GITHUB_STEP_SUMMARY"
-      - name: Kaggle CLI
+      - name: Kaggle CLI and ffmpeg
         if: steps.plan.outputs.skip != 'true'
-        run: pip install -q 'kaggle>=2.2' six
+        run: |
+          pip install -q 'kaggle>=2.2' six
+          # the import's loudness pass needs ffmpeg (not on the runner image: 14 Nov 2026 "loudness probe failed")
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
       - name: Push the Kaggle session
         if: steps.plan.outputs.skip != 'true'
         run: node music/gen.mjs push --batch "music/lyrics/${{ steps.plan.outputs.batch }}.batch.json" --code music/kaggle/bhajan_batch.py --push-dir "$RUNNER_TEMP/push" --lock-minutes 60 --needs-minutes 60 | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Wait
         if: steps.plan.outputs.skip != 'true'
-        run: node music/gen.mjs wait --minutes 75
+        run: |
+          # Kaggle's own queue gets its own budget (90 min), the run 60 min from its first RUNNING. Still queued / running
+          # at the end = exit 2: the batch JSON is committed below, import the finished session later with mode=import.
+          rc=0; node music/gen.mjs wait --minutes 60 --queue-minutes 90 || rc=$?
+          if [ "$rc" = 2 ]; then
+            echo "Kaggle session not finished yet: once it is, run \`gh workflow run music-weekly.yml -R ${{ github.repository }} -f mode=import -f batch=${{ steps.plan.outputs.batch }}\`" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+          exit "$rc"
       - name: Fetch, QA gate and import
         if: steps.plan.outputs.skip != 'true'
         run: |
@@ -143,6 +171,51 @@ jobs:
           for f in "music/lyrics/$B.json" "music/lyrics/$B.plan.json" "music/lyrics/$B.batch.json" "music/lyrics/$B.qa.json"; do [ -f "$f" ] && git add "$f"; done
           git diff --cached --quiet && { echo "nothing new"; exit 0; }
           git commit -qm "Music library: AI bhajans $B"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # Resume a bhajan batch whose Kaggle session finished after the `bhajan` job gave up (see the header). No push, no GPU.
+  import:
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'import'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      B: ${{ inputs.batch }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: The batch
+        run: |
+          [[ "$B" =~ ^bhajan-[0-9]{4}w[0-9]{2}[a-z0-9-]*$ ]] || { echo "input batch like bhajan-2026w46 needed (got '$B')"; exit 1; }
+          [ -f "music/lyrics/$B.batch.json" ] || { echo "music/lyrics/$B.batch.json is not in the repo"; exit 1; }
+      - name: Kaggle CLI and ffmpeg
+        run: |
+          pip install -q 'kaggle>=2.2' six
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - name: The kernel ran this batch, and has finished
+        run: |
+          node music/gen.mjs verify --batch "music/lyrics/$B.batch.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          node music/gen.mjs wait --now --minutes 60 --queue-minutes 60
+      - name: Fetch, QA gate and import
+        run: |
+          node music/gen.mjs fetch --to "$RUNNER_TEMP/out"
+          node music/bhajan-batch.mjs import --from "$RUNNER_TEMP/out" --batch "music/lyrics/$B.batch.json" --report "music/lyrics/$B.qa.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          node music/weekly.mjs prune --prefix bhajan- --keep 80
+          rm -rf "$RUNNER_TEMP/out"
+      - name: Licence gate and tests
+        run: node music/check-licences.mjs && node --test music/engine.test.mjs music/bhajan.test.mjs
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add music/library "music/lyrics/$B.qa.json"
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -qm "Music library: AI bhajans $B (resumed import)"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
   batch:

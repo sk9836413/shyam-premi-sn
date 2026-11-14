@@ -4,7 +4,9 @@
 //        (09:00-11:30 and 18:30-21:00 IST), while another sps-* GPU kernel runs (animate/kaggle.mjs lock), or with under
 //        --min-hours (default 8) of weekly GPU quota left; then pushes one private T4 session (stops itself after ~38 min)
 //   node music/gen.mjs status
-//   node music/gen.mjs wait [--minutes 55]                         -> exit 0 once the session is COMPLETE
+//   node music/gen.mjs wait [--minutes 55] [--queue-minutes 90] [--now] -> exit 0 once the session is COMPLETE, 1 ERROR /
+//        cancelled, 2 still QUEUED after --queue-minutes or RUNNING for over --minutes (import later: mode=import)
+//   node music/gen.mjs verify --batch <batch.json>                 -> exit 0 if the kernel's latest version runs this batch
 //   node music/gen.mjs fetch --to <dir>                            -> results.json + <id>.mp3 (+ <id>.vocals.mp3)
 //   node music/gen.mjs import --from <dir> --batch <batch.json> [--vocals]
 //        -> tracks that pass QA (duration, loudness, true peak, clipping; vocals also Whisper CER) go to music/library/
@@ -72,16 +74,79 @@ function push() {
   process.exit(r.ok && /successfully pushed/i.test(r.out) ? 0 : 1);
 }
 
+// The CLI's status line ("sk9846413/sps-music has status \"KernelWorkerStatus.QUEUED\"", older CLIs: "queued") -> QUEUED,
+// RUNNING, COMPLETE, ERROR, CANCEL_REQUESTED, CANCEL_ACKNOWLEDGED, NEW_SCRIPT; '' when the call failed (API hiccup).
+export function kernelState(out) {
+  return (String(out || '').match(/has status\s*"?(?:KernelWorkerStatus\.)?([A-Za-z_]+)"?/i)?.[1] || '').toUpperCase();
+}
+
+/**
+ * One poll of `wait` (bhajan-2026w46, 14 Nov 2026: the session sat QUEUED past the old flat 75 min, the step failed and
+ * the finished takes were never imported). The queue has its own budget (--queue-minutes); the run budget (--minutes)
+ * counts from the first RUNNING. Empty / unknown states (API errors) keep the last known state.
+ * Returns { state, verdict: 'wait' | 'complete' | 'failed' | 'queued-too-long' | 'run-too-long', runningSince }.
+ */
+export function waitStep({ seen, last = '', now, t0, runningSince = null, runMinutes, queueMinutes }) {
+  const state = /^(QUEUED|RUNNING|COMPLETE|ERROR|CANCEL_?REQUESTED|CANCEL_?ACKNOWLEDGED|NEW_?SCRIPT)$/.test(seen || '') ? seen : last;
+  if (state === 'RUNNING' && runningSince == null) runningSince = now;
+  if (state === 'COMPLETE') return { state, verdict: 'complete', runningSince };
+  if (/^(ERROR|CANCEL)/.test(state)) return { state, verdict: 'failed', runningSince };
+  if (runningSince != null) return { state, verdict: now - runningSince > runMinutes * 60e3 ? 'run-too-long' : 'wait', runningSince };
+  return { state, verdict: now - t0 > queueMinutes * 60e3 ? 'queued-too-long' : 'wait', runningSince };
+}
+
+// wait [--minutes 55] [--queue-minutes 90] [--now]: exit 0 COMPLETE, 1 ERROR / cancelled, 2 still queued / running at the
+// end (the session usually finishes later: import it then with music-weekly.yml mode=import). --now polls at once (resume);
+// right after a push the first poll waits a minute, so the previous version's COMPLETE is never read.
 async function wait() {
-  const until = Date.now() + Number(opt('--minutes', 55)) * 60e3;
-  let st = '';
-  while (Date.now() < until) {
-    await new Promise((r) => setTimeout(r, 60e3));
-    st = (kaggle('kernels', 'status', KERNEL).out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || st).toUpperCase();
-    if (/COMPLETE|ERROR|CANCEL/.test(st)) break;
+  const t0 = Date.now();
+  const runMinutes = Number(opt('--minutes', 55));
+  const queueMinutes = Number(opt('--queue-minutes', 90));
+  let s = { state: '', verdict: 'wait', runningSince: null };
+  let first = true, errors = 0;
+  for (;;) {
+    if (!(first && args.includes('--now'))) await new Promise((r) => setTimeout(r, 60e3));
+    first = false;
+    const seen = kernelState(kaggle('kernels', 'status', KERNEL).out);
+    if (!seen) errors += 1;
+    const prev = s.state;
+    s = waitStep({ seen, last: s.state, now: Date.now(), t0, runningSince: s.runningSince, runMinutes, queueMinutes });
+    if (s.state !== prev) console.log(`${new Date().toISOString()} ${s.state || 'unknown'}`);
+    if (s.verdict !== 'wait') break;
   }
-  console.log(JSON.stringify({ status: st || 'unknown' }));
-  process.exit(st === 'COMPLETE' ? 0 : 1);
+  console.log(JSON.stringify({ status: s.state || 'unknown', verdict: s.verdict, minutes: Math.round((Date.now() - t0) / 6e4), api_errors: errors }));
+  process.exit(s.verdict === 'complete' ? 0 : s.verdict === 'failed' ? 1 : 2);
+}
+
+/** The jobs embedded in a pushed kernel script (JOBS = json.loads(r'''...''')), or null. */
+export function jobsInSource(src) {
+  const m = String(src || '').match(/JOBS = json\.loads\(r'''([\s\S]*?)'''\)/);
+  try { return m ? JSON.parse(m[1]) : null; } catch { return null; }
+}
+
+/** Does the kernel's current version run exactly this batch (same ids, seeds, lyrics, durations)? [] = yes, else reasons. */
+export function sameBatch(kernelJobs, batch) {
+  if (!kernelJobs) return ['no JOBS found in the kernel source'];
+  const key = (j) => JSON.stringify([j.id, j.seeds, j.lyrics, j.duration]);
+  const want = resolveJobs(batch).map(key), got = kernelJobs.map(key);
+  const why = [];
+  if (want.length !== got.length) why.push(`kernel has ${got.length} jobs, the batch ${want.length}`);
+  const missing = want.filter((k) => !got.includes(k)).map((k) => JSON.parse(k)[0]);
+  if (missing.length) why.push(`differs from the batch for: ${missing.join(', ')}`);
+  return why;
+}
+
+// verify --batch <file>: the kernel's latest version is this batch (resume safety: never import another batch's takes).
+function verify() {
+  const batch = JSON.parse(fs.readFileSync(opt('--batch'), 'utf8'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sps-music-pull-'));
+  const r = kaggle('kernels', 'pull', KERNEL, '-p', dir);
+  const py = r.ok ? fs.readdirSync(dir).filter((f) => f.endsWith('.py')) : [];
+  const jobs = py.map((f) => jobsInSource(fs.readFileSync(path.join(dir, f), 'utf8'))).find(Boolean) || null;
+  fs.rmSync(dir, { recursive: true, force: true });
+  const why = r.ok ? sameBatch(jobs, batch) : [`kernels pull failed: ${r.out.trim().split('\n').pop()}`];
+  console.log(JSON.stringify({ kernel: KERNEL, batch: batch.batch, same: !why.length, why }));
+  process.exit(why.length ? 4 : 0);
 }
 
 function fetchOut() {
@@ -152,6 +217,7 @@ function importBatch() {
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   if (cmd === 'push') push();
   else if (cmd === 'wait') await wait();
+  else if (cmd === 'verify') verify();
   else if (cmd === 'fetch') fetchOut();
   else if (cmd === 'import') importBatch();
   else console.log(kaggle('kernels', 'status', KERNEL).out.trim());

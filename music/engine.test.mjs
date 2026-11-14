@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { checkLibrary, historyFrom, istWindowBlocked, loadLibrary, moodFor, musicFor, pickTrack, sha256, validateLicence } from './engine.mjs';
-import { passesQa, resolveJobs } from './gen.mjs';
+import { jobsInSource, kernelState, passesQa, resolveJobs, sameBatch, waitStep } from './gen.mjs';
 import { isoWeek, prune, weeklyBatch } from './weekly.mjs';
 
 const T = (id, moods) => ({ id, moods });
@@ -176,4 +176,32 @@ test('weekly batch: fresh seeds per ISO week, rotating prompts; prune keeps the 
   }
   assert.deepEqual(prune(dir, 2), ['gen-a']);
   assert.deepEqual(fs.readdirSync(dir).sort(), ['cc-x.licence.json', 'cc-x.ogg', 'gen-b.licence.json', 'gen-b.ogg', 'gen-c.licence.json', 'gen-c.ogg']);
+});
+
+test('wait: a long Kaggle queue has its own budget, API hiccups keep the last state, the run budget starts at RUNNING', () => {
+  assert.equal(kernelState('sk9846413/sps-music has status "KernelWorkerStatus.QUEUED"'), 'QUEUED');
+  assert.equal(kernelState('sk9846413/sps-music has status "complete"'), 'COMPLETE');
+  assert.equal(kernelState('429 Client Error: Too Many Requests'), '');
+  const m = 60e3, base = { t0: 0, runMinutes: 60, queueMinutes: 90 };
+  // 14 Nov 2026 (bhajan-2026w46): 75 min QUEUED used to fail the step; now it keeps waiting
+  assert.equal(waitStep({ ...base, seen: 'QUEUED', now: 76 * m }).verdict, 'wait');
+  assert.equal(waitStep({ ...base, seen: '', last: 'QUEUED', now: 80 * m }).state, 'QUEUED');
+  assert.equal(waitStep({ ...base, seen: 'QUEUED', now: 91 * m }).verdict, 'queued-too-long');
+  const r = waitStep({ ...base, seen: 'RUNNING', last: 'QUEUED', now: 85 * m });
+  assert.deepEqual([r.verdict, r.runningSince], ['wait', 85 * m]);
+  assert.equal(waitStep({ ...base, seen: 'RUNNING', now: 120 * m, runningSince: 85 * m }).verdict, 'wait');
+  assert.equal(waitStep({ ...base, seen: 'RUNNING', now: 146 * m, runningSince: 85 * m }).verdict, 'run-too-long');
+  assert.equal(waitStep({ ...base, seen: 'COMPLETE', now: 130 * m, runningSince: 85 * m }).verdict, 'complete');
+  assert.equal(waitStep({ ...base, seen: 'CANCEL_ACKNOWLEDGED', now: 5 * m }).verdict, 'failed');
+  assert.equal(waitStep({ ...base, seen: 'ERROR', now: 5 * m }).verdict, 'failed');
+  assert.equal(waitStep({ ...base, seen: 'WEIRD', last: 'RUNNING', now: 5 * m, runningSince: 2 * m }).state, 'RUNNING');
+});
+
+test('resume: the kernel source must run exactly the batch being imported', () => {
+  const batch = { singer: { male: 'm' }, jobs: [{ id: 'b-x-01-khatu', kind: 'vocal', seeds: [1, 2], lyrics: 'श्याम', duration: 50, caption: 'c', singer: 'male' }] };
+  const src = (jobs) => `import json\nJOBS = json.loads(r'''${JSON.stringify(jobs)}''')\n`;
+  assert.deepEqual(sameBatch(jobsInSource(src(resolveJobs(batch))), batch), []);
+  const other = resolveJobs({ ...batch, jobs: [{ ...batch.jobs[0], lyrics: 'भोले' }] });
+  assert.match(sameBatch(jobsInSource(src(other)), batch).join(), /b-x-01-khatu/);
+  assert.deepEqual(sameBatch(jobsInSource('no jobs here'), batch), ['no JOBS found in the kernel source']);
 });
