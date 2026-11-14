@@ -14,6 +14,23 @@
         "at": "2026-11-14T03:44:23.247Z"
       },
       "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-14-morning.jpg"
+    },
+    {
+      "key": "video",
+      "type": "video",
+      "source": "2026-11-14-morning-chhath-kharna-geet",
+      "fb": {
+        "claim": {
+          "run": "43558069026.1",
+          "at": "2026-11-14T04:44:49.771Z"
+        }
+      },
+      "ig": {
+        "claim": {
+          "run": "43558069026.1",
+          "at": "2026-11-14T04:44:49.771Z"
+        }
+      }
     }
   ]
 }
