@@ -64,3 +64,4 @@
 2026-11-14 | morning | 2026-11-14-morning-chhath-kharna-geet | Chhath Puja (Kharna) | Chhath bhajan Short "Kharna Geet 2026", song bhajan-chhath26g-02-devi (AI-sung original, whole soundtrack), public on upload IST
 2026-11-14 | eve | 2026-11-14-eve-chhath-sandhya-arghya | Chhath Puja (Sandhya Arghya) | status Short variant 1 "Chhath Sandhya Arghya Status 2026" (15-25 s loop, download link), public 20:00 IST
 2026-11-15 | status | 2026-11-15-status-chhath-puja | Chhath Puja (Sandhya Arghya) | status Short variant 2 "Chhath Puja Status 2026" (15-25 s loop, download link), public 00:30 IST
+2026-11-15 | morning | 2026-11-15-morning-chhath-sandhya-arghya-geet | Chhath Puja (Sandhya Arghya) | Chhath bhajan Short "Sandhya Arghya Geet 2026", song bhajan-chhath26e-05-devi (AI-sung original, whole soundtrack), public 05:45 IST
