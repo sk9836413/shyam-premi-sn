@@ -100,3 +100,4 @@
 - 2026-11-15-status-chhath-puja | youtube: https://youtube.com/shorts/ApLEEo7cXZ4 (public at 2026-11-14T19:00:00.000Z) | status variant, made 14 Nov 11:27 IST | social: fb: https://www.facebook.com/reel/937060566004214 (scheduled 2026-11-14T19:00:00.000Z) | ig: pending 2026-11-14T19:00:00.000Z
 - 2026-11-15-morning-chhath-sandhya-arghya-geet | claim: 2026-11-15 morning by run 43598951826.1 at 2026-11-14T13:21:41.919Z
 - 2026-11-15-morning-chhath-sandhya-arghya-geet | youtube: https://youtube.com/shorts/k_0RgLM43MU (public at 2026-11-15T00:15:00.000Z) | bhajan Short, made 14 Nov 18:51 IST | social: fb: https://www.facebook.com/reel/4104682803169139 (scheduled 2026-11-15T00:30:00.000Z) | ig: pending 2026-11-15T00:30:00.000Z
+- 2026-11-14-eve-chhath-sandhya-arghya | instagram: https://www.instagram.com/reel/Dfu0uj8NDK_/
