@@ -32,6 +32,23 @@
         "story": 59
       },
       "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-14-video.mp4"
+    },
+    {
+      "key": "festival",
+      "type": "image",
+      "source": "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-14-2-1.jpg",
+      "fb": {
+        "claim": {
+          "run": "43560460661.1",
+          "at": "2026-11-14T05:13:30.121Z"
+        }
+      },
+      "ig": {
+        "claim": {
+          "run": "43560460661.1",
+          "at": "2026-11-14T05:13:30.121Z"
+        }
+      }
     }
   ]
 }
