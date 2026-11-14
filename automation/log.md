@@ -62,3 +62,4 @@
 2026-11-13 | bhajan | 2026-11-13-bhajan-chhath-nahay-khay-geet | Chhath Puja (Nahay Khay) | Chhath bhajan Short "Chhath Puja Song 2026", song bhajan-chhath26d-01-devi (AI-sung original, whole soundtrack), public 19:45 IST
 2026-11-14 | long | 2026-11-14-long-chhath-geet-nonstop | Chhathi Maiya / Surya dev (Chhath Puja 2026) | Chhath Geet 2026 Nonstop jukebox: 10 original AI-sung Chhath bhajans back to back, chapters per song, public 12:30 IST
 2026-11-14 | morning | 2026-11-14-morning-chhath-kharna-geet | Chhath Puja (Kharna) | Chhath bhajan Short "Kharna Geet 2026", song bhajan-chhath26g-02-devi (AI-sung original, whole soundtrack), public on upload IST
+2026-11-14 | eve | 2026-11-14-eve-chhath-sandhya-arghya | Chhath Puja (Sandhya Arghya) | status Short variant 1 "Chhath Sandhya Arghya Status 2026" (15-25 s loop, download link), public 20:00 IST
