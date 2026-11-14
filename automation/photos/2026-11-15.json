@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-15",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-4.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-15T01:00:00.000Z",
+      "igAt": "2026-11-15T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-15-1-1.jpg"
+      ],
+      "caption": "Chhath Puja ki hardik shubhkamnayein 🙏\nAaj chhath ka mukhya din hai, shaam ko vrati dubte suraj ko arghya denge.\nछठी मैया और सूर्य देव की कृपा आप सब पर बनी रहे।\nAapke ghar ya parivar mein Chhath ki sabse pyari yaad kaunsi hai?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#ChhathPuja #ChhathiMaiya #SuryaDev #ChhathMahaparv #Bhakti #Chhath2026",
+      "fbCaption": "छठ पूजा की हार्दिक शुभकामनाएं 🙏 क्या आपके घर में इस बार छठ का व्रत हो रहा है?\nआज छठ का मुख्य दिन है, शाम को व्रती डूबते सूर्य को अर्घ्य देंगे।\nछठी मैया और सूर्य देव की कृपा सब पर बनी रहे।\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#ChhathPuja #ChhathiMaiya #Bhakti",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1606374874838810",
+        "scheduled": "2026-11-15T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-15T03:43:00.000Z"
+      }
+    },
+    {
+      "n": 2,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-3.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": null,
+      "igAt": "2026-11-15T05:13:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-15-2-1.jpg"
+      ],
+      "caption": "Aaj Chhath ka Sandhya Arghya hai.\nघाट पर दीपक, सूप और गन्ने के बीच डूबते सूर्य को नमन।\nChhathi Maiya sabki raksha karein.\nAap aaj shaam kis ghat par arghya denge ya dekhne jayenge?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#ChhathPuja #ChhathiMaiya #SuryaDev #SandhyaArghya #Bhakti #Chhath2026",
+      "fb": {
+        "skipped": "Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)"
+      },
+      "ig": {
+        "pending": "2026-11-15T05:13:00.000Z"
+      }
+    },
+    {
+      "n": 3,
+      "kind": "facts",
+      "temple": "konark-sun-temple",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/konark-sun-temple/commons-konark-sun-temple-2024-2-a5e64d.jpg",
+        "footage/konark-sun-temple/commons-sun-temple-odisha-53620c.jpg",
+        "footage/konark-sun-temple/commons-konark-temple-view-391115.jpg",
+        "footage/konark-sun-temple/commons-konark-wheel-in-konark-temple-51eeb5.jpg"
+      ],
+      "source": "claude",
+      "fbAt": null,
+      "igAt": "2026-11-15T13:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-15-3-1.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-15-3-2.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-15-3-3.jpg",
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-15-3-4.jpg"
+      ],
+      "caption": "Odisha ka Konark Sun Temple pathar mein bana Surya dev ka rath hai.\nChhath ke in dinon mein suryopasana ki yaad aur gehri ho jati hai.\nकोणार्क के पहिये और घोड़े आज भी लोगों को हैरान करते हैं।\nSwipe karke teen baatein padhiye.\nAapne Konark ya Odisha ka koi mandir kabhi dekha hai?\n\n📷 Photo: Dev Jadiya, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Konark_Sun_Temple_2024_2.jpg\n📷 Photo: Thenerdatul, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Sun_Temple_odisha.jpg\n📷 Photo: Dipranjan Gupta, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Konark_temple_view.jpg\n📷 Photo: Shiva16pixels, CC BY 4.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Konark_Wheel_in_Konark_Temple.jpg\n\n#Konark #KonarkSunTemple #SuryaDev #Odisha #IncredibleIndia #TempleArchitecture #KhatuShyam",
+      "fb": {
+        "skipped": "Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)"
+      },
+      "ig": {
+        "pending": "2026-11-15T13:16:00.000Z"
+      }
+    },
+    {
+      "n": 4,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-5.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": null,
+      "igAt": "2026-11-15T14:16:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-15-4-1.jpg"
+      ],
+      "caption": "Kal bhor Chhath ka Usha Arghya hai.\nउगते सूर्य देव को अर्घ्य देकर चार दिन का यह व्रत पूरा होता है.\nChhathi Maiya sab par kripa banaye rakhein.\nKal subah aap ghat par kis samay pahunchte hain?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#ChhathPuja #ChhathiMaiya #SuryaDev #UshaArghya #Bhakti #Chhath2026",
+      "fb": {
+        "skipped": "Instagram only (Facebook gets 1 photo a day: post 1, 06:30 IST)"
+      },
+      "ig": {
+        "pending": "2026-11-15T14:16:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

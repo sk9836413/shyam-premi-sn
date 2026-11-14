@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-15",
+  "posts": {
+    "1": {
+      "big": "छठ पूजा",
+      "line": "की शुभकामनाएं 🙏",
+      "place": "छठ महापर्व, मुख्य दिन",
+      "text": "छठी मैया और सूर्य देव की कृपा बनी रहे",
+      "caption": "Chhath Puja ki hardik shubhkamnayein 🙏\nAaj chhath ka mukhya din hai, shaam ko vrati dubte suraj ko arghya denge.\nछठी मैया और सूर्य देव की कृपा आप सब पर बनी रहे।\nAapke ghar ya parivar mein Chhath ki sabse pyari yaad kaunsi hai?",
+      "hashtags": ["#ChhathPuja", "#ChhathiMaiya", "#SuryaDev", "#ChhathMahaparv", "#Bhakti", "#Chhath2026"],
+      "fb_caption": "छठ पूजा की हार्दिक शुभकामनाएं 🙏 क्या आपके घर में इस बार छठ का व्रत हो रहा है?\nआज छठ का मुख्य दिन है, शाम को व्रती डूबते सूर्य को अर्घ्य देंगे।\nछठी मैया और सूर्य देव की कृपा सब पर बनी रहे।\n\n#ChhathPuja #ChhathiMaiya #Bhakti"
+    },
+    "2": {
+      "big": "संध्या अर्घ्य",
+      "line": "जय सूर्य देव 🙏",
+      "place": "छठ पूजा का संध्या अर्घ्य",
+      "text": "डूबते सूर्य को नमन, छठी मइया सबकी रक्षा करें",
+      "caption": "Aaj Chhath ka Sandhya Arghya hai.\nघाट पर दीपक, सूप और गन्ने के बीच डूबते सूर्य को नमन।\nChhathi Maiya sabki raksha karein.\nAap aaj shaam kis ghat par arghya denge ya dekhne jayenge?",
+      "hashtags": ["#ChhathPuja", "#ChhathiMaiya", "#SuryaDev", "#SandhyaArghya", "#Bhakti", "#Chhath2026"]
+    },
+    "3": {
+      "title": "कोणार्क सूर्य मंदिर",
+      "line": "3 बातें जो शायद आप नहीं जानते",
+      "facts": [
+        {
+          "dev": "यह मंदिर 13वीं सदी में पूर्वी गंग वंश के राजा नरसिंहदेव प्रथम ने बनवाया था।",
+          "roman": "Yeh mandir 13vi sadi mein Purvi Ganga vansh ke raja Narasimhadeva pratham ne banwaya tha."
+        },
+        {
+          "dev": "मंदिर सूर्य देव के रथ के रूप में बना है, जिसके चबूतरे पर 24 पहिये उकेरे गए हैं।",
+          "roman": "Mandir Surya dev ke rath ke roop mein bana hai, jiske chabutre par 24 pahiye ukere gaye hain."
+        },
+        {
+          "dev": "मान्यता है कि सूर्य देव का रथ सात घोड़े खींचते हैं, इसीलिए रथ के आगे सात घोड़े हैं।",
+          "roman": "Manyata hai ki Surya dev ka rath saat ghode kheenchte hain, isliye rath ke aage saat ghode dikhaye gaye hain."
+        }
+      ],
+      "sources": [
+        "https://livehistoryindia.com/story/monuments/sun-temple-konark",
+        "https://www.veenaworld.com/blog/konark-sun-temple-history-architecture-and-information"
+      ],
+      "caption": "Odisha ka Konark Sun Temple pathar mein bana Surya dev ka rath hai.\nChhath ke in dinon mein suryopasana ki yaad aur gehri ho jati hai.\nकोणार्क के पहिये और घोड़े आज भी लोगों को हैरान करते हैं।\nSwipe karke teen baatein padhiye.\nAapne Konark ya Odisha ka koi mandir kabhi dekha hai?",
+      "hashtags": ["#Konark", "#KonarkSunTemple", "#SuryaDev", "#Odisha", "#IncredibleIndia", "#TempleArchitecture", "#KhatuShyam"]
+    },
+    "4": {
+      "big": "कल उषा अर्घ्य",
+      "line": "जय छठी मइया 🙏",
+      "place": "छठ पूजा का उषा अर्घ्य, कल भोर",
+      "text": "भोर में उगते सूर्य देव को अर्घ्य",
+      "caption": "Kal bhor Chhath ka Usha Arghya hai.\nउगते सूर्य देव को अर्घ्य देकर चार दिन का यह व्रत पूरा होता है.\nChhathi Maiya sab par kripa banaye rakhein.\nKal subah aap ghat par kis samay pahunchte hain?",
+      "hashtags": ["#ChhathPuja", "#ChhathiMaiya", "#SuryaDev", "#UshaArghya", "#Bhakti", "#Chhath2026"]
+    }
+  }
+}

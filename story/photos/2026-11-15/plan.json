@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-15",
+  "weekday": "Ravivar",
+  "festival": "छठी मैया और सूर्य देव की कृपा बनी रहे",
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-15T01:00:00.000Z",
+      "igAt": "2026-11-15T03:43:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "chhath",
+        "name": "Chhath Puja: Sandhya Arghya (main day); Chhath Sandhya Arghya; Chhath Puja (status Shorts: eve 11-14 20:00, status 11-15 00:30).",
+        "big": "छठ पूजा",
+        "line": "की शुभकामनाएं 🙏",
+        "blessing": "छठी मैया और सूर्य देव की कृपा बनी रहे",
+        "tags": [
+          "#ChhathPuja",
+          "#ChhathiMaiya",
+          "#SuryaDev"
+        ]
+      },
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-4.jpg",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    },
+    {
+      "n": 2,
+      "fbAt": null,
+      "igAt": "2026-11-15T05:13:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "chhath",
+        "name": "Chhath Puja: Sandhya Arghya",
+        "big": "संध्या अर्घ्य",
+        "line": "जय सूर्य देव 🙏",
+        "blessing": "डूबते सूर्य को नमन, छठी मइया सबकी रक्षा करें",
+        "tags": [
+          "#ChhathPuja",
+          "#ChhathiMaiya",
+          "#SuryaDev"
+        ]
+      },
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-3.jpg",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 3,
+      "fbAt": null,
+      "igAt": "2026-11-15T13:16:00.000Z",
+      "kind": "facts",
+      "temple": "konark-sun-temple",
+      "templeName": "Konark Sun Temple, Odisha",
+      "category": "surya",
+      "photos": [
+        {
+          "file": "footage/konark-sun-temple/commons-konark-sun-temple-2024-2-a5e64d.jpg",
+          "credit": "Photo: Dev Jadiya, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Konark_Sun_Temple_2024_2.jpg",
+          "licence": "CC BY 4.0",
+          "author": "Dev Jadiya",
+          "title": "File:Konark Sun Temple 2024 2.jpg"
+        },
+        {
+          "file": "footage/konark-sun-temple/commons-sun-temple-odisha-53620c.jpg",
+          "credit": "Photo: Thenerdatul, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Sun_Temple_odisha.jpg",
+          "licence": "CC BY 4.0",
+          "author": "Thenerdatul",
+          "title": "File:Sun Temple odisha.jpg"
+        },
+        {
+          "file": "footage/konark-sun-temple/commons-konark-temple-view-391115.jpg",
+          "credit": "Photo: Dipranjan Gupta, CC0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Konark_temple_view.jpg",
+          "licence": "CC0",
+          "author": "Dipranjan Gupta",
+          "title": "File:Konark temple view.jpg"
+        },
+        {
+          "file": "footage/konark-sun-temple/commons-konark-wheel-in-konark-temple-51eeb5.jpg",
+          "credit": "Photo: Shiva16pixels, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Konark_Wheel_in_Konark_Temple.jpg",
+          "licence": "CC BY 4.0",
+          "author": "Shiva16pixels",
+          "title": "File:Konark Wheel in Konark Temple.jpg"
+        }
+      ],
+      "write": [
+        "title",
+        "line",
+        "facts",
+        "sources",
+        "caption",
+        "hashtags"
+      ]
+    },
+    {
+      "n": 4,
+      "fbAt": null,
+      "igAt": "2026-11-15T14:16:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "chhath",
+        "name": "Chhath Puja: Usha Arghya (kal bhor)",
+        "big": "कल उषा अर्घ्य",
+        "line": "जय छठी मइया 🙏",
+        "blessing": "भोर में उगते सूर्य देव को अर्घ्य",
+        "tags": [
+          "#ChhathPuja",
+          "#ChhathiMaiya",
+          "#SuryaDev"
+        ]
+      },
+      "bank": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-5.jpg",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags"
+      ]
+    }
+  ]
+}
