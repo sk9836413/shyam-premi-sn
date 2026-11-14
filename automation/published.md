@@ -96,3 +96,4 @@
 - 2026-11-14-morning-chhath-kharna-geet | youtube: https://youtube.com/shorts/xA2nk9Tjddk (public now) | bhajan Short, made 14 Nov 09:19 IST | social: fb: https://www.facebook.com/reel/2311311419410733 (scheduled 2026-11-14T05:00:00.000Z) | ig: error upload failed: Request processing failed
 - 2026-11-14-eve-chhath-sandhya-arghya | claim: 2026-11-14 eve by run 43560460661.1 at 2026-11-14T05:55:11.439Z
 - 2026-11-14-eve-chhath-sandhya-arghya | youtube: https://youtube.com/shorts/ce6VM-iSce8 (public at 2026-11-14T14:30:00.000Z) | status variant, made 14 Nov 11:25 IST | social: fb: https://www.facebook.com/reel/1115530287857775 (scheduled 2026-11-14T14:30:00.000Z) | ig: pending 2026-11-14T14:30:00.000Z
+- 2026-11-15-status-chhath-puja | claim: 2026-11-15 status by run 43560460661.1 at 2026-11-14T05:57:03.087Z
