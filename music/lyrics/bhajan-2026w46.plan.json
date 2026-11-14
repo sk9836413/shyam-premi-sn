@@ -1,0 +1,142 @@
+{
+ "batch": "bhajan-2026w46",
+ "from": "2026-11-14",
+ "to": "2026-11-21",
+ "count": 13,
+ "songs": [
+  {
+   "slot": 1,
+   "deity": "khatu",
+   "mood": "thaath",
+   "festival": "janmotsav",
+   "festival_name": {
+    "en": "Shyam Baba Janmotsav",
+    "hi": "श्याम बाबा जन्मोत्सव"
+   },
+   "festival_date": "2026-11-20",
+   "deity_name": "Khatu Shyam ji",
+   "bpm": 124
+  },
+  {
+   "slot": 2,
+   "deity": "khatu",
+   "mood": "bhaavuk",
+   "festival": "janmotsav",
+   "festival_name": {
+    "en": "Shyam Baba Janmotsav",
+    "hi": "श्याम बाबा जन्मोत्सव"
+   },
+   "festival_date": "2026-11-20",
+   "deity_name": "Khatu Shyam ji",
+   "bpm": 80
+  },
+  {
+   "slot": 3,
+   "deity": "vishnu",
+   "mood": "thaath",
+   "festival": "tulsi",
+   "festival_name": {
+    "en": "Tulsi Shaligram Vivah",
+    "hi": "तुलसी शालिग्राम विवाह"
+   },
+   "festival_date": "2026-11-21",
+   "deity_name": "Vishnu ji / Tulsi",
+   "bpm": 132
+  },
+  {
+   "slot": 4,
+   "deity": "khatu",
+   "mood": "thaath",
+   "festival": null,
+   "deity_name": "Khatu Shyam ji",
+   "bpm": 126
+  },
+  {
+   "slot": 5,
+   "deity": "khatu",
+   "mood": "bhaavuk",
+   "festival": null,
+   "deity_name": "Khatu Shyam ji",
+   "bpm": 76
+  },
+  {
+   "slot": 6,
+   "deity": "shiv",
+   "mood": "thaath",
+   "festival": null,
+   "deity_name": "Mahadev / Bhole",
+   "bpm": 124
+  },
+  {
+   "slot": 7,
+   "deity": "hanuman",
+   "mood": "thaath",
+   "festival": null,
+   "deity_name": "Hanuman ji / Salasar Balaji",
+   "bpm": 128
+  },
+  {
+   "slot": 8,
+   "deity": "khatu",
+   "mood": "thaath",
+   "festival": null,
+   "deity_name": "Khatu Shyam ji",
+   "bpm": 132
+  },
+  {
+   "slot": 9,
+   "deity": "krishna",
+   "mood": "bhaavuk",
+   "festival": null,
+   "subject": "Krishna mantra bhajan: the chorus may use a public-domain mantra (\"हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे, हरे राम हरे राम राम राम हरे हरे\" or \"ॐ नमो भगवते वासुदेवाय\"; name it in public_domain_text); the verses are your own",
+   "deity_name": "Krishna / Kanha",
+   "bpm": 76
+  },
+  {
+   "slot": 10,
+   "deity": "ganesh",
+   "mood": "thaath",
+   "festival": null,
+   "deity_name": "Ganesh ji",
+   "bpm": 130
+  },
+  {
+   "slot": 11,
+   "deity": "khatu",
+   "mood": "bhaavuk",
+   "festival": null,
+   "deity_name": "Khatu Shyam ji",
+   "bpm": 72
+  },
+  {
+   "slot": 12,
+   "deity": "shiv",
+   "mood": "bhaavuk",
+   "festival": null,
+   "deity_name": "Mahadev / Bhole",
+   "bpm": 84
+  },
+  {
+   "slot": 13,
+   "deity": "hanuman",
+   "mood": "bhaavuk",
+   "festival": null,
+   "deity_name": "Hanuman ji / Salasar Balaji",
+   "bpm": 76
+  }
+ ],
+ "avoid_first_lines": [
+  "नहाय खाय के पावन दिन, छठी मइया आईं",
+  "चलो चलो घाट पे, छठी मइया के द्वार",
+  "भोर भइल, घाट सजल, छठी मइया के जय",
+  "जय हो सूरज देव, जगमग जग उजियार",
+  "खरना के खीर पकल, छठी मइया के भोग",
+  "डूबत सुरुज के लाली में, छठी मइया के ध्यान",
+  "पूरब में लाली छाइल, छठी मइया के घाट",
+  "माई के घाट पे, छठी मइया के नाम",
+  "नहाय खाय से शुरू भइल, छठी मइया के परब",
+  "सांझ भइल खरना के, छठी मइया आईं",
+  "छठी मइया तोहर किरपा, पूरा भइल व्रत",
+  "जय श्री श्याम, जय श्री श्याम"
+ ]
+}
