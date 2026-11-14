@@ -1,5 +1,5 @@
 {
- "about": "Chhath Puja 2026 date-scoped override (owner, 13 Nov 2026: original Chhath bhajans from today, 2-3 Chhath bhajan videos a day 14-16 Nov, and EVERY upload of 13-16 Nov Chhath themed). Read by scripts/day-plan.mjs (slots + long subject), scripts/bhajan-short.mjs (the bhajan Shorts) and scripts/photos.mjs (photo posts). Dates outside `days` are never touched; delete this file after 16 Nov 2026 or leave it (it only matches its own dates). Caps unchanged: 3 Shorts + 1 long per IST date (+1 Short on EXTRA_UPLOAD_DAY).",
+ "about": "Chhath Puja 2026 date-scoped override (owner, 13 Nov 2026: original Chhath bhajans from today, 2-3 Chhath bhajan videos a day 14-16 Nov, and EVERY upload of 13-16 Nov Chhath themed). Read by scripts/day-plan.mjs (slots + long subject), scripts/bhajan-short.mjs (the bhajan Shorts) and scripts/photos.mjs (photo posts). Dates outside `days` are never touched; delete this file after 16 Nov 2026 or leave it (it only matches its own dates). Caps unchanged: 3 Shorts + 1 long per IST date (+1 Short on EXTRA_UPLOAD_DAY). Times (owner, 14 Nov 2026: \"Bhajan subah subah hi bajate h log\"): a morning bhajan Short is public at 05:45 IST (rendered the evening before; `at` null = on render, only 14 Nov), a jukebox long at 05:30; scripts/day-plan.mjs bhajanAt / DAWN.",
  "festival": "chhath",
  "hashtag": "#ChhathPuja",
  "days": {
@@ -89,7 +89,8 @@
     "morning": {
      "kind": "bhajan",
      "day": "sandhya-arghya",
-     "at": null,
+     "at": "05:45",
+     "render": "the evening before (daily.yml evening-slot runs from 17:00 IST: the 18:46 IST scheduler dispatch, evening polls; photos.yml dispatches slot=dawn at 19:46 IST); Facebook Reel 06:00, Instagram on the first trigger after 06:00",
      "title": "Sandhya Arghya Geet 2026 | Chhath Puja Song | संध्या अर्घ्य छठ गीत #Shorts",
      "hook": "छठ संध्या अर्घ्य 🙏",
      "kicker": "Sandhya Arghya Geet",
@@ -119,7 +120,8 @@
     "morning": {
      "kind": "bhajan",
      "day": "usha-arghya",
-     "at": null,
+     "at": "05:45",
+     "render": "the evening before (daily.yml evening-slot runs from 17:00 IST: the 18:46 IST scheduler dispatch, evening polls; photos.yml dispatches slot=dawn at 19:46 IST); Facebook Reel 06:00, Instagram on the first trigger after 06:00",
      "title": "Usha Arghya Geet 2026 | Chhath Puja Song | उषा अर्घ्य छठ गीत #Shorts",
      "hook": "छठ उषा अर्घ्य 🙏",
      "kicker": "Usha Arghya Geet",

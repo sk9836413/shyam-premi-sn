@@ -6,6 +6,10 @@
 // (the Kaggle blocked window 18:30-21:00 IST does not matter). Text: a bold Hindi hook on frame 1, the first chorus line
 // under it (the song starts on the chorus), then short blessings; the end card. Title/description/captions come from
 // automation/chhath-2026.json (the date-scoped override; scripts/day-plan.mjs routes the slot here).
+// TIME (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log"): a bhajan Short of the morning / extra bhajan slot is a
+// DAWN upload (scripts/day-plan.mjs bhajanAt): public at 05:45 IST, Facebook Reel 06:00 (fb.mjs), Instagram queued for
+// 06:00. daily.yml renders it THE EVENING BEFORE (--date = the publish date, so the slug, log.md line and the
+// upload-guard cap all belong to the publish day); a slot with its own "at" keeps it ("at": null = on render).
 //
 //   node scripts/bhajan-short.mjs build --date 2026-11-13 --slot bhajan --out story/bhajan/work/spec.json
 //        writes the spec (format "status", bhajan_short, bhajan_id = the chosen song) and prints
@@ -16,6 +20,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { bhaktiTags, bhaktiTitle, withTags } from './bhakti-seo.mjs';
 import { fbHashtags } from './fb.mjs';
+import { DAWN_IG, bhajanAt } from './day-plan.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const CONFIG = path.join(ROOT, 'automation', 'chhath-2026.json');
@@ -93,7 +98,7 @@ export function buildSpec({ date, slot, o, track, bank, festival = 'chhath', has
     playlist: 'Tyohar aur Vrat Kathayein', voice: 'hf_alpha', signoff: 'Jai Chhathi Maiya',
     style: 'licence-safe AI picture bank (brand/photo-bank), no text, no faces',
     endline: 'Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN',
-    ...(o.at ? { publish_at: o.at } : {}),
+    ...(bhajanAt(slot, o).at ? { publish_at: bhajanAt(slot, o).at } : {}),
     scenes,
     youtube_title: title,
     youtube_description: desc,
@@ -127,7 +132,8 @@ async function main() {
   const out = opt('--out');
   fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });
   fs.writeFileSync(out, `${JSON.stringify(spec, null, 2)}\n`);
-  console.log(JSON.stringify({ slug: spec.slug, publish_at: o.at || '', fb: o.fb || '', bhajan: track.id, day: track.bhajan.day || null, seconds: spec.song.seconds, scenes: spec.scenes.length }));
+  const t = bhajanAt(slot, o);
+  console.log(JSON.stringify({ slug: spec.slug, publish_at: t.at || '', fb: o.fb || '', ig: t.dawn ? DAWN_IG.bhajan : '', dawn: t.dawn, bhajan: track.id, day: track.bhajan.day || null, seconds: spec.song.seconds, scenes: spec.scenes.length }));
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main().catch((e) => { console.log(JSON.stringify({ error: e.message })); process.exit(1); });

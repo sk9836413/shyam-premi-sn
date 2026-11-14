@@ -23,10 +23,37 @@ katha Shorts 18, the worst: **no more katha Shorts**. Generic "X Darshan" Shorts
 | 3 | `evening` 19:00: a **famous-temple darshan** Short | you (sections 1-4) |
 | 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`) | `kalyug` job (section 8) |
 | 5 | `noon` Dadi-Chhotu Wed 15:00 | you (section 6) |
-| own cap | `long` katha video **every day** 12:30 (16:9; outside the 3 Shorts, 1 a day) | you (section 5) |
+| own cap | `long` video **every day** (16:9; outside the 3 Shorts, 1 a day): a katha at 12:30; a bhajan / mantra long video (jukebox, weekly mantra jaap) at **05:30** | you (section 5) for the katha; `jukebox` / `mantra` jobs |
 
 Any Short below the first three that day is left out (the prompt tells you your slot's plan). Movie days and big-festival
 days have no `morning` Short of yours.
+
+### Publish times: bhajans at dawn (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log")
+
+Devotees play bhajans early in the morning, so bhajan and mantra content is public by about 05:30-06:30 IST
+(`scripts/day-plan.mjs` DAWN; `scripts/fb.mjs`, `scripts/stories.mjs`):
+
+| Upload | YouTube | Facebook | Instagram | Story | Rendered |
+|---|---|---|---|---|---|
+| bhajan Short of the morning slot (any future bhajan Short without its own time) | **05:45** (publishAt) | Reel **06:00** (scheduled) | queued for 06:00, the first trigger after it | the video story ~06:30-07:00 (first trigger after 06:30), the morning card from 07:00 | **the evening before** |
+| bhajan / mantra long video (jukebox, mantra jaap) | **05:30** | feed video **05:30** | - | - | **the evening before** |
+| katha long video | 12:30 | feed 12:30 | - | - | the morning |
+| a bhajan Short with its own `at` (e.g. the 16 Nov 19:00 Parana Short) | its `at` | the Reel plan | with YouTube | normal | on the day |
+
+- **The evening-before render** hangs on the reliable triggers: daily.yml evening-slot runs from 17:00 IST (the
+  scheduler Worker's 18:46 IST dispatch, plus the GitHub evening polls when they fire) run `day-plan.mjs --dawn` for
+  tomorrow and make the dawn bhajan Short (job `bhajan`, matrix) and the dawn long video (jobs `jukebox` /
+  `mantra`); photos.yml's 19:46 IST run dispatches daily.yml `slot=dawn` as the retry when one is still missing. No new
+  cron; the Cloudflare scheduler is unchanged. Bhajan renders run on the GitHub runner (no Kaggle, no Claude).
+- **Day attribution:** the IST publish date is the upload's date (slug `<publish date>-...`, the upload-guard claim, the
+  log.md line), so a video rendered on the 14th for 05:45 on the 15th counts against the 15th's caps (3 Shorts + 1 long).
+- **Fallback:** if the evening render is missing, the morning run makes it and it goes public as soon as it is ready
+  (Facebook/Instagram at once); for a long video never later than 12:30 (the long job waits for the jukebox / mantra
+  job and tells its 12:30 katha only when they did not make the day's long video).
+- **Facebook spacing:** Reels stay at least 90 min apart; 00:30 status -> 06:00 dawn bhajan is 5.5 h. No other Reel is
+  planned between 01:00 and 07:00 (movie 07:30, kalyug 08:00, statusday 08:30 move later, never earlier).
+- 15 Nov 2026 05:45 Sandhya Arghya bhajan Short (song 26f-04), rendered 14 Nov evening; 16 Nov 05:45 Usha Arghya bhajan
+  Short (26e-07), rendered 15 Nov evening; 22 Nov 05:30 the first weekly mantra jaap (Vasudevaya).
 
 `scripts/upload-guard.mjs` skips (and logs) any 4th YouTube Short or 2nd long video of an IST date. Everything published is in the brand's name only. There is no human review, so every
 rule below is a hard requirement.
@@ -370,7 +397,8 @@ Do not render, upload, publish, commit or push: later workflow steps do that.
 
 Only when the prompt says the slot is `long`. **Every day** (owner, 13 Nov 2026: long videos are the channel's only
 source of watch hours), after the morning Short, you write one **long katha video**: 16:9, **5-10 minutes**, a regular
-YouTube video (not a Short), published at 12:30 IST. It is outside the 3-Shorts-a-day cap. Movie days keep their movie
+YouTube video (not a Short), published at 12:30 IST (a bhajan / mantra long video made by the jukebox / mantra jobs
+goes out at 05:30 instead; see "Publish times"). It is outside the 3-Shorts-a-day cap. Movie days keep their movie
 part and still get the long video (a different story from the part). Sections 3-4 do not apply to it; everything else
 below does.
 

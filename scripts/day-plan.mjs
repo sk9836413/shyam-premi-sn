@@ -32,6 +32,16 @@
 //   node scripts/day-plan.mjs --date 2026-11-11 --slot noon --check   exit 0 when planned, 1 when not (GITHUB_OUTPUT
 //                                                                     planned, why, what, kind, theme)
 //   node scripts/day-plan.mjs --days 14 [--from 2026-11-10]           print the plan per date (dry run, publishes nothing)
+//   node scripts/day-plan.mjs --date 2026-11-15 --dawn                the date's DAWN uploads not in log.md yet (made the
+//                                                                     evening before; GITHUB_OUTPUT dawn_bhajans, dawn_long)
+// DAWN UPLOADS (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log", devotees play bhajans early in the morning):
+// a bhajan Short in the morning (or extra `bhajan`) slot is public at 05:45 IST (DAWN.bhajan; Facebook Reel 06:00,
+// Instagram on the first poll after 06:00), and a long video of a bhajan or mantra kind (the jukebox, the weekly mantra
+// jaap: DAWN_LONG_KINDS) at 05:30 (DAWN.long; Facebook feed 05:30). Katha long videos stay at 12:30. Dawn uploads are
+// RENDERED THE EVENING BEFORE (daily.yml: every evening-slot run from 17:00 IST, i.e. the 18:46 IST scheduler dispatch
+// and the evening polls, plus slot=dawn which photos.yml dispatches at 19:46 IST) with publishAt; the IST date of the publish
+// stays the upload's date (slug, log.md line, upload-guard cap). When that render is missing, the morning run makes it
+// and it goes public as soon as it is ready (never after 12:30: the long job then tells a katha at 12:30).
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -47,6 +57,19 @@ export const NOON_DAYS = [3]; // Wednesday
 export const KALYUG_DAYS = [2, 4, 6]; // Tuesday, Thursday, Saturday
 export const AT = { status: '00:30', movie: '07:00', kalyug: '08:00', statusday: '08:30', morning: 'on render, ~10:30', long: '12:30', noon: '15:00', evening: '19:00', bhajan: '19:45', eve: '20:00' };
 export const PRIORITY = { movie: 0, status: 1, eve: 1, statusday: 1, morning: 2, evening: 3, kalyug: 4, noon: 5, bhajan: 6 };
+// Dawn uploads (see the header): times and the long-video kinds that go out at dawn instead of 12:30.
+export const DAWN = { bhajan: '05:45', long: '05:30' };
+export const DAWN_FB = { bhajan: '06:00', long: '05:30' }; // Facebook times (the Reel 15 min after YouTube)
+export const DAWN_IG = { bhajan: '06:00' }; // Instagram queue time: published by the first trigger after it
+export const DAWN_LONG_KINDS = ['jukebox', 'mantra', 'bhajan'];
+export const DAWN_SLOTS = ['morning', 'bhajan']; // a bhajan Short in these slots without its own `at` is a dawn upload
+export const isDawnAt = (at) => /^\d{2}:\d{2}$/.test(at || '') && at < '07:00' && at >= '04:00';
+/** Time of a bhajan Short of the override: its own `at` (null = on render, kept for 14 Nov 2026), else DAWN.bhajan in
+ *  the morning / extra bhajan slot (owner, 14 Nov 2026), else the slot's normal time. */
+export function bhajanAt(slot, o = {}) {
+  const at = Object.hasOwn(o, 'at') ? o.at || null : DAWN_SLOTS.includes(slot) ? DAWN.bhajan : null;
+  return { at, dawn: isDawnAt(at) };
+}
 const ORDER = { status: 0, movie: 1, kalyug: 2, statusday: 3, morning: 4, long: 5, noon: 6, evening: 7, bhajan: 7.5, eve: 8 };
 // Date-scoped override (automation/chhath-2026.json, owner 13 Nov 2026: Chhath bhajan Shorts 13-16 Nov and every upload
 // of those dates Chhath themed): `slots.<slot>` turns that slot into a bhajan Short (kind "bhajan", scripts/bhajan-short.mjs;
@@ -160,7 +183,8 @@ export function planDay(date, inputs = {}) {
   const ov = inputs.override?.days?.[date] || null;
   for (const [slot, o] of Object.entries(ov?.slots || {})) {
     if (o.kind !== 'bhajan') continue;
-    const u = { slot, kind: 'bhajan', day: o.day, ...(o.at ? { at: o.at } : {}),
+    const t = bhajanAt(slot, o);
+    const u = { slot, kind: 'bhajan', day: o.day, ...(t.at ? { at: t.at } : {}), ...(t.dawn ? { dawn: true } : {}),
       what: `Chhath bhajan Short "${o.title}" (${o.day}; the library bhajan is the whole soundtrack; scripts/bhajan-short.mjs, automation/chhath-2026.json)`, fallback: BHAJAN_FALLBACK };
     const k = cands.findIndex((c) => c.slot === slot);
     if (k >= 0) cands[k] = u; else cands.push(u);
@@ -172,8 +196,12 @@ export function planDay(date, inputs = {}) {
   const dropped = ranked.slice(cap).map((c) => c.slot);
   const long = longUpload(date, inputs, movie);
   if (ov?.long?.what) Object.assign(long, { topic: ov.long.topic || long.topic, what: ov.long.what });
+  if (ov?.long?.kind) long.kind = ov.long.kind;
+  if (DAWN_LONG_KINDS.includes(long.kind)) Object.assign(long, { at: DAWN.long, dawn: true });
   kept.push(long);
-  kept.sort((a, b) => ORDER[a.slot] - ORDER[b.slot]);
+  // time order: dawn uploads right after the 00:30 status Short (the long one at 05:30 before the bhajan at 05:45)
+  const ord = (u) => (u.dawn ? (u.slot === 'long' ? 0.4 : 0.5) : ORDER[u.slot]);
+  kept.sort((a, b) => ord(a) - ord(b));
   const type = movie ? 'movie' : fest ? 'festival' : kept.some((c) => c.slot === 'kalyug') ? 'kalyug' : 'normal';
   return { date, day: WEEKDAY[wd], type, festival: f?.name, uploads: kept.map(({ logged, ...u }) => ({ ...u, at: u.at || AT[u.slot] })), dropped };
 }
@@ -189,7 +217,7 @@ function longUpload(date, inputs, movie) {
   const m = mantraOf(date, inputs);
   if (m) {
     return { slot: 'long', kind: 'mantra', topic: `mantra:${m.id}`, mantra: m.id,
-      what: `weekly mantra jaap long video "${m.text}" (${m.why}; 108-count malas, made the evening before by daily.yml job mantra, scripts/mantra-long.mjs; public 12:30 IST). Only if it is missing: a ${base} on ${m.deity} and the meaning of ${m.roman} (${m.source_en})` };
+      what: `weekly mantra jaap long video "${m.text}" (${m.why}; 108-count malas, made the evening before by daily.yml job mantra, scripts/mantra-long.mjs; public ${DAWN.long} IST). Only if it is missing: a ${base} on ${m.deity} and the meaning of ${m.roman} (${m.source_en})` };
   }
   if (sub.festival) {
     return { slot: 'long', kind: 'long', topic: sub.festival,
@@ -216,7 +244,17 @@ export function isPlanned(date, slot, inputs) {
   return { planned: false, plan: p, why };
 }
 
-const describe = (u) => `${u.slot} ${u.at}${u.festival ? ` (${u.festival})` : u.mantra ? ` (${u.topic})` : u.topic ? ` (${u.topic === 'series' ? 'section 5 / mandir series' : `${u.topic} katha`})` : u.kind ? ` (${u.kind}${u.theme !== undefined ? `:${u.theme}` : ''})` : ''}`;
+/** The date's dawn uploads (made the evening before): { bhajans: [{ day, slot, at }], long: kind | '' }; `log` = log.md
+ *  text: uploads already there are left out. */
+export function dawnUploads(date, inputs = {}, log = '') {
+  const done = (slot) => log.split(/\r?\n/).some((l) => l.startsWith(`${date} | ${slot} |`));
+  const p = planDay(date, inputs);
+  const bhajans = p.uploads.filter((u) => u.dawn && u.slot !== 'long' && u.kind === 'bhajan' && !done(u.slot)).map((u) => ({ day: date, slot: u.slot, at: u.at }));
+  const l = p.uploads.find((u) => u.slot === 'long' && u.dawn);
+  return { date, bhajans, long: l && !done('long') ? l.kind : '', longAt: l ? l.at : '' };
+}
+
+const describe = (u) => `${u.slot} ${u.at}${u.festival ? ` (${u.festival})` : u.mantra ? ` (${u.topic})` : u.kind === 'jukebox' || (u.slot === 'long' && u.kind === 'bhajan') ? ` (${u.kind}: ${u.topic})` : u.topic ? ` (${u.topic === 'series' ? 'section 5 / mandir series' : `${u.topic} katha`})` : u.kind ? ` (${u.kind}${u.theme !== undefined ? `:${u.theme}` : ''})` : ''}`;
 
 function main() {
   const args = process.argv.slice(2);
@@ -233,14 +271,20 @@ function main() {
     return;
   }
   const date = opt('--date') || istToday();
+  if (args.includes('--dawn')) {
+    const r = dawnUploads(date, inputs, read(path.join(opt('--root') || '.', 'automation/log.md')));
+    console.log(JSON.stringify(r));
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `dawn_bhajans=${JSON.stringify(r.bhajans)}\ndawn_long=${r.long}\n`);
+    return;
+  }
   const slot = opt('--slot');
   if (!slot) { console.log(JSON.stringify(planDay(date, inputs), null, 1)); return; }
   const r = isPlanned(date, slot, inputs);
   const u = r.upload || {};
-  console.log(JSON.stringify({ date, slot, planned: r.planned, why: r.why || '', what: u.what || '', kind: u.kind || '', theme: u.theme ?? '', fallback: u.fallback || '', uploads: r.plan.uploads.map((x) => x.slot) }));
+  console.log(JSON.stringify({ date, slot, planned: r.planned, why: r.why || '', what: u.what || '', kind: u.kind || '', theme: u.theme ?? '', at: u.at || '', dawn: Boolean(u.dawn), fallback: u.fallback || '', uploads: r.plan.uploads.map((x) => x.slot) }));
   if (process.env.GITHUB_OUTPUT) {
     const one = (t) => String(t ?? '').replace(/\n/g, ' ');
-    fs.appendFileSync(process.env.GITHUB_OUTPUT, `planned=${r.planned}\nwhy=${one(r.why)}\nwhat=${one(u.what)}\nkind=${one(u.kind)}\ntheme=${one(u.theme)}\nfallback=${one(u.fallback)}\nday=${one(u.day)}\n`);
+    fs.appendFileSync(process.env.GITHUB_OUTPUT, `planned=${r.planned}\nwhy=${one(r.why)}\nwhat=${one(u.what)}\nkind=${one(u.kind)}\ntheme=${one(u.theme)}\nat=${one(u.at)}\nfallback=${one(u.fallback)}\nday=${one(u.day)}\n`);
   }
   if (args.includes('--check') && !r.planned) process.exit(1);
 }

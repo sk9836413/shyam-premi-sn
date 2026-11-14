@@ -17,6 +17,11 @@
 //           --fb-at -> scheduled_publish_time) for the next free time instead of going out at once. Every Short is
 //           posted: a late one gets the next free time (no grace cut-off any more). Shorts over Meta's 90 s Reel limit
 //           (movie parts, the Dadi-Chhotu noon Short) go out as normal Page videos (meta.mjs decides by duration).
+//   Dawn    (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log"; day-plan.mjs DAWN) a bhajan Short public on
+//           YouTube at 05:45 is a Reel at 06:00 (DAWN_FB.bhajan), placed right after the status Reels so it keeps 06:00;
+//           a bhajan / mantra long video (jukebox, mantra jaap) is the 05:30 feed video. Apart from these, no Reel is
+//           planned before DAY_START (07:00) and a Reel scheduled at upload time never lands in the night (01:00-07:00)
+//           unless it is a dawn Reel or already late; 00:30 status -> 06:00 dawn bhajan is 5.5 h, well over GAP_MIN.
 //   Feed    12:30 IST  the daily LONG katha video (owner, 13 Nov 2026: "long video to facebook me bhi dal sakte ho") as a
 //                      normal Page feed video (not a Reel; meta.mjs resumable upload), scheduled for 12:30 like YouTube,
 //                      or as soon as it is ready (up to 6 h late). A different format from the Reels: not part of their
@@ -37,15 +42,16 @@
 //   No engagement bait of any kind: no share/like/comment/tag/follow/subscribe/forward/"likhein"/"bhejein" asks.
 //
 //   node scripts/fb.mjs plan [--days 14] [--from YYYY-MM-DD]        the Facebook plan per day (prints, posts nothing)
-//   node scripts/fb.mjs flags --date D --slot S [--festival-date F] [--now ISO] [--published automation/published.md]
+//   node scripts/fb.mjs flags --date D --slot S [--festival-date F] [--at HH:MM] [--now ISO] [--published automation/published.md]
 //        prints the meta.mjs / publish.mjs flag for one video: "--fb-at D'T'HH:MM" | "--fb-at now" | "--no-fb"
+//        (--at: the video's own time instead of the plan's, e.g. the long job's 12:30 katha on a jukebox / mantra day)
 //   node scripts/fb.mjs check <scenes.json | caption.txt>            caption check (exit 1 with the problems)
 //   node scripts/fb.mjs tags <scenes.json>                           the 3 Facebook hashtags of a spec
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { LINKS } from './festival-links.mjs';
-import { loadInputs, planDay, addDays, istToday } from './day-plan.mjs';
+import { loadInputs, planDay, addDays, istToday, DAWN_FB } from './day-plan.mjs';
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
 
 /** Facebook times (IST) of each Short slot. */
@@ -53,12 +59,16 @@ export const REEL_AT = { status: '00:30', movie: '07:30', kalyug: '08:00', statu
 export const FB_TIMES = { photo: '06:30', long: '12:30', ...REEL_AT };
 export const GAP_MIN = 90; // minutes between two Facebook Reels (owner, 13 Nov 2026: "at least about 90 minutes")
 // Placed in this order (festival status first: the format that can go viral keeps its exact time).
-const PLACE_ORDER = ['status', 'eve', 'statusday', 'movie', 'evening', 'bhajan', 'morning', 'kalyug', 'noon'];
+const PLACE_ORDER = ['status', 'eve', 'dawn', 'statusday', 'movie', 'evening', 'bhajan', 'morning', 'kalyug', 'noon'];
 // Tried before the 15-minute search when the wanted time is taken (the evening darshan on a 20:00 eve-status day).
 const ALT_AT = { evening: ['18:30', '21:30'], bhajan: ['21:15', '18:15'] };
 // The earliest a Short can exist (render times); the plan never puts a Reel before it. Latest: 23:30.
 const EARLIEST = { morning: '10:00', bhajan: '10:00', evening: '13:00', eve: '13:00', noon: '12:00' };
 const LATEST = '23:30';
+// No Reel is planned before DAY_START unless it wants an earlier time itself (status 00:30, a dawn bhajan 06:00), and a
+// Reel scheduled at upload time is never moved into the NIGHT (01:00-07:00 IST) unless its own time is in it.
+const DAY_START = '07:00';
+const NIGHT = ['01:00', '07:00'];
 const LEAD_MS = 15 * 60e3; // meta.mjs schedules only when the time is at least 15 minutes ahead
 const LONG_GRACE_H = 6; // the long feed video: still posted up to 6 h after 12:30
 const VIDEO_SLOTS = new Set(['movie', 'noon']); // over 90 s: a Page video, not a Reel
@@ -78,7 +88,8 @@ function shortsOf(date, inputs) {
   const place = (u) => pl.find((x) => x.date === date && x.slot === u.slot && x.festival.key === u.festival);
   const list = p.uploads.filter((u) => u.slot !== 'long').map((u) => {
     const x = u.kind === 'status' ? place(u) : null;
-    return { slot: u.slot, kind: u.kind || u.slot, ...(u.festival ? { festival: u.festival, festivalDate: x?.festival.date || null, tier: x?.tier } : {}) };
+    return { slot: u.slot, kind: u.kind || u.slot, ...(u.dawn ? { dawn: true, want: DAWN_FB.bhajan } : {}),
+      ...(u.festival ? { festival: u.festival, festivalDate: x?.festival.date || null, tier: x?.tier } : {}) };
   });
   return { p, list };
 }
@@ -86,10 +97,11 @@ function shortsOf(date, inputs) {
 /** Facebook times for `items` (sets it.at), each >= GAP_MIN from the others and from `fixed` (minutes of the day). */
 function placeTimes(items, fixed = []) {
   const taken = [...fixed];
-  const order = [...items].sort((a, b) => PLACE_ORDER.indexOf(a.slot) - PLACE_ORDER.indexOf(b.slot) || (TIER[a.tier] ?? 9) - (TIER[b.tier] ?? 9));
+  const rank = (it) => PLACE_ORDER.indexOf(it.dawn ? 'dawn' : it.slot);
+  const order = [...items].sort((a, b) => rank(a) - rank(b) || (TIER[a.tier] ?? 9) - (TIER[b.tier] ?? 9));
   for (const it of order) {
-    const want = toMin(REEL_AT[it.slot] || '12:00');
-    const lo = Math.min(want, toMin(EARLIEST[it.slot] || '00:00'));
+    const want = toMin(it.want || REEL_AT[it.slot] || '12:00');
+    const lo = Math.min(want, toMin(EARLIEST[it.slot] || DAY_START));
     const hi = Math.max(want, toMin(LATEST));
     const grid = [];
     for (let m = Math.ceil(lo / 15) * 15; m <= hi; m += 15) grid.push(m);
@@ -109,9 +121,11 @@ export function fbDay(date, inputs) {
   const { p, list } = shortsOf(date, inputs);
   // tomorrow's 00:30 status Reel counts as 24:30 today (no late Reel within 90 min of it)
   const next = shortsOf(addDays(date, 1), inputs).list.filter((x) => x.slot === 'status').map(() => 24 * 60 + toMin(REEL_AT.status));
-  const videos = placeTimes(list, next).map(({ tier, ...v }) => ({ ...v, role: 'reel', type: VIDEO_SLOTS.has(v.slot) ? 'video' : 'reel' }))
+  const videos = placeTimes(list, next).map(({ tier, want, ...v }) => ({ ...v, role: 'reel', type: VIDEO_SLOTS.has(v.slot) ? 'video' : 'reel' }))
     .sort((a, b) => a.at.localeCompare(b.at));
-  const feed = p.uploads.some((u) => u.slot === 'long') ? [{ slot: 'long', at: FB_TIMES.long, kind: 'long', role: 'feed', type: 'video' }] : [];
+  // the long video: 12:30, a bhajan / mantra long (jukebox, mantra jaap) at dawn (05:30, day-plan DAWN)
+  const long = p.uploads.find((u) => u.slot === 'long');
+  const feed = long ? [{ slot: 'long', at: long.dawn ? DAWN_FB.long : FB_TIMES.long, kind: long.kind || 'long', role: 'feed', type: 'video', ...(long.dawn ? { dawn: true } : {}) }] : [];
   return { date, day: p.day, type: p.type, festival: p.festival, photo: { at: FB_TIMES.photo }, videos, feed };
 }
 
@@ -143,13 +157,17 @@ export function fbPosted(text) {
  * The Facebook decision for one Short (or the long video): { post, at: 'YYYY-MM-DDTHH:MM' | 'now' | null, why }.
  * posted: fbPosted(published.md), the Reels already on Facebook (or scheduled there).
  */
-export function fbDecision({ date, slot, festivalDate = null, now = Date.now(), inputs, posted = [] }) {
+export function fbDecision({ date, slot, festivalDate = null, now = Date.now(), inputs, posted = [], at: wantAt = null }) {
   const day = fbDay(date, inputs);
   if (slot === 'long') {
-    const v = day.feed[0];
-    if (!v) return { post: false, at: null, why: `${date}: no long video in the plan` };
+    const v0 = day.feed[0];
+    if (!v0) return { post: false, at: null, why: `${date}: no long video in the plan` };
+    // --at: the video's own time (the long job's katha keeps 12:30 even on a jukebox / mantra day when that one failed)
+    const v = wantAt ? { ...v0, at: wantAt } : v0;
     if (istAt(date, v.at) - now >= LEAD_MS) return { post: true, at: `${date}T${v.at}`, why: `feed ${v.at} IST` };
-    if (now <= istAt(date, v.at) + LONG_GRACE_H * 3600e3) return { post: true, at: 'now', why: `feed: ${v.at} IST has passed; posting as soon as it is ready` };
+    // late: as soon as it is ready, up to LONG_GRACE_H after 12:30 (a dawn long made in the morning counts from 12:30 too)
+    const graceEnd = Math.max(istAt(date, v.at), istAt(date, FB_TIMES.long)) + LONG_GRACE_H * 3600e3;
+    if (now <= graceEnd) return { post: true, at: 'now', why: `feed: ${v.at} IST has passed; posting as soon as it is ready` };
     return { post: false, at: null, why: `feed ${v.at} IST is over ${LONG_GRACE_H} h past: not posted to Facebook` };
   }
   // Every Short goes to Facebook (owner, 13 Nov 2026), whichever festival variant it is; one not in the plan (a
@@ -168,19 +186,23 @@ export function fbDecision({ date, slot, festivalDate = null, now = Date.now(), 
   }
   const gapOf = (t) => Math.min(Infinity, ...others.map((o) => Math.abs(o - t)));
   const free = (t) => gapOf(t) >= GAP_MIN * 60e3;
-  const want = istAt(date, v.at);
+  const want = istAt(date, wantAt || v.at);
   const start = now + LEAD_MS;
   const target = Math.max(want, now);
   const grid = [];
   const end = Math.max(istAt(date, '23:45'), start + 6 * 3600e3);
-  for (let t = Math.ceil(start / 9e5) * 9e5; t <= end; t += 9e5) grid.push(t);
+  // never pushed into the night (01:00-07:00 IST) unless the Reel's own time is there (a dawn Reel: from its time on)
+  const night = (t) => { const m = toMin(istStamp(t).slice(11)); return m >= toMin(NIGHT[0]) && m < toMin(NIGHT[1]); };
+  const wantNight = night(want);
+  const ok = (t) => !night(t) || (wantNight && t >= want);
+  for (let t = Math.ceil(start / 9e5) * 9e5; t <= end; t += 9e5) if (ok(t)) grid.push(t);
   grid.sort((a, b) => Math.abs(a - target) - Math.abs(b - target) || a - b);
   const cands = [want >= start ? want : now, ...grid];
   const t = cands.find(free) ?? cands.reduce((best, c) => (gapOf(c) > gapOf(best) ? c : best), cands[0]);
-  const label = `${slot}${v.adhoc ? ' (not in the plan)' : ''}`;
+  const label = `${slot}${v.dawn ? ' (dawn bhajan)' : ''}${v.adhoc ? ' (not in the plan)' : ''}`;
   if (t < start) return { post: true, at: 'now', why: `${label}: ${v.at} IST has passed; posting now (${GAP_MIN} min clear of the other Reels)` };
   const at = istStamp(t);
-  const moved = t === want ? '' : ` (planned ${v.at}; moved to stay ${GAP_MIN} min from the other Reels${free(t) ? '' : ' as far as possible'})`;
+  const moved = t === want ? '' : ` (planned ${wantAt || v.at}; moved to stay ${GAP_MIN} min from the other Reels${free(t) ? '' : ' as far as possible'})`;
   return { post: true, at, why: `${label} Reel ${at.slice(11)} IST${at.slice(0, 10) === date ? '' : ` on ${at.slice(0, 10)}`}${moved}` };
 }
 
@@ -574,7 +596,7 @@ async function main() {
     const inputs = loadInputs(opt('--root') || '.');
     const pub = path.join(opt('--root') || '.', opt('--published') || 'automation/published.md');
     const posted = fs.existsSync(pub) ? fbPosted(fs.readFileSync(pub, 'utf8')) : [];
-    const d = fbDecision({ date: opt('--date') || istToday(), slot: opt('--slot'), festivalDate: opt('--festival-date') || null, now: opt('--now') ? Date.parse(opt('--now')) : Date.now(), inputs, posted });
+    const d = fbDecision({ date: opt('--date') || istToday(), slot: opt('--slot'), festivalDate: opt('--festival-date') || null, now: opt('--now') ? Date.parse(opt('--now')) : Date.now(), inputs, posted, at: opt('--at') || null });
     console.error(`facebook: ${d.why}`);
     console.log(d.post ? `--fb-at ${d.at}` : '--no-fb');
     return 0;

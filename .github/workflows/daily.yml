@@ -53,6 +53,15 @@
 # from the other Facebook Reels, + 1 photo 06:30 + the daily long katha as a 12:30 feed video. Every Facebook step asks
 # `node scripts/fb.mjs flags` for its own Facebook time (--fb-at <time> = scheduled_publish_time, or --fb-at now; it
 # reads automation/published.md so two Shorts ready close together are spaced); YouTube and Instagram times are unchanged.
+# DAWN UPLOADS (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log"; scripts/day-plan.mjs DAWN): a bhajan Short of
+# the morning slot is public at 05:45 IST (Facebook Reel 06:00, Instagram queued for 06:00), a bhajan / mantra long video
+# (jukebox, mantra jaap) at 05:30 (Facebook feed 05:30); katha long videos stay at 12:30. They are RENDERED THE EVENING
+# BEFORE: every evening-slot run from 17:00 IST (the scheduler's 18:46 IST dispatch, the evening polls) asks
+# `day-plan.mjs --dawn` for tomorrow and runs job `bhajan` (matrix: today's own bhajan slot + tomorrow's dawn bhajan),
+# `jukebox` and `mantra` for tomorrow with publishAt; photos.yml's 19:46 IST run dispatches slot=dawn as the retry
+# (the same thing alone). The IST publish date stays the upload's date (slug, log.md, upload-guard cap). If the evening
+# render is missing, the morning run makes it and it goes public as soon as it is ready (the long job waits for the
+# jukebox / mantra job and tells its 12:30 katha only when they did not make the long video).
 name: Daily story video
 
 on:
@@ -62,7 +71,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning, evening, noon, long, status, movie, kalyug, bhajan, jukebox or mantra (empty = by time of day; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part; kalyug = only tomorrow's Kalyug ke Bhagwan episode)
+        description: morning, evening, noon, long, status, movie, kalyug, bhajan, jukebox, mantra or dawn (empty = by time of day; dawn = only tomorrow's 05:30/05:45 dawn uploads, i.e. the evening-before render; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part; kalyug = only tomorrow's Kalyug ke Bhagwan episode)
         required: false
         default: ''
       dry_run:
@@ -86,11 +95,11 @@ on:
         type: boolean
         default: false
       jukebox_date:
-        description: jukebox slot only - the IST date whose 12:30 long video the Chhath Geet Nonstop jukebox is (empty = tomorrow)
+        description: jukebox slot only - the IST date whose long video (public 05:30 IST) the Chhath Geet Nonstop jukebox is (empty = tomorrow)
         required: false
         default: ''
       mantra_date:
-        description: mantra slot only - the IST date whose 12:30 long video is the weekly mantra jaap (empty = tomorrow; skips unless it is a mantra day)
+        description: mantra slot only - the IST date whose long video (public 05:30 IST) is the weekly mantra jaap (empty = tomorrow; skips unless it is a mantra day)
         required: false
         default: ''
       force_fallback:
@@ -119,7 +128,7 @@ env:
 # automation/published.md with an atomic push (a second run finds the claim or the log.md line and skips). Then
 # youtube.mjs and meta.mjs look for the same title/caption among the last 36 h of uploads and posts and never repeat it.
 concurrency:
-  group: ${{ inputs.slot == 'mantra' && 'daily-story-mantra' || inputs.slot == 'jukebox' && 'daily-story-jukebox' || inputs.slot == 'bhajan' && 'daily-story-bhajan' || inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || inputs.slot == 'kalyug' && 'daily-story-kalyug' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
+  group: ${{ inputs.slot == 'dawn' && 'daily-story-dawn' || inputs.slot == 'mantra' && 'daily-story-mantra' || inputs.slot == 'jukebox' && 'daily-story-jukebox' || inputs.slot == 'bhajan' && 'daily-story-bhajan' || inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || inputs.slot == 'kalyug' && 'daily-story-kalyug' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
   cancel-in-progress: false
 
 jobs:
@@ -158,14 +167,17 @@ jobs:
       movie: ${{ steps.date.outputs.movie }}
       # The Kalyug ke Bhagwan job runs after every evening-slot run (and for slot=kalyug): it makes tomorrow's episode.
       kalyug: ${{ steps.date.outputs.kalyug }}
-      # Bhajan Shorts (scripts/bhajan-short.mjs, automation/chhath-2026.json): the slot (bhajan / morning / evening) whose
-      # Short is a library bhajan with bank pictures, made by the `bhajan` job instead of this one.
-      bhajan: ${{ steps.date.outputs.bhajan }}
-      bhajan_slot: ${{ steps.date.outputs.bhajan_slot }}
+      # Bhajan Shorts (scripts/bhajan-short.mjs, automation/chhath-2026.json): JSON list [{day, slot}] made by the `bhajan`
+      # job (matrix) instead of this one: today's slot whose Short is a library bhajan, and on evening runs tomorrow's
+      # dawn bhajan Short (public 05:45, rendered the evening before; day-plan.mjs --dawn).
+      bhajans: ${{ steps.date.outputs.bhajans }}
+      # The date the jukebox / mantra jobs make the long video of: tomorrow on evening runs (05:30 dawn long, rendered the
+      # evening before), today on morning runs (the fallback when last evening's render is missing).
+      dawn_day: ${{ steps.date.outputs.dawn_day }}
       # slot=jukebox: the Chhath Geet Nonstop jukebox as the long video of jukebox_date (job `jukebox`, scripts/jukebox.mjs)
       jukebox: ${{ steps.date.outputs.jukebox }}
       # The weekly mantra-jaap long video (job `mantra`, scripts/mantra-long.mjs) runs after every evening-slot run (and
-      # for slot=mantra): it makes TOMORROW's 12:30 long video when tomorrow is a mantra day (day-plan kind "mantra").
+      # for slot=mantra): it makes TOMORROW's long video (public 05:30 IST) when tomorrow is a mantra day (day-plan --dawn).
       mantra: ${{ steps.date.outputs.mantra }}
       # IST date and the festival day of a status run: the long and status jobs queue per day on them.
       today: ${{ steps.date.outputs.today }}
@@ -219,8 +231,30 @@ jobs:
             echo "::notice::Weekly mantra jaap long video only"; exit 0
           fi
           if [ "$slot" = bhajan ]; then
-            echo "bhajan=true" >> "$GITHUB_OUTPUT"; echo "bhajan_slot=bhajan" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "bhajans=[{\"day\":\"$today\",\"slot\":\"bhajan\"}]" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Bhajan Short only (automation/chhath-2026.json)"; exit 0
+          fi
+          # Dawn uploads (scripts/day-plan.mjs DAWN; owner 14 Nov 2026): tomorrow's 05:45 bhajan Short and 05:30 bhajan /
+          # mantra long video are rendered the evening before. dawn <date> -> bhajan items (JSON, no brackets) + long kind.
+          bh=""
+          dawn() {
+            node scripts/day-plan.mjs --date "$1" --dawn > "$RUNNER_TEMP/dawn-$1.json" || return 0
+            local list kind
+            list=$(node -p "JSON.stringify(require(process.env.RUNNER_TEMP + '/dawn-$1.json').bhajans.map(({day,slot})=>({day,slot}))).slice(1,-1)")
+            kind=$(node -p "require(process.env.RUNNER_TEMP + '/dawn-$1.json').long")
+            [ -n "$list" ] && bh="$bh,$list" && echo "::notice::$1 dawn bhajan Short(s): $list"
+            if [ -n "$kind" ]; then
+              echo "dawn_day=$1" >> "$GITHUB_OUTPUT"
+              [ "$kind" = jukebox ] && echo "jukebox=true" >> "$GITHUB_OUTPUT"
+              [ "$kind" = mantra ] && echo "mantra=true" >> "$GITHUB_OUTPUT"
+              echo "::notice::$1 dawn long video ($kind, public 05:30 IST)"
+            fi
+          }
+          tomorrow=$(TZ=Asia/Kolkata date -d tomorrow +%F)
+          if [ "$slot" = dawn ]; then
+            dawn "$tomorrow"
+            echo "bhajans=[${bh#,}]" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Tomorrow's dawn uploads only ($tomorrow)"; exit 0
           fi
           if [ -z "$slot" ]; then
             hm=$((10#$(TZ=Asia/Kolkata date +%H%M)))
@@ -238,7 +272,13 @@ jobs:
           # of the same run for the Kaggle GPU, and the 10:43 IST dispatch makes the 20:00 variant in good time.
           if [ "$slot" = evening ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
           # Mini-movies (STORY.md section 7) are made a day or more ahead by the `movie` job, which runs after evening runs.
-          if [ "$slot" = evening ]; then echo "movie=true" >> "$GITHUB_OUTPUT"; echo "kalyug=true" >> "$GITHUB_OUTPUT"; echo "mantra=true" >> "$GITHUB_OUTPUT"; fi
+          if [ "$slot" = evening ]; then echo "movie=true" >> "$GITHUB_OUTPUT"; echo "kalyug=true" >> "$GITHUB_OUTPUT"; fi
+          # Evening runs render tomorrow's dawn uploads (bhajan Short 05:45, jukebox / mantra long 05:30); morning runs make
+          # today's dawn long video if last evening's render is missing (public as soon as it is ready; the dawn bhajan
+          # Short of today is the morning slot itself, routed to job bhajan below).
+          # (evening: only from 17:00 IST, i.e. the 18:46 IST scheduler dispatch and the evening polls, not the 10:43 one)
+          now_hm=$((10#$(TZ=Asia/Kolkata date +%H%M)))
+          if [ "$slot" = evening ] && [ $now_hm -ge 1700 ]; then dawn "$tomorrow"; elif [ "$slot" = morning ]; then dawn "$today"; bh=""; fi
           if grep -q "^$today | $slot |" automation/log.md; then
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today $slot already published"
@@ -263,7 +303,7 @@ jobs:
             # Chhath 2026 override: this slot is a bhajan Short (job `bhajan`, no Claude, no Kaggle). Without a QA-passed
             # Chhath bhajan it falls back to a Chhath Surya temple / ghat darshan Short made here (day-plan `fallback`).
             if node scripts/bhajan-short.mjs pick --date "$today" --slot "$slot"; then
-              echo "bhajan=true" >> "$GITHUB_OUTPUT"; echo "bhajan_slot=$slot" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+              bh=",{\"day\":\"$today\",\"slot\":\"$slot\"}$bh"; echo "done=true" >> "$GITHUB_OUTPUT"
               echo "::notice::$today $slot = Chhath bhajan Short (job bhajan)"
             else
               echo "kind=temple" >> "$GITHUB_OUTPUT"
@@ -271,6 +311,7 @@ jobs:
               echo "::warning::$today $slot: no Chhath bhajan in the library, Chhath Surya temple / ghat darshan instead"
             fi
           fi
+          echo "bhajans=[${bh#,}]" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-node@v4
         if: steps.date.outputs.done != 'true' || steps.date.outputs.movie_day != ''
@@ -609,8 +650,10 @@ jobs:
   # Shorts never wait for it or fail because of it. Story and images are cached per day, so a retry costs no
   # extra neurons; after 3 failed attempts it waits for the next day. If the upload fails (quotaExceeded or
   # an error) the mp4 is parked on the media Worker and the next run retries it (scripts/long-pending.mjs).
+  # It waits for the jukebox / mantra jobs of the same run (a dawn long video made by the morning fallback is then in
+  # log.md and this job skips; when they failed or did not run, the katha goes out at 12:30 as before).
   long:
-    needs: story
+    needs: [story, jukebox, mantra]
     if: always() && needs.story.outputs.long == 'true' && !inputs.dry_run
     runs-on: ubuntu-latest
     timeout-minutes: 210
@@ -877,7 +920,7 @@ jobs:
           # Facebook plan (scripts/fb.mjs, owner 13 Nov 2026): the long katha is a daily FEED video at 12:30 IST, not one of
           # the 2 Reels a day; fb.mjs gives its time ("--fb-at <date>T12:30", "--fb-at now" when 12:30 has passed and it
           # is under 6 h late, else --no-fb).
-          fb=$(node scripts/fb.mjs flags --date "${{ steps.date.outputs.today }}" --slot long || echo --no-fb)
+          fb=$(node scripts/fb.mjs flags --date "${{ steps.date.outputs.today }}" --slot long --at 12:30 || echo --no-fb)
           if [ "$fb" = --no-fb ]; then echo "::notice::Facebook plan: no Facebook copy of this long video"; exit 0; fi
           at=${fb#--fb-at }; pa=(); [ "$at" = now ] || pa=(--publish-at "$at")
           node scripts/meta.mjs long --video "story/long/out/$SLUG.mp4" --scenes story/long/scenes.json --meta "story/long/out/$SLUG.json" \
@@ -1178,13 +1221,20 @@ jobs:
   # of EXTRA_UPLOAD_DAY) or a morning/evening slot that day-plan turned into a bhajan Short. Same guard/record path as the
   # status Shorts: validate -> render -> host -> upload-guard claim -> YouTube (publishAt) -> Facebook Reel + Instagram
   # queue -> log.md / published.md / story/published (the bhajan's 5-day history).
+  # DAWN (owner, 14 Nov 2026): a morning bhajan Short is public 05:45 IST, rendered THE EVENING BEFORE (item day = the
+  # publish date: slug, guard claim and log.md line belong to it), Facebook Reel 06:00 (fb.mjs), Instagram queued 06:00.
+  # One matrix item per Short: [{day, slot}] from the story job (today's bhajan slot, tomorrow's dawn bhajan).
   bhajan:
     needs: story
-    if: always() && needs.story.outputs.bhajan == 'true'
+    if: always() && needs.story.outputs.bhajans != '' && needs.story.outputs.bhajans != '[]'
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        item: ${{ fromJSON(needs.story.outputs.bhajans) }}
     concurrency:
-      group: shyam-bhajan-${{ needs.story.outputs.today }}-${{ needs.story.outputs.bhajan_slot }}
+      group: shyam-bhajan-${{ matrix.item.day }}-${{ matrix.item.slot }}
       cancel-in-progress: false
     env:
       FFMPEG_PATH: ffmpeg
@@ -1192,8 +1242,8 @@ jobs:
       MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
       MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
       W: story/bhajan/work
-      DAY: ${{ needs.story.outputs.today }}
-      SLOT: ${{ needs.story.outputs.bhajan_slot }}
+      DAY: ${{ matrix.item.day }}
+      SLOT: ${{ matrix.item.slot }}
       DRY: ${{ inputs.dry_run }}
     steps:
       - uses: actions/checkout@v4
@@ -1225,6 +1275,7 @@ jobs:
           AT=$(node -p "require('$RUNNER_TEMP/build.json').publish_at")
           echo "AT=$AT" >> "$GITHUB_ENV"
           echo "FBAT=$(node -p "require('$RUNNER_TEMP/build.json').fb")" >> "$GITHUB_ENV"
+          echo "IGAT=$(node -p "require('$RUNNER_TEMP/build.json').ig || ''")" >> "$GITHUB_ENV"
           node story/render-story.mjs "$W/scenes.json" > "$RUNNER_TEMP/render.txt" 2>&1 || { tail -40 "$RUNNER_TEMP/render.txt"; exit 1; }
           tail -8 "$RUNNER_TEMP/render.txt"
           test -s "$W/out/$SLUG.mp4"
@@ -1260,7 +1311,8 @@ jobs:
           rm -f "$RUNNER_TEMP/meta.json"
           if [ -n "$META_PAGE_TOKEN" ] && ! grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json"; then
             if [ -n "$FBAT" ]; then fb="--fb-at ${DAY}T${FBAT}"; else fb=$(node scripts/fb.mjs flags --date "$DAY" --slot "$SLOT" || echo --no-fb); fi
-            node scripts/meta.mjs short --video "$video" --scenes "$file" ${url:+--video-url "$url"} "${pa[@]}" $fb > "$RUNNER_TEMP/meta.json" || true
+            ig=(); [ -n "$IGAT" ] && ig=(--ig-at "${DAY}T${IGAT}")
+            node scripts/meta.mjs short --video "$video" --scenes "$file" ${url:+--video-url "$url"} "${pa[@]}" "${ig[@]}" $fb > "$RUNNER_TEMP/meta.json" || true
           fi
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -1279,7 +1331,7 @@ jobs:
         if: always() && env.SKIP != '1'
         uses: actions/upload-artifact@v4
         with:
-          name: bhajan-${{ needs.story.outputs.today }}-${{ needs.story.outputs.bhajan_slot }}-${{ github.run_id }}
+          name: bhajan-${{ matrix.item.day }}-${{ matrix.item.slot }}-${{ github.run_id }}
           path: |
             story/bhajan/work/out/
             story/bhajan/work/scenes.json
@@ -1289,9 +1341,11 @@ jobs:
 
   # "Chhath Geet 2026 Nonstop" jukebox (owner, 13 Nov 2026; scripts/jukebox.mjs): every full-length QA-passed Chhath
   # bhajan back to back, 1920x1080 with a chapter per song, Hindi lyric captions and bank pictures (faceless, slow Ken
-  # Burns). It IS the long video of jukebox_date (default tomorrow in IST): YouTube private with publishAt 12:30 IST of
-  # that date, Facebook Page feed video at 12:30 (resumable upload), log.md "<date> | long | <slug>", so the long job of
-  # that date skips. Same upload guard: 1 long video per IST date. Runner only (no Kaggle, no Claude).
+  # Burns). It IS the long video of its date (jukebox_date, else the story job's dawn_day, else tomorrow in IST): a bhajan
+  # long video, so public at DAWN 05:30 IST (owner, 14 Nov 2026; day-plan.mjs gives the time): YouTube private with
+  # publishAt, Facebook Page feed video at 05:30 (resumable upload), log.md "<date> | long | <slug>", so the long job of
+  # that date skips. Runs after evening runs for tomorrow (and the morning run of the day when that failed: public as
+  # soon as it is ready). Same upload guard: 1 long video per IST date. Runner only (no Kaggle, no Claude).
   jukebox:
     needs: story
     if: always() && needs.story.outputs.jukebox == 'true'
@@ -1317,8 +1371,12 @@ jobs:
 
       - name: Date
         run: |
-          d="${{ inputs.jukebox_date }}"; d=${d:-$(TZ=Asia/Kolkata date -d tomorrow +%F)}
+          d="${{ inputs.jukebox_date }}"; d=${d:-${{ needs.story.outputs.dawn_day }}}; d=${d:-$(TZ=Asia/Kolkata date -d tomorrow +%F)}
           echo "DAY=$d" >> "$GITHUB_ENV"
+          # public time from day-plan (a jukebox day: 05:30 IST dawn; otherwise the long video's own time)
+          at=$(node scripts/day-plan.mjs --date "$d" --slot long | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).at" 2>/dev/null)
+          [[ "$at" =~ ^[0-9]{2}:[0-9]{2}$ ]] || at=12:30
+          echo "AT=$at" >> "$GITHUB_ENV"
           if grep -q "^$d | long |" automation/log.md; then echo "::notice::$d already has its long video"; echo "SKIP=1" >> "$GITHUB_ENV"; fi
 
       - name: Tools
@@ -1334,7 +1392,7 @@ jobs:
           test -s "$W/$SLUG.mp4"
           echo "- Jukebox $SLUG: $(ffprobe -v error -show_entries format=duration -of csv=p=0 "$W/$SLUG.mp4") s, $(node -p "require('./$W/scenes.json').songs.length") songs" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Upload (guard, YouTube 12:30, Facebook feed 12:30) and record
+      - name: Upload (guard, YouTube + Facebook feed at the dawn time 05:30) and record
         if: env.SKIP != '1'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
@@ -1350,19 +1408,19 @@ jobs:
           file="$W/scenes.json"; video="$W/$SLUG.mp4"; meta="$W/$SLUG.json"; thumb="$W/$SLUG-thumb.jpg"
           j() { node -p "try{const j=JSON.parse(require('fs').readFileSync('$1','utf8'));$2}catch{''}"; }
           if [ "$DRY" = true ]; then
-            node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --publish-at "${DAY}T12:30" --dry-run | tee -a "$GITHUB_STEP_SUMMARY"
+            node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --publish-at "${DAY}T${AT}" --dry-run | tee -a "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           node scripts/upload-guard.mjs claim --day "$DAY" --slot long --slug "$SLUG" > "$RUNNER_TEMP/claim.json"
           grep -q '"go":true' "$RUNNER_TEMP/claim.json" || { echo "::notice::$SLUG not uploaded: $(head -c 300 "$RUNNER_TEMP/claim.json")"; exit 0; }
-          if ! node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --thumbnail "$thumb" --publish-at "${DAY}T12:30" > "$RUNNER_TEMP/yt.json" || ! grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"; then
+          if ! node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --thumbnail "$thumb" --publish-at "${DAY}T${AT}" > "$RUNNER_TEMP/yt.json" || ! grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"; then
             echo "::error::YouTube upload failed: $(head -c 300 "$RUNNER_TEMP/yt.json")"
             node scripts/upload-guard.mjs release --day "$DAY" --slot long --slug "$SLUG" --reason "YouTube upload failed"
             exit 1
           fi
           fbline=""
           if [ -n "$META_PAGE_TOKEN" ]; then
-            fb=$(node scripts/fb.mjs flags --date "$DAY" --slot long || echo --no-fb)
+            fb=$(node scripts/fb.mjs flags --date "$DAY" --slot long --at "$AT" || echo --no-fb)
             if [ "$fb" != "--no-fb" ]; then
               at=${fb#--fb-at }; pa=(); [ "$at" = now ] || pa=(--publish-at "$at")
               node scripts/meta.mjs long --video "$video" --scenes "$file" --meta "$meta" --thumbnail "$thumb" "${pa[@]}" > "$RUNNER_TEMP/fb.json" || true
@@ -1375,7 +1433,7 @@ jobs:
           cp "$file" "story/published/$SLUG.json"
           cp "$meta" "story/published/$SLUG.meta.json"
           yt=$(j "$RUNNER_TEMP/yt.json" "const y=j.youtube; y.url+(y.publishAt?' (public at '+y.publishAt+')':' (public now)')")
-          echo "$DAY | long | $SLUG | Chhathi Maiya / Surya dev (Chhath Puja 2026) | Chhath Geet 2026 Nonstop jukebox: $(j "$file" "j.songs.length") original AI-sung Chhath bhajans back to back, chapters per song, public 12:30 IST" >> automation/log.md
+          echo "$DAY | long | $SLUG | Chhathi Maiya / Surya dev (Chhath Puja 2026) | Chhath Geet 2026 Nonstop jukebox: $(j "$file" "j.songs.length") original AI-sung Chhath bhajans back to back, chapters per song, public $AT IST" >> automation/log.md
           echo "- $SLUG | youtube: $yt | jukebox $(j "$meta" "Math.round(j.seconds/60)") min, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST" >> automation/published.md
           [ -n "$fbline" ] && echo "$fbline" >> automation/published.md
           git add automation/log.md automation/published.md "story/published/$SLUG.json" "story/published/$SLUG.meta.json"
@@ -1402,8 +1460,9 @@ jobs:
   # on Chhath / Janmotsav / movie days) is a 108-count mantra jaap: spoken intro (meaning, pronunciation, how to chant;
   # human voice chain), 1-5 malas from different ACE-Step takes (made on Kaggle by music-weekly.yml job `mantra`, never
   # reused), an on-screen counter, a chapter per mala, licence-checked temple photos, -14 LUFS. After every evening-slot
-  # run (and alone with slot=mantra) it makes TOMORROW's (mantra_date's) video: YouTube private with publishAt 12:30 IST
-  # of that date (+ the Bhakti Geet playlist, containsSyntheticMedia), Facebook as fb.mjs allows, log.md
+  # run (and alone with slot=mantra) it makes TOMORROW's (mantra_date's) video: YouTube private with publishAt 05:30 IST
+  # of that date (a mantra long video is a DAWN upload, owner 14 Nov 2026; the morning run makes it when the evening
+  # render is missing, public as soon as it is ready) (+ the Bhakti Geet playlist, containsSyntheticMedia), Facebook as fb.mjs allows, log.md
   # "<date> | long | <slug>", so that date's long job skips. Without enough unused QA-passed takes it does nothing and
   # the long job tells a katha that day. Same upload guard: 1 long video per IST date. Runner only.
   mantra:
@@ -1433,8 +1492,11 @@ jobs:
 
       - name: Date
         run: |
-          d="${{ inputs.mantra_date }}"; d=${d:-$(TZ=Asia/Kolkata date -d tomorrow +%F)}
+          d="${{ inputs.mantra_date }}"; d=${d:-${{ needs.story.outputs.dawn_day }}}; d=${d:-$(TZ=Asia/Kolkata date -d tomorrow +%F)}
           echo "DAY=$d" >> "$GITHUB_ENV"
+          at=$(node scripts/day-plan.mjs --date "$d" --slot long | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).at" 2>/dev/null)
+          [[ "$at" =~ ^[0-9]{2}:[0-9]{2}$ ]] || at=12:30
+          echo "AT=$at" >> "$GITHUB_ENV"
           if grep -q "^$d | long |" automation/log.md; then echo "::notice::$d already has its long video"; echo "SKIP=1" >> "$GITHUB_ENV"; exit 0; fi
           node scripts/mantra-long.mjs due --date "$d" | tee "$RUNNER_TEMP/due.json"
           if ! grep -q '"due":true' "$RUNNER_TEMP/due.json"; then
@@ -1458,7 +1520,7 @@ jobs:
           node scripts/validate.mjs --soft-topics "$W/scenes.json"
           echo "- Mantra $SLUG: $(ffprobe -v error -show_entries format=duration -of csv=p=0 "$W/$SLUG.mp4") s, $(node -p "require('./$W/scenes.json').malas.length") malas x 108" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Upload (guard, YouTube 12:30, Facebook) and record
+      - name: Upload (guard, YouTube + Facebook at the dawn time 05:30) and record
         if: env.SKIP != '1'
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
@@ -1474,19 +1536,19 @@ jobs:
           file="$W/scenes.json"; video="$W/$SLUG.mp4"; meta="$W/$SLUG.json"; thumb="$W/$SLUG-thumb.jpg"
           j() { node -p "try{const j=JSON.parse(require('fs').readFileSync('$1','utf8'));$2}catch{''}"; }
           if [ "$DRY" = true ]; then
-            node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --publish-at "${DAY}T12:30" --dry-run | tee -a "$GITHUB_STEP_SUMMARY"
+            node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --publish-at "${DAY}T${AT}" --dry-run | tee -a "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           node scripts/upload-guard.mjs claim --day "$DAY" --slot long --slug "$SLUG" > "$RUNNER_TEMP/claim.json"
           grep -q '"go":true' "$RUNNER_TEMP/claim.json" || { echo "::notice::$SLUG not uploaded: $(head -c 300 "$RUNNER_TEMP/claim.json")"; exit 0; }
-          if ! node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --thumbnail "$thumb" --publish-at "${DAY}T12:30" > "$RUNNER_TEMP/yt.json" || ! grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"; then
+          if ! node scripts/youtube.mjs upload --long --video "$video" --scenes "$file" --meta "$meta" --thumbnail "$thumb" --publish-at "${DAY}T${AT}" > "$RUNNER_TEMP/yt.json" || ! grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"; then
             echo "::error::YouTube upload failed: $(head -c 300 "$RUNNER_TEMP/yt.json")"
             node scripts/upload-guard.mjs release --day "$DAY" --slot long --slug "$SLUG" --reason "YouTube upload failed"
             exit 1
           fi
           fbline=""
           if [ -n "$META_PAGE_TOKEN" ]; then
-            fb=$(node scripts/fb.mjs flags --date "$DAY" --slot long || echo --no-fb)
+            fb=$(node scripts/fb.mjs flags --date "$DAY" --slot long --at "$AT" || echo --no-fb)
             if [ "$fb" != "--no-fb" ]; then
               at=${fb#--fb-at }; pa=(); [ "$at" = now ] || pa=(--publish-at "$at")
               node scripts/meta.mjs long --video "$video" --scenes "$file" --meta "$meta" --thumbnail "$thumb" "${pa[@]}" > "$RUNNER_TEMP/fb.json" || true
@@ -1501,7 +1563,7 @@ jobs:
           mkdir -p story/published
           cp "$file" "story/published/$SLUG.json"
           cp "$meta" "story/published/$SLUG.meta.json"
-          echo "$DAY | long | $SLUG | $(j "$file" "j.deity") | $(j "$file" "j.youtube_title.split(' | ')[0]"): weekly mantra jaap, $(j "$file" "j.malas.length") malas x 108 ($(j "$file" "j.malas.map(m=>m.raag).join(', ')")), public 12:30 IST" >> automation/log.md
+          echo "$DAY | long | $SLUG | $(j "$file" "j.deity") | $(j "$file" "j.youtube_title.split(' | ')[0]"): weekly mantra jaap, $(j "$file" "j.malas.length") malas x 108 ($(j "$file" "j.malas.map(m=>m.raag).join(', ')")), public $AT IST" >> automation/log.md
           echo "- $SLUG | youtube: $yt | mantra jaap $(j "$meta" "Math.round(j.seconds/60)") min, takes $(j "$file" "j.malas.map(m=>m.take).join(',')"), made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST" >> automation/published.md
           [ -n "$fbline" ] && echo "$fbline" >> automation/published.md
           git add -A music/mantra

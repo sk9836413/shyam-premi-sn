@@ -1,7 +1,7 @@
 // Story plan, caps and dedupe of scripts/stories.mjs (no network). Run: node --test scripts/stories.test.mjs
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { CAP, MIN_GAP, VIDEO_MAX, dayPlan, expectedTiers, istAt, nextDue, pickShort, platformNeed, shortsOf, storyHtml, storyVideoArgs, tierOf, used } from './stories.mjs';
+import { CAP, MIN_GAP, VIDEO_MAX, dawnShort, dayPlan, expectedTiers, istAt, nextDue, pickShort, platformNeed, shortsOf, storyHtml, storyVideoArgs, tierOf, used } from './stories.mjs';
 
 const D = '2026-11-14';
 const at = (h) => istAt(D, h);
@@ -142,5 +142,50 @@ describe('video story copy', () => {
     const a = storyVideoArgs('in.mp4', 'out.mp4', { seconds: 22, audio: true });
     assert.equal(a[a.indexOf('-t') + 1], '22');
     assert.doesNotMatch(a.join(' '), /fade/);
+  });
+});
+
+// Owner, 14 Nov 2026: a bhajan Short public at 05:45 -> its video story around 06:30-07:00, the morning card after it.
+describe('dawn bhajan morning (bhajan Short public 05:45)', () => {
+  const D15 = '2026-11-15';
+  const at15 = (h) => istAt(D15, h);
+  const ph = { date: D15, posts: ['festival', 'festival', 'facts', 'festival'].map((kind, i) => ({ n: i + 1, kind, images: [`https://media.example/m/photo-${D15}-${i + 1}-1.jpg`] })) };
+  const PUB15 = [
+    `- ${D15}-status-chhath-sandhya-arghya | youtube: https://youtube.com/shorts/s (public at 2026-11-14T19:00:00.000Z) | status video`,
+    `- ${D15}-morning-chhath-sandhya-arghya-geet | claim: ${D15} morning by run 5.1 at 2026-11-14T13:20:00.000Z`,
+    `- ${D15}-morning-chhath-sandhya-arghya-geet | youtube: https://youtube.com/shorts/b (public at 2026-11-15T00:15:00.000Z) | bhajan Short, made 14 Nov 18:55 IST`,
+  ].join('\n');
+  const uploads = [{ slot: 'status', kind: 'status' }, { slot: 'morning', kind: 'bhajan', at: '05:45', dawn: true }, { slot: 'long', kind: 'long' }, { slot: 'eve', kind: 'status' }];
+  test('the dawn bhajan is the video story from 06:30 (before the status Short), the morning card from 07:00', () => {
+    const plan = dayPlan({ date: D15, photos: ph, pubText: PUB15, uploads, now: at15('06:20') });
+    assert.deepEqual(plan.map((p) => p.key), ['video', 'morning', 'festival', 'evening']);
+    assert.equal(plan[0].slug, `${D15}-morning-chhath-sandhya-arghya-geet`);
+    assert.equal(plan[0].from, at15('06:30'));
+    assert.equal(plan[1].from, at15('07:00'));
+    assert.equal(nextDue({ plan, state: { stories: [] }, now: at15('06:20') }).item, null);
+    assert.equal(nextDue({ plan, state: { stories: [] }, now: at15('06:47') }).item.key, 'video');
+    const st = { stories: [{ key: 'video', fb: { id: 'f', at: new Date(at15('06:47')).toISOString() }, ig: { id: 'i', at: new Date(at15('06:47')).toISOString() } }] };
+    assert.equal(nextDue({ plan, state: st, now: at15('07:05') }).item, null, '25-min gap');
+    assert.equal(nextDue({ plan, state: st, now: at15('07:17') }).item.key, 'morning');
+  });
+  test('only a SCHEDULED bhajan public by 07:00 counts (an on-render morning bhajan or an evening one does not)', () => {
+    assert.equal(dawnShort(shortsOf(PUB15, D15), D15)?.slug, `${D15}-morning-chhath-sandhya-arghya-geet`);
+    assert.equal(dawnShort(shortsOf(PUB, D), D), null); // 14 Nov: morning bhajan public on render
+    const eve = `- ${D15}-evening-chhath-x-geet | youtube: https://youtube.com/shorts/e (public at 2026-11-15T13:30:00.000Z)`;
+    assert.equal(dawnShort(shortsOf(eve, D15), D15), null);
+  });
+  test('expected but not on YouTube yet: the morning card waits for 07:00; after 07:30 the normal plan', () => {
+    const pub = PUB15.split('\n')[0];
+    const early = dayPlan({ date: D15, photos: ph, pubText: pub, uploads, now: at15('06:50') });
+    assert.equal(early.find((p) => p.key === 'morning').from, at15('07:00'));
+    assert.equal(early.find((p) => p.key === 'video').ready, false);
+    const late = dayPlan({ date: D15, photos: ph, pubText: pub, uploads, now: at15('07:40') });
+    assert.equal(late.find((p) => p.key === 'morning').from, at15('06:45'));
+    assert.equal(late.find((p) => p.key === 'video').slug, `${D15}-status-chhath-sandhya-arghya`);
+  });
+  test('no dawn bhajan: the old times (card 06:45, video 07:30)', () => {
+    const plan = dayPlan({ date: D, photos: NORMAL, pubText: PUB, now: at('08:00') });
+    assert.equal(plan.find((p) => p.key === 'morning').from, at('06:45'));
+    assert.ok(plan.find((p) => p.key === 'video').from >= at('07:30'));
   });
 });

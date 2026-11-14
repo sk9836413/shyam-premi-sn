@@ -10,9 +10,15 @@
 //   video     07:30-23:30  the day's best Short as a video story, cut to VIDEO_MAX s, once it is public on YouTube:
 //                          festival status Short > bhajan Short / eve status > morning Short > evening Short. A better
 //                          Short that day-plan expects later is waited for (status until 12:00, bhajan/eve until 21:30).
+//                          A dawn bhajan morning (05:45 bhajan Short): that bhajan from 06:30, the morning card 07:00+.
 //   festival  10:40-19:00  festival days with a second greeting card (Chhath 14-16 Nov: photo post 2 or 3): that card
 //   evening   19:30-23:30  photo post 4: the Sandhya aarti darshan of Khatu Shyam ji (sheesh only; AI picture labelled
 //                          on the card) or the evening festival card. Header "संध्या आरती दर्शन 🪔" / "शुभ संध्या 🙏"
+// DAWN BHAJAN MORNING (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log"): when a bhajan Short is public by 07:00
+// (the 05:45 dawn bhajan, scripts/day-plan.mjs DAWN), the video story IS that bhajan Short, from DAWN_VIDEO_FROM (06:30;
+// in practice the first trigger after it, the 06:47 IST poll), and the morning card moves to DAWN_CARD_FROM (07:00) so
+// the bhajan goes first. While day-plan expects a dawn bhajan that is not on YouTube yet, both wait until 07:30, then
+// the normal order applies (the bhajan was not made: the morning run makes it, and the usual pick takes over).
 // The story cards REUSE the photo-post cards already hosted on the media Worker (photo-<date>-<n>-1.jpg: credits and the
 // "AI चित्र (सांकेतिक)" tag are on the card itself) inside a 1080x1920 frame drawn by the photo-cards Chrome renderer,
 // with a Hindi-first header (stories have no caption through the API). No links, no engagement bait, no other brand.
@@ -54,6 +60,10 @@ export const CLAIM_STALE = 20 * 60e3;
 export const MAX_ATTEMPTS = 2; // per story and platform
 export const SW = 1080;
 export const SH = 1920;
+export const DAWN_VIDEO_FROM = '06:30';
+export const DAWN_CARD_FROM = '07:00';
+const DAWN_PUBLIC_BY = '07:00'; // a bhajan Short public by then is the dawn bhajan
+const DAWN_WAIT_UNTIL = '07:30'; // an expected dawn bhajan not on YouTube by then: back to the normal plan
 
 // ---------------------------------------------------------------- env
 
@@ -106,9 +116,15 @@ export function shortsOf(pubText, date) {
       const t = m[2].match(/^(\d{1,2}):(\d{2}) IST$/);
       at = Number.isFinite(iso) && /T/.test(m[2]) ? iso : t ? istAt(date, `${t[1].padStart(2, '0')}:${t[2]}`) : at;
     }
-    out.set(m[1], { slug: m[1], tier, public: at });
+    out.set(m[1], { slug: m[1], tier, public: at, ...(m[2] ? { scheduled: true } : {}) });
   }
   return [...out.values()].sort((a, b) => a.tier - b.tier || a.public - b.public);
+}
+
+/** The dawn bhajan Short of the day (a bhajan Short public by 07:00 IST), or null. shorts = shortsOf(...). */
+export const isBhajanSlug = (slug) => /-geet$/.test(slug) || String(slug).replace(/^\d{4}-\d{2}-\d{2}-/, '').startsWith('bhajan-');
+export function dawnShort(shorts, date) {
+  return shorts.filter((x) => isBhajanSlug(x.slug) && x.scheduled && x.public <= istAt(date, DAWN_PUBLIC_BY)).sort((a, b) => a.public - b.public)[0] || null;
 }
 
 /** Better Shorts day-plan still expects today: [{tier, until}] (status until 12:00, bhajan/eve until 21:30). */
@@ -144,13 +160,21 @@ export function dayPlan({ date, photos, pubText = '', uploads = [], now = Date.n
   const post = (n) => photos?.posts?.find((p) => p.n === n && p.images?.length);
   const list = [];
   const p1 = post(1);
-  if (p1) list.push({ key: 'morning', type: 'image', from: istAt(date, '06:45'), until: istAt(date, '12:00'), image: p1.images[0], post: 1, head: p1.kind === 'festival' ? HEAD.festival : HEAD.darshan });
   const shorts = shortsOf(pubText, date);
-  const s = pickShort(shorts, expectedTiers(uploads, date), now);
-  const anyShort = shorts[0];
-  if (s || anyShort) {
-    const pick = s || anyShort;
-    list.push({ key: 'video', type: 'video', from: Math.max(pick.public, istAt(date, '07:30')), until: istAt(date, '23:30'), slug: pick.slug, ready: Boolean(s) });
+  // the dawn bhajan (05:45) goes first: the video story at 06:30, the morning card after it (see the header)
+  const dawn = dawnShort(shorts, date);
+  const dawnWait = !dawn && uploads.some((u) => u.dawn && u.kind === 'bhajan' && u.slot !== 'long') && now < istAt(date, DAWN_WAIT_UNTIL);
+  const cardFrom = dawn || dawnWait ? DAWN_CARD_FROM : '06:45';
+  if (p1) list.push({ key: 'morning', type: 'image', from: istAt(date, cardFrom), until: istAt(date, '12:00'), image: p1.images[0], post: 1, head: p1.kind === 'festival' ? HEAD.festival : HEAD.darshan });
+  if (dawn) {
+    list.push({ key: 'video', type: 'video', from: Math.max(dawn.public, istAt(date, DAWN_VIDEO_FROM)), until: istAt(date, '23:30'), slug: dawn.slug, ready: true, dawn: true });
+  } else {
+    const s = pickShort(shorts, expectedTiers(uploads, date), now);
+    const anyShort = shorts[0];
+    if (s || anyShort) {
+      const pick = s || anyShort;
+      list.push({ key: 'video', type: 'video', from: Math.max(pick.public, istAt(date, '07:30')), until: istAt(date, '23:30'), slug: pick.slug, ready: Boolean(s) && !dawnWait });
+    }
   }
   const fest = [2, 3].map(post).find((p) => p && p.kind === 'festival');
   if (fest) list.push({ key: 'festival', type: 'image', from: istAt(date, '10:40'), until: istAt(date, '19:00'), image: fest.images[0], post: fest.n, head: HEAD.festival });

@@ -50,7 +50,7 @@ describe('the Facebook day plan: every Short is a Facebook Reel, 90 min apart (o
     const d = fbDay('2026-12-04', synth([fest('2026-12-04', 'x', 'big')], { movies: new Map([['2026-12-04', 's part 1']]) }));
     assert.deepEqual(vids(d), ['status 00:30', 'movie 07:00', 'statusday 08:30']);
   });
-  test('the real calendar (11 Nov 2026 - 31 Jan 2027): every YouTube Short is on Facebook, 90 min apart, the long one as a 12:30 feed video', () => {
+  test('the real calendar (11 Nov 2026 - 31 Jan 2027): every YouTube Short is on Facebook, 90 min apart, the long one as a feed video (12:30; bhajan / mantra long 05:30)', () => {
     const inputs = loadInputs('.');
     for (let d = '2026-11-11'; d <= '2027-01-31'; d = addDays(d, 1)) {
       const p = fbDay(d, inputs);
@@ -60,7 +60,10 @@ describe('the Facebook day plan: every Short is a Facebook Reel, 90 min apart (o
       for (let i = 1; i < times.length; i++) assert.ok(times[i] - times[i - 1] >= GAP_MIN * 60e3, `${d}: ${vids(p)}`);
       const next = fbDay(addDays(d, 1), inputs).videos.filter((v) => v.slot === 'status');
       if (next.length && times.length) assert.ok(at(addDays(d, 1), '00:30') - times.at(-1) >= GAP_MIN * 60e3, `${d}: ${vids(p)} / next day 00:30`);
-      assert.deepEqual(p.feed.map((v) => `${v.slot} ${v.at} ${v.type} ${v.role}`), ['long 12:30 video feed'], d);
+      const long = planDay(d, inputs).uploads.find((u) => u.slot === 'long');
+      assert.deepEqual(p.feed.map((v) => `${v.slot} ${v.at} ${v.type} ${v.role}`), [`long ${long.dawn ? '05:30' : '12:30'} video feed`], d);
+      // nothing but a dawn bhajan Reel (06:00) or a 00:30 status Reel is planned between 01:00 and 07:00
+      for (const v of p.videos) if (v.at >= '01:00' && v.at < '07:00') assert.ok(v.at === '06:00' && planDay(d, inputs).uploads.find((u) => u.slot === v.slot)?.dawn, `${d}: ${vids(p)}`);
     }
   });
 });
@@ -333,5 +336,62 @@ describe('fb-daily.mjs: insights and share kit', () => {
     const l = shareLine(spec, spec.slug);
     assert.match(l, /[ऀ-ॿ]/);
     assert.ok(!/share|like|comment|शेयर|लाइक|कमेंट|भेजें/i.test(l), l);
+  });
+});
+
+// Owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log". Dawn bhajan Short: YouTube 05:45, Facebook Reel 06:00,
+// Instagram queued 06:00; bhajan / mantra long video: YouTube + Facebook feed 05:30. Katha long video: 12:30.
+describe('dawn uploads on Facebook', () => {
+  const real = loadInputs('.');
+  test('15 / 16 Nov 2026: 00:30 status Reel, 06:00 dawn bhajan Reel (5.5 h apart), the rest of the day unchanged', () => {
+    assert.deepEqual(vids(fbDay('2026-11-15', real)), ['status 00:30', 'morning 06:00', 'eve 20:00']);
+    assert.deepEqual(vids(fbDay('2026-11-16', real)), ['status 00:30', 'morning 06:00', 'evening 20:30']);
+    assert.ok(at('2026-11-15', '06:00') - at('2026-11-15', '00:30') >= GAP_MIN * 60e3);
+  });
+  test('rendered the evening before (18:46 IST): Facebook scheduled for 06:00 of the publish day', () => {
+    const pub = fs.readFileSync('automation/published.md', 'utf8');
+    for (const d of ['2026-11-15', '2026-11-16']) {
+      const r = fbDecision({ date: d, slot: 'morning', now: at(addDays(d, -1), '18:46'), inputs: real, posted: fbPosted(pub) });
+      assert.equal(r.at, `${d}T06:00`, r.why);
+    }
+  });
+  test('the evening render failed: made by the morning run (09:20) -> posted now', () => {
+    assert.equal(fbDecision({ date: '2026-11-15', slot: 'morning', now: at('2026-11-15', '09:20'), inputs: real }).at, 'now');
+  });
+  test('a synthetic dawn day: a movie / kalyug / statusday Reel is never pulled into 01:00-07:00 by the 06:00 bhajan', () => {
+    const big = synth([fest('2026-12-04', 'x')], { movies: new Map([['2026-12-04', 's part 1']]),
+      override: { days: { '2026-12-04': { slots: { morning: { kind: 'bhajan', day: 'x', title: 't' } } } } } });
+    const d = fbDay('2026-12-04', big);
+    assert.deepEqual(vids(d), ['status 00:30', 'morning 06:00', 'movie 07:30']);
+    const k = fbDay('2026-12-08', synth([], { override: { days: { '2026-12-08': { slots: { morning: { kind: 'bhajan', day: 'x', title: 't' } } } } } }));
+    assert.deepEqual(vids(k), ['morning 06:00', 'kalyug 08:00', 'evening 20:30']);
+    for (const v of d.videos) assert.ok(v.at === '00:30' || v.at === '06:00' || v.at >= '07:00', vids(d).join(', '));
+    const times = d.videos.map((v) => at('2026-12-04', v.at)).sort((a, b) => a - b);
+    for (let k = 1; k < times.length; k++) assert.ok(times[k] - times[k - 1] >= GAP_MIN * 60e3, vids(d).join(', '));
+  });
+  test('upload-time scheduling never moves a normal Reel into the night (01:00-07:00)', () => {
+    const i = synth([]);
+    // a morning Short ready at 23:50 the day before its date (made early): 10:30, not 01:00-07:00
+    const r = fbDecision({ date: '2026-12-11', slot: 'morning', now: at('2026-12-10', '23:50'), inputs: i });
+    assert.equal(r.at, '2026-12-11T10:30', r.why);
+  });
+  test('feed video: the mantra jaap / jukebox at 05:30, made the evening before; the katha keeps 12:30 (--at 12:30)', () => {
+    assert.deepEqual(fbDecision({ date: '2026-11-22', slot: 'long', now: at('2026-11-21', '18:50'), inputs: real }), { post: true, at: '2026-11-22T05:30', why: 'feed 05:30 IST' });
+    // morning fallback: the mantra made at 09:40 goes out at once (never later than 12:30 + grace)
+    assert.equal(fbDecision({ date: '2026-11-22', slot: 'long', now: at('2026-11-22', '09:40'), inputs: real }).at, 'now');
+    // the long job's katha on a mantra day (the mantra failed): 12:30 like YouTube
+    assert.equal(fbDecision({ date: '2026-11-22', slot: 'long', now: at('2026-11-22', '10:30'), inputs: real, at: '12:30' }).at, '2026-11-22T12:30');
+    assert.equal(fbDay('2026-11-22', real).feed[0].at, '05:30');
+    assert.equal(fbDay('2026-11-21', real).feed[0].at, '12:30');
+  });
+  test('Instagram: --ig-at gives the queue its own time (YouTube 05:45, Instagram 06:00); past = at once', () => {
+    const now = at('2026-11-14', '18:50');
+    const p = planShort({ seconds: 88, width: 1080, height: 1920, publishAt: at('2026-11-15', '05:45'), fbAt: at('2026-11-15', '06:00'), igAt: at('2026-11-15', '06:00'), now });
+    assert.equal(p.igAt, new Date(at('2026-11-15', '06:00')).toISOString());
+    assert.equal(p.fbSchedule.scheduled_publish_time, String(at('2026-11-15', '06:00') / 1000));
+    const late = planShort({ seconds: 88, width: 1080, height: 1920, publishAt: null, fbAt: null, igAt: null, now: at('2026-11-15', '09:20') });
+    assert.equal(late.igAt, null);
+    const plain = planShort({ seconds: 88, width: 1080, height: 1920, publishAt: at('2026-11-15', '19:00'), now });
+    assert.equal(plain.igAt, new Date(at('2026-11-15', '19:00')).toISOString(), 'without --ig-at Instagram follows YouTube');
   });
 });

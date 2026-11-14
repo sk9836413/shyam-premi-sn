@@ -3,7 +3,7 @@
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
 import { decide } from './upload-guard.mjs';
-import { CAP, LONG_CAP, addDays, festTokens, isPlanned, istToday, loadInputs, longSubject, planDay } from './day-plan.mjs';
+import { CAP, DAWN, DAWN_LONG_KINDS, LONG_CAP, addDays, bhajanAt, dawnUploads, festTokens, isPlanned, istToday, loadInputs, longSubject, planDay } from './day-plan.mjs';
 import { placements } from './status-engine.mjs';
 
 const fest = (date, key, tier = 'status', theme = 'ekadashi', extra = {}) => ({
@@ -34,14 +34,14 @@ describe('cap and priority', () => {
       assert.ok(!p.dropped.includes('long'), `${d}: long dropped`);
     }
   });
-  test('a long video at 12:30 IST on every one of the next 30 days (festival, movie and normal days alike)', () => {
+  test('a long video on every one of the next 30 days: katha 12:30 IST, bhajan / mantra kinds at dawn 05:30', () => {
     const inputs = realInputs();
     for (const from of ['2026-11-13', istToday()]) {
       for (let i = 0; i < 30; i++) {
         const d = addDays(from, i);
         const r = isPlanned(d, 'long', inputs);
         assert.equal(r.planned, true, `${d}: ${r.why}`);
-        assert.equal(r.upload.at, '12:30', d);
+        assert.equal(r.upload.at, DAWN_LONG_KINDS.includes(r.upload.kind) ? DAWN.long : '12:30', `${d} ${r.upload.kind}`);
         assert.match(r.upload.what, /long katha video/, d);
       }
     }
@@ -179,5 +179,70 @@ describe('Chhath 2026 override (automation/chhath-2026.json)', () => {
     const p = planDay('2026-11-13', { ...inputs, extraDay: '2026-11-13' });
     assert.ok(slots(p).includes('bhajan'));
     assert.equal(shorts(p).length, CAP + 1);
+  });
+});
+
+// Owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log". Bhajan Shorts at 05:45, bhajan / mantra long videos at 05:30
+// (rendered the evening before), katha long videos stay at 12:30; the IST publish date stays the upload's date.
+describe('dawn uploads (bhajan Short 05:45, bhajan / mantra long video 05:30)', () => {
+  test('bhajanAt: own "at" wins (null = on render), else the morning / extra bhajan slot is a dawn upload', () => {
+    assert.deepEqual(bhajanAt('morning', {}), { at: '05:45', dawn: true });
+    assert.deepEqual(bhajanAt('bhajan', {}), { at: '05:45', dawn: true });
+    assert.deepEqual(bhajanAt('evening', {}), { at: null, dawn: false });
+    assert.deepEqual(bhajanAt('morning', { at: null }), { at: null, dawn: false }); // 14 Nov 2026 (on render) unchanged
+    assert.deepEqual(bhajanAt('morning', { at: '05:45' }), { at: '05:45', dawn: true });
+    assert.deepEqual(bhajanAt('evening', { at: '19:00' }), { at: '19:00', dawn: false });
+    assert.deepEqual(bhajanAt('bhajan', { at: '19:45' }), { at: '19:45', dawn: false });
+  });
+  test('15 and 16 Nov 2026: the morning Chhath bhajan Short is public 05:45 (Sandhya / Usha Arghya), the 16 Nov evening one stays 19:00', () => {
+    const inputs = realInputs();
+    for (const [d, day] of [['2026-11-15', 'sandhya-arghya'], ['2026-11-16', 'usha-arghya']]) {
+      const u = planDay(d, inputs).uploads.find((x) => x.slot === 'morning');
+      assert.deepEqual([u.kind, u.day, u.at, u.dawn], ['bhajan', day, '05:45', true], d);
+      assert.deepEqual(dawnUploads(d, inputs, '').bhajans, [{ day: d, slot: 'morning', at: '05:45' }], d);
+    }
+    const eve16 = planDay('2026-11-16', inputs).uploads.find((x) => x.slot === 'evening');
+    assert.deepEqual([eve16.kind, eve16.at, Boolean(eve16.dawn)], ['bhajan', '19:00', false]);
+    const m14 = planDay('2026-11-14', inputs).uploads.find((x) => x.slot === 'morning');
+    assert.ok(!m14.dawn && !/^\d/.test(m14.at), '14 Nov morning (already being made today) keeps "on render"');
+    // the katha long videos of 15 / 16 Nov stay 12:30
+    for (const d of ['2026-11-15', '2026-11-16']) assert.equal(planDay(d, inputs).uploads.find((x) => x.slot === 'long').at, '12:30', d);
+  });
+  test('dawn uploads come first in the time order (00:30 status, 05:30 long, 05:45 bhajan) and stay within the caps', () => {
+    const inputs = realInputs();
+    assert.deepEqual(slots(planDay('2026-11-15', inputs)).slice(0, 2), ['status', 'morning']);
+    assert.deepEqual(planDay('2026-11-22', inputs).uploads.map((u) => `${u.slot} ${u.at}`).slice(0, 2), ['status 00:30', 'long 05:30']);
+    for (const d of ['2026-11-15', '2026-11-16', '2026-11-22']) {
+      const p = planDay(d, inputs);
+      assert.ok(shorts(p).length <= CAP, d);
+      assert.equal(p.uploads.filter((u) => u.slot === 'long').length, LONG_CAP, d);
+    }
+  });
+  test('the jukebox (override long kind) and the weekly mantra jaap are dawn long videos (05:30), a katha is not', () => {
+    const inputs = realInputs();
+    const j = planDay('2026-11-14', inputs).uploads.find((u) => u.slot === 'long');
+    assert.deepEqual([j.kind, j.at, j.dawn], ['jukebox', '05:30', true]);
+    const m = planDay('2026-11-22', inputs).uploads.find((u) => u.slot === 'long');
+    assert.deepEqual([m.kind, m.at, m.dawn], ['mantra', '05:30', true]);
+    assert.match(m.what, /public 05:30 IST/);
+    assert.deepEqual(dawnUploads('2026-11-22', inputs, ''), { date: '2026-11-22', bhajans: [], long: 'mantra', longAt: '05:30' });
+    const k = planDay('2026-11-17', inputs).uploads.find((u) => u.slot === 'long');
+    assert.deepEqual([k.at, Boolean(k.dawn)], ['12:30', false]);
+    assert.deepEqual(dawnUploads('2026-11-17', inputs, ''), { date: '2026-11-17', bhajans: [], long: '', longAt: '' });
+  });
+  test('dawnUploads leaves out what log.md already has (the evening run renders only what is missing)', () => {
+    const inputs = realInputs();
+    const log = '2026-11-15 | morning | 2026-11-15-morning-chhath-sandhya-arghya-geet | Chhath | x\n2026-11-22 | long | 2026-11-22-long-mantra-x | Vishnu | y\n';
+    assert.deepEqual(dawnUploads('2026-11-15', inputs, log).bhajans, []);
+    assert.equal(dawnUploads('2026-11-22', inputs, log).long, '');
+    assert.equal(dawnUploads('2026-11-14', inputs, '2026-11-14 | long | 2026-11-14-long-chhath-geet-nonstop | c | j\n').long, '');
+  });
+  test('a Short rendered the evening before counts on its publish day (upload guard), not on the render day', () => {
+    // 14 Nov evening: the 15 Nov 05:45 bhajan is claimed and logged under 2026-11-15
+    const log = '2026-11-14 | evening | 2026-11-14-evening-chhath-chhath-geet | c | x\n2026-11-14 | eve | 2026-11-14-eve-chhath | c | x\n2026-11-14 | morning | 2026-11-14-morning-chhath-kharna-geet | c | x\n'
+      + '2026-11-15 | morning | 2026-11-15-morning-chhath-sandhya-arghya-geet | c | x\n';
+    assert.equal(decide({ day: '2026-11-15', slot: 'eve', slug: '2026-11-15-eve-chhath-usha', run: '1.1', log }).go, true); // 15 Nov: 2nd Short
+    const log15 = `${log}2026-11-15 | status | 2026-11-15-status-chhath | c | x\n2026-11-15 | eve | 2026-11-15-eve-chhath-usha | c | x\n`;
+    assert.equal(decide({ day: '2026-11-15', slot: 'evening', slug: '2026-11-15-evening-y', run: '1.1', log: log15 }).cap, true); // 4th on 15 Nov
   });
 });

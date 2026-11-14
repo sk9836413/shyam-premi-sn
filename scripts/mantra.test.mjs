@@ -35,7 +35,7 @@ describe('schedule: once a week, on the right day, never displacing Chhath / Jan
       assert.equal(isLongMantra(p), !!m, `${d}: plan and mantraFor agree`);
       if (!m) continue;
       assert.ok(d >= '2026-11-22', `${d}: none before the start`);
-      assert.equal(longs[0].at, '12:30');
+      assert.equal(longs[0].at, '05:30'); // a dawn upload (owner, 14 Nov 2026), made the evening before
       assert.match(longs[0].what, /mantra jaap/);
       assert.match(longs[0].what, /long katha video/, 'the katha fallback is described');
       const wk = mondayOf(d);

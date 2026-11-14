@@ -14,6 +14,10 @@
 # the plays per Reel (scripts/fb-daily.mjs insights -> automation/fb-insights.json, 30-day progress toward 1,000,000), and
 # the 19:46 IST run waits until 20:45 IST for the daily Facebook "share kit" (job share-kit: today's Reel URLs, Hindi
 # share lines, today's half of automation/fb-groups.json -> automation/share-kit/<date>.md, Resend email, CRM task).
+# DAWN RETRY (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log"; scripts/day-plan.mjs DAWN): tomorrow's 05:45 bhajan
+# Short and 05:30 bhajan / mantra long video are rendered the evening before by daily.yml's evening runs (the scheduler's
+# 18:46 IST dispatch); the 19:46 IST run of this workflow dispatches daily.yml slot=dawn when one is still missing (a
+# workflow_dispatch with the job token: no new cron, the scheduler Worker untouched).
 # Separate from daily.yml on purpose: a failed photo post never touches the video pipeline. The repo is public, so the
 # Actions minutes are free. dry_run = plan, write and render (the cards are the run's artifact), publish nothing.
 name: Photo posts
@@ -32,6 +36,7 @@ on:
 
 permissions:
   contents: write
+  actions: write # the dawn retry dispatches daily.yml slot=dawn
 
 concurrency:
   group: shyam-photos
@@ -62,6 +67,21 @@ jobs:
         if: ${{ !inputs.dry_run }}
         continue-on-error: true
         run: node scripts/photos.mjs flush | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Retry tomorrow's dawn render (19:00-22:59 IST runs)
+        if: ${{ !inputs.dry_run }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          h=$((10#$(TZ=Asia/Kolkata date +%H)))
+          { [ $h -ge 19 ] && [ $h -lt 23 ]; } || { echo "Not an evening run ($h h IST)"; exit 0; }
+          d=$(TZ=Asia/Kolkata date -d tomorrow +%F)
+          node scripts/day-plan.mjs --date "$d" --dawn > "$RUNNER_TEMP/dawn.json"
+          n=$(node -p "const r=require(process.env.RUNNER_TEMP + '/dawn.json'); r.bhajans.length + (r.long ? 1 : 0)")
+          [ "$n" != 0 ] || { echo "No dawn upload of $d is missing"; exit 0; }
+          gh workflow run daily.yml -R "$GITHUB_REPOSITORY" --ref main -f slot=dawn
+          echo "- Dawn retry: dispatched daily.yml slot=dawn for $d ($(cat "$RUNNER_TEMP/dawn.json"))" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Facebook insights (Page views, plays per Reel)
         if: ${{ !inputs.dry_run }}

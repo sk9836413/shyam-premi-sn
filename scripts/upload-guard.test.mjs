@@ -122,3 +122,26 @@ describe('daily cap per kind: 3 Shorts + 1 long', () => {
     assert.equal(decide({ day: d13, slot: 'noon', slug: `${d13}-noon-x`, run: '9.1', now: NOW, log, cap: shortsCap(d13, d13) }).go, true);
   });
 });
+
+// Owner, 14 Nov 2026: dawn uploads (05:30 / 05:45 IST) are rendered and claimed the evening before; they count on the
+// IST date they go public (the claim's --day and the log.md line carry it), never on the render day.
+describe('dawn uploads count on their publish day', () => {
+  const NOW14 = Date.parse('2026-11-14T13:20:00Z'); // 18:50 IST on 14 Nov
+  test('a claim made on 14 Nov evening for the 15 Nov 05:45 bhajan blocks a second one for 15 Nov, not 14 Nov uploads', () => {
+    const claim = `${claimLine({ day: '2026-11-15', slot: 'morning', slug: '2026-11-15-morning-chhath-sandhya-arghya-geet', run: '11.1', now: NOW14 })}\n`;
+    assert.equal(decide({ day: '2026-11-15', slot: 'morning', slug: '2026-11-15-morning-chhath-sandhya-arghya-geet', run: '12.1', now: NOW14 + 60e3, pub: claim }).go, false);
+    const log14 = '2026-11-14 | morning | 2026-11-14-morning-chhath-kharna-geet | c | x\n2026-11-14 | evening | 2026-11-14-evening-chhath-geet | c | x\n';
+    assert.equal(decide({ day: '2026-11-14', slot: 'eve', slug: '2026-11-14-eve-chhath-sandhya', run: '12.1', now: NOW14 + 60e3, log: log14, pub: claim }).go, true);
+  });
+  test('15 Nov: status 00:30 + the dawn bhajan + eve 20:00 = 3 Shorts; a 4th is capped; the 05:30-style long has its own cap', () => {
+    const log = '2026-11-15 | status | 2026-11-15-status-chhath | c | x\n2026-11-15 | morning | 2026-11-15-morning-chhath-sandhya-arghya-geet | c | x\n';
+    assert.equal(decide({ day: '2026-11-15', slot: 'eve', slug: '2026-11-15-eve-chhath-usha', run: '1.1', now: NOW14, log }).go, true);
+    const full = `${log}2026-11-15 | eve | 2026-11-15-eve-chhath-usha | c | x\n`;
+    assert.equal(decide({ day: '2026-11-15', slot: 'evening', slug: '2026-11-15-evening-x', run: '1.1', now: NOW14, log: full }).cap, true);
+    assert.equal(decide({ day: '2026-11-15', slot: 'long', slug: '2026-11-15-long-chhath-vrat-katha', run: '1.1', now: NOW14, log: full }).go, true);
+    // a mantra long made on 21 Nov evening for 22 Nov 05:30 counts on 22 Nov only
+    const m = '- 2026-11-22-long-mantra-vasudev | youtube: https://youtu.be/m (public at 2026-11-22T00:00:00.000Z)\n';
+    assert.equal(decide({ day: '2026-11-21', slot: 'long', slug: '2026-11-21-long-x', run: '1.1', now: NOW14, pub: m }).go, true);
+    assert.equal(decide({ day: '2026-11-22', slot: 'long', slug: '2026-11-22-long-y', run: '1.1', now: NOW14, pub: m }).go, false);
+  });
+});
