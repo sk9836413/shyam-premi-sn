@@ -76,9 +76,11 @@ export function deityOf(text) {
   return null;
 }
 
-/** The deity a reply must honour: the video's; when the video is unknown (a quote card, a general post), the comment's. */
+/** The deity a reply must honour: the video's; when the video is unknown (a quote card, a general post), the comment's.
+ *  The title (first line) decides before the description: descriptions end with a "जय श्री श्याम" sign-off on every topic. */
 export function contextDeity(contentText, commentText) {
-  const c = deityOf(contentText);
+  const [first, ...rest] = String(contentText || '').split(/\r?\n/);
+  const c = deityOf(first) || deityOf(rest.join('\n'));
   if (c) return c;
   const m = deityOf(commentText);
   return m === 'sati' ? 'sati' : m || 'general';
@@ -327,7 +329,7 @@ export function planComments(comments, state, { now = Date.now(), maxAgeDays = L
     const { kind, reason } = classify(c.text);
     let action = ACTION[kind];
     const deity = contextDeity(c.title, c.text);
-    const sati = deity === 'sati' || DEITIES.sati.re.test(cleanText(c.text));
+    const sati = deity === 'sati' || DEITIES.sati.re.test(cleanText(c.text)) || DEITIES.sati.re.test(cleanText(c.title)); // any sati mention: safe side
     const lang = langOf(c.text);
     const bhajan = isBhajanText(c.title);
     const item = { ...c, kind, reason, action, deity: sati ? 'sati' : deity, lang, sati, bhajan, reply: null, needsAi: false };

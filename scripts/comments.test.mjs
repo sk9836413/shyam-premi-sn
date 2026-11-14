@@ -89,6 +89,8 @@ describe('language and jaikara mapping', () => {
     assert.equal(contextDeity('Aaj ka vichar', 'Har Har Mahadev'), 'shiv');
     assert.equal(contextDeity('Aaj ka vichar', 'ok'), 'general');
     assert.equal(contextDeity('Shiv ji ki Katha', 'Jai shree shyam'), 'shiv', 'the video decides');
+    assert.equal(contextDeity('Shiv ji ki Jataon mein Ganga ki Katha | शिव जी\nकथा सुनें। जय श्री श्याम 🙏', 'Om Namah Shiva'), 'shiv', 'title before the sign-off');
+    assert.equal(contextDeity('Karwa Chauth ki Katha #Shorts\nJai Shree Shyam', 'Happy karwa chauth'), 'devi');
   });
   test('templates use the matching jaikara and the commenter\'s script; Khatu words only on Khatu content', () => {
     for (const [deity, d] of Object.entries(DEITIES)) {
