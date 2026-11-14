@@ -92,3 +92,4 @@
 - 2026-11-14-long-chhath-geet-nonstop | claim: 2026-11-14 long by run 43486106281.1 at 2026-11-13T18:54:28.322Z
 - 2026-11-14-long-chhath-geet-nonstop | youtube: https://youtu.be/1tu--CcaIik (public at 2026-11-14T07:00:00.000Z) | jukebox 23 min, made 14 Nov 00:25 IST
 - 2026-11-14-long-chhath-geet-nonstop | facebook: https://www.facebook.com/388779648425633/videos/1876250110400690 (scheduled 2026-11-14T07:00:00.000Z)
+- 2026-11-14-morning-chhath-kharna-geet | claim: 2026-11-14 morning by run 43553095912.1 at 2026-11-14T03:48:48.711Z
