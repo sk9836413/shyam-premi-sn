@@ -61,3 +61,4 @@
 2026-11-13 | long | 2026-11-13-long-chhath-nahay-khay-kaddu-bhaat-katha | Surya dev / Chhathi Maiya (Chhath Puja, Nahay Khay) | Chhath Puja ke chaar din, Nahay Khay par kaddu bhaat, Raja Priyavrat aur Shashthi Devi ki katha, Kharna, Sandhya aur Usha Arghya
 2026-11-13 | bhajan | 2026-11-13-bhajan-chhath-nahay-khay-geet | Chhath Puja (Nahay Khay) | Chhath bhajan Short "Chhath Puja Song 2026", song bhajan-chhath26d-01-devi (AI-sung original, whole soundtrack), public 19:45 IST
 2026-11-14 | long | 2026-11-14-long-chhath-geet-nonstop | Chhathi Maiya / Surya dev (Chhath Puja 2026) | Chhath Geet 2026 Nonstop jukebox: 10 original AI-sung Chhath bhajans back to back, chapters per song, public 12:30 IST
+2026-11-14 | morning | 2026-11-14-morning-chhath-kharna-geet | Chhath Puja (Kharna) | Chhath bhajan Short "Kharna Geet 2026", song bhajan-chhath26g-02-devi (AI-sung original, whole soundtrack), public on upload IST
