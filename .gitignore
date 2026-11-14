@@ -63,3 +63,5 @@ __pycache__/
 story/photos/*/out/
 # Kalyug ke Bhagwan work folder (voices, Kaggle outputs, renders)
 story/kalyug/work/
+# comment replies work folder (scripts/comments.mjs: pending comments, Claude replies)
+.comments-work/

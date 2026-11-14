@@ -247,3 +247,10 @@ jobs:
     if: ${{ vars.STORIES == 'on' && !inputs.dry_run }}
     uses: ./.github/workflows/stories.yml
     secrets: inherit
+
+  # Automatic comment replies on YouTube, Facebook and Instagram (repo variable COMMENT_REPLIES=on; scripts/comments.mjs
+  # via .github/workflows/comments.yml): every dispatch of this workflow answers the new comments. No new cron.
+  comments:
+    if: ${{ vars.COMMENT_REPLIES == 'on' && !inputs.dry_run }}
+    uses: ./.github/workflows/comments.yml
+    secrets: inherit

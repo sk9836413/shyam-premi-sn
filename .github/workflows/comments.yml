@@ -1,0 +1,102 @@
+# Automatic comment replies on YouTube, the Facebook Page and Instagram (scripts/comments.mjs, rules automation/COMMENTS.md;
+# owner 14 Nov 2026: "har comment ka reply karo automation me").
+# NO cron of its own: photos.yml calls this workflow on each of the scheduler Worker's dispatches (09:13, 10:13, 10:43,
+# 18:46, 19:46 IST) when the repo variable COMMENT_REPLIES=on. Each run reads the new top-level comments, skips what the
+# channel already answered, uses templates for very short comments, lets Claude write the rest (checked by the script,
+# with a template as fallback), posts at most 50 replies 12-25 s apart, hides spam (reversible) and records everything in
+# automation/comments/state.json. Flagged comments go into the daily share kit (scripts/fb-daily.mjs).
+# Manual: dry_run reads live comments and prints the replies it WOULD post (Claude included); it posts and commits nothing.
+# For a dry run with samples, since= and include_answered= also take older / already answered comments.
+name: Comment replies
+
+on:
+  workflow_call:
+    inputs:
+      dry_run: { type: boolean, default: false }
+      since: { type: string, default: '' }
+      include_answered: { type: boolean, default: false }
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Print the replies it would post; post nothing, commit nothing
+        type: boolean
+        default: true
+      since:
+        description: Dry run only - also comments since this date (YYYY-MM-DD)
+        required: false
+        default: ''
+      include_answered:
+        description: Dry run only - also comments the channel already answered (as samples)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  comments:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    concurrency:
+      group: shyam-comments
+      cancel-in-progress: false
+    env:
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+      SHYAM_YT_CLIENT_ID: ${{ secrets.SHYAM_YT_CLIENT_ID }}
+      SHYAM_YT_CLIENT_SECRET: ${{ secrets.SHYAM_YT_CLIENT_SECRET }}
+      SHYAM_YT_REFRESH_TOKEN: ${{ secrets.SHYAM_YT_REFRESH_TOKEN }}
+      META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+      META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
+      DRY: ${{ inputs.dry_run && '1' || '' }}
+      SINCE: ${{ inputs.dry_run && inputs.since || '' }}
+      ANSWERED: ${{ inputs.dry_run && inputs.include_answered && '1' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Read new comments
+        id: collect
+        if: inputs.dry_run || vars.COMMENT_REPLIES == 'on'
+        run: |
+          node scripts/comments.mjs collect --out .comments-work/pending.json ${DRY:+--dry-run} ${SINCE:+--since "$SINCE"} ${ANSWERED:+--include-answered} | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Claude writes the replies (automation/COMMENTS.md)
+        if: steps.collect.outputs.ai > 0 && env.HAS_CLAUDE == 'true'
+        continue-on-error: true
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --max-turns 20
+            --allowedTools "Read,Write,Edit,Bash(node scripts/comments.mjs check:*)"
+          prompt: |
+            Write replies to the Shyam Premi SN comments that need one. Follow automation/COMMENTS.md exactly.
+            Read .comments-work/pending.json; for every item with "needsAi": true write its reply (or "SKIP: <reason>")
+            into .comments-work/replies.json as {"<key>": "<reply>"}. Then run
+            `node scripts/comments.mjs check --in .comments-work/pending.json --replies .comments-work/replies.json`
+            and fix every reply it names until it passes. Do not edit any other file, do not commit and do not post.
+
+      - name: Post the replies, hide spam, record
+        if: steps.collect.outputs.total > 0
+        run: |
+          node scripts/comments.mjs post --in .comments-work/pending.json --replies .comments-work/replies.json ${DRY:+--dry-run} | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit the state
+        if: ${{ always() && !inputs.dry_run && steps.collect.outputs.total > 0 }}
+        run: |
+          [ -d automation/comments ] && git add automation/comments
+          git diff --cached --quiet && exit 0
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -qm "Comment replies $(TZ=Asia/Kolkata date '+%F %H:%M') IST"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done

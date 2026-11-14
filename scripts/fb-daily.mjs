@@ -17,7 +17,7 @@
 //       Today's "Share kit" for sharing the day's Facebook Reels by hand into public groups: the best 2 of the day's Reel
 //       URLs (from automation/published.md; every Short is a Reel since 13 Nov 2026, so bestVideos picks: festival status
 //       first, then bhajan / temple darshan, then plays), a ready-to-paste Hindi share line per Reel, today's groups from automation/fb-groups.json
-//       (rotated so each group gets at most 1 share every 2 days), one etiquette line. Always written to
+//       (rotated so each group gets at most 1 share every 2 days), one etiquette line, and the comment-reply digest (scripts/comments.mjs digest). Always written to
 //       automation/share-kit/<date>.md; emailed to epifive2@gmail.com via Resend when RESEND_API_KEY is set (the same
 //       path as scripts/veo-kit.mjs) and added as a daily CRM task when INGEST_TOKEN is set. photos.yml runs it ~20:45 IST.
 // Env: META_PAGE_ID, META_PAGE_TOKEN, META_API_VERSION (else ~/.shyampremisk/social.env), RESEND_API_KEY, KIT_TO,
@@ -27,6 +27,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { categoryOfText, hindiName } from './fb.mjs';
+import { digestMarkdown, loadState as loadCommentState } from './comments.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const INSIGHTS = path.join(ROOT, 'automation', 'fb-insights.json');
@@ -231,7 +232,10 @@ export async function shareKit({ date = istDate(), dry = false, send = true, log
   const all = JSON.parse(fs.readFileSync(GROUPS, 'utf8')).groups || [];
   const groups = groupsFor(all, date);
   progressLine ||= insights.challenge?.line || null;
-  const md = kitMarkdown({ date, videos, groups, progressLine });
+  // Owner digest of the automatic comment replies (scripts/comments.mjs): comments flagged in the last 24 h (service
+  // questions, collab requests, complaints, hidden spam, political fights) and how many were answered.
+  const comments = digestMarkdown(loadCommentState(), { hours: 24 });
+  const md = kitMarkdown({ date, videos, groups, progressLine }) + (comments ? `\n${comments}` : '');
   const file = path.join(KITS, `${date}.md`);
   if (dry) { log(md); return { file: null, videos, groups: groups.length }; }
   fs.mkdirSync(KITS, { recursive: true });
@@ -256,7 +260,7 @@ export async function shareKit({ date = istDate(), dry = false, send = true, log
       const r = await fetch(`${(env.CRM_URL || 'https://crm.epifive.com').replace(/\/$/, '')}/api/ingest/task`, {
         method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Ingest-Token': env.INGEST_TOKEN },
         body: JSON.stringify({ title: 'Aaj ke Facebook Reels groups mein share karo', cadence: 'daily', role: 'manager', link,
-          details: `${date}: ${videos.map((v) => v.url).join(' , ') || 'no Reel today'}\n${groups.length} groups, share lines and etiquette: ${link}` }),
+          details: `${date}: ${videos.map((v) => v.url).join(' , ') || 'no Reel today'}\n${groups.length} groups, share lines and etiquette: ${link}${comments ? '\nComments that need you (automatic replies digest): same link' : ''}` }),
         signal: AbortSignal.timeout(30e3),
       }).catch((e) => ({ ok: false, status: e.message }));
       log(`CRM task: ${r.ok ? 'added/updated' : `failed (${r.status})`}`);
