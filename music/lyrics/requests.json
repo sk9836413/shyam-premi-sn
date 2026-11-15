@@ -1,0 +1,17 @@
+{
+ "note": "One-off song requests per weekly batch (music/bhajan-batch.mjs planWeek): each replaces the last planned non-Khatu, non-festival song. Lyrics are always our own (Claude); never a trending song's hook line, melody or title; the QA gate is the same as for every song.",
+ "bhajan-2026w47": [
+  {
+   "id": "shakti-parvati-anthem",
+   "deity": "devi",
+   "mood": "thaath",
+   "subject": "Maa Parvati / Shakti roop anthem (coordinator, 15 Nov 2026: the trending fierce-Parvati genre): powerful and proud, Maa Gauri as Shakti on Kailash with trishul, the whole world bowing, dhol and a modern devotional beat; name her as पार्वती / गौरी / भवानी (spoken clearly, not right after श्री) at least once in the chorus. ORIGINAL words only: never the line 'जब ज़िद पे आ गई पार्वती' or any trending song's hook, title or melody. Devotional, never violent or gory."
+  },
+  {
+   "id": "mahadev-attitude-anthem",
+   "deity": "shiv",
+   "mood": "thaath",
+   "subject": "Mahadev 'attitude' anthem: the swag and power of Bholenath (tandav, damru, Kailash, Neelkanth), bold and proud, a chant-like chorus with महादेव / भोलेनाथ; dhol and a modern devotional beat. ORIGINAL words only, no intoxication references (no bhang/chillum), no trending song's hook or melody."
+  }
+ ]
+}

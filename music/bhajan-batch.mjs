@@ -192,6 +192,7 @@ export function checkSong(song, { plan = null, others = [], rules = RULES } = {}
   const words = lyr.replace(/\[[^\]]*\]/g, ' ');
   for (const f of rules.forbidden) if (new RegExp(f.re, 'u').test(words)) e.push(`lyrics: ${f.why}`);
   if (song.deity === 'khatu') for (const f of rules.forbidden_khatu) if (new RegExp(f.re, 'u').test(words)) e.push(`lyrics: ${f.why}`);
+  for (const f of rules.forbidden_hooks || []) if (new RegExp(f.re, 'u').test(`${words} ${song.title_hi || ''} ${song.title_roman || ''}`)) e.push(`lyrics: ${f.why}`);
   if (/सती|sati/i.test(`${song.title_hi || ''} ${song.title_roman || ''} ${song.festival || ''}`)) e.push('no Rani Sati bhajans');
   if (!rules.primary[song.deity]) e.push(`deity "${song.deity}" unknown (${Object.keys(rules.primary).join(' / ')})`);
   else {
@@ -241,7 +242,7 @@ const BASE = [['khatu', 'thaath'], ['khatu', 'bhaavuk'], ['shiv', 'thaath'], ['h
 const SUBJECT = { krishna: 'Krishna mantra bhajan: the chorus may use a public-domain mantra ("हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे, हरे राम हरे राम राम राम हरे हरे" or "ॐ नमो भगवते वासुदेवाय"; name it in public_domain_text); the verses are your own' };
 const addDays = (iso, n) => new Date(Date.parse(`${iso}T00:00:00Z`) + n * 864e5).toISOString().slice(0, 10);
 
-export function planWeek({ from, days = 7, count = 13, festivals = [], libraryFirstLines = [], libraryFestivals = {} }) {
+export function planWeek({ from, days = 7, count = 13, festivals = [], libraryFirstLines = [], libraryFestivals = {}, requests = {} }) {
   const to = addDays(from, days);
   // A festival the library already has >= 3 bhajans for is not planned again (13 Nov 2026: the Chhath batch
   // bhajan-chhath26 ran the evening before the first weekly batch; the weekly batch makes other deities instead).
@@ -262,6 +263,14 @@ export function planWeek({ from, days = 7, count = 13, festivals = [], libraryFi
   }
   const { year, week } = isoWeek(from);
   const tag = `${year}w${String(week).padStart(2, '0')}`;
+  // One-off requests for this week (music/lyrics/requests.json, e.g. 15 Nov 2026: two ORIGINAL high-energy anthems in the
+  // genre of a trending Shakti song we may not use): each replaces the last planned non-Khatu, non-festival song, so the
+  // count, the festival songs and every Khatu song stay as they were.
+  for (const r of requests[`bhajan-${tag}`] || []) {
+    const k = songs.map((s, i) => [s, i]).reverse().find(([s]) => !s.festival && s.deity !== 'khatu' && !s.request)?.[1];
+    if (k === undefined) break;
+    songs[k] = { deity: r.deity, mood: r.mood, festival: null, subject: r.subject, request: r.id };
+  }
   return {
     batch: `bhajan-${tag}`, from, to, count: songs.length,
     songs: songs.map((s, k) => ({ slot: k + 1, ...s, deity_name: DEITY_NAMES[s.deity], bpm: s.mood === 'thaath' ? [124, 128, 132, 126, 130][k % 5] : [76, 80, 72, 84][k % 4] })),
@@ -396,7 +405,9 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const today = new Date().toISOString().slice(0, 10);
   if (cmd === 'plan') {
     const festivals = readJson(path.join(ROOT, 'automation', 'festivals.json')).festivals || [];
-    const p = planWeek({ from: opt('--from', today), days: Number(opt('--days', 7)), count: Number(opt('--count', 13)), festivals, libraryFirstLines: libraryFirstLines(lib), libraryFestivals: libraryFestivals(lib) });
+    const reqFile = path.join(DIR, 'lyrics', 'requests.json');
+    const requests = fs.existsSync(reqFile) ? readJson(reqFile) : {};
+    const p = planWeek({ from: opt('--from', today), days: Number(opt('--days', 7)), count: Number(opt('--count', 13)), festivals, libraryFirstLines: libraryFirstLines(lib), libraryFestivals: libraryFestivals(lib), requests });
     writeJson(opt('--out'), p);
     console.log(`${p.batch}: ${p.count} songs (${p.songs.map((s) => `${s.deity}/${s.mood}${s.festival ? `/${s.festival}` : ''}`).join(', ')})`);
   } else if (cmd === 'validate') {
