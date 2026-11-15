@@ -1,0 +1,127 @@
+{
+  "slug": "2026-11-15-facts-chhath-shashthi-devi-priyavrat",
+  "format": "facts",
+  "variant": "kyun",
+  "art": "cinematic",
+  "release": "2026-11-15",
+  "publish_at": "18:30",
+  "slot": "facts2",
+  "no_kaggle": true,
+  "bed": "devotional",
+  "topic": "chhath-shashthi-devi-priyavrat",
+  "festival": "Chhath Puja (Sandhya Arghya)",
+  "title": "Chhathi Maiya ka Chamatkar",
+  "kicker": "Chhath Puja 2026",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Chhathi Maiya",
+  "music_mood": "emotional",
+  "sub_size": 60,
+  "style": "hyper-real cinematic devotional film still, warm golden sunset light, deep saturated colours, dramatic rim light, intricate detail, respectful, no text, no letters, no writing, no watermark, no signature",
+  "hook": "Chhathi Maiya ne baalak kaise jivit kiya?",
+  "cover": "छठी मैया का चमत्कार",
+  "cover_lines": [
+    "छठी मैया ने",
+    "मृत बालक को",
+    "कैसे जिलाया?"
+  ],
+  "source": "Brahmavaivarta Purana, Prakriti Khanda, adhyay 43 (Shashthi upakhyan); Devi Bhagavata Purana 9.46. Chhath mein inhi Shashthi Devi ki pooja: lok manyata",
+  "deity": "Chhathi Maiya (Shashthi Devi)",
+  "summary": "Brahmavaivarta Purana ki katha: Raja Priyavrat ka mrit putra, Devi Devasena (Shashthi) ne jivit kiya; Chhath mein Chhathi Maiya ke roop mein pooja (manyata)",
+  "scenes": [
+    {
+      "prompt": "Dramatic cinematic close-up portrait of Shashthi Devi as a radiant divine mother goddess with a gentle compassionate face, red and gold silk saree, golden jewellery and crown, a huge glowing setting sun like a halo behind her head, cradling a sleeping newborn wrapped in yellow cloth, river ghat with diyas softly blurred behind, the face in the lower half of the frame",
+      "deity": true,
+      "hero": true,
+      "motion": "in",
+      "tts": "छठी मैया ने एक मरे हुए बालक को कैसे जीवित कर दिया?",
+      "sub": "Chhathi Maiya ne ek mare hue baalak ko kaise jivit kar diya?"
+    },
+    {
+      "prompt": "An ancient Indian king and queen in royal silk and gold sitting sadly together in a lamp-lit palace hall, the queen looking down with longing, warm golden evening light, cinematic wide shot",
+      "motion": "pan",
+      "tts": "ब्रह्मवैवर्त पुराण की कथा है। राजा प्रियव्रत और रानी मालिनी की कोई संतान नहीं थी।",
+      "sub": "Brahmavaivarta Purana ki katha hai. Raja Priyavrat aur Rani Malini ki koi santaan nahi thi."
+    },
+    {
+      "prompt": "An old rishi with a long white beard performing a sacred yagya, tall bright fire in a square brick havan kund, the king and queen with folded hands beside it, smoke and golden sparks rising, cinematic",
+      "motion": "in",
+      "tts": "महर्षि कश्यप ने पुत्रेष्टि यज्ञ कराया। रानी को पुत्र हुआ, पर वह जन्म से ही मृत था।",
+      "sub": "Maharishi Kashyap ne putreshti yagya karaya. Rani ko putra hua, par woh janm se hi mrit tha."
+    },
+    {
+      "prompt": "A grieving ancient Indian king kneeling alone on a misty river bank at dusk, head bowed, holding a small bundle of white cloth close to his chest, dark blue sky with the last orange glow, no blood, no violence, cinematic",
+      "motion": "out",
+      "mood": "emotional",
+      "tts": "दुखी राजा बालक को लेकर श्मशान पहुँचे, और अपने प्राण त्यागने को तैयार हो गए।",
+      "sub": "Dukhi raja baalak ko lekar shmashaan pahunche, aur apne praan tyaagne ko taiyaar ho gaye."
+    },
+    {
+      "prompt": "A glowing golden celestial vimana chariot descending from the evening sky through parting clouds, radiant beams of divine light falling on a misty river bank, a tiny kneeling figure below looking up in awe, epic cinematic wide shot",
+      "motion": "in",
+      "tts": "तभी आकाश से एक दिव्य विमान उतरा। उसमें प्रकट हुईं देवी देवसेना।",
+      "sub": "Tabhi aakaash se ek divya vimaan utra. Usmein prakat huin Devi Devasena."
+    },
+    {
+      "prompt": "A radiant divine mother goddess in red and gold with a soft golden halo gently touching a newborn baby wrapped in yellow cloth held by a kneeling king, the baby glowing with warm light, flower petals floating in the air, cinematic, tender and joyful",
+      "deity": true,
+      "motion": "in",
+      "reveal": true,
+      "tts": "देवी बोलीं, मैं प्रकृति का छठा अंश हूँ, इसलिए मेरा नाम षष्ठी है। और बालक को छूते ही वह जीवित हो गया!",
+      "sub": "Devi boleen, main Prakriti ka chhatha ansh hoon, isliye mera naam Shashthi hai. Aur baalak ko chhoote hi woh jivit ho gaya!"
+    },
+    {
+      "prompt": "Women devotees in bright saris standing waist-deep in a calm river at sunset seen from behind, holding bamboo soop baskets with fruits and lit diyas up towards a huge orange setting sun, golden reflections on the water, cinematic wide shot",
+      "motion": "pan",
+      "label": "tradition",
+      "tts": "राजा ने तभी से षष्ठी देवी की पूजा शुरू की। मान्यता है, छठ में इन्हीं को छठी मैया कहकर पूजते हैं।",
+      "sub": "Raja ne tabhi se Shashthi Devi ki pooja shuru ki. Manyata hai, Chhath mein inhi ko Chhathi Maiya kehkar poojte hain."
+    },
+    {
+      "prompt": "A mother seen from behind holding her small child's hand on river ghat steps at dusk, rows of lit clay diyas and a bamboo soop basket beside them, warm golden reflections on the water, peaceful, cinematic",
+      "motion": "in",
+      "moral": true,
+      "tts": "सीख यही है, सच्चे मन की पुकार माँ ज़रूर सुनती है।",
+      "sub": "Seekh yahi hai, sachche mann ki pukaar Maa zaroor sunti hai."
+    },
+    {
+      "endcard": true,
+      "tts": "छठी मैया सबकी मनोकामना पूरी करें! कमेंट में लिखें जय छठी मैया, और लाइक, शेयर, सब्सक्राइब करें।",
+      "sub": "Chhathi Maiya sabki manokamna poori karein! Comment mein likhein Jai Chhathi Maiya, aur Like, Share, Subscribe karein."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "King Priyavrat (son of Svayambhuva Manu) and queen Malini were childless; Kashyapa performed a putreshti yajna; the son was born dead",
+      "source": "Brahmavaivarta Purana, Prakriti Khanda 43.8-12; Devi Bhagavata Purana 9.46",
+      "sources": [
+        "https://sa.wikisource.org/wiki/ब्रह्मवैवर्तपुराणम्/खण्डः_२_(प्रकृतिखण्डः)/अध्यायः_४३",
+        "https://devi.redzambala.com/devi-bhagavatam/shrimad-devi-bhagavatam-book-9-chapter-46.html",
+        "https://www.isvara.org/archive/brahma-vaivarta-purana-contents/"
+      ]
+    },
+    {
+      "claim": "At the cremation ground the king was ready to give up his life; Devi Devasena appeared in a vimana, said she is Shashthi, the sixth part of Prakriti, and revived the child; the king started her worship",
+      "source": "Brahmavaivarta Purana, Prakriti Khanda 43.14-32",
+      "sources": [
+        "https://sa.wikisource.org/wiki/ब्रह्मवैवर्तपुराणम्/खण्डः_२_(प्रकृतिखण्डः)/अध्यायः_४३",
+        "https://devi.redzambala.com/devi-bhagavatam/shrimad-devi-bhagavatam-book-9-chapter-46.html"
+      ]
+    },
+    {
+      "claim": "In Chhath this Shashthi Devi is worshipped as Chhathi Maiya (belief)",
+      "source": "Lok manyata (Chhath)",
+      "kind": "tradition",
+      "sources": [
+        "https://www.aajtak.in/art-and-culture/miscellaneous/story/chhath-festival-surya-puja-cultural-heritage-nature-worship-ntcpvp-dskc-2366560-2025-10-25",
+        "https://www.patrika.com/religion-and-spirituality/how-chhath-puja-started-know-chhath-puja-katha-8593100",
+        "https://hindi.oneindia.com/religion-spirituality/who-is-chhathi-maiya-connection-with-surya-dev-raja-priyavrat-story-and-chhath-puja-mythology-1684471.html"
+      ]
+    }
+  ],
+  "youtube_title": "Chhathi Maiya ka sabse bada chamatkar 😱 #facts | Chhath Puja Katha | छठी मैया का चमत्कार",
+  "youtube_description": "Chhath Puja 2026: Brahmavaivarta Purana ki woh katha jismein Devi Shashthi (Devasena) ne Raja Priyavrat ke mrit putra ko jivit kar diya.\nSource: Brahmavaivarta Purana, Prakriti Khanda, adhyay 43 (Shashthi upakhyan); Devi Bhagavata Purana 9.46. Chhath mein inhi Shashthi Devi ki pooja: lok manyata\nछठी मैया की कथा: राजा प्रियव्रत, रानी मालिनी और षष्ठी देवी का चमत्कार। छठ में इन्हीं षष्ठी देवी की पूजा लोक मान्यता के अनुसार है।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.\nJai Chhathi Maiya 🙏 Video achha laga ho to Like, Share aur Subscribe karein.\n#facts #story #ChhathPuja #ChhathiMaiya #छठपूजा #Shorts",
+  "youtube_tags": "Chhath Puja 2026, छठ पूजा 2026, Chhathi Maiya katha, छठी मैया की कथा, Chhath vrat katha, छठ व्रत कथा, Shashthi Devi, षष्ठी देवी, Raja Priyavrat katha, राजा प्रियव्रत की कथा, Chhath Puja facts, छठ पूजा का रहस्य",
+  "instagram_caption": "Chhathi Maiya ne ek mrit baalak ko kaise jivit kiya? 🙏\nBrahmavaivarta Purana (Prakriti Khanda, adhyay 43): Raja Priyavrat, Rani Malini aur Devi Shashthi ki katha. Chhath mein inhi ki pooja lok manyata ke anusar hai.\nChitra AI se (sanketik).\nJai Chhathi Maiya! Achha laga ho to Like, Share aur Follow karein.\n#ChhathPuja #ChhathiMaiya #Chhath2026 #facts #SandhyaArghya #Bihar",
+  "facebook_caption": "जय छठी मैया 🙏 आपके घर छठ का अर्घ्य किस घाट पर होता है?\nब्रह्मवैवर्त पुराण की कथा: राजा प्रियव्रत के मृत पुत्र को षष्ठी देवी ने जीवित किया। छठ में इन्हीं षष्ठी देवी की पूजा लोक मान्यता के अनुसार है।\n#ChhathPuja #ChhathiMaiya #Bhakti"
+}

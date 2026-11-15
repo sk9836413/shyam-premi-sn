@@ -68,3 +68,4 @@
 2026-11-15 | long | 2026-11-15-long-chhath-chhathi-maiya-kaun-hain | Chhathi Maiya (Shashthi Devi) / Surya dev | Chhathi Maiya kaun hain: Shashthi Devi ka swaroop, Surya dev se naata, Sandhya Arghya ka mahatva aur Bihar ke Surya mandir (manyata)
 2026-11-15 | eve | 2026-11-15-eve-chhath-usha-arghya | Chhath Puja (Usha Arghya) | status Short variant 1 "Chhath Usha Arghya Status 2026" (15-25 s loop, download link), public 20:00 IST
 2026-11-16 | status | 2026-11-16-status-chhathi-maiya | Chhath Puja (Usha Arghya) | status Short variant 2 "Chhathi Maiya Status 2026" (15-25 s loop, download link), public 00:30 IST
+2026-11-15 | facts2 | 2026-11-15-facts-chhath-shashthi-devi-priyavrat | Chhathi Maiya (Shashthi Devi) | Brahmavaivarta Purana ki katha: Raja Priyavrat ka mrit putra, Devi Devasena (Shashthi) ne jivit kiya; Chhath mein Chhathi Maiya ke roop mein pooja (manyata) (variant kyun, art cinematic, 58 s)
