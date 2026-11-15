@@ -15,6 +15,23 @@
         "recovered": true,
         "at": "2026-11-15T03:44:04.635Z"
       }
+    },
+    {
+      "key": "morning",
+      "type": "image",
+      "source": "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-15-1-1.jpg",
+      "fb": {
+        "claim": {
+          "run": "43678014398.1",
+          "at": "2026-11-15T04:44:28.277Z"
+        }
+      },
+      "ig": {
+        "claim": {
+          "run": "43678014398.1",
+          "at": "2026-11-15T04:44:28.277Z"
+        }
+      }
     }
   ]
 }
