@@ -1,0 +1,251 @@
+# "Shri Krishna kehte hain" / Shyam POV (STORY.md section 10; characters/krishna-pov/pov.py on the Kailash engine;
+# automation/krishna-pov-topics.json): 45-60 s, ONE character (our own 2D Shri Krishna) talking straight to camera in
+# first person: a festival tie-in + a modern question, answered with a positive message in the spirit of the Gita.
+# NO cron of its own: daily.yml calls it after every evening-slot run (and slot=kalyug dispatches); it can be
+# dispatched by hand. It does something only when the owner approved the pilot (automation/krishna-pov-topics.json
+# "approved": true; the repo variable KRISHNA_POV=off pauses it) AND tomorrow has a pov slot (scripts/series-plan.mjs:
+# Tue/Fri + at most one festival tie-in a week; under the 3-Shorts cap it replaces the weekday day-status morning Short).
+# Steps as kailash.yml: Claude writes the spec, edge-tts (one fixed Krishna voice, human chain), ONE Kaggle session
+# (sps-krishna-pov: FLUX B-roll frames, MuseTalk lip-sync on the flat face, talk-clip fallback, Whisper), render, the QA
+# GATE (Whisper names, lip-sync share, master-sheet consistency, 45-62 s; a failure publishes nothing and is logged),
+# YouTube publishAt <release> 08:00 (playlist "Shri Krishna kehte hain"), Facebook Reel, Instagram queue.
+name: Shri Krishna kehte hain
+
+on:
+  workflow_call:
+    inputs:
+      spec: { type: string, default: '' }
+      dry_run: { type: boolean, default: false }
+      kaggle_reuse: { type: boolean, default: false }
+  workflow_dispatch:
+    inputs:
+      spec:
+        description: An episode file, e.g. story/krishna-pov/2026-11-27-pov-maa-ka-phone.json (empty = tomorrow's episode)
+        required: false
+        default: ''
+      dry_run:
+        description: Make and check the episode (artifact), publish nothing
+        type: boolean
+        default: true
+      kaggle_reuse:
+        description: Render from the last finished sps-krishna-pov Kaggle session (no new GPU session)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  krishna-pov:
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    concurrency:
+      group: shyam-krishna-pov
+      cancel-in-progress: false
+    env:
+      FFMPEG_PATH: ffmpeg
+      KOKORO_DIR: ${{ github.workspace }}/.kokoro
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      KRISHNA_POV: ${{ vars.KRISHNA_POV }}
+      KALYUG: ${{ vars.KALYUG }}
+      EXTRA_UPLOAD_DAY: ${{ vars.EXTRA_UPLOAD_DAY }}
+      W: story/krishna-pov/work
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Due episode
+        id: d
+        run: |
+          git fetch -q origin main && git checkout -q origin/main -- automation/log.md automation/published.md
+          node scripts/series-due.mjs --series pov --spec "${{ inputs.spec }}" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/setup-python@v5
+        if: steps.d.outputs.mode == 'produce' || steps.d.outputs.mode == 'write'
+        with:
+          python-version: '3.12'
+
+      - name: Kaggle window and quota
+        id: gate
+        if: steps.d.outputs.mode == 'produce' || steps.d.outputs.mode == 'write'
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          [ "${{ inputs.kaggle_reuse }}" = true ] && { echo "go=true" >> "$GITHUB_OUTPUT"; exit 0; }
+          pip install -q 'kaggle>=2.2' six
+          node animate/kaggle.mjs quota > "$RUNNER_TEMP/quota.json" || true
+          python -I characters/krishna-pov/pov.py gate --quota "$RUNNER_TEMP/quota.json" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Write the episode
+        id: write
+        if: steps.d.outputs.mode == 'write' && steps.gate.outputs.go == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --max-turns 100
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(ls:*)"
+          prompt: |
+            Write the next "Shri Krishna kehte hain" (Shyam POV) episode of Shyam Premi SN. Its release day (IST) is ${{ steps.d.outputs.release }} at 08:00.
+            The topic is "${{ steps.d.outputs.idea }}" in automation/krishna-pov-topics.json (its title, label, cover,
+            hook, message, story_type and Gita verse). Follow automation/STORY.md section 10 exactly (POV monologue by Shri
+            Krishna, hard tone rules: never question or drop a ritual, a real Gita verse only with chapter.verse, no
+            politics/caste/gender/health/astrology) and section 2 for accuracy, with characters/krishna-pov/cast.json.
+            Lines follow STORY.md "Spoken style". Copy the shape of story/krishna-pov/pilot-ep1.json. Write
+            story/krishna-pov/${{ steps.d.outputs.release }}-<topic>.json (slug ${{ steps.d.outputs.release }}-pov-${{ steps.d.outputs.idea }}),
+            make `node scripts/validate.mjs <that file>` pass, and change nothing else.
+
+      - name: Spec
+        id: spec
+        if: steps.gate.outputs.go == 'true' && (steps.d.outputs.mode == 'produce' || steps.write.outcome == 'success')
+        run: |
+          f="${{ steps.d.outputs.file }}"
+          [ -n "$f" ] || f=$(ls story/krishna-pov/${{ steps.d.outputs.release }}-*.json 2>/dev/null | head -1)
+          [ -n "$f" ] && [ -f "$f" ] || { echo "::error::No episode file for ${{ steps.d.outputs.release }}"; exit 1; }
+          node scripts/validate.mjs --soft-topics "$f"
+          node scripts/series-due.mjs --series pov --spec "$f" > "$RUNNER_TEMP/due.json"
+          for k in slug release publish_at; do echo "$k=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').$k")" >> "$GITHUB_OUTPUT"; done
+          echo "SLUG=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').slug")" >> "$GITHUB_ENV"
+          echo "F=$f" >> "$GITHUB_ENV"
+
+      - name: Tools
+        if: steps.spec.outcome == 'success'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libfribidi0 libraqm0 > /dev/null
+          pip install -q edge-tts pillow numpy opencv-python-headless kokoro-onnx==0.6.1 soundfile==0.14.0 'kaggle>=2.2' six
+
+      - name: Voices
+        if: steps.spec.outcome == 'success'
+        run: python -I characters/krishna-pov/pov.py voice --spec "$F" --out "$W/voice" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Kaggle (frames, clips, lip-sync, pronunciation check)
+        id: kaggle
+        if: steps.spec.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 130
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: krishna-pov
+        run: |
+          [ -n "$KAGGLE_API_TOKEN" ] || { echo "::error::no KAGGLE_API_TOKEN secret"; exit 1; }
+          if [ "${{ inputs.kaggle_reuse }}" = true ]; then
+            node animate/kaggle.mjs fetch --to "$W/kaggle" | tee -a "$GITHUB_STEP_SUMMARY"
+            node scripts/movie-qa.mjs "$W/kaggle/qa.json" >> "$GITHUB_STEP_SUMMARY" || true
+            exit 0
+          fi
+          python -I characters/krishna-pov/pov.py dataset --spec "$F" --voice "$W/voice" --out animate/dataset --max-minutes 75
+          node animate/kaggle.mjs upload
+          node animate/kaggle.mjs lock --minutes 20 || echo "::warning::lock: another sps kernel still RUNNING/QUEUED after 20 min; pushing anyway (Kaggle allows 2)"
+          node animate/kaggle.mjs push --queue-minutes 20 --retry-minutes 20
+          node animate/kaggle.mjs wait --minutes 95 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json")"
+          node animate/kaggle.mjs fetch --to "$W/kaggle" | tee "$RUNNER_TEMP/fetch.json"
+          node scripts/movie-qa.mjs "$W/kaggle/qa.json" >> "$GITHUB_STEP_SUMMARY" || true
+          python -I characters/krishna-pov/pov.py gpu --kaggle "$W/kaggle" | tee "$RUNNER_TEMP/gpu.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          ls "$W/kaggle/frames" | grep -q '^s0' || ls "$W/kaggle/clips" | grep -q '^s0' || { echo "::error::Kaggle made no frames"; exit 1; }
+
+      - name: Render
+        id: render
+        if: steps.kaggle.outcome == 'success'
+        run: |
+          mkdir -p "$W/out/small"
+          python -I characters/krishna-pov/pov.py keep --kaggle "$W/kaggle"
+          v="$W/voice"; [ -f "$W/kaggle/voice/voice.json" ] && v="$W/kaggle/voice"
+          echo "V=$v" >> "$GITHUB_ENV"
+          python -I characters/krishna-pov/pov.py render --spec "$F" --voice "$v" --kaggle "$W/kaggle" --out "$W/out/$SLUG.mp4" \
+            --meta "$W/out/meta.json" --srt "$W/out/$SLUG.srt" --small "$W/out/small/$SLUG.mp4" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      # The publish gate: any failed check = nothing is uploaded (the reason is logged in published.md and the summary).
+      - name: QA gate (Whisper deity names, lip-sync, character consistency, length)
+        id: qa
+        if: steps.render.outcome == 'success'
+        continue-on-error: true
+        run: python -I characters/krishna-pov/pov.py qa --spec "$F" --kaggle "$W/kaggle" --meta "$W/out/meta.json" --out "$W/out/qa-gate.json" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the video as an artifact (7 days)
+        if: steps.render.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: krishna-pov-${{ env.SLUG }}
+          path: |
+            story/krishna-pov/work/out/
+            story/krishna-pov/work/kaggle/qa.json
+            story/krishna-pov/work/kaggle/results*.json
+          retention-days: 7
+          compression-level: 0
+
+      - name: Log the skip (QA failed)
+        if: steps.qa.outcome == 'failure' && !inputs.dry_run && steps.spec.outputs.release != 'pilot'
+        run: |
+          why=$(node -p "require('./' + process.env.W + '/out/qa-gate.json').why.join('; ').slice(0, 400)" 2>/dev/null || echo "QA gate error")
+          echo "::error::Shri Krishna kehte hain $SLUG not published: $why"
+          echo "- $SLUG | skipped: QA gate ($why), $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/published.md && git commit -qm "Shri Krishna kehte hain $SLUG skipped: QA gate"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+      - name: Host
+        id: host
+        if: steps.qa.outcome == 'success'
+        run: node scripts/publish.mjs --host-only --video "$W/out/small/$SLUG.mp4" --scenes "$F" | tee "$RUNNER_TEMP/host.json"
+
+      - name: Claim the upload
+        id: claim
+        if: steps.qa.outcome == 'success' && !inputs.dry_run && steps.spec.outputs.release != 'pilot'
+        run: node scripts/upload-guard.mjs claim --day "${{ steps.spec.outputs.release }}" --slot pov --slug "$SLUG"
+
+      - name: YouTube (public at 08:00 IST on the release day)
+        id: yt
+        if: steps.claim.outputs.go == 'true'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$F" --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" | tee "$RUNNER_TEMP/yt.json"
+          grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"
+
+      - name: Release the claim after a failed upload
+        if: always() && steps.claim.outputs.go == 'true' && steps.yt.outcome != 'success'
+        run: node scripts/upload-guard.mjs release --day "${{ steps.spec.outputs.release }}" --slot pov --slug "$SLUG" --reason "YouTube ${{ steps.yt.outcome }}"
+
+      - name: Facebook and Instagram (Graph API)
+        id: meta
+        if: steps.yt.outcome == 'success'
+        continue-on-error: true
+        env:
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
+          grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" && { echo "::notice::YouTube already had it (earlier run): no second Facebook/Instagram post"; exit 0; }
+          fb=$(node scripts/fb.mjs flags --date "${{ steps.spec.outputs.release }}" --slot pov || echo --no-fb)
+          node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$F" --video-url "$MEDIA_URL/m/$SLUG.mp4" \
+            --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" $fb | tee "$RUNNER_TEMP/meta.json" || true
+
+      - name: Record
+        if: steps.yt.outcome == 'success'
+        run: |
+          mkdir -p story/published
+          cp "$F" "story/published/$SLUG.json"
+          rel="${{ steps.spec.outputs.release }}"
+          yt=$(node -p "const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/yt.json', 'utf8')).youtube; y.url + ' (public at ' + y.publishAt + ')'")
+          deity=$(node -p "require('./' + process.env.F).deity"); summary=$(node -p "require('./' + process.env.F).summary")
+          echo "$rel | pov | $SLUG | $deity | $summary" >> automation/log.md
+          social=$(node -p "try { ' | social: ' + JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/meta.json', 'utf8')).summary } catch { '' }")
+          gpu=$(node -p "try { require(process.env.RUNNER_TEMP + '/gpu.json').gpu_minutes + ' GPU min' } catch { 'GPU n/a' }")
+          made=$(node -p "const m = require('./' + process.env.W + '/out/meta.json'); m.seconds + ' s, clips ' + m.animated_scenes.length + ', lip-sync ' + m.lip_lines + '/' + m.lipsync_expected")
+          echo "- $SLUG | youtube: $yt | Shri Krishna kehte hain ($made, $gpu), made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/log.md automation/published.md "story/published/$SLUG.json" characters/krishna-pov/clips "$F"
+          git commit -qm "Shri Krishna kehte hain $SLUG scheduled for $rel 08:00"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done

@@ -8,7 +8,11 @@
       "name": "Sutradhar",
       "kind": "voice",
       "color": "FFF3D6",
-      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "-4%", "pitch": "-4Hz"}
+      "voice": {
+        "edge": "hi-IN-MadhurNeural",
+        "rate": "-4%",
+        "pitch": "-4Hz"
+      }
     },
     "mahadev": {
       "name": "Mahadev",
@@ -19,8 +23,23 @@
       "description": "Mahadev (Lord Shiva) as a serene, compassionate youthful divine man with a calm gentle half-smile, a smooth clean-shaven face with no beard and no moustache, pale ash-blue-grey skin softly dusted with sacred ash, a deeper blue throat, long dark matted jata hair piled in a tall bun with a small silver crescent moon and a thin clear stream of the river Ganga flowing from it, a closed vertical third eye and three horizontal white ash lines on the forehead, rudraksha bead necklaces, a calm cobra coiled around the neck, a tiger-skin cloth over one shoulder",
       "wide": "Mahadev (serene youthful Lord Shiva, clean-shaven, pale ash-blue-grey skin, deeper blue throat, tall dark jata bun with a silver crescent moon and a thin stream of the Ganga, tripundra ash lines, rudraksha necklaces, a calm cobra around the neck, tiger-skin cloth, a trishul with a small damru beside him)",
       "bg": "snowy Kailash peaks under a soft blue dawn sky",
-      "signature": {"hue": [185, 235], "sat": [0.08, 0.6], "min_share": 0.004},
-      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "-14%", "pitch": "-26Hz", "fx": "divine"}
+      "signature": {
+        "hue": [
+          185,
+          235
+        ],
+        "sat": [
+          0.08,
+          0.6
+        ],
+        "min_share": 0.004
+      },
+      "voice": {
+        "edge": "hi-IN-MadhurNeural",
+        "rate": "-14%",
+        "pitch": "-26Hz",
+        "fx": "divine"
+      }
     },
     "parvati": {
       "name": "Mata Parvati",
@@ -31,8 +50,23 @@
       "description": "Mata Parvati as a graceful, loving, motherly goddess with a gentle warm smile and kind large eyes, warm golden-wheatish skin, a red bindi and sindoor, long black hair under a delicate golden crown, gold earrings, a small nose ring and a gold necklace, a deep red silk saree with a golden border",
       "wide": "Mata Parvati (graceful motherly goddess, warm golden-wheatish skin, red bindi and sindoor, delicate golden crown, gold jewellery, deep red silk saree with a golden border)",
       "bg": "warm golden light inside a simple stone cave home on Kailash with oil lamps",
-      "signature": {"hue": [345, 15], "sat": [0.45, 1.0], "min_share": 0.01},
-      "voice": {"edge": "hi-IN-SwaraNeural", "rate": "-10%", "pitch": "-8Hz", "fx": "divine"}
+      "signature": {
+        "hue": [
+          345,
+          15
+        ],
+        "sat": [
+          0.45,
+          1.0
+        ],
+        "min_share": 0.01
+      },
+      "voice": {
+        "edge": "hi-IN-SwaraNeural",
+        "rate": "-10%",
+        "pitch": "-8Hz",
+        "fx": "divine"
+      }
     },
     "ganesh": {
       "name": "Ganesh ji",
@@ -43,8 +77,23 @@
       "description": "Bal Ganesh, a sweet divine little boy of about six with a small gentle elephant head, soft pink-cream skin, big kind sparkling eyes, a short trunk curled up to one side so his small smiling mouth is visible, one small white tusk and one broken tusk, a small golden crown with red gems, a red tilak, a yellow silk dhoti and a red sash, gold armlets",
       "wide": "Bal Ganesh (sweet divine six-year-old boy with a small gentle elephant head, soft pink-cream skin, one broken tusk, small golden crown, red tilak, yellow silk dhoti, red sash, often holding a round laddoo)",
       "bg": "soft warm golden lamp light",
-      "signature": {"hue": [10, 50], "sat": [0.35, 1.0], "min_share": 0.006},
-      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "+8%", "pitch": "+44Hz", "child": true},
+      "signature": {
+        "hue": [
+          10,
+          50
+        ],
+        "sat": [
+          0.35,
+          1.0
+        ],
+        "min_share": 0.006
+      },
+      "voice": {
+        "edge": "hi-IN-MadhurNeural",
+        "rate": "+8%",
+        "pitch": "+44Hz",
+        "child": true
+      },
       "talk": "Bal Ganesh happily talks to the camera: the corners of his small smiling mouth under the curled trunk open and close as he speaks, the trunk bobs gently with the words, he blinks and his ears move softly."
     },
     "kartikeya": {
@@ -56,8 +105,23 @@
       "description": "Kartikeya ji as a bright, brave, kind divine teenage prince of about fourteen with a smooth clean-shaven boyish face and no beard, warm golden-brown skin, big confident kind eyes, a small golden crown with one peacock feather, gold earrings, a saffron and red silk dhoti with a golden sash, a golden vel spear resting on his shoulder",
       "wide": "Kartikeya ji (brave kind divine teenage prince, clean-shaven boyish face, warm golden-brown skin, small golden crown with one peacock feather, saffron and red silk dhoti, golden vel spear, his peacock beside him)",
       "bg": "snowy Kailash peaks in warm morning sunlight",
-      "signature": {"hue": [15, 40], "sat": [0.5, 1.0], "min_share": 0.004},
-      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "+4%", "pitch": "+22Hz", "child": true}
+      "signature": {
+        "hue": [
+          15,
+          40
+        ],
+        "sat": [
+          0.5,
+          1.0
+        ],
+        "min_share": 0.004
+      },
+      "voice": {
+        "edge": "hi-IN-MadhurNeural",
+        "rate": "+4%",
+        "pitch": "+22Hz",
+        "child": true
+      }
     },
     "nandi": {
       "name": "Nandi",
@@ -68,8 +132,22 @@
       "description": "Nandi, the gentle loyal sacred white bull of Kailash, a calm noble face with big soft kind dark eyes, a smooth white coat, a small hump, short curved horns with golden caps, a red and gold cloth on his back, a string of small brass bells and marigold flowers around his neck",
       "wide": "Nandi (gentle loyal sacred white bull, big kind dark eyes, golden-capped horns, red and gold cloth on his back, brass bells and marigolds around his neck)",
       "bg": "snowy Kailash peaks in soft light",
-      "signature": {"hue": [0, 360], "sat": [0.0, 0.12], "min_share": 0.02},
-      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "-6%", "pitch": "-14Hz"},
+      "signature": {
+        "hue": [
+          0,
+          360
+        ],
+        "sat": [
+          0.0,
+          0.12
+        ],
+        "min_share": 0.02
+      },
+      "voice": {
+        "edge": "hi-IN-MadhurNeural",
+        "rate": "-6%",
+        "pitch": "-14Hz"
+      },
       "talk": "Nandi gently speaks to the camera: his soft mouth and lips move a little with the words, he blinks slowly and nods very slightly, the small bells on his neck sway."
     },
     "mushak": {
@@ -78,11 +156,26 @@
       "kind": "deity",
       "lipsync": false,
       "color": "BCAAA4",
-      "description": "Mushak, Ganesh ji's cute little grey-brown mouse, round bright black eyes, soft fur, big round pink ears, long whiskers, a tiny red and gold cloth with a small golden bell, sitting up on his hind legs",
-      "wide": "Mushak (Ganesh ji's cute little grey-brown mouse with round pink ears, long whiskers and a tiny red cloth with a golden bell)",
+      "description": "Mushak, a small cute realistic grey-brown field mouse (a real little mouse animal, not an elephant), round bright black eyes, a pink nose, soft fur, big round pink ears, long whiskers, a tiny red and gold cloth with a small golden bell on its back, sitting up on its hind legs on a snowy rock",
+      "wide": "Mushak (a small cute realistic grey-brown mouse with round pink ears, long whiskers and a tiny red cloth with a golden bell)",
       "bg": "soft warm golden lamp light",
-      "signature": {"hue": [15, 45], "sat": [0.1, 0.45], "min_share": 0.002},
-      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "+14%", "pitch": "+48Hz", "child": true},
+      "signature": {
+        "hue": [
+          15,
+          45
+        ],
+        "sat": [
+          0.1,
+          0.45
+        ],
+        "min_share": 0.002
+      },
+      "voice": {
+        "edge": "hi-IN-MadhurNeural",
+        "rate": "+14%",
+        "pitch": "+48Hz",
+        "child": true
+      },
       "talk": "the little mouse talks excitedly to the camera: his tiny mouth opens and closes, his whiskers twitch and his round ears move."
     },
     "narad": {
@@ -91,11 +184,25 @@
       "kind": "deity",
       "lipsync": true,
       "color": "FFF59D",
-      "description": "Devarshi Narad ji as a cheerful, wise youthful divine sage with a smooth clean-shaven face and no beard, a warm playful smile, fair golden skin, hair tied in a top-knot (shikha) with a small white flower, a sandalwood tilak, tulsi bead necklaces, a pale saffron dhoti and a white upper cloth, a wooden veena (mahati) on his shoulder",
-      "wide": "Narad ji (cheerful youthful divine sage, clean-shaven, hair in a top-knot with a white flower, sandalwood tilak, tulsi beads, pale saffron dhoti, a wooden veena on his shoulder)",
+      "description": "Devarshi Narad ji as a cheerful, wise young divine sage of about twenty with a completely smooth hairless boyish face (no beard, no moustache, no stubble), a gentle closed-mouth smile, fair golden skin, hair tied in a top-knot (shikha) with a small white flower, a sandalwood tilak, tulsi bead necklaces, a pale saffron dhoti and a white upper cloth, a wooden veena (mahati) on his shoulder",
+      "wide": "Narad ji (cheerful young divine sage with a smooth beardless boyish face, hair in a top-knot with a white flower, sandalwood tilak, tulsi beads, pale saffron dhoti, a wooden veena on his shoulder)",
       "bg": "glowing clouds above the snowy Kailash peaks",
-      "signature": {"hue": [25, 55], "sat": [0.15, 0.6], "min_share": 0.004},
-      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "+2%", "pitch": "+6Hz"}
+      "signature": {
+        "hue": [
+          25,
+          55
+        ],
+        "sat": [
+          0.15,
+          0.6
+        ],
+        "min_share": 0.004
+      },
+      "voice": {
+        "edge": "hi-IN-MadhurNeural",
+        "rate": "+2%",
+        "pitch": "+6Hz"
+      }
     }
   }
 }

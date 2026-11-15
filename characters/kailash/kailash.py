@@ -41,6 +41,7 @@ TRUE_CFG = float(os.environ.get("KAILASH_TRUE_CFG", "1.5"))  # negative prompt s
 DEITY_NAMES = ["महादेव", "पार्वती", "गणेश", "कार्तिकेय", "नंदी", "नारद", "शिव", "भोलेनाथ", "गणपति"]
 MAX_MEAN_CER = 0.15  # the Kalyug pilot measured 4.6 %; a mean above this means garbled audio
 MIN_LIP_SHARE = 0.5  # at least half of the lip-syncable close-up lines must really be lip-synced
+LEN_RANGE = (55, 76)  # seconds (a 75 s spec renders up to ~76 s)
 
 
 def load(p):
@@ -216,6 +217,10 @@ def cmd_dataset(a):
                           "prompt": f"{chars[who]['description']}. A locked-off static camera, no zoom, no camera movement. Motion: {chars[who]['talk']} "
                                     "The head stays facing the camera and the face keeps exactly the same identity throughout. Realistic cinematic devotional film, warm divine light"})
             new_base.append(f"{who}-talk")
+    for who in filter(None, (a.draw or "").split(",")):  # --draw: new master-portrait candidates for a person to pick
+        for n in range(int(a.seeds) + int(a.neg_seeds)):
+            images.append({"id": f"cast-{who}-{n}", "prompt": portrait_prompt(chars[who], lib), "seed": 4100 + 89 * n + len(who), "w": FW, "h": FH,
+                           **({"negative": lib["negative"]} if n >= int(a.seeds) else {})})
     settings = {"tier": "kailash", "max_minutes": int(a.max_minutes), "flux": flux_settings(), "reserve_minutes": 14 if lips else 5,
                 "qa_minutes": 3, "anim": {"width": FW, "height": FH, "steps": 25, "hero14b": False}}
     stamp = f"{spec['slug']}-{int(time.time())}"
@@ -595,7 +600,8 @@ def cmd_qa(a):
     qa = load(os.path.join(a.kaggle, "qa.json")) if os.path.exists(os.path.join(a.kaggle, "qa.json")) else None
     rec = {"pronunciation": pronunciation(qa), "lipsync": lipsync_gate(meta), "consistency": consistency(spec, a.kaggle, meta)}
     secs = meta.get("seconds", 0)
-    rec["length"] = {"ok": 55 <= secs <= 76, "seconds": secs, "why": [] if 55 <= secs <= 76 else [f"length {secs} s outside 55-75 s"]}
+    lo, hi = LEN_RANGE
+    rec["length"] = {"ok": lo <= secs <= hi, "seconds": secs, "why": [] if lo <= secs <= hi else [f"length {secs} s outside {lo}-{hi} s"]}
     rec["ok"] = all(v["ok"] for v in rec.values() if isinstance(v, dict))
     rec["why"] = [w for v in rec.values() if isinstance(v, dict) for w in v.get("why", [])]
     if a.out:
@@ -637,7 +643,7 @@ def main():
     p.add_argument("--kaggle", action="append", dest="kaggle_dirs", default=[])
     p.add_argument("--ids", default="missing"); p.add_argument("--seeds", default=2); p.add_argument("--neg-seeds", default=2)
     p.add_argument("--frame-seeds", default=2); p.add_argument("--clips", default=2); p.add_argument("--max-minutes", default=75)
-    p.add_argument("--keep-build", action="store_true"); p.add_argument("--force", action="store_true"); p.add_argument("--base", default="")
+    p.add_argument("--keep-build", action="store_true"); p.add_argument("--force", action="store_true"); p.add_argument("--base", default=""); p.add_argument("--draw", default="")
     a = p.parse_args()
     a.kaggle = a.kaggle_dirs[0] if a.kaggle_dirs else ""
     fn = globals().get(f"cmd_{a.cmd}")

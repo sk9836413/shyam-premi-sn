@@ -204,3 +204,4 @@ export function loadContext(root = '.') {
   const bank = JSON.parse(fs.readFileSync(`${root}/automation/kailash-episodes.json`, 'utf8'));
   return { lib, bank, hasPortrait: (c) => fs.existsSync(`${root}/characters/kailash/${c}.png`) };
 }
+export const checkSpec = checkKailashSpec;

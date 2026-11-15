@@ -1,0 +1,27 @@
+{
+  "note": "\"Shri Krishna kehte hain\" / Shyam POV (STORY.md section 10): ONE character, Shri Krishna, talking straight to the camera in first person, in OUR OWN clean 2D illustrated look (flat cel-shaded colours, soft dawn sky): never the reference channel's design (theirs: night-sky background, their face). One master portrait (krishna.png, picked by a person from seeds, never regenerated) + one base clip (clips/krishna.mp4, front view, mouth closed) that every episode's close-ups and lip-sync reuse; character-sheet.png = the master sheet. Khatu Shyam ji appears only as the SHEESH (never a speaking body); the speaker is always Shri Krishna. `face_box`/`mouth` are measured on the picked portrait when OpenCV finds no face on flat art (cartoon faces, like Kalyug ke Bhagwan). Voice: one fixed calm, warm edge-tts Madhur variant (the movie cast's Krishna), through voice/humanize.py; never a cloned or famous voice.",
+  "style": "clean modern 2D illustration, flat cel-shaded colours with soft gradients, crisp clean line art, gentle storybook devotional poster style, original character design, soft warm light, highly detailed face, no text, no letters, no watermark",
+  "portrait": "vertical portrait, chest-up, the face large and centred in the upper half of the frame, front view looking straight at the camera, eyes open, mouth gently closed in a calm warm half-smile, softly blurred flat background of {bg}",
+  "negative": "photograph, photorealistic, 3D render, anime, chibi, TV serial actor, celebrity, likeness of a real person, night sky with stars, beard, moustache, extra arms, extra fingers, deformed hands, blurry, text, letters, words, signature, watermark, logo",
+  "characters": {
+    "narrator": {
+      "name": "Sutradhar",
+      "kind": "voice",
+      "color": "FFF3D6",
+      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "-4%", "pitch": "-4Hz"}
+    },
+    "krishna": {
+      "name": "Shri Krishna",
+      "dev": "श्रीकृष्ण",
+      "kind": "deity",
+      "lipsync": true,
+      "color": "4FC3F7",
+      "description": "Shri Krishna as a youthful, kind and wise divine young man with a gentle knowing smile, a smooth clean-shaven face, soft sky-blue skin, large calm lotus-shaped eyes, black wavy shoulder-length hair, a golden crown (mukut) with one peacock feather, a yellow pitambar silk upper cloth, a fragrant Vaijayanti flower garland, gold earrings shaped like makara fish, a sandalwood U-shaped tilak on the forehead, a bamboo flute held near his chest",
+      "wide": "Shri Krishna (youthful kind divine young man, soft sky-blue skin, golden crown with one peacock feather, yellow pitambar, Vaijayanti garland, sandalwood tilak, bamboo flute)",
+      "bg": "a soft dawn sky in pink, saffron and gold over the Yamuna river with lotus leaves",
+      "signature": {"hue": [185, 215], "sat": [0.25, 0.8], "min_share": 0.01},
+      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "-8%", "pitch": "-2Hz", "fx": "divine"},
+      "talk": "Shri Krishna talks warmly to the camera: his mouth opens and closes gently as he speaks, he blinks and tilts his head very slightly, the peacock feather sways."
+    }
+  }
+}

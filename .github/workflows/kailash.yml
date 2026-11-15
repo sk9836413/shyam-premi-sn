@@ -2,8 +2,8 @@
 # realistic-cinematic Kailash family Shorts (Mahadev, Mata Parvati, Ganesh ji, Kartikeya ji, Nandi, Mushak, Narad ji),
 # lip-synced, big Hinglish subtitles, a cover frame and the "फिर ... ने जो किया…" title formula.
 # NO cron of its own: daily.yml calls this workflow after every evening-slot run (and for slot=kalyug dispatches), and it
-# can be dispatched by hand. It does something only when the repo variable KAILASH=on AND the owner approved the pilot
-# (automation/kailash-episodes.json "approved": true) AND tomorrow has a kailash slot (scripts/day-plan.mjs: Mon/Thu/Sat
+# can be dispatched by hand. It does something only when the owner approved the pilot (automation/kailash-episodes.json
+# "approved": true; the repo variable KAILASH=off pauses it) AND tomorrow has a kailash slot (scripts/day-plan.mjs: Mon/Thu/Sat
 # and festival tie-in days; never movie or Chhath-override days; under the 3-Shorts cap it replaces the weekday
 # day-status morning Short or Kalyug/Dadi-Chhotu, never a festival status, the evening darshan or a dawn bhajan).
 # Steps: Claude writes tomorrow's spec from the chosen bank idea, edge-tts voices, ONE Kaggle session (sps-kailash on
@@ -68,7 +68,7 @@ jobs:
         id: d
         run: |
           git fetch -q origin main && git checkout -q origin/main -- automation/log.md automation/published.md
-          node scripts/kailash-due.mjs --spec "${{ inputs.spec }}" | tee -a "$GITHUB_STEP_SUMMARY"
+          node scripts/series-due.mjs --series kailash --spec "${{ inputs.spec }}" | tee -a "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/setup-python@v5
         if: steps.d.outputs.mode == 'produce' || steps.d.outputs.mode == 'write'
@@ -114,7 +114,7 @@ jobs:
           [ -n "$f" ] || f=$(ls story/kailash/${{ steps.d.outputs.release }}-*.json 2>/dev/null | head -1)
           [ -n "$f" ] && [ -f "$f" ] || { echo "::error::No episode file for ${{ steps.d.outputs.release }}"; exit 1; }
           node scripts/validate.mjs --soft-topics "$f"
-          node scripts/kailash-due.mjs --spec "$f" > "$RUNNER_TEMP/due.json"
+          node scripts/series-due.mjs --series kailash --spec "$f" > "$RUNNER_TEMP/due.json"
           for k in slug release publish_at; do echo "$k=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').$k")" >> "$GITHUB_OUTPUT"; done
           echo "SLUG=$(node -p "require(process.env.RUNNER_TEMP + '/due.json').slug")" >> "$GITHUB_ENV"
           echo "F=$f" >> "$GITHUB_ENV"
