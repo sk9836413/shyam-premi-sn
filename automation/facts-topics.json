@@ -4192,6 +4192,34 @@
     "sita charan",
     "draupadi chhath"
    ]
+  },
+  {
+   "p": 1,
+   "deity": "surya",
+   "name": "Chhathi Maiya / Surya Dev",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "festival": "chhath",
+   "variant_only": "kyun",
+   "length": [
+    40,
+    60
+   ],
+   "id": "chhath-sita-draupadi-katha",
+   "label": "tradition",
+   "hook": "Sita aur Draupadi ka Chhath vrat?",
+   "hook_hi": "सीता जी और द्रौपदी ने कौन सा व्रत किया?",
+   "angle": "Lok manyata: Mata Sita kept the Surya Shashthi vrat at Munger (Sita Charan, Mudgal rishi ashram); Draupadi kept the Chhath vrat (manyata, not a Mahabharata episode). Scripture beside it: Yudhishthira worshipped Surya on Dhaumya's advice and got the copper vessel (Akshaya Patra), Mahabharata Vana Parva sec. 3. Every folk part labelled. (Re-made 15 Nov 2026 after the first render of chhath-sita-draupadi-vrat failed the Whisper gate: kept private, never published.)",
+   "cite": {
+    "work": "Lok parampara (Munger); Mahabharata",
+    "ref": "Vana Parva sec. 3 (Yudhishthira, Surya, copper vessel)"
+   },
+   "sources": [
+    "https://www.etvbharat.com/hindi/bihar/state/munger/mata-sita-did-chhath-puja-for-first-time-in-munger/bh20221027235943740740553",
+    "https://ibiblio.org/sripedia/ebooks/mb/m03/m03003.htm"
+   ],
+   "keywords": [
+    "sita draupadi chhath"
+   ]
   }
  ],
  "ideas": [

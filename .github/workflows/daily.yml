@@ -2557,7 +2557,11 @@ jobs:
         run: |
           qa() {
             python voice/facts_asr.py --spec "$W/scenes.json" --voices "$W/build/$SLUG" --out "$W/asr.json" > "$RUNNER_TEMP/asr.log" 2>&1 || { tail -5 "$RUNNER_TEMP/asr.log"; return 1; }
-            node scripts/facts.mjs qa --spec "$W/scenes.json" --asr "$W/asr.json" | tee "$RUNNER_TEMP/qa.json"
+            # (no pipe here: `| tee` returned tee's 0, so a FAILED gate counted as passed; 15 Nov 2026, Sita/Draupadi Short)
+            local rc=0
+            node scripts/facts.mjs qa --spec "$W/scenes.json" --asr "$W/asr.json" > "$RUNNER_TEMP/qa.json" || rc=$?
+            cat "$RUNNER_TEMP/qa.json"
+            return $rc
           }
           if qa; then echo "ok=true" >> "$GITHUB_OUTPUT"; echo "- Pronunciation gate: passed ($(cat "$RUNNER_TEMP/qa.json"))" >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
           echo "- Pronunciation gate: failed ($(cat "$RUNNER_TEMP/qa.json" 2>/dev/null)); second try" >> "$GITHUB_STEP_SUMMARY"

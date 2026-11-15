@@ -58,7 +58,7 @@ export function decide({ log = '', pub = '', day, slot, slug, run, now = Date.no
     if (who.split('.')[0] === String(run).split('.')[0]) continue; // our own claim (or an earlier attempt of this run)
     if (!(now - at < ttl)) continue;
     if (key === `${day} ${slot}` || s === slug) return { go: false, reason: `run ${who} claimed ${key} (${s}) at ${new Date(at).toISOString()}` };
-    if (key.startsWith(`${day} `)) done.set(s, key.slice(day.length + 1)); // another slot of the day, uploading right now
+    if (key.startsWith(`${day} `) && !withheld(pub).has(s)) done.set(s, key.slice(day.length + 1)); // another slot of the day, uploading right now
   }
   // Daily cap per kind (scripts/day-plan.mjs): at most `cap` Shorts and `longCap` long videos go public per IST date.
   const kind = kindOf(slot);
@@ -79,8 +79,13 @@ export function dayUploads({ log = '', pub = '', day }) {
   const up = new Map();
   for (const m of log.matchAll(new RegExp(`^${esc(day)} \\| (\\w+) \\| (\\S+)`, 'gm'))) if (!up.has(m[2])) up.set(m[2], m[1]);
   for (const m of pub.matchAll(new RegExp(`^- (${esc(day)}-([a-z]+)-\\S*) \\| youtube: https?://`, 'gm'))) if (!up.has(m[1])) up.set(m[1], m[2]);
+  for (const s of withheld(pub)) up.delete(s);
   return up;
 }
+
+/** Slugs marked "- <slug> | withheld: ..." in published.md: uploaded but taken back before going public (kept private;
+ *  15 Nov 2026, a Short that should have failed the pronunciation gate). They never count against the cap. */
+export const withheld = (pub = '') => new Set([...String(pub).matchAll(/^- (\S+) \| withheld:/gm)].map((m) => m[1]));
 
 /** The Shorts cap of a date: DAILY_CAP, +1 on the owner's one-day exception (repo variable EXTRA_UPLOAD_DAY=YYYY-MM-DD,
  *  e.g. a big festival). The long video has its own cap (LONG_CAP) and is never affected. */

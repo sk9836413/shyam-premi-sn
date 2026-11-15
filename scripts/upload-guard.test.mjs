@@ -181,3 +181,14 @@ ${d} | eve | ${d}-eve-chhath-usha-arghya | c | x
     assert.equal(decide({ day: d, slot: 'facts2', slug: `${d}-facts-other`, run: '1.1', now: NOW, log, cap: 99 }).go, false);
   });
 });
+
+describe('withheld uploads (taken back before going public) do not count', () => {
+  test('a withheld Short frees its place in the cap', () => {
+    const d = '2026-11-15';
+    const log = `${d} | status | ${d}-status-a | c | x\n${d} | morning | ${d}-morning-b | c | x\n`;
+    const pub = `${claimLine({ day: d, slot: 'facts4', slug: `${d}-facts-x`, run: '5.1', now: NOW - 60e3 })}\n- ${d}-facts-x | youtube: https://youtube.com/shorts/abc\n`;
+    assert.equal(decide({ day: d, slot: 'facts5', slug: `${d}-facts-y`, run: '6.1', now: NOW, log, pub, cap: 3 }).go, false);
+    const pub2 = `${pub}- ${d}-facts-x | withheld: pronunciation gate failed\n`;
+    assert.equal(decide({ day: d, slot: 'facts5', slug: `${d}-facts-y`, run: '6.1', now: NOW, log, pub: pub2, cap: 3 }).go, true);
+  });
+});
