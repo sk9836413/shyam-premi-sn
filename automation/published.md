@@ -133,3 +133,4 @@
 - 2026-11-16-facts-chhath-chhathi-naam-kyun | youtube: https://youtube.com/shorts/iYZ1gplGy3U (public at 2026-11-15T23:45:00.000Z) | facts kyun/cinematic, 50 s, made 15 Nov 20:08 IST | social: fb: https://www.facebook.com/reel/4658386347763821 (scheduled 2026-11-16T03:30:00.000Z) | ig: pending 2026-11-15T23:45:00.000Z
 - 2026-11-15-facts-chhath-sita-draupadi-katha | instagram: https://www.instagram.com/reel/DfxHLuYAK-G/
 - 2026-11-16-status-chhathi-maiya | instagram: https://www.instagram.com/reel/Dfxe05Kh4kL/
+- 2026-11-17-movie-khatu-shyam-amar-katha-part-1 | claim: 2026-11-17 movie by run 43743653441.1 at 2026-11-15T20:41:52.638Z
