@@ -1,0 +1,119 @@
+{
+  "slug": "2026-11-16-facts-chhath-chhathi-naam-kyun",
+  "format": "facts",
+  "variant": "kyun",
+  "art": "cinematic",
+  "release": "2026-11-16",
+  "publish_at": "05:15",
+  "slot": "facts3",
+  "no_kaggle": true,
+  "bed": "devotional",
+  "topic": "chhath-chhathi-naam-kyun",
+  "festival": "Chhath Puja (Usha Arghya)",
+  "title": "Chhathi Maiya Naam ka Rahasya",
+  "kicker": "Chhath Puja 2026",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Chhathi Maiya",
+  "music_mood": "emotional",
+  "sub_size": 60,
+  "style": "hyper-real cinematic devotional film still, warm golden sunrise light, deep saturated colours, dramatic rim light, intricate detail, respectful, no text, no letters, no writing, no watermark, no signature",
+  "hook": "Chhathi Maiya ko Chhathi kyun kehte hain?",
+  "cover": "छठी मैया का रहस्य",
+  "cover_lines": [
+    "छठी मैया को",
+    "छठी",
+    "क्यों कहते हैं?"
+  ],
+  "source": "Brahmavaivarta Purana, Prakriti Khanda, adhyay 43 (verses 4, 26); Kartik Shukla Shashthi tithi; Surya ki bahan: lok manyata (Bihar ke lokgeet)",
+  "deity": "Chhathi Maiya (Shashthi Devi)",
+  "summary": "Chhathi naam kyun: Kartik Shukla Shashthi tithi, Brahmavaivarta Purana mein Prakriti ka chhatha ansh, balkon ki rakshak devi; Surya ki bahan: lok manyata",
+  "scenes": [
+    {
+      "prompt": "Dramatic cinematic close-up portrait of Chhathi Maiya as a radiant divine mother goddess with a warm loving smile, red and gold silk saree, golden crown and jewellery, a huge golden rising sun behind her head like a halo, misty river and diyas softly blurred behind, the face in the lower half of the frame",
+      "deity": true,
+      "hero": true,
+      "motion": "in",
+      "tts": "छठी मैया को छठी मैया क्यों कहते हैं?",
+      "sub": "Chhathi Maiya ko Chhathi Maiya kyun kehte hain?"
+    },
+    {
+      "prompt": "Women devotees in bright saris standing in a misty river at dawn seen from behind, raising bamboo soop baskets with lit diyas towards the first golden light of the rising sun, cinematic wide shot",
+      "motion": "pan",
+      "tts": "आज उषा अर्घ्य के साथ छठ पूरा होता है। पर इस नाम का रहस्य जानते हैं?",
+      "sub": "Aaj Usha Arghya ke saath Chhath poora hota hai. Par is naam ka rahasya jaante hain?"
+    },
+    {
+      "prompt": "A huge golden rising sun over the Ganga at dawn with a glowing gentle divine feminine silhouette in the soft clouds beside it, devotees in the river below, epic cinematic wide shot",
+      "motion": "pan",
+      "label": "tradition",
+      "tts": "बिहार के लोकगीतों में छठी मैया को सूर्य देव की बहन माना जाता है। पर नाम का कारण कुछ और है।",
+      "sub": "Bihar ke lokgeeton mein Chhathi Maiya ko Surya Dev ki bahan maana jaata hai. Par naam ka kaaran kuch aur hai."
+    },
+    {
+      "prompt": "A bright waxing moon and a golden sunset over a calm river with a row of lit clay diyas on the ghat steps, sugarcane canopies and soop baskets, peaceful festive evening, cinematic",
+      "motion": "in",
+      "tts": "पहला कारण, तिथि। यह व्रत कार्तिक शुक्ल षष्ठी को होता है। षष्ठी यानी छठा दिन।",
+      "sub": "Pehla kaaran, tithi. Yeh vrat Kartik Shukla Shashthi ko hota hai. Shashthi yaani chhatha din."
+    },
+    {
+      "prompt": "A young mother seen from behind holding her small child close on river ghat steps at sunrise, a bamboo soop basket with a lit diya beside them, golden mist on the water, tender, cinematic",
+      "motion": "out",
+      "tts": "पुराण में षष्ठी देवी बच्चों की रक्षा करने वाली देवी हैं। इसीलिए माँएं संतान के लिए यह व्रत रखती हैं।",
+      "sub": "Purana mein Shashthi Devi bachchon ki raksha karne wali devi hain. Isiliye maayein santaan ke liye yeh vrat rakhti hain."
+    },
+    {
+      "prompt": "A radiant divine mother goddess in red and gold seated on a glowing lotus amid soft golden clouds, gently blessing a sleeping baby in a cradle of flowers, divine light rays, cinematic",
+      "deity": true,
+      "motion": "in",
+      "reveal": true,
+      "tts": "दूसरा कारण, पुराण। ब्रह्मवैवर्त पुराण में देवी प्रकृति का छठा अंश हैं, इसलिए उनका नाम षष्ठी है!",
+      "sub": "Doosra kaaran, Purana. Brahmavaivarta Purana mein Devi Prakriti ka chhatha ansh hain, isliye unka naam Shashthi hai!"
+    },
+    {
+      "prompt": "Golden thekua and fruits on a bamboo soop basket with a lit diya on a river bank at sunrise, warm golden light, peaceful, cinematic close shot",
+      "motion": "in",
+      "moral": true,
+      "tts": "सीख यही है, माँ की आस्था से बड़ी कोई शक्ति नहीं।",
+      "sub": "Seekh yahi hai, Maa ki aastha se badi koi shakti nahi."
+    },
+    {
+      "endcard": true,
+      "tts": "छठी मैया सबकी मनोकामना पूरी करें! कमेंट में लिखें जय छठी मैया, और लाइक, शेयर, सब्सक्राइब करें।",
+      "sub": "Chhathi Maiya sabki manokamna poori karein! Comment mein likhein Jai Chhathi Maiya, aur Like, Share, Subscribe karein."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "The Chhath vrat falls on Kartik Shukla Shashthi (the sixth tithi); Sandhya Arghya 15 Nov, Usha Arghya 16 Nov 2026",
+      "source": "Chhath Puja 2026 calendar",
+      "sources": [
+        "https://www.timesnowhindi.com/spirituality/chhath-puja-calendar-2026-sandhya-arghya-usha-arghya-date-time-article-156490739",
+        "https://www.etvbharat.com/hi/state/chhath-2026-sandhya-arghya-2026-date-and-time-bihar-sunset-timing-worship-method-and-importance-brs26111303802"
+      ]
+    },
+    {
+      "claim": "Shashthi Devi is the sixth part of Prakriti, hence the name Shashthi; she is the protector of children",
+      "source": "Brahmavaivarta Purana, Prakriti Khanda 43.4 and 43.26; Devi Bhagavata Purana 9.46",
+      "sources": [
+        "https://sa.wikisource.org/wiki/ब्रह्मवैवर्तपुराणम्/खण्डः_२_(प्रकृतिखण्डः)/अध्यायः_४३",
+        "https://devi.redzambala.com/devi-bhagavatam/shrimad-devi-bhagavatam-book-9-chapter-46.html",
+        "https://www.prabhatkhabar.com/religion/festivals/who-is-chhathi-maiya-kaun-hain-family-parents-husband-sun-god-relationship"
+      ]
+    },
+    {
+      "claim": "Bihar folk songs call Chhathi Maiya the sister of Surya Dev (folk belief, not Puranic)",
+      "source": "Lok manyata (Bihar ke Chhath geet)",
+      "kind": "tradition",
+      "sources": [
+        "https://www.prabhatkhabar.com/religion/festivals/who-is-chhathi-maiya-kaun-hain-family-parents-husband-sun-god-relationship",
+        "https://hindi.oneindia.com/religion-spirituality/who-is-chhathi-maiya-connection-with-surya-dev-raja-priyavrat-story-and-chhath-puja-mythology-1684471.html"
+      ]
+    }
+  ],
+  "youtube_title": "Chhathi Maiya ko Chhathi kyun kehte 😱 #facts | Chhath Puja Katha | छठी मैया के नाम का रहस्य",
+  "youtube_description": "Chhath Puja 2026 Usha Arghya: Chhathi Maiya ko 'Chhathi' kyun kehte hain? Tithi (Kartik Shukla Shashthi) aur Brahmavaivarta Purana: Prakriti ka chhatha ansh.\nSource: Brahmavaivarta Purana, Prakriti Khanda, adhyay 43 (verses 4, 26); Kartik Shukla Shashthi tithi; Surya ki bahan: lok manyata (Bihar ke lokgeet)\nछठी मैया के नाम का रहस्य: षष्ठी तिथि और प्रकृति का छठा अंश। सूर्य देव की बहन होना बिहार के लोकगीतों की लोक मान्यता है।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.\nJai Chhathi Maiya 🙏 Video achha laga ho to Like, Share aur Subscribe karein.\n#facts #story #ChhathPuja #ChhathiMaiya #छठपूजा #Shorts",
+  "youtube_tags": "Chhath Puja 2026, छठ पूजा 2026, Chhathi Maiya, छठी मैया, Chhathi Maiya naam ka rahasya, छठी मैया नाम का रहस्य, Shashthi Devi, षष्ठी देवी, Usha Arghya 2026, उषा अर्घ्य, Chhath Puja facts, छठ पूजा का रहस्य",
+  "instagram_caption": "Chhathi Maiya ko 'Chhathi' kyun kehte hain? 🙏\nPehla: vrat Kartik Shukla Shashthi ko. Doosra: Brahmavaivarta Purana (Prakriti Khanda 43) mein Devi Prakriti ka chhatha ansh, isliye Shashthi. Surya Dev ki bahan: Bihar ke lokgeeton ki manyata.\nChitra AI se (sanketik).\nJai Chhathi Maiya! Achha laga ho to Like, Share aur Follow karein.\n#ChhathPuja #ChhathiMaiya #Chhath2026 #UshaArghya #facts #Bihar",
+  "facebook_caption": "जय छठी मैया 🙏 इस छठ पर छठी मैया से आपने क्या माँगा?\nछठी मैया के नाम के दो कारण: कार्तिक शुक्ल षष्ठी तिथि, और ब्रह्मवैवर्त पुराण में प्रकृति का छठा अंश। सूर्य देव की बहन होना लोक मान्यता है।\n#ChhathPuja #ChhathiMaiya #Bhakti"
+}
