@@ -838,3 +838,15 @@ status Short, festival days keep their morning Short (`scripts/day-plan.mjs`, re
   Title `<jaikara> 🙏 #<deity> #bhakti` (keywords in the tags).
 - Variety (reused-content policy): never the same audio + picture twice, a bhajan at most once in 3 days, a different
   chorus window each time, a new artwork every upload. Description: the AI picture line and the bhajan / music line.
+
+## Weekly facts compilation (long video; job `compile`; owner, 15 Nov 2026; no action from you)
+
+Reference: "Ramayana Was Darker Than You Think: 5 Forgotten Stories" (a long documentary listicle, 5.95 lakh views in 9
+days). On **Saturdays** whose long video would be a plain series katha (not a festival katha, mantra jaap or jukebox),
+when 4+ facts Shorts of the last 21 days (6+ minutes) are not compiled yet, `scripts/facts-compile.mjs` makes the 12:30
+long video from them: a curiosity listicle title ("खाटू श्याम जी के N रहस्य जो बहुत कम लोग जानते हैं 😱", "रामायण की N
+कहानियाँ जो आपको किसी ने नहीं सुनाईं", "महाभारत की N भूली हुई कहानियाँ"), a 15 s hook intro, each Short as a 9:16 panel over
+its blurred picture with its number and title, an outro, chapters with each story's source, the big-text brush-band
+thumbnail, the Shorts' links in the description, and afterwards a "Poori series" link in each Short's description (the
+API cannot set a Short's related video or pin a comment). The Shorts are never re-uploaded as Shorts. If it does not run
+or fails, the long job tells its katha as before. growth.md tracks it as the `long` format with "compilation".

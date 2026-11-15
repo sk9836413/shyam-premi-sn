@@ -190,3 +190,28 @@ test('"धर्म की जिज्ञासा" questions: 35-47 s, a cited
   s.scenes[1].tts = 'वैज्ञानिक कारण: घंटी की आवाज़ से बैक्टीरिया मर जाते हैं।';
   assert.ok(checkFactsSpec(s, { topics }).some((e) => /pseudo-science/.test(e)));
 });
+
+test('weekly compilation: Saturdays only, 4+ uncompiled facts Shorts, a curiosity listicle title, links and sources', async () => {
+  const { compileTitle, compileSpec, pendingShorts } = await import('./facts-compile.mjs');
+  const os = await import('node:os');
+  const path = await import('node:path');
+  const mk = (topic, deity, source) => ({ spec: { topic, deity, source, title: topic, hook: topic } });
+  assert.match(compileTitle([mk('khatu-baba-ke-naam', 'Khatu Shyam ji'), mk('khatu-nishan', 'Khatu Shyam ji')]).hi, /^खाटू श्याम जी के दो रहस्य/);
+  assert.match(compileTitle([mk('jatayu-sampati-surya', 'Sampati', 'Valmiki Ramayan'), mk('ram-setu-nal', 'Ram Setu', 'Valmiki Ramayan')]).hi, /^रामायण की/);
+  assert.match(compileTitle([mk('jatayu-sampati-surya', 'Sampati', 'Valmiki Ramayan'), mk('shiv-neelkanth', 'Shiv', 'Bhagavata Purana')]).hi, /^पौराणिक कथाओं के/);
+  // a temp repo: log.md facts lines, published.md links, saved specs; one Short already compiled
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'compile-'));
+  fs.mkdirSync(path.join(root, 'automation')); fs.mkdirSync(path.join(root, 'story/published'), { recursive: true });
+  const days = ['2026-11-17', '2026-11-20', '2026-11-22', '2026-11-25', '2026-11-26'];
+  fs.writeFileSync(path.join(root, 'automation/log.md'), days.map((d, i) => `${d} | facts | ${d}-facts-t${i} | Khatu | x (variant story, art cinematic, ${100 + i} s)`).join('\n') + '\n');
+  fs.writeFileSync(path.join(root, 'automation/published.md'), days.map((d, i) => `- ${d}-facts-t${i} | youtube: https://youtube.com/shorts/abcdef${i}`).join('\n') + '\n');
+  days.forEach((d, i) => fs.writeFileSync(path.join(root, `story/published/${d}-facts-t${i}.json`), JSON.stringify({ topic: `khatu-t${i}`, deity: 'Khatu Shyam ji', title: `T${i}`, source: 'Lok katha' })));
+  fs.writeFileSync(path.join(root, 'story/published/2026-11-21-long-facts-x.json'), JSON.stringify({ compile: [{ slug: '2026-11-17-facts-t0' }] }));
+  const p = pendingShorts('2026-11-28', root);
+  assert.deepEqual(p.map((x) => x.slug), ['2026-11-20-facts-t1', '2026-11-22-facts-t2', '2026-11-25-facts-t3', '2026-11-26-facts-t4']);
+  const s = compileSpec('2026-11-28', p);
+  assert.ok(s.youtube_title.length <= 100 && /रहस्य/.test(s.youtube_title));
+  assert.ok(p.every((x) => s.youtube_description.includes(x.url)), 'links to every Short');
+  assert.equal(s.compile.length, 4);
+  assert.match(s.slug, /^2026-11-28-long-facts-/);
+});

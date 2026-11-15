@@ -695,7 +695,7 @@ jobs:
   # It waits for the jukebox / mantra jobs of the same run (a dawn long video made by the morning fallback is then in
   # log.md and this job skips; when they failed or did not run, the katha goes out at 12:30 as before).
   long:
-    needs: [story, jukebox, mantra]
+    needs: [story, jukebox, mantra, compile]
     if: always() && needs.story.outputs.long == 'true' && !inputs.dry_run
     runs-on: ubuntu-latest
     timeout-minutes: 210
@@ -2062,6 +2062,115 @@ jobs:
           git commit -qm "Kalyug ke Bhagwan $SLUG scheduled for $rel 08:00"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
+  # Weekly facts compilation (owner, 15 Nov 2026; scripts/facts-compile.mjs): on Saturdays whose long video is a plain
+  # series katha, when 4+ facts Shorts of the last 21 days (6+ min) are not compiled yet, the day's 12:30 long video is
+  # ONE 16:9 compilation of them (15 s hook intro, the Shorts as 9:16 panels, outro, chapters with each source, big-text
+  # thumbnail, links to the Shorts; afterwards a "full video" link in each Short's description). The Shorts' videos come
+  # from the facts job's artifacts (30 days). Runs on morning runs before `long`, which skips once log.md has the day's
+  # long line; any failure here leaves the katha to the long job as before.
+  compile:
+    needs: story
+    if: always() && needs.story.outputs.long == 'true' && !inputs.dry_run
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write
+      actions: read
+    concurrency:
+      group: shyam-long-${{ needs.story.outputs.today }}
+      cancel-in-progress: false
+    env:
+      FFMPEG_PATH: ffmpeg
+      PYTHON: python
+      SUB_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      FACTS: ${{ vars.FACTS }}
+      KALYUG: ${{ vars.KALYUG }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Due
+        id: due
+        run: |
+          today=$(TZ=Asia/Kolkata date +%F); echo "TODAY=$today" >> "$GITHUB_ENV"
+          if grep -q "^$today | long |" automation/log.md; then echo "go=false" >> "$GITHUB_OUTPUT"; echo "::notice::long video already made"; exit 0; fi
+          node scripts/facts-compile.mjs due --date "$today" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/setup-python@v5
+        if: steps.due.outputs.go == 'true'
+        with:
+          python-version: '3.12'
+
+      - name: Spec and the Shorts' videos
+        id: spec
+        if: steps.due.outputs.go == 'true'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core > /dev/null
+          pip install -q edge-tts
+          node scripts/facts-compile.mjs spec --date "$TODAY" --out story/compile/scenes.json
+          echo "SLUG=$(node -p "require('./story/compile/scenes.json').slug")" >> "$GITHUB_ENV"
+          mkdir -p story/compile/videos
+          for s in ${{ steps.due.outputs.slugs }}; do
+            url=$(gh api "repos/${{ github.repository }}/actions/artifacts?name=facts-$s&per_page=1" --jq '.artifacts[0].archive_download_url // empty')
+            [ -n "$url" ] || { echo "::error::no artifact facts-$s"; exit 1; }
+            gh api "$url" > "$RUNNER_TEMP/$s.zip" && unzip -q -o "$RUNNER_TEMP/$s.zip" -d "$RUNNER_TEMP/$s"
+            f=$(find "$RUNNER_TEMP/$s" -name "$s.mp4" -path '*out/*' ! -path '*small*' | head -1); [ -n "$f" ] || f=$(find "$RUNNER_TEMP/$s" -name "$s.mp4" | head -1)
+            [ -n "$f" ] || { echo "::error::no video in facts-$s"; exit 1; }
+            cp "$f" "story/compile/videos/$s.mp4"
+          done
+
+      - name: Render
+        id: render
+        if: steps.spec.outcome == 'success'
+        run: node scripts/facts-compile.mjs render --spec story/compile/scenes.json --videos story/compile/videos --out story/compile/out | tail -c 600 | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Claim the upload
+        id: claim
+        if: steps.render.outcome == 'success'
+        run: node scripts/upload-guard.mjs claim --day "$TODAY" --slot long --slug "$SLUG"
+
+      - name: YouTube (12:30 IST), links in the Shorts, Facebook Page video, record
+        if: steps.claim.outputs.go == 'true'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+        run: |
+          o=story/compile/out
+          if ! node scripts/youtube.mjs upload --long --video "$o/$SLUG.mp4" --scenes story/compile/scenes.json --meta "$o/$SLUG.json" --thumbnail "$o/$SLUG-thumb.jpg" --publish-at 12:30 | tee "$RUNNER_TEMP/yt.json" || ! grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"; then
+            node scripts/upload-guard.mjs release --day "$TODAY" --slot long --slug "$SLUG" --reason "YouTube failed"; exit 1
+          fi
+          url=$(node -p "JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/yt.json', 'utf8')).youtube.url")
+          node scripts/facts-compile.mjs link --spec story/compile/scenes.json --url "$url" || echo "::warning::could not add the link to the Shorts' descriptions"
+          fbl=""
+          if [ -n "$META_PAGE_TOKEN" ]; then
+            fb=$(node scripts/fb.mjs flags --date "$TODAY" --slot long --at 12:30 || echo --no-fb)
+            if [ "$fb" != --no-fb ]; then
+              at=${fb#--fb-at }; pa=(); [ "$at" = now ] || pa=(--publish-at "$at")
+              node scripts/meta.mjs long --video "$o/$SLUG.mp4" --scenes story/compile/scenes.json --meta "$o/$SLUG.json" --thumbnail "$o/$SLUG-thumb.jpg" "${pa[@]}" | tee "$RUNNER_TEMP/fb.json" || true
+              fbl="- $SLUG | facebook: $(node -p "try{const j=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP+'/fb.json','utf8'));j.facebook?j.facebook.url:'error'}catch{'failed'}")"
+            fi
+          fi
+          mkdir -p story/published && cp story/compile/scenes.json "story/published/$SLUG.json"
+          git fetch -q origin main && git checkout -q origin/main -- automation/log.md automation/published.md
+          secs=$(node -p "Math.round(require('./$o/$SLUG.json').seconds)")
+          echo "$TODAY | long | $SLUG | $(node -p "require('./story/compile/scenes.json').deity") | $(node -p "require('./story/compile/scenes.json').summary") (compilation, $secs s)" >> automation/log.md
+          echo "- $SLUG | youtube: $url (public at 12:30 IST) | facts compilation, $secs s" >> automation/published.md
+          [ -n "$fbl" ] && echo "$fbl" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/log.md automation/published.md "story/published/$SLUG.json"
+          git commit -qm "Long $SLUG (facts compilation)"
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
+
   # Bhajan loop / veer Shorts (owner, 15 Nov 2026; scripts/loop.mjs, story/render-loop.mjs): on normal days the morning
   # day-status Short alternates with them (Mon veer Mahakal, Wed loop, Fri loop, Sat veer Hanuman; day-plan.mjs). Built
   # from the QA-passed bhajan library (no Claude), ONE new FLUX artwork, a seamless 12-15 s chorus loop (veer: 30-40 s, the
@@ -2375,7 +2484,7 @@ jobs:
             story/facts/work/out/
             story/facts/work/scenes.json
             story/facts/work/asr.json
-          retention-days: 7
+          retention-days: 30
           compression-level: 0
 
       - name: Record the skipped Short
