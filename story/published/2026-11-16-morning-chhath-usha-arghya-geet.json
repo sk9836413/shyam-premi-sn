@@ -1,0 +1,149 @@
+{
+  "slug": "2026-11-16-morning-chhath-usha-arghya-geet",
+  "format": "status",
+  "bhajan_short": true,
+  "bhajan_id": "bhajan-chhath26e-07-devi",
+  "loop": false,
+  "date": "2026-11-16",
+  "festival_date": "2026-11-16",
+  "slot": "morning",
+  "festival": "Chhath Puja (Usha Arghya)",
+  "theme": "chhath",
+  "family": "2026-11-16-morning-chhath-usha-arghya-geet",
+  "title": "Shyam Premi SN",
+  "kicker": "Usha Arghya Geet",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hf_alpha",
+  "signoff": "Jai Chhathi Maiya",
+  "style": "licence-safe AI picture bank (brand/photo-bank), no text, no faces",
+  "endline": "Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN",
+  "publish_at": "05:45",
+  "scenes": [
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-5.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-5.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "in",
+      "hold": 8.8,
+      "big": "छठ उषा अर्घ्य 🙏",
+      "line": "भोर भइल, घाट सजल, छठी मइया के जय",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-w2.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-w2.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "pan",
+      "hold": 8.8,
+      "big": "जय छठी मइया 🙏",
+      "line": "उगत सुरुज के किरन संग, मिटल सब भय",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-10.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-10.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "out",
+      "hold": 8.8,
+      "big": "सूर्य देव की जय",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-w8.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-w8.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "in",
+      "hold": 8.8,
+      "big": "छठ महापर्व की शुभकामनाएं",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-2.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-2.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "pan",
+      "hold": 8.8,
+      "big": "छठी मइया सबकी मनोकामना पूरी करें",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-8.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-8.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "out",
+      "hold": 8.8,
+      "big": "घाट घाट दीप जले",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-w9.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-w9.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "in",
+      "hold": 8.8,
+      "big": "जय सूर्य देव 🌅",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-6.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-6.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "pan",
+      "hold": 8.8,
+      "big": "जय छठी मइया 🙏",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-w7.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-w7.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "out",
+      "hold": 8.8,
+      "big": "सूर्य देव की जय",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "image": "brand/photo-bank/chhath/kaggle-flux-2026-11-13-4.jpg",
+      "prompt": "bank picture kaggle-flux-2026-11-13-4.jpg (licence-safe AI picture bank, no faces)",
+      "motion": "in",
+      "hold": 8.8,
+      "big": "छठ महापर्व की शुभकामनाएं",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    },
+    {
+      "endcard": true,
+      "hold": 4,
+      "big": "जय छठी मइया 🙏",
+      "tts": "जय छठी मइया",
+      "sub": "Jai Chhathi Maiya"
+    }
+  ],
+  "youtube_title": "Usha Arghya Geet 2026 | Chhath Puja Song | Bhakti Geet | उषा अर्घ्य छठ गीत #Shorts",
+  "youtube_description": "आज भोर में उगते सूरज को अर्घ्य के साथ छठ महापर्व पूरा होता है। फिर ठेकुआ और प्रसाद से व्रत का पारण।\nइस छठ पर सुनिए नया छठ गीत \"भोर भइल घाट सजल\" 🙏 जय छठी मइया, जय सूर्य देव।\n\nChhath Puja 2026 ka naya geet: \"Bhor Bhail Ghat Sajal\". Chhath Puja (Usha Arghya).\nBhakti Geet | भक्ति गीत: Shyam Premi SN ke naye maulik bhajan.\nभजन: मौलिक रचना, AI द्वारा गाया गया (ACE-Step)\nChitra AI dwara banaye gaye hain (sanketik).\n\nAise hi bhajan aur darshan ke liye subscribe karein: Shyam Premi SN\n\n#ChhathPuja #ChhathGeet #ChhathiMaiya #छठपूजा #Shorts",
+  "youtube_tags": "chhath puja song, chhath puja geet 2026, chhath geet, chhathi maiya song, chhath bhajan, usha arghya geet, छठ पूजा गीत, छठ गीत, छठी मइया, छठ पूजा 2026, surya dev, bhojpuri chhath geet, bhakti geet, भक्ति गीत, shyam premi sn",
+  "instagram_caption": "Chhath Puja (Usha Arghya) 🙏 Naya Chhath geet \"Bhor Bhail Ghat Sajal\". Jai Chhathi Maiya, Jai Surya Dev.\n\nBhajan: maulik rachna, AI dwara gaya gaya (ACE-Step). Chitra AI dwara (sanketik).\n\n#ChhathPuja #ChhathGeet #ChhathiMaiya #Chhath2026 #ShyamPremiSN\n\nभजन: मौलिक रचना, AI द्वारा गाया गया (ACE-Step)",
+  "facebook_caption": "जय छठी मइया 🙏 आज भोर का अर्घ्य आपने किस घाट पर दिया?\nआज भोर में उगते सूरज को अर्घ्य के साथ छठ महापर्व पूरा होता है। फिर ठेकुआ और प्रसाद से व्रत का पारण।\n\n#ChhathPuja #ChhathGeet #Bhakti",
+  "song": {
+    "id": "bhajan-chhath26e-07-devi",
+    "from": 0,
+    "seconds": 88
+  },
+  "bhajan": {
+    "id": "bhajan-chhath26e-07-devi",
+    "title": "Bhor Bhail Ghat Sajal",
+    "title_hi": "भोर भइल घाट सजल",
+    "deity": "devi",
+    "mood": "thaath",
+    "festival": "chhath",
+    "match": "chosen",
+    "mode": "status",
+    "licence": "original, generated by ACE-Step 1.5 (MIT)",
+    "model": "ACE-Step 1.5 (acestep-v15-turbo DiT fp32 + acestep-5Hz-lm-1.7B)",
+    "singer": "AI (ACE-Step 1.5), no real singer cloned",
+    "from": 0,
+    "start": 0,
+    "seconds": 89.45,
+    "narration": false
+  }
+}

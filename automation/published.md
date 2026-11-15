@@ -114,3 +114,4 @@
 - 2026-11-15-facts-chhath-shashthi-devi-priyavrat | youtube: https://youtube.com/shorts/0QCNjLRqwoc (public at undefined) | facts kyun/cinematic, 58 s, made 15 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/1708969720854197 (scheduled 2026-11-15T16:00:00.000Z) | ig: error upload failed: Request processing failed
 - 2026-11-15-facts-chhath-shashthi-devi-priyavrat | ig: pending 2026-11-15T13:30:00.000Z (retry after 'Request processing failed')
 - 2026-11-16-morning-chhath-usha-arghya-geet | claim: 2026-11-16 morning by run 43718158063.1 at 2026-11-15T13:21:52.248Z
+- 2026-11-16-morning-chhath-usha-arghya-geet | youtube: https://youtube.com/shorts/7lj4u7bzfgo (public at 2026-11-16T00:15:00.000Z) | bhajan Short, made 15 Nov 18:52 IST | social: fb: https://www.facebook.com/reel/1950635992588668 (scheduled 2026-11-16T00:30:00.000Z) | ig: pending 2026-11-16T00:30:00.000Z
