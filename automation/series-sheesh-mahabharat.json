@@ -1,0 +1,126 @@
+{
+ "series": "sheesh-mahabharat",
+ "series_title": "शीश की आँखों से महाभारत",
+ "approved": false,
+ "approved_note": "Outline only (owner, 15 Nov 2026). For the movie engine after Khatu Shyam Janmotsav (20 Nov 2026); nothing is produced until the owner sets \"approved\": true after a pilot episode and the GPU budget check.",
+ "why": "Reference: serialized cliffhanger episodes (Hari Universe \"RAKHT EP1..45\", every episode 1-5.6 lakh, ~3 min, epic dark-cinematic art, \"?\" titles). Our on-brand version: the war as Barbarik's immortal sheesh saw it from the hill.",
+ "frame": "The frame is Khatu parampara (the sheesh on the hilltop watching the whole war, said as \"मान्यता है\"); the Skanda Purana (Kaumarika Khand adhyay 66) for Barbarika; every war event only as the Mahabharat tells it (parva / sub-parva cited; the writer checks the section numbers). In the Mahabharat the narrator is Sanjaya: say so once (EP1).",
+ "title_format": "<question hook>? 😱 🙏 शीश की आँखों से महाभारत EP N",
+ "rules": [
+  "Each episode ~2.5-3 min, opens with a one-line recap (EP2+), ends on its cliffhanger (EP1-11); EP12 resolves.",
+  "Dark-cinematic but no gore: arrows of light, dust, petals; Khatu Shyam ji = the sheesh only, a calm divine glow; Krishna dignified.",
+  "AI narration through our own voice chain (the sheesh speaks as \"मैं\"), never a real voice; realistic ORIGINAL faces, never a TV actor."
+ ],
+ "episodes": [
+  {
+   "n": 1,
+   "title": "एक शीश ने पूरा महाभारत कैसे देखा? 😱 🙏 शीश की आँखों से महाभारत EP 1",
+   "outline": "Barbarik's vow, the three arrows, Krishna's request, the sheesh daan and his one wish: to see the war; the sheesh placed on the hill (parampara + Skanda Purana).",
+   "cite": "Skanda Purana, Kaumarika Khand adhyay 66; Khatu parampara",
+   "cliffhanger": "पहले ही दिन मैंने देखा… अर्जुन का गांडीव काँप रहा था।"
+  },
+  {
+   "n": 2,
+   "title": "युद्ध से पहले अर्जुन क्यों रो पड़े? 😱 🙏 शीश की आँखों से महाभारत EP 2",
+   "recap": "पिछली बार: बर्बरीक का शीश पहाड़ी पर रखा गया।",
+   "outline": "Day one: the armies, Arjun's despair, the Gita between the armies, the conches.",
+   "cite": "Bhishma Parva, Bhagavad Gita Parva",
+   "cliffhanger": "शंख बजे… और सामने खड़े थे पितामह भीष्म, जिन्हें कोई हरा नहीं सकता था।"
+  },
+  {
+   "n": 3,
+   "title": "श्री कृष्ण ने अपनी ही प्रतिज्ञा क्यों तोड़ी? 😱 🙏 शीश की आँखों से महाभारत EP 3",
+   "recap": "पिछली बार: गीता के बाद युद्ध शुरू हुआ।",
+   "outline": "Bhishma's days: Krishna who vowed not to take up arms rushes at Bhishma with a wheel / the chakra, Arjun stops him.",
+   "cite": "Bhishma Parva (Bhishma-vadha Parva)",
+   "cliffhanger": "पितामह मुस्कुराए… और फिर उन्होंने ख़ुद अपनी मृत्यु का रहस्य बता दिया।"
+  },
+  {
+   "n": 4,
+   "title": "भीष्म को कौन गिरा सकता था? 😱 🙏 शीश की आँखों से महाभारत EP 4",
+   "recap": "पिछली बार: भीष्म के बाणों से पांडव सेना थर्रा गई।",
+   "outline": "Shikhandi before Arjun, Bhishma lays down his bow, the bed of arrows, the wait for Uttarayan.",
+   "cite": "Bhishma Parva (Bhishma-vadha Parva)",
+   "cliffhanger": "अब सेनापति थे द्रोणाचार्य… और उन्होंने रचा एक ऐसा व्यूह जिसे तोड़ना सिर्फ़ चार लोग जानते थे।"
+  },
+  {
+   "n": 5,
+   "title": "चक्रव्यूह में अकेला सोलह साल का योद्धा! 😱 🙏 शीश की आँखों से महाभारत EP 5",
+   "recap": "पिछली बार: द्रोण ने चक्रव्यूह रचा।",
+   "outline": "Abhimanyu enters the chakravyuh, cannot get out, falls to many warriors at once.",
+   "cite": "Drona Parva (Abhimanyu-vadha Parva)",
+   "cliffhanger": "अर्जुन ने प्रतिज्ञा की: कल सूर्यास्त से पहले जयद्रथ नहीं बचेगा… वरना अग्नि-समाधि।",
+   "numbers_ok": [
+    "सोलह"
+   ]
+  },
+  {
+   "n": 6,
+   "title": "सूर्यास्त से पहले अंधेरा कैसे हुआ? 😱 🙏 शीश की आँखों से महाभारत EP 6",
+   "recap": "पिछली बार: अर्जुन ने जयद्रथ-वध की प्रतिज्ञा की।",
+   "outline": "Jayadratha hidden behind the army, the darkness before sunset, Arjun's arrow (as the Drona Parva tells it).",
+   "cite": "Drona Parva (Jayadratha-vadha Parva)",
+   "cliffhanger": "उसी रात युद्ध रुका नहीं… और मैदान में उतरे मेरे पिता, घटोत्कच।"
+  },
+  {
+   "n": 7,
+   "title": "जब शीश ने अपने पिता को गिरते देखा 😱 🙏 शीश की आँखों से महाभारत EP 7",
+   "recap": "पिछली बार: रात में भी युद्ध चलता रहा।",
+   "outline": "The night battle, Ghatotkach's might, Karna spends the Vasavi shakti on him; the sheesh watches his own father fall (the emotional payoff of the series).",
+   "cite": "Drona Parva (Ghatotkacha-vadha Parva)",
+   "cliffhanger": "कृष्ण मुस्कुराए… क्योंकि अब अर्जुन बच गए थे। पर अगला दिन द्रोण का था।",
+   "payoff": true
+  },
+  {
+   "n": 8,
+   "title": "\"अश्वत्थामा मारा गया\"… सच या झूठ? 😱 🙏 शीश की आँखों से महाभारत EP 8",
+   "recap": "पिछली बार: घटोत्कच वीरगति को प्राप्त हुए।",
+   "outline": "The elephant Ashwatthama, Yudhishthira's half-truth, Drona lays down his arms and falls.",
+   "cite": "Drona Parva (Drona-vadha Parva)",
+   "cliffhanger": "पिता का समाचार सुनकर अश्वत्थामा ने उठाया नारायणास्त्र।"
+  },
+  {
+   "n": 9,
+   "title": "नारायणास्त्र के सामने हथियार क्यों डाले? 😱 🙏 शीश की आँखों से महाभारत EP 9",
+   "recap": "पिछली बार: द्रोणाचार्य गिरे और अश्वत्थामा क्रोध में था।",
+   "outline": "The Narayana weapon, Krishna's order to lay down arms and step down, Bhima's defiance, the weapon calms.",
+   "cite": "Drona Parva (Narayanastra-mokshana Parva)",
+   "cliffhanger": "अब कौरवों के सेनापति बने कर्ण… अर्जुन का सबसे बड़ा प्रतिद्वंद्वी।"
+  },
+  {
+   "n": 10,
+   "title": "कर्ण का रथ धरती में क्यों धँसा? 😱 🙏 शीश की आँखों से महाभारत EP 10",
+   "recap": "पिछली बार: नारायणास्त्र शांत हुआ, कर्ण सेनापति बने।",
+   "outline": "Karna and Arjun, Shalya as charioteer, the wheel sinks, the forgotten mantra (the curses as the text gives them), Karna falls.",
+   "cite": "Karna Parva",
+   "cliffhanger": "सब हार गए… पर दुर्योधन अभी ज़िंदा था, एक सरोवर में छिपा हुआ।"
+  },
+  {
+   "n": 11,
+   "title": "गदा युद्ध में भीम ने कहाँ वार किया? 😱 🙏 शीश की आँखों से महाभारत EP 11",
+   "recap": "पिछली बार: कर्ण वीरगति को प्राप्त हुए।",
+   "outline": "Duryodhan in the lake, the challenge, Balaram watches, the mace duel and the blow to the thigh as the text tells it.",
+   "cite": "Shalya Parva (Gada-yuddha Parva)",
+   "cliffhanger": "युद्ध ख़त्म हुआ… तब पांडवों ने मुझसे पूछा: बताओ, जीत किसकी हुई?"
+  },
+  {
+   "n": 12,
+   "title": "शीश ने बताया असली योद्धा कौन था! 😱 🙏 शीश की आँखों से महाभारत EP 12",
+   "recap": "पिछली बार: अठारह दिन का युद्ध ख़त्म हुआ।",
+   "outline": "The payoff: the Pandavas argue who won; the sheesh says he saw only Krishna's Sudarshan everywhere (Khatu parampara, मान्यता); Krishna's vardan of the Shyam naam in Kaliyug; jaikara.",
+   "cite": "Khatu parampara; Skanda Purana, Kaumarika Khand adhyay 66",
+   "payoff": true
+  }
+ ],
+ "sources": [
+  {
+   "work": "Mahabharat",
+   "url": "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+  },
+  {
+   "work": "Skanda Purana",
+   "ref": "Kaumarika Khand adhyay 66",
+   "url": "https://www.wisdomlib.org/hinduism/book/the-skanda-purana/d/doc366053.html"
+  }
+ ]
+}

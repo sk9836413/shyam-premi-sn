@@ -1,0 +1,261 @@
+{
+ "series": "bhakt-katha",
+ "series_title": "भक्त कथा",
+ "approved": false,
+ "approved_note": "Outlines only (owner, 15 Nov 2026). For the movie engine after Khatu Shyam Janmotsav (20 Nov 2026); nothing is produced until the owner sets \"approved\": true (per katha, after a pilot part). GPU budget to be checked first (STORY.md \"Movie series\").",
+ "why": "References: Sanatan Stories' PART-wise bhakt katha (Part 9 got 3.3 lakh, but on a real pravachan voice: we never use real voices) and @MadhavMargBhakti \"Sudama katha part 4\" (21.3 lakh vs 1-6k for their other parts): the emotional PAYOFF part (the reveal / miracle) is the one that explodes, so every katha has a payoff part whose title states the payoff as a 😱 hook.",
+ "title_format": "<payoff / hook> 😱 🙏 <कथा name> पार्ट N",
+ "rules": [
+  "Every part also works on its own: parts 2+ open with the one-line `recap` (\"पिछले भाग में…\"), so the payoff part works for new viewers.",
+  "Every part except the last of a katha ends on its `cliffhanger`; the payoff part (`\"payoff\": true`) is never titled just \"Part N\".",
+  "Scripture where there is scripture (cite the skandh/adhyay); bhaktamal / varta / the bhakt's own padas where they are the source; everything else said as \"मान्यता / लोककथा के अनुसार\". Dates only with two sources.",
+  "AI narration through our own voice chain, never a real pravachan or a singer's voice; realistic ORIGINAL faces, never a TV actor; Khatu Shyam ji = the sheesh only; no sati, no fear, no miracle-for-money lines.",
+  "Writers re-verify every bhakt fact (2 sources, one not Wikipedia/a blog) before a part is produced."
+ ],
+ "order": [
+  "sudama",
+  "meera",
+  "narsi-mehta",
+  "surdas",
+  "karmabai",
+  "khatu-bhakt"
+ ],
+ "kathas": [
+  {
+   "id": "sudama",
+   "name": "सुदामा कथा",
+   "roman": "Sudama Katha",
+   "label": "scripture",
+   "deity": "krishna",
+   "note": "Krishna-linked, first (suits Khatu Shyam devotees). The Bhagavat calls him a brahmana friend of Krishna; the name Sudama is parampara.",
+   "sources": [
+    {
+     "work": "Shrimad Bhagavat",
+     "ref": "Skandh 10, adhyay 80-81",
+     "url": "https://vedabase.io/en/library/sb/10/80/"
+    },
+    {
+     "work": "Shrimad Bhagavat",
+     "ref": "Skandh 10, adhyay 81",
+     "url": "https://vedabase.io/en/library/sb/10/81/"
+    }
+   ],
+   "parts": [
+    {
+     "n": 1,
+     "title": "गुरुकुल का वो गरीब दोस्त कौन था? 😱 🙏 सुदामा कथा पार्ट 1",
+     "outline": "Sandipani ashram: Krishna and his brahmana friend, the night the two were caught in a storm gathering wood (10.80.34-43); years later the friend lives in poverty, content, and his wife begs him to go to Dwarka.",
+     "cliffhanger": "घर में देने को कुछ नहीं… बस पड़ोस से माँगा हुआ मुट्ठी भर चिवड़ा।"
+    },
+    {
+     "n": 2,
+     "title": "फटे कपड़ों में द्वारका के द्वार पर! 😱 🙏 सुदामा कथा पार्ट 2",
+     "recap": "पिछले भाग में: गरीब सुदामा मुट्ठी भर चिवड़ा लेकर द्वारका चले।",
+     "outline": "The golden city, the guards, Krishna sees him from Rukmini's palace, runs, embraces him, seats him on his own bed and washes his feet (10.80.18-23).",
+     "cliffhanger": "सुदामा पोटली छिपाते रहे… पर कान्हा की नज़र उसी पर थी।"
+    },
+    {
+     "n": 3,
+     "title": "मुट्ठी भर चिवड़ा, और भगवान रुक न सके! 😱 🙏 सुदामा कथा पार्ट 3",
+     "recap": "पिछले भाग में: श्री कृष्ण ने सुदामा के पैर धोए, पर सुदामा अपनी पोटली छिपाते रहे।",
+     "outline": "Krishna snatches the bundle, eats one handful with joy, Rukmini holds his hand at the second (10.81.9-11); Sudama leaves next morning without asking for anything (10.81.12-20).",
+     "cliffhanger": "खाली हाथ लौटते सुदामा सोच रहे थे… \"अच्छा हुआ कुछ नहीं माँगा।\" पर गाँव पहुँचे तो…"
+    },
+    {
+     "n": 4,
+     "title": "लौटे तो झोपड़ी की जगह महल! 😱 🙏 सुदामा कथा पार्ट 4",
+     "recap": "पिछले भाग में: सुदामा कृष्ण से कुछ माँगे बिना खाली हाथ घर लौटे।",
+     "outline": "The payoff: his village shines, a palace stands where his hut was, his wife comes out like a queen (10.81.21-29); Sudama understands what the handful of rice became.",
+     "cliffhanger": "पर महल में खड़े सुदामा की आँखों में आँसू क्यों थे?",
+     "payoff": true
+    },
+    {
+     "n": 5,
+     "title": "महल पाकर भी सुदामा ने क्या माँगा? 😱 🙏 सुदामा कथा पार्ट 5",
+     "recap": "पिछले भाग में: सुदामा की झोपड़ी की जगह महल खड़ा था।",
+     "outline": "His prayer (10.81.33-37): only love and the company of devotees, never attachment to the wealth; the moral that the Lord sees bhav, not the gift."
+    }
+   ]
+  },
+  {
+   "id": "meera",
+   "name": "मीरा कथा",
+   "roman": "Meera Katha",
+   "label": "tradition",
+   "deity": "krishna",
+   "sources": [
+    {
+     "work": "Nabhadas, Bhaktamal",
+     "ref": "Meera ka chhappay (\"garal amrit jyon piyau\"; verify against the Gita Press edition)",
+     "url": "https://en.wikipedia.org/wiki/Bhaktamal"
+    },
+    {
+     "work": "Meera ke pad (parampara)",
+     "ref": "\"Rana ji ne vish ka pyala bhejya\"",
+     "url": "https://en.wikipedia.org/wiki/Meera"
+    }
+   ],
+   "parts": [
+    {
+     "n": 1,
+     "title": "बचपन में मिली गिरधर की मूर्ति! 😱 🙏 मीरा कथा पार्ट 1",
+     "outline": "Lokkatha: little Meera and the Giridhar murti, \"who is my groom?\", her heart given to Krishna (मान्यता).",
+     "cliffhanger": "विवाह हुआ राजघराने में… पर मीरा का मन तो गिरधर के पास था।"
+    },
+    {
+     "n": 2,
+     "title": "राणा ने भेजा विष, बन गया अमृत! 😱 🙏 मीरा कथा पार्ट 2",
+     "recap": "पिछले भाग में: राजघराने में भी मीरा गिरधर के भजन गाती रहीं।",
+     "outline": "The payoff: the poison cup sent to her becomes amrit (Bhaktamal chhappay; her own pad, wording varies), she sings on. Said as the bhaktamal / pad tradition.",
+     "cliffhanger": "विष भी हार गया… तो मीरा ने महल छोड़ दिया। पर जाएँगी कहाँ?",
+     "payoff": true
+    },
+    {
+     "n": 3,
+     "title": "द्वारका में मीरा कहाँ समा गईं? 😱 🙏 मीरा कथा पार्ट 3",
+     "recap": "पिछले भाग में: विष अमृत बना और मीरा महल छोड़कर निकल पड़ीं।",
+     "outline": "Vrindavan, then Dwarka; the tradition that she merged into Ranchhodji's murti (मान्यता); the moral of fearless devotion."
+    }
+   ]
+  },
+  {
+   "id": "narsi-mehta",
+   "name": "नरसी मेहता कथा",
+   "roman": "Narsi Mehta Katha",
+   "label": "tradition",
+   "deity": "krishna",
+   "sources": [
+    {
+     "work": "Narsinh Mehta ke aatmakathatmak pad",
+     "ref": "\"Hundi\", \"Kunvarbai nu Mameru\"",
+     "url": "https://en.wikipedia.org/wiki/Narsinh_Mehta"
+    }
+   ],
+   "parts": [
+    {
+     "n": 1,
+     "title": "भाभी के ताने से शुरू हुई भक्ति! 😱 🙏 नरसी मेहता कथा पार्ट 1",
+     "outline": "His own poems / tradition: the taunt at home, the forest Shiv temple, the darshan and the raas he is shown (मान्यता).",
+     "cliffhanger": "भक्ति मिली… पर घर में गरीबी बढ़ती गई। फिर आई एक हुंडी।"
+    },
+    {
+     "n": 2,
+     "title": "हुंडी चुकाने खुद आए सांवला सेठ! 😱 🙏 नरसी मेहता कथा पार्ट 2",
+     "recap": "पिछले भाग में: गरीब नरसी पर तीर्थयात्रियों ने भरोसा किया।",
+     "outline": "The payoff of the \"Hundi\" pad: pilgrims give Narsi money for a hundi on Dwarka, he has no firm, Shamalsha Seth honours it (the amount differs in sources: say none).",
+     "cliffhanger": "हुंडी तो चुक गई… पर अब बेटी के ससुराल से मायरे की माँग आई।",
+     "payoff": true
+    },
+    {
+     "n": 3,
+     "title": "बेटी के मायरे में भगवान ने भरा भात! 😱 🙏 नरसी मेहता कथा पार्ट 3",
+     "recap": "पिछले भाग में: सांवला सेठ ने नरसी की हुंडी चुका दी।",
+     "outline": "The payoff of \"Kunvarbai nu Mameru\": the in-laws' impossible list, Narsi sings, the Lord fills the mameru (मान्यता / pad tradition). Moral: trust.",
+     "payoff": true
+    }
+   ]
+  },
+  {
+   "id": "surdas",
+   "name": "सूरदास कथा",
+   "roman": "Surdas Katha",
+   "label": "tradition",
+   "deity": "krishna",
+   "sources": [
+    {
+     "work": "Chaurasi Vaishnavan ki Varta (Gokulnath)",
+     "ref": "Surdas ki varta (no. 81, Khemraj edition)",
+     "url": "https://archive.org/details/chaurasi-vaishnavan-ki-varta-khemraj"
+    }
+   ],
+   "parts": [
+    {
+     "n": 1,
+     "title": "जन्म से अंधा बालक, फिर भी गाता रहा! 😱 🙏 सूरदास कथा पार्ट 1",
+     "outline": "Lokkatha / varta: the blind boy who leaves home young and sings humble padas at Gaughat on the Yamuna (मान्यता for the childhood).",
+     "cliffhanger": "एक दिन गऊघाट पर महाप्रभु वल्लभाचार्य आए… और सूर से कुछ कहा।"
+    },
+    {
+     "n": 2,
+     "title": "जब वल्लभाचार्य ने सूर को टोका 😱 🙏 सूरदास कथा पार्ट 2",
+     "recap": "पिछले भाग में: अंधे सूरदास गऊघाट पर दीनता के पद गाते थे।",
+     "outline": "The varta: \"सूर होकर ऐसे घिघियाते क्यों हो? भगवान की लीला गाओ\", the initiation, the first leela pada.",
+     "cliffhanger": "अब सूर ने गाना शुरू किया… पर जो देख नहीं सकता, वो बाललीला कैसे गाए?"
+    },
+    {
+     "n": 3,
+     "title": "अंधे सूर ने देखी कान्हा की बाललीला! 😱 🙏 सूरदास कथा पार्ट 3",
+     "recap": "पिछले भाग में: वल्लभाचार्य ने सूर से भगवान की लीला गाने को कहा।",
+     "outline": "The payoff: the Sur Sagar balleela padas that see what eyes cannot; the folk story of Krishna lifting him from a well (लोककथा, labelled).",
+     "payoff": true
+    }
+   ]
+  },
+  {
+   "id": "karmabai",
+   "name": "करमाबाई कथा",
+   "roman": "Karmabai Katha",
+   "label": "tradition",
+   "deity": "krishna",
+   "note": "Temple tradition only (not confirmed in Nabhadas's Bhaktamal; her dates and home differ by source): every line \"मान्यता है\".",
+   "sources": [
+    {
+     "work": "Jagannath Puri parampara (khichdi bhog)",
+     "ref": "Karmabai ki khichdi",
+     "url": "https://en.wikipedia.org/wiki/Karmabai"
+    }
+   ],
+   "parts": [
+    {
+     "n": 1,
+     "title": "बिना नहाए भगवान को खिचड़ी? 😱 🙏 करमाबाई कथा पार्ट 1",
+     "outline": "Tradition: the old devotee who feeds Jagannath khichdi every dawn before her bath, and the Lord comes to eat (मान्यता); a sadhu tells her the \"rules\".",
+     "cliffhanger": "करमाबाई ने नियम मान लिए… पर उस सुबह भगवान भूखे रह गए।"
+    },
+    {
+     "n": 2,
+     "title": "जगन्नाथ के मुँह पर लगी मिली खिचड़ी! 😱 🙏 करमाबाई कथा पार्ट 2",
+     "recap": "पिछले भाग में: नियमों में उलझी करमाबाई की खिचड़ी देर से बनी।",
+     "outline": "The payoff: the priests find khichdi on the Lord's lips, the khichdi bhog tradition at Puri (मान्यता). Moral: love before ritual, without mocking ritual.",
+     "payoff": true
+    }
+   ]
+  },
+  {
+   "id": "khatu-bhakt",
+   "name": "श्याम भक्त कथा",
+   "roman": "Shyam Bhakt Katha",
+   "label": "tradition",
+   "deity": "khatu",
+   "note": "Khatu Shyam ji = the sheesh only. Temple tradition and devotional sources; years only with two sources.",
+   "sources": [
+    {
+     "work": "Khatu Shyam mandir parampara; Rajasthan Tourism",
+     "ref": "Shyam Kund, Raja Roop Singh Chauhan",
+     "url": "https://www.tourism.rajasthan.gov.in/khatu-shyam-temple.html"
+    },
+    {
+     "work": "Shyam bhakt parampara",
+     "ref": "Aloo Singh ji, Shyam Bahadur ji",
+     "url": "https://www.khatooshyamji.com/shyam-bhakt/shri-aalu-singh-ji-maharaj/"
+    }
+   ],
+   "parts": [
+    {
+     "n": 1,
+     "title": "मिट्टी से निकला बाबा का शीश! 😱 🙏 श्याम भक्त कथा पार्ट 1",
+     "outline": "The payoff first: the cow whose milk flowed by itself at one spot in Khatu, the digging at what is now Shyam Kund, the sheesh, Raja Roop Singh Chauhan's dream and the first temple (मान्यता).",
+     "cliffhanger": "सदियाँ बीतीं… और खाटू में एक ऐसा भक्त आया जिसने अपना जीवन फूलों को दे दिया।",
+     "payoff": true
+    },
+    {
+     "n": 2,
+     "title": "बाबा के फूलों में बीत गया पूरा जीवन! 😱 🙏 श्याम भक्त कथा पार्ट 2",
+     "recap": "पिछले भाग में: श्याम कुंड से बाबा का शीश प्रकट हुआ।",
+     "outline": "Aloo Singh ji: Shyam Bahadur ji's disciple, the loss that turned him to seva, the daily flowers, his samadhi in the Shyam Bagichi (परंपरा). Seva, not miracle claims.",
+     "payoff": true
+    }
+   ]
+  }
+ ]
+}

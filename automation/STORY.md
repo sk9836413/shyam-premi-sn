@@ -766,7 +766,25 @@ part. Repo variable `FACTS=off` stops it. Facebook: a Page video (over 90 s) or 
     नहीं देखा, फिर इतनी सुंदर मूर्तियाँ किसने बनाईं?" 7.75 lakh): an everyday devotee's question (मंदिर में घंटी क्यों?
     शिवलिंग पर जल क्यों? खाटू श्याम को हारे का सहारा क्यों?), answered from shastra or parampara with the citation and
     "परंपरा/मान्यता" where it applies, over warm diya-lit pictures of the subject. **Never pseudo-science or health claims**
-    ("घंटी से बैक्टीरिया मरते हैं", "positive energy", "वैज्ञानिक कारण"): the validator rejects them.
+    ("घंटी से बैक्टीरिया मरते हैं", "positive energy", "वैज्ञानिक कारण"): the validator rejects them. It includes the
+    **"वर्जित क्यों / puja niyam"** questions (गणेश पूजा में तुलसी वर्जित क्यों? 1.46 crore reference; शिव पूजा में केतकी…):
+    calm, sourced or "परंपरा" — never "galti ki to paap lagega".
+  - **More topic kinds (owner, 15 Nov 2026; `kind` in the topic, rules in scripts/facts.mjs `kindProblems` + spec checks):**
+    - `astra` ("दिव्य अस्त्र"): the hook may ask the modern question ("ब्रह्मास्त्र = परमाणु बम?"), the answer comes ONLY
+      from the cited parva; when a nuclear / modern comparison appears, the narration says "यह आधुनिक व्याख्या है, प्रमाणित
+      नहीं" and the description "modern interpretation, not proven".
+    - `garuda` (Garuda Purana, Pretakhand / Saroddhara by adhyay): no fear words (डरावना, खौफनाक, दर्दनाक सज़ा), no gore;
+      folk elaborations = "मान्यता"; the `moral` scene ends on good karma / naam-jap (सत्कर्म, नाम-जप, दान, सेवा).
+    - `kaliyug` ("कलियुग कनेक्शन"; Khatu Shyam ji = "कलियुग के देवता" first): say exactly what the text says, label every
+      folk claim (Pandav rebirth = Bhavishya Purana Pratisarga / Alha lokkatha), no doomsday, no predicted years.
+    - `lokdevta` ("लोक देवता / संत चमत्कार": Gorakhnath, Gogaji, Ramdev ji, Tejaji, Pabuji, Karni Mata, Jeen Mata, Salasar,
+      Khatu bhakts; hook "जब <sant> ने… 😱"): lokkatha / temple tradition, every miracle "लोककथा / मान्यता के अनुसार",
+      never history, no cure claims; realistic ORIGINAL saint faces, never a TV actor. `months` = their mela season.
+    - Every facts Short: never "proven" / "scientists confirmed", no cure promises (`PROVEN`, `CURE`).
+    - `boost` [from, to] = the top pick in those dates; `avoid_near` keeps the same subject in another format (e.g. the
+      Kailash "tulsi-ganesh-kyun-nahi" episode) more than N days away. The bank's `ideas` array (radar / reference ideas,
+      `"status": "idea"`) is never picked: `node scripts/topic-banks.mjs promote --bank facts --id <id>` after the citation
+      is filled and checked.
   - `list`: countdown (38-55 s): scene 1 the hook, then 3-5 item scenes `"item": 1..n` (a gold number badge is drawn),
     8-10 s each, every item with `"cite"` (its scripture reference) and folk items `"label": "tradition"` + "मान्यता…".
   - `gita` (Sundays, ~1 a week): one real Bhagavad Gita shloka (exact public-domain text) in a scene `"shloka": true`

@@ -61,6 +61,22 @@ const GORE = /\b(blood|bloody|gore|beheaded|beheading|severed|decapitat|corpse|d
 // "धर्म की जिज्ञासा" answers come from shastra or parampara (owner, 15 Nov 2026): never pseudo-science or health claims.
 export const PSEUDO = /bacteria|bacteri|virus|vaigyanik karan|scientific reason|science (says|proves)|positive energy|negative energy|vibration|immunity|oxygen|health benefit|rog door|bimari door|बैक्टीरिया|वायरस|वैज्ञानिक कारण|विज्ञान भी मानता|पॉजिटिव एनर्जी|नेगेटिव एनर्जी|सकारात्मक ऊर्जा|नकारात्मक ऊर्जा|इम्युनिटी|ऑक्सीजन|रोग दूर|बीमारी दूर|सेहत के लिए/i;
 
+// Owner, 15 Nov 2026 ("दिव्य अस्त्र" topics): a modern comparison ("ब्रह्मास्त्र = परमाणु बम?") may be the hook's question, but
+// nothing is ever "proven" / "confirmed by scientists": the answer comes from the text and the comparison is said to be
+// a modern interpretation. ("not proven" / "unproven" / "प्रमाणित नहीं" are fine.)
+export const PROVEN = /(?<!\b(?:not|never|un|is not)\s?)\bproven\b|\bproved\b|scientists? (have )?(confirm|prove|found|agree)|science (confirms|has proved)|scientifically (proven|confirmed)|confirmed by (science|scientists)|vaigyanikon ne (mana|maana|sabit)|विज्ञान(ियों)? ने (भी )?(माना|साबित|पुष्टि)|वैज्ञानिकों ने (भी )?(माना|साबित|पुष्टि)|साबित हो (चुका|गया)|सिद्ध हो (चुका|गया)|प्रमाणित हो (चुका|गया)/i;
+// A modern / technological comparison in an astra Short: the narration must call it a modern interpretation.
+export const MODERN = /nuclear|atom|atomic|parmanu|missile|परमाणु|न्यूक्लियर|एटम|मिसाइल/i;
+export const MODERN_LABEL = /आधुनिक व्याख्या|आधुनिक तुलना|आज की तुलना|प्रमाणित नहीं|सिद्ध नहीं|साबित नहीं/;
+// Garuda Purana topics (owner, 15 Nov 2026): never fear-mongering; the moral is good karma / naam-jap.
+export const FEAR = /\b(horror|scary|darawna|daravna|dardnak|bhayanak saza|khaufnak)\b|डरावना|डरावनी|खौफनाक|ख़ौफ़नाक|दर्दनाक सज़ा|दर्दनाक सजा|भयानक सज़ा|भयानक सजा|रूह कांप|रूह काँप/i;
+export const GOOD_KARMA = /सत्कर्म|अच्छे कर्म|अच्छा कर्म|शुभ कर्म|पुण्य|नाम[- ]?जप|नाम का जप|नाम स्मरण|हरि नाम|राम नाम|भजन|दान|सेवा|दया|सच्चाई/;
+// Kaliyug topics: no doomsday or predicted dates (owner, 15 Nov 2026).
+export const DOOM = /\b(doomsday|end of the world|world will end|duniya khatam|duniya khatm|pralay aane wali|pralay aayegi)\b|दुनिया (खत्म|ख़त्म|नष्ट) हो|प्रलय (आने वाली|आएगी|आने वाला)|कलियुग (कब|इस साल) (खत्म|ख़त्म)|\b(19|20|21)\d\d\b/i;
+// Lok devta / sant chamatkar topics, and every facts Short: no cure or health promises.
+export const CURE = /\b(cure|cures|cured|heal|heals|healed|ilaaj|ilaj|guarantee)\b|इलाज|ठीक हो जात|ठीक कर देत|ज़हर उतर|जहर उतर|विष उतर|रोग मिट|बीमारी ठीक|गारंटी/i;
+export const KINDS = ['jigyasa', 'astra', 'garuda', 'kaliyug', 'lokdevta'];
+
 const read = (f) => { try { return fs.readFileSync(f, 'utf8'); } catch { return ''; } };
 const urls = (a) => (Array.isArray(a) ? a : []).filter((u) => /^https?:\/\/\S+$/.test(u));
 
@@ -98,7 +114,35 @@ export function checkTopicBank(topics) {
       }
     }
     if (t.after && !/^\d{4}-\d{2}-\d{2}$/.test(t.after)) e.push(`${n}: after YYYY-MM-DD`);
+    e.push(...kindProblems(t).map((x) => `${n}: ${x}`));
   }
+  return e;
+}
+
+/** The rules of the topic kinds (owner, 15 Nov 2026), for bank topics and radar ideas alike. */
+export function kindProblems(t) {
+  const e = [];
+  const head = `${t.hook || ''} ${t.hook_hi || ''}`;
+  if (t.kind && !KINDS.includes(t.kind)) e.push(`kind: ${KINDS.join(' | ')}`);
+  if (t.status !== undefined && t.status !== 'idea') e.push('status: only "idea" (radar ideas; bank topics have no status)');
+  if (PROVEN.test(`${head} ${t.angle || ''}`)) e.push('no "proven" / "scientists confirmed" claims: the answer comes from the text');
+  if (CURE.test(head)) e.push('no cure / health promise in the hook');
+  if (t.boost && !(Array.isArray(t.boost) && t.boost.length === 2 && t.boost.every((d) => /^\d{4}-\d{2}-\d{2}$/.test(d)) && t.boost[0] <= t.boost[1])) e.push('boost: [from, to] dates (the top pick while the date is inside)');
+  if (t.months && !(Array.isArray(t.months) && t.months.length && t.months.every((m) => Number.isInteger(m) && m >= 1 && m <= 12))) e.push('months: [1-12, ...] (only in these months: the mela season)');
+  for (const a of t.avoid_near || []) {
+    if (!(a && /^automation\/[a-z-]+\.json$/.test(a.bank || '') && a.id && Number.isInteger(a.days))) e.push('avoid_near: [{bank: "automation/<bank>.json", id, days}]');
+  }
+  if (t.kind === 'astra') {
+    if (MODERN.test(head) && !/modern interpretation/i.test(t.angle || '')) e.push('astra: a modern comparison in the hook needs the angle to say "modern interpretation, not proven"');
+    if (t.label !== 'scripture') e.push('astra: label scripture (the answer comes only from the text)');
+  }
+  if (t.kind === 'garuda') {
+    if (FEAR.test(head)) e.push('garuda: no fear-mongering words in the hook');
+    if (!/good[- ]karma|naam[- ]jap/i.test(t.angle || '')) e.push('garuda: the angle names the good-karma / naam-jap ending');
+    if (!/Garuda Purana/i.test(t.cite?.work || '') || !/(adhyay|chapter|ch\.)\s*\d/i.test(t.cite?.ref || '')) e.push('garuda: cite the Garuda Purana chapter (cite.ref "adhyay N")');
+  }
+  if (t.kind === 'kaliyug' && DOOM.test(head.replace(/\b\d{1,4} ?(years|varsh|saal)\b/gi, ''))) e.push('kaliyug: no doomsday claims or predicted dates');
+  if (t.kind === 'lokdevta' && t.label !== 'tradition' && t.label !== 'temple') e.push('lokdevta: label tradition or temple (a miracle is never told as history)');
   return e;
 }
 
@@ -143,8 +187,11 @@ export function artFor(date, history = []) {
 }
 
 /** Is the topic allowed on the date (after, festival window, not used, keywords not in log within REPEAT_DAYS)? */
-export function topicAllowed(t, date, { history = [], log = '', festivals = [], topics = [] } = {}) {
+export function topicAllowed(t, date, { history = [], log = '', festivals = [], topics = [], root = '.' } = {}) {
+  if (t.status === 'idea') return false; // a radar idea until its citation is filled and verified (viral-radar.mjs promote)
   if (t.after && date < t.after) return false;
+  if (t.months && !t.months.includes(Number(date.slice(5, 7)))) return false; // lok devta topics near their melas
+  if (tooNear(t, date, log, root)) return false;
   if (t.festival) {
     const near = festivals.some((f) => String(f.key || f.theme || '').includes(t.festival) && f.date >= date && f.date <= addDays(date, 4));
     if (!near) return false;
@@ -153,6 +200,24 @@ export function topicAllowed(t, date, { history = [], log = '', festivals = [], 
   const from = addDays(date, -REPEAT_DAYS);
   const recent = log.split(/\r?\n/).filter((l) => { const d = l.slice(0, 10); return d >= from && d < date; }).join('\n').toLowerCase();
   return !(t.keywords || []).some((k) => k.length >= 4 && recent.includes(k.toLowerCase()));
+}
+
+/** avoid_near: the same subject in another format (e.g. the Kailash idea "tulsi-ganesh-kyun-nahi") must be more than
+ *  `days` days away: its log line, else (while that bank is approved) its festival window. */
+export function tooNear(t, date, log = '', root = '.') {
+  for (const a of t.avoid_near || []) {
+    const far = (d) => Math.abs(Date.parse(`${d}T12:00:00Z`) - Date.parse(`${date}T12:00:00Z`)) / 864e5 > a.days;
+    const logged = [...String(log).matchAll(/^(\d{4}-\d{2}-\d{2}) \| [a-z]+ \| (\S+)/gm)].filter((m) => m[2].includes(a.id)).map((m) => m[1]);
+    if (logged.some((d) => !far(d))) return true;
+    let bank = {};
+    try { bank = JSON.parse(read(path.join(root, a.bank))); } catch { /* no bank */ }
+    const items = Object.values(bank).find((v) => Array.isArray(v) && v.some((x) => x?.id === a.id)) || [];
+    const w = items.find((x) => x.id === a.id)?.window;
+    if (bank.approved === true && !logged.length && Array.isArray(w)) {
+      for (let d = w[0]; d <= w[1]; d = addDays(d, 1)) if (!far(d)) return true;
+    }
+  }
+  return false;
 }
 
 /** The topic for a date: festival-window topics first, then Khatu Shyam ji while fewer than 2 Khatu facts in the last
@@ -175,7 +240,8 @@ export function pickTopic(date, { topics = [], history = [], log = '', festivals
   const week = history.filter((h) => h.date >= addDays(date, -6) && h.date < date);
   const khatuWeek = week.filter((h) => (h.topic ? topics.find((t) => t.id === h.topic) : slugTopic(h.slug, topics))?.deity === 'khatu').length;
   const wd = WEEKDAY_DEITY[weekday(date)] || [];
-  const score = (t, i) => (t.festival ? 0 : 10) + (t.deity === 'khatu' && khatuWeek < 2 ? 0 : wd.includes(t.deity) ? 1 : 3) + t.p * 0.1 + i * 0.0001;
+  const boosted = (t) => Array.isArray(t.boost) && date >= t.boost[0] && date <= t.boost[1];
+  const score = (t, i) => (t.festival || boosted(t) ? 0 : 10) + (t.deity === 'khatu' && khatuWeek < 2 ? 0 : wd.includes(t.deity) ? 1 : 3) + t.p * 0.1 + i * 0.0001;
   const best = ok.map((t, i) => ({ t, s: score(t, i) })).sort((a, b) => a.s - b.s)[0];
   return { topic: best?.t || null, variant, art: artFor(date, history) };
 }
@@ -312,6 +378,20 @@ export function checkFactsSpec(s, { topics = loadTopics('.') } = {}) {
   const txt = [s.hook, s.youtube_title, s.title, ...(s.cover_lines || []), ...scenes.flatMap((sc) => [sc.prompt, sc.tts, sc.sub])].join(' ');
   need(!DEMEAN.test(txt), 'respect rule: a dramatic action is fine, never a deity humiliated, hit, kicked or anything vulgar');
   need(!PSEUDO.test(`${txt} ${s.youtube_description || ''} ${s.instagram_caption || ''} ${s.facebook_caption || ''}`), 'no pseudo-science or health claims ("bacteria", "positive energy", "vaigyanik karan"): answer from shastra or parampara');
+  // no "proven" / "scientists confirmed", no cure promises (every facts Short); the topic kinds' own rules
+  const all = `${txt} ${s.youtube_description || ''} ${s.instagram_caption || ''} ${s.facebook_caption || ''}`;
+  need(!PROVEN.test(all), 'no "proven" / "scientists confirmed" claims: say what the text says (a modern comparison is "आधुनिक व्याख्या", not proven)');
+  need(!CURE.test(all), 'no cure / health promises ("इलाज", "ज़हर उतर जाता है", "guarantee")');
+  if (t?.kind === 'astra' && MODERN.test(all)) {
+    need(scenes.some((sc) => MODERN_LABEL.test(sc.tts || '')), 'astra: the narration says the modern comparison is "आधुनिक व्याख्या … प्रमाणित नहीं" (owner rule)');
+    need(/modern interpretation|aadhunik vyakhya|आधुनिक व्याख्या/i.test(s.youtube_description || ''), 'astra: the description says the nuclear/modern comparison is a modern interpretation, not proven');
+  }
+  if (t?.kind === 'garuda') {
+    need(!FEAR.test(all), 'garuda: no fear-mongering words (डरावना, खौफनाक, दर्दनाक सज़ा, horror)');
+    const moral = body.find((sc) => sc.moral === true);
+    need(moral && GOOD_KARMA.test(moral.tts || ''), 'garuda: the moral scene ends on good karma / naam-jap (सत्कर्म, नाम-जप, दान, सेवा)');
+  }
+  if (t?.kind === 'kaliyug') need(!DOOM.test(all.replace(/#\w+/g, '').replace(/^Source:.*$/gim, '').replace(/\b\d{1,4} ?(years|varsh|saal)\b/gi, '')), 'kaliyug: no doomsday claims or predicted dates/years');
   // folk label, numbers
   const folk = t?.label === 'tradition' || facts.some((f) => f.kind === 'tradition') || scenes.some((sc) => sc.label === 'tradition');
   if (folk) need(scenes.some((sc) => FOLK_MARK.test(sc.tts || '')), 'a folk / temple-belief topic: say it in the narration ("मान्यता है…", "लोककथा के अनुसार…")');

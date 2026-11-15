@@ -1,5 +1,5 @@
 {
- "about": "Topic bank of the `facts` Short format (pauranik facts / rahasya; scripts/facts.mjs, STORY.md section 9). ORIGINAL topics written for Shyam Premi SN: a lesser-known episode, character or temple custom told as a dramatic but TRUE curiosity hook, 2-2.5 min. Every topic carries the citation (`cite.work` + `cite.ref`) that goes into the description, and 1-3 starting sources; the writer verifies every fact again (2 URLs per fact, one of them not Wikipedia/a blog). `label`: scripture = told in the cited text; tradition = lok katha / temple belief, so the script must say 'मान्यता है' / 'लोककथा के अनुसार'; temple = a temple custom or fact from the temple's own or a government site. `numbers_ok`: the only numbers a hook/title may use (no invented '10 guna'). `after`: not before this date (the Khatu mini-movie and Janmotsav countdown tell those scenes 17-20 Nov 2026). `festival`: only within 4 days before a festivals.json date whose key contains it. No sati topics (Sati Prevention Act rule). p = priority (1 first).",
+ "about": "Topic bank of the `facts` Short format (pauranik facts / rahasya; scripts/facts.mjs, STORY.md section 9). ORIGINAL topics written for Shyam Premi SN: a lesser-known episode, character or temple custom told as a dramatic but TRUE curiosity hook, 2-2.5 min. Every topic carries the citation (`cite.work` + `cite.ref`) that goes into the description, and 1-3 starting sources; the writer verifies every fact again (2 URLs per fact, one of them not Wikipedia/a blog). `label`: scripture = told in the cited text; tradition = lok katha / temple belief, so the script must say 'मान्यता है' / 'लोककथा के अनुसार'; temple = a temple custom or fact from the temple's own or a government site. `numbers_ok`: the only numbers a hook/title may use (no invented '10 guna'). `after`: not before this date (the Khatu mini-movie and Janmotsav countdown tell those scenes 17-20 Nov 2026). `festival`: only within 4 days before a festivals.json date whose key contains it. No sati topics (Sati Prevention Act rule). p = priority (1 first). `kind`: jigyasa (\"धर्म की जिज्ञासा\", incl. \"वर्जित क्यों / puja niyam\"), astra (\"दिव्य अस्त्र\": a modern question may be the hook, the answer only from the text, the nuclear comparison said to be a modern interpretation, never \"proven\"), garuda (Garuda Purana Pretakhand by adhyay, never fear-mongering, ends on good karma / naam-jap), kaliyug (\"कलियुग कनेक्शन\": every folk claim labelled, no doomsday, no dates), lokdevta (\"लोक देवता / संत चमत्कार\": lokkatha / temple tradition, labelled, no cure claims). `boost` [from, to]: the top pick inside those dates. `months`: only in these months (the mela season). `avoid_near`: [{bank, id, days}] the same subject in another format stays more than `days` days away. `ideas`: radar / reference ideas with \"status\": \"idea\" - never picked until `node scripts/viral-radar.mjs promote --bank facts --id <id>` checks the filled citation and moves it into `topics`.",
  "topics": [
   {
    "id": "khatu-baba-ke-naam",
@@ -28,6 +28,81 @@
     "5",
     "पाँच",
     "panch"
+   ]
+  },
+  {
+   "id": "khatu-kaliyug-ke-devta",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "kind": "kaliyug",
+   "after": "2026-11-21",
+   "hook": "Khatu Shyam Kaliyug ke devta kyun?",
+   "hook_hi": "खाटू श्याम कलियुग के देवता क्यों?",
+   "angle": "The Kaliyug connection: the Skanda Purana (Kaumarika Khand) tells Barbarika's sheesh daan and that the head was made immortal; the vardan \"Kaliyug mein tum mere Shyam naam se pooje jaoge\" and the jaikara \"Kalyug ka avtaar\" are Khatu parampara, said as \"मान्यता है\". Why devotees call him the devta of Kaliyug (haare ka sahara for the one who has lost). No claims about when Kaliyug ends; ends on the Shyam naam.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara); Skanda Purana",
+    "ref": "Kaumarika Khand adhyay 66 (Barbarika upakhyan); Shri Krishna ka Kaliyug vardan (parampara)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana/d/doc366053.html",
+    "https://www.tourism.rajasthan.gov.in/khatu-shyam-temple.html"
+   ],
+   "keywords": [
+    "kaliyug ke devta",
+    "kalyug ka avtaar"
+   ]
+  },
+  {
+   "id": "khatu-suryavarcha-pichhla-janm",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "scripture",
+   "kind": "kaliyug",
+   "after": "2026-11-21",
+   "hook": "Barbarik pichhle janm mein kaun the?",
+   "hook_hi": "बर्बरीक पिछले जन्म में कौन थे?",
+   "angle": "Skanda Purana, Kaumarika Khand adhyay 66 (Tagare translation; wisdomlib numbers it 63): the yaksha Suryavarcha boasted at Meru that he alone would lift the earth's burden, Brahma's curse that he would be born a man and fall to Krishna at the start of the war, Krishna fulfilling Brahma's word and Chandika making the head immortal. Say plainly which part is text and which (sheesh daan as a gift, Shyam naam) is Khatu parampara.",
+   "cite": {
+    "work": "Skanda Purana",
+    "ref": "Maheshwar Khand, Kaumarika Khand adhyay 66 (Suryavarcha yaksha, Barbarika)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana/d/doc366053.html",
+    "http://www.dvaipayana.net/purana/barbarika/barbarika-skanda-summary.html"
+   ],
+   "keywords": [
+    "suryavarcha",
+    "pichhle janm"
+   ]
+  },
+  {
+   "id": "khatu-sheesh-amar-kaise",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "kind": "kaliyug",
+   "after": "2026-11-21",
+   "hook": "Barbarik ka sheesh amar kaise hua?",
+   "hook_hi": "बर्बरीक का शीश अमर कैसे हुआ?",
+   "angle": "From Dwapar to Kaliyug: the Skanda Purana says the devis made the head immortal (ajar-amar); Khatu parampara adds Shri Krishna's amrit, the sheesh on the hill watching the whole war, and its worship as Shyam in Kaliyug (मान्यता). Light and petals, no gore.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara); Skanda Purana",
+    "ref": "Kaumarika Khand adhyay 66 (sheesh ko amaratva); sheesh ka yuddh-darshan (parampara)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana/d/doc366053.html",
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "sheesh amar",
+    "ajar amar"
    ]
   },
   {
@@ -2959,6 +3034,1235 @@
    "keywords": [
     "aarti ke baad"
    ]
+  },
+  {
+   "id": "jigyasa-ganesh-tulsi-varjit",
+   "p": 1,
+   "deity": "ganesh",
+   "name": "Ganesh ji aur Tulsi",
+   "playlist": "Ganesh ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "after": "2026-11-24",
+   "boost": [
+    "2026-11-24",
+    "2026-11-28"
+   ],
+   "avoid_near": [
+    {
+     "bank": "automation/kailash-episodes.json",
+     "id": "tulsi-ganesh-kyun-nahi",
+     "days": 2
+    }
+   ],
+   "hook": "Ganesh puja mein Tulsi varjit kyun?",
+   "hook_hi": "गणेश पूजा में तुलसी वर्जित क्यों?",
+   "angle": "Brahmavaivarta Purana, Ganapati Khand adhyay 46 (Rajendra Nath Sen's translation; numbering differs by edition, check it): Tulsi sees Ganesh in tapasya by the Ganga and asks to marry him, he declines, the two curses, then his grace: Tulsi is dear to Vishnu-Krishna but not offered in his own puja. Popular extra details said as \"मान्यता\". Respectful to both, no villain; ends on \"har puja ki apni maryada\". Tulsi Vivah week (21 Nov), never within 2 days of the Kailash episode on the same subject. Visuals: warm diya-lit scenes that show the subject itself. Answer from shastra or parampara with the citation; NO pseudo-science or health claims; no fear (\"galti ki to paap lagega\" is never said).",
+   "cite": {
+    "work": "Brahmavaivarta Purana",
+    "ref": "Ganapati Khand, adhyay 46 (Tulsi-Ganesh shaap prasang)"
+   },
+   "sources": [
+    "https://www.isvara.org/archive/brahma-vaivarta-purana-contents/",
+    "https://en.wikipedia.org/wiki/Brahma_Vaivarta_Purana"
+   ],
+   "keywords": [
+    "tulsi varjit",
+    "ganesh tulsi"
+   ]
+  },
+  {
+   "id": "jigyasa-shiv-ketaki",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Shiv ji aur Ketaki",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Shiv puja mein Ketaki kyun nahi?",
+   "hook_hi": "शिव पूजा में केतकी का फूल क्यों नहीं?",
+   "angle": "Shiva Purana, Vidyeshvara Samhita adhyay 7-8: the column of fire, Brahma's claim to have seen its top, the Ketaki flower as false witness, Shiv declining it in his worship (8.15) yet allowing it on the canopy (8.19-21). Moral: a false witness loses its place; truth is the real offering. Visuals: warm diya-lit scenes that show the subject itself. Answer from shastra or parampara with the citation; NO pseudo-science or health claims; no fear (\"galti ki to paap lagega\" is never said).",
+   "cite": {
+    "work": "Shiva Purana",
+    "ref": "Vidyeshvara Samhita, adhyay 7-8 (Ketaki ki jhoothi gawahi)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english/d/doc225552.html",
+    "https://www.wisdomlib.org/definition/ketaki"
+   ],
+   "keywords": [
+    "ketaki"
+   ]
+  },
+  {
+   "id": "jigyasa-shivling-haldi",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Shivling aur haldi",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Shivling par haldi kyun nahi?",
+   "hook_hi": "शिवलिंग पर हल्दी क्यों नहीं चढ़ाते?",
+   "angle": "Honest answer: the custom is parampara, not a clear scripture verse; tradition links haldi with shringar and saubhagya (offered to the Devi, Ganesh, Vishnu), while the Shivling receives jal, bel patra, bhasma and chandan of the vairagi Shiv; customs differ by region (some offer haldi on the jalahari for Parvati). Said as \"परंपरा/मान्यता के अनुसार\". Visuals: warm diya-lit scenes that show the subject itself. Answer from shastra or parampara with the citation; NO pseudo-science or health claims; no fear (\"galti ki to paap lagega\" is never said).",
+   "cite": {
+    "work": "Lok parampara (Shiv puja vidhi)",
+    "ref": "Puja-dravya ki manyata (haldi aur Shivling)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/definition/haridra",
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english"
+   ],
+   "keywords": [
+    "haldi kyun nahi"
+   ]
+  },
+  {
+   "id": "jigyasa-vishnu-akshat",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Vishnu ji aur akshat",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Vishnu ji ko akshat kyun nahi?",
+   "hook_hi": "विष्णु जी को अक्षत क्यों नहीं चढ़ाते?",
+   "angle": "The puja-vidhi verse taught in tradition, \"नाक्षतैरर्चयेद्विष्णुं न तुलस्या गणाधिपम्…\" (Vishnu not with akshat, Ganesh not with tulsi): its scripture source is not certain, so it is said as \"परंपरा में कहा गया श्लोक\"; Vishnu's own offering is tulsi; akshat with kumkum for the tilak is fine. Links to the Ganesh-Tulsi topic. Visuals: warm diya-lit scenes that show the subject itself. Answer from shastra or parampara with the citation; NO pseudo-science or health claims; no fear (\"galti ki to paap lagega\" is never said).",
+   "cite": {
+    "work": "Lok parampara (puja-vidhi shlok)",
+    "ref": "\"Naakshatair archayed Vishnum\" parampara shlok"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/definition/akshata"
+   ],
+   "keywords": [
+    "akshat kyun nahi"
+   ]
+  },
+  {
+   "id": "jigyasa-aarti-thaali",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Aarti ki vidhi",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Aarti ki thaali kaise ghumayein?",
+   "hook_hi": "आरती की थाली कैसे घुमाएँ?",
+   "angle": "The order taught in parampara (charan, naabhi, mukh, then the whole form; counts said as words and as \"परंपरा में सिखाया जाता है\"), clockwise, the diya first, and that bhav matters more than the count. No fear of \"galat aarti\". Visuals: warm diya-lit scenes that show the subject itself. Answer from shastra or parampara with the citation; NO pseudo-science or health claims; no fear (\"galti ki to paap lagega\" is never said).",
+   "cite": {
+    "work": "Lok parampara (aarti vidhi)",
+    "ref": "Aarti ka kram (puja-vidhi parampara)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/definition/arati"
+   ],
+   "keywords": [
+    "aarti ki thaali"
+   ]
+  },
+  {
+   "id": "jigyasa-aasan-modna",
+   "p": 3,
+   "deity": "krishna",
+   "name": "Puja ka aasan",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Puja ka aasan modkar kyun uthein?",
+   "hook_hi": "पूजा का आसन मोड़कर क्यों उठें?",
+   "angle": "Parampara: the puja aasan is kept only for puja, never stepped over or left spread; the manyata of touching a drop of water under it to the forehead before rising (the puja's phal stays with you). Said as \"मान्यता है\"; a gentle habit, no fear. Visuals: warm diya-lit scenes that show the subject itself. Answer from shastra or parampara with the citation; NO pseudo-science or health claims; no fear (\"galti ki to paap lagega\" is never said).",
+   "cite": {
+    "work": "Lok parampara (puja-niyam)",
+    "ref": "Aasan-niyam ki manyata"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/definition/asana"
+   ],
+   "keywords": [
+    "aasan modkar"
+   ]
+  },
+  {
+   "id": "jigyasa-pran-pratishtha",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Pran pratishtha",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Murti mein pran pratishtha kya hai?",
+   "hook_hi": "मूर्ति में प्राण प्रतिष्ठा क्या है?",
+   "angle": "Nobody saw God, so how is a stone murti worshipped? The pratishtha rites (Brihat Samhita adhyay 60 on the consecration of images; the Agamas), the dhyana shloka the sculptor meditates on, and the devotee's bhav. No miracle claims. Visuals: warm diya-lit scenes that show the subject itself. Answer from shastra or parampara with the citation; NO pseudo-science or health claims; no fear (\"galti ki to paap lagega\" is never said).",
+   "cite": {
+    "work": "Brihat Samhita (Varahamihira); Agama parampara",
+    "ref": "adhyay 60 (Pratishtha); pratishtha vidhi"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/definition/pranapratishtha"
+   ],
+   "keywords": [
+    "pran pratishtha"
+   ]
+  },
+  {
+   "id": "jigyasa-shyam-varna",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Ram aur Krishna ka shyam varna",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Ram-Krishna neele kyun dikhaye jaate?",
+   "hook_hi": "राम और कृष्ण नीले क्यों दिखाए जाते हैं?",
+   "angle": "The texts call them shyam / meghavarna: the colour of a rain cloud (the Vishnu dhyana shlok \"शान्ताकारं … मेघवर्णं शुभाङ्गम्\", Hanuman describing Ram to Sita in Sundara Kand sarga 35); painters show that dark cloud colour as blue. Also why Khatu Baba is called Shyam (Krishna's name, parampara). No pseudo-science. Visuals: warm diya-lit scenes that show the subject itself. Answer from shastra or parampara with the citation; NO pseudo-science or health claims; no fear (\"galti ki to paap lagega\" is never said).",
+   "cite": {
+    "work": "Vishnu dhyana shlok; Valmiki Ramayan",
+    "ref": "Shantakaram shlok (\"meghavarnam\"); Sundara Kand sarga 35"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/utf8/sundara/sarga35/sundaraitrans35.htm",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "neele kyun",
+    "shyam varna"
+   ]
+  },
+  {
+   "id": "jigyasa-itne-haath",
+   "p": 3,
+   "deity": "krishna",
+   "name": "Bhagwan ke anek haath",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Bhagwan ke itne haath kyun?",
+   "hook_hi": "भगवान के इतने हाथ क्यों होते हैं?",
+   "angle": "The dhyana shlokas give each form's arms and what they hold (Vishnu: shankh, chakra, gada, padma), the Vishnudharmottara Purana (khand 3) on what the ayudhas stand for, and Gita 11.16 (anekabahu, the vishwaroop). Told simply. Visuals: warm diya-lit scenes that show the subject itself. Answer from shastra or parampara with the citation; NO pseudo-science or health claims; no fear (\"galti ki to paap lagega\" is never said).",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita; Vishnudharmottara Purana",
+    "ref": "Adhyay 11, shlok 16; khand 3 (pratima lakshan)"
+   },
+   "sources": [
+    "https://www.holy-bhagavad-gita.org/chapter/11/verse/16",
+    "https://www.gitasupersite.iitk.ac.in/"
+   ],
+   "keywords": [
+    "itne haath"
+   ]
+  },
+  {
+   "id": "astra-brahmastra-parmanu",
+   "p": 1,
+   "deity": "krishna",
+   "name": "Brahmastra (Mahabharat)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "astra",
+   "hook": "Brahmastra = parmanu bomb?",
+   "hook_hi": "ब्रह्मास्त्र = परमाणु बम?",
+   "angle": "The modern question is only the hook; the answer comes ONLY from the text: Sauptika Parva (Aishika), adhyay 13-15: Ashwatthama looses the brahmashira, Arjuna answers it, the fire \"like the end of a yuga\", Narada and Vyasa stand between the two, Arjuna withdraws his (his self-control), Ashwatthama cannot and turns it on Uttara's womb, Krishna protects Parikshit. Say plainly that the nuclear comparison is a modern interpretation, not proven: the text describes a divine weapon governed by mantra and self-control. Moral: power without self-control destroys.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Sauptika Parva (Aishika Parva), adhyay 13-15 (Ganguli; BORI 10.13-15)"
+   },
+   "sources": [
+    "https://en.wikisource.org/wiki/The_Mahabharata/Book_10:_Sauptika_Parva/Section_XV",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "parmanu bomb",
+    "brahmashira"
+   ]
+  },
+  {
+   "id": "astra-narayanastra",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Narayanastra (Mahabharat)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "astra",
+   "hook": "Narayanastra se Pandav kaise bache?",
+   "hook_hi": "नारायणास्त्र से पांडव कैसे बचे?",
+   "angle": "Drona Parva, Narayanastra-mokshana Parva (Ganguli adhyay 195-201): after Drona's death Ashwatthama invokes the Narayana weapon, Krishna tells everyone to lay down their weapons and step down, Bhima refuses and is saved, the weapon calms. Moral: before the divine, surrender is strength. Only what the text says.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Drona Parva, Narayanastra-mokshana Parva, adhyay 195-201 (Ganguli)"
+   },
+   "sources": [
+    "https://www.gutenberg.org/cache/epub/15475/pg15475.txt",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "narayanastra"
+   ]
+  },
+  {
+   "id": "astra-pashupatastra",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Pashupatastra (Mahabharat)",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "kind": "astra",
+   "hook": "Arjun ko Pashupatastra kaise mila?",
+   "hook_hi": "अर्जुन को पाशुपतास्त्र कैसे मिला?",
+   "angle": "Vana Parva, Kairata Parva (adhyay 38-41, Ganguli): Arjuna's tapasya, the boar, the Kirata who is Shiv, the fight and Arjuna's surrender, Shiv giving the Pashupata with the warning never to use it on lesser foes, the Lokapalas' weapons. Only the text.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Vana Parva, Kairata Parva, adhyay 38-41 (Ganguli; BORI 3.38-41)"
+   },
+   "sources": [
+    "https://www.gutenberg.org/cache/epub/15474/pg15474.txt",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "pashupatastra",
+    "kirat"
+   ]
+  },
+  {
+   "id": "astra-vajra-dadhichi",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Indra ka Vajra aur Dadhichi",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "astra",
+   "hook": "Indra ka Vajra kis se bana?",
+   "hook_hi": "इंद्र का वज्र किससे बना?",
+   "angle": "Vana Parva adhyay 100-101 (Ganguli) and Bhagavata 6.9-6.10: Vritra cannot be beaten, the devas go to rishi Dadhichi, he gives up his body, Vishvakarma makes the Vajra from his bones, Vritra falls. Moral: the greatest weapon was born of a sacrifice for others. No gore: light, not bones on screen.",
+   "cite": {
+    "work": "Mahabharat; Shrimad Bhagavat",
+    "ref": "Vana Parva adhyay 100-101 (Ganguli); Skandh 6, adhyay 9-10"
+   },
+   "sources": [
+    "https://vedabase.io/en/library/sb/6/10/",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "dadhichi",
+    "vajra"
+   ]
+  },
+  {
+   "id": "astra-sudarshan-durvasa",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Sudarshan chakra, Ambarish aur Durvasa",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "astra",
+   "variant_only": "kyun",
+   "hook": "Sudarshan ne Durvasa ka peecha kyun?",
+   "hook_hi": "सुदर्शन चक्र ने दुर्वासा का पीछा क्यों किया?",
+   "angle": "Shrimad Bhagavat 9.4-9.5: King Ambarish's Ekadashi vrat, Durvasa's anger, the Sudarshan chasing him through the worlds, Vishnu sending him back to the devotee, Ambarish praying for him. Moral: the Lord protects the humble devotee; humility wins.",
+   "cite": {
+    "work": "Shrimad Bhagavat",
+    "ref": "Skandh 9, adhyay 4-5 (Ambarish upakhyan)"
+   },
+   "sources": [
+    "https://vedabase.io/en/library/sb/9/4/",
+    "https://vedabase.io/en/library/sb/9/5/"
+   ],
+   "keywords": [
+    "ambarish",
+    "durvasa"
+   ]
+  },
+  {
+   "id": "astra-hanuman-brahmastra",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji aur Brahmastra",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "kind": "astra",
+   "variant_only": "kyun",
+   "hook": "Hanuman Brahmastra se kyun bandhe?",
+   "hook_hi": "हनुमान जी ब्रह्मास्त्र से क्यों बंधे?",
+   "angle": "Valmiki Ramayan, Sundara Kand sarga 48: Indrajit uses Brahma's astra, Hanuman remembers Brahma's boon and lets himself be bound out of respect and to meet Ravan; when the rakshasas add ropes the astra's hold falls away. Moral: real strength also knows when to bow. Hanuman ji: clean-shaven vanara face.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Sundara Kand, sarga 48"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/utf8/sundara/sarga48/sundaraitrans48.htm",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "brahmastra se bandhe"
+   ]
+  },
+  {
+   "id": "garuda-terah-din",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Garuda Purana",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "garuda",
+   "numbers_ok": [
+    "13",
+    "terah",
+    "तेरह"
+   ],
+   "hook": "Mrityu ke baad 13 din kyun?",
+   "hook_hi": "मृत्यु के बाद तेरह दिन क्यों?",
+   "angle": "Garuda Purana Saroddhara adhyay 11 (the ten days of pinda), 12 (the eleventh day), 13 (sapindana): what the rites mean for the departed and the family; the terahvi custom itself said as \"परंपरा\". Gentle, about love for the departed, never fear; ends on good karma and naam-jap.",
+   "cite": {
+    "work": "Garuda Purana (Pretakhand / Saroddhara)",
+    "ref": "adhyay 11-13 (Wood & Subrahmanyam 1911)"
+   },
+   "sources": [
+    "https://sacred-texts.com/hin/gpu/index.htm",
+    "http://www.mysticknowledge.org/07-THE_GARUDA_PURANA.pdf"
+   ],
+   "keywords": [
+    "terah din",
+    "terahvi"
+   ]
+  },
+  {
+   "id": "garuda-yamlok-marg",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Garuda Purana",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "garuda",
+   "hook": "Garuda Purana: Yamlok ka maarg",
+   "hook_hi": "गरुड़ पुराण: यमलोक का मार्ग",
+   "angle": "Garuda Purana Saroddhara adhyay 2 (the way of Yama) as Vishnu tells Garuda, and what eases it: daan and good deeds (adhyay 8). No gore, no horror visuals; folk additions said as \"मान्यता\"; ends on good karma and naam-jap.",
+   "cite": {
+    "work": "Garuda Purana (Pretakhand / Saroddhara)",
+    "ref": "adhyay 2 (Yama-marg), adhyay 8 (daan)"
+   },
+   "sources": [
+    "https://sacred-texts.com/hin/gpu/index.htm",
+    "http://www.mysticknowledge.org/07-THE_GARUDA_PURANA.pdf"
+   ],
+   "keywords": [
+    "yamlok ka maarg"
+   ]
+  },
+  {
+   "id": "garuda-vaitarani",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Garuda Purana",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "garuda",
+   "hook": "Vaitarani nadi kya hai?",
+   "hook_hi": "वैतरणी नदी क्या है?",
+   "angle": "Garuda Purana Saroddhara adhyay 2 and 4: the river on the way, the boat for those with merit, why it is said to be crossed by gifts and good deeds; the godaan-and-tail picture said as \"मान्यता\". Calm visuals; ends on good karma and naam-jap.",
+   "cite": {
+    "work": "Garuda Purana (Pretakhand / Saroddhara)",
+    "ref": "adhyay 2 and 4 (Vaitarani)"
+   },
+   "sources": [
+    "https://sacred-texts.com/hin/gpu/index.htm",
+    "http://www.mysticknowledge.org/07-THE_GARUDA_PURANA.pdf"
+   ],
+   "keywords": [
+    "vaitarani"
+   ]
+  },
+  {
+   "id": "garuda-chitragupt-hisaab",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Garuda Purana",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "garuda",
+   "hook": "Chitragupt ka hisaab kaise hota?",
+   "hook_hi": "चित्रगुप्त का हिसाब कैसे होता है?",
+   "angle": "Garuda Purana Saroddhara adhyay 3 (judgement before Yama, Chitragupta reading the deeds) and adhyay 14 (the city of Dharmaraj, Chitragupta's seat): every deed is seen, so do good today. Ends on good karma and naam-jap; no fear.",
+   "cite": {
+    "work": "Garuda Purana (Pretakhand / Saroddhara)",
+    "ref": "adhyay 3 and 14 (Chitragupt, Dharmaraj ki nagari)"
+   },
+   "sources": [
+    "https://sacred-texts.com/hin/gpu/index.htm",
+    "http://www.mysticknowledge.org/07-THE_GARUDA_PURANA.pdf"
+   ],
+   "keywords": [
+    "chitragupt"
+   ]
+  },
+  {
+   "id": "garuda-punya-ka-phal",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Garuda Purana",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "garuda",
+   "hook": "Achhe karm walon ka kya hota hai?",
+   "hook_hi": "अच्छे कर्म करने वालों का क्या होता है?",
+   "angle": "The hopeful side of the Garuda Purana: Saroddhara adhyay 15 (the birth of those who did good) and 16 (the way to liberation: bhakti, gyan, naam). Warm visuals; ends on good karma and naam-jap.",
+   "cite": {
+    "work": "Garuda Purana (Pretakhand / Saroddhara)",
+    "ref": "adhyay 15-16 (punyatma ka janm, moksh dharma)"
+   },
+   "sources": [
+    "https://sacred-texts.com/hin/gpu/index.htm",
+    "http://www.mysticknowledge.org/07-THE_GARUDA_PURANA.pdf"
+   ],
+   "keywords": [
+    "achhe karm walon"
+   ]
+  },
+  {
+   "id": "kaliyug-duryodhan-kali-ansh",
+   "p": 1,
+   "deity": "krishna",
+   "name": "Duryodhan (Mahabharat)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "kaliyug",
+   "hook": "Duryodhan Kali ka ansh tha?",
+   "hook_hi": "दुर्योधन कलि का अंश था?",
+   "angle": "Mahabharat Adi Parva, Sambhava Parva (amshavatarana), adhyay 67 Ganguli / BORI 1.61.80: \"Duryodhana was born of a portion of Kali\"; who else that chapter names (check it, e.g. Shakuni); Kali the being vs Kaliyug the age. Exactly what the text says, no doomsday.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Adi Parva, Sambhava Parva adhyay 67 (Ganguli; BORI 1.61.80, amshavatarana)"
+   },
+   "sources": [
+    "https://en.wikisource.org/wiki/The_Mahabharata/Book_1:_Adi_Parva/Section_LXVII",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "kali ka ansh"
+   ]
+  },
+  {
+   "id": "kaliyug-pandav-punarjanm",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Pandav aur Kaliyug (Bhavishya Purana)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "kind": "kaliyug",
+   "hook": "Pandav Kaliyug mein phir janme?",
+   "hook_hi": "क्या पांडव कलियुग में फिर जन्मे?",
+   "angle": "Only the Bhavishya Purana's Pratisarga Parva (khand 3, adhyay 1 in the common numbering) and the Alha-Udal folk epic say the Mahabharat heroes were reborn in Kaliyug; scholars see that parva as a late addition. Said as \"मान्यता / लोककथा के अनुसार\", never as history; the Mahabharat itself says nothing of it.",
+   "cite": {
+    "work": "Bhavishya Purana (Pratisarga Parva); Alha-Khand lok katha",
+    "ref": "Pratisarga Parva, khand 3, adhyay 1 (edition-dependent)"
+   },
+   "sources": [
+    "https://en.wikipedia.org/wiki/Bhavishya_Purana",
+    "https://archive.org/stream/PratisargaParvaThirdKhand/Pratisarga%20Parva%20-%20Third%20Khand_djvu.txt"
+   ],
+   "keywords": [
+    "pandav kaliyug",
+    "alha udal"
+   ]
+  },
+  {
+   "id": "kaliyug-kalki-shambhal",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Kalki avtaar",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "kaliyug",
+   "hook": "Kalki avtaar ke baare mein kya likha?",
+   "hook_hi": "कल्कि अवतार के बारे में क्या लिखा है?",
+   "angle": "Shrimad Bhagavat 12.2.18-20: Kalki in the village Shambhala, in the home of Vishnuyasha, on the horse Devadatta; the Kalki Purana tells more. No dates, no \"it is coming soon\", no doomsday: the text gives no year.",
+   "cite": {
+    "work": "Shrimad Bhagavat; Kalki Purana",
+    "ref": "Skandh 12, adhyay 2, shlok 18-20"
+   },
+   "sources": [
+    "https://vedabase.io/en/library/sb/12/2/18/",
+    "https://www.wisdomlib.org/"
+   ],
+   "keywords": [
+    "kalki",
+    "shambhal"
+   ]
+  },
+  {
+   "id": "kaliyug-hanuman-bheem-yug",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji aur Bheem",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "kind": "kaliyug",
+   "hook": "Hanuman ne Bheem ko yug samjhaye",
+   "hook_hi": "हनुमान जी ने भीम को युगों का रहस्य बताया",
+   "angle": "Mahabharat Vana Parva adhyay 148 (Ganguli): Hanuman describes Krita, Treta, Dwapara and Kali to Bhima; adhyay 147: his boon to live as long as Ram's story is told. Calm, exactly the text; Hanuman ji clean-shaven vanara face.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Vana Parva, Tirtha-yatra Parva adhyay 147-148 (Ganguli; BORI 3.147-148)"
+   },
+   "sources": [
+    "https://www.gutenberg.org/cache/epub/15474/pg15474.txt",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "yug samjhaye"
+   ]
+  },
+  {
+   "id": "kaliyug-ashwatthama-shaap",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Ashwatthama",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "kaliyug",
+   "numbers_ok": [
+    "3000",
+    "teen hazaar",
+    "तीन हज़ार",
+    "तीन हजार"
+   ],
+   "hook": "Ashwatthama ko kaun sa shaap mila?",
+   "hook_hi": "अश्वत्थामा को कौन सा श्राप मिला?",
+   "angle": "Sauptika Parva adhyay 16 (Ganguli): Krishna's curse, to wander the earth for three thousand years without company, and the gem taken from his forehead. That he still wanders today is \"मान्यता\", said as such; no sightings.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Sauptika Parva (Aishika Parva), adhyay 16 (Ganguli)"
+   },
+   "sources": [
+    "https://en.wikisource.org/wiki/The_Mahabharata/Book_10:_Sauptika_Parva/Section_XVI",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "ashwatthama"
+   ]
+  },
+  {
+   "id": "kaliyug-parikshit-kali",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Raja Parikshit aur Kali",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "kaliyug",
+   "numbers_ok": [
+    "5",
+    "paanch",
+    "पाँच"
+   ],
+   "hook": "Parikshit ne Kali ko kahan bheja?",
+   "hook_hi": "राजा परीक्षित ने कलि को कहाँ रहने दिया?",
+   "angle": "Shrimad Bhagavat 1.17.38-39: Parikshit stops Kali, Kali begs a place, he is allowed only where gambling, intoxication, unchastity and cruelty are, then gold (greed); so the lesson: keep these out and Kali has no home in us.",
+   "cite": {
+    "work": "Shrimad Bhagavat",
+    "ref": "Skandh 1, adhyay 17, shlok 38-39"
+   },
+   "sources": [
+    "https://vedabase.io/en/library/sb/1/17/38/",
+    "https://vedabase.io/en/library/sb/1/17/39/"
+   ],
+   "keywords": [
+    "parikshit"
+   ]
+  },
+  {
+   "id": "lok-gorakh-machhandar",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Guru Gorakhnath aur Matsyendranath",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "hook": "Jab Gorakh ne guru ko jagaya",
+   "hook_hi": "जब गोरखनाथ ने गुरु मछंदरनाथ को जगाया",
+   "angle": "Nath parampara lok katha \"जाग मछंदर गोरख आया\": Matsyendranath forgets yoga in the land of Kadali, his disciple Gorakhnath reaches him as a drummer and wakes him with the beat. Moral: a true disciple brings the guru back to the path. Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Lok katha (Nath sampradaya parampara)",
+    "ref": "Gorakhnath-Matsyendranath \"Jaag Machhandar\" prasang"
+   },
+   "sources": [
+    "https://gorakhpur.nic.in/",
+    "https://en.wikipedia.org/wiki/Matsyendranatha"
+   ],
+   "keywords": [
+    "jaag machhandar",
+    "machhandar"
+   ]
+  },
+  {
+   "id": "lok-gorakhnath-khichdi",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Gorakhnath mandir, Gorakhpur",
+   "playlist": "Prasiddh Mandir",
+   "label": "temple",
+   "kind": "lokdevta",
+   "festival": "makar-sankranti",
+   "hook": "Gorakhnath mandir mein khichdi kyun?",
+   "hook_hi": "गोरखनाथ मंदिर में खिचड़ी क्यों चढ़ती है?",
+   "angle": "The Makar Sankranti khichdi mela at the Gorakhnath temple (temple / district tradition) and the lok katha of Baba Gorakhnath at Jwala Devi whose pot \"still waits\" (मान्यता). Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Gorakhnath mandir parampara; Gorakhpur zila prashasan",
+    "ref": "Makar Sankranti khichdi mela"
+   },
+   "sources": [
+    "https://gorakhpur.nic.in/",
+    "https://uptourism.gov.in/"
+   ],
+   "keywords": [
+    "khichdi mela"
+   ]
+  },
+  {
+   "id": "lok-gogaji-gorakh-vardan",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Gogaji (Goga Medi)",
+   "playlist": "Prasiddh Mandir",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "months": [
+    8,
+    9
+   ],
+   "hook": "Gogaji ka janm Gorakh ke vardan se?",
+   "hook_hi": "क्या गोगाजी का जन्म गुरु गोरखनाथ के वरदान से हुआ?",
+   "angle": "Lok katha: Rani Bachhal's seva of Guru Gorakhnath and the guggal prasad, Gogaji's birth, Goga Medi (Hanumangarh) and the Goga Navami mela (Bhadrapad). No snakebite cure claims. Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Lok katha (Gogaji parampara); Hanumangarh zila prashasan",
+    "ref": "Goga Medi, Goga Navami mela"
+   },
+   "sources": [
+    "https://hanumangarh.rajasthan.gov.in/",
+    "https://www.tourism.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "gogaji",
+    "goga medi"
+   ]
+  },
+  {
+   "id": "lok-ramdev-pir",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Baba Ramdev ji (Ramdevra)",
+   "playlist": "Prasiddh Mandir",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "months": [
+    8,
+    9
+   ],
+   "hook": "Baba Ramdev ko Pir kyun kehte hain?",
+   "hook_hi": "बाबा रामदेव जी को पीर क्यों कहते हैं?",
+   "angle": "Lok katha of Runicha / Ramdevra (Jaisalmer): the visiting pirs and their katoras, why both communities revere him as Ramsa Pir, the Bhadrapad mela; Baba Ramdev ji seen as Krishna's avtaar in tradition (मान्यता). Harmony, no communal angle. Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Lok katha (Ramdev ji parampara); Jaisalmer zila prashasan",
+    "ref": "Ramdevra, Bhadrapad mela"
+   },
+   "sources": [
+    "https://jaisalmer.rajasthan.gov.in/",
+    "https://www.tourism.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "ramsa pir",
+    "ramdevra"
+   ]
+  },
+  {
+   "id": "lok-tejaji-vachan",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Veer Tejaji",
+   "playlist": "Prasiddh Mandir",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "months": [
+    8,
+    9
+   ],
+   "hook": "Tejaji ne naag ko vachan kyun diya?",
+   "hook_hi": "वीर तेजाजी ने नाग को वचन क्यों दिया?",
+   "angle": "Lok katha of Kharnal (Nagaur): Tejaji rescues Lachha Gujari's cows after giving his word to the snake to return, and keeps it; Teja Dashami (Bhadrapad). Moral: vachan-palan. No snakebite cure claims. Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Lok katha (Tejaji parampara); Nagaur zila prashasan",
+    "ref": "Kharnal, Teja Dashami"
+   },
+   "sources": [
+    "https://nagaur.rajasthan.gov.in/",
+    "https://www.tourism.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "tejaji"
+   ]
+  },
+  {
+   "id": "lok-pabuji-phere",
+   "p": 3,
+   "deity": "shiv",
+   "name": "Pabuji Rathore",
+   "playlist": "Prasiddh Mandir",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "hook": "Pabuji phere chhodkar kyun gaye?",
+   "hook_hi": "पाबूजी फेरे छोड़कर क्यों गए?",
+   "angle": "Lok katha (the Pabuji ki Phad epic): Pabuji leaves his own wedding rounds on the mare Kesar Kalmi to save Deval Charani's cows, keeping his word. Moral: a promise above comfort. The phad scroll as a visual motif. Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Lok katha (Pabuji ki Phad parampara)",
+    "ref": "Kolu, Pabuji aur Deval Charani"
+   },
+   "sources": [
+    "https://en.wikipedia.org/wiki/Pabuji",
+    "https://www.tourism.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "pabuji"
+   ]
+  },
+  {
+   "id": "lok-karni-mata-bikaner",
+   "p": 2,
+   "deity": "devi",
+   "name": "Karni Mata, Deshnok",
+   "playlist": "Mandir Itihas",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "months": [
+    3,
+    4,
+    9,
+    10
+   ],
+   "hook": "Karni Mata aur Bikaner ki neev",
+   "hook_hi": "करणी माता और बीकानेर की नींव",
+   "angle": "Tradition and the Bikaner district story: Rao Bika and Karni Mata's blessing for the new city, Deshnok's Navratri melas; years only with two sources. Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Lok katha (Charan parampara); Bikaner zila prashasan",
+    "ref": "Karni Mata aur Rao Bika"
+   },
+   "sources": [
+    "https://bikaner.rajasthan.gov.in/",
+    "https://www.tourism.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "rao bika"
+   ]
+  },
+  {
+   "id": "lok-jeen-mata",
+   "p": 3,
+   "deity": "devi",
+   "name": "Jeen Mata, Sikar",
+   "playlist": "Mandir Itihas",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "months": [
+    3,
+    4,
+    9,
+    10
+   ],
+   "hook": "Jeen Mata ne ghar kyun chhoda?",
+   "hook_hi": "जीण माता ने घर क्यों छोड़ा?",
+   "angle": "Lok katha of Jeen and her brother Harsh (Harshnath): the hurt at home, her tapasya on the Aravalli hill, the brother who followed; the Navratri melas (Sikar district). Siblings' love, no communal legends. Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Lok katha (Jeen Mata parampara); Sikar zila prashasan",
+    "ref": "Jeen Mata aur Harsh"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/",
+    "https://www.tourism.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "jeen mata",
+    "harshnath"
+   ]
+  },
+  {
+   "id": "lok-salasar-mohandas",
+   "p": 1,
+   "deity": "hanuman",
+   "name": "Salasar Balaji, Churu",
+   "playlist": "Hanuman ji ke Prasiddh Mandir",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "hook": "Jab Asota ke khet mein murti mili",
+   "hook_hi": "जब आसोटा के खेत में बालाजी की मूर्ति मिली",
+   "angle": "Temple tradition (Churu district): the farmer's plough strikes the murti at Asota, the dreams, Mohandas ji's devotion and the murti reaching Salasar (years only with two sources). Focus on Mohandas ji the bhakt; the beard topic is salasar-daadhi-moonchh. Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Salasar Balaji mandir parampara; Churu zila prashasan",
+    "ref": "Asota ki murti, Mohandas ji"
+   },
+   "sources": [
+    "https://churu.rajasthan.gov.in/",
+    "https://www.tourism.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "asota",
+    "mohandas"
+   ]
+  },
+  {
+   "id": "lok-khatu-aloo-singh",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Shyam bhakt Aloo Singh ji",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "after": "2026-11-21",
+   "hook": "Aloo Singh ji: Baba ke phoolwale bhakt",
+   "hook_hi": "आलू सिंह जी: बाबा श्याम के फूलों वाले भक्त",
+   "angle": "Khatu tradition: Aloo Singh ji of Khatu, disciple of Shyam Bahadur ji, who gave his life to Baba's flowers and seva; his samadhi in the Shyam Bagichi (devotional sources, said as परंपरा). A bhakt's seva, not miracle claims; the Shyam Kund sheesh story is khatu-sheesh-khatu-mein. Saints and lok devtas: realistic ORIGINAL AI faces (never a TV actor or a serial frame); respectful; every miracle said as \"लोककथा / मान्यता के अनुसार\", never as history; no cure or health claims.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Shyam bhakt Aloo Singh ji"
+   },
+   "sources": [
+    "https://www.khatooshyamji.com/shyam-bhakt/shri-aalu-singh-ji-maharaj/",
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "aloo singh"
+   ]
+  }
+ ],
+ "ideas": [
+  {
+   "id": "idea-parshuram-ram-aamne-saamne",
+   "status": "idea",
+   "p": 2,
+   "deity": "ram",
+   "name": "Parshuram aur Shri Ram",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "art_hint": "infographic-2d",
+   "hook": "Parshuram aur Ram aamne-saamne!",
+   "hook_hi": "जब परशुराम और श्री राम आमने-सामने आए",
+   "angle": "Two avatars of Vishnu meet (Valmiki Bala Kand sarga 74-76): Parshuram confronts the wedding party after the bow breaks, the story of the two bows, Ram strings Vishnu's bow, Parshuram recognises him and returns to tapasya. Infographic idea: both avatars labelled with connector lines to a central Vishnu badge.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Bala Kand, sarga 74-76"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/utf8/baala/sarga76/balaitrans76.htm"
+   ],
+   "keywords": [
+    "parshuram ram"
+   ],
+   "from": {
+    "source": "owner reference",
+    "refs": [
+     "https://youtube.com/shorts/N1XS8tydtSE"
+    ],
+    "added": "2026-11-15"
+   }
+  },
+  {
+   "id": "idea-bhishma-parshuram-yuddh",
+   "status": "idea",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Bhishma aur Parshuram",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "art_hint": "infographic-2d",
+   "variant_only": "kyun",
+   "hook": "Guru Parshuram se kyun lade Bhishma?",
+   "hook_hi": "भीष्म ने गुरु परशुराम से युद्ध क्यों किया?",
+   "angle": "Udyoga Parva, Amba-upakhyana (Ganguli adhyay 174-188, the duel ~181-188): Amba's plea, the guru asks Bhishma to marry her, Bhishma's vow, the long duel at Kurukshetra, the Praswapa weapon withheld, the ancestors end it. Guru vs shishya, both right in their dharma.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Udyoga Parva, Amba-upakhyana Parva adhyay 174-188 (Ganguli)"
+   },
+   "sources": [
+    "https://www.gutenberg.org/cache/epub/15475/pg15475.txt",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "bhishma parshuram"
+   ],
+   "from": {
+    "source": "owner reference",
+    "refs": [
+     "https://youtube.com/shorts/N1XS8tydtSE"
+    ],
+    "added": "2026-11-15"
+   }
+  },
+  {
+   "id": "idea-jay-vijay-shaap",
+   "status": "idea",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Jay-Vijay",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "art_hint": "infographic-2d",
+   "numbers_ok": [
+    "teen",
+    "तीन",
+    "3"
+   ],
+   "hook": "Ek shaap, teen janm: Jay-Vijay",
+   "hook_hi": "एक श्राप, तीन जन्म: जय-विजय",
+   "angle": "Shrimad Bhagavat 3.15-16 (the Sanakadi curse at Vaikuntha's gate) and 7.1 (the three births: Hiranyaksha-Hiranyakashipu, Ravan-Kumbhakarna, Shishupal-Dantavakra) - one curse behind three avatars' battles. Infographic: a timeline of three yugas.",
+   "cite": {
+    "work": "Shrimad Bhagavat",
+    "ref": "Skandh 3, adhyay 15-16; Skandh 7, adhyay 1"
+   },
+   "sources": [
+    "https://vedabase.io/en/library/sb/3/16/",
+    "https://vedabase.io/en/library/sb/7/1/"
+   ],
+   "keywords": [
+    "jay vijay"
+   ],
+   "from": {
+    "source": "owner reference",
+    "refs": [
+     "https://youtube.com/shorts/N1XS8tydtSE"
+    ],
+    "added": "2026-11-15"
+   }
+  },
+  {
+   "id": "idea-krauncha-pehla-shlok",
+   "status": "idea",
+   "p": 2,
+   "deity": "ram",
+   "name": "Valmiki aur krauncha pakshi",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "art_hint": "infographic-2d",
+   "hook": "Ek shaap se bana pehla shlok",
+   "hook_hi": "एक श्राप से बना पहला श्लोक",
+   "angle": "Valmiki Ramayan Bala Kand sarga 2: the hunter shoots one of the krauncha pair, Valmiki's grief comes out as \"मा निषाद…\", the first shloka, and Brahma asks him to tell Ram's story in that metre - the curse that began the Ramayan.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Bala Kand, sarga 2"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "maa nishada",
+    "krauncha"
+   ],
+   "from": {
+    "source": "owner reference",
+    "refs": [
+     "https://youtube.com/shorts/N1XS8tydtSE"
+    ],
+    "added": "2026-11-15"
+   }
+  },
+  {
+   "id": "idea-shravan-dashrath-shaap",
+   "status": "idea",
+   "p": 2,
+   "deity": "ram",
+   "name": "Raja Dashrath aur Shravan",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "art_hint": "infographic-2d",
+   "variant_only": "kyun",
+   "hook": "Dashrath ko kiska shaap laga?",
+   "hook_hi": "राजा दशरथ को किसका श्राप लगा?",
+   "angle": "Valmiki Ayodhya Kand sarga 63-64: Dashrath tells Kaushalya of the young ascetic he shot by mistake and the blind parents' curse - the curse behind his grief at Ram's vanvas. Gentle, no gore.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Ayodhya Kand, sarga 63-64"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "dashrath shaap"
+   ],
+   "from": {
+    "source": "owner reference",
+    "refs": [
+     "https://youtube.com/shorts/N1XS8tydtSE"
+    ],
+    "added": "2026-11-15"
+   }
+  },
+  {
+   "id": "idea-vasu-shaap-bhishma",
+   "status": "idea",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Ashtavasu aur Bhishma",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "art_hint": "infographic-2d",
+   "hook": "Bhishma ek shaap se janme?",
+   "hook_hi": "क्या भीष्म एक श्राप से जन्मे?",
+   "angle": "Mahabharat Adi Parva (Sambhava Parva, Ganguli adhyay 96-99; verify): Vasishtha's curse on the Vasus for taking his cow, Ganga as their mother, seven freed at birth, the eighth Vasu lives on as Devavrata-Bhishma. The curse that started the Kuru story.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Adi Parva, Sambhava Parva adhyay 96-99 (Ganguli; verify the sections)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "ashtavasu",
+    "vasu shaap"
+   ],
+   "from": {
+    "source": "owner reference",
+    "refs": [
+     "https://youtube.com/shorts/N1XS8tydtSE"
+    ],
+    "added": "2026-11-15"
+   }
+  },
+  {
+   "id": "idea-govardhan-shaap",
+   "status": "idea",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Govardhan parvat",
+   "playlist": "Krishna Leela Dham",
+   "label": "tradition",
+   "art_hint": "infographic-2d",
+   "hook": "Govardhan roz chhota kyun ho raha?",
+   "hook_hi": "गोवर्धन पर्वत रोज़ छोटा क्यों हो रहा है?",
+   "angle": "Garga Samhita, Vrindavan Khand adhyay 2 (shlok 47-51): rishi Pulastya's curse that the mountain shrink \"til-til\" every day, and that Kali's power will not grow while Ganga and Govardhan remain; Giriraj Khand adhyay 9 tells it again. That it visibly shrinks today is \"मान्यता\"; no measurements claimed.",
+   "cite": {
+    "work": "Garga Samhita",
+    "ref": "Vrindavan Khand adhyay 2 (47-51); Giriraj Khand adhyay 9"
+   },
+   "sources": [
+    "https://www.mahakavya.com/garga-samhita-vrindavan-khand-chapter-1-to-5/"
+   ],
+   "keywords": [
+    "govardhan shaap",
+    "pulastya"
+   ],
+   "from": {
+    "source": "owner reference",
+    "refs": [
+     "https://youtube.com/shorts/N1XS8tydtSE"
+    ],
+    "added": "2026-11-15"
+   }
+  },
+  {
+   "id": "idea-tulsi-vivah-vrinda",
+   "status": "idea",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Vrinda aur Tulsi Vivah",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "label": "scripture",
+   "art_hint": "infographic-2d",
+   "festival": "tulsi-vivah",
+   "hook": "Tulsi Vivah ki shuruaat kaise hui?",
+   "hook_hi": "तुलसी विवाह की शुरुआत कैसे हुई?",
+   "angle": "Which source says what: Shiva Purana Rudra Samhita Yuddha Khand adhyay 23 (Vrinda's curse; no Tulsi there), Padma Purana Uttara Khand (Vrinda becomes Tulsi; check the chapters), Brahmavaivarta Prakriti Khand (Tulasi and Shankhachuda). The vivah ritual itself as parampara.",
+   "cite": {
+    "work": "Shiva Purana; Padma Purana",
+    "ref": "Rudra Samhita, Yuddha Khand adhyay 23; Uttara Khand (Jalandhar prasang)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english/d/doc226164.html"
+   ],
+   "keywords": [
+    "vrinda",
+    "tulsi vivah ki shuruaat"
+   ],
+   "from": {
+    "source": "owner reference",
+    "refs": [
+     "https://youtube.com/shorts/N1XS8tydtSE"
+    ],
+    "added": "2026-11-15"
+   }
+  },
+  {
+   "id": "idea-bhai-dooj-yamuna",
+   "status": "idea",
+   "p": 2,
+   "deity": "surya",
+   "name": "Yamuna aur Yamraj",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "label": "tradition",
+   "art_hint": "infographic-2d",
+   "festival": "bhai-dooj",
+   "hook": "Bhai Dooj: Yamuna ne Yam ko kya diya?",
+   "hook_hi": "भाई दूज: यमुना ने यमराज को क्या दिया?",
+   "angle": "Yama Dwitiya: the Bhavishya Purana verse quoted in P. V. Kane's History of Dharmasastra (vol. V) and Dharmasindhu - Yamuna feeds her brother Yama on Kartik Shukla Dwitiya; the invitations, tilak and boon are folk tradition, labelled.",
+   "cite": {
+    "work": "Bhavishya Purana (as quoted in the dharmashastra digests); lok parampara",
+    "ref": "Yama Dwitiya prasang"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/definition/yamadvitiya"
+   ],
+   "keywords": [
+    "yam dwitiya",
+    "yamuna yam"
+   ],
+   "from": {
+    "source": "owner reference",
+    "refs": [
+     "https://youtube.com/shorts/N1XS8tydtSE"
+    ],
+    "added": "2026-11-15"
+   }
   }
  ]
 }
