@@ -1,0 +1,129 @@
+{
+  "slug": "2026-11-15-facts-chhath-sita-draupadi-katha",
+  "format": "facts",
+  "variant": "kyun",
+  "art": "cinematic",
+  "release": "2026-11-15",
+  "publish_at": "20:35",
+  "slot": "facts5",
+  "no_kaggle": true,
+  "bed": "devotional",
+  "topic": "chhath-sita-draupadi-katha",
+  "festival": "Chhath Puja (Sandhya Arghya)",
+  "title": "Sita aur Draupadi ka Chhath",
+  "kicker": "Chhath Puja 2026",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Chhathi Maiya",
+  "music_mood": "emotional",
+  "sub_size": 60,
+  "style": "hyper-real cinematic devotional film still, warm golden sunrise light, deep saturated colours, dramatic rim light, intricate detail, respectful, no text, no letters, no writing, no watermark, no signature",
+  "hook": "Sita aur Draupadi ne kaun sa vrat rakha?",
+  "cover": "सीता और द्रौपदी",
+  "cover_lines": [
+    "सीता जी और",
+    "द्रौपदी ने",
+    "कौन सा व्रत रखा?"
+  ],
+  "source": "Lok parampara (Munger, Bihar): Sita Charan; lok manyata (Draupadi); Mahabharata (KM Ganguli) Vana Parva sec. 3 (Yudhishthira ki Surya aradhana, tamra patra)",
+  "deity": "Mata Sita / Draupadi / Surya Dev (Chhath Puja)",
+  "summary": "Chhath ki manyataayein: Mata Sita ka Munger mein Surya Shashthi vrat, Draupadi ka Chhath vrat; Mahabharata: Yudhishthira ki Surya aradhana, akshaya patra",
+  "scenes": [
+    {
+      "prompt": "Dramatic cinematic close-up portrait of Mata Sita as a serene radiant divine queen with a gentle face, simple yellow silk saree, delicate gold jewellery and a soft golden halo, the rising sun glowing behind her over the Ganga, the face in the lower half of the frame",
+      "deity": true,
+      "hero": true,
+      "motion": "in",
+      "tts": "माता सीता और द्रोपदी ने कौन सा व्रत रखा था?",
+      "sub": "Mata Sita aur Draupadi ne kaun sa vrat rakha tha?"
+    },
+    {
+      "prompt": "Women devotees in bright saris standing in a misty river at sunrise seen from behind, raising bamboo soop baskets with lit diyas towards the rising sun, cinematic wide shot",
+      "motion": "pan",
+      "tts": "छठ बिहार का महापर्व है। पर लोक मान्यता इसे रामायण और महाभारत के समय से जोड़ती है।",
+      "sub": "Chhath Bihar ka mahaparv hai. Par lok manyata ise Ramayan aur Mahabharat ke samay se jodti hai."
+    },
+    {
+      "prompt": "Mata Sita in a simple yellow saree standing in the shallow Ganga at sunrise near a rocky river bank, offering water to the rising sun from a small copper vessel, a rishi's hermitage on the bank, serene, cinematic",
+      "deity": true,
+      "motion": "in",
+      "label": "tradition",
+      "tts": "लोककथा के अनुसार, माता सीता ने मुंगेर में सूर्य षष्ठी का व्रत किया। मुद्गल ऋषि के आश्रम में।",
+      "sub": "Lok katha ke anusar, Mata Sita ne Munger mein Surya Shashthi ka vrat kiya. Mudgal rishi ke ashram mein."
+    },
+    {
+      "prompt": "A small white temple on a large rock in the middle of the wide Ganga river at sunrise, golden light on the water, boats in the distance, peaceful, cinematic wide shot",
+      "motion": "out",
+      "tts": "मुंगेर में गंगा की चट्टान पर आज भी सीता चरण है, जहाँ चरणों के निशान माने जाते हैं।",
+      "sub": "Munger mein Ganga ki chattaan par aaj bhi Sita Charan hai, jahaan charanon ke nishaan maane jaate hain."
+    },
+    {
+      "prompt": "Draupadi as a dignified queen in deep red silk saree standing in a river at dawn with folded hands, eyes closed in prayer towards the rising sun, a lit diya floating beside her, cinematic",
+      "motion": "in",
+      "label": "tradition",
+      "tts": "और द्रौपदी! मान्यता है, जब पांडव राजपाट हार गए, तब द्रौपदी ने छठ का व्रत रखा।",
+      "sub": "Aur Draupadi! Manyata hai, jab Pandav raajpaat haar gaye, tab Draupadi ne Chhath ka vrat rakha."
+    },
+    {
+      "prompt": "The radiant sun god Surya with a golden crown appearing in a blaze of golden light, giving a shining copper vessel to a humble king in simple forest clothes with folded hands, a forest hermitage at dawn, cinematic",
+      "deity": true,
+      "motion": "in",
+      "reveal": true,
+      "tts": "और महाभारत में, धौम्य ऋषि की सलाह पर युधिष्ठिर ने सूर्य देव की आराधना की। सूर्य ने उन्हें अक्षय पात्र दिया!",
+      "sub": "Aur Mahabharat mein, Dhaumya rishi ki salaah par Yudhishthir ne Surya Dev ki aaradhana ki. Surya ne unhein Akshaya Patra diya!"
+    },
+    {
+      "prompt": "A single lit clay diya on a bamboo soop basket on the river bank at sunrise, golden mist over the water, hopeful and peaceful, cinematic close shot",
+      "motion": "in",
+      "moral": true,
+      "tts": "सीख यही है, संकट कितना भी बड़ा हो, आस्था का दीया जलाए रखो।",
+      "sub": "Seekh yahi hai, sankat kitna bhi bada ho, aastha ka diya jalaaye rakho."
+    },
+    {
+      "endcard": true,
+      "tts": "छठी मैया सबकी मनोकामना पूरी करें! कमेंट में लिखें जय छठी मैया, और लाइक, शेयर, सब्सक्राइब करें।",
+      "sub": "Chhathi Maiya sabki manokamna poori karein! Comment mein likhein Jai Chhathi Maiya, aur Like, Share, Subscribe karein."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "Folk belief: Mata Sita kept the Surya Shashthi vrat at Munger (Mudgal rishi's ashram); Sita Charan footprints",
+      "source": "Lok parampara (Munger, Bihar)",
+      "kind": "tradition",
+      "sources": [
+        "https://www.etvbharat.com/hindi/bihar/state/munger/mata-sita-did-chhath-puja-for-first-time-in-munger/bh20221027235943740740553",
+        "https://www.aajtak.in/art-and-culture/miscellaneous/story/chhath-festival-surya-puja-cultural-heritage-nature-worship-ntcpvp-dskc-2366560-2025-10-25"
+      ]
+    },
+    {
+      "claim": "Sita Charan: a rock in the Ganga at Munger with footprints believed to be Sita's",
+      "source": "Munger district administration (tourist place: Manpatthar / Sita Charan)",
+      "sources": [
+        "https://munger.nic.in/tourist-place/manpatthar-sita-charan/",
+        "https://www.etvbharat.com/hindi/bihar/state/munger/mata-sita-did-chhath-puja-for-first-time-in-munger/bh20221027235943740740553"
+      ]
+    },
+    {
+      "claim": "Folk belief: Draupadi kept the Chhath vrat when the Pandavas had lost their kingdom (not a Mahabharata episode)",
+      "source": "Lok manyata (Chhath)",
+      "kind": "tradition",
+      "sources": [
+        "https://www.aajtak.in/religion/worship/story/chhath-puja-2017-surya-pujan-significance-mahabharat-dropadi-tdha-468012-2017-10-23",
+        "https://www.etvbharat.com/hi/state/chhath-2026-sandhya-arghya-2026-date-and-time-bihar-sunset-timing-worship-method-and-importance-brs26111303802"
+      ]
+    },
+    {
+      "claim": "On Dhaumya's advice Yudhishthira worshipped Surya and received a copper vessel whose food would not run out (popularly the Akshaya Patra)",
+      "source": "Mahabharata, Vana (Aranyaka) Parva, sec. 3 (KM Ganguli)",
+      "sources": [
+        "https://ibiblio.org/sripedia/ebooks/mb/m03/m03003.htm",
+        "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan/d/doc7276.html"
+      ]
+    }
+  ],
+  "youtube_title": "Chhath: Sita ji aur Draupadi ka vrat 😱 #facts | Chhath Puja Katha | सीता और द्रौपदी का छठ",
+  "youtube_description": "Chhath Puja 2026: Mata Sita aur Draupadi se judi Chhath ki manyataayein, aur Mahabharata mein Yudhishthira ki Surya aradhana.\nSource: Lok parampara (Munger, Bihar): Sita Charan; lok manyata (Draupadi); Mahabharata (KM Ganguli) Vana Parva sec. 3 (Yudhishthira ki Surya aradhana, tamra patra)\nसीता और द्रौपदी का छठ: मुंगेर में माता सीता का सूर्य षष्ठी व्रत और द्रौपदी का छठ व्रत लोक मान्यता है; युधिष्ठिर की सूर्य आराधना महाभारत (वन पर्व) में है।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.\nJai Chhathi Maiya 🙏 Video achha laga ho to Like, Share aur Subscribe karein.\n#facts #story #ChhathPuja #ChhathiMaiya #छठपूजा #Shorts",
+  "youtube_tags": "Chhath Puja 2026, छठ पूजा 2026, Sita ji ka Chhath, सीता जी का छठ, Draupadi Chhath vrat, द्रौपदी छठ व्रत, Sita Charan Munger, सीता चरण मुंगेर, Chhath ki katha, छठ की कथा, Akshaya Patra, अक्षय पात्र, Chhath Puja facts",
+  "instagram_caption": "Mata Sita aur Draupadi ne kaun sa vrat rakha tha? 🙏\nLok manyata: Mata Sita ne Munger mein Surya Shashthi vrat kiya (Sita Charan), Draupadi ne Chhath vrat rakha. Mahabharata (Vana Parva 3): Yudhishthira ki Surya aradhana aur akshaya patra.\nChitra AI se (sanketik).\nJai Chhathi Maiya! Achha laga ho to Like, Share aur Follow karein.\n#ChhathPuja #ChhathiMaiya #Chhath2026 #facts #Munger #Bihar",
+  "facebook_caption": "जय छठी मैया 🙏 आपके घर छठ का व्रत कितनी पीढ़ियों से हो रहा है?\nलोक मान्यता: माता सीता ने मुंगेर में सूर्य षष्ठी व्रत किया और द्रौपदी ने छठ व्रत रखा। महाभारत में युधिष्ठिर ने सूर्य देव की आराधना कर अक्षय पात्र पाया।\n#ChhathPuja #ChhathiMaiya #Bhakti"
+}
