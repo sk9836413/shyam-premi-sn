@@ -850,3 +850,110 @@ its blurred picture with its number and title, an outro, chapters with each stor
 thumbnail, the Shorts' links in the description, and afterwards a "Poori series" link in each Short's description (the
 API cannot set a Short's related video or pin a comment). The Shorts are never re-uploaded as Shorts. If it does not run
 or fails, the long job tells its katha as before. growth.md tracks it as the `long` format with "compilation".
+
+## 9. "Kailash Parivar" (08:00 on Mon/Thu/Sat and festival tie-in days when it fits; workflow `kailash.yml`)
+
+Owner, 15 Nov 2026: a Kailash-family Short on another channel ("महादेव ने माता पार्वती को क्यों रुलाया", 1.13 crore
+views, 61 s) and its siblings showed the pattern: **festival tie-ins, an emotional or light-hearted family conflict, a
+resolution with love, ~60 s of dialogue, and a cliffhanger title/cover ("फिर ... ने जो किया…")**. We make our OWN
+stories in that shape. Never that channel's titles or plots (Parvati mayke/roothna, Kailash chhodna, Mahadev ke krodh
+se Kailash kaanpna, pushpak vimaan for Nandi, choohe/jata, "rulaya"): the validator rejects them.
+
+**Look.** Realistic-cinematic, divine and warm (not cartoon): snowy Kailash, golden rim light, painterly photorealism.
+**Original faces only**: never a face like a TV-serial actor or any real person. The cast prompts ask for an idealised
+original face and FLUX gets a true-CFG negative prompt ("TV serial actor, celebrity, likeness of a real person, beard
+..."); master portraits are picked by a person and never regenerated.
+
+**Characters** (`characters/kailash/cast.json`; one master portrait `<id>.png` + base clip `clips/<id>.mp4` each;
+`character-sheet.png` = the master sheet; voices fixed): `mahadev` (serene, clean-shaven, ash-blue-grey skin, blue
+throat, jata with crescent moon and Ganga, tripundra, rudraksha, cobra; deep calm Madhur), `parvati` (Mata Parvati, red
+saree, golden crown; Swara), `ganesh` (Bal Ganesh, child voice; talks with a talk clip: an elephant head cannot be
+lip-synced), `kartikeya` (teen prince, peacock feather, vel), `nandi` (white bull; talk clip), `mushak` (mouse; talk
+clip), `narad` (youthful clean-shaven sage with veena, "Narayan Narayan"; occasionally). Everyone is clean-shaven:
+MuseTalk smears beards (the lip-sync reject gate). Only characters with a master portrait may be cast.
+
+**Ideas** come from `automation/kailash-episodes.json` (46 original ideas: festival tie-ins with a date window, then
+evergreen ones). `scripts/kailash-due.mjs` picks the idea for the release day: a festival idea whose window holds the
+date first, else the next evergreen idea not made yet. Keep its premise, resolution, moral, story_type and source.
+
+**Tone rules (hard; `scripts/kailash-rules.mjs` checks every text).**
+- Respectful and loving. Light family humour is OK (Mushak's laddoos, a sleepy Ganesh), never at a deity's expense.
+- NEVER mock a deity. No insults ("pagal", "buddhu", "darpok"), no slaps or toilet humour.
+- **No bhang, ganja, chillum or any intoxication**, not even as a joke.
+- No romance beyond the dignified divine-couple affection (no kiss, "romantic", "jaanu").
+- No vulgarity, no on-screen violence (a demon story is one calm line: "asur ka ant hua"), no politics, no other
+  religions, nothing that would hurt devotees. Iconography stays correct.
+- `story_type`: `scripture` (cite the text with khanda/adhyay in `source` and in the description: "Katha ka strot:
+  ..."), `parampara` (a known tradition or sthal-katha, said as "kehte hain" / "parampara hai", named in the
+  description), or `fictional` (pure slice-of-life: the description says **"काल्पनिक प्रस्तुति / भक्तिभाव से बनाई
+  गई कहानी"**). Scripture/parampara episodes need `facts` (each claim with 2 independent URLs). Never invent a
+  scripture detail, a shloka or a quote; never change what a scripture says to make the ending sweeter.
+
+**File.** `story/kailash/<release>-<topic>.json`, slug `<release>-kailash-<idea id>`. Copy the shape of
+`story/kailash/pilot-ep1.json`: `format: "kailash"`, `series: "kailash-parivar"`, `series_title: "Kailash Parivar"`,
+`episode_id` (the bank id), `release`, `publish_at: "08:00"`, `lead`, `deity`, `topic`, `story_type`, `summary` (max
+160, no "|"), `moral`, `title` (Roman, max 40) + `title_dev`, `cover`, `source` + `facts` (not for fictional),
+`music: "calm"`, `cast`, `names` (Devanagari; every spoken deity name: महादेव, पार्वती, गणेश, कार्तिकेय, नंदी), `scenes`
+(3-6: `prompt` in English naming the characters, no text; `cast`; `motion`; 1-3 with `animate` = ONE sentence of
+gentle motion; `lines` 1-6 `{who, tts (Devanagari, max 110, numbers as words), sub (Hinglish, max 110: the BIG
+subtitle), mood?}`), `endcard` `{who: a deity, tts, sub}` = the moral in one line + "Like aur Subscribe karein",
+`playlist: "Kailash Parivar"`.
+- **Hook:** line 1 is the conflict or surprise, max 60 characters, no greeting. **Cover** (first 0.4 s, the Short's
+  thumbnail): 2-4 big Devanagari words (`cover`, max 24 characters), then the title overlay to 2.8 s.
+- **55-75 s, 10-16 lines** including the endcard (the validator estimates from the voices); the lead speaks at least 2.
+- **Story:** an emotional or funny family conflict that resolves with love, then the short moral and the CTA.
+- `youtube_title` formula: **`😱 <situation in Devanagari>! फिर महादेव ने जो किया… 🔱❤️ | Mahadev Parvati`** (the doer
+  may be another deity; verbs किया / कहा / बताया / सुनाया, or "फिर जो हुआ…"; max 100). `youtube_description`: the
+  story in 1-2 Hinglish lines, the source line or the fiction label, a Devanagari line, "Chitra, awaaz aur animation AI
+  se banaye gaye hain (sanketik).", a Like/Share/Subscribe line, "Kailash Parivar" and `#KailashParivar`;
+  `youtube_tags` (8-15, some Devanagari); `instagram_caption` (Roman); `facebook_caption` (the template of section 3:
+  #Mahadev #HarHarMahadev +1).
+
+**Quality gate (automatic; a failed check publishes nothing and logs why in published.md):** Whisper must hear every
+deity name exactly (never loosened); at least half of the lip-syncable close-ups really lip-synced after the
+beard/blur reject gate; character consistency against the master sheet (base clips vs master portraits, scene faces
+vs the master skin colour); 55-75 s. Validate with `node scripts/validate.mjs story/kailash/<file>.json`. Do not render,
+upload, commit or push.
+
+## 10. "Shri Krishna kehte hain" / Shyam POV (08:00 on Tue/Fri and festival tie-in days when it fits; workflow `krishna-pov.yml`)
+
+Owner, 15 Nov 2026: a 2D Krishna POV channel's Shorts are consistently 0.4-10M views: a festival tie-in plus a modern
+relatable question, Krishna answering in first person, straight to camera, ~60 s, a small text label on top. We make
+OUR OWN version: our own original 2D illustrated Shri Krishna (flat cel-shaded master sheet, soft dawn backgrounds; not
+their night-sky look or their face), our own topics (`automation/krishna-pov-topics.json`, 24 topics, festival tie-ins
+first). The speaker is always Shri Krishna. Khatu Shyam ji got his name and blessing from Shri Krishna, so Khatu
+tie-ins are natural, but Khatu Shyam ji himself is only ever the SHEESH (never a speaking body).
+
+**Hard tone rules (`scripts/krishna-pov-rules.mjs` + the Kailash tone rules; a failure stops the episode):**
+- POSITIVE messages only: kindness, respect for parents and elders, honesty, devotion with the right intent, no showing
+  off. The pattern is **"पूजा भी करो, और साथ में ... भी करो"**.
+- NEVER mock, question or tell people to drop a ritual or a festival practice; no "your tradition is wrong", no "real
+  meaning of Karwa Chauth", no "andhvishwas / dhakosla / pakhand". (The reference channel's ritual-questioning hits are
+  controversial; our devotional audience would be hurt.)
+- No invented quotes in God's mouth as scripture. A quote is a real Bhagavad Gita verse, spoken exactly, with `shloka`
+  `{text, ref: "Bhagavad Gita <chapter>.<verse>", sources: [2 URLs]}` and the chapter.verse in the description;
+  otherwise the message is in the spirit of the Gita in simple words ("main kehta hoon...", never "Gita mein likha
+  hai..." without the verse).
+- No politics, no caste or gender debates, no health or astrology claims (no ilaaj, kundli, manglik, grah dosh, upay),
+  no intoxication, no mocking, no vulgarity, nothing that would hurt devotees.
+- Disclosure in the description: **"भक्तिभाव से बनाई गई काल्पनिक प्रस्तुति"** + "Chitra, awaaz aur animation AI se
+  banaye gaye hain (sanketik)."
+
+**File.** `story/krishna-pov/<release>-<topic>.json`, slug `<release>-pov-<topic id>`. Copy the shape of
+`story/krishna-pov/pilot-ep1.json`: `format: "krishna-pov"`, `series: "shri-krishna-kehte-hain"`, `topic_id`, `lead:
+"krishna"`, `story_type` (+ `facts` with 2 URLs each for scripture/parampara details), `message`, `label` (the small
+text on top: Roman, 3-26 characters, no emoji), `cover` (2-4 big Devanagari words on the first 0.4 s), `title` +
+`title_dev`, optional `shloka`, `names` (every spoken name: कृष्ण, श्याम, कान्हा, गोविंद), `scenes` (1-4; every line
+`who: "krishna"`; `shot: "close"` = to camera (at least 60 % of the lines), `shot: "wide"` = an illustrated B-roll of
+the scene `prompt`; at most 2 scenes with `animate`), `endcard` (the blessing + "Like aur Subscribe"),
+`playlist: "Shri Krishna kehte hain"`.
+- **Hook:** line 1 is Krishna to camera asking the question (`shot: "close"`, max 60 characters, a "?").
+- **45-60 s**, 8-16 lines including the endcard.
+- `youtube_title`: **`<Hinglish question>? 👀 | <Festival> Special #krishna #shorts`** (Roman question; on evergreen
+  topics the "festival" is the theme: "Ghar Special", "Gita Gyaan Special"). Description with the message, the source
+  line (and the Gita verse), the disclosure, the AI line, a subscribe line and `#ShriKrishnaKehteHain`.
+
+**Production and QA** as Kailash Parivar (one Kaggle session; one fixed calm warm voice: edge-tts Madhur -8% -2 Hz +
+divine fx through voice/humanize.py; MuseTalk on the flat face, else the talk clip, else the base clip; the QA gate:
+Whisper must hear every spoken name, at least half of the close-ups lip-synced, consistency against the master sheet,
+45-62 s). Validate with `node scripts/validate.mjs story/krishna-pov/<file>.json`. Do not render, upload, commit or push.

@@ -486,6 +486,21 @@ if (s.format === 'status') {
   process.exit(0);
 }
 
+// ---- Character series (STORY.md sections 9 and 10): "Kailash Parivar" (story/kailash/, scripts/kailash-rules.mjs) and
+// "Shri Krishna kehte hain" (story/krishna-pov/, scripts/krishna-pov-rules.mjs); tests scripts/*-rules.test.mjs.
+if (s.format === 'kailash' || s.format === 'krishna-pov') {
+  const rules = await import(s.format === 'kailash' ? './kailash-rules.mjs' : './krishna-pov-rules.mjs');
+  const { planDay, loadInputs } = await import('./day-plan.mjs');
+  const slot = s.format === 'kailash' ? 'kailash' : 'pov';
+  const planned = (d) => { const i = loadInputs('.'); i.series[slot].on = true; return planDay(d, i).uploads.some((u) => u.slot === slot); };
+  const r = rules.checkSpec(s, { ...rules.loadContext('.'), planned });
+  problems.push(...r.problems);
+  if (problems.length) { console.log(problems.map((p) => `- ${p}`).join('\n')); process.exit(1); }
+  for (const n of notes) console.log(n);
+  console.log(`OK: ${file} (${s.format} episode, ${r.scenes} scenes, ${r.lines} lines, ~${Math.round(r.seconds)} s)`);
+  process.exit(0);
+}
+
 // ---- "Kalyug ke Bhagwan" episode (story/kalyug/<release>-<topic>.json, STORY.md section 8) --------------------------
 // A cute 3D cartoon deity in an everyday situation, 30-60 s, the morning Short of Tue/Thu/Sat normal days. Pace as the
 // movie (Madhur ~13.6, Swara ~11.6 Devanagari characters a second at +0%, scaled by the rate) + ~0.45 s per line; no title beat.

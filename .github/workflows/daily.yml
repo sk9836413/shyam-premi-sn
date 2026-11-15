@@ -319,6 +319,13 @@ jobs:
             echo "movie_kind=movie" >> "$GITHUB_OUTPUT"
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today morning = the scheduled movie part"
+          elif [ "$slot" = morning ] && grep -qE "^$today \| (kailash|pov) \|" automation/log.md && ! node scripts/day-plan.mjs --date "$today" --slot morning --check > /dev/null; then
+            # A series episode (08:00: Kailash Parivar / Shri Krishna kehte hain; scripts/series-plan.mjs) took today's
+            # morning slot: recorded like a movie part.
+            line=$(grep -m1 -E "^$today \| (kailash|pov) \|" automation/log.md)
+            echo "movie_day=$(echo "$line" | cut -d'|' -f3 | xargs)" >> "$GITHUB_OUTPUT"
+            echo "movie_kind=$(echo "$line" | cut -d'|' -f2 | xargs)" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::$today morning = the scheduled series episode"
           elif ! node scripts/day-plan.mjs --date "$today" --slot "$slot" --check > "$RUNNER_TEMP/plan.json"; then
             # At most 3 uploads a day (scripts/day-plan.mjs): e.g. noon only on Wednesdays when nothing better fits. A
             # Kalyug ke Bhagwan episode (08:00) no longer replaces the morning Short: both run when the cap allows.
@@ -466,6 +473,8 @@ jobs:
           line=$(grep -m1 "^$today | $kind | $slug |" automation/log.md)
           what="mini-movie part (scheduled 07:00, replaces the katha Short)"
           [ "$kind" = kalyug ] && what="Kalyug ke Bhagwan episode (scheduled 08:00, replaces the morning Short)"
+          [ "$kind" = kailash ] && what="Kailash Parivar episode (scheduled 08:00, replaces the morning Short)"
+          [ "$kind" = pov ] && what="Shri Krishna kehte hain episode (scheduled 08:00, replaces the morning Short)"
           echo "$today | morning | $slug | $(echo "$line" | cut -d'|' -f4 | xargs) | $what" >> automation/log.md
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -2641,3 +2650,23 @@ jobs:
     if: ${{ vars.STORIES == 'on' && !inputs.dry_run }}
     uses: ./.github/workflows/stories.yml
     secrets: inherit
+
+  # Character series (scripts/series-plan.mjs): after every evening-slot run (and slot=kalyug) tomorrow's episode, only once
+  # the owner approved the pilot (the bank's "approved": true) and the repo variable is not off.
+  # "Kailash Parivar" (STORY.md section 9, .github/workflows/kailash.yml), Mon/Thu/Sat.
+  kailash:
+    needs: story
+    if: always() && needs.story.outputs.kalyug == 'true' && vars.KAILASH != 'off'
+    uses: ./.github/workflows/kailash.yml
+    secrets: inherit
+    with:
+      dry_run: ${{ inputs.dry_run == true }}
+
+  # "Shri Krishna kehte hain" / Shyam POV (STORY.md section 10, .github/workflows/krishna-pov.yml), Tue/Fri.
+  krishna-pov:
+    needs: story
+    if: always() && needs.story.outputs.kalyug == 'true' && vars.KRISHNA_POV != 'off'
+    uses: ./.github/workflows/krishna-pov.yml
+    secrets: inherit
+    with:
+      dry_run: ${{ inputs.dry_run == true }}

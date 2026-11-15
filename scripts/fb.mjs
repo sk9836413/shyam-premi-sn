@@ -55,11 +55,11 @@ import { loadInputs, planDay, addDays, istToday, DAWN_FB } from './day-plan.mjs'
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
 
 /** Facebook times (IST) of each Short slot. */
-export const REEL_AT = { status: '00:30', movie: '07:30', kalyug: '08:00', statusday: '08:30', morning: '10:30', noon: '15:00', facts: '17:00', bhajan: '19:45', eve: '20:00', evening: '20:30' };
+export const REEL_AT = { status: '00:30', movie: '07:30', kalyug: '08:00', kailash: '08:00', pov: '08:00', statusday: '08:30', morning: '10:30', noon: '15:00', facts: '17:00', bhajan: '19:45', eve: '20:00', evening: '20:30' };
 export const FB_TIMES = { photo: '06:30', long: '12:30', ...REEL_AT };
 export const GAP_MIN = 90; // minutes between two Facebook Reels (owner, 13 Nov 2026: "at least about 90 minutes")
 // Placed in this order (festival status first: the format that can go viral keeps its exact time).
-const PLACE_ORDER = ['status', 'eve', 'dawn', 'statusday', 'movie', 'evening', 'facts', 'bhajan', 'morning', 'kalyug', 'noon'];
+const PLACE_ORDER = ['status', 'eve', 'dawn', 'statusday', 'movie', 'evening', 'facts', 'bhajan', 'morning', 'kailash', 'pov', 'kalyug', 'noon'];
 // Tried before the 15-minute search when the wanted time is taken (the evening darshan on a 20:00 eve-status day).
 const ALT_AT = { evening: ['18:30', '21:30'], bhajan: ['21:15', '18:15'] };
 // The earliest a Short can exist (render times); the plan never puts a Reel before it. Latest: 23:30.

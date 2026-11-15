@@ -10,9 +10,9 @@
 // Under the 3-Shorts cap (owner, 15 Nov 2026: "kailash replaces the weakest slot"; POV "prioritised over plain katha"):
 // a series Short ranks after the festival status Shorts, the morning Short, the evening temple darshan and the facts
 // Short, before Kalyug ke Bhagwan and the Dadi-Chhotu noon Short; when the cap would still drop it, it takes the place
-// of the weekday day-status morning Short (the old plain katha slot) or, on a festival tie-in day, of the
-// festival-morning temple darshan. It never displaces a festival status Short (incl. the Khatu Gyaras status), the
-// evening temple darshan, a dawn bhajan (05:30-06:30) or a movie part. If its episode is not in log.md by the morning
+// of the weekday day-status morning Short (the old plain katha slot), on a festival day of the festival-morning temple
+// darshan (the evening darshan stays), else of that day's facts Short. It never displaces a dawn bhajan loop/veer Short, a festival status Short (incl. the Khatu Gyaras status), the
+// evening temple darshan or a movie part. If its episode is not in log.md by the morning
 // run (QA gate failed), the morning Short runs after all (morningFallback).
 import fs from 'node:fs';
 import path from 'node:path';
@@ -49,6 +49,8 @@ export function seriesInputs(cfg, root = '.', festivalsList = [], log = '', env 
   const extra = new Map(); // week -> date
   for (const [d, id] of [...tieIns].sort((x, y) => weightOf(y[1]) - weightOf(x[1]) || x[0].localeCompare(y[0]))) {
     if (cfg.days.includes(wdOf(d))) continue;
+    // another series' weekday stays that series' day (Kailash never takes a Tuesday/Friday, POV never a Mon/Thu/Sat)
+    if (SERIES.some((x) => x !== cfg && x.days.includes(wdOf(d)))) { tieIns.delete(d); continue; }
     if (tierOf.get(d) === 'big') { tieIns.delete(d); continue; }
     if (extra.has(weekOf(d))) tieIns.delete(d); else extra.set(weekOf(d), d);
   }
@@ -70,7 +72,7 @@ export function candidate(cfg, date, si = {}, ctx = {}) {
   if (!si.on || ctx.movie || ctx.override) return null;
   const tie = si.tieIns?.get(date);
   if (!cfg.days.includes(ctx.wd) && !tie) return null;
-  return { slot: cfg.slot, ...(tie ? { tieIn: tie } : {}), what: `${cfg.name} episode (${cfg.at}, made the evening before${tie ? `; festival tie-in ${tie}` : ''})` };
+  return { slot: cfg.slot, ...(tie ? { tieIn: tie } : { ownDay: true }), what: `${cfg.name} episode (${cfg.at}, made the evening before${tie ? `; festival tie-in ${tie}` : ''})` };
 }
 
 /** When the series candidate would be dropped by the cap, it replaces the weekday day-status morning Short (or, on its
@@ -80,11 +82,20 @@ export function makeRoom(slot, cands, cap, rank) {
   if (!k) return cands;
   const kept = [...cands].map((c, i) => ({ c, i })).sort((a, b) => rank(a.c) - rank(b.c) || a.i - b.i).slice(0, cap).map((x) => x.c);
   if (kept.includes(k)) return cands;
-  const m = cands.findIndex((c) => c.slot === 'morning' && ((c.kind === 'daystatus' && typeof c.theme === 'number') || (k.tieIn && c.kind === 'temple')));
-  if (m >= 0) {
-    k.replaces = `${cands[m].kind} morning Short`;
-    k.rank = 2; // the morning Short's own rank
+  // the weakest kept Short it may take: the weekday day-status morning Short, on its tie-in day the festival-morning
+  // temple darshan, else the facts Short (never a dawn bhajan loop/veer, a festival status or the evening darshan)
+  const order = [
+    (c) => c.slot === 'morning' && c.kind === 'daystatus' && typeof c.theme === 'number',
+    (c) => c.slot === 'morning' && c.kind === 'temple',
+    (c) => c.slot === 'facts' && !c.logged,
+  ];
+  for (const test of order) {
+    const m = cands.findIndex((c) => kept.includes(c) && test(c));
+    if (m < 0) continue;
+    k.replaces = `${cands[m].slot === 'facts' ? 'facts' : `${cands[m].kind} morning`} Short`;
+    k.rank = rank(cands[m]); // the replaced Short's own rank
     cands.splice(m, 1);
+    break;
   }
   return cands;
 }

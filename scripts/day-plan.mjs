@@ -51,6 +51,7 @@ import { pathToFileURL } from 'node:url';
 import { loadFestivals, placements } from './status-engine.mjs';
 import { DAY_THEMES } from './status-themes.mjs';
 import { loadMantras, mantraFor } from './mantra.mjs';
+import { addSeries, allSeriesInputs, morningFallback, seriesTables } from './series-plan.mjs';
 import { ROTATION as LOOP_ROTATION } from './loop.mjs';
 
 const WEEKDAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -94,6 +95,10 @@ export const addDays = (date, n) => new Date(Date.parse(`${date}T12:00:00Z`) + n
 export const istToday = () => new Date(Date.now() + 5.5 * 3600e3).toISOString().slice(0, 10);
 
 /** Everything the plan depends on, read from the repo (root = the checkout). */
+// Character series (scripts/series-plan.mjs): Kailash Parivar Mon/Thu/Sat, Shri Krishna kehte hain (pov) Tue/Fri, +1 festival
+// tie-in a week each, 08:00, once the owner approved the pilot; under the cap they replace the weekday day-status morning Short.
+Object.assign(AT, seriesTables().at); Object.assign(PRIORITY, seriesTables().priority); Object.assign(ORDER, seriesTables().order);
+
 export function loadInputs(root = '.') {
   const list = loadFestivals(root);
   const festivals = new Map(list.map((f) => [f.date, { name: f.label, tier: f.tier, key: f.key, theme: f.theme }]));
@@ -117,7 +122,8 @@ export function loadInputs(root = '.') {
   let override = null;
   try { override = JSON.parse(read(path.join(root, OVERRIDE_FILE))); } catch { /* none */ }
   const factsLogged = new Set([...log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| facts \| /gm)].map((m) => m[1]));
-  return { festivals, festivalList: list, placements: placements(list), movies, kalyug: process.env.KALYUG === 'on', kalyugLogged, longs: longsOf(log), today: istToday(),
+  const seriesIn = allSeriesInputs(root, list, log);
+  return { ...seriesIn, festivals, festivalList: list, placements: placements(list), movies, kalyug: process.env.KALYUG === 'on', kalyugLogged, longs: longsOf(log), today: istToday(),
     override, extraDay: (process.env.EXTRA_UPLOAD_DAY || '').trim(), mantras: loadMantras(root), facts: process.env.FACTS !== 'off', factsLogged,
     loops: process.env.LOOPS !== 'off' };
 }
@@ -215,7 +221,8 @@ export function planDay(date, inputs = {}) {
     if (k >= 0) cands[k] = u; else cands.push(u);
   }
   const cap = CAP + (inputs.extraDay && inputs.extraDay === date ? 1 : 0);
-  const rank = (c) => (c.logged ? 0.5 : PRIORITY[c.slot]);
+  const rank = (c) => (c.logged ? 0.5 : c.rank ?? PRIORITY[c.slot]);
+  addSeries(date, inputs, { wd, movie, override: ov }, cands, cap, rank);
   const ranked = cands.map((c, i) => ({ c, i })).sort((a, b) => rank(a.c) - rank(b.c) || a.i - b.i).map((x) => x.c);
   const kept = ranked.slice(0, cap);
   const dropped = ranked.slice(cap).map((c) => c.slot);
@@ -259,6 +266,9 @@ export function isPlanned(date, slot, inputs) {
   const p = planDay(date, inputs);
   const u = p.uploads.find((x) => x.slot === slot);
   if (u) return { planned: true, plan: p, upload: u };
+  if (slot === 'morning' && morningFallback(p, inputs)) {
+    return { planned: true, plan: p, upload: { slot, kind: 'temple', what: 'famous-temple darshan Short (the series episode that replaced it is missing)' }, why: 'series episode not in log.md: the morning Short runs' };
+  }
   if (slot === 'morning' && p.type === 'movie') {
     return { planned: true, plan: p, upload: { slot, kind: 'temple', what: 'famous-temple darshan Short (the movie part is missing)' }, why: 'movie day without a logged movie part: the morning Short replaces it' };
   }
