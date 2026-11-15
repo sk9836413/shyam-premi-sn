@@ -182,23 +182,47 @@ WINDOWS = os.environ.get("MOVIE_WINDOWS", "09:00-11:30,18:30-21:00")
 TIER_MINUTES = {"full": 165, "standard": 120, "lite": 80, "stills": 40}
 
 
-def fit_window(tier, now=None):
-    """The biggest tier (<= the quota's) that finishes before the next blocked window; 'wait' inside a window."""
-    now = now or datetime.datetime.now(datetime.timezone.utc)
-    ist = now + datetime.timedelta(hours=5, minutes=30)
-    m = ist.hour * 60 + ist.minute
+def _spans():
     spans = []
     for w in filter(None, WINDOWS.split(",")):
         a_, b_ = w.split("-")
         spans.append((int(a_[:2]) * 60 + int(a_[3:]), int(b_[:2]) * 60 + int(b_[3:])))
+    return spans
+
+
+def _ist_minute(now=None):
+    now = now or datetime.datetime.now(datetime.timezone.utc)
+    ist = now + datetime.timedelta(hours=5, minutes=30)
+    return ist.hour * 60 + ist.minute
+
+
+def fit_window(tier, now=None, queue=0):
+    """The biggest tier (<= the quota's) that finishes before the next blocked window; 'wait' inside a window.
+    queue: minutes the session may sit in Kaggle's queue first (the push's --queue-minutes), counted half: a busy
+    queue is the exception, and START_BY stops a session that starts later than that anyway."""
+    m, spans = _ist_minute(now), _spans()
     if any(a_ <= m < b_ for a_, b_ in spans):
         return "wait"
     nxt = min([a_ - m for a_, _ in spans if a_ > m] + [a_ + 1440 - m for a_, _ in spans] or [10 ** 6])
     order = ["full", "standard", "lite", "stills"]
     for t in order[order.index(tier):] if tier in order else []:
-        if TIER_MINUTES[t] <= nxt:
+        if TIER_MINUTES[t] + queue / 2 <= nxt:
             return t
     return "wait"
+
+
+def window_wait(now=None):
+    """Minutes until the blocked window we are in (or the next one, if too close for any tier) closes; the movie job's
+    retry sleeps this long, then dispatches slot=movie again (the scheduler's dispatches all fall inside a window)."""
+    m, spans = _ist_minute(now), _spans()
+    for a_, b_ in spans:
+        if a_ <= m < b_:
+            return b_ - m
+    ahead = [(a_ - m) % 1440 for a_, _ in spans]
+    if ahead:
+        i = ahead.index(min(ahead))
+        return (spans[i][1] - m) % 1440
+    return 0
 
 
 def cmd_tier(a):
@@ -207,8 +231,10 @@ def cmd_tier(a):
     tier, spare, days = pick_tier(q, bool(spec.get("hero_clip")))
     if a.force:
         tier = a.force
-    timed = fit_window(tier) if tier != "none" else "none"
+    queue = int(os.environ.get("MOVIE_QUEUE_MINUTES") or 30)
+    timed = fit_window(tier, queue=queue) if tier != "none" else "none"
     print(json.dumps({"tier": "none" if timed == "wait" else timed, "quota_tier": tier, "window": timed == "wait",
+                      "retry_in_min": window_wait() + 2 if timed == "wait" else 0,
                       "spare_h": spare, "days_to_reset": days, "left_h": q.get("left")}))
 
 

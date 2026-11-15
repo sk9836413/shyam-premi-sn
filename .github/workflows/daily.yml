@@ -102,6 +102,10 @@ on:
         description: facts slot only - a facts Short file, e.g. story/facts/2026-11-17-khatu-baba-ke-naam.json (empty = the due one)
         required: false
         default: ''
+      queue_minutes:
+        description: movie slot only - minutes the Kaggle session may wait in Kaggle's queue before the run gives up (empty = 30; ~120 when the T4s are busy)
+        required: false
+        default: ''
       kaggle_reuse:
         description: movie / kalyug / facts slot only - render from the last finished sps-movie / sps-kalyug / sps-animate-facts Kaggle session (no new GPU session)
         type: boolean
@@ -1647,7 +1651,12 @@ jobs:
     needs: story
     if: always() && needs.story.outputs.movie == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 355
+    outputs:
+      # Minutes until the movie should try again (job movie_retry): set when the Kaggle step found no slot because of a
+      # blocked window, or when the session sat in Kaggle's queue too long (then retried once with a 120-min queue).
+      retry_in: ${{ steps.kaggle.outputs.retry_in }}
+      retry_queue: ${{ steps.kaggle.outputs.retry_queue }}
     concurrency:
       group: shyam-movie
       cancel-in-progress: false
@@ -1728,10 +1737,12 @@ jobs:
         id: kaggle
         if: steps.spec.outcome == 'success'
         continue-on-error: true
-        timeout-minutes: 220
+        timeout-minutes: 330
         env:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
           SPS_SLOT: movie
+          # Kaggle queue budget (input queue_minutes): the push's START_BY, the wait's queue limit, story/movie.py fit_window.
+          MOVIE_QUEUE_MINUTES: ${{ inputs.queue_minutes || '30' }}
         run: |
           [ -n "$KAGGLE_API_TOKEN" ] || { echo "::error::no KAGGLE_API_TOKEN secret"; exit 1; }
           if [ "${{ inputs.kaggle_reuse }}" = true ]; then  # re-render a finished session (e.g. after a renderer fix)
@@ -1743,14 +1754,25 @@ jobs:
           python -I story/movie.py tier --spec "$F" --quota "$RUNNER_TEMP/quota.json" --force "${{ vars.MOVIE_TIER }}" | tee "$RUNNER_TEMP/tier.json"
           tier=$(node -p "require(process.env.RUNNER_TEMP + '/tier.json').tier")
           # "none": too few GPU hours before the weekly reset, or inside / too close to the daily jobs' windows (09:00-11:30 and
-          # 18:30-21:00 IST, story/movie.py fit_window): the next evening trigger (e.g. 21:17 IST) tries again.
-          [ "$tier" != none ] || { echo "::warning::No Kaggle slot for the movie now ($(cat "$RUNNER_TEMP/tier.json")); the next trigger tries again"; exit 1; }
+          # 18:30-21:00 IST, story/movie.py fit_window): job movie_retry dispatches slot=movie again when the window closes.
+          # Every scheduler dispatch (09:13, 10:13, 10:43, 18:46, 19:46 IST) falls inside a window, so a window "none" asks
+          # job movie_retry to dispatch slot=movie again right after the window closes (15 Nov 2026: part 1 never started).
+          if [ "$tier" = none ]; then
+            retry=$(node -p "require(process.env.RUNNER_TEMP + '/tier.json').retry_in_min || 0")
+            [ "$retry" -gt 0 ] && { echo "retry_in=$retry" >> "$GITHUB_OUTPUT"; echo "retry_queue=120" >> "$GITHUB_OUTPUT"; }
+            echo "::warning::No Kaggle slot for the movie now ($(cat "$RUNNER_TEMP/tier.json")); retry in ${retry} min"; exit 1
+          fi
           python -I story/movie.py dataset --spec "$F" --voice "$W/voice" --tier "$tier" --out animate/dataset --max-minutes 170
           node animate/kaggle.mjs upload
           node animate/kaggle.mjs lock --minutes 90
-          node animate/kaggle.mjs push --queue-minutes 30 --retry-minutes 30
+          Q=$MOVIE_QUEUE_MINUTES
+          node animate/kaggle.mjs push --queue-minutes "$Q" --retry-minutes 30
           start=$(date +%s)
-          node animate/kaggle.mjs wait --minutes 200 --queue-minutes 30 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json")"
+          node animate/kaggle.mjs wait --minutes $((Q + 170)) --queue-minutes "$Q" > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json")"
+          # Kaggle's T4s busy (QUEUED_TOO_LONG, 15 Nov 2026 twice with 30 min): one retry with a 120-min queue.
+          if grep -q QUEUED_TOO_LONG "$RUNNER_TEMP/wait.json" && [ "$Q" -lt 120 ]; then
+            echo "retry_in=10" >> "$GITHUB_OUTPUT"; echo "retry_queue=120" >> "$GITHUB_OUTPUT"
+          fi
           node animate/kaggle.mjs fetch --to "$W/kaggle" | tee "$RUNNER_TEMP/fetch.json"
           echo "- Kaggle ($tier): $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min, quota before: $(cat "$RUNNER_TEMP/quota.json")" >> "$GITHUB_STEP_SUMMARY"
           node scripts/movie-qa.mjs "$W/kaggle/qa.json" >> "$GITHUB_STEP_SUMMARY" || true
@@ -1858,6 +1880,34 @@ jobs:
           git add automation/movie-series.md story/movies/*/series.json story/movies/*/part-*.json 2>/dev/null || true
           git commit -qm "Movie $SLUG scheduled for $rel 07:00"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # Retry for the movie part (15 Nov 2026 root cause: every reliable trigger of the movie job falls inside the Kaggle
+  # blocked windows, so part 1 hit "No Kaggle slot" every time). Sleeps until the window closes (or 10 min after a
+  # QUEUED_TOO_LONG), then dispatches slot=movie with a 120-min queue. The newest sleeper replaces older ones
+  # (cancel-in-progress), so the evening polls inside 18:30-21:00 make ONE dispatch at ~21:02 IST; a 120-min run that
+  # still queues too long does not retry again, and the dispatched run makes nothing when no part is due (movie-due).
+  movie_retry:
+    needs: movie
+    if: always() && needs.movie.outputs.retry_in != '' && !inputs.dry_run
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    permissions:
+      actions: write
+      contents: read
+    concurrency:
+      group: shyam-movie-retry
+      cancel-in-progress: true
+    steps:
+      - name: Wait, then dispatch slot=movie
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RETRY_IN: ${{ needs.movie.outputs.retry_in }}
+          RETRY_QUEUE: ${{ needs.movie.outputs.retry_queue }}
+        run: |
+          [ "$RETRY_IN" -le 230 ] || { echo "::warning::retry in $RETRY_IN min is too far; the next trigger tries"; exit 0; }
+          echo "Dispatching slot=movie in $RETRY_IN min ($(TZ=Asia/Kolkata date -d "+$RETRY_IN min" '+%H:%M') IST), queue ${RETRY_QUEUE:-120} min"
+          sleep $((RETRY_IN * 60))
+          gh workflow run daily.yml -R "$GITHUB_REPOSITORY" --ref main -f slot=movie -f queue_minutes="${RETRY_QUEUE:-120}"
 
   # "Kalyug ke Bhagwan" (STORY.md section 8, story/kalyug.py, characters/kalyug/): cute 3D cartoon deities in everyday
   # roles, 30-60 s. With the repo variable KALYUG=on, after every evening-slot run (and alone with slot=kalyug) TOMORROW's
