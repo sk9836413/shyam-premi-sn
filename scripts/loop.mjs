@@ -47,8 +47,10 @@ export const DEITIES = {
     veer: 'Mahakal, the fierce form of Lord Shiva, a majestic close-up portrait, ash-blue skin, intense third eye glowing softly, crescent moon and flowing matted hair, rudraksha garlands, trishul raised, storm clouds and lightning-lit dramatic sky behind, powerful divine aura' },
   hanuman: { roman: 'Hanuman ji', hi: 'हनुमान जी', jaikara: 'जय बजरंगबली', jaikara_roman: 'Jai Bajrangbali', tag: '#hanuman', playlist: 'Hanuman ji ki Kathayein',
     fb: '#Hanuman #JaiBajrangbali #Bhakti',
-    loop: 'Lord Hanuman with a clean-shaven vanara face like a noble langur, no beard, no moustache, orange-vermilion skin, golden mukut, gada on his shoulder, kneeling in devotion with folded hands, Shri Ram\'s name glowing softly in his heart as light, sunrise sky',
-    veer: 'Lord Hanuman, majestic heroic close-up portrait, a clean-shaven vanara face like a noble langur with a smooth muzzle, no beard, no moustache, orange-vermilion skin, fierce devoted eyes, golden mukut and earrings, gada over his shoulder, dramatic cloudy sky with golden light rays' },
+    // FLUX draws a bearded Hanuman whatever the prompt says (6 Nov cast sheet, 15 Nov veer pilot): the face is never shown,
+    // a heroic back / silhouette composition instead (beard-proof); "no beard" stays in the prompt for the validator.
+    loop: 'Lord Hanuman seen from behind, kneeling in devotion with folded hands before a radiant golden light of Shri Ram, orange-vermilion body, golden mukut, gada resting beside him, his long tail curled, face not visible, no beard, sunrise sky',
+    veer: 'Lord Hanuman seen from behind, standing tall on a mountain peak holding his golden gada, orange-vermilion muscular body, golden mukut, his long tail curled up, facing a huge rising sun, face not visible, no beard, heroic silhouette, dramatic storm clouds and golden light rays' },
   kali: { roman: 'Maa Kali', hi: 'माँ काली', jaikara: 'जय माँ काली', jaikara_roman: 'Jai Maa Kali', tag: '#maakali', playlist: 'Maa Durga aur Devi ki Kathayein',
     fb: '#MaaKali #JaiMaaKali #Bhakti',
     loop: 'Maa Kali in a gentle protective blessing form, dark blue skin, calm compassionate eyes, flowing black hair, red and gold attire, raising one hand in blessing, lotus and diyas around her, deep red twilight sky',
