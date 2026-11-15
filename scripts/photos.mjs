@@ -78,8 +78,15 @@ const IG_EARLY = 10 * 60e3; // flush publishes an Instagram post up to 10 minute
 const IG_LATE = 4 * 3600e3; // and skips it when more than 4 hours late (the next slot has its own post)
 
 /** Slots of `date` that still make sense to build at `now`, minus those already published. */
+/** Photo posts the owner wants at all (repo var PHOTO_SLOTS, e.g. "1"; empty = all). 15 Nov 2026: Meta reach was ~0 for
+ *  every post, so fewer, better posts. */
+export const enabledSlots = (v = process.env.PHOTO_SLOTS) => {
+  const set = String(v || '').split(',').map((x) => Number(x.trim())).filter((x) => SLOTS.some((s) => s.n === x));
+  return set.length ? set : SLOTS.map((s) => s.n);
+};
+
 export function slotsToBuild(date, now = Date.now(), done = []) {
-  return SLOTS.filter((s) => !done.includes(s.n))
+  return SLOTS.filter((s) => enabledSlots().includes(s.n) && !done.includes(s.n))
     .filter((s) => istAt(date, s.ig) >= now - IG_EARLY || (s.fb && istAt(date, s.fb) >= now + FB_LEAD))
     .map((s) => s.n);
 }

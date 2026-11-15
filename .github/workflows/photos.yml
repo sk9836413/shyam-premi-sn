@@ -52,6 +52,8 @@ jobs:
       META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
       META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
       IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      # Which photo posts (1-4) to build at all; empty = all 4. Owner 15 Nov 2026: Meta reach ~0, post less (var = 1).
+      PHOTO_SLOTS: ${{ vars.PHOTO_SLOTS }}
       HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
       DRY: ${{ inputs.dry_run && '1' || '' }}
     steps:
