@@ -33,64 +33,171 @@
     }
   ],
   "music": "calm",
-  "cast": ["narad", "mahadev", "parvati", "ganesh", "kartikeya", "mushak"],
-  "names": ["नारद", "महादेव", "पार्वती", "गणेश", "कार्तिकेय", "मूषक"],
+  "cast": [
+    "narad",
+    "mahadev",
+    "parvati",
+    "ganesh",
+    "kartikeya",
+    "mushak"
+  ],
+  "names": [
+    "नारद",
+    "महादेव",
+    "पार्वती",
+    "गणेश",
+    "कार्तिकेय",
+    "मूषक"
+  ],
   "scenes": [
     {
       "prompt": "Mount Kailash in a soft snowy dawn, Mahadev and Mata Parvati sit together on a rock covered with a tiger skin, little Bal Ganesh and the teenage prince Kartikeya stand beside them, cheerful Narad ji arrives on a soft glowing cloud holding up one radiant golden fruit in his hand, warm divine light, medium wide shot",
-      "cast": ["narad", "mahadev", "parvati", "ganesh", "kartikeya"],
+      "cast": [
+        "narad",
+        "mahadev",
+        "parvati",
+        "ganesh",
+        "kartikeya"
+      ],
       "motion": "in",
       "seed": 11,
       "animate": "the golden fruit glows softly, snowflakes drift slowly, Narad ji smiles and the cloud under him swirls gently",
       "lines": [
-        {"who": "narad", "tts": "नारायण नारायण! महादेव, ये दिव्य ज्ञान-फल, पर एक ही है!", "sub": "Narayan Narayan! Mahadev, ye divya gyan-phal... par ek hi hai!", "mood": "excitement"},
-        {"who": "ganesh", "tts": "माँ, ये फल मुझे चाहिए!", "sub": "Maa, ye phal mujhe chahiye!"},
-        {"who": "kartikeya", "tts": "नहीं भैया, ये फल तो मेरा है!", "sub": "Nahi bhaiya, ye phal to mera hai!"},
-        {"who": "parvati", "tts": "अरे, झगड़ा नहीं! महादेव, आप ही बताइए।", "sub": "Arey, jhagda nahi! Mahadev, aap hi bataiye.", "mood": "calm"},
-        {"who": "mahadev", "tts": "जो पहले पूरी पृथ्वी की परिक्रमा करके आएगा, यह फल उसी का होगा।", "sub": "Jo pehle poori prithvi ki parikrama karke aayega, ye phal usi ka hoga.", "mood": "calm"}
+        {
+          "who": "narad",
+          "tts": "नारायण नारायण! महादेव, ये दिव्य ज्ञान-फल, पर एक ही है!",
+          "sub": "Narayan Narayan! Mahadev, ye divya gyan-phal... par ek hi hai!",
+          "mood": "excitement"
+        },
+        {
+          "who": "ganesh",
+          "tts": "माँ, ये फल मुझे चाहिए!",
+          "sub": "Maa, ye phal mujhe chahiye!"
+        },
+        {
+          "who": "kartikeya",
+          "tts": "नहीं भैया, ये फल तो मेरा है!",
+          "sub": "Nahi bhaiya, ye phal to mera hai!"
+        },
+        {
+          "who": "parvati",
+          "tts": "अरे, झगड़ा नहीं! महादेव, आप ही बताइए।",
+          "sub": "Arey, jhagda nahi! Mahadev, aap hi bataiye.",
+          "mood": "calm"
+        },
+        {
+          "who": "mahadev",
+          "tts": "जो पहले पूरी पृथ्वी की परिक्रमा करके आएगा, यह फल उसी का होगा।",
+          "sub": "Jo pehle poori prithvi ki parikrama karke aayega, ye phal usi ka hoga.",
+          "mood": "calm"
+        }
       ]
     },
     {
       "prompt": "The brave teenage prince Kartikeya rides his large royal peacock high above the snowy Kailash peaks and white clouds, the peacock's long tail streaming behind, golden sunrise light, epic wide shot",
-      "cast": ["kartikeya"],
+      "cast": [
+        "kartikeya"
+      ],
       "motion": "pan",
       "seed": 24,
       "lines": [
-        {"who": "kartikeya", "tts": "मेरा मोर सबसे तेज़ है! मैं अभी आया!", "sub": "Mera mor sabse tez hai! Main abhi aaya!", "mood": "excitement"}
+        {
+          "who": "kartikeya",
+          "tts": "मेरा मोर सबसे तेज़ है! मैं अभी आया!",
+          "sub": "Mera mor sabse tez hai! Main abhi aaya!",
+          "mood": "excitement"
+        }
       ]
     },
     {
       "prompt": "Little Bal Ganesh sits thoughtfully on a snowy rock with his cute little mouse Mushak beside him looking up at him worried, a small oil lamp and a few laddoos on a leaf plate, warm soft light, close medium shot",
-      "cast": ["ganesh", "mushak"],
+      "cast": [
+        "ganesh",
+        "mushak"
+      ],
       "motion": "in",
       "seed": 37,
       "lines": [
-        {"who": "mushak", "tts": "गणेश जी, मैं तो बहुत छोटा हूँ। हम कैसे जीतेंगे?", "sub": "Ganesh ji, main to bahut chhota hoon. Hum kaise jeetenge?", "mood": "emotional"},
-        {"who": "ganesh", "tts": "मूषक, ज़रा सोचो, मेरा पूरा संसार कहाँ है?", "sub": "Mushak, zara socho, mera poora sansaar kahan hai?", "mood": "wonder"}
+        {
+          "who": "mushak",
+          "tts": "प्रभु, मैं तो बहुत छोटा हूँ। हम कैसे जीतेंगे?",
+          "sub": "Prabhu, main to bahut chhota hoon. Hum kaise jeetenge?",
+          "mood": "emotional"
+        },
+        {
+          "who": "ganesh",
+          "tts": "मूषक, ज़रा सोचो, मेरा पूरा संसार कहाँ है?",
+          "sub": "Mushak, zara socho, mera poora sansaar kahan hai?",
+          "mood": "wonder"
+        }
       ]
     },
     {
       "prompt": "Mahadev and Mata Parvati sit side by side on a tiger skin on snowy Kailash, little Bal Ganesh walks around them with folded hands, flower petals drift in the air, warm golden divine light, wide shot",
-      "cast": ["ganesh", "mahadev", "parvati"],
+      "cast": [
+        "ganesh",
+        "mahadev",
+        "parvati"
+      ],
       "motion": "out",
       "seed": 50,
       "animate": "little Ganesh walks slowly around his parents with folded hands while flower petals drift down softly",
       "lines": [
-        {"who": "ganesh", "tts": "माता-पिता ही मेरा संसार हैं। उनकी परिक्रमा ही पृथ्वी की परिक्रमा है।", "sub": "Mata-pita hi mera sansaar hain. Unki parikrama hi prithvi ki parikrama hai.", "mood": "calm"},
-        {"who": "parvati", "tts": "मेरे गणेश ने कितनी सुंदर बात कही।", "sub": "Mere Ganesh ne kitni sundar baat kahi.", "mood": "emotional"},
-        {"who": "mahadev", "tts": "सच कहा, गणेश। यह ज्ञान-फल तुम्हारा हुआ।", "sub": "Sach kaha, Ganesh. Ye gyan-phal tumhara hua.", "mood": "calm"}
+        {
+          "who": "ganesh",
+          "tts": "माता-पिता ही मेरा संसार हैं। उनकी परिक्रमा ही पृथ्वी की परिक्रमा है।",
+          "sub": "Mata-pita hi mera sansaar hain. Unki parikrama hi prithvi ki parikrama hai.",
+          "mood": "calm"
+        },
+        {
+          "who": "parvati",
+          "tts": "मेरे बेटे ने कितनी सुंदर बात कही।",
+          "sub": "Mere bete ne kitni sundar baat kahi.",
+          "mood": "emotional"
+        },
+        {
+          "who": "mahadev",
+          "tts": "सच कहा, पुत्र। यह ज्ञान-फल तुम्हारा हुआ।",
+          "sub": "Sach kaha, putra. Ye gyan-phal tumhara hua.",
+          "mood": "calm"
+        }
       ]
     },
     {
       "prompt": "Back on snowy Kailash at sunset, the teenage prince Kartikeya stands with his head lowered and sad eyes, Mata Parvati gently holds his face with love, Mahadev rests a kind hand on his shoulder, little Bal Ganesh watches with folded hands, warm golden light, medium shot",
-      "cast": ["kartikeya", "parvati", "mahadev", "ganesh"],
+      "cast": [
+        "kartikeya",
+        "parvati",
+        "mahadev",
+        "ganesh"
+      ],
       "motion": "in",
       "seed": 63,
       "lines": [
-        {"who": "kartikeya", "tts": "मैं इतनी दूर गया, और फल भैया को मिल गया?", "sub": "Main itni door gaya, aur phal bhaiya ko mil gaya?", "mood": "emotional"},
-        {"who": "parvati", "tts": "कार्तिकेय, तुम तो खुद ज्ञान का फल हो, मेरे लाल।", "sub": "Kartikeya, tum to khud gyan ka phal ho, mere laal.", "mood": "emotional"},
-        {"who": "mahadev", "tts": "तुम्हारा साहस भी उतना ही अनमोल है, पुत्र।", "sub": "Tumhara saahas bhi utna hi anmol hai, putra.", "mood": "calm"},
-        {"who": "ganesh", "tts": "भैया, आप सबसे बहादुर हो!", "sub": "Bhaiya, aap sabse bahadur ho!", "mood": "excitement"}
+        {
+          "who": "kartikeya",
+          "tts": "मैं इतनी दूर गया, और फल भैया को मिल गया?",
+          "sub": "Main itni door gaya, aur phal bhaiya ko mil gaya?",
+          "mood": "emotional"
+        },
+        {
+          "who": "parvati",
+          "tts": "मेरे लाल, तुम तो खुद ज्ञान का फल हो।",
+          "sub": "Mere laal, tum to khud gyan ka phal ho.",
+          "mood": "emotional"
+        },
+        {
+          "who": "mahadev",
+          "tts": "तुम्हारा साहस भी उतना ही अनमोल है, पुत्र।",
+          "sub": "Tumhara saahas bhi utna hi anmol hai, putra.",
+          "mood": "calm"
+        },
+        {
+          "who": "ganesh",
+          "tts": "भैया, आप सबसे बहादुर हो!",
+          "sub": "Bhaiya, aap sabse bahadur ho!",
+          "mood": "excitement"
+        }
       ]
     }
   ],

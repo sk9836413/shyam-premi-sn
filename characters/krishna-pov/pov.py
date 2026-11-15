@@ -58,8 +58,11 @@ def cmd_render(a):
     Episode(a).run()
 
 
+_kailash_sheet = KL.cmd_sheet
+
+
 def cmd_sheet(a):
-    KL.cmd_sheet(a)
+    _kailash_sheet(a)
     p = os.path.join(HERE, "character-sheet.png")
     if os.path.exists(p):  # retitle the master sheet
         from PIL import Image, ImageDraw

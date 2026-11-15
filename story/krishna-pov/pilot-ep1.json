@@ -20,42 +20,98 @@
   "facts": [
     {
       "claim": "Barbarik ne Shri Krishna ko apna sheesh daan kiya (Mahabharata se judi parampara)",
-      "sources": ["https://en.wikipedia.org/wiki/Barbarika", "https://en.wikipedia.org/wiki/Khatushyamji_Temple"]
+      "sources": [
+        "https://en.wikipedia.org/wiki/Barbarika",
+        "https://en.wikipedia.org/wiki/Khatushyamji_Temple"
+      ]
     },
     {
       "claim": "Shri Krishna ne vardaan diya ki Kalyug mein Barbarik unke naam Shyam se pooje jayenge",
-      "sources": ["https://en.wikipedia.org/wiki/Barbarika", "https://en.wikipedia.org/wiki/Khatushyamji_Temple"]
+      "sources": [
+        "https://en.wikipedia.org/wiki/Barbarika",
+        "https://en.wikipedia.org/wiki/Khatushyamji_Temple"
+      ]
     }
   ],
   "shloka": {
     "text": "पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति",
     "ref": "Bhagavad Gita 9.26",
-    "sources": ["https://www.holy-bhagavad-gita.org/chapter/9/verse/26", "https://vedabase.io/en/library/bg/9/26/"]
+    "sources": [
+      "https://www.holy-bhagavad-gita.org/chapter/9/verse/26",
+      "https://vedabase.io/en/library/bg/9/26/"
+    ]
   },
   "music": "calm",
-  "cast": ["krishna"],
-  "names": ["श्याम", "खाटू", "गीता", "बर्बरीक"],
+  "cast": [
+    "krishna"
+  ],
+  "names": [
+    "श्याम",
+    "खाटू",
+    "गीता",
+    "बर्बरीक"
+  ],
   "scenes": [
     {
       "prompt": "Shri Krishna stands in a peaceful flower garden by the Yamuna river at sunrise, a soft pink and saffron dawn sky, lotus leaves on the water, he looks warmly at the viewer, medium close shot",
-      "cast": ["krishna"],
+      "cast": [
+        "krishna"
+      ],
       "motion": "in",
       "seed": 21,
       "lines": [
-        {"who": "krishna", "shot": "close", "tts": "खाटू जा रहे हो? बहुत सुंदर! पर एक बात पूछूँ?", "sub": "Khatu ja rahe ho? Bahut sundar! Par ek baat poochhoon?", "mood": "wonder"},
-        {"who": "krishna", "shot": "close", "tts": "घर से निकलते समय, माँ-बाबा का आशीर्वाद लिया?", "sub": "Ghar se nikalte samay, maa-baba ka aashirwad liya?", "mood": "calm"},
-        {"who": "krishna", "shot": "close", "tts": "जानते हो, बाबा श्याम को यह नाम मैंने ही दिया था।", "sub": "Jaante ho, Baba Shyam ko ye naam maine hi diya tha.", "mood": "wonder"}
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "खाटू जा रहे हो? बहुत सुंदर! पर एक बात पूछूँ?",
+          "sub": "Khatu ja rahe ho? Bahut sundar! Par ek baat poochhoon?",
+          "mood": "wonder"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "घर से निकलते समय, माँ-बाबा का आशीर्वाद लिया?",
+          "sub": "Ghar se nikalte samay, maa-baba ka aashirwad liya?",
+          "mood": "calm"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "जानते हो, बाबा श्याम को यह नाम मैंने ही दिया था।",
+          "sub": "Jaante ho, Baba Shyam ko ye naam maine hi diya tha.",
+          "mood": "wonder"
+        }
       ]
     },
     {
       "prompt": "A young brave warrior prince Barbarika kneels with folded hands and a peaceful smile before Shri Krishna on a calm battlefield plain at dawn, soft golden divine light, banners in the distance, respectful and gentle, no weapons raised, wide shot",
-      "cast": ["krishna"],
+      "cast": [
+        "krishna"
+      ],
       "motion": "pan",
       "seed": 34,
       "lines": [
-        {"who": "krishna", "shot": "wide", "tts": "बर्बरीक ने हँसते-हँसते अपना शीश दान कर दिया था।", "sub": "Barbarik ne hanste-hanste apna sheesh daan kar diya tha.", "mood": "emotional"},
-        {"who": "krishna", "shot": "close", "tts": "तब मैंने वरदान दिया, कलियुग में तुम मेरे नाम श्याम से पूजे जाओगे।", "sub": "Tab maine vardaan diya, Kalyug mein tum mere naam Shyam se pooje jaoge.", "mood": "calm"},
-        {"who": "krishna", "shot": "close", "tts": "उसका दान बड़ा था, क्योंकि उसके मन में सच्चा भाव था।", "sub": "Uska daan bada tha, kyunki uske mann mein sachcha bhaav tha.", "mood": "emotional"}
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "बर्बरीक ने हँसते-हँसते अपना शीश दान कर दिया था।",
+          "sub": "Barbarik ne hanste-hanste apna sheesh daan kar diya tha.",
+          "mood": "emotional"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "तब मैंने वरदान दिया, कलियुग में तुम मेरे नाम श्याम से पूजे जाओगे।",
+          "sub": "Tab maine vardaan diya, Kalyug mein tum mere naam Shyam se pooje jaoge.",
+          "mood": "calm"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "उसका दान बड़ा था, क्योंकि उसके मन में सच्चा भाव था।",
+          "sub": "Uska daan bada tha, kyunki uske mann mein sachcha bhaav tha.",
+          "mood": "emotional"
+        }
       ]
     },
     {
@@ -64,11 +120,41 @@
       "seed": 47,
       "animate": "the saffron flags flutter softly in the breeze and the devotees move slowly forward in the calm queue",
       "lines": [
-        {"who": "krishna", "shot": "wide", "tts": "तो इस जन्मोत्सव, दर्शन की लाइन में धक्का मत देना।", "sub": "To is Janmotsav, darshan ki line mein dhakka mat dena.", "mood": "calm"},
-        {"who": "krishna", "shot": "close", "tts": "किसी बुज़ुर्ग को आगे जाने देना, किसी प्यासे को पानी देना।", "sub": "Kisi buzurg ko aage jaane dena, kisi pyaase ko paani dena.", "mood": "calm"},
-        {"who": "krishna", "shot": "close", "tts": "दर्शन भी करो, और रास्ते में सेवा भी करो।", "sub": "Darshan bhi karo, aur raaste mein seva bhi karo.", "mood": "excitement"},
-        {"who": "krishna", "shot": "close", "tts": "गीता में मैंने कहा है: पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति।", "sub": "Gita mein maine kaha hai: Patram pushpam phalam toyam yo me bhaktya prayachhati.", "mood": "calm"},
-        {"who": "krishna", "shot": "close", "tts": "प्रेम से दिया एक पत्ता भी, मुझे स्वीकार है।", "sub": "Prem se diya ek patta bhi, mujhe sweekar hai.", "mood": "emotional"}
+        {
+          "who": "krishna",
+          "shot": "wide",
+          "tts": "तो इस जन्मोत्सव, दर्शन की लाइन में धक्का मत देना।",
+          "sub": "To is Janmotsav, darshan ki line mein dhakka mat dena.",
+          "mood": "calm"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "किसी बुज़ुर्ग को आगे जाने देना, किसी प्यासे को पानी देना।",
+          "sub": "Kisi buzurg ko aage jaane dena, kisi pyaase ko paani dena.",
+          "mood": "calm"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "दर्शन भी करो, और रास्ते में सेवा भी करो।",
+          "sub": "Darshan bhi karo, aur raaste mein seva bhi karo.",
+          "mood": "excitement"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "गीता में मैंने कहा है: पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति।",
+          "sub": "Gita mein maine kaha hai: Patram pushpam phalam toyam yo me bhaktya prayachhati.",
+          "mood": "calm"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "प्रेम से दिया एक पत्ता भी, मुझे स्वीकार है।",
+          "sub": "Prem se diya ek patta bhi, mujhe sweekar hai.",
+          "mood": "emotional"
+        }
       ]
     }
   ],

@@ -8,7 +8,11 @@
       "name": "Sutradhar",
       "kind": "voice",
       "color": "FFF3D6",
-      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "-4%", "pitch": "-4Hz"}
+      "voice": {
+        "edge": "hi-IN-MadhurNeural",
+        "rate": "-4%",
+        "pitch": "-4Hz"
+      }
     },
     "krishna": {
       "name": "Shri Krishna",
@@ -19,9 +23,36 @@
       "description": "Shri Krishna as a youthful, kind and wise divine young man with a gentle knowing smile, a smooth clean-shaven face, soft sky-blue skin, large calm lotus-shaped eyes, black wavy shoulder-length hair, a golden crown (mukut) with one peacock feather, a yellow pitambar silk upper cloth, a fragrant Vaijayanti flower garland, gold earrings shaped like makara fish, a sandalwood U-shaped tilak on the forehead, a bamboo flute held near his chest",
       "wide": "Shri Krishna (youthful kind divine young man, soft sky-blue skin, golden crown with one peacock feather, yellow pitambar, Vaijayanti garland, sandalwood tilak, bamboo flute)",
       "bg": "a soft dawn sky in pink, saffron and gold over the Yamuna river with lotus leaves",
-      "signature": {"hue": [185, 215], "sat": [0.25, 0.8], "min_share": 0.01},
-      "voice": {"edge": "hi-IN-MadhurNeural", "rate": "-8%", "pitch": "-2Hz", "fx": "divine"},
-      "talk": "Shri Krishna talks warmly to the camera: his mouth opens and closes gently as he speaks, he blinks and tilts his head very slightly, the peacock feather sways."
+      "signature": {
+        "hue": [
+          185,
+          215
+        ],
+        "sat": [
+          0.25,
+          0.8
+        ],
+        "min_share": 0.01
+      },
+      "voice": {
+        "edge": "hi-IN-MadhurNeural",
+        "rate": "-8%",
+        "pitch": "-2Hz",
+        "fx": "divine"
+      },
+      "talk": "Shri Krishna talks warmly to the camera: his mouth opens and closes gently as he speaks, he blinks and tilts his head very slightly, the peacock feather sways.",
+      "face_box": [
+        0.26,
+        0.37,
+        0.75,
+        0.62
+      ],
+      "mouth": [
+        0.48,
+        0.68,
+        0.2,
+        0.12
+      ]
     }
   }
 }

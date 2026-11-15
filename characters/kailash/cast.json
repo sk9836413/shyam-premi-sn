@@ -1,5 +1,5 @@
 {
-  "note": "Kailash Parivar (STORY.md section 9): warm Kailash family slice-of-life Shorts in a REALISTIC-CINEMATIC divine style (not cartoon). Each character has ONE canonical master portrait (<id>.png, 576x1024, FLUX.1-schnell on Kaggle, picked by a person from seeds) and ONE base clip (clips/<id>.mp4, front view, mouth closed) that every episode's close-ups and lip-sync reuse; character-sheet.png = the master sheet that the consistency check compares against. Never regenerate a portrait that exists. ORIGINAL faces only: the style and `negative` keep every face a generic, idealised devotional-painting face that resembles no real person, TV-serial actor or celebrity (the reference channel's Mahadev looks like a TV actor: we never do that). `negative` is used as a true-CFG negative prompt (flux.true_cfg > 1, animate/kaggle/flux_frames.py). Faces: realistic, so the MuseTalk face box is found automatically (OpenCV); `lipsync: false` = no human mouth (elephant head, bull, mouse): those talk with a Wan `talk` clip. Clean-shaven by design: MuseTalk smears beards (lip-sync reject gate). `signature` = hue ranges (degrees) + min share of the frame that a scene showing this character must contain (consistency check, characters/kailash/kailash.py qa). Voices: edge-tts hi-IN Madhur/Swara variants of characters/cast/cast.json, fixed per character; never a cloned or famous voice.",
+  "note": "Kailash Parivar (STORY.md section 9): warm Kailash family slice-of-life Shorts in a REALISTIC-CINEMATIC divine style (not cartoon). Each character has ONE canonical master portrait (<id>.png, 576x1024, FLUX.1-schnell on Kaggle, picked by a person from seeds) and ONE base clip (clips/<id>.mp4, front view, mouth closed) that every episode's close-ups and lip-sync reuse; character-sheet.png = the master sheet that the consistency check compares against. Never regenerate a portrait that exists. ORIGINAL faces only: the style and `negative` keep every face a generic, idealised devotional-painting face that resembles no real person, TV-serial actor or celebrity (the reference channel's Mahadev looks like a TV actor: we never do that). `negative` is used as a true-CFG negative prompt (flux.true_cfg > 1, animate/kaggle/flux_frames.py). Faces: realistic, so the MuseTalk face box is found automatically (OpenCV); `lipsync: false` = no human mouth (elephant head, bull, mouse): those talk with a Wan `talk` clip. Clean-shaven by design: MuseTalk smears beards (lip-sync reject gate). `mouth` = a lips-only blend ellipse inside the automatic face box [cx, cy, rx, ry] (the default lower-face ellipse left a visible seam and a lighter skin patch on these realistic faces: mouth check 0.40, rejected; pilot 15 Nov 2026). `signature` = hue ranges (degrees) + min share of the frame that a scene showing this character must contain (consistency check, characters/kailash/kailash.py qa). Voices: edge-tts hi-IN Madhur/Swara variants of characters/cast/cast.json, fixed per character; never a cloned or famous voice.",
   "style": "cinematic realistic devotional film still, painterly photorealism like a high-end mythological film concept painting, divine warm golden rim light and a soft glow, snowy Mount Kailash peaks and pine trees in the background, rich warm colours, gentle atmosphere, highly detailed, sharp focus, original character design with an idealised original face that is not a likeness of any real person, actor or celebrity, no text, no letters, no watermark",
   "portrait": "vertical portrait, head and shoulders, the face large and centred in the upper half of the frame, front view looking at the camera, eyes open, mouth gently closed, calm gentle expression, softly blurred background of {bg}",
   "negative": "TV serial actor, famous actor, celebrity, likeness of a real person, photograph of an actor in costume, beard, moustache, stubble, cartoon, anime, 3D render, plastic doll skin, extra arms, extra fingers, deformed hands, blurry, low quality, text, letters, words, signature, watermark, logo",
@@ -39,7 +39,13 @@
         "rate": "-14%",
         "pitch": "-26Hz",
         "fx": "divine"
-      }
+      },
+      "mouth": [
+        0.5,
+        0.7,
+        0.22,
+        0.13
+      ]
     },
     "parvati": {
       "name": "Mata Parvati",
@@ -66,7 +72,13 @@
         "rate": "-10%",
         "pitch": "-8Hz",
         "fx": "divine"
-      }
+      },
+      "mouth": [
+        0.5,
+        0.7,
+        0.22,
+        0.13
+      ]
     },
     "ganesh": {
       "name": "Ganesh ji",
@@ -121,7 +133,13 @@
         "rate": "+4%",
         "pitch": "+22Hz",
         "child": true
-      }
+      },
+      "mouth": [
+        0.5,
+        0.7,
+        0.22,
+        0.13
+      ]
     },
     "nandi": {
       "name": "Nandi",
@@ -202,7 +220,13 @@
         "edge": "hi-IN-MadhurNeural",
         "rate": "+2%",
         "pitch": "+6Hz"
-      }
+      },
+      "mouth": [
+        0.5,
+        0.7,
+        0.22,
+        0.13
+      ]
     }
   }
 }
