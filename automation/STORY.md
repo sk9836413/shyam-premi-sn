@@ -239,6 +239,13 @@ a temple darshan.
   week): 4-5 scenes (the temple/darshan close-up, one well-sourced fact or the bhav, the mantra or jaikara, end card),
   calm and beautiful rather than a story. It must differ from this morning's video and the day's status Shorts: check
   today's lines in `automation/log.md`.
+- **Evening hook A/B** (owner, 15 Nov 2026; reference "Everyone Is Against Me… But God Is With Me 🔱" 3.57 lakh views, 20
+  s, one dark diya-lit sanctum with a slow push-in): when the plan says "EMOTIONAL-HOOK arm" (odd days of the month), set
+  `"hook_style": "emotional"` and lead the title, `hook` and `cover` with a relatable emotional line that still names the
+  deity, e.g. `Sab saath chhod dein, par Mahadev nahi | सब साथ छोड़ दें… पर महादेव नहीं छोड़ते 🔱 #Shorts`, "जब कोई साथ न
+  दे, तब बाबा श्याम साथ देते हैं 🙏" (Haare ka Sahara fits Khatu). 20-25 s, 3-4 scenes, a dark diya-lit sanctum (AI
+  sanctum images labelled; real photos only licence-safe; Khatu = the sheesh). The temple still appears in scene 1 and the
+  description. Even days keep the name-first formula. growth.md compares the two arms.
 - `noon` (Wednesdays of normal days only since 10 Nov 2026, public at 15:00 IST): the **"Dadi aur Chhotu"**
   cartoon dialogue Short, 90-120 s. It has its own format and rules: **section 6**. Sections 3-4 do not apply to it.
 

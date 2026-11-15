@@ -190,7 +190,12 @@ export function planDay(date, inputs = {}) {
       } else cands.push({ slot: 'morning', kind: 'daystatus', theme, what: `day status Short: ${DAY_THEMES[theme].names[0].en} (15-25 s loop; scripts/status-engine.mjs day)` });
     }
   }
-  cands.push({ slot: 'evening', kind: 'temple', what: 'famous-temple darshan Short (a well-known, searched temple; name first; STORY.md)' });
+  // Evening hook A/B (owner, 15 Nov 2026; reference "Everyone is against me... but God is with me" 3.57 lakh): on odd
+  // days of the month the darshan Short leads with a relatable emotional line instead of the temple name (hook_style).
+  const emo = date >= '2026-11-21' && Number(date.slice(8, 10)) % 2 === 1; // after the Janmotsav countdown evenings
+  cands.push({ slot: 'evening', kind: 'temple', ...(emo ? { hook: 'emotional' } : {}),
+    what: emo ? 'famous-temple darshan Short, EMOTIONAL-HOOK arm of the A/B: "hook_style": "emotional", a relatable line as title, hook and cover (e.g. "सब साथ छोड़ दें… पर महादेव नहीं छोड़ते 🔱"), 20-25 s, dark diya-lit sanctum, slow push-in (STORY.md "Evening hook A/B")'
+      : 'famous-temple darshan Short (a well-known, searched temple; name first; STORY.md)' });
   if (kalyugLogged.has(date) || (kalyug && KALYUG_DAYS.includes(wd) && !fest && !movie)) {
     cands.push({ slot: 'kalyug', logged: kalyugLogged.has(date), what: 'Kalyug ke Bhagwan episode (08:00, made the evening before)' });
   }

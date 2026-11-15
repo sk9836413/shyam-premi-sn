@@ -155,7 +155,9 @@ function checkTitle(maxRoman) {
   const first = roman.split(/\s+/).slice(0, 3).join(' ');
   const trendFirst = trendPhrases.some((p) => roman.toLowerCase().startsWith(p.split(' ').slice(0, 2).join(' ')));
   need(roman.length >= 8 && roman.length <= maxRoman, `youtube_title: the Roman part (before " | ") is ${roman.length} characters; keep it 8-${maxRoman} so the searched phrase is not cut off in search`);
-  need(NAMES.test(first) || words(first).some((w) => words(`${s.temple || ''} ${s.deity || ''}`).includes(w)) || trendFirst,
+  // Evening hook A/B (STORY.md "Evening hook A/B"): the emotional arm leads with a relatable line; the name may come later.
+  const emotional = s.hook_style === 'emotional' && /-evening-/.test(s.slug || '');
+  need(NAMES.test(emotional ? roman : first) || words(emotional ? roman : first).some((w) => words(`${s.temple || ''} ${s.deity || ''}`).includes(w)) || trendFirst,
     `youtube_title: start with the searched name (deity, temple or festival) in the first 3 words, e.g. "Salasar Balaji Dham, Churu | सालासर बालाजी धाम #Shorts" (is "${first}")`);
   need(VALUE.test(yt), 'youtube_title: add one value or emotional word (Darshan, Katha, Status, Rahasya, Itihas, Shubh, Divya, Adbhut, Sampoorn...)');
   if (trendPhrases.length && !trendPhrases.some((p) => yt.toLowerCase().includes(p))) notes.push(`note: no searched phrase from automation/trends is in the title (e.g. "${trendPhrases.slice(0, 3).join('", "')}"); use one if it fits the subject`);
