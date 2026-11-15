@@ -96,6 +96,7 @@ export function formatOf(slug, spec = {}) {
   const slot = String(slug || '').replace(/^\d{4}-\d{2}-\d{2}-/, '').split('-')[0];
   if (slot === 'facts') return `facts ${spec.variant || '?'}`;
   if (slot === 'loop' || slot === 'veer') return slot;
+  if (slot === 'long') return spec.kind === 'compilation' ? 'long (facts compilation)' : 'long';
   if (['status', 'eve', 'statusday'].includes(slot)) return 'festival status';
   if (slot === 'morning') return spec.format === 'status' ? (spec.bhajan_short ? 'bhajan Short' : 'day status') : spec.format === 'loop' ? spec.kind || 'loop' : 'morning darshan';
   if (slot === 'evening') return spec.bhajan_short ? 'bhajan Short' : spec.hook_style === 'emotional' ? 'evening darshan (emotional hook)' : 'evening darshan (name hook)';
@@ -106,7 +107,7 @@ export function formatTable(videos, pub, { from, to, readSpec = () => ({}) }) {
   const rows = new Map();
   const now = Date.now();
   for (const v of videos) {
-    if (v.day < from || v.day > to || v.seconds > 180) continue;
+    if (v.day < from || v.day > to) continue;
     const slug = slugOf.get(v.id);
     const spec = slug ? readSpec(slug) : {};
     const keys = [formatOf(slug, spec)];
@@ -176,9 +177,9 @@ async function main() {
     '',
     `- Average views per Short, after vs before: **${change}** (${f1(a.avg)} vs ${f1(b.avg)}).${a.to < AFTER[1] ? ` The after window is still partial (to ${a.to}).` : ''}`,
     '',
-    `By format, Shorts public ${addDays(DATE, -14)} to ${addDays(DATE, -1)} (facts variant / art / length, loop vs veer and the evening hook A/B are rows of their own):`,
+    `By format, videos public ${addDays(DATE, -14)} to ${addDays(DATE, -1)} (facts variant / art / length, loop vs veer and the evening hook A/B are rows of their own):`,
     '',
-    '| Format | Shorts | Avg views | Avg views/day of age | Best |',
+    '| Format | Videos | Avg views | Avg views/day of age | Best |',
     '|---|---|---|---|---|',
     ...formatTable(videos, read('automation/published.md'), { from: addDays(DATE, -14), to: addDays(DATE, -1),
       readSpec: (slug) => { try { return JSON.parse(read(`story/published/${slug}.json`)); } catch { return {}; } } })
