@@ -6,6 +6,9 @@
 name: Voice test (Gemini voices)
 
 on:
+  # One-off (16 Nov 2026 14:15 IST, after the free quota resets at 13:30 IST): the 20 voices the first run could not score.
+  schedule:
+    - cron: '45 8 16 11 *'
   workflow_dispatch:
     inputs:
       voices:
@@ -18,7 +21,7 @@ on:
         default: '15'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   ab:
@@ -36,16 +39,25 @@ jobs:
       - name: Gemini voices
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_TTS_RPD: ${{ inputs.max_req }}
+          GEMINI_TTS_RPD: ${{ inputs.max_req || '10' }}
         run: |
           [ -n "$GEMINI_API_KEY" ] || { echo "::error::no GEMINI_API_KEY secret"; exit 1; }
-          python voice/gemini_tts.py ab-synth --out out --max-req "${{ inputs.max_req }}" --voices "${{ inputs.voices }}"
+          python voice/gemini_tts.py ab-synth --out out --max-req "${{ inputs.max_req || '10' }}" --voices "${{ inputs.voices || 'Charon,Orus,Algenib,Iapetus,Umbriel,Enceladus,Puck,Fenrir,Sadachbia,Zubenelgenubi,Gacrux,Kore,Leda,Aoede,Callirrhoe,Autonoe,Erinome,Laomedeia,Pulcherrima,Zephyr' }}"
           cat out/synth.json | python -c "import json,sys; j=json.load(sys.stdin); print(json.dumps(j['requests'], ensure_ascii=False)); print('quota:', j['state'].get('quota',''), j['state'].get('why',''))"
       - name: Whisper score
         run: |
           set -o pipefail
           python voice/gemini_tts.py ab-score --dir out | tee out/score.txt
           sed -n '/^| Voice/,$p' out/score.txt >> "$GITHUB_STEP_SUMMARY"
+      - name: Keep the scores (voice/ab/<date>.json)
+        if: always()
+        run: |
+          [ -f out/ab.json ] || exit 0
+          mkdir -p voice/ab && cp out/ab.json "voice/ab/$(date -u +%F)-${{ github.run_id }}.json"
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add voice/ab && git commit -qm "Gemini voice test scores (run ${{ github.run_id }})" && for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done || true
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -341,7 +341,8 @@ def cmd_ab_synth(a):
         if len(pair) == 1:
             pair = pair + [next(v for v in VOICES if v != pair[0])]
         sp = ["Ravi", "Meera"]
-        text = ("Read this aloud in natural, clear Hindi. Each speaker says the same sentence once, calmly:\n"
+        text = (f"A reading test in clear Hindi. {sp[0]} reads the WHOLE text below, from the first word to the last; then, "
+                f"after a pause, {sp[1]} reads the SAME whole text again from the beginning. Calm, natural pace.\n"
                 f"{sp[0]}: {AB_TEXT}\n{sp[1]}: {AB_TEXT}")
         body = {"contents": [{"parts": [{"text": text}]}],
                 "generationConfig": {"responseModalities": ["AUDIO"], "speechConfig": {"multiSpeakerVoiceConfig": {"speakerVoiceConfigs": [
