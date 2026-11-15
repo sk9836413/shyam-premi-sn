@@ -49,8 +49,8 @@ export const DEITIES = {
     fb: '#Hanuman #JaiBajrangbali #Bhakti',
     // FLUX draws a bearded Hanuman whatever the prompt says (6 Nov cast sheet, 15 Nov veer pilot): the face is never shown,
     // a heroic back / silhouette composition instead (beard-proof); "no beard" stays in the prompt for the validator.
-    loop: 'Lord Hanuman seen from behind, kneeling in devotion with folded hands before a radiant golden light of Shri Ram, orange-vermilion body, golden mukut, gada resting beside him, his long tail curled, face not visible, no beard, sunrise sky',
-    veer: 'Lord Hanuman seen from behind, standing tall on a mountain peak holding his golden gada, orange-vermilion muscular body, golden mukut, his long tail curled up, facing a huge rising sun, face not visible, no beard, heroic silhouette, dramatic storm clouds and golden light rays' },
+    loop: 'Lord Hanuman seen from behind, kneeling in devotion with folded hands before a radiant golden light of Shri Ram, orange-vermilion vanara body, golden mukut, a round golden gada (mace) resting beside him, a long monkey tail curled behind him, no trident, face not visible, no beard, sunrise sky',
+    veer: 'Lord Hanuman seen from behind, standing tall on a mountain peak, a huge round golden gada (mace) resting on his right shoulder, no trident, no spear, no bow, orange-vermilion muscular vanara body, golden mukut, a long monkey tail curling up behind him, facing a huge rising sun, face not visible, no beard, heroic silhouette, dramatic storm clouds and golden light rays' },
   kali: { roman: 'Maa Kali', hi: 'माँ काली', jaikara: 'जय माँ काली', jaikara_roman: 'Jai Maa Kali', tag: '#maakali', playlist: 'Maa Durga aur Devi ki Kathayein',
     fb: '#MaaKali #JaiMaaKali #Bhakti',
     loop: 'Maa Kali in a gentle protective blessing form, dark blue skin, calm compassionate eyes, flowing black hair, red and gold attire, raising one hand in blessing, lotus and diyas around her, deep red twilight sky',
