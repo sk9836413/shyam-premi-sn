@@ -67,3 +67,4 @@
 2026-11-15 | morning | 2026-11-15-morning-chhath-sandhya-arghya-geet | Chhath Puja (Sandhya Arghya) | Chhath bhajan Short "Sandhya Arghya Geet 2026", song bhajan-chhath26e-05-devi (AI-sung original, whole soundtrack), public 05:45 IST
 2026-11-15 | long | 2026-11-15-long-chhath-chhathi-maiya-kaun-hain | Chhathi Maiya (Shashthi Devi) / Surya dev | Chhathi Maiya kaun hain: Shashthi Devi ka swaroop, Surya dev se naata, Sandhya Arghya ka mahatva aur Bihar ke Surya mandir (manyata)
 2026-11-15 | eve | 2026-11-15-eve-chhath-usha-arghya | Chhath Puja (Usha Arghya) | status Short variant 1 "Chhath Usha Arghya Status 2026" (15-25 s loop, download link), public 20:00 IST
+2026-11-16 | status | 2026-11-16-status-chhathi-maiya | Chhath Puja (Usha Arghya) | status Short variant 2 "Chhathi Maiya Status 2026" (15-25 s loop, download link), public 00:30 IST
