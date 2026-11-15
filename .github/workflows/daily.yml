@@ -103,7 +103,7 @@ on:
         required: false
         default: ''
       kaggle_reuse:
-        description: movie / kalyug slot only - render from the last finished sps-movie / sps-kalyug Kaggle session (no new GPU session)
+        description: movie / kalyug / facts slot only - render from the last finished sps-movie / sps-kalyug / sps-animate-facts Kaggle session (no new GPU session)
         type: boolean
         default: false
       jukebox_date:
@@ -2413,7 +2413,7 @@ jobs:
           key: faster-whisper-large-v3
 
       - name: Images (Kaggle FLUX first, Workers AI for the rest)
-        if: steps.spec.outcome == 'success'
+        if: steps.spec.outcome == 'success' && !inputs.kaggle_reuse
         continue-on-error: true
         timeout-minutes: 50
         env:
@@ -2434,6 +2434,11 @@ jobs:
         run: |
           fail() { echo "::warning::Facts animation skipped, using zoompan stills: $1"; echo "- Animation skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 1; }
           [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
+          if [ "${{ inputs.kaggle_reuse }}" = true ]; then  # re-render the last finished sps-animate-facts session (no new GPU time)
+            node animate/kaggle.mjs fetch --to "$W/clips" --stills-to "$W/stills" | tee -a "$GITHUB_STEP_SUMMARY"
+            node animate/check-clips.mjs "$W/scenes.json" --clips "$W/clips" --stills "$W/stills" --summary "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
           hm=$(TZ=Asia/Kolkata date +%H:%M)
           node -e "import('./scripts/facts.mjs').then((m) => process.exit(m.inKaggleWindow('$hm') ? 1 : 0))" || fail "inside a coordinator Kaggle window ($hm IST)"
           node animate/kaggle.mjs quota --min 6 > "$RUNNER_TEMP/quota.json" || fail "under 6 Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"

@@ -7,7 +7,18 @@
 import argparse
 import json
 import os
+import subprocess
 import time
+
+import numpy as np
+
+
+def pcm16k(path):
+    """16 kHz mono float32 via ffmpeg: faster-whisper then never opens the file with PyAV (15 Nov 2026: a PyAV / faster-whisper
+    version mismatch failed every transcription with "open() got an unexpected keyword argument 'metadata_errors'")."""
+    ff = os.environ.get("FFMPEG_PATH") or "ffmpeg"
+    raw = subprocess.run([ff, "-v", "error", "-i", path, "-ac", "1", "-ar", "16000", "-f", "s16le", "-"], capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0
 
 
 def main():
@@ -26,7 +37,7 @@ def main():
         f = next((os.path.join(a.voices, f"voice-{i}.{ext}") for ext in ("wav", "mp3") if os.path.exists(os.path.join(a.voices, f"voice-{i}.{ext}"))), None)
         if not f or not (sc.get("tts") or "").strip():
             continue
-        segs, _ = m.transcribe(f, language="hi", beam_size=5, condition_on_previous_text=False, temperature=0)
+        segs, _ = m.transcribe(pcm16k(f), language="hi", beam_size=5, condition_on_previous_text=False, temperature=0)
         heard = " ".join(s.text.strip() for s in segs)
         lines.append({"i": i, "heard": heard})
         print(f"scene {i + 1}: {heard}", flush=True)
