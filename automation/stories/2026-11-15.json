@@ -35,17 +35,14 @@
       "type": "image",
       "source": "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-15-2-1.jpg",
       "fb": {
-        "claim": {
-          "run": "43680128608.1",
-          "at": "2026-11-15T05:13:30.762Z"
-        }
+        "id": "1147883028207792",
+        "at": "2026-11-15T05:13:41.639Z"
       },
       "ig": {
-        "claim": {
-          "run": "43680128608.1",
-          "at": "2026-11-15T05:13:30.762Z"
-        }
-      }
+        "id": "18150426877560782",
+        "at": "2026-11-15T05:13:56.872Z"
+      },
+      "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-15-festival.jpg"
     }
   ]
 }
