@@ -112,3 +112,4 @@
 - 2026-11-16-status-chhathi-maiya | youtube: https://youtube.com/shorts/Xyv4y1pldqQ (public at 2026-11-15T19:00:00.000Z) | status variant, made 15 Nov 11:27 IST | social: fb: https://www.facebook.com/reel/1113398997990630 (scheduled 2026-11-15T19:00:00.000Z) | ig: pending 2026-11-15T19:00:00.000Z
 - 2026-11-15-facts-chhath-shashthi-devi-priyavrat | claim: 2026-11-15 facts2 by run 43717598979.1 at 2026-11-15T13:16:51.313Z
 - 2026-11-15-facts-chhath-shashthi-devi-priyavrat | youtube: https://youtube.com/shorts/0QCNjLRqwoc (public at undefined) | facts kyun/cinematic, 58 s, made 15 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/1708969720854197 (scheduled 2026-11-15T16:00:00.000Z) | ig: error upload failed: Request processing failed
+- 2026-11-15-facts-chhath-shashthi-devi-priyavrat | ig: pending 2026-11-15T13:30:00.000Z (retry after 'Request processing failed')
