@@ -65,3 +65,4 @@ story/photos/*/out/
 story/kalyug/work/
 # comment replies work folder (scripts/comments.mjs: pending comments, Claude replies)
 .comments-work/
+story/facts/work/

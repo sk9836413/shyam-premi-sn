@@ -88,6 +88,39 @@ function windowStats(videos, [from, to]) {
     avgPerDay: shorts.length ? perDay / shorts.length : 0, zeroish: shorts.filter((v) => v.views <= 15).length, top };
 }
 
+// ---- Per format (owner, 15 Nov 2026: the facts / loop / veer formats and their A/B arms are tracked on their own) --------
+// automation/published.md maps a YouTube id to its slug ("- <slug> | youtube: https://youtu.be/<id>"); the slug and the
+// saved spec (story/published/<slug>.json) give the format, the facts variant (story / kyun / list / gita), the art style
+// (cinematic / illustrated), the loop kind (loop / veer) and the evening hook arm (name / emotional).
+export function formatOf(slug, spec = {}) {
+  const slot = String(slug || '').replace(/^\d{4}-\d{2}-\d{2}-/, '').split('-')[0];
+  if (slot === 'facts') return `facts ${spec.variant || '?'}`;
+  if (slot === 'loop' || slot === 'veer') return slot;
+  if (['status', 'eve', 'statusday'].includes(slot)) return 'festival status';
+  if (slot === 'morning') return spec.format === 'status' ? (spec.bhajan_short ? 'bhajan Short' : 'day status') : spec.format === 'loop' ? spec.kind || 'loop' : 'morning darshan';
+  if (slot === 'evening') return spec.bhajan_short ? 'bhajan Short' : spec.hook_style === 'emotional' ? 'evening darshan (emotional hook)' : 'evening darshan (name hook)';
+  return slot || 'other';
+}
+export function formatTable(videos, pub, { from, to, readSpec = () => ({}) }) {
+  const slugOf = new Map([...String(pub || '').matchAll(/^- (\S+) \| youtube: https?:\/\/(?:youtu\.be\/|www\.youtube\.com\/(?:shorts\/|watch\?v=))([\w-]{6,})/gm)].map((m) => [m[2], m[1]]));
+  const rows = new Map();
+  const now = Date.now();
+  for (const v of videos) {
+    if (v.day < from || v.day > to || v.seconds > 180) continue;
+    const slug = slugOf.get(v.id);
+    const spec = slug ? readSpec(slug) : {};
+    const keys = [formatOf(slug, spec)];
+    if (String(slug).includes('-facts-')) keys.push(`facts art ${spec.art || '?'}`, `facts ${v.seconds <= 65 ? '45-65 s' : '100-180 s'}`);
+    for (const k of keys) {
+      const r = rows.get(k) || { n: 0, views: 0, perDay: 0, best: null };
+      r.n++; r.views += v.views; r.perDay += v.views / Math.max(1, (now - Date.parse(v.at)) / 864e5);
+      if (!r.best || v.views > r.best.views) r.best = v;
+      rows.set(k, r);
+    }
+  }
+  return [...rows.entries()].sort((a, b) => b[1].views / b[1].n - a[1].views / a[1].n);
+}
+
 const SNAP = /^\| (\d{4}-\d{2}-\d{2}) \| (\d+) \| (\d+) \| (\d+) \|$/gm;
 function writeFile({ snapshot, section }) {
   const old = read(FILE);
@@ -142,6 +175,15 @@ async function main() {
     ...rows.map(([name, w]) => `| ${name} | ${w.from} to ${w.to} (${w.days} d) | ${w.uploads} (${f1(w.uploads / w.days)}/day) | ${w.shorts} | ${f1(w.avg)} | ${f1(w.avgPerDay)} | ${w.zeroish} | ${w.top ? `${w.top.views}: ${w.top.title.replace(/\|/g, '/').slice(0, 60)}` : '-'} |`),
     '',
     `- Average views per Short, after vs before: **${change}** (${f1(a.avg)} vs ${f1(b.avg)}).${a.to < AFTER[1] ? ` The after window is still partial (to ${a.to}).` : ''}`,
+    '',
+    `By format, Shorts public ${addDays(DATE, -14)} to ${addDays(DATE, -1)} (facts variant / art / length, loop vs veer and the evening hook A/B are rows of their own):`,
+    '',
+    '| Format | Shorts | Avg views | Avg views/day of age | Best |',
+    '|---|---|---|---|---|',
+    ...formatTable(videos, read('automation/published.md'), { from: addDays(DATE, -14), to: addDays(DATE, -1),
+      readSpec: (slug) => { try { return JSON.parse(read(`story/published/${slug}.json`)); } catch { return {}; } } })
+      .map(([k, r]) => `| ${k} | ${r.n} | ${f1(r.views / r.n)} | ${f1(r.perDay / r.n)} | ${r.best ? `${r.best.views}: ${r.best.title.replace(/\|/g, '/').slice(0, 50)}` : '-'} |`),
+    '',
     `- Subscribers: **${stats.subscribers}**${base ? ` (${stats.subscribers - base[1] >= 0 ? '+' : ''}${stats.subscribers - base[1]} since ${base[0]})` : ' (first snapshot)'}${prev && prev !== base ? `, ${stats.subscribers - prev[1] >= 0 ? '+' : ''}${stats.subscribers - prev[1]} since ${prev[0]}` : ''}.`,
     '',
   ].join('\n');
@@ -149,4 +191,6 @@ async function main() {
   console.log(section);
 }
 
-main().catch((e) => { console.error(`growth-compare: ${e.message}`); process.exit(1); });
+if (process.argv[1] && path.resolve(process.argv[1]).endsWith(path.join('scripts', 'growth-compare.mjs'))) {
+  main().catch((e) => { console.error(`growth-compare: ${e.message}`); process.exit(1); });
+}

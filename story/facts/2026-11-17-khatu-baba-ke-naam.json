@@ -1,0 +1,135 @@
+{
+  "slug": "2026-11-17-facts-khatu-baba-ke-naam",
+  "format": "facts",
+  "variant": "story",
+  "art": "cinematic",
+  "release": "2026-11-17",
+  "publish_at": "17:00",
+  "topic": "khatu-baba-ke-naam",
+  "title": "Baba Shyam ke 5 Naam",
+  "kicker": "Janmotsav: 3 din",
+  "playlist": "Khatu Shyam ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "music_mood": "emotional",
+  "sub_size": 60,
+  "style": "hyper-real cinematic epic devotional film still, golden divine light, deep blue dramatic sky, rich saturated colours, dramatic rim light, intricate detail, no text, no letters, no writing, no watermark",
+  "hook": "Khatu Shyam ke 5 naam ka rahasya",
+  "cover": "बाबा के पाँच नाम",
+  "cover_lines": ["खाटू श्याम के", "पाँच नाम", "रहस्य क्या है?"],
+  "source": "Skanda Purana (Maheshwar Khand, Kaumarika Khand, adhyay 60-61) aur Lok katha (Khatu Shyam parampara)",
+  "deity": "Khatu Shyam ji (Barbarik)",
+  "summary": "Baba Shyam ke 5 naam: Morvinandan, Haare ka Sahara, Sheesh ke Daani, Shyam, Lakhdatar, aur Skanda Purana ka chhupa naam Suhriday",
+  "scenes": [
+    {
+      "prompt": "Dramatic cinematic close-up portrait of the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum glowing with hundreds of diyas, golden light rays, the face in the lower half of the frame",
+      "deity": true,
+      "hero": true,
+      "motion": "in",
+      "animate": "diya flames flicker softly and golden light rays shimmer while the camera slowly pushes in, the face stays perfectly still",
+      "tts": "खाटू श्याम बाबा के पाँच नाम, और हर नाम में छुपा एक रहस्य! जानते हैं?",
+      "sub": "Khatu Shyam Baba ke paanch naam, aur har naam mein chhupa ek rahasya! Jaante hain?"
+    },
+    {
+      "prompt": "Cinematic portrait of the young warrior Barbarik, a strong handsome dark-skinned youth with long curly hair, golden armour, a bow on his shoulder and a quiver with three arrows, standing on a hill at sunrise, deep blue sky with golden clouds",
+      "motion": "pan",
+      "tts": "बाबा का असली नाम था बर्बरीक। वे महाबली भीम के पोते थे, और वीर घटोत्कच के बेटे। बचपन से ही अद्भुत योद्धा।",
+      "sub": "Baba ka asli naam tha Barbarik. Ve mahabali Bheem ke pote the, aur veer Ghatotkach ke bete. Bachpan se hi adbhut yoddha."
+    },
+    {
+      "prompt": "A noble warrior mother in royal red and gold attire teaching archery to the young warrior Barbarik as a boy in a forest palace courtyard, warm golden evening light, cinematic",
+      "motion": "in",
+      "animate": "leaves sway gently and warm light flickers through the trees while the camera slowly pushes in",
+      "tts": "पहला नाम, मोरवीनंदन। यानी माँ मोरवी के लाडले बेटे। माँ ने ही उन्हें धनुष चलाना सिखाया।",
+      "sub": "Pehla naam, Morvinandan. Yaani Maa Morvi ke laadle bete. Maa ne hi unhein dhanush chalana sikhaya."
+    },
+    {
+      "prompt": "An ancient bundle of blank palm-leaf manuscripts tied with red thread on a carved wooden stand in a quiet temple library, lit by a single brass diya, cinematic close shot, no writing, no letters",
+      "motion": "out",
+      "tts": "और एक रोचक बात! स्कंद पुराण में उनकी माता का नाम कामकटंकटा मिलता है। परंपरा उन्हें प्यार से मोरवी कहती है।",
+      "sub": "Aur ek rochak baat! Skanda Purana mein unki mata ka naam Kamakatankata milta hai. Parampara unhein pyaar se Morvi kehti hai."
+    },
+    {
+      "prompt": "The young warrior Barbarik kneeling before his mother and touching her feet, taking a solemn vow, inside a lamp-lit palace hall, emotional cinematic lighting",
+      "motion": "in",
+      "tts": "दूसरा नाम, हारे का सहारा। मान्यता है, बर्बरीक ने माँ को वचन दिया। जो पक्ष हार रहा होगा, मैं उसी का साथ दूँगा।",
+      "sub": "Doosra naam, Haare ka Sahara. Manyata hai, Barbarik ne maa ko vachan diya. Jo paksh haar raha hoga, main usi ka saath doonga."
+    },
+    {
+      "prompt": "The vast Kurukshetra field before the war seen from a hilltop, two great armies with countless banners far in the distance, dust and golden sunrise, epic wide cinematic shot",
+      "motion": "pan",
+      "tts": "सोचो… इतना बड़ा योद्धा जिस तरफ़ जाए, वही जीतने लगे। फिर वह दूसरी तरफ़ जाए। ऐसे तो युद्ध कभी खत्म ही न होता!",
+      "sub": "Socho... itna bada yoddha jis taraf jaaye, wahi jeetne lage. Phir woh doosri taraf jaaye. Aise to yuddh kabhi khatam hi na hota!"
+    },
+    {
+      "prompt": "An old Brahmin with a white beard and a wooden staff, Shri Krishna in disguise with a faint blue divine glow around him, meeting the young warrior Barbarik under a huge peepal tree, cinematic golden light",
+      "motion": "out",
+      "tts": "तीसरा नाम, शीश के दानी। लोककथा के अनुसार, ब्राह्मण वेश में श्री कृष्ण आए। और दान में माँग लिया, बर्बरीक का शीश।",
+      "sub": "Teesra naam, Sheesh ke Daani. Lok katha ke anusar, Brahmin vesh mein Krishna aaye. Aur daan mein maanga Barbarik ka sheesh."
+    },
+    {
+      "prompt": "The young warrior Barbarik with folded hands and closed eyes in serene surrender, bathed in a column of soft golden divine light, rose petals falling around him, no blood, no violence, cinematic",
+      "motion": "in",
+      "mood": "emotional",
+      "animate": "rose petals drift down slowly through the soft golden light while the camera gently pushes in",
+      "tts": "बर्बरीक ने एक पल भी नहीं सोचा। हँसते हुए अपना शीश दान कर दिया। कितना बड़ा त्याग, है ना?",
+      "sub": "Barbarik ne ek pal bhi nahi socha. Hanste hue apna sheesh daan kar diya. Kitna bada tyaag, hai na?"
+    },
+    {
+      "prompt": "Majestic cinematic close-up portrait of blue-skinned Lord Krishna in yellow silk with a peacock feather crown, raising his right hand in blessing, radiant golden halo, on a hilltop at dawn",
+      "deity": true,
+      "motion": "in",
+      "tts": "चौथा नाम, श्याम। श्री कृष्ण बहुत प्रसन्न हुए, और वरदान दिया। कलियुग में तुम मेरे श्याम नाम से पूजे जाओगे।",
+      "sub": "Chautha naam, Shyam. Shri Krishna bahut prasann hue, aur vardan diya. Kalyug mein tum mere Shyam naam se pooje jaoge."
+    },
+    {
+      "prompt": "The divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum, saffron flags and folded hands of devotees softly blurred in the foreground, warm diya light",
+      "deity": true,
+      "motion": "in",
+      "animate": "saffron flags sway gently and diya flames flicker while the camera slowly pushes in, the face stays perfectly still",
+      "tts": "पाँचवाँ नाम, लखदातार। यानी लाखों भक्तों की झोली भरने वाले दाता। यही भक्तों की श्रद्धा है।",
+      "sub": "Paanchva naam, Lakhdatar. Yaani laakhon bhakton ki jholi bharne wale daata. Yahi bhakton ki shraddha hai."
+    },
+    {
+      "prompt": "Blue-skinned Lord Krishna in a golden Dwarka palace hall gently placing his hand on the head of the young warrior Barbarik in blessing, warm golden light, cinematic",
+      "motion": "pan",
+      "tts": "पर एक छुपा नाम भी है! स्कंद पुराण के अनुसार श्री कृष्ण ने उन्हें सुहृदय नाम दिया। यानी नेक दिल वाला।",
+      "sub": "Par ek chhupa naam bhi hai! Skanda Purana ke anusar Shri Krishna ne unhein Suhriday naam diya. Yaani nek dil wala."
+    },
+    {
+      "prompt": "The white marble Khatu Shyam ji temple in a small Rajasthan town at dusk, glowing with lamps, saffron flags on the shikhar, deep blue evening sky, cinematic wide shot",
+      "motion": "out",
+      "tts": "आज राजस्थान के सीकर ज़िले में खाटू धाम है। वहीं बाबा के शीश की पूजा होती है, और भक्त दूर दूर से आते हैं।",
+      "sub": "Aaj Rajasthan ke Sikar zile mein Khatu Dham hai. Wahin Baba ke sheesh ki pooja hoti hai, aur bhakt door door se aate hain."
+    },
+    {
+      "prompt": "A lone peepal tree on a hilltop at sunset, golden rays spreading across a deep blue sky, peaceful and majestic, cinematic wide shot",
+      "motion": "in",
+      "moral": true,
+      "tts": "सीख यही है… जो दूसरों के लिए सब कुछ दे दे। दुनिया उसे युगों युगों तक याद रखती है।",
+      "sub": "Seekh yahi hai... jo doosron ke liye sab kuch de de. Duniya use yugon yugon tak yaad rakhti hai."
+    },
+    {
+      "endcard": true,
+      "tts": "जय श्री श्याम! ऐसी और पौराणिक बातों के लिए लाइक, शेयर और सब्सक्राइब करें। हारे का सहारा, खाटू श्याम हमारा!",
+      "sub": "Jai Shree Shyam! Aisi aur pauranik baaton ke liye Like, Share aur Subscribe karein. Haare ka Sahara, Khatu Shyam hamara!"
+    }
+  ],
+  "facts": [
+    { "claim": "Barbarika was the son of Ghatotkacha (Bheem's son), so Bheem's grandson", "source": "Skanda Purana, Kaumarika Khand, adhyay 60",
+      "sources": ["https://www.wisdomlib.org/hinduism/book/the-skanda-purana/d/doc366047.html", "https://www.patrika.com/photos/sikar-news/baba-khatu-shyam-ji-fact-history-from-mahabharat-sikar-rajasthan-8749273"] },
+    { "claim": "In the Skanda Purana his mother is named Kamakatankata; popular tradition calls her Morvi (hence Morvinandan)", "source": "Skanda Purana, Kaumarika Khand, adhyay 59-60; lok parampara",
+      "sources": ["https://www.wisdomlib.org/hinduism/book/the-skanda-purana/d/doc366046.html", "https://www.wisdomlib.org/hinduism/book/the-skanda-purana/d/doc366047.html", "https://www.patrika.com/sikar-news/khatushyamji-history-who-is-shyam-baba-khatushyamji-fair-2024-8768031"] },
+    { "claim": "Shri Krishna gave Barbarika a second name, Suhridaya (noble-hearted), in Dwaraka", "source": "Skanda Purana, Kaumarika Khand, adhyay 61",
+      "sources": ["https://www.wisdomlib.org/hinduism/book/the-skanda-purana/d/doc366048.html", "https://www.wisdomlib.org/hinduism/book/skanda-purana-sanskrit/d/doc730018.html"] },
+    { "claim": "Lok katha: Barbarik vowed to fight for the weaker / losing side, Krishna as a Brahmin asked for his head as daan, and blessed him to be worshipped by his name Shyam in Kaliyug", "source": "Lok katha (Khatu Shyam parampara)", "kind": "tradition",
+      "sources": ["https://www.patrika.com/sikar-news/khatushyamji-history-who-is-shyam-baba-khatushyamji-fair-2024-8768031", "https://www.patrika.com/sikar-news/khatu-shyam-ji-history-in-hindi-khatu-shyam-ji-ka-itihas-1-2409421"] },
+    { "claim": "Lakhdatar, Sheesh ka Daani, Morvi Nandan and Haare ka Sahara are popular names of Baba Shyam; the Khatu temple is in Sikar district, Rajasthan", "source": "Patrika (Sikar); lok parampara", "kind": "tradition",
+      "sources": ["https://www.patrika.com/sikar-news/khatushyamji-history-who-is-shyam-baba-khatushyamji-fair-2024-8768031", "https://bharatexpress.com/web-stories/spiritual/baba-khatu-shyam-lakhdatar-story-devuthani-ekadashi-meaning-and-bhakti"] }
+  ],
+  "youtube_title": "Khatu Shyam ke 5 naam ka rahasya 😱 #facts | Khatu Shyam Katha | बाबा श्याम के पाँच नाम",
+  "youtube_description": "Khatu Shyam Baba ke 5 naam aur har naam ke peechhe ki katha: Morvinandan, Haare ka Sahara, Sheesh ke Daani, Shyam aur Lakhdatar. Saath mein Skanda Purana ka ek chhupa naam: Suhriday.\nSource: Skanda Purana (Maheshwar Khand, Kaumarika Khand, adhyay 60-61) aur Lok katha (Khatu Shyam parampara)\nबाबा श्याम के पाँच नाम और उनकी कथा। शीश दान और श्याम नाम का वरदान लोक मान्यता के अनुसार है।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.\nJai Shree Shyam 🙏 Video achha laga ho to Like, Share aur Subscribe karein.\n#facts #story #KhatuShyam #JaiShreeShyam #Shorts",
+  "youtube_tags": "Khatu Shyam ke naam, खाटू श्याम के नाम, Khatu Shyam facts, खाटू श्याम की कथा, Barbarik ki katha, बर्बरीक की कथा, Haare ka Sahara, हारे का सहारा, Sheesh ke Daani, शीश के दानी, Lakhdatar, लखदातार, Khatu Shyam Janmotsav, खाटू श्याम जन्मोत्सव",
+  "instagram_caption": "Khatu Shyam Baba ke 5 naam, aur har naam ke peechhe ek katha 🙏\nMorvinandan, Haare ka Sahara, Sheesh ke Daani, Shyam aur Lakhdatar. Aur Skanda Purana ka chhupa naam: Suhriday.\nSource: Skanda Purana (Kaumarika Khand) aur Khatu Shyam lok parampara. Chitra AI se (sanketik).\nJai Shree Shyam! Achha laga ho to Like, Share aur Follow karein.\n#KhatuShyam #JaiShreeShyam #HaareKaSahara #KhatuShyamJanmotsav #facts #Barbarik #ShyamBaba",
+  "facebook_caption": "हारे का सहारा, बाबा श्याम हमारा 🙏 आपको बाबा का कौन सा नाम सबसे प्यारा लगता है?\nबाबा श्याम के पाँच नाम और हर नाम के पीछे की कथा: मोरवीनंदन, हारे का सहारा, शीश के दानी, श्याम और लखदातार।\n#KhatuShyam #JaiShreeShyam #KhatuShyamJanmotsav"
+}

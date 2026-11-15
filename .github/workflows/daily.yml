@@ -71,7 +71,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning, evening, noon, long, status, movie, kalyug, bhajan, jukebox, mantra or dawn (empty = by time of day; dawn = only tomorrow's 05:30/05:45 dawn uploads, i.e. the evening-before render; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part; kalyug = only tomorrow's Kalyug ke Bhagwan episode)
+        description: morning, evening, noon, long, status, movie, kalyug, facts, bhajan, jukebox, mantra or dawn (empty = by time of day; dawn = only tomorrow's 05:30/05:45 dawn uploads, i.e. the evening-before render; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part; kalyug = only tomorrow's Kalyug ke Bhagwan episode)
         required: false
         default: ''
       dry_run:
@@ -88,6 +88,10 @@ on:
         default: ''
       kalyug_spec:
         description: kalyug slot only - an episode file, e.g. story/kalyug/pilot-ep1.json (empty = tomorrow's episode)
+        required: false
+        default: ''
+      facts_spec:
+        description: facts slot only - a facts Short file, e.g. story/facts/2026-11-17-khatu-baba-ke-naam.json (empty = the due one)
         required: false
         default: ''
       kaggle_reuse:
@@ -128,7 +132,7 @@ env:
 # automation/published.md with an atomic push (a second run finds the claim or the log.md line and skips). Then
 # youtube.mjs and meta.mjs look for the same title/caption among the last 36 h of uploads and posts and never repeat it.
 concurrency:
-  group: ${{ inputs.slot == 'dawn' && 'daily-story-dawn' || inputs.slot == 'mantra' && 'daily-story-mantra' || inputs.slot == 'jukebox' && 'daily-story-jukebox' || inputs.slot == 'bhajan' && 'daily-story-bhajan' || inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || inputs.slot == 'kalyug' && 'daily-story-kalyug' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
+  group: ${{ inputs.slot == 'dawn' && 'daily-story-dawn' || inputs.slot == 'mantra' && 'daily-story-mantra' || inputs.slot == 'jukebox' && 'daily-story-jukebox' || inputs.slot == 'bhajan' && 'daily-story-bhajan' || inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || inputs.slot == 'kalyug' && 'daily-story-kalyug' || inputs.slot == 'facts' && 'daily-story-facts' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
   cancel-in-progress: false
 
 jobs:
@@ -167,6 +171,8 @@ jobs:
       movie: ${{ steps.date.outputs.movie }}
       # The Kalyug ke Bhagwan job runs after every evening-slot run (and for slot=kalyug): it makes tomorrow's episode.
       kalyug: ${{ steps.date.outputs.kalyug }}
+      # The facts Short job (scripts/facts.mjs) runs after every evening-slot run (and for slot=facts): tomorrow's Short.
+      facts: ${{ steps.date.outputs.facts }}
       # Bhajan Shorts (scripts/bhajan-short.mjs, automation/chhath-2026.json): JSON list [{day, slot}] made by the `bhajan`
       # job (matrix) instead of this one: today's slot whose Short is a library bhajan, and on evening runs tomorrow's
       # dawn bhajan Short (public 05:45, rendered the evening before; day-plan.mjs --dawn).
@@ -222,6 +228,10 @@ jobs:
             echo "kalyug=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Kalyug ke Bhagwan episode only"; exit 0
           fi
+          if [ "$slot" = facts ]; then
+            echo "facts=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Pauranik facts Short only"; exit 0
+          fi
           if [ "$slot" = jukebox ]; then
             echo "jukebox=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Chhath Geet Nonstop jukebox only"; exit 0
@@ -272,7 +282,7 @@ jobs:
           # of the same run for the Kaggle GPU, and the 10:43 IST dispatch makes the 20:00 variant in good time.
           if [ "$slot" = evening ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
           # Mini-movies (STORY.md section 7) are made a day or more ahead by the `movie` job, which runs after evening runs.
-          if [ "$slot" = evening ]; then echo "movie=true" >> "$GITHUB_OUTPUT"; echo "kalyug=true" >> "$GITHUB_OUTPUT"; fi
+          if [ "$slot" = evening ]; then echo "movie=true" >> "$GITHUB_OUTPUT"; echo "kalyug=true" >> "$GITHUB_OUTPUT"; echo "facts=true" >> "$GITHUB_OUTPUT"; fi
           # Evening runs render tomorrow's dawn uploads (bhajan Short 05:45, jukebox / mantra long 05:30); morning runs make
           # today's dawn long video if last evening's render is missing (public as soon as it is ready; the dawn bhajan
           # Short of today is the morning slot itself, routed to job bhajan below).
@@ -2018,6 +2028,279 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/log.md automation/published.md "story/published/$SLUG.json" characters/kalyug/clips "$F"
           git commit -qm "Kalyug ke Bhagwan $SLUG scheduled for $rel 08:00"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # "Pauranik facts / rahasya" Short (owner, 15 Nov 2026; scripts/facts.mjs, automation/STORY.md "Facts Shorts"): a dramatic
+  # but true curiosity hook about one lesser-known episode, character or temple custom, every fact cited, 17:00 IST, made
+  # the evening before like the Kalyug episode (after every evening-slot run; slot=facts alone, facts_spec = a given file).
+  # day-plan.mjs gives it a slot only when the 3-Shorts cap has room (after status, morning and evening darshan Shorts).
+  # Topic + variant (story 2-2.5 min / kyun 45-60 s / list 40-50 s / gita on Sundays) + art (cinematic / illustrated A/B)
+  # come from scripts/facts.mjs pick; Claude writes the spec when it is not there yet. Pictures: FLUX on the Kaggle GPU first
+  # (frames.mjs --kaggle-first, the neurons stay for the daily Shorts), then up to 4 Wan clips (sps-animate-facts) only
+  # outside the coordinator's Kaggle windows (09:00-11:30, 18:30-21:00 IST) and with >= 6 GPU hours left, else zoompan
+  # stills. Narration: edge-tts Madhur through the human chain. QA: Whisper large-v3 (CPU) per scene + the deity-name gate
+  # (scripts/facts.mjs qa); on a failure the plain voice chain is tried once (gita: the Hindi meaning instead of the
+  # Sanskrit), then the Short is NOT published (owner rule: never loosen the gate). FB: a Page video (over 90 s) or a
+  # Reel, at fb.mjs's facts time; IG queued for 17:00.
+  facts:
+    needs: story
+    if: always() && needs.story.outputs.facts == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    concurrency:
+      group: shyam-facts
+      cancel-in-progress: false
+    env:
+      FFMPEG_PATH: ffmpeg
+      PYTHON: python
+      KOKORO_DIR: ${{ github.workspace }}/.kokoro
+      SUB_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      FACTS: ${{ vars.FACTS }}
+      KALYUG: ${{ vars.KALYUG }}
+      W: story/facts/work
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Due Short
+        id: d
+        run: |
+          git fetch -q origin main && git checkout -q origin/main -- automation/log.md automation/published.md
+          node scripts/facts.mjs due --spec "${{ inputs.facts_spec }}" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/setup-python@v5
+        if: steps.d.outputs.mode == 'produce' || steps.d.outputs.mode == 'write'
+        with:
+          python-version: '3.12'
+
+      - name: Write the facts Short
+        id: write
+        if: steps.d.outputs.mode == 'write'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --max-turns 100
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(node scripts/facts.mjs:*),Bash(ls:*)"
+          prompt: |
+            Write the next "pauranik facts / rahasya" Short of Shyam Premi SN. Its release day (IST) is ${{ steps.d.outputs.release }}, public at
+            ${{ steps.d.outputs.publish_at }}. Topic: "${{ steps.d.outputs.topic }}" in automation/facts-topics.json (read its angle, citation,
+            sources and notes), variant "${{ steps.d.outputs.variant }}", art "${{ steps.d.outputs.art }}".
+            Follow automation/STORY.md section "Facts Shorts" exactly (and section 2 for accuracy, "Spoken style" for every tts): verify every
+            fact with WebSearch/WebFetch (2 URLs per fact, at least one not Wikipedia or a blog), label folk versions in the narration,
+            never invent numbers or events. Write story/facts/${{ steps.d.outputs.release }}-${{ steps.d.outputs.topic }}.json with slug
+            ${{ steps.d.outputs.release }}-facts-${{ steps.d.outputs.topic }}, make `node scripts/validate.mjs <that file>` pass, and change
+            nothing else.
+
+      - name: Spec
+        id: spec
+        if: steps.d.outputs.mode == 'produce' || steps.write.outcome == 'success'
+        run: |
+          f="${{ steps.d.outputs.file }}"
+          [ -n "$f" ] || f=$(ls story/facts/${{ steps.d.outputs.release }}-*.json 2>/dev/null | head -1)
+          [ -n "$f" ] && [ -f "$f" ] || { echo "::error::No facts Short file for ${{ steps.d.outputs.release }}"; exit 1; }
+          node scripts/validate.mjs --soft-topics "$f"
+          mkdir -p "$W" && cp "$f" "$W/scenes.json"
+          for k in slug release publish_at variant art; do echo "$k=$(node -p "require('./$f').$k || ''")" >> "$GITHUB_OUTPUT"; done
+          echo "SLUG=$(node -p "require('./$f').slug")" >> "$GITHUB_ENV"
+          echo "F=$f" >> "$GITHUB_ENV"
+
+      - name: Tools
+        if: steps.spec.outcome == 'success'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core fonts-noto-color-emoji > /dev/null
+          pip install -q kokoro-onnx==0.6.1 soundfile==0.14.0 edge-tts numpy faster-whisper 'kaggle>=2.2' six
+
+      - name: Cache Kokoro model
+        if: steps.spec.outcome == 'success'
+        uses: actions/cache@v4
+        with:
+          path: .kokoro
+          key: kokoro-v1.0
+
+      - name: Download Kokoro model
+        if: steps.spec.outcome == 'success'
+        run: |
+          mkdir -p .kokoro
+          base=https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0
+          [ -f .kokoro/kokoro-v1.0.onnx ] || curl -sSL -o .kokoro/kokoro-v1.0.onnx $base/kokoro-v1.0.onnx
+          [ -f .kokoro/voices-v1.0.bin ] || curl -sSL -o .kokoro/voices-v1.0.bin $base/voices-v1.0.bin
+
+      - name: Cache Whisper model
+        if: steps.spec.outcome == 'success'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: faster-whisper-large-v3
+
+      - name: Images (Kaggle FLUX first, Workers AI for the rest)
+        if: steps.spec.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 50
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: facts
+        run: node animate/frames.mjs "$W/scenes.json" --kaggle-first --wait 40
+
+      - name: Animate (Kaggle GPU, outside the coordinator windows)
+        id: anim
+        if: steps.spec.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 150
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: facts
+          SPS_ENHANCE: ${{ vars.SPS_ENHANCE }}
+          SPS_HERO14B: '0'
+        run: |
+          fail() { echo "::warning::Facts animation skipped, using zoompan stills: $1"; echo "- Animation skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
+          hm=$(TZ=Asia/Kolkata date +%H:%M)
+          node -e "import('./scripts/facts.mjs').then((m) => process.exit(m.inKaggleWindow('$hm') ? 1 : 0))" || fail "inside a coordinator Kaggle window ($hm IST)"
+          node animate/kaggle.mjs quota --min 6 > "$RUNNER_TEMP/quota.json" || fail "under 6 Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
+          node story/render-story.mjs "$W/scenes.json" --prepare || fail "FLUX images / narration failed"
+          plan="$W/build/$SLUG/plan.json"
+          node animate/kaggle.mjs prepare "$W/scenes.json" --plan "$plan" --max 4 || fail "dataset upload failed"
+          node animate/kaggle.mjs lock --minutes 30 || fail "another sps kernel is still running after 30 min"
+          node animate/kaggle.mjs push --queue-minutes 20 --retry-minutes 20 || fail "kernel push failed (Kaggle busy?)"
+          start=$(date +%s)
+          node animate/kaggle.mjs wait --minutes 100 --queue-minutes 20 > "$RUNNER_TEMP/wait.json" || echo "::warning::Kaggle: $(cat "$RUNNER_TEMP/wait.json"); using any clips it finished"
+          grep -q QUEUED_TOO_LONG "$RUNNER_TEMP/wait.json" && fail "the Kaggle GPU session was still queued after 20 min"
+          node animate/kaggle.mjs fetch --to "$W/clips" --stills-to "$W/stills" > "$RUNNER_TEMP/fetch.json" || fail "could not download the clips"
+          echo "- Kaggle: $(cat "$RUNNER_TEMP/fetch.json"), waited $(( ($(date +%s) - start) / 60 )) min, quota before: $(cat "$RUNNER_TEMP/quota.json")" >> "$GITHUB_STEP_SUMMARY"
+          node animate/check-clips.mjs "$W/scenes.json" --clips "$W/clips" --plan "$plan" --stills "$W/stills" --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Render
+        id: render
+        if: steps.spec.outcome == 'success'
+        env:
+          MUSIC_ENGINE: ${{ vars.MUSIC_ENGINE }}
+        run: |
+          node story/render-story.mjs "$W/scenes.json" | tail -3
+          s=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$W/out/$SLUG.mp4")
+          echo "SECONDS_LONG=$s" >> "$GITHUB_ENV"
+          echo "- Rendered $SLUG: ${s} s" >> "$GITHUB_STEP_SUMMARY"
+          node -e "process.exit(Number('$s') <= 179 ? 0 : 1)" || { echo "::error::$s s is over a Short's 3 minutes"; exit 1; }
+
+      # Owner rule (14 Nov 2026, "Quality me no compromised"): deity names must be heard right, else no upload.
+      - name: Pronunciation gate (Whisper, never loosened)
+        id: qa
+        if: steps.render.outcome == 'success'
+        run: |
+          qa() {
+            python voice/facts_asr.py --spec "$W/scenes.json" --voices "$W/build/$SLUG" --out "$W/asr.json" > "$RUNNER_TEMP/asr.log" 2>&1 || { tail -5 "$RUNNER_TEMP/asr.log"; return 1; }
+            node scripts/facts.mjs qa --spec "$W/scenes.json" --asr "$W/asr.json" | tee "$RUNNER_TEMP/qa.json"
+          }
+          if qa; then echo "ok=true" >> "$GITHUB_OUTPUT"; echo "- Pronunciation gate: passed ($(cat "$RUNNER_TEMP/qa.json"))" >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
+          echo "- Pronunciation gate: failed ($(cat "$RUNNER_TEMP/qa.json" 2>/dev/null)); second try" >> "$GITHUB_STEP_SUMMARY"
+          if grep -q '"shloka_ok":false' "$RUNNER_TEMP/qa.json" 2>/dev/null; then
+            # gita: the Sanskrit did not pass the mantra gate -> the Hindi meaning is spoken, the shloka stays on screen (Roman sub)
+            node -e "const f=process.env.W+'/scenes.json',fs=require('fs'),s=JSON.parse(fs.readFileSync(f));for(const c of s.scenes)if(c.shloka&&c.tts_meaning){c.tts=c.tts_meaning;c.spoken='meaning'}fs.writeFileSync(f,JSON.stringify(s,null,2))"
+            node story/render-story.mjs "$W/scenes.json" | tail -2
+          else
+            SPS_HUMAN_VOICE=0 node story/render-story.mjs "$W/scenes.json" | tail -2
+          fi
+          if qa; then echo "ok=true" >> "$GITHUB_OUTPUT"; echo "- Pronunciation gate: passed on the second try" >> "$GITHUB_STEP_SUMMARY"; exit 0; fi
+          echo "ok=false" >> "$GITHUB_OUTPUT"
+          echo "why=$(node -p "try{require(process.env.RUNNER_TEMP+'/qa.json').why}catch{'no transcript'}")" >> "$GITHUB_OUTPUT"
+          echo "::warning::Facts Short $SLUG not published: deity names not heard right (owner rule: never loosen the gate)"
+
+      - name: Keep the video as an artifact (7 days)
+        if: always() && steps.render.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: facts-${{ env.SLUG }}
+          path: |
+            story/facts/work/out/
+            story/facts/work/scenes.json
+            story/facts/work/asr.json
+          retention-days: 7
+          compression-level: 0
+
+      - name: Record the skipped Short
+        if: steps.qa.outputs.ok == 'false' && !inputs.dry_run
+        run: |
+          git fetch -q origin main && git checkout -q origin/main -- automation/published.md
+          echo "- $SLUG | skipped: pronunciation gate (${{ steps.qa.outputs.why }}) $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/published.md && git commit -qm "Facts $SLUG skipped: pronunciation gate"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+      - name: Host
+        id: host
+        if: steps.qa.outputs.ok == 'true'
+        continue-on-error: true
+        run: |
+          # The media Worker keeps files up to 25 MB (KV): a 720p copy for the Instagram queue / download link.
+          mkdir -p "$W/out/small"
+          ffmpeg -y -loglevel error -i "$W/out/$SLUG.mp4" -vf scale=720:-2 -c:v libx264 -crf 27 -preset veryfast -c:a aac -b:a 128k -movflags +faststart "$W/out/small/$SLUG.mp4"
+          node scripts/publish.mjs --host-only --video "$W/out/small/$SLUG.mp4" --scenes "$W/scenes.json" | tee "$RUNNER_TEMP/host.json"
+
+      - name: Festival links
+        if: steps.qa.outputs.ok == 'true' && !inputs.dry_run && steps.spec.outputs.release != 'pilot'
+        continue-on-error: true
+        run: node scripts/festival-links.mjs "$W/scenes.json" --day "${{ steps.spec.outputs.release }}" --slot facts
+
+      - name: Claim the upload
+        id: claim
+        if: steps.qa.outputs.ok == 'true' && !inputs.dry_run && steps.spec.outputs.release != 'pilot'
+        run: node scripts/upload-guard.mjs claim --day "${{ steps.spec.outputs.release }}" --slot facts --slug "$SLUG"
+
+      - name: YouTube (public at the facts time on the release day)
+        id: yt
+        if: steps.claim.outputs.go == 'true'
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" | tee "$RUNNER_TEMP/yt.json"
+          grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"
+
+      - name: Release the claim after a failed upload
+        if: always() && steps.claim.outputs.go == 'true' && steps.yt.outcome != 'success'
+        run: node scripts/upload-guard.mjs release --day "${{ steps.spec.outputs.release }}" --slot facts --slug "$SLUG" --reason "YouTube ${{ steps.yt.outcome }}"
+
+      - name: Facebook and Instagram (Graph API)
+        id: meta
+        if: steps.yt.outcome == 'success'
+        continue-on-error: true
+        env:
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
+          grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" && { echo "::notice::YouTube already had it (earlier run): no second Facebook/Instagram post"; exit 0; }
+          fb=$(node scripts/fb.mjs flags --date "${{ steps.spec.outputs.release }}" --slot facts || echo --no-fb)
+          node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --video-url "$MEDIA_URL/m/$SLUG.mp4" \
+            --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" $fb | tee "$RUNNER_TEMP/meta.json" || true
+
+      - name: Record
+        if: steps.yt.outcome == 'success'
+        run: |
+          mkdir -p story/published
+          cp "$W/scenes.json" "story/published/$SLUG.json"
+          rel="${{ steps.spec.outputs.release }}"
+          yt=$(node -p "const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/yt.json', 'utf8')).youtube; y.url + ' (public at ' + y.publishAt + ')'")
+          deity=$(node -p "require('./' + process.env.F).deity"); summary=$(node -p "require('./' + process.env.F).summary")
+          secs=$(printf '%.0f' "$SECONDS_LONG")
+          echo "$rel | facts | $SLUG | $deity | $summary (variant ${{ steps.spec.outputs.variant }}, art ${{ steps.spec.outputs.art }}, $secs s)" >> automation/log.md
+          social=$(node -p "try { ' | social: ' + JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/meta.json', 'utf8')).summary } catch { '' }")
+          echo "- $SLUG | youtube: $yt | facts ${{ steps.spec.outputs.variant }}/${{ steps.spec.outputs.art }}, $secs s, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/log.md automation/published.md "story/published/$SLUG.json" "$F"
+          git commit -qm "Facts Short $SLUG scheduled for $rel ${{ steps.spec.outputs.publish_at }}"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
   # Weekly measurement of the "max 3 uploads a day" change (scripts/growth-compare.mjs -> automation/growth.md): on Monday

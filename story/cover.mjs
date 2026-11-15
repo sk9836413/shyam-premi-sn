@@ -76,6 +76,7 @@ function shot(html, png, w, h, transparent) {
  * (y 520-830), above the characters.
  */
 export function makeCover(spec, png, layout = 'story') {
+  if (layout === 'story' && Array.isArray(spec.cover_lines) && spec.cover_lines.length === 3) return factsCover(spec, png);
   const [top, height] = layout === 'dialogue' ? [520, 310] : [1040, 400];
   const words = coverWords(spec);
   if (!words) return null;
@@ -93,6 +94,38 @@ export function makeCover(spec, png, layout = 'story') {
     .l:nth-child(2){color:#FFFFFF}
   </style></head><body><div class="glow"></div><div class="box">${ls.map((l) => `<div class="l">${esc(l)}</div>`).join('')}</div>
   ${fitScript('.l', ls.length === 1 ? 210 : 170, 80)}</body></html>`;
+  return shot(html, png, 1080, 1920, true);
+}
+
+/**
+ * Facts cover (scripts/facts.mjs; owner's reference "यमराज ने हनुमान जी को लात क्यों मारी?" 4.35M views, 15 Nov 2026):
+ * spec.cover_lines = 3 short Devanagari lines across the upper part of the picture on black brush-stroke bands: line 1
+ * white, line 2 giant gold (the key name or verb), line 3 white on a red brush band ending with "?", and a red curved
+ * arrow pointing down at the action. The scene-1 prompt keeps the characters in the lower half, so faces stay clear.
+ * Yatra One (OFL) through Chrome shapes the matras and conjuncts (हनुमान, क्यों, श्री) correctly; this first frame is
+ * also the Short's custom thumbnail (youtube.mjs thumbnails.set).
+ */
+export function factsCover(spec, png) {
+  const [l1, l2, l3] = spec.cover_lines.map((l) => String(l || '').trim());
+  // Brush-stroke edges: an irregular polygon instead of a clean rectangle.
+  const brush = 'polygon(1% 14%,6% 4%,22% 9%,41% 2%,63% 8%,82% 1%,97% 7%,100% 34%,98% 63%,100% 90%,84% 97%,61% 92%,40% 99%,19% 93%,3% 98%,0% 70%,2% 41%)';
+  const html = `<!doctype html><html><head><meta charset="utf-8"><style>${fontCss}
+    html,body{margin:0;width:1080px;height:1920px;background:transparent;overflow:hidden}
+    .band{position:absolute;left:40px;width:1000px;display:flex;align-items:center;justify-content:center;clip-path:${brush}}
+    .t{font-family:'Yatra',sans-serif;line-height:1.1;white-space:nowrap;overflow:hidden;text-align:center;width:940px;paint-order:stroke fill}
+    .b1{top:285px;height:150px;background:rgba(0,0,0,.86)} .b1 .t{height:140px;color:#fff;-webkit-text-stroke:6px #000}
+    .b2{top:428px;height:230px;background:rgba(0,0,0,.9)} .b2 .t{height:220px;color:#FFD23F;-webkit-text-stroke:10px #3a1000;
+      text-shadow:0 0 30px rgba(255,170,0,.85),0 8px 18px #000}
+    .b3{top:650px;height:160px;background:#C8102E} .b3 .t{height:150px;color:#fff;-webkit-text-stroke:6px #4a0008}
+    svg{position:absolute;left:690px;top:790px}
+  </style></head><body>
+    <div class="band b1"><div class="t">${esc(l1)}</div></div>
+    <div class="band b2"><div class="t">${esc(l2)}</div></div>
+    <div class="band b3"><div class="t">${esc(l3)}</div></div>
+    <svg width="300" height="330" viewBox="0 0 300 330"><path d="M250 20 C 280 140, 200 230, 90 262" fill="none" stroke="#fff" stroke-width="34" stroke-linecap="round"/>
+      <path d="M250 20 C 280 140, 200 230, 90 262" fill="none" stroke="#E0102C" stroke-width="22" stroke-linecap="round"/>
+      <path d="M58 270 L128 214 L134 300 Z" fill="#E0102C" stroke="#fff" stroke-width="8" stroke-linejoin="round"/></svg>
+    ${fitScript('.b1 .t', 120, 60)}${fitScript('.b2 .t', 200, 90)}${fitScript('.b3 .t', 120, 60)}</body></html>`;
   return shot(html, png, 1080, 1920, true);
 }
 

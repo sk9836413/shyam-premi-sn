@@ -1,0 +1,2410 @@
+{
+ "about": "Topic bank of the `facts` Short format (pauranik facts / rahasya; scripts/facts.mjs, STORY.md section 9). ORIGINAL topics written for Shyam Premi SN: a lesser-known episode, character or temple custom told as a dramatic but TRUE curiosity hook, 2-2.5 min. Every topic carries the citation (`cite.work` + `cite.ref`) that goes into the description, and 1-3 starting sources; the writer verifies every fact again (2 URLs per fact, one of them not Wikipedia/a blog). `label`: scripture = told in the cited text; tradition = lok katha / temple belief, so the script must say 'मान्यता है' / 'लोककथा के अनुसार'; temple = a temple custom or fact from the temple's own or a government site. `numbers_ok`: the only numbers a hook/title may use (no invented '10 guna'). `after`: not before this date (the Khatu mini-movie and Janmotsav countdown tell those scenes 17-20 Nov 2026). `festival`: only within 4 days before a festivals.json date whose key contains it. No sati topics (Sati Prevention Act rule). p = priority (1 first).",
+ "topics": [
+  {
+   "id": "khatu-baba-ke-naam",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "hook": "Khatu Shyam ke 5 naam ka rahasya",
+   "hook_hi": "बाबा श्याम के पाँच नामों का रहस्य",
+   "angle": "Why Baba is called Sheesh ke Daani, Haare ka Sahara, Teen Baan Dhaari, Morvinandan and Lakhdatar: one short true story or belief behind each name, ending on the Shyam naam (Krishna's vardan, manyata).",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara); Barbarik ka prasang Skanda Purana (Maheshwar Khand, Kaumarika Khand) ki parampara mein",
+    "ref": "Kaumarika Khand, Barbarika upakhyan"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana",
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "lakhdatar",
+    "morvinandan",
+    "paanch naam"
+   ],
+   "numbers_ok": [
+    "5",
+    "पाँच",
+    "panch"
+   ]
+  },
+  {
+   "id": "khatu-teen-baan",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "after": "2026-11-21",
+   "hook": "Barbarik ke teen baan ka rahasya",
+   "hook_hi": "बर्बरीक के तीन बाण का रहस्य",
+   "angle": "What each of the three arrows did in the tradition (mark the targets, then strike them) and why Shri Krishna tested them with the peepal leaves; told as lok katha.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara); Skanda Purana (Kaumarika Khand) mein Barbarik ka varnan",
+    "ref": "Kaumarika Khand, Barbarika upakhyan"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana"
+   ],
+   "keywords": [
+    "teen baan ka rahasya",
+    "peepal ke patte"
+   ],
+   "numbers_ok": [
+    "3",
+    "teen",
+    "तीन"
+   ]
+  },
+  {
+   "id": "khatu-sheesh-daan-kyun",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "after": "2026-11-21",
+   "hook": "Barbarik ne sheesh kyun de diya?",
+   "hook_hi": "बर्बरीक ने शीश क्यों दान किया?",
+   "angle": "The vow to side with the losing side, why that vow would have made the war endless (the tradition's reasoning), the Brahmin's request and the gift; no gore: light and petals.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara); Skanda Purana (Kaumarika Khand) ki parampara",
+    "ref": "Barbarika upakhyan"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana"
+   ],
+   "keywords": [
+    "sheesh kyun"
+   ]
+  },
+  {
+   "id": "khatu-haare-ka-sahara",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "after": "2026-11-21",
+   "hook": "'Haare ka Sahara' naam kaise pada?",
+   "hook_hi": "हारे का सहारा नाम कैसे पड़ा?",
+   "angle": "Barbarik's promise to his mother to always help the side that is losing, how the jaikara grew from it, what it means to devotees today (manyata).",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Barbarik ka matri-vachan"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/",
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana"
+   ],
+   "keywords": [
+    "haare ka sahara naam"
+   ]
+  },
+  {
+   "id": "khatu-shyam-naam-vardan",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "after": "2026-11-21",
+   "hook": "Barbarik ko 'Shyam' naam kisne diya?",
+   "hook_hi": "बर्बरीक को श्याम नाम किसने दिया?",
+   "angle": "Shri Krishna's vardan after the sheesh daan: in Kaliyug he would be worshipped by Krishna's own name Shyam (manyata), and the sheesh watching the war from the hill.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Shri Krishna ka vardan"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "shyam naam kisne",
+    "shyam naam ka vardan"
+   ]
+  },
+  {
+   "id": "khatu-sheesh-khatu-mein",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "after": "2026-11-21",
+   "hook": "Khatu mein Baba ka sheesh kaise mila?",
+   "hook_hi": "खाटू में बाबा का शीश कैसे मिला?",
+   "angle": "The tradition of the cow whose milk flowed by itself at one spot, the digging, the sheesh, and the first temple (no years without two sources).",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara); Sikar zila prashasan",
+    "ref": "Khatu mandir ki utpatti"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "gaay ka doodh",
+    "sheesh kaise mila"
+   ]
+  },
+  {
+   "id": "khatu-shyam-kund",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji / Shyam Kund",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "after": "2026-11-21",
+   "hook": "Khatu ke Shyam Kund ka rahasya",
+   "hook_hi": "खाटू के श्याम कुंड का रहस्य",
+   "angle": "Shyam Kund: the place where, by tradition, the sheesh was found; why devotees take a dip there in the Phalgun mela (manyata), what the kund looks like; no health/miracle promises.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara); Sikar zila prashasan",
+    "ref": "Shyam Kund"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "shyam kund"
+   ]
+  },
+  {
+   "id": "khatu-morvi-maa",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "scripture",
+   "after": "2026-11-21",
+   "hook": "Barbarik ki maa Morvi kaun thi?",
+   "hook_hi": "बर्बरीक की माँ मोरवी कौन थीं?",
+   "angle": "Ghatotkach's marriage to Kamakantakata (Maurvi) in the Skanda Purana, the warrior mother who trained Barbarik, and why Baba is called Morvinandan.",
+   "cite": {
+    "work": "Skanda Purana",
+    "ref": "Maheshwar Khand, Kaumarika Khand (Ghatotkach-Maurvi vivah, Barbarika janm)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana"
+   ],
+   "keywords": [
+    "maa morvi kaun",
+    "kamakatankata"
+   ]
+  },
+  {
+   "id": "khatu-bheem-ka-pota",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "scripture",
+   "after": "2026-11-21",
+   "hook": "Barbarik Bheem ke pote the!",
+   "hook_hi": "बर्बरीक, भीम के पोते थे!",
+   "angle": "The family line: Bheem and Hidimba (Mahabharat, Adi Parva), their son Ghatotkach, and Ghatotkach's son Barbarika (Skanda Purana); how a Pandava grandson became Haare ka Sahara.",
+   "cite": {
+    "work": "Mahabharat, Adi Parva (Hidimba-vadh parva); Skanda Purana, Kaumarika Khand",
+    "ref": "Bheem-Hidimba, Ghatotkach janm; Barbarika janm"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan",
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana"
+   ],
+   "keywords": [
+    "bheem ke pote",
+    "bheem ka pota"
+   ]
+  },
+  {
+   "id": "khatu-skanda-purana-katha",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "scripture",
+   "after": "2026-11-21",
+   "hook": "Barbarik ki katha kis granth mein?",
+   "hook_hi": "बर्बरीक की कथा किस ग्रंथ में है?",
+   "angle": "Barbarika's story is not in the main Mahabharat text but in the Skanda Purana's Kaumarika Khand (his devotion to the goddesses, his strength); the sheesh daan details people know come from the Khatu lok parampara. A clear, respectful 'which source says what'.",
+   "cite": {
+    "work": "Skanda Purana",
+    "ref": "Maheshwar Khand, Kaumarika Khand (Barbarika upakhyan)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "kis granth"
+   ]
+  },
+  {
+   "id": "khatu-gyaras",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "hook": "Khatu Shyam aur Gyaras ka naata",
+   "hook_hi": "खाटू श्याम और ग्यारस का नाता",
+   "angle": "Why Ekadashi (Gyaras) is Baba's day for devotees: the Janmotsav on Dev Uthani Ekadashi, the Phalgun Shukla Ekadashi mela, the monthly kirtan and shringar (manyata); no crowd numbers or timings.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Ekadashi par Shyam darshan"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "gyaras ka naata"
+   ]
+  },
+  {
+   "id": "khatu-nishan",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "after": "2026-11-21",
+   "hook": "Khatu Shyam ka Nishan kya hai?",
+   "hook_hi": "खाटू श्याम का निशान क्या है?",
+   "angle": "The nishan (flag) devotees carry on foot to Khatu: what it symbolises (Baba's victory flag, manyata), its colours and the padyatra custom; no crowd numbers.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Nishan yatra"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "nishan kya"
+   ]
+  },
+  {
+   "id": "khatu-chulkana-dham",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "after": "2026-11-21",
+   "hook": "Chulkana Dham: sheesh daan ki jagah?",
+   "hook_hi": "चुलकाना धाम: शीश दान की भूमि?",
+   "angle": "Chulkana in Panipat district, Haryana, believed (manyata) to be where Barbarik gave his sheesh, the old peepal tree story; neutral, both Khatu and Chulkana traditions respected.",
+   "cite": {
+    "work": "Lok katha (Shyam parampara); Panipat zila prashasan",
+    "ref": "Chulkana Dham"
+   },
+   "sources": [
+    "https://panipat.gov.in/"
+   ],
+   "keywords": [
+    "chulkana"
+   ]
+  },
+  {
+   "id": "khatu-mandir-kisne-banaya",
+   "p": 2,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji Mandir, Sikar",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "temple",
+   "after": "2026-11-21",
+   "hook": "Khatu Shyam mandir kisne banwaya?",
+   "hook_hi": "खाटू श्याम मंदिर किसने बनवाया?",
+   "angle": "The temple's history as the Sikar district / temple sources tell it (the first temple by tradition, the later rebuilding), the white marble and the town; every year with two sources, otherwise no year.",
+   "cite": {
+    "work": "Sikar zila prashasan; Khatu Shyam mandir parampara",
+    "ref": "Mandir ka itihas"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "mandir kisne banwaya"
+   ]
+  },
+  {
+   "id": "khatu-phalgun-mela",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "festival": "phalgun",
+   "hook": "Khatu ka Phalgun mela kyun lagta hai?",
+   "hook_hi": "खाटू का फाल्गुन मेला क्यों लगता है?",
+   "angle": "Why the biggest Khatu mela is in Phalgun Shukla (Ekadashi-Dwadashi): the tradition of the sheesh's appearance, Holi colours, nishan; no crowd numbers.",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara); Sikar zila prashasan",
+    "ref": "Phalgun Lakkhi mela"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "phalgun mela kyun"
+   ]
+  },
+  {
+   "id": "ghatotkach-vasavi-shakti",
+   "p": 2,
+   "deity": "khatu",
+   "name": "Ghatotkach (Barbarik ke pita)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Ghatotkach par chali Karn ki shakti!",
+   "hook_hi": "घटोत्कच पर चली कर्ण की अमोघ शक्ति!",
+   "angle": "Drona Parva: Ghatotkach's night battle, Karna forced to use Indra's one-time shakti (meant for Arjun) on him, and why Krishna was relieved; Barbarik's father's sacrifice.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Drona Parva, Ghatotkacha-vadha parva"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "vasavi shakti",
+    "ghatotkach par"
+   ]
+  },
+  {
+   "id": "chhath-shashthi-devi",
+   "p": 1,
+   "deity": "chhath",
+   "name": "Chhathi Maiya (Shashthi Devi)",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "label": "scripture",
+   "festival": "chhath",
+   "hook": "Chhathi Maiya kaun hain? Granth kahe",
+   "hook_hi": "छठी मैया कौन हैं? ग्रंथों में उत्तर",
+   "angle": "Shashthi Devi in the Puranas: the sixth part of Prakriti / Devasena, protector of children, the story of King Priyavrat; why she is worshipped with Surya dev in Chhath (manyata for the Chhath link).",
+   "cite": {
+    "work": "Devi Bhagavata Purana; Brahmavaivarta Purana",
+    "ref": "Devi Bhagavata 9.46 (Shashthi Devi aur Raja Priyavrat); Brahmavaivarta, Prakriti Khand"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/devi-bhagavata-purana",
+    "https://www.sacred-texts.com/hin/db/index.htm"
+   ],
+   "keywords": [
+    "shashthi devi"
+   ]
+  },
+  {
+   "id": "chhath-karn-angdesh",
+   "p": 2,
+   "deity": "chhath",
+   "name": "Karn aur Surya dev (Chhath)",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "label": "tradition",
+   "festival": "chhath",
+   "hook": "Karn aur Chhath ka naata",
+   "hook_hi": "दानवीर कर्ण और छठ का नाता",
+   "angle": "Karna's daily Surya worship (Mahabharat) and the Bihar tradition that Chhath's water-arghya began with Karna, king of Anga (lok katha); the two kept clearly apart.",
+   "cite": {
+    "work": "Mahabharat, Vana Parva (Kundala-harana); Lok katha (Ang pradesh)",
+    "ref": "Karn ki Surya upasana"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "karn aur chhath"
+   ]
+  },
+  {
+   "id": "surya-karn-sapna",
+   "p": 2,
+   "deity": "surya",
+   "name": "Surya dev aur Karn",
+   "playlist": "Surya Dev ki Kathayein",
+   "label": "scripture",
+   "hook": "Surya ne sapne mein Karn ko chetaya",
+   "hook_hi": "जब सूर्य देव ने कर्ण को सपने में चेताया",
+   "angle": "Vana Parva: Surya warns Karna in a dream that Indra will come as a Brahmin to ask for his kavach-kundal; Karna refuses to break his vow of giving; the trade for the Shakti.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Vana Parva, Kundala-harana parva"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "kavach",
+    "kundal",
+    "sapna"
+   ]
+  },
+  {
+   "id": "surya-akshaya-patra",
+   "p": 2,
+   "deity": "surya",
+   "name": "Surya dev aur Yudhishthir",
+   "playlist": "Surya Dev ki Kathayein",
+   "label": "scripture",
+   "hook": "Surya dev ne diya Akshaya Patra!",
+   "hook_hi": "सूर्य देव ने दिया अक्षय पात्र!",
+   "angle": "Vana Parva: in exile Yudhishthir prays to Surya with his 108 names (Dhaumya's advice) and receives the copper vessel that fed everyone until Draupadi had eaten.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Vana Parva, Aranyaka parva (Surya stuti aur Akshaya Patra)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "akshaya patra"
+   ],
+   "numbers_ok": [
+    "108"
+   ]
+  },
+  {
+   "id": "surya-sanjna-chhaya",
+   "p": 2,
+   "deity": "surya",
+   "name": "Surya dev",
+   "playlist": "Surya Dev ki Kathayein",
+   "label": "scripture",
+   "hook": "Surya dev ki patni chhaaya ban gayi!",
+   "hook_hi": "सूर्य देव की पत्नी की छाया का रहस्य",
+   "angle": "Markandeya Purana: Sanjna could not bear Vivasvat's brilliance, left her shadow Chhaya in her place; Yama noticed; Vishwakarma trimmed the sun's radiance; children of both.",
+   "cite": {
+    "work": "Markandeya Purana",
+    "ref": "Vaivasvata Manu prasang (Sanjna aur Chhaya)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-markandeya-purana"
+   ],
+   "keywords": [
+    "sanjna"
+   ]
+  },
+  {
+   "id": "konark-rath",
+   "p": 2,
+   "deity": "surya",
+   "name": "Konark Surya Mandir",
+   "playlist": "Surya Dev ki Kathayein",
+   "label": "temple",
+   "hook": "Konark Surya Mandir ek vishal rath hai",
+   "hook_hi": "कोणार्क सूर्य मंदिर एक विशाल रथ है",
+   "angle": "The temple is built as Surya's chariot with carved stone wheels and horses (ASI / UNESCO); king Narasimhadeva I (13th century); the belief that the wheels work as sundials only as 'kaha jaata hai'.",
+   "cite": {
+    "work": "Archaeological Survey of India; UNESCO World Heritage",
+    "ref": "Sun Temple, Konark"
+   },
+   "sources": [
+    "https://asi.nic.in/",
+    "https://whc.unesco.org/en/list/246/"
+   ],
+   "keywords": [
+    "konark",
+    "rath"
+   ],
+   "numbers_ok": [
+    "24",
+    "chaubees",
+    "चौबीस",
+    "7",
+    "saat",
+    "सात"
+   ]
+  },
+  {
+   "id": "jatayu-sampati-surya",
+   "p": 2,
+   "deity": "ram",
+   "name": "Sampati aur Jatayu (Ramayan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Sampati ne Jatayu ke liye pankh jalaye",
+   "hook_hi": "संपाती ने भाई जटायु के लिए पंख जला दिए",
+   "angle": "Valmiki Ramayan, Kishkindha Kand: Sampati tells Angad how he and Jatayu raced towards the sun, he spread his wings to shield his younger brother and fell wingless; later his sight finds Lanka and his wings grow back.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Kishkindha Kand, sarga 56-63 (Sampati prasang)"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "sampati",
+    "jatayu"
+   ]
+  },
+  {
+   "id": "jatayu-ravan-yuddh",
+   "p": 2,
+   "deity": "ram",
+   "name": "Jatayu (Ramayan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Jatayu ne akele Ravan ko roka!",
+   "hook_hi": "बूढ़े जटायु ने अकेले रावण को रोका!",
+   "angle": "Aranya Kand: old Jatayu warns Ravan, fights him, breaks his chariot, falls; tells Ram the news; Ram performs his last rites like a father's. No gore: feathers and dust.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Aranya Kand, sarga 50-51 and 67-68"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "jatayu",
+    "ravan"
+   ]
+  },
+  {
+   "id": "ram-setu-nal",
+   "p": 2,
+   "deity": "ram",
+   "name": "Ram Setu (Ramayan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Ram Setu kisne banaya? Nal ka rahasya",
+   "hook_hi": "राम सेतु किसने बनाया? नल का रहस्य",
+   "angle": "Yuddha Kand: Samudra tells Ram that Nal, son of Vishwakarma, can build the bridge; the vanaras bring rocks and trees; the 'Ram naam on floating stones' is a later lok parampara, said as manyata.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Yuddha Kand, sarga 22"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "setu",
+    "nal"
+   ]
+  },
+  {
+   "id": "lakshman-rekha-sach",
+   "p": 2,
+   "deity": "ram",
+   "name": "Lakshman (Ramayan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Lakshman Rekha ka sach kya hai?",
+   "hook_hi": "लक्ष्मण रेखा का सच क्या है?",
+   "angle": "Valmiki's Aranya Kand has Lakshman leave Sita reluctantly but no drawn line; the rekha comes from later tellings (Ramcharitmanas, Lanka Kand mentions it through Mandodari) and folk retellings. Respectful, both texts honoured.",
+   "cite": {
+    "work": "Valmiki Ramayan; Ramcharitmanas",
+    "ref": "Aranya Kand, sarga 45; Ramcharitmanas, Lanka Kand"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.ramcharitmanas.iitk.ac.in/"
+   ],
+   "keywords": [
+    "lakshman rekha"
+   ]
+  },
+  {
+   "id": "kumbhkaran-neend",
+   "p": 2,
+   "deity": "ram",
+   "name": "Kumbhkaran (Ramayan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Kumbhkaran itna kyun sota tha?",
+   "hook_hi": "कुंभकर्ण इतना क्यों सोता था?",
+   "angle": "Uttara Kand: at Brahma's boon the devas feared Kumbhkaran; Saraswati turned his words so he asked for sleep; the long sleep and brief waking (tell the duration only as the verified text says).",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Uttara Kand, sarga 10"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "kumbhkaran"
+   ]
+  },
+  {
+   "id": "angad-pair",
+   "p": 3,
+   "deity": "ram",
+   "name": "Angad (Ramcharitmanas)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Angad ka pair koi hila na saka!",
+   "hook_hi": "अंगद का पैर कोई हिला न सका!",
+   "angle": "Ramcharitmanas, Lanka Kand: Angad in Ravan's court plants his foot and dares the warriors; none can move it; Ravan rises himself and Angad's reply. Say it is Tulsidas ji's Manas.",
+   "cite": {
+    "work": "Ramcharitmanas (Goswami Tulsidas)",
+    "ref": "Lanka Kand, Angad-Ravan samvad"
+   },
+   "sources": [
+    "https://www.ramcharitmanas.iitk.ac.in/"
+   ],
+   "keywords": [
+    "angad",
+    "pair"
+   ]
+  },
+  {
+   "id": "shabari-ber",
+   "p": 3,
+   "deity": "ram",
+   "name": "Shabari (Ramayan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "hook": "Shabari ke ber: granth kya kehte?",
+   "hook_hi": "शबरी के बेर: ग्रंथ क्या कहते हैं?",
+   "angle": "Valmiki: Shabari, disciple of Matanga, waits for Ram and offers forest fruits; the tasted berries (jhoothe ber) are the beloved lok parampara: both told and labelled.",
+   "cite": {
+    "work": "Valmiki Ramayan; Lok parampara",
+    "ref": "Aranya Kand, sarga 74"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "shabari",
+    "ber"
+   ]
+  },
+  {
+   "id": "ram-mandir-ayodhya-nirman",
+   "p": 3,
+   "deity": "ram",
+   "name": "Shri Ram Janmabhoomi Mandir, Ayodhya",
+   "playlist": "Prasiddh Mandir",
+   "label": "temple",
+   "hook": "Ayodhya Ram Mandir ki khaas banawat",
+   "hook_hi": "अयोध्या राम मंदिर की खास बनावट",
+   "angle": "What the Shri Ram Janmabhoomi Teerth Kshetra says about the temple: Nagara style, floors, the Ram Lalla murti; every figure only from the trust or a news site; no politics.",
+   "cite": {
+    "work": "Shri Ram Janmabhoomi Teerth Kshetra",
+    "ref": "Mandir nirman vivaran"
+   },
+   "sources": [
+    "https://srjbtkshetra.org/"
+   ],
+   "keywords": [
+    "ayodhya",
+    "ram mandir"
+   ]
+  },
+  {
+   "id": "hanuman-surya-phal",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Bal Hanuman ne Surya ko phal samjha!",
+   "hook_hi": "बाल हनुमान ने सूर्य को फल समझा!",
+   "angle": "Kishkindha Kand (Jambavan's telling) and Uttara Kand: the leap at the rising sun, Indra's vajra on the chin (hanu), Vayu's anger and the gods' boons.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Kishkindha Kand, sarga 66; Uttara Kand, sarga 35-36"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "phal",
+    "bal hanuman"
+   ]
+  },
+  {
+   "id": "hanuman-shakti-bhool",
+   "p": 1,
+   "deity": "hanuman",
+   "name": "Hanuman ji",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Hanuman ji apni shakti kyun bhoole?",
+   "hook_hi": "हनुमान जी अपनी शक्ति क्यों भूल गए?",
+   "angle": "Uttara Kand: the young Hanuman's pranks in the rishis' ashrams, the rishis' curse that he forget his strength until reminded; Kishkindha Kand: Jambavan reminds him before the leap to Lanka.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Uttara Kand, sarga 36; Kishkindha Kand, sarga 66-67"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "shakti bhool",
+    "shakti kyun bhoole"
+   ]
+  },
+  {
+   "id": "hanuman-bheem-poonch",
+   "p": 1,
+   "deity": "hanuman",
+   "name": "Hanuman ji aur Bheem",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Bheem Hanuman ki poonch na utha paaye",
+   "hook_hi": "जब भीम हनुमान जी की पूँछ न उठा पाए",
+   "angle": "Vana Parva: Bheem looking for the Saugandhika flower finds an old monkey blocking the path, cannot lift its tail, learns it is his elder brother Hanuman (both sons of Vayu).",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Vana Parva, Tirtha-yatra parva (Bheem-Hanuman milan)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "bheem",
+    "poonch"
+   ]
+  },
+  {
+   "id": "hanuman-arjun-dhwaj",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji aur Arjun",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Arjun ke rath par Hanuman ji kyun?",
+   "hook_hi": "अर्जुन के रथ पर हनुमान जी क्यों?",
+   "angle": "Vana Parva: Hanuman promises Bheem to sit on Arjun's banner and roar in the battle; Arjun is called Kapidhwaj; the chariot after the war (tell only what the verified text says).",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Vana Parva, Tirtha-yatra parva (Hanuman ka vachan)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "dhwaj",
+    "kapidhwaj",
+    "arjun"
+   ]
+  },
+  {
+   "id": "hanuman-sindoor",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "tradition",
+   "hook": "Hanuman ji ko sindoor kyun chadhta?",
+   "hook_hi": "हनुमान जी को सिंदूर क्यों चढ़ता है?",
+   "angle": "The lok katha of Sita mata's sindoor and Hanuman covering himself in it out of love for Ram; the Tuesday-Saturday chola custom; said as manyata.",
+   "cite": {
+    "work": "Lok katha (Hanuman bhakti parampara)",
+    "ref": "Sindoor chola"
+   },
+   "sources": [
+    "https://churu.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "sindoor",
+    "chola"
+   ]
+  },
+  {
+   "id": "hanuman-panchmukhi",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Panchmukhi Hanuman ji",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "tradition",
+   "hook": "Panchmukhi Hanuman ka rahasya",
+   "hook_hi": "पंचमुखी हनुमान का रहस्य",
+   "angle": "The Ahiravan story of later Ramayan traditions (not in Valmiki): the five lamps, the five faces (Hanuman, Narasimha, Garuda, Varaha, Hayagriva); told as lok katha / parampara.",
+   "cite": {
+    "work": "Lok katha (Ahiravan prasang, parvarti Ramayan parampara)",
+    "ref": "Panchmukhi roop"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "panchmukhi",
+    "ahiravan"
+   ],
+   "numbers_ok": [
+    "5",
+    "panch",
+    "पाँच",
+    "पंच"
+   ]
+  },
+  {
+   "id": "hanuman-makardhwaj",
+   "p": 3,
+   "deity": "hanuman",
+   "name": "Hanuman ji aur Makardhwaj",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "tradition",
+   "hook": "Hanuman ji ke putra Makardhwaj!",
+   "hook_hi": "हनुमान जी के पुत्र मकरध्वज!",
+   "angle": "The later Ramayan lok katha of Makardhwaj, guard of Patal lok, and his meeting with Hanuman during the Ahiravan episode; Hanuman stays brahmachari; labelled lok katha.",
+   "cite": {
+    "work": "Lok katha (parvarti Ramayan parampara)",
+    "ref": "Makardhwaj prasang"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "makardhwaj"
+   ]
+  },
+  {
+   "id": "hanuman-chiranjeevi",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Hanuman ji aaj bhi dharti par hain?",
+   "hook_hi": "क्या हनुमान जी आज भी धरती पर हैं?",
+   "angle": "Uttara Kand: Hanuman asks to stay on earth as long as Ram's story is told, and Ram grants it; the chiranjeevi belief; no claims of sightings.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Uttara Kand (Ram ka Hanuman ko vardan)"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "chiranjeevi",
+    "jeevit"
+   ]
+  },
+  {
+   "id": "salasar-daadhi-moonchh",
+   "p": 1,
+   "deity": "hanuman",
+   "name": "Salasar Balaji, Churu",
+   "playlist": "Hanuman ji ke Prasiddh Mandir",
+   "label": "temple",
+   "hook": "Salasar Balaji ki daadhi-moonchh kyun?",
+   "hook_hi": "सालासर बालाजी की दाढ़ी-मूँछ क्यों?",
+   "angle": "The murti found by a farmer in a field at Asota (tradition), sent to Salasar for the devotee Mohandas ji; why this Balaji has a beard and moustache (manyata of Mohandas ji's darshan); years only with two sources.",
+   "cite": {
+    "work": "Churu zila prashasan; Salasar Balaji mandir parampara",
+    "ref": "Salasar Balaji ka itihas"
+   },
+   "sources": [
+    "https://churu.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "salasar",
+    "daadhi"
+   ]
+  },
+  {
+   "id": "mehandipur-teen-dev",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Mehandipur Balaji, Dausa",
+   "playlist": "Hanuman ji ke Prasiddh Mandir",
+   "label": "temple",
+   "hook": "Mehandipur Balaji ke teen devta",
+   "hook_hi": "मेहंदीपुर बालाजी के तीन देवता",
+   "angle": "Shri Balaji, Pretraj Sarkar and Bhairav ji (Kotwal Captain) worshipped together at Mehandipur, the self-manifested murti in the Aravali rock (manyata), the darshan custom; no fear, no miracle promises.",
+   "cite": {
+    "work": "Dausa zila prashasan; Mehandipur Balaji mandir parampara",
+    "ref": "Mehandipur Balaji"
+   },
+   "sources": [
+    "https://dausa.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "mehandipur"
+   ],
+   "numbers_ok": [
+    "3",
+    "teen",
+    "तीन"
+   ]
+  },
+  {
+   "id": "bali-sugriv-vardan",
+   "p": 3,
+   "deity": "hanuman",
+   "name": "Bali aur Sugriv (Ramayan)",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Bali ki maala ka rahasya",
+   "hook_hi": "बाली की सोने की माला का रहस्य",
+   "angle": "Kishkindha Kand: Indra's golden garland that Bali wore, the first fight where Ram could not tell the brothers apart, Hanuman's role as Sugriv's minister; the 'half strength' tale only as lok katha if told at all.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Kishkindha Kand, sarga 12-17"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "sugriv",
+    "maala"
+   ]
+  },
+  {
+   "id": "shiv-neelkanth",
+   "p": 1,
+   "deity": "shiv",
+   "name": "Shiv ji (Neelkanth)",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Shiv ji Neelkanth kaise bane?",
+   "hook_hi": "शिव जी नीलकंठ कैसे बने?",
+   "angle": "Bhagavata Purana: at the samudra manthan the Halahal poison appears first, the worlds burn, Shiv drinks it, Parvati holds it in his throat, the throat turns blue.",
+   "cite": {
+    "work": "Bhagavata Purana",
+    "ref": "Skandha 8, adhyay 7 (Halahal pan)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "neelkanth",
+    "halahal",
+    "vish"
+   ]
+  },
+  {
+   "id": "shiv-ganga-jata",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Shiv ji aur Maa Ganga",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Ganga ji Shiv ki jata mein kyun?",
+   "hook_hi": "गंगा जी शिव की जटाओं में क्यों?",
+   "angle": "Bala Kand: Bhagirath's tapasya for his ancestors, Ganga's force would split the earth, Shiv catches her in his matted hair and releases her gently.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Bala Kand, sarga 42-44 (Bhagirath aur Ganga avataran)"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "ganga",
+    "jata",
+    "bhagirath"
+   ]
+  },
+  {
+   "id": "shiv-tripurari",
+   "p": 1,
+   "deity": "shiv",
+   "name": "Shiv ji (Tripurari)",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Shiv ne ek baan se teen nagar jalaye",
+   "hook_hi": "शिव जी ने एक बाण से तीन नगर नष्ट किए",
+   "angle": "Karna Parva (Duryodhan tells Shalya) and Shiva Purana: the three flying cities of the asuras that aligned once; the earth as chariot, Brahma as charioteer, one arrow; why Shiv is Tripurari.",
+   "cite": {
+    "work": "Mahabharat; Shiva Purana",
+    "ref": "Karna Parva (Tripura-vadh katha); Shiva Purana, Rudra Samhita, Yuddha Khand"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan",
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english"
+   ],
+   "keywords": [
+    "tripur",
+    "tripurari"
+   ],
+   "numbers_ok": [
+    "1",
+    "3",
+    "ek",
+    "teen",
+    "एक",
+    "तीन"
+   ]
+  },
+  {
+   "id": "shiv-ardhanarishvara",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Ardhanarishvara (Shiv-Shakti)",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Ardhanarishvar roop ka rahasya",
+   "hook_hi": "अर्धनारीश्वर रूप का रहस्य",
+   "angle": "Shiva Purana, Shatarudra Samhita: Brahma's creation would not grow, he prays, Shiv appears as half Shiv, half Shakti; the meaning of Shiv-Shakti as one.",
+   "cite": {
+    "work": "Shiva Purana",
+    "ref": "Shatarudra Samhita, adhyay 3"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english"
+   ],
+   "keywords": [
+    "ardhanarishvar"
+   ]
+  },
+  {
+   "id": "somnath-chandra-shaap",
+   "p": 1,
+   "deity": "shiv",
+   "name": "Somnath Jyotirlinga",
+   "playlist": "12 Jyotirlinga",
+   "label": "scripture",
+   "hook": "Somnath: Chandra dev ko shaap kyun?",
+   "hook_hi": "सोमनाथ: चंद्र देव को श्राप क्यों मिला?",
+   "angle": "Shalya Parva: Daksha's 27 daughters married to Soma, his partiality to Rohini, Daksha's curse of wasting away, recovery at Prabhas tirtha; Somnath's tradition of Shiv's grace (Somnath trust).",
+   "cite": {
+    "work": "Mahabharat; Shri Somnath Trust",
+    "ref": "Shalya Parva, Prabhas tirtha prasang"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan",
+    "https://somnath.org/"
+   ],
+   "keywords": [
+    "chandra dev ko shaap"
+   ],
+   "numbers_ok": [
+    "27",
+    "sattaees",
+    "सत्ताईस"
+   ]
+  },
+  {
+   "id": "somnath-baan-stambh",
+   "p": 1,
+   "deity": "shiv",
+   "name": "Somnath Jyotirlinga",
+   "playlist": "12 Jyotirlinga",
+   "label": "temple",
+   "hook": "Somnath ka Baan Stambh kya kehta hai?",
+   "hook_hi": "सोमनाथ का बाण स्तंभ क्या कहता है?",
+   "angle": "The Baan Stambh on the sea wall at Somnath with its Sanskrit inscription that there is no land in a straight line from here to the South Pole (as the Somnath trust describes); what it shows about old geography; no exaggeration.",
+   "cite": {
+    "work": "Shri Somnath Trust",
+    "ref": "Baan Stambh"
+   },
+   "sources": [
+    "https://somnath.org/"
+   ],
+   "keywords": [
+    "baan stambh"
+   ]
+  },
+  {
+   "id": "mahakal-dakshinmukhi",
+   "p": 1,
+   "deity": "shiv",
+   "name": "Mahakaleshwar Jyotirlinga, Ujjain",
+   "playlist": "12 Jyotirlinga",
+   "label": "temple",
+   "hook": "Mahakal ka mukh dakshin ki or kyun?",
+   "hook_hi": "महाकाल का मुख दक्षिण की ओर क्यों?",
+   "angle": "Mahakaleshwar is the dakshinamukhi Jyotirlinga (temple site), the Bhasma Aarti before dawn, the belief that Mahakal is the lord of time; no timings or crowd numbers.",
+   "cite": {
+    "work": "Shri Mahakaleshwar Mandir Prabandh Samiti; Ujjain zila prashasan",
+    "ref": "Dakshinmukhi Jyotirlinga, Bhasma Aarti"
+   },
+   "sources": [
+    "https://shrimahakaleshwar.com/",
+    "https://ujjain.nic.in/"
+   ],
+   "keywords": [
+    "mahakal",
+    "dakshin",
+    "bhasma"
+   ]
+  },
+  {
+   "id": "kedarnath-pandav-bail",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Kedarnath Jyotirlinga",
+   "playlist": "12 Jyotirlinga",
+   "label": "tradition",
+   "hook": "Kedarnath mein Shiv bail ban chhupe?",
+   "hook_hi": "केदारनाथ में शिव बैल बनकर छिपे?",
+   "angle": "The Panch Kedar tradition: after the war the Pandavas seek Shiv, he hides as a bull, Bheem recognises him, the hump stays at Kedarnath and other parts appear at the other Kedars (manyata); BKTC as source.",
+   "cite": {
+    "work": "Lok katha (Panch Kedar parampara); Badrinath-Kedarnath Mandir Samiti",
+    "ref": "Panch Kedar"
+   },
+   "sources": [
+    "https://badrinath-kedarnath.gov.in/"
+   ],
+   "keywords": [
+    "kedarnath",
+    "bail",
+    "panch kedar"
+   ]
+  },
+  {
+   "id": "kedarnath-bheem-shila",
+   "p": 3,
+   "deity": "shiv",
+   "name": "Kedarnath Jyotirlinga",
+   "playlist": "12 Jyotirlinga",
+   "label": "temple",
+   "hook": "Kedarnath ki Bheem Shila ka rahasya",
+   "hook_hi": "केदारनाथ की भीम शिला का रहस्य",
+   "angle": "In the June 2013 flood a large rock stopped behind the temple and the water split around it (news reports); devotees call it Bheem Shila (manyata); respectful to the flood's victims.",
+   "cite": {
+    "work": "Samachar report (2013 Kedarnath aapda); Badrinath-Kedarnath Mandir Samiti",
+    "ref": "Bheem Shila"
+   },
+   "sources": [
+    "https://badrinath-kedarnath.gov.in/"
+   ],
+   "keywords": [
+    "bheem shila"
+   ]
+  },
+  {
+   "id": "kashi-vishwanath-swarn-shikhar",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Kashi Vishwanath Jyotirlinga",
+   "playlist": "12 Jyotirlinga",
+   "label": "temple",
+   "hook": "Kashi Vishwanath ka sone ka shikhar",
+   "hook_hi": "काशी विश्वनाथ का सोने का शिखर",
+   "angle": "The present temple built by Maharani Ahilyabai Holkar (1780) and the gold plating of the shikhar given by Maharaja Ranjit Singh (temple trust); the Kashi belief of moksha (manyata).",
+   "cite": {
+    "work": "Shri Kashi Vishwanath Mandir Nyas",
+    "ref": "Mandir ka itihas"
+   },
+   "sources": [
+    "https://shrikashivishwanath.org/"
+   ],
+   "keywords": [
+    "kashi",
+    "sona",
+    "shikhar"
+   ],
+   "numbers_ok": [
+    "1780"
+   ]
+  },
+  {
+   "id": "nandi-kaan-mannat",
+   "p": 3,
+   "deity": "shiv",
+   "name": "Nandi ji",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "hook": "Nandi ke kaan mein mannat kyun kehte?",
+   "hook_hi": "नंदी के कान में मन्नत क्यों कहते हैं?",
+   "angle": "Nandi as Shiv's gatekeeper and vahan, why devotees whisper their wish in Nandi's ear (manyata: Shiv is in dhyan, Nandi carries the message); no promise that wishes come true.",
+   "cite": {
+    "work": "Lok parampara (Shiv mandir); Shiva Purana mein Nandi",
+    "ref": "Nandi ka varnan"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english"
+   ],
+   "keywords": [
+    "nandi",
+    "kaan"
+   ]
+  },
+  {
+   "id": "brahma-pushkar-ek-mandir",
+   "p": 3,
+   "deity": "shiv",
+   "name": "Brahma Mandir, Pushkar",
+   "playlist": "Prasiddh Mandir",
+   "label": "tradition",
+   "hook": "Brahma ji ke mandir itne kam kyun?",
+   "hook_hi": "ब्रह्मा जी के मंदिर इतने कम क्यों?",
+   "angle": "The Pushkar yagna tradition of the Padma Purana and Savitri's curse that Brahma would be worshipped at Pushkar (versions differ: say so); the famous Pushkar temple (Ajmer district).",
+   "cite": {
+    "work": "Padma Purana (Srishti Khand); Ajmer zila prashasan",
+    "ref": "Pushkar yagna prasang"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-padma-purana",
+    "https://ajmer.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "brahma",
+    "pushkar"
+   ]
+  },
+  {
+   "id": "sudarshan-chakra-prapti",
+   "p": 1,
+   "deity": "krishna",
+   "name": "Vishnu ji (Sudarshan Chakra)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Vishnu ji ko Sudarshan kaise mila?",
+   "hook_hi": "विष्णु जी को सुदर्शन चक्र कैसे मिला?",
+   "angle": "Shiva Purana, Koti Rudra Samhita: Vishnu worships Shiv with a thousand lotuses, one is missing, he offers his lotus-eye, Shiv gives the Sudarshan; mention neutrally that the Mahabharat (Khandava) has Agni giving Krishna the chakra.",
+   "cite": {
+    "work": "Shiva Purana; Mahabharat",
+    "ref": "Koti Rudra Samhita (Sahasranama puja); Adi Parva, Khandava-daha parva"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english",
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "sudarshan"
+   ],
+   "numbers_ok": [
+    "1000",
+    "hazaar",
+    "हज़ार",
+    "हजार"
+   ]
+  },
+  {
+   "id": "balram-yamuna-hal",
+   "p": 1,
+   "deity": "krishna",
+   "name": "Balram ji",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Balram ji ne hal se Yamuna kheench li!",
+   "hook_hi": "बलराम जी ने हल से यमुना खींच ली!",
+   "angle": "Bhagavata Purana: in Vrindavan Balram calls the Yamuna to come near for his water-play, she does not come, he pulls her with his plough until she appears and prays; the Yamuna's path (manyata of the bend).",
+   "cite": {
+    "work": "Bhagavata Purana",
+    "ref": "Skandha 10, adhyay 65"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana"
+   ],
+   "keywords": [
+    "balram",
+    "yamuna",
+    "hal"
+   ]
+  },
+  {
+   "id": "shishupal-sau-galtiyan",
+   "p": 1,
+   "deity": "krishna",
+   "name": "Shri Krishna aur Shishupal",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Krishna ne Shishupal ko 100 baar maaf",
+   "hook_hi": "कृष्ण ने शिशुपाल के सौ अपराध क्षमा किए",
+   "angle": "Sabha Parva: at Yudhishthir's Rajasuya Shishupal insults Krishna; Krishna's promise to his aunt to forgive a hundred offences; after the hundredth, the Sudarshan. No gore: light.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Sabha Parva, Shishupala-vadha parva"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "shishupal"
+   ],
+   "numbers_ok": [
+    "100",
+    "sau",
+    "सौ"
+   ]
+  },
+  {
+   "id": "sudama-chawal",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna aur Sudama",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Sudama ke chawal ne kya kar diya?",
+   "hook_hi": "सुदामा के चावल ने क्या कर दिया?",
+   "angle": "Bhagavata Purana: poor Sudama brings flattened rice, Krishna eats a handful with love, Rukmini stops the next; Sudama returns to find his home changed. Tell the handful count only as the verified text says.",
+   "cite": {
+    "work": "Bhagavata Purana",
+    "ref": "Skandha 10, adhyay 80-81"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana"
+   ],
+   "keywords": [
+    "sudama",
+    "chawal"
+   ]
+  },
+  {
+   "id": "dwarka-samudra",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Dwarka (Shri Krishna)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Dwarka samudra mein kaise doobi?",
+   "hook_hi": "द्वारका समुद्र में कैसे डूबी?",
+   "angle": "Mausala Parva: after Krishna's departure Arjun takes the people of Dwarka away and the sea floods the city behind them. No claims beyond the text about undersea finds.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Mausala Parva, adhyay 7"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "dwarka",
+    "samudra"
+   ]
+  },
+  {
+   "id": "krishna-bhishma-chakra",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna aur Bhishma",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Krishna ne pratigya tod chakra uthaya",
+   "hook_hi": "जब कृष्ण ने प्रतिज्ञा तोड़कर चक्र उठाया",
+   "angle": "Bhishma Parva: Krishna had vowed not to take up arms; seeing Arjun hold back, he jumps down with the chakra towards Bhishma, who welcomes him; Arjun stops him.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Bhishma Parva, Bhishma-vadha parva"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "pratigya",
+    "chakra",
+    "bhishma"
+   ]
+  },
+  {
+   "id": "vishwaroop-arjun",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna (Vishwaroop)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Arjun ne dekha Krishna ka Vishwaroop",
+   "hook_hi": "अर्जुन ने देखा कृष्ण का विश्वरूप",
+   "angle": "Bhagavad Gita, adhyay 11: Arjun asks to see the divine form, receives divya drishti, what he sees, his fear and prayer, and the return to the gentle form; quote one verse exactly or none.",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "Adhyay 11 (Vishwaroop darshan yog)"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "vishwaroop"
+   ],
+   "gita": "11.12",
+   "variant_only": "gita",
+   "numbers_ok": [
+    "11.12",
+    "11",
+    "12"
+   ]
+  },
+  {
+   "id": "vaman-teen-pag",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Vaman avtar (Vishnu ji)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Vaman ke teen pag mein teen lok!",
+   "hook_hi": "वामन के तीन पग में तीनों लोक!",
+   "angle": "Bhagavata Purana: the dwarf Brahmin asks Bali for three steps of land, Shukracharya warns, Bali keeps his word, the two steps cover the worlds and Bali offers his head for the third.",
+   "cite": {
+    "work": "Bhagavata Purana",
+    "ref": "Skandha 8, adhyay 18-22"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana"
+   ],
+   "keywords": [
+    "vaman",
+    "pag"
+   ],
+   "numbers_ok": [
+    "3",
+    "teen",
+    "तीन"
+   ]
+  },
+  {
+   "id": "narasimha-khamba",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Narasimha avtar (Vishnu ji)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Narasimha khambe se kyun prakat hue?",
+   "hook_hi": "नरसिंह भगवान खंभे से क्यों प्रकट हुए?",
+   "angle": "Bhagavata Purana: Hiranyakashipu's boon (not man nor beast, not inside nor outside, not day nor night), Prahlad says Hari is everywhere, the pillar, the threshold at dusk. No gore.",
+   "cite": {
+    "work": "Bhagavata Purana",
+    "ref": "Skandha 7, adhyay 8"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana"
+   ],
+   "keywords": [
+    "narasimha",
+    "khamba",
+    "prahlad"
+   ]
+  },
+  {
+   "id": "matsya-manu-naav",
+   "p": 3,
+   "deity": "krishna",
+   "name": "Matsya avtar (Vishnu ji)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Ek chhoti machhli ne bachayi srishti",
+   "hook_hi": "एक छोटी मछली ने बचाई सृष्टि",
+   "angle": "Vana Parva and Bhagavata: Manu saves a tiny fish that keeps outgrowing every pot, it warns of the flood, the boat, the seeds and the seven rishis tied to the fish's horn.",
+   "cite": {
+    "work": "Mahabharat; Bhagavata Purana",
+    "ref": "Vana Parva (Matsya prasang); Skandha 8, adhyay 24"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan",
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana"
+   ],
+   "keywords": [
+    "matsya",
+    "manu"
+   ],
+   "numbers_ok": [
+    "7",
+    "saat",
+    "सात"
+   ]
+  },
+  {
+   "id": "jagannath-adhoori-murti",
+   "p": 1,
+   "deity": "krishna",
+   "name": "Jagannath ji, Puri",
+   "playlist": "Prasiddh Mandir",
+   "label": "tradition",
+   "hook": "Jagannath ji ki murti adhoori kyun?",
+   "hook_hi": "जगन्नाथ जी की मूर्ति अधूरी क्यों?",
+   "angle": "The tradition of King Indradyumna, the old carpenter (Vishwakarma, manyata) who asked for a closed door, the queen who opened it early; the murtis as they are worshipped today (temple site).",
+   "cite": {
+    "work": "Lok katha / Skanda Purana (Purushottam Kshetra Mahatmya) parampara; Shri Jagannath Mandir Prashasan",
+    "ref": "Daru murti ki utpatti"
+   },
+   "sources": [
+    "https://www.shreejagannatha.in/",
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana"
+   ],
+   "keywords": [
+    "jagannath",
+    "adhoori"
+   ]
+  },
+  {
+   "id": "jagannath-nabakalebara",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Jagannath ji, Puri",
+   "playlist": "Prasiddh Mandir",
+   "label": "temple",
+   "hook": "Jagannath ji ka naya kalevar: rahasya",
+   "hook_hi": "जगन्नाथ जी का नया कलेवर: नवकलेवर",
+   "angle": "Nabakalebara: the wooden murtis are renewed in years with an extra Ashadha month (temple site), the search for the sacred neem (daru), the Brahma padartha belief (manyata); no exaggerated secrecy claims.",
+   "cite": {
+    "work": "Shri Jagannath Mandir Prashasan, Puri",
+    "ref": "Nabakalebara"
+   },
+   "sources": [
+    "https://www.shreejagannatha.in/"
+   ],
+   "keywords": [
+    "nabakalebara",
+    "navkalevar"
+   ]
+  },
+  {
+   "id": "jagannath-rasoi",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Jagannath ji, Puri",
+   "playlist": "Prasiddh Mandir",
+   "label": "tradition",
+   "hook": "Jagannath ki rasoi ka rahasya",
+   "hook_hi": "जगन्नाथ जी की रसोई का रहस्य",
+   "angle": "The temple kitchen's clay pots stacked over wood fire and the well-known belief that the top pot cooks first (manyata), Mahaprasad shared by all; size claims only from the temple site.",
+   "cite": {
+    "work": "Shri Jagannath Mandir Prashasan; Lok manyata",
+    "ref": "Rosaghara (rasoi) aur Mahaprasad"
+   },
+   "sources": [
+    "https://www.shreejagannatha.in/"
+   ],
+   "keywords": [
+    "rasoi",
+    "mahaprasad"
+   ]
+  },
+  {
+   "id": "banke-bihari-parda",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Banke Bihari ji, Vrindavan",
+   "playlist": "Krishna Leela Dham",
+   "label": "tradition",
+   "hook": "Banke Bihari darshan mein parda kyun?",
+   "hook_hi": "बांके बिहारी के दर्शन में पर्दा क्यों?",
+   "angle": "Swami Haridas ji and the appearance of Banke Bihari ji in Nidhivan (tradition), and why the curtain is drawn again and again during darshan (manyata: devotees lose themselves in his gaze).",
+   "cite": {
+    "work": "Lok katha (Vrindavan parampara); Mathura zila prashasan",
+    "ref": "Banke Bihari ji"
+   },
+   "sources": [
+    "https://mathura.nic.in/"
+   ],
+   "keywords": [
+    "banke bihari",
+    "parda"
+   ]
+  },
+  {
+   "id": "shrinathji-nathdwara",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shrinathji, Nathdwara",
+   "playlist": "Krishna Leela Dham",
+   "label": "tradition",
+   "hook": "Shrinathji Mewar kaise pahunche?",
+   "hook_hi": "श्रीनाथजी गोवर्धन से मेवाड़ कैसे पहुँचे?",
+   "angle": "The murti's journey from Govardhan, the chariot wheel that stuck at Sinhad (manyata), and the haveli temple at Nathdwara; years only with two sources.",
+   "cite": {
+    "work": "Pushtimarg parampara; Rajsamand zila prashasan",
+    "ref": "Shrinathji ka aagman"
+   },
+   "sources": [
+    "https://rajsamand.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "shrinathji",
+    "nathdwara"
+   ]
+  },
+  {
+   "id": "tirupati-keshdaan",
+   "p": 3,
+   "deity": "krishna",
+   "name": "Tirumala Venkateswara",
+   "playlist": "Prasiddh Mandir",
+   "label": "tradition",
+   "hook": "Tirupati mein baal daan kyun karte?",
+   "hook_hi": "तिरुपति में बाल क्यों दान करते हैं?",
+   "angle": "The tonsure offering at Tirumala as surrender of ego (TTD) and the folk tale of Neela Devi (lok katha); no crowd or money figures.",
+   "cite": {
+    "work": "Tirumala Tirupati Devasthanams; Lok katha",
+    "ref": "Talaneelalu (kesh daan)"
+   },
+   "sources": [
+    "https://www.tirumala.org/"
+   ],
+   "keywords": [
+    "tirupati",
+    "baal"
+   ]
+  },
+  {
+   "id": "lakshmi-samudra-manthan",
+   "p": 2,
+   "deity": "devi",
+   "name": "Maa Lakshmi",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "scripture",
+   "hook": "Maa Lakshmi samudra se prakat hui!",
+   "hook_hi": "माँ लक्ष्मी समुद्र मंथन से प्रकट हुईं!",
+   "angle": "Bhagavata Purana: the gems of the churning, Lakshmi rises on a lotus, the devas and asuras look on, she chooses Vishnu with the garland.",
+   "cite": {
+    "work": "Bhagavata Purana",
+    "ref": "Skandha 8, adhyay 8"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana"
+   ],
+   "keywords": [
+    "lakshmi",
+    "samudra manthan"
+   ]
+  },
+  {
+   "id": "mahishasur-vardan",
+   "p": 2,
+   "deity": "devi",
+   "name": "Maa Durga (Mahishasurmardini)",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "scripture",
+   "hook": "Mahishasur ko dev kyun na hara paaye?",
+   "hook_hi": "महिषासुर को कोई देव क्यों न हरा सका?",
+   "angle": "Devi Mahatmya (Markandeya Purana): the devas' joint radiance becomes the Devi, each god's weapon; Devi Bhagavata adds the boon detail (tell it with that source); no gore.",
+   "cite": {
+    "work": "Markandeya Purana (Devi Mahatmya); Devi Bhagavata Purana",
+    "ref": "Devi Mahatmya, adhyay 2-3; Devi Bhagavata, skandha 5"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-markandeya-purana",
+    "https://www.wisdomlib.org/hinduism/book/devi-bhagavata-purana"
+   ],
+   "keywords": [
+    "mahishasur"
+   ]
+  },
+  {
+   "id": "shakti-peeth-utpatti",
+   "p": 2,
+   "deity": "devi",
+   "name": "Shakti Peeth",
+   "playlist": "Shakti Peeth",
+   "label": "tradition",
+   "hook": "Shakti Peeth kaise bane?",
+   "hook_hi": "शक्ति पीठ कैसे बने?",
+   "angle": "Daksha's yagna, Devi's departure, Shiv's grief and Vishnu's chakra, the places where the parts of the Devi's body fell became Shakti Peeths (Puranic tradition; lists differ, say so). Calm imagery, no fire close-ups.",
+   "cite": {
+    "work": "Devi Bhagavata Purana; Peeth parampara",
+    "ref": "Daksha yagna prasang"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/devi-bhagavata-purana",
+    "https://www.maavaishnodevi.org/"
+   ],
+   "keywords": [
+    "shakti peeth"
+   ]
+  },
+  {
+   "id": "harsiddhi-ujjain",
+   "p": 2,
+   "deity": "devi",
+   "name": "Harsiddhi Mata, Ujjain",
+   "playlist": "Shakti Peeth",
+   "label": "tradition",
+   "hook": "Harsiddhi Mata ke deep stambh: rahasya",
+   "hook_hi": "हरसिद्धि माता के दीप स्तंभों का रहस्य",
+   "angle": "Harsiddhi Mata in Ujjain near Mahakal, counted as a Shakti Peeth by tradition, the tall deep stambhs lit on festivals, the Vikramaditya kuldevi belief (manyata); Ujjain district source.",
+   "cite": {
+    "work": "Lok katha (Ujjain parampara); Ujjain zila prashasan",
+    "ref": "Harsiddhi Mata mandir"
+   },
+   "sources": [
+    "https://ujjain.nic.in/"
+   ],
+   "keywords": [
+    "harsiddhi"
+   ]
+  },
+  {
+   "id": "karni-mata-kaba",
+   "p": 2,
+   "deity": "devi",
+   "name": "Karni Mata, Deshnok",
+   "playlist": "Mandir Itihas",
+   "label": "tradition",
+   "hook": "Karni Mata mandir ke kaaba ka rahasya",
+   "hook_hi": "करणी माता मंदिर के काबा का रहस्य",
+   "angle": "Deshnok near Bikaner: the rats called kaaba, the belief that they are Karni Mata's devotees' descendants, the white kaaba (manyata); Bikaner district source; no health claims.",
+   "cite": {
+    "work": "Lok katha (Charan parampara); Bikaner zila prashasan",
+    "ref": "Karni Mata mandir, Deshnok"
+   },
+   "sources": [
+    "https://bikaner.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "karni",
+    "kaaba",
+    "deshnok"
+   ]
+  },
+  {
+   "id": "jwala-ji-jyoti",
+   "p": 2,
+   "deity": "devi",
+   "name": "Jwala Ji, Kangra",
+   "playlist": "Shakti Peeth",
+   "label": "tradition",
+   "hook": "Jwala Ji ki jyoti bina tel kaise jale?",
+   "hook_hi": "ज्वाला जी की ज्योति बिना तेल कैसे जलती है?",
+   "angle": "Jwalamukhi temple in Kangra: flames from the rock worshipped as the Devi (Shakti Peeth tradition), the natural gas explanation said plainly, the Akbar chhatra lok katha labelled.",
+   "cite": {
+    "work": "Lok katha (Shakti Peeth parampara); Himachal Pradesh paryatan",
+    "ref": "Jwalamukhi mandir"
+   },
+   "sources": [
+    "https://himachaltourism.gov.in/"
+   ],
+   "keywords": [
+    "jwala",
+    "jyoti"
+   ]
+  },
+  {
+   "id": "vaishno-devi-bhairav",
+   "p": 3,
+   "deity": "devi",
+   "name": "Vaishno Devi Mata, Katra",
+   "playlist": "Shakti Peeth",
+   "label": "tradition",
+   "hook": "Bhairav darshan ke bina yatra adhoori?",
+   "hook_hi": "भैरव दर्शन के बिना यात्रा अधूरी क्यों?",
+   "angle": "The tradition of Bhairav Nath, the cave and Mata's boon that the yatra completes with Bhairav ji's darshan (Shrine Board narrative, manyata).",
+   "cite": {
+    "work": "Shri Mata Vaishno Devi Shrine Board",
+    "ref": "Pavitra gufa aur Bhairav mandir"
+   },
+   "sources": [
+    "https://www.maavaishnodevi.org/"
+   ],
+   "keywords": [
+    "bhairav",
+    "vaishno"
+   ]
+  },
+  {
+   "id": "ganesh-mahabharat-lekhan",
+   "p": 1,
+   "deity": "ganesh",
+   "name": "Ganesh ji",
+   "playlist": "Ganesh ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Ganesh ji ne Mahabharat ki shart rakhi",
+   "hook_hi": "गणेश जी ने महाभारत लिखने की शर्त रखी",
+   "angle": "Adi Parva (in the recensions that have it): Vyas asks Ganesh to write, Ganesh's condition that the pen never stops, Vyas's counter-condition to understand every verse; say that some editions leave this passage out.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Adi Parva, adhyay 1 (Ganesh-lekhan prasang, kuch sanskaranon mein)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "mahabharat",
+    "likha",
+    "shart"
+   ]
+  },
+  {
+   "id": "ganesh-parikrama",
+   "p": 2,
+   "deity": "ganesh",
+   "name": "Ganesh ji aur Kartikeya",
+   "playlist": "Ganesh ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Ganesh ji ne mata-pita mein dekha jag",
+   "hook_hi": "गणेश जी ने माता-पिता में देखा ब्रह्मांड",
+   "angle": "Shiva Purana, Rudra Samhita (Kumar Khand): the race around the world, Kartikeya flies off, Ganesh circles Shiv-Parvati and explains why.",
+   "cite": {
+    "work": "Shiva Purana",
+    "ref": "Rudra Samhita, Kumar Khand (adhyay 19-20)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english"
+   ],
+   "keywords": [
+    "parikrama",
+    "kartikeya"
+   ]
+  },
+  {
+   "id": "ganesh-gajmukh",
+   "p": 2,
+   "deity": "ganesh",
+   "name": "Ganesh ji",
+   "playlist": "Ganesh ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Ganesh ji ko gaj-mukh kaise mila?",
+   "hook_hi": "गणेश जी को गज मुख कैसे मिला?",
+   "angle": "Shiva Purana: Parvati's son guarding the door, the conflict with Shiv's ganas, Parvati's grief, the elephant head and Ganesh made the first to be worshipped; mention the Brahmavaivarta's different telling. Never show a severed head: light and a blessing.",
+   "cite": {
+    "work": "Shiva Purana",
+    "ref": "Rudra Samhita, Kumar Khand (adhyay 13-18)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english"
+   ],
+   "keywords": [
+    "gajmukh",
+    "hathi"
+   ]
+  },
+  {
+   "id": "ganesh-ekdant",
+   "p": 2,
+   "deity": "ganesh",
+   "name": "Ganesh ji (Ekdant)",
+   "playlist": "Ganesh ji ki Kathayein",
+   "label": "tradition",
+   "hook": "Ganesh ji Ekdant kaise bane?",
+   "hook_hi": "गणेश जी एकदंत कैसे बने?",
+   "angle": "Two traditions: the meeting with Parashuram (Brahmanda Purana tradition) and the broken tusk used to write the Mahabharat (lok katha); both labelled, the meaning of Ekdant.",
+   "cite": {
+    "work": "Brahmanda Purana parampara; Lok katha",
+    "ref": "Parashuram-Ganesh prasang"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-brahmanda-purana"
+   ],
+   "keywords": [
+    "ekdant",
+    "daant"
+   ]
+  },
+  {
+   "id": "ganesh-chaturthi-chandra",
+   "p": 3,
+   "deity": "ganesh",
+   "name": "Ganesh ji aur Chandra dev",
+   "playlist": "Ganesh ji ki Kathayein",
+   "label": "tradition",
+   "hook": "Ganesh Chaturthi ka chaand kyun nahi?",
+   "hook_hi": "गणेश चतुर्थी का चाँद क्यों नहीं देखते?",
+   "angle": "The lok katha of Chandra laughing at Ganesh and the curse, and the Bhagavata's Syamantaka story told as the 'false blame' example; no fear-mongering, the remedy only as tradition.",
+   "cite": {
+    "work": "Lok katha; Bhagavata Purana (Syamantak mani)",
+    "ref": "Skandha 10, adhyay 56-57"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana"
+   ],
+   "keywords": [
+    "chaturthi"
+   ]
+  },
+  {
+   "id": "shani-ganesh-drishti",
+   "p": 2,
+   "deity": "shani",
+   "name": "Shani dev",
+   "playlist": "Shani Dev ki Kathayein",
+   "label": "scripture",
+   "hook": "Shani dev nazar jhuka kar kyun dekhte?",
+   "hook_hi": "शनि देव नज़र झुकाकर क्यों देखते हैं?",
+   "angle": "Brahmavaivarta Purana (Ganapati Khand): Shani's downcast eyes from his wife's curse, his reluctant glance at the infant Ganesh; Ganesh made whole again. No gore.",
+   "cite": {
+    "work": "Brahmavaivarta Purana",
+    "ref": "Ganapati Khand (Shani-drishti prasang)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-markandeya-purana"
+   ],
+   "keywords": [
+    "drishti"
+   ]
+  },
+  {
+   "id": "shani-chhaya-putra",
+   "p": 2,
+   "deity": "shani",
+   "name": "Shani dev",
+   "playlist": "Shani Dev ki Kathayein",
+   "label": "scripture",
+   "hook": "Shani dev ki maa Chhaya kaun thi?",
+   "hook_hi": "शनि देव की माँ छाया कौन थीं?",
+   "angle": "Markandeya Purana: Chhaya, the shadow-form left by Sanjna, her children (Shani among them); why Shani is Suryaputra; the rest of the belief labelled.",
+   "cite": {
+    "work": "Markandeya Purana",
+    "ref": "Vaivasvata Manu prasang (Chhaya ki santaan)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-markandeya-purana"
+   ],
+   "keywords": [
+    "shani chhaya putra"
+   ]
+  },
+  {
+   "id": "shani-tel-hanuman",
+   "p": 2,
+   "deity": "shani",
+   "name": "Shani dev aur Hanuman ji",
+   "playlist": "Shani Dev ki Kathayein",
+   "label": "tradition",
+   "hook": "Shani dev ko tel kyun chadhate hain?",
+   "hook_hi": "शनि देव को तेल क्यों चढ़ाते हैं?",
+   "angle": "The lok katha of Hanuman freeing / easing Shani dev and the oil soothing his pain, the Saturday custom; labelled lok katha, no fear or remedy promises.",
+   "cite": {
+    "work": "Lok katha (Shani-Hanuman parampara)",
+    "ref": "Shanivar tel arpan"
+   },
+   "sources": [
+    "https://ahmednagar.nic.in/"
+   ],
+   "keywords": [
+    "tel kyun chadhate"
+   ]
+  },
+  {
+   "id": "shani-shingnapur",
+   "p": 3,
+   "deity": "shani",
+   "name": "Shani Shingnapur",
+   "playlist": "Navagraha Mandir",
+   "label": "temple",
+   "hook": "Shani Shingnapur: ghar bina darwaze!",
+   "hook_hi": "शनि शिंगणापुर के घरों में दरवाज़े नहीं!",
+   "angle": "The village tradition of houses without doors in Shani Shingnapur (Ahilyanagar district), the open-air black stone of Shani dev; changes in recent years as news reports say; no crime claims.",
+   "cite": {
+    "work": "Ahilyanagar zila prashasan; samachar report",
+    "ref": "Shani Shingnapur"
+   },
+   "sources": [
+    "https://ahmednagar.nic.in/"
+   ],
+   "keywords": [
+    "shingnapur"
+   ]
+  },
+  {
+   "id": "bhishma-baan-shaiyya",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Bhishma Pitamah",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Bhishma 58 raat baan-shaiyya par kyun?",
+   "hook_hi": "भीष्म अट्ठावन रातें बाण शय्या पर क्यों रहे?",
+   "angle": "Anushasana Parva: Bhishma's ichha-mrityu boon, waiting for Uttarayan, the teachings to Yudhishthir; he himself says how many nights he lay there (verify the count).",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Bhishma Parva (patan); Anushasana Parva (Bhishma swargarohan)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "bhishma",
+    "baan shaiyya"
+   ],
+   "numbers_ok": [
+    "58",
+    "अट्ठावन",
+    "atthavan"
+   ]
+  },
+  {
+   "id": "yaksha-prashna",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Yudhishthir aur Yaksha",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Yaksha ke sawaal, Yudhishthir ke jawab",
+   "hook_hi": "यक्ष के सवाल, युधिष्ठिर के जवाब",
+   "angle": "Vana Parva: the poisoned lake, four brothers fall, Yudhishthir answers the Yaksha's questions (quote 2-3 famous ones exactly), the choice of Nakul, Dharma revealed.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Vana Parva, Aranya parva (Yaksha prashna)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "yaksha"
+   ]
+  },
+  {
+   "id": "abhimanyu-chakravyuh",
+   "p": 3,
+   "deity": "krishna",
+   "name": "Abhimanyu",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "hook": "Abhimanyu ne garbh mein seekha vyuh?",
+   "hook_hi": "क्या अभिमन्यु ने गर्भ में चक्रव्यूह सीखा?",
+   "angle": "Drona Parva: Abhimanyu knew how to break in but not out (he says so); the famous detail that he heard it in the womb is lok parampara, labelled; his courage. No gore.",
+   "cite": {
+    "work": "Mahabharat; Lok parampara",
+    "ref": "Drona Parva, Abhimanyu-vadha parva"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "abhimanyu",
+    "chakravyuh"
+   ]
+  },
+  {
+   "id": "krishna-markandeya-pralay",
+   "p": 3,
+   "deity": "krishna",
+   "name": "Markandeya rishi aur Bal Mukund",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Pralay mein patte par tairta baalak!",
+   "hook_hi": "प्रलय में पत्ते पर तैरता बालक!",
+   "angle": "Vana Parva: Markandeya wanders the dissolution waters and sees a divine child on a banyan leaf, enters his mouth and sees the worlds; the child is Narayan.",
+   "cite": {
+    "work": "Mahabharat",
+    "ref": "Vana Parva, Markandeya-samasya parva"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan"
+   ],
+   "keywords": [
+    "pralay",
+    "baalak",
+    "patta"
+   ]
+  },
+  {
+   "id": "krishna-govardhan-ungli",
+   "p": 3,
+   "deity": "krishna",
+   "name": "Shri Krishna (Govardhan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Krishna ne saat din Govardhan uthaya",
+   "hook_hi": "कृष्ण ने सात दिन गोवर्धन उठाए रखा",
+   "angle": "Bhagavata Purana: Indra's anger at the stopped puja, the storm, Krishna lifts Govardhan on one hand for seven days, Indra's apology.",
+   "cite": {
+    "work": "Bhagavata Purana",
+    "ref": "Skandha 10, adhyay 25"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana"
+   ],
+   "keywords": [
+    "govardhan"
+   ],
+   "numbers_ok": [
+    "7",
+    "saat",
+    "सात"
+   ]
+  },
+  {
+   "id": "gita-2-47",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna (Bhagavad Gita)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "gita",
+   "gita": "2.47",
+   "hook": "Karm karo, phal nahi: Gita 2.47",
+   "hook_hi": "कर्म करो, फल की चिंता नहीं: गीता 2.47",
+   "angle": "Kurukshetra: Arjun's despair, Krishna's answer in 2.47 (कर्मण्येवाधिकारस्ते मा फलेषु कदाचन), its simple meaning and one life lesson; a Khatu tie-in only where true (Shyam naam is Shri Krishna's vardan).",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "Adhyay 2, shlok 47"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "gita 2.47"
+   ],
+   "numbers_ok": [
+    "2.47",
+    "2",
+    "47"
+   ]
+  },
+  {
+   "id": "gita-4-7",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna (Bhagavad Gita)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "gita",
+   "gita": "4.7",
+   "hook": "Bhagwan kab avtar lete? Gita 4.7",
+   "hook_hi": "भगवान कब अवतार लेते हैं? गीता 4.7",
+   "angle": "Krishna tells Arjun when he comes (यदा यदा हि धर्मस्य), the meaning, and the lesson that goodness is never alone; avatars named only as the Gita and Puranas do.",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "Adhyay 4, shlok 7"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "gita 4.7"
+   ],
+   "numbers_ok": [
+    "4.7",
+    "4",
+    "7"
+   ]
+  },
+  {
+   "id": "gita-2-20",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna (Bhagavad Gita)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "gita",
+   "gita": "2.20",
+   "hook": "Aatma kabhi nahi marti: Gita 2.20",
+   "hook_hi": "आत्मा कभी नहीं मरती: गीता 2.20",
+   "angle": "Arjun grieves for his elders; Krishna's teaching that the soul is unborn and undying (न जायते म्रियते वा कदाचित्), meaning and a comforting life lesson; no fear.",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "Adhyay 2, shlok 20"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "gita 2.20"
+   ],
+   "numbers_ok": [
+    "2.20",
+    "2",
+    "20"
+   ]
+  },
+  {
+   "id": "gita-18-66",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna (Bhagavad Gita)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "gita",
+   "gita": "18.66",
+   "hook": "Krishna ka sabse bada vachan: 18.66",
+   "hook_hi": "कृष्ण का सबसे बड़ा वचन: गीता 18.66",
+   "angle": "The last teaching (सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज): surrender, its meaning, and the Haare ka Sahara feeling of Shyam bhakti as a true tie-in.",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "Adhyay 18, shlok 66"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "gita 18.66"
+   ],
+   "numbers_ok": [
+    "18.66",
+    "18",
+    "66"
+   ]
+  },
+  {
+   "id": "gita-6-5",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna (Bhagavad Gita)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "gita",
+   "gita": "6.5",
+   "hook": "Apna sabse bada dost kaun? Gita 6.5",
+   "hook_hi": "अपना सबसे बड़ा दोस्त कौन? गीता 6.5",
+   "angle": "Krishna: lift yourself by yourself (उद्धरेदात्मनात्मानं); the mind as friend or enemy; one practical lesson for students and families.",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "Adhyay 6, shlok 5"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "gita 6.5"
+   ],
+   "numbers_ok": [
+    "6.5",
+    "6",
+    "5"
+   ]
+  },
+  {
+   "id": "ravan-ko-harane-wale",
+   "p": 1,
+   "deity": "ram",
+   "name": "Ravan ko harane wale yoddha",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "list",
+   "hook": "Ravan ko harane wale 4 yoddha",
+   "hook_hi": "रावण को हराने वाले चार योद्धा",
+   "numbers_ok": [
+    "4",
+    "chaar",
+    "char",
+    "चार"
+   ],
+   "angle": "Countdown: Kartavirya Arjun (Sahasrarjun) held Ravan captive (Uttara Kand), Bali carried him under his arm (Uttara Kand), Raja Bali in Patal (lok katha, label it), Shiv ji pressed Kailash on his arms (Uttara Kand, the name Ravan). One citation per item; Ravan may look comically defeated, the deities never.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Uttara Kand, sarga 16 (Kailash), 32-33 (Kartavirya Arjun), 34 (Bali)"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "ravan ko harane"
+   ]
+  },
+  {
+   "id": "krishna-ke-anokhe-roop",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "list",
+   "hook": "Krishna ke 4 roop jo kam log jaante",
+   "hook_hi": "कृष्ण के चार रूप जो कम लोग जानते हैं",
+   "numbers_ok": [
+    "4",
+    "chaar",
+    "चार"
+   ],
+   "angle": "Countdown of four lesser-known roles: messenger of peace to Hastinapur (Udyoga Parva), Arjun's charioteer (Bhishma Parva), honoured first at the Rajasuya (Sabha Parva), Uddhava's teacher (Bhagavata skandha 11). One citation each; anything folk labelled.",
+   "cite": {
+    "work": "Mahabharat; Bhagavata Purana",
+    "ref": "Udyoga Parva (Bhagavat-yana); Sabha Parva; Bhishma Parva; Bhagavata skandha 11"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-mahabharata-mohan",
+    "https://www.wisdomlib.org/hinduism/book/the-bhagavata-purana"
+   ],
+   "keywords": [
+    "krishna ke roop"
+   ]
+  },
+  {
+   "id": "lanka-pehle-kaun-gaya",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji aur Lanka",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "list",
+   "hook": "Hanuman ji se pehle Lanka kaun gaya?",
+   "hook_hi": "हनुमान जी से पहले लंका कौन गया?",
+   "angle": "Countdown: Kubera, Lanka's first king (Uttara Kand), Ravan who took it from him (Uttara Kand), Shurpanakha's flight home (Aranya Kand), then Hanuman's leap (Sundara Kand) as the payoff. One citation each.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Uttara Kand, sarga 3-11; Aranya Kand, sarga 32; Sundara Kand, sarga 1"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "lanka pehle"
+   ]
+  },
+  {
+   "id": "kartikeya-brahma-bandi",
+   "p": 1,
+   "deity": "shiv",
+   "name": "Kartikeya aur Brahma ji",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "hook": "Kartikeya ne Brahma ko kyun roka?",
+   "hook_hi": "कार्तिकेय ने ब्रह्मा जी को बंदी क्यों बनाया?",
+   "angle": "The Skanda / Swamimalai tradition: young Kartikeya asks Brahma the meaning of Om, Brahma cannot answer, Kartikeya holds him captive and takes over creation until Shiv intervenes, then explains Om to his father (manyata). Respectful: a teaching moment, no humiliation.",
+   "cite": {
+    "work": "Lok katha / Skanda parampara (Swamimalai)",
+    "ref": "Pranav-upadesh prasang"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-skanda-purana"
+   ],
+   "keywords": [
+    "kartikeya"
+   ]
+  },
+  {
+   "id": "hanuman-shani-aamne-saamne",
+   "p": 1,
+   "deity": "hanuman",
+   "name": "Hanuman ji aur Shani dev",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "hook": "Hanuman aur Shani mein yuddh kyun?",
+   "hook_hi": "हनुमान जी और शनि देव आमने-सामने क्यों?",
+   "angle": "The lok katha: Shani dev comes to Hanuman ji (in some versions to test him, in others Hanuman frees him from Ravan), Hanuman's strength, Shani's promise not to trouble Hanuman bhakts, oil soothing his pain; versions differ: say so. Both deities dignified.",
+   "cite": {
+    "work": "Lok katha (Shani-Hanuman parampara)",
+    "ref": "Shani-Hanuman prasang"
+   },
+   "sources": [
+    "https://ahmednagar.nic.in/"
+   ],
+   "keywords": [
+    "shani mein yuddh",
+    "aamne-saamne"
+   ]
+  },
+  {
+   "id": "yamraj-markandeya-kyun",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Yamraj aur Markandeya",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Yamraj Shivling se kyun laut gaye?",
+   "hook_hi": "यमराज को शिवलिंग से क्यों लौटना पड़ा?",
+   "angle": "Markandeya's short life span, his Shiv bhakti, Yama's noose around boy and linga, Shiv appears (Kalantaka) and Yama withdraws; the boy becomes chiranjeevi. Sources differ on details; no humiliation of Yama: he follows dharma.",
+   "cite": {
+    "work": "Shiva Purana / Linga Purana parampara",
+    "ref": "Markandeya, Kalantaka prasang"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english",
+    "https://www.wisdomlib.org/hinduism/book/the-linga-purana"
+   ],
+   "keywords": [
+    "markandeya"
+   ]
+  },
+  {
+   "id": "narad-vishnu-shaap-kyun",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Narad muni aur Vishnu ji",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Narad ne Vishnu ji ko shaap kyun diya?",
+   "hook_hi": "नारद मुनि ने विष्णु जी को श्राप क्यों दिया?",
+   "angle": "Ramcharitmanas, Bal Kand: Narad's pride after his tapasya, the swayamvar, the monkey face, his curse that Vishnu would suffer separation and need the vanaras' help, and Vishnu accepting it for the Ram avatar. Say it is Tulsidas ji's telling.",
+   "cite": {
+    "work": "Ramcharitmanas (Goswami Tulsidas)",
+    "ref": "Bal Kand, Narad-moh prasang"
+   },
+   "sources": [
+    "https://www.ramcharitmanas.iitk.ac.in/"
+   ],
+   "keywords": [
+    "narad",
+    "narad muni"
+   ]
+  }
+ ]
+}

@@ -55,11 +55,11 @@ import { loadInputs, planDay, addDays, istToday, DAWN_FB } from './day-plan.mjs'
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
 
 /** Facebook times (IST) of each Short slot. */
-export const REEL_AT = { status: '00:30', movie: '07:30', kalyug: '08:00', statusday: '08:30', morning: '10:30', noon: '15:00', bhajan: '19:45', eve: '20:00', evening: '20:30' };
+export const REEL_AT = { status: '00:30', movie: '07:30', kalyug: '08:00', statusday: '08:30', morning: '10:30', noon: '15:00', facts: '17:00', bhajan: '19:45', eve: '20:00', evening: '20:30' };
 export const FB_TIMES = { photo: '06:30', long: '12:30', ...REEL_AT };
 export const GAP_MIN = 90; // minutes between two Facebook Reels (owner, 13 Nov 2026: "at least about 90 minutes")
 // Placed in this order (festival status first: the format that can go viral keeps its exact time).
-const PLACE_ORDER = ['status', 'eve', 'dawn', 'statusday', 'movie', 'evening', 'bhajan', 'morning', 'kalyug', 'noon'];
+const PLACE_ORDER = ['status', 'eve', 'dawn', 'statusday', 'movie', 'evening', 'facts', 'bhajan', 'morning', 'kalyug', 'noon'];
 // Tried before the 15-minute search when the wanted time is taken (the evening darshan on a 20:00 eve-status day).
 const ALT_AT = { evening: ['18:30', '21:30'], bhajan: ['21:15', '18:15'] };
 // The earliest a Short can exist (render times); the plan never puts a Reel before it. Latest: 23:30.
@@ -71,7 +71,8 @@ const DAY_START = '07:00';
 const NIGHT = ['01:00', '07:00'];
 const LEAD_MS = 15 * 60e3; // meta.mjs schedules only when the time is at least 15 minutes ahead
 const LONG_GRACE_H = 6; // the long feed video: still posted up to 6 h after 12:30
-const VIDEO_SLOTS = new Set(['movie', 'noon']); // over 90 s: a Page video, not a Reel
+// over 90 s: a Page video, not a Reel (a facts Short of the "story" variant is ~2-2.5 min; meta.mjs decides by the real length)
+const VIDEO_SLOTS = new Set(['movie', 'noon', 'facts']);
 const IST = 5.5 * 3600e3;
 export const istAt = (date, hm) => Date.parse(`${date}T${hm}:00Z`) - IST;
 const toMin = (hm) => Number(hm.slice(0, 2)) * 60 + Number(hm.slice(3, 5));

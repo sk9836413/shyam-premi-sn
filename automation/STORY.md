@@ -21,6 +21,7 @@ katha Shorts 18, the worst: **no more katha Shorts**. Generic "X Darshan" Shorts
 | 2 | `morning`: on normal days the weekday **day status** Short (Somvar Mahadev, Mangalvar Hanuman/Salasar Balaji, Budhvar Ganesh, Guruvar Vishnu/Sai, Shukravar Lakshmi/Santoshi, Shanivar Shani dev, Ravivar Surya; Ekadashi: Gyaras Khatu Shyam) | the status engine (no action from you) |
 | 2 | `morning` on other festival days: a **famous-temple darshan** Short tied to the festival's deity | you (sections 1-4) |
 | 3 | `evening` 19:00: a **famous-temple darshan** Short | you (sections 1-4) |
+| 3.5 | `facts` 17:00: the "pauranik facts / rahasya" Short (from 17 Nov 2026, where the cap has room) | `facts` job, you write it (section "Facts Shorts") |
 | 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`) | `kalyug` job (section 8) |
 | 5 | `noon` Dadi-Chhotu Wed 15:00 | you (section 6) |
 | own cap | `long` video **every day** (16:9; outside the 3 Shorts, 1 a day): a katha at 12:30; a bhajan / mantra long video (jukebox, weekly mantra jaap) at **05:30** | you (section 5) for the katha; `jukebox` / `mantra` jobs |
@@ -730,3 +731,81 @@ teacher or guide. Iconography stays correct (colours, crown, attributes). Cute, 
   Devanagari); `instagram_caption` (Roman), `facebook_caption` (the "Facebook caption" template of section 3).
 
 Validate with `node scripts/validate.mjs story/kalyug/<file>.json`. Do not render, upload, commit or push.
+
+## Facts Shorts (format `facts`; job `facts`; owner, 15 Nov 2026)
+
+**Why.** The owner's references are "pauranik facts / rahasya" Shorts: "जटायु से भी 10 गुना शक्तिशाली था उसका बड़ा भाई संपाती!
+😱 #facts" (3.4M views), "हारे का सहारा बाबा श्याम की असली कहानी! 😱 #facts" (2.6M, our own deity), "यमराज ने हनुमान जी को लात
+क्यों मारी?" (4.35M), "Warriors who defeated Ravan" (1 lakh). Each tells ONE lesser-known episode, character or temple
+custom behind a dramatic curiosity hook. Our plain katha Shorts got 6-40 views: the hook and the storytelling are the
+difference, not the length. **Write your own scripts and titles**; never copy another creator's words (topics may overlap,
+they are scripture).
+
+**Schedule** (`scripts/day-plan.mjs` slot `facts`, public **17:00 IST**, made the evening before by job `facts`): from
+17 Nov 2026, one a day wherever the 3-Shorts cap has room: after the festival status, morning and evening darshan Shorts,
+before Kalyug and Dadi-Chhotu (it replaces the weakest slot, never a darshan or status Short). Movie days keep the movie
+part. Repo variable `FACTS=off` stops it. Facebook: a Page video (over 90 s) or a Reel at its own time (`scripts/fb.mjs`).
+
+**Topic, variant, art** (`node scripts/facts.mjs pick --date D`; the job's prompt names them):
+- Topic from `automation/facts-topics.json` (100+ topics, each with `cite` = the work + kand/sarga, parva, khand or the
+  temple's/government site, `label`, `angle`, `numbers_ok`, `after`, `notes`). Khatu Shyam ji / Barbarik first while there
+  are under 2 Khatu facts in 7 days (Janmotsav run-up), then the weekday deity. Never a sati topic.
+- Variant (A/B, recorded in log.md and growth.md):
+  - `story`: 2-2.5 min (110-165 s, 10-16 scenes): hook, build curiosity, resolve it, a one-line moral, the CTA.
+  - `kyun`: the shock question "<A> ने <B> को <unexpected action> क्यों…?" (45-62 s, 6-9 scenes). The title and the first
+    spoken line ARE the question; the answer scene (`"reveal": true`) lands at ~55-85 % of the video. The question needs
+    a real scripture or folk basis (folk: "लोककथा/मान्यता के अनुसार"), never an invented event.
+  - `list`: countdown (38-55 s): scene 1 the hook, then 3-5 item scenes `"item": 1..n` (a gold number badge is drawn),
+    8-10 s each, every item with `"cite"` (its scripture reference) and folk items `"label": "tradition"` + "मान्यता…".
+  - `gita` (Sundays, ~1 a week): one real Bhagavad Gita shloka (exact public-domain text) in a scene `"shloka": true`
+    (its tts contains the shloka), `"tts_meaning"` = its simple Hindi meaning, then one life lesson (45-62 s). `shloka`
+    `{text, ref: "Bhagavad Gita <ch>.<verse>", sources: [2 URLs]}`. The Sanskrit passes the mantra gate (CER <= 0.5,
+    names right) or the job speaks `tts_meaning` instead and the shloka stays on screen; else no upload. Title
+    `<hook> 😱 | Bhagavad Gita <ch.verse> #gita #krishna`. A Khatu-Krishna tie-in only where true (Shyam naam is Shri
+    Krishna's vardan).
+- Art (A/B, alternating): `cinematic` (style: "hyper-real cinematic epic devotional film still, golden divine light, deep
+  blue dramatic sky, rich saturated colours…") or `illustrated` ("warm hand-drawn illustration, clean outlines, soft
+  sunset light, expressive faces…"). Never a named studio's look (Pixar, Disney, Ghibli…), never a real actor's likeness
+  or a TV/film frame. Ravan and asuras may look comically defeated; deities are always dignified.
+
+**Accuracy (hard).** The hook may be dramatic but must be TRUE per the cited source. No invented numbers: a number in the
+hook/title only when the topic's `numbers_ok` lists it ("10 guna" only if the text says so). Folk / temple belief is said
+as such in the narration ("मान्यता है…", "लोककथा के अनुसार…", "कहते हैं…"). `facts`: at least 3 `{claim, source, sources:
+[2+ URLs]}`, one URL per fact not Wikipedia or a blog (the scripture text site, wisdomlib, valmikiramayan.net, the temple
+trust, a *.gov.in page or a news site). `source` = the citation exactly as it appears in the description ("Source: …").
+Where traditions differ (e.g. the Skanda Purana has Krishna behead Barbarika, the Khatu lok katha has the sheesh daan),
+say so plainly or label the version you tell.
+
+**Script** (`scenes`, Hindi Devanagari, edge-tts Madhur through the human chain, "Spoken style": short sentences, max 18
+words, numbers as words). Scene 1 = the hook in the first ~3 s: max 75 characters, a question or exclamation, the deity /
+character name first (no "आज सुनिए" openers), over a dramatic **close-up** (characters in the lower half: the cover's text
+bands sit on top). Then build the curiosity, resolve it, one scene `"moral": true` (one line), then the end card
+`{endcard, tts: "<jaikara> … लाइक, शेयर और सब्सक्राइब करें …", sub}`. Each tts max 140 characters (animated scenes 95).
+`sub` = the Roman Hinglish line (max 130; drawn big, `"sub_size": 60`).
+
+**Pictures.** `prompt` = one cinematic vertical moment, traditional iconography, "no text". 1-4 scenes with `animate`
+(gentle micro-motion; deity scenes `"deity": true`, face still). Khatu Shyam ji = the SHEESH only (section 2); Barbarik
+before the sheesh daan as "the young warrior Barbarik". **Hanuman ji: "clean-shaven vanara face, no beard"** in every
+prompt (FLUX draws a beard; only Salasar Balaji has daadhi-moonchh). No gore: a sacrifice is light and petals.
+
+**Cover** (the first 0.4 s, also the Short's thumbnail): `cover` (2-4 Devanagari words) and `cover_lines` (required for
+`kyun`, recommended for all): 3 short Devanagari lines drawn on black brush-stroke bands across the top third (line 1
+white, line 2 giant gold = the key name or verb, line 3 white on a red band ending with "?") plus a red curved arrow
+(story/cover.mjs `factsCover`, Yatra One through Chrome so matras and conjuncts render correctly).
+
+**YouTube fields.** `youtube_title`: `<hook> 😱 #facts | <Deity> Katha | <देवनागरी keyword>` (max 100; the Roman part
+before the first "|" max 48 with the name in its first 3 words; gita: see above). `youtube_description`: 2-4 Hinglish
+lines, `Source: <source>`, a Devanagari line, `Chitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.`, a like/share/
+subscribe line, then `#facts #story` + 2-3 subject tags (`#gita #krishna` for gita). `youtube_tags` 10-15 (about half
+Devanagari), `instagram_caption` (Roman), `facebook_caption` (the Facebook template of section 3), `playlist` = the
+deity's playlist, `deity`, `summary` (max 160, no "|"), `kicker` (max 22), `title` (Roman, max 45, the title bar).
+
+**File.** `story/facts/<release>-<topic id>.json`, slug `<release>-facts-<topic id>`, `format: "facts"`, `variant`, `art`,
+`release`, `publish_at: "17:00"`, `topic`. Copy the shape of `story/facts/2026-11-17-khatu-baba-ke-naam.json`. Validate
+with `node scripts/validate.mjs <file>` (the facts rules are in scripts/facts.mjs, tests scripts/facts.test.mjs). Do not
+render, upload, commit or push.
+
+**QA (automatic, never loosened).** After the render, Whisper large-v3 transcribes every scene's voice
+(voice/facts_asr.py) and `node scripts/facts.mjs qa` checks every deity/character name position (the bhajan gate's
+names plus Barbarik, Ghatotkach, Bheem…; positions after श्री are skipped) and the narration CER (<= 0.25). A failure
+re-voices once with the plain chain; a second failure means no upload ("skipped: pronunciation gate" in published.md).

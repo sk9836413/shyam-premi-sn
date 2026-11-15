@@ -52,6 +52,9 @@ const work = path.join(base, 'build', spec.slug);
 fs.mkdirSync(path.join(base, 'images'), { recursive: true });
 fs.mkdirSync(work, { recursive: true });
 const STATUS = spec.format === 'status';
+// Subtitle size: 50 px (the default), or spec.sub_size (facts Shorts: big Hinglish subtitles, 60 px); the wrap width follows.
+const SUB_SIZE = Math.max(40, Math.min(72, Number(spec.sub_size) || 50));
+const SUB_WRAP = Math.round((30 * 50) / SUB_SIZE);
 
 // Real photos for the `real: true` scenes, in turn (none: those scenes keep the AI image).
 const photos = photosFor(spec.temple);
@@ -354,10 +357,10 @@ for (const [i, scene] of spec.scenes.entries()) {
   const parts = subParts(scene.sub, durations[i]);
   const subtitle = STATUS ? 'null' : parts.map((p, k) => {
     const file = path.join(work, `sub-${i}-${k}.txt`);
-    fs.writeFileSync(file, wrap(p.text));
+    fs.writeFileSync(file, wrap(p.text, SUB_WRAP));
     const a = k === 0 ? (cover ? COVER_END : 0) : voiceAt + p.from * durations[i];
     const b = k === parts.length - 1 ? 999 : voiceAt + parts[k + 1].from * durations[i];
-    return `drawtext=fontfile='${FONT}':textfile='${esc(file)}':fontsize=50:fontcolor=white:line_spacing=12:` +
+    return `drawtext=fontfile='${FONT}':textfile='${esc(file)}':fontsize=${SUB_SIZE}:fontcolor=white:line_spacing=12:` +
       `box=1:boxcolor=0x000000@0.55:boxborderw=22:x=(w-text_w)/2:y=1385:enable='between(t,${a.toFixed(2)},${b.toFixed(2)})'`;
   }).join(',');
   // Hook: big text over the first scene until 2.6 s (after the cover words), the moment viewers decide whether to keep
@@ -367,6 +370,10 @@ for (const [i, scene] of spec.scenes.entries()) {
   const hook = i === 0 && spec.hook && !STATUS
     ? `,drawtext=fontfile='${FONT}':textfile='${esc(hookFile)}':fontsize=84:fontcolor=0xFFE27A:line_spacing=14:` +
       `box=1:boxcolor=0x1a0b00@0.72:boxborderw=34:x=(w-text_w)/2:y=1075:enable='between(t,${cover ? COVER_END - 0.04 : 0},2.6)'`
+    : '';
+  // Countdown Shorts (facts variant "list"): the item number as a big gold badge on the picture's top-left corner.
+  const badge = Number.isInteger(scene.item) && !scene.endcard
+    ? `,drawtext=fontfile='${FONT}':text='${scene.item}':fontsize=150:fontcolor=0xFFD54A:borderw=8:bordercolor=0x2a0900:box=1:boxcolor=0xB71C1C@0.92:boxborderw=28:x=70:y=290`
     : '';
   const encode = ['-map', '[v]', '-frames:v', String(frames), '-r', String(FPS), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', clip];
   if (scene.endcard && LOGO) {
@@ -394,7 +401,7 @@ for (const [i, scene] of spec.scenes.entries()) {
           `[b]scale=${W}:${W}:flags=lanczos,${big ? 'unsharp=3:3:0.3' : 'unsharp=5:5:0.6'}${LOOK}${GRAIN}[fg]`,
           ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
           `[bgl][fg]overlay=0:250${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
-            `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}${withOverlay(LOGO ? 2 : 1)}${withCover(coverAt)}[v]`,
+            `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152,${subtitle}${hook}${badge}${withOverlay(LOGO ? 2 : 1)}${withCover(coverAt)}[v]`,
         ].join(';'), ...encode]);
         animated = true;
       } catch (e) {
@@ -424,7 +431,7 @@ for (const [i, scene] of spec.scenes.entries()) {
         `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,
         ...(LOGO ? [`[1:v]scale=124:124[lg]`] : []),
         `[bgl][fg]overlay=0:250:shortest=1${LOGO ? '[base];[base][lg]overlay=36:110' : ''},` +
-          `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152${credit},${subtitle}${hook}${withOverlay(LOGO ? 2 : 1)}${withCover(coverAt)}[v]`,
+          `drawtext=fontfile='${FONT}':textfile='${esc(titleFile)}':fontsize=${titleSize(`${spec.kicker}  |  ${spec.title}`)}:fontcolor=0xFFE7A8:x=${LOGO ? 180 : '(w-text_w)/2'}:y=152${credit},${subtitle}${hook}${badge}${withOverlay(LOGO ? 2 : 1)}${withCover(coverAt)}[v]`,
       ].join(';'), ...encode]);
     }
   }

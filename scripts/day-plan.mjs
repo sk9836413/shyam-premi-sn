@@ -15,6 +15,9 @@
 //                Not on movie days (the movie part is the morning upload) or big-festival days (`statusday` is).
 //   3 evening    famous-temple darshan Short, 19:00 (Claude, STORY.md)
 //   4 kalyug     "Kalyug ke Bhagwan" (KALYUG=on), Tue/Thu/Sat of non-festival, non-movie days, 08:00, only if it fits
+//   3.5 facts    "pauranik facts / rahasya" Short 17:00 (owner, 15 Nov 2026; scripts/facts.mjs, made the evening before):
+//                after the status, morning and evening darshan Shorts, before Kalyug / Dadi-Chhotu (it replaces the
+//                weakest slot, never a darshan or status Short); repo variable FACTS=off turns it off
 //   5 noon       the Dadi-Chhotu Short Wed 15:00, only if it fits
 // A logged kalyug episode counts first (it is already scheduled). Photo posts and the Veo kit are not YouTube uploads.
 // LONG VIDEO (owner, 13 Nov 2026): one 16:9 long katha EVERY day at 12:30 IST, outside the Shorts cap (its own cap,
@@ -55,8 +58,9 @@ export const LONG_CAP = 1; // the long video, every day, never counted against C
 export const LONG_REPEAT_DAYS = 30; // a festival katha told in a long video within this many days is not retold
 export const NOON_DAYS = [3]; // Wednesday
 export const KALYUG_DAYS = [2, 4, 6]; // Tuesday, Thursday, Saturday
-export const AT = { status: '00:30', movie: '07:00', kalyug: '08:00', statusday: '08:30', morning: 'on render, ~10:30', long: '12:30', noon: '15:00', evening: '19:00', bhajan: '19:45', eve: '20:00' };
-export const PRIORITY = { movie: 0, status: 1, eve: 1, statusday: 1, morning: 2, evening: 3, kalyug: 4, noon: 5, bhajan: 6 };
+export const FACTS_FROM = '2026-11-17'; // owner, 15 Nov 2026: 1 facts Short a day from 17 Nov where the caps allow
+export const AT = { status: '00:30', movie: '07:00', kalyug: '08:00', statusday: '08:30', morning: 'on render, ~10:30', long: '12:30', noon: '15:00', facts: '17:00', evening: '19:00', bhajan: '19:45', eve: '20:00' };
+export const PRIORITY = { movie: 0, status: 1, eve: 1, statusday: 1, morning: 2, evening: 3, facts: 3.5, kalyug: 4, noon: 5, bhajan: 6 };
 // Dawn uploads (see the header): times and the long-video kinds that go out at dawn instead of 12:30.
 export const DAWN = { bhajan: '05:45', long: '05:30' };
 export const DAWN_FB = { bhajan: '06:00', long: '05:30' }; // Facebook times (the Reel 15 min after YouTube)
@@ -70,7 +74,7 @@ export function bhajanAt(slot, o = {}) {
   const at = Object.hasOwn(o, 'at') ? o.at || null : DAWN_SLOTS.includes(slot) ? DAWN.bhajan : null;
   return { at, dawn: isDawnAt(at) };
 }
-const ORDER = { status: 0, movie: 1, kalyug: 2, statusday: 3, morning: 4, long: 5, noon: 6, evening: 7, bhajan: 7.5, eve: 8 };
+const ORDER = { status: 0, movie: 1, kalyug: 2, statusday: 3, morning: 4, long: 5, noon: 6, facts: 6.5, evening: 7, bhajan: 7.5, eve: 8 };
 // Date-scoped override (automation/chhath-2026.json, owner 13 Nov 2026: Chhath bhajan Shorts 13-16 Nov and every upload
 // of those dates Chhath themed): `slots.<slot>` turns that slot into a bhajan Short (kind "bhajan", scripts/bhajan-short.mjs;
 // the extra `bhajan` slot only fits on EXTRA_UPLOAD_DAY), `long` replaces the long video's subject. Other dates: untouched.
@@ -107,8 +111,9 @@ export function loadInputs(root = '.') {
   const kalyugLogged = new Set([...log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| kalyug \| /gm)].map((m) => m[1]));
   let override = null;
   try { override = JSON.parse(read(path.join(root, OVERRIDE_FILE))); } catch { /* none */ }
-  return { festivals, placements: placements(list), movies, kalyug: process.env.KALYUG === 'on', kalyugLogged, longs: longsOf(log), today: istToday(),
-    override, extraDay: (process.env.EXTRA_UPLOAD_DAY || '').trim(), mantras: loadMantras(root) };
+  const factsLogged = new Set([...log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| facts \| /gm)].map((m) => m[1]));
+  return { festivals, festivalList: list, placements: placements(list), movies, kalyug: process.env.KALYUG === 'on', kalyugLogged, longs: longsOf(log), today: istToday(),
+    override, extraDay: (process.env.EXTRA_UPLOAD_DAY || '').trim(), mantras: loadMantras(root), facts: process.env.FACTS !== 'off', factsLogged };
 }
 
 /** The long videos in log.md: [{ date, text }] (text = slug, deity and summary, lower case). */
@@ -178,6 +183,11 @@ export function planDay(date, inputs = {}) {
   cands.push({ slot: 'evening', kind: 'temple', what: 'famous-temple darshan Short (a well-known, searched temple; name first; STORY.md)' });
   if (kalyugLogged.has(date) || (kalyug && KALYUG_DAYS.includes(wd) && !fest && !movie)) {
     cands.push({ slot: 'kalyug', logged: kalyugLogged.has(date), what: 'Kalyug ke Bhagwan episode (08:00, made the evening before)' });
+  }
+  // Facts Short (scripts/facts.mjs): every day it fits from FACTS_FROM, movie days included; a logged one counts first.
+  const factsOn = inputs.facts === true && date >= FACTS_FROM; // loadInputs sets it (FACTS != off); hand-made test inputs leave it out
+  if (inputs.factsLogged?.has(date) || factsOn) {
+    cands.push({ slot: 'facts', kind: 'facts', logged: Boolean(inputs.factsLogged?.has(date)), what: 'pauranik facts / rahasya Short (17:00, made the evening before; scripts/facts.mjs, STORY.md "Facts Shorts")' });
   }
   if (!fest && !movie && NOON_DAYS.includes(wd)) cands.push({ slot: 'noon', what: 'Dadi-Chhotu Short (new setting/outfits)' });
   const ov = inputs.override?.days?.[date] || null;

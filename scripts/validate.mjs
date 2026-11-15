@@ -201,6 +201,42 @@ if (s.kind === 'mantra') {
   process.exit(0);
 }
 
+// ---- "Pauranik facts / rahasya" Short (story/facts/<release>-<topic>.json; scripts/facts.mjs, STORY.md "Facts Shorts") ------
+// Owner, 15 Nov 2026: a dramatic but TRUE curiosity hook about a lesser-known episode, character or temple custom, every
+// fact cited (the existing facts-source rule: 2 URLs, one not Wikipedia/a blog), folk versions labelled, no invented
+// numbers, variants story (2-2.5 min) / kyun (45-60 s) / list (40-50 s) / gita (45-60 s), art A/B. The facts rules are
+// in scripts/facts.mjs (unit-tested); the channel's hook, opening, cover and title formulas apply as for every Short.
+if (s.format === 'facts') {
+  const { checkFactsSpec } = await import('./facts.mjs');
+  for (const p of checkFactsSpec(s)) problems.push(p);
+  const scenes = Array.isArray(s.scenes) ? s.scenes : [];
+  need(['hm_omega', 'hf_alpha'].includes(s.voice), 'voice must be hm_omega or hf_alpha');
+  need(PLAYLISTS.includes(s.playlist), `playlist must be one of: ${PLAYLISTS.join(', ')}`);
+  need(s.hook && s.hook.length <= 45 && !DEVANAGARI.test(s.hook), 'hook: Roman Hinglish, 1-45 characters');
+  checkHook(s.hook);
+  checkOpening(scenes[0]?.sub, scenes[0]?.tts);
+  if (s.variant === 'gita') {
+    const c = String(s.cover || '').trim();
+    need(c && DEVANAGARI.test(c) && c.split(/\s+/).length <= 4 && c.length <= 24, 'cover: 2-4 big Devanagari words (e.g. "गीता का ज्ञान")');
+  } else checkCover();
+  checkTitle(48);
+  const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
+  need(tags.length >= 10 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 10-15 search phrases, about half Devanagari (has ${tags.length})`);
+  need(!/[<>]/.test((s.youtube_title || '') + (s.youtube_description || '') + (s.youtube_tags || '')), 'YouTube fields must not contain < or >');
+  need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
+  need((s.facebook_caption || '').trim(), 'facebook_caption: the Facebook template (STORY.md "Facebook caption")');
+  need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
+  const words = (s.youtube_title || '').length;
+  if (problems.length) {
+    console.log(problems.map((p) => `- ${p}`).join('\n'));
+    process.exit(1);
+  }
+  for (const n of notes) console.log(n);
+  const { estimateSeconds } = await import('./facts.mjs');
+  console.log(`OK: ${file} (facts ${s.variant}/${s.art}, ${scenes.length} scenes, ~${Math.round(estimateSeconds(scenes))} s, title ${words} characters)`);
+  process.exit(0);
+}
+
 // ---- Long video (16:9, 5-10 min) ----------------------------------------------------------------
 // Narration runs at ~12 characters a second; each scene adds ~0.8 s and each chapter ~1 s of pause.
 const CHARS_PER_SECOND = 12;

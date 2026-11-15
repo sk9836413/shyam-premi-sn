@@ -53,9 +53,10 @@ const KERNEL = SLOT === 'long' ? 'sps-tts-long' : MOVIE ? `sps-${SLOT}` : CHAR ?
 const CODE = MOVIE ? path.join(DIR, '..', 'story', 'movie_kernel.py') : CHAR ? path.join(DIR, '..', 'characters', 'kaggle', 'lipsync_daily.py')
   : FRAMES ? path.join(DIR, 'kaggle', 'frames_kernel.py') : path.join(DIR, 'kaggle', 'animate.py');
 // Every GPU kernel of both channels (one Kaggle account): `lock` waits while any other one runs.
-const ALL_KERNELS = [...['morning', 'evening', 'noon', 'status', 'daily'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
+// (facts: the "pauranik facts" Short, scripts/facts.mjs; loop: the bhajan loop / veer Shorts, scripts/loop.mjs)
+const ALL_KERNELS = [...['morning', 'evening', 'noon', 'status', 'daily', 'facts', 'loop'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
   'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie', 'sps-kalyug', 'sps-music',
-  ...['morning', 'evening', 'noon', 'status', 'long', 'photos', 'veo', 'pilot'].map((x) => `sps-frames-${x}`)];
+  ...['morning', 'evening', 'noon', 'status', 'long', 'photos', 'veo', 'pilot', 'facts', 'loop'].map((x) => `sps-frames-${x}`)];
 const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);
 const cmd = args[0] || 'status';
