@@ -82,7 +82,7 @@ const notes = [];
 // with the same title words or subject: 7-9 Nov 2026 had "Diwali Lakshmi Puja" + "Diwali ki Katha, Lakshmi Puja" on one
 // day and "Govardhan Puja ki Katha" twice in 3 days, all at 0-9 views. Soft rule: a problem while writing (pick
 // another angle), only a warning with --soft-topics (the workflow), so it never blocks a post.
-if (!['status', 'movie'].includes(s.format)) {
+if (!['status', 'movie', 'loop'].includes(s.format)) {
   let clashes = [];
   try { clashes = topicWarnings(s); } catch (e) { console.log(`warning: topic check skipped (${e.message})`); }
   for (const w of clashes) {
@@ -198,6 +198,19 @@ if (s.kind === 'mantra') {
     process.exit(1);
   }
   console.log(`OK: ${file} (mantra ${s.mantra}, ${s.malas.length} malas x 108, ~${Math.round(s.seconds / 60)} min)`);
+  process.exit(0);
+}
+
+// ---- Bhajan loop / veer Short (scripts/loop.mjs builds it from the QA-passed library; story/render-loop.mjs renders) ----
+if (s.format === 'loop') {
+  const { checkLoopSpec, loopHistory } = await import('./loop.mjs');
+  for (const p of checkLoopSpec(s, { history: loopHistory('.') })) problems.push(p);
+  need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
+  if (problems.length) {
+    console.log(problems.map((p) => `- ${p}`).join('\n'));
+    process.exit(1);
+  }
+  console.log(`OK: ${file} (${s.kind} Short, ${s.deity}, ${s.audio?.bhajan_id || s.audio?.music_id}, ${s.audio?.dur} s)`);
   process.exit(0);
 }
 

@@ -71,7 +71,7 @@ on:
   workflow_dispatch:
     inputs:
       slot:
-        description: morning, evening, noon, long, status, movie, kalyug, facts, bhajan, jukebox, mantra or dawn (empty = by time of day; dawn = only tomorrow's 05:30/05:45 dawn uploads, i.e. the evening-before render; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part; kalyug = only tomorrow's Kalyug ke Bhagwan episode)
+        description: morning, evening, noon, long, status, movie, kalyug, facts, loop, bhajan, jukebox, mantra or dawn (empty = by time of day; dawn = only tomorrow's 05:30/05:45 dawn uploads, i.e. the evening-before render; long = only the long video, any day; noon = the Dadi aur Chhotu Short, Wednesdays of normal days unless dry_run; status = only tomorrow's festival status Short; movie = only the next due mini-movie part; kalyug = only tomorrow's Kalyug ke Bhagwan episode)
         required: false
         default: ''
       dry_run:
@@ -88,6 +88,14 @@ on:
         default: ''
       kalyug_spec:
         description: kalyug slot only - an episode file, e.g. story/kalyug/pilot-ep1.json (empty = tomorrow's episode)
+        required: false
+        default: ''
+      loop_kind:
+        description: loop slot only - loop or veer (empty = the date's rotation)
+        required: false
+        default: ''
+      loop_date:
+        description: loop slot only - the IST date whose dawn loop / veer Short to make (empty = tomorrow)
         required: false
         default: ''
       facts_spec:
@@ -132,7 +140,7 @@ env:
 # automation/published.md with an atomic push (a second run finds the claim or the log.md line and skips). Then
 # youtube.mjs and meta.mjs look for the same title/caption among the last 36 h of uploads and posts and never repeat it.
 concurrency:
-  group: ${{ inputs.slot == 'dawn' && 'daily-story-dawn' || inputs.slot == 'mantra' && 'daily-story-mantra' || inputs.slot == 'jukebox' && 'daily-story-jukebox' || inputs.slot == 'bhajan' && 'daily-story-bhajan' || inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || inputs.slot == 'kalyug' && 'daily-story-kalyug' || inputs.slot == 'facts' && 'daily-story-facts' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
+  group: ${{ inputs.slot == 'dawn' && 'daily-story-dawn' || inputs.slot == 'mantra' && 'daily-story-mantra' || inputs.slot == 'jukebox' && 'daily-story-jukebox' || inputs.slot == 'bhajan' && 'daily-story-bhajan' || inputs.slot == 'noon' && 'daily-story-noon' || inputs.slot == 'status' && 'daily-story-status' || inputs.slot == 'movie' && 'daily-story-movie' || inputs.slot == 'kalyug' && 'daily-story-kalyug' || inputs.slot == 'facts' && 'daily-story-facts' || inputs.slot == 'loop' && 'daily-story-loop' || ((inputs.slot == 'evening' || github.event.schedule == '17,47 12-17 * * *') && 'daily-story-evening' || 'daily-story') }}
   cancel-in-progress: false
 
 jobs:
@@ -173,6 +181,9 @@ jobs:
       kalyug: ${{ steps.date.outputs.kalyug }}
       # The facts Short job (scripts/facts.mjs) runs after every evening-slot run (and for slot=facts): tomorrow's Short.
       facts: ${{ steps.date.outputs.facts }}
+      # Bhajan loop / veer Shorts (scripts/loop.mjs, job `loop`, matrix): [{day, slot, kind}] - tomorrow's dawn one on evening
+      # runs (made the evening before), today's on a morning run when that render is missing, or slot=loop.
+      loops: ${{ steps.date.outputs.loops }}
       # Bhajan Shorts (scripts/bhajan-short.mjs, automation/chhath-2026.json): JSON list [{day, slot}] made by the `bhajan`
       # job (matrix) instead of this one: today's slot whose Short is a library bhajan, and on evening runs tomorrow's
       # dawn bhajan Short (public 05:45, rendered the evening before; day-plan.mjs --dawn).
@@ -228,6 +239,12 @@ jobs:
             echo "kalyug=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Kalyug ke Bhagwan episode only"; exit 0
           fi
+          if [ "$slot" = loop ]; then
+            ld="${{ inputs.loop_date }}"; ld="${ld:-$(TZ=Asia/Kolkata date -d tomorrow +%F)}"
+            lk="${{ inputs.loop_kind }}"; lk="${lk:-loop}"
+            echo "loops=[{\"day\":\"$ld\",\"slot\":\"morning\",\"kind\":\"$lk\"}]" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Loop / veer Short only ($ld, $lk)"; exit 0
+          fi
           if [ "$slot" = facts ]; then
             echo "facts=true" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Pauranik facts Short only"; exit 0
@@ -246,13 +263,16 @@ jobs:
           fi
           # Dawn uploads (scripts/day-plan.mjs DAWN; owner 14 Nov 2026): tomorrow's 05:45 bhajan Short and 05:30 bhajan /
           # mantra long video are rendered the evening before. dawn <date> -> bhajan items (JSON, no brackets) + long kind.
-          bh=""
+          bh=""; lp=""
           dawn() {
             node scripts/day-plan.mjs --date "$1" --dawn > "$RUNNER_TEMP/dawn-$1.json" || return 0
             local list kind
             list=$(node -p "JSON.stringify(require(process.env.RUNNER_TEMP + '/dawn-$1.json').bhajans.map(({day,slot})=>({day,slot}))).slice(1,-1)")
             kind=$(node -p "require(process.env.RUNNER_TEMP + '/dawn-$1.json').long")
             [ -n "$list" ] && bh="$bh,$list" && echo "::notice::$1 dawn bhajan Short(s): $list"
+            local loops
+            loops=$(node -p "JSON.stringify(require(process.env.RUNNER_TEMP + '/dawn-$1.json').loops || []).slice(1,-1)")
+            [ -n "$loops" ] && lp="$lp,$loops" && echo "::notice::$1 dawn loop / veer Short: $loops"
             if [ -n "$kind" ]; then
               echo "dawn_day=$1" >> "$GITHUB_OUTPUT"
               [ "$kind" = jukebox ] && echo "jukebox=true" >> "$GITHUB_OUTPUT"
@@ -263,7 +283,7 @@ jobs:
           tomorrow=$(TZ=Asia/Kolkata date -d tomorrow +%F)
           if [ "$slot" = dawn ]; then
             dawn "$tomorrow"
-            echo "bhajans=[${bh#,}]" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "bhajans=[${bh#,}]" >> "$GITHUB_OUTPUT"; echo "loops=[${lp#,}]" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Tomorrow's dawn uploads only ($tomorrow)"; exit 0
           fi
           if [ -z "$slot" ]; then
@@ -288,7 +308,7 @@ jobs:
           # Short of today is the morning slot itself, routed to job bhajan below).
           # (evening: only from 17:00 IST, i.e. the 18:46 IST scheduler dispatch and the evening polls, not the 10:43 one)
           now_hm=$((10#$(TZ=Asia/Kolkata date +%H%M)))
-          if [ "$slot" = evening ] && [ $now_hm -ge 1700 ]; then dawn "$tomorrow"; elif [ "$slot" = morning ]; then dawn "$today"; bh=""; fi
+          if [ "$slot" = evening ] && [ $now_hm -ge 1700 ]; then dawn "$tomorrow"; elif [ "$slot" = morning ]; then dawn "$today"; bh=""; lp=""; fi
           if grep -q "^$today | $slot |" automation/log.md; then
             echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today $slot already published"
@@ -309,6 +329,17 @@ jobs:
               echo "done=true" >> "$GITHUB_OUTPUT"
               echo "::notice::$today $slot is not planned today: $(node -p "require(process.env.RUNNER_TEMP + '/plan.json').why")"
             fi
+          elif [ "$(node -p "require(process.env.RUNNER_TEMP + '/plan.json').kind")" = loop ] || [ "$(node -p "require(process.env.RUNNER_TEMP + '/plan.json').kind")" = veer ]; then
+            # Loop / veer morning (scripts/loop.mjs): normally made last evening; here only when that render is missing. No
+            # QA-passed chorus left -> the day status Short (status engine) instead.
+            k=$(node -p "require(process.env.RUNNER_TEMP + '/plan.json').kind")
+            if node scripts/loop.mjs spec --date "$today" --kind "$k" --out "$RUNNER_TEMP/loop-check/scenes.json" > /dev/null; then
+              lp=",{\"day\":\"$today\",\"slot\":\"morning\",\"kind\":\"$k\"}$lp"; echo "done=true" >> "$GITHUB_OUTPUT"
+              echo "::notice::$today morning = $k Short (job loop)"
+            else
+              echo "kind=daystatus" >> "$GITHUB_OUTPUT"
+              echo "::warning::$today morning: no $k Short possible (no QA-passed chorus left), day status Short instead"
+            fi
           elif [ "$(node -p "require(process.env.RUNNER_TEMP + '/plan.json').kind")" = bhajan ]; then
             # Chhath 2026 override: this slot is a bhajan Short (job `bhajan`, no Claude, no Kaggle). Without a QA-passed
             # Chhath bhajan it falls back to a Chhath Surya temple / ghat darshan Short made here (day-plan `fallback`).
@@ -322,6 +353,7 @@ jobs:
             fi
           fi
           echo "bhajans=[${bh#,}]" >> "$GITHUB_OUTPUT"
+          echo "loops=[${lp#,}]" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-node@v4
         if: steps.date.outputs.done != 'true' || steps.date.outputs.movie_day != ''
@@ -2028,6 +2060,127 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/log.md automation/published.md "story/published/$SLUG.json" characters/kalyug/clips "$F"
           git commit -qm "Kalyug ke Bhagwan $SLUG scheduled for $rel 08:00"
+          for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
+
+  # Bhajan loop / veer Shorts (owner, 15 Nov 2026; scripts/loop.mjs, story/render-loop.mjs): on normal days the morning
+  # day-status Short alternates with them (Mon veer Mahakal, Wed loop, Fri loop, Sat veer Hanuman; day-plan.mjs). Built
+  # from the QA-passed bhajan library (no Claude), ONE new FLUX artwork, a seamless 12-15 s chorus loop (veer: 30-40 s, the
+  # jaikara on top), public 05:45 IST (bhajan audio content 05:30-06:30, owner rule) and RENDERED THE EVENING BEFORE (the
+  # Date step's dawn() lists tomorrow's loop items); the morning run makes it when that render is missing. No passed
+  # chorus left for a loop: the Date step falls back to the day status Short. LOOPS=off stops it.
+  loop:
+    needs: story
+    if: always() && needs.story.outputs.loops != '' && needs.story.outputs.loops != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        item: ${{ fromJSON(needs.story.outputs.loops) }}
+    concurrency:
+      group: shyam-loop-${{ matrix.item.day }}
+      cancel-in-progress: false
+    env:
+      FFMPEG_PATH: ffmpeg
+      MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
+      MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
+      SPS_WORKERS_AI: ${{ inputs.force_fallback && '0' || '' }}
+      DAY: ${{ matrix.item.day }}
+      KIND: ${{ matrix.item.kind }}
+      W: story/loop/work
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Already published?
+        run: |
+          git fetch -q origin main && git checkout -q origin/main -- automation/log.md automation/published.md
+          if grep -q "^$DAY | morning |" automation/log.md && [ "${{ inputs.dry_run }}" != true ]; then echo "SKIP=1" >> "$GITHUB_ENV"; echo "::notice::$DAY morning already published"; fi
+
+      - name: Spec
+        id: spec
+        if: env.SKIP != '1'
+        run: |
+          node scripts/loop.mjs spec --date "$DAY" --kind "$KIND" --out "$W/scenes.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          echo "SLUG=$(node -p "require('./' + process.env.W + '/scenes.json').slug")" >> "$GITHUB_ENV"
+
+      - name: Tools
+        if: steps.spec.outcome == 'success'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core fonts-noto-color-emoji > /dev/null
+          pip install -q 'kaggle>=2.2' six
+
+      - name: Artwork (Workers AI FLUX, else Kaggle FLUX)
+        if: steps.spec.outcome == 'success'
+        continue-on-error: true
+        timeout-minutes: 40
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+          SPS_SLOT: loop
+        run: node animate/frames.mjs "$W/scenes.json" --wait 30
+
+      - name: Validate and render
+        id: render
+        if: steps.spec.outcome == 'success'
+        run: |
+          node scripts/validate.mjs "$W/scenes.json"
+          node story/render-loop.mjs "$W/scenes.json" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the video as an artifact (7 days)
+        if: always() && steps.render.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: loop-${{ env.SLUG }}
+          path: |
+            story/loop/work/out/
+            story/loop/work/scenes.json
+            story/loop/work/images/
+          retention-days: 7
+          compression-level: 0
+
+      - name: Upload (guard, YouTube at dawn, Facebook, Instagram) and record
+        if: steps.render.outcome == 'success' && !inputs.dry_run
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          at=$(node -p "require('./' + process.env.W + '/scenes.json').publish_at")
+          node scripts/upload-guard.mjs claim --day "$DAY" --slot morning --slug "$SLUG" | tee "$RUNNER_TEMP/claim.json"
+          grep -q '"go":true' "$RUNNER_TEMP/claim.json" || { echo "::notice::not uploaded: $(cat "$RUNNER_TEMP/claim.json")"; exit 0; }
+          if ! node scripts/youtube.mjs upload --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --publish-at "${DAY}T${at}" | tee "$RUNNER_TEMP/yt.json" || ! grep -q '"status":"ok"' "$RUNNER_TEMP/yt.json"; then
+            node scripts/upload-guard.mjs release --day "$DAY" --slot morning --slug "$SLUG" --reason "YouTube failed"; exit 1
+          fi
+          social=''
+          if [ -n "$META_PAGE_TOKEN" ] && ! grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json"; then
+            node scripts/publish.mjs --host-only --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" || true
+            fb=$(node scripts/fb.mjs flags --date "$DAY" --slot morning || echo --no-fb)
+            node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --video-url "$MEDIA_URL/m/$SLUG.mp4" --publish-at "${DAY}T${at}" $fb | tee "$RUNNER_TEMP/meta.json" || true
+            social=$(node -p "try { ' | social: ' + JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/meta.json', 'utf8')).summary } catch { '' }")
+          fi
+          mkdir -p story/published && cp "$W/scenes.json" "story/published/$SLUG.json"
+          yt=$(node -p "const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/yt.json', 'utf8')).youtube; y.url + (y.publishAt ? ' (public at ' + y.publishAt + ')' : '')")
+          deity=$(node -p "require('./' + process.env.W + '/scenes.json').deity"); summary=$(node -p "require('./' + process.env.W + '/scenes.json').summary")
+          git fetch -q origin main && git checkout -q origin/main -- automation/log.md automation/published.md
+          echo "$DAY | morning | $SLUG | $deity | $summary" >> automation/log.md
+          echo "- $SLUG | youtube: $yt | $KIND Short, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/log.md automation/published.md "story/published/$SLUG.json"
+          git commit -qm "$KIND Short $SLUG (public $DAY $at IST)"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
   # "Pauranik facts / rahasya" Short (owner, 15 Nov 2026; scripts/facts.mjs, automation/STORY.md "Facts Shorts"): a dramatic

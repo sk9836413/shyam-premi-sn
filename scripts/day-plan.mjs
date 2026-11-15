@@ -51,6 +51,7 @@ import { pathToFileURL } from 'node:url';
 import { loadFestivals, placements } from './status-engine.mjs';
 import { DAY_THEMES } from './status-themes.mjs';
 import { loadMantras, mantraFor } from './mantra.mjs';
+import { ROTATION as LOOP_ROTATION } from './loop.mjs';
 
 const WEEKDAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 export const CAP = 3; // Shorts: every vertical upload (status, morning, evening, noon, kalyug, movie parts)
@@ -59,6 +60,10 @@ export const LONG_REPEAT_DAYS = 30; // a festival katha told in a long video wit
 export const NOON_DAYS = [3]; // Wednesday
 export const KALYUG_DAYS = [2, 4, 6]; // Tuesday, Thursday, Saturday
 export const FACTS_FROM = '2026-11-17'; // owner, 15 Nov 2026: 1 facts Short a day from 17 Nov where the caps allow
+// Bhajan loop / veer Shorts (scripts/loop.mjs; owner, 15 Nov 2026): on normal days the morning day-status Short alternates
+// with them (loop.mjs ROTATION: Mon veer Mahakal, Wed loop, Fri loop, Sat veer Hanuman), public at dawn (05:45) like every
+// bhajan upload and made the evening before; festival days keep their morning Short. Repo variable LOOPS=off stops it.
+export const LOOP_FROM = '2026-11-17';
 export const AT = { status: '00:30', movie: '07:00', kalyug: '08:00', statusday: '08:30', morning: 'on render, ~10:30', long: '12:30', noon: '15:00', facts: '17:00', evening: '19:00', bhajan: '19:45', eve: '20:00' };
 export const PRIORITY = { movie: 0, status: 1, eve: 1, statusday: 1, morning: 2, evening: 3, facts: 3.5, kalyug: 4, noon: 5, bhajan: 6 };
 // Dawn uploads (see the header): times and the long-video kinds that go out at dawn instead of 12:30.
@@ -113,7 +118,8 @@ export function loadInputs(root = '.') {
   try { override = JSON.parse(read(path.join(root, OVERRIDE_FILE))); } catch { /* none */ }
   const factsLogged = new Set([...log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| facts \| /gm)].map((m) => m[1]));
   return { festivals, festivalList: list, placements: placements(list), movies, kalyug: process.env.KALYUG === 'on', kalyugLogged, longs: longsOf(log), today: istToday(),
-    override, extraDay: (process.env.EXTRA_UPLOAD_DAY || '').trim(), mantras: loadMantras(root), facts: process.env.FACTS !== 'off', factsLogged };
+    override, extraDay: (process.env.EXTRA_UPLOAD_DAY || '').trim(), mantras: loadMantras(root), facts: process.env.FACTS !== 'off', factsLogged,
+    loops: process.env.LOOPS !== 'off' };
 }
 
 /** The long videos in log.md: [{ date, text }] (text = slug, deity and summary, lower case). */
@@ -177,7 +183,11 @@ export function planDay(date, inputs = {}) {
       cands.push({ slot: 'morning', kind: 'temple', what: `famous-temple darshan Short tied to ${fest.name} (a well-known, searched temple of that deity; STORY.md)` });
     } else {
       const theme = fest ? 'gyaras' : wd;
-      cands.push({ slot: 'morning', kind: 'daystatus', theme, what: `day status Short: ${DAY_THEMES[theme].names[0].en} (15-25 s loop; scripts/status-engine.mjs day)` });
+      const rot = !fest && inputs.loops === true && date >= LOOP_FROM ? LOOP_ROTATION[wd] : null; // test inputs leave loops out
+      if (rot) {
+        cands.push({ slot: 'morning', kind: rot, theme, at: DAWN.bhajan, dawn: true, fallback: 'daystatus',
+          what: `${rot === 'veer' ? 'veer (jaikara portrait)' : 'bhajan loop'} Short, public ${DAWN.bhajan} (made the evening before; scripts/loop.mjs, job loop); without a QA-passed chorus the day status Short` });
+      } else cands.push({ slot: 'morning', kind: 'daystatus', theme, what: `day status Short: ${DAY_THEMES[theme].names[0].en} (15-25 s loop; scripts/status-engine.mjs day)` });
     }
   }
   cands.push({ slot: 'evening', kind: 'temple', what: 'famous-temple darshan Short (a well-known, searched temple; name first; STORY.md)' });
@@ -260,8 +270,9 @@ export function dawnUploads(date, inputs = {}, log = '') {
   const done = (slot) => log.split(/\r?\n/).some((l) => l.startsWith(`${date} | ${slot} |`));
   const p = planDay(date, inputs);
   const bhajans = p.uploads.filter((u) => u.dawn && u.slot !== 'long' && u.kind === 'bhajan' && !done(u.slot)).map((u) => ({ day: date, slot: u.slot, at: u.at }));
+  const loops = p.uploads.filter((u) => u.dawn && ['loop', 'veer'].includes(u.kind) && !done(u.slot)).map((u) => ({ day: date, slot: u.slot, kind: u.kind }));
   const l = p.uploads.find((u) => u.slot === 'long' && u.dawn);
-  return { date, bhajans, long: l && !done('long') ? l.kind : '', longAt: l ? l.at : '' };
+  return { date, bhajans, ...(loops.length ? { loops } : {}), long: l && !done('long') ? l.kind : '', longAt: l ? l.at : '' };
 }
 
 const describe = (u) => `${u.slot} ${u.at}${u.festival ? ` (${u.festival})` : u.mantra ? ` (${u.topic})` : u.kind === 'jukebox' || (u.slot === 'long' && u.kind === 'bhajan') ? ` (${u.kind}: ${u.topic})` : u.topic ? ` (${u.topic === 'series' ? 'section 5 / mandir series' : `${u.topic} katha`})` : u.kind ? ` (${u.kind}${u.theme !== undefined ? `:${u.theme}` : ''})` : ''}`;
@@ -284,7 +295,7 @@ function main() {
   if (args.includes('--dawn')) {
     const r = dawnUploads(date, inputs, read(path.join(opt('--root') || '.', 'automation/log.md')));
     console.log(JSON.stringify(r));
-    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `dawn_bhajans=${JSON.stringify(r.bhajans)}\ndawn_long=${r.long}\n`);
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `dawn_bhajans=${JSON.stringify(r.bhajans)}\ndawn_loops=${JSON.stringify(r.loops || [])}\ndawn_long=${r.long}\n`);
     return;
   }
   const slot = opt('--slot');

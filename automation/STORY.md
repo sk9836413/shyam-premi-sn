@@ -809,3 +809,20 @@ render, upload, commit or push.
 (voice/facts_asr.py) and `node scripts/facts.mjs qa` checks every deity/character name position (the bhajan gate's
 names plus Barbarik, Ghatotkach, Bheem…; positions after श्री are skipped) and the narration CER (<= 0.25). A failure
 re-voices once with the plain chain; a second failure means no upload ("skipped: pronunciation gate" in published.md).
+
+## Bhajan loop and veer Shorts (format `loop`; job `loop`; owner, 15 Nov 2026; no action from you)
+
+`scripts/loop.mjs` builds them from the library, `story/render-loop.mjs` renders, the `loop` job publishes at **05:45
+IST** (made the evening before; bhajan audio content goes public 05:30-06:30). On **normal days** the morning day-status
+Short alternates with them: **Mon veer (Mahakal), Wed loop, Fri loop, Sat veer (Hanuman)**; Tue/Thu/Sun keep the day
+status Short, festival days keep their morning Short (`scripts/day-plan.mjs`, repo variable `LOOPS=off` stops it).
+- **loop**: a seamless 12-15 s chorus loop of OUR OWN QA-passed AI bhajan (licence qa: every name right, CER <= 0.40; never
+  downloaded or trending audio; no Khatu bhajan until one passes the name gate), ONE new FLUX artwork (clay art /
+  miniature painting / oil painting, rotating), a periodic zoom (the last frame equals the first), the chorus line as big
+  Devanagari lyrics. Title `<Deity> 🙏 <chorus words> | <lyric words> #bhaktisong #भक्तिभाव #shorts`.
+- **veer**: an ORIGINAL heroic deity portrait (Mahakal, Hanuman with a clean-shaven vanara face, Maa Kali, Shri Ram,
+  Narasimha; never a real actor or a TV frame), square, letterboxed in black inside 9:16, a slow push-in and back with a
+  golden halo, the jaikara big in red on top; 30-40 s of a QA-passed chorus of that deity or a licence-safe library bed.
+  Title `<jaikara> 🙏 #<deity> #bhakti` (keywords in the tags).
+- Variety (reused-content policy): never the same audio + picture twice, a bhajan at most once in 3 days, a different
+  chorus window each time, a new artwork every upload. Description: the AI picture line and the bhajan / music line.
