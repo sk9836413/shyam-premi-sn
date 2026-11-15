@@ -117,3 +117,4 @@
 - 2026-11-16-morning-chhath-usha-arghya-geet | youtube: https://youtube.com/shorts/7lj4u7bzfgo (public at 2026-11-16T00:15:00.000Z) | bhajan Short, made 15 Nov 18:52 IST | social: fb: https://www.facebook.com/reel/1950635992588668 (scheduled 2026-11-16T00:30:00.000Z) | ig: pending 2026-11-16T00:30:00.000Z
 - 2026-11-15-facts-chhath-karna-surya-arghya | claim: 2026-11-15 facts3 by run 43717669305.1 at 2026-11-15T13:27:18.147Z
 - 2026-11-15-facts-chhath-karna-surya-arghya | youtube: https://youtube.com/shorts/0MX_1qsjyxI (public at 2026-11-15T14:15:00.000Z) | facts kyun/cinematic, 55 s, made 15 Nov 18:57 IST | social: fb: https://www.facebook.com/reel/1962192301203457 (scheduled 2026-11-15T17:30:00.000Z) | ig: pending 2026-11-15T14:15:00.000Z
+- 2026-11-15-facts-chhath-shashthi-devi-priyavrat | instagram: https://www.instagram.com/reel/Dfw5EAPoWRw/
