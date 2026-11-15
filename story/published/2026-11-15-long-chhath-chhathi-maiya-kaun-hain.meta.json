@@ -1,0 +1,80 @@
+{
+  "slug": "2026-11-15-long-chhath-chhathi-maiya-kaun-hain",
+  "seconds": 507.4,
+  "scenes": 48,
+  "chapters": [
+    {
+      "title": "Bhajan",
+      "start": 0
+    },
+    {
+      "title": "Chhathi Maiya Kaun Hain?",
+      "start": 25
+    },
+    {
+      "title": "Shashthi Devi ka Swaroop",
+      "start": 45.27
+    },
+    {
+      "title": "Bachchon ki Rakshak Maiya",
+      "start": 111.37
+    },
+    {
+      "title": "Surya Dev aur Chhath",
+      "start": 148.13
+    },
+    {
+      "title": "Sandhya Arghya ka Mahatva",
+      "start": 222.8
+    },
+    {
+      "title": "Bihar ke Surya Mandir",
+      "start": 293.13
+    },
+    {
+      "title": "Aashirwad aur Sandesh",
+      "start": 330.1
+    },
+    {
+      "title": "Bhajan: Jai Ho Suraj Dev",
+      "start": 372.43
+    }
+  ],
+  "images": 14,
+  "images_generated": 0,
+  "neurons": 0,
+  "render_seconds": 508,
+  "real_photos": 0,
+  "thumbnail_variants": {
+    "winner": "b",
+    "scores": [
+      {
+        "kind": "a",
+        "score": 71,
+        "contrast": 0.695,
+        "face": 0.36
+      },
+      {
+        "kind": "b",
+        "score": 78,
+        "contrast": 0.777,
+        "face": 0.39
+      }
+    ]
+  },
+  "bhajan": {
+    "id": "bhajan-chhath26e-10-devi",
+    "intro": [
+      0,
+      25
+    ],
+    "katha": [
+      25,
+      371.83
+    ],
+    "outro": [
+      372.43,
+      507.43
+    ]
+  }
+}

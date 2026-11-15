@@ -1,0 +1,474 @@
+{
+  "slug": "2026-11-15-long-chhath-chhathi-maiya-kaun-hain",
+  "format": "long",
+  "title": "Chhathi Maiya Kaun Hain? Sandhya Arghya",
+  "kicker": "Chhath · Arghya Katha",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Chhathi Maiya kaun hain?",
+  "source": "Brahmavaivarta Purana (Shashthi Devi upakhyan) aur Lok katha (Chhath parampara) ke anusar",
+  "deity": "Chhathi Maiya (Shashthi Devi) / Surya dev",
+  "summary": "Chhathi Maiya kaun hain: Shashthi Devi ka swaroop, Surya dev se naata, Sandhya Arghya ka mahatva aur Bihar ke Surya mandir (manyata)",
+  "thumbnail": {
+    "image": 0,
+    "focus": "center",
+    "text": "Chhathi Maiya ki Katha",
+    "hi": "छठी मैया कौन हैं?"
+  },
+  "images": [
+    {
+      "prompt": "close-up portrait of the divine mother goddess Chhathi Maiya (Shashthi Devi), serene loving face, golden crown, red and orange saree, gentle golden glow, a baby in her arms, soft light, wide devotional scene, subject in the middle"
+    },
+    {
+      "prompt": "wide scene of a river ghat at sunset, many women in bright sarees standing knee-deep in water holding bamboo soop baskets with offerings, glowing orange setting sun, diyas floating, families on the bank"
+    },
+    {
+      "prompt": "Surya Dev, the radiant sun god with golden crown, riding a golden chariot pulled by seven horses across a glowing sunrise sky, warm golden rays, majestic"
+    },
+    {
+      "prompt": "cosmic scene of the divine feminine Prakriti as a glowing goddess whose light divides into six radiant forms, stars and galaxies, golden and pink glow, devotional style"
+    },
+    {
+      "prompt": "warm village home at night, a mother holding her newborn baby by the light of a clay diya, family around, gentle divine golden glow in the corner suggesting a blessing, peaceful"
+    },
+    {
+      "prompt": "six-faced Lord Kartikeya with a peacock beside a gentle goddess Devasena, divine golden light, traditional iconography, temple-like background, wide scene"
+    },
+    {
+      "prompt": "Pandavas and Draupadi in a forest by a river, sage Dhaumya guiding them, they pray with folded hands to the rising sun, golden light through the trees"
+    },
+    {
+      "prompt": "warrior Karna standing waist-deep in a river at dawn, offering water from cupped hands to the rising sun, golden armour glinting, calm and devout"
+    },
+    {
+      "prompt": "Sita Mata in simple saree on the bank of the Ganga at sunset, offering water to the sun with folded hands, soft golden light, gentle mood"
+    },
+    {
+      "prompt": "ancient stone Deo Sun Temple of Bihar style with a tall curved tower, facing the setting sun, a holy kund with water in front, devotees small in the frame, warm evening light"
+    },
+    {
+      "prompt": "close-up of a bamboo soop basket with thekua sweets, bananas, sugarcane stalks and lit clay diyas on a river bank at golden hour, offerings, shallow depth of field"
+    },
+    {
+      "prompt": "family on a riverbank at dusk, grandmother, mother and children with folded hands facing the setting sun, hundreds of glowing diyas on the water, peaceful and emotional"
+    },
+    {
+      "prompt": "divine Chhathi Maiya seated gracefully on a lotus throne with a gentle smile, red saree, jewellery, soft glow, two small children at her feet, wide devotional scene, subject in the middle"
+    },
+    {
+      "prompt": "wide scene of a river at dawn, devotees standing in the water with folded hands as the golden sun rises, mist over water, bamboo baskets on the bank, serene"
+    }
+  ],
+  "chapters": [
+    {
+      "title": "Chhathi Maiya Kaun Hain?",
+      "scenes": [
+        {
+          "img": 0,
+          "focus": "center",
+          "motion": "in",
+          "tts": "छठी मैया कौन हैं? छठ के दिन जिनकी पूजा होती है, वे कौन सी देवी हैं?",
+          "sub": "Chhathi Maiya kaun hain? Chhath ke din jinki pooja hoti hai, ve kaun si devi hain?"
+        },
+        {
+          "img": 1,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "आज संध्या अर्घ्य का दिन है। डूबते सूरज को अर्घ्य, और छठी मैया का नाम।",
+          "sub": "Aaj Sandhya Arghya ka din hai. Doobte Suraj ko arghya, aur Chhathi Maiya ka naam."
+        },
+        {
+          "img": 2,
+          "focus": "top",
+          "motion": "out",
+          "tts": "इस कथा में जानिए, छठी मैया का स्वरूप, सूर्य देव से नाता, और संध्या अर्घ्य का महत्व।",
+          "sub": "Is katha mein jaaniye, Chhathi Maiya ka swaroop, Surya Dev se naata, aur Sandhya Arghya ka mahatva.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Shashthi Devi ka Swaroop",
+      "scenes": [
+        {
+          "img": 3,
+          "focus": "center",
+          "motion": "in",
+          "tts": "सबसे पहले, नाम का अर्थ। षष्ठी यानी छठा। इसीलिए वे कहलाती हैं, छठी मैया।",
+          "sub": "Sabse pehle, naam ka arth. Shashthi yaani chhatha. Isiliye ve kehlaati hain, Chhathi Maiya."
+        },
+        {
+          "img": 3,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "ब्रह्मवैवर्त पुराण के अनुसार, सृष्टि रचते समय प्रकृति देवी ने खुद को कई अंशों में बाँटा।",
+          "sub": "Brahmavaivarta Purana ke anusar, srishti rachte samay Prakriti Devi ne khud ko kai anshon mein baanta."
+        },
+        {
+          "img": 3,
+          "focus": "top",
+          "motion": "panl",
+          "tts": "मान्यता है कि उनके छठे अंश से प्रकट हुईं देवी, षष्ठी। इसलिए उन्हें प्रकृति का छठा अंश कहते हैं।",
+          "sub": "Manyata hai ki unke chhathe ansh se prakat huin Devi Shashthi. Isliye unhe Prakriti ka chhatha ansh kehte hain."
+        },
+        {
+          "img": 0,
+          "focus": "top",
+          "motion": "out",
+          "tts": "ग्रंथों में उन्हें बच्चों की रक्षा करने वाली देवी बताया गया है। माँ की तरह, इसीलिए \"मैया\"।",
+          "sub": "Granthon mein unhe bachchon ki raksha karne wali devi bataya gaya hai. Maa ki tarah, isiliye \"Maiya\"."
+        },
+        {
+          "img": 4,
+          "focus": "center",
+          "motion": "in",
+          "tts": "सोचो… जिस देवी के नाम में ही माँ का प्यार है। उसकी पूजा लोग कितने मन से करते होंगे!",
+          "sub": "Socho… jis devi ke naam mein hi maa ka pyaar hai, uski pooja log kitne man se karte honge!",
+          "mood": "emotional"
+        },
+        {
+          "img": 5,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "कुछ कथाओं में उन्हें देवसेना भी कहा गया है, भगवान कार्तिकेय की पत्नी।",
+          "sub": "Kuch kathaon mein unhe Devasena bhi kaha gaya hai, Bhagwan Kartikeya ki patni."
+        },
+        {
+          "img": 5,
+          "focus": "bottom",
+          "motion": "panl",
+          "tts": "पर सब ग्रंथ एक जैसा नहीं कहते। कहीं उनके माता-पिता अलग बताए गए हैं।",
+          "sub": "Par sab granth ek jaisa nahin kehte. Kahin unke maata-pita alag bataye gaye hain."
+        },
+        {
+          "img": 0,
+          "focus": "center",
+          "motion": "in",
+          "tts": "हाँ, नाम और रूप अलग हो सकते हैं। पर भाव एक है, संतान की रक्षा और सुख की कामना।",
+          "sub": "Haan, naam aur roop alag ho sakte hain. Par bhaav ek hai, santaan ki raksha aur sukh ki kaamna."
+        },
+        {
+          "img": 4,
+          "focus": "top",
+          "motion": "pan",
+          "tts": "आगे जानिए, छठी मैया का सूर्य देव से क्या नाता है। और कुछ लोक मान्यताएँ भी।",
+          "sub": "Aage jaaniye, Chhathi Maiya ka Surya Dev se kya naata hai, aur ghar ki chhathi ki parampara kya hai.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Bachchon ki Rakshak Maiya",
+      "scenes": [
+        {
+          "img": 4,
+          "focus": "center",
+          "motion": "out",
+          "tts": "क्या आप जानते हैं? बच्चे के जन्म के छठे दिन, कई घरों में छठी की पूजा होती है।",
+          "sub": "Kya aap jaante hain? Bachche ke janm ke chhathe din, kai gharon mein chhathi ki pooja hoti hai."
+        },
+        {
+          "img": 4,
+          "focus": "bottom",
+          "motion": "in",
+          "tts": "मान्यता है कि उस रात षष्ठी देवी नवजात के पास रहती हैं। इसलिए माँ उनका स्वागत करती हैं।",
+          "sub": "Manyata hai ki us raat Shashthi Devi navjaat ke paas rehti hain. Isliye maa unka swagat karti hain."
+        },
+        {
+          "img": 3,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "यही षष्ठी देवी, छठ पर्व में छठी मैया बनकर पूजी जाती हैं। भाव वही है, संतान का सुख।",
+          "sub": "Yahi Shashthi Devi, Chhath parv mein Chhathi Maiya bankar pooji jaati hain. Bhaav wahi hai, santaan ka sukh."
+        },
+        {
+          "img": 11,
+          "focus": "center",
+          "motion": "panl",
+          "tts": "इसीलिए छठ में व्रती माएँ अपने बच्चों और पूरे परिवार की सुख-शांति माँगती हैं।",
+          "sub": "Isiliye Chhath mein vrati maayein apne bachchon aur poore parivaar ki sukh-shaanti maangti hain."
+        },
+        {
+          "img": 11,
+          "focus": "top",
+          "motion": "in",
+          "tts": "यह व्रत आसान नहीं होता। पर माँ का मन जानता है, यह श्रद्धा का व्रत है।",
+          "sub": "Yeh vrat aasaan nahin hota. Par maa ka man jaanta hai, yeh shraddha ka vrat hai.",
+          "mood": "emotional"
+        }
+      ]
+    },
+    {
+      "title": "Surya Dev aur Chhath",
+      "scenes": [
+        {
+          "img": 2,
+          "focus": "center",
+          "motion": "in",
+          "tts": "अब सूर्य देव की बात। वे ऐसे देवता हैं, जिन्हें हम रोज़ अपनी आँखों से देखते हैं।",
+          "sub": "Ab Surya Dev ki baat. Ve aise devta hain, jinhe hum roz apni aankhon se dekhte hain."
+        },
+        {
+          "img": 2,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "उन्हीं की रोशनी से दिन होता है, फसल पकती है, और जीवन चलता है।",
+          "sub": "Unhi ki roshni se din hota hai, fasal pakti hai, aur jeevan chalta hai."
+        },
+        {
+          "img": 0,
+          "focus": "bottom",
+          "motion": "out",
+          "tts": "लोक मान्यता में छठी मैया को सूर्य देव की बहन कहा जाता है। इसीलिए दोनों साथ पूजे जाते हैं।",
+          "sub": "Lok manyata mein Chhathi Maiya ko Surya Dev ki behan kaha jaata hai. Isiliye dono saath pooje jaate hain."
+        },
+        {
+          "img": 12,
+          "focus": "center",
+          "motion": "in",
+          "tts": "पर कुछ लोग उन्हें सूर्य की पत्नी भी कहते हैं। सच यह है, परंपराएँ अलग-अलग हैं।",
+          "sub": "Par kuch log unhe Surya ki patni bhi kehte hain. Sach yeh hai, parampara-ayein alag-alag hain."
+        },
+        {
+          "img": 6,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "अब सुनिए लोक मान्यताएँ। कहते हैं, वनवास में द्रौपदी ने भी सूर्य की उपासना की थी।",
+          "sub": "Ab suniye lok manyataayein. Kehte hain, vanvaas mein Draupadi ne bhi Surya ki upaasna ki thi."
+        },
+        {
+          "img": 6,
+          "focus": "top",
+          "motion": "in",
+          "tts": "मान्यता है, ऋषि धौम्य की सलाह पर पांडवों ने सूर्य की आराधना की। और अक्षय पात्र मिला।",
+          "sub": "Manyata hai ki Rishi Dhaumya ki salah par Pandavon ne Surya Dev ki aaradhna ki, aur Akshay Patra mila."
+        },
+        {
+          "img": 7,
+          "focus": "center",
+          "motion": "panl",
+          "tts": "और कर्ण? उन्हें सूर्यपुत्र कहा जाता है। मान्यता है, वे रोज़ कमर तक जल में खड़े होकर अर्घ्य देते थे।",
+          "sub": "Aur Karna? Unhe Suryaputra kaha jaata hai. Manyata hai, ve roz kamar tak jal mein khade hokar arghya dete the."
+        },
+        {
+          "img": 8,
+          "focus": "center",
+          "motion": "in",
+          "tts": "एक मान्यता सीता माता की भी है। कहते हैं, उन्होंने गंगा किनारे सूर्य की पूजा की थी।",
+          "sub": "Ek manyata Sita Mata ki bhi hai. Kehte hain, unhone Ganga kinare Surya ki pooja ki thi."
+        },
+        {
+          "img": 8,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "ये सब लोक कथाएँ हैं। हर इलाके में अलग तरह से कही जाती हैं। हम इन्हें मान्यता ही कहते हैं।",
+          "sub": "Ye sab lok kathayein hain. Har ilaake mein alag tarah se kahi jaati hain. Hum inhe manyata hi kehte hain."
+        },
+        {
+          "img": 1,
+          "focus": "top",
+          "motion": "out",
+          "tts": "अब आते हैं आज के दिन पर। डूबते सूरज को अर्घ्य क्यों दिया जाता है? कथा अभी बाकी है।",
+          "sub": "Ab aate hain aaj ke din par. Doobte Suraj ko arghya kyon diya jaata hai? Katha abhi baaki hai.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Sandhya Arghya ka Mahatva",
+      "scenes": [
+        {
+          "img": 1,
+          "focus": "center",
+          "motion": "in",
+          "tts": "आज षष्ठी है। शाम को व्रती नदी या तालाब के घाट पर पहुँचते हैं, परिवार के साथ।",
+          "sub": "Aaj Shashthi hai. Shaam ko vrati nadi ya taalaab ke ghaat par pahunchte hain, parivaar ke saath."
+        },
+        {
+          "img": 10,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "सिर पर बाँस की टोकरी, यानी सूप। उसमें ठेकुआ, फल, गन्ना और दीये सजे होते हैं।",
+          "sub": "Sir par baans ki tokri, yaani soop. Usmein thekua, phal, ganna aur diye saje hote hain."
+        },
+        {
+          "img": 1,
+          "focus": "bottom",
+          "motion": "panl",
+          "tts": "व्रती जल में खड़े होते हैं। और डूबते सूरज की ओर अर्घ्य देते हैं।",
+          "sub": "Vrati jal mein khade hote hain. Aur doobte Suraj ki or arghya dete hain."
+        },
+        {
+          "img": 12,
+          "focus": "center",
+          "motion": "out",
+          "tts": "हमारी संस्कृति में यह खास बात है। यहाँ डूबते सूरज को भी प्रणाम किया जाता है।",
+          "sub": "Hamari sanskriti mein yeh khaas baat hai. Yahan doobte Suraj ko bhi pranaam kiya jaata hai."
+        },
+        {
+          "img": 11,
+          "focus": "center",
+          "motion": "in",
+          "tts": "मान्यता है, दिन भर का साथ देने के लिए सूर्य देव का आभार माना जाता है।",
+          "sub": "Manyata hai ki din bhar ka saath dene ke liye, shaam ko Surya Dev ka aabhaar maana jaata hai.",
+          "mood": "emotional"
+        },
+        {
+          "img": 11,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "कुछ लोग इसे संध्या की शक्ति से जोड़ते हैं। यह परंपरा की व्याख्या है, कोई तय नियम नहीं।",
+          "sub": "Kuch log ise sandhya ki shakti se jodte hain. Yeh parampara ki vyakhya hai, koi tay niyam nahin."
+        },
+        {
+          "img": 10,
+          "focus": "top",
+          "motion": "panl",
+          "tts": "व्रत में कई घंटे निर्जला उपवास होता है। न अन्न, न पानी। फिर भी चेहरे पर शांति रहती है।",
+          "sub": "Vrat mein kai ghante nirjala upvaas hota hai. Na ann, na paani. Phir bhi chehre par shaanti rehti hai."
+        },
+        {
+          "img": 12,
+          "focus": "top",
+          "motion": "in",
+          "tts": "सोचो, कितनी श्रद्धा! शाम ढलते ही, घाट पर दीयों की रोशनी तैरने लगती है।",
+          "sub": "Socho, kitni shraddha! Shaam dhalte hi, ghaat par diyon ki roshni tairne lagti hai.",
+          "mood": "wonder"
+        },
+        {
+          "img": 12,
+          "focus": "top",
+          "motion": "out",
+          "tts": "और गूँजते हैं छठ के गीत। \"केलवा के पात पर, उगेलन सूरज मल झाँके झूँके\"।",
+          "sub": "Aur goonjte hain Chhath ke geet. \"Kelwa ke paat par, ugelan Suraj mal jhaanke jhoonke\".",
+          "mood": "emotional"
+        },
+        {
+          "img": 13,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "आज रात व्रती घर लौटते हैं। और कल सुबह, उगते सूरज को अर्घ्य देने फिर आएँगे।",
+          "sub": "Aaj raat vrati ghar lautte hain. Aur kal subah, ugte Suraj ko arghya dene phir aayenge.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Bihar ke Surya Mandir",
+      "scenes": [
+        {
+          "img": 9,
+          "focus": "center",
+          "motion": "in",
+          "tts": "छठ का नाम आते ही बिहार याद आता है। वहाँ सूर्य देव के कई प्राचीन मंदिर माने जाते हैं।",
+          "sub": "Chhath ka naam aate hi Bihar yaad aata hai. Wahan Surya Dev ke kai prachin mandir maane jaate hain."
+        },
+        {
+          "img": 9,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "औरंगाबाद ज़िले में है देव सूर्य मंदिर। इसकी खास बात है, यह पश्चिम की ओर मुख किए हुए है।",
+          "sub": "Aurangabad zile mein hai Deo Surya Mandir. Iski khaas baat hai, yeh pashchim ki or mukh kiye hue hai."
+        },
+        {
+          "img": 9,
+          "focus": "top",
+          "motion": "out",
+          "tts": "लोक कथा के अनुसार, भगवान विश्वकर्मा ने इसे एक ही रात में बनाया था। यह मान्यता है।",
+          "sub": "Lok katha ke anusar, Bhagwan Vishwakarma ne ise ek hi raat mein banaya tha. Yeh manyata hai."
+        },
+        {
+          "img": 9,
+          "focus": "center",
+          "motion": "panl",
+          "tts": "इतिहासकार इसे आठवीं सदी के आसपास का मानते हैं। छठ पर यहाँ बड़ा मेला लगता है।",
+          "sub": "Itihaaskar ise aathvin sadi ke aaspaas ka maante hain. Chhath par yahan bada mela lagta hai."
+        },
+        {
+          "img": 13,
+          "focus": "top",
+          "motion": "in",
+          "tts": "मंदिर के पास सूर्य कुंड है। श्रद्धालु वहाँ स्नान करके अर्घ्य देते हैं।",
+          "sub": "Mandir ke paas Surya Kund hai. Shraddhalu wahan snaan karke arghya dete hain."
+        }
+      ]
+    },
+    {
+      "title": "Aashirwad aur Sandesh",
+      "scenes": [
+        {
+          "img": 13,
+          "focus": "center",
+          "motion": "out",
+          "tts": "तो बेटा, छठी मैया कौन हैं? संतान की रक्षा करने वाली, प्रकृति की छठी शक्ति, षष्ठी देवी।",
+          "sub": "To beta, Chhathi Maiya kaun hain? Santaan ki raksha karne wali, Prakriti ki chhathi shakti, Shashthi Devi."
+        },
+        {
+          "img": 2,
+          "focus": "center",
+          "motion": "in",
+          "tts": "और सूर्य देव? वे जीवन के आधार हैं। छठ में दोनों के प्रति कृतज्ञता है।",
+          "sub": "Aur Surya Dev? Ve jeevan ke aadhaar hain. Chhath mein dono ke prati kritagyata hai."
+        },
+        {
+          "img": 13,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "यह पर्व सिखाता है, साफ़-सफ़ाई, संयम, प्रकृति का सम्मान, और परिवार का साथ।",
+          "sub": "Yeh parv sikhata hai, saaf-safai, sanyam, prakriti ka sammaan, aur parivaar ka saath."
+        },
+        {
+          "img": 10,
+          "focus": "center",
+          "motion": "in",
+          "tts": "जो व्रती आज घाट पर हैं, उन्हें प्रणाम। छठी मैया सबके घर में सुख-शांति बनाए रखें।",
+          "sub": "Jo vrati aaj ghaat par hain, unhe pranaam. Chhathi Maiya sabke ghar mein sukh-shaanti banaye rakhein."
+        },
+        {
+          "img": 10,
+          "focus": "center",
+          "motion": "out",
+          "tts": "ॐ सूर्याय नमः। जय छठी मैया!",
+          "sub": "Om Suryaya Namah. Jai Chhathi Maiya!"
+        },
+        {
+          "endcard": true,
+          "tts": "जय छठी मैया! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।",
+          "sub": "Jai Chhathi Maiya! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN"
+        }
+      ]
+    }
+  ],
+  "youtube_title": "Chhathi Maiya Kaun Hain, Sandhya Arghya Katha | छठी मैया कौन हैं | Sampoorn Katha",
+  "youtube_description": "Chhath Puja ke Sandhya Arghya din par jaaniye: Chhathi Maiya (Shashthi Devi) kaun hain, unka Surya Dev se naata, Sandhya Arghya ka mahatva aur Bihar ka Deo Surya Mandir.\nYe katha Brahmavaivarta Purana (Shashthi Devi upakhyan) aur Lok katha (Chhath parampara) ke anusar hai. Kai baatein lok manyata hain, granthon mein bhed ho sakta hai.\nChitra AI dwara banaye gaye hain (sanketik).\nइस वीडियो में छठी मैया कौन हैं और संध्या अर्घ्य का महत्व, सरल हिंदी में।\nॐ सूर्याय नमः। जय छठी मैया!\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein.\n#ChhathPuja #ChhathiMaiya #SandhyaArghya #SuryaDev\n\nभजन: मौलिक रचना, AI द्वारा गाया गया (ACE-Step)",
+  "youtube_tags": "Chhathi Maiya kaun hain, छठी मैया कौन हैं, Chhath Puja katha, छठ पूजा कथा, Sandhya Arghya, संध्या अर्घ्य, Shashthi Devi, षष्ठी देवी, Chhath vrat katha, छठ व्रत कथा, Surya Dev, सूर्य देव, Deo Surya Mandir, Chhath 2026",
+  "music": {
+    "id": "cc-veena-kiravani-alapana-2",
+    "mood": "emotional",
+    "title": "Veena alapana in Kiravani (L. Ramakrishnan), part 2",
+    "licence": "Public Domain Dedication (excerpt, loudness-normalised; Internet Archive)",
+    "licence_url": "https://creativecommons.org/licenses/publicdomain/",
+    "attribution": null,
+    "reused": false
+  },
+  "bhajan": {
+    "id": "bhajan-chhath26e-10-devi",
+    "title": "Jai Ho Suraj Dev",
+    "title_hi": "जय हो सूरज देव",
+    "deity": "devi",
+    "mood": "thaath",
+    "festival": "chhath",
+    "match": "festival",
+    "mode": "long",
+    "licence": "original, generated by ACE-Step 1.5 (MIT)",
+    "model": "ACE-Step 1.5 (acestep-v15-turbo DiT fp32 + acestep-5Hz-lm-1.7B)",
+    "singer": "AI (ACE-Step 1.5), no real singer cloned",
+    "intro": 25,
+    "from": 0,
+    "outro_start": 372.43,
+    "seconds": 135,
+    "narration": true
+  }
+}

@@ -104,3 +104,5 @@
 - 2026-11-15-status-chhath-puja | instagram: skipped (missed the 2026-11-14T19:00:00.000Z slot by 9 h)
 - 2026-11-15-morning-chhath-sandhya-arghya-geet | instagram: https://www.instagram.com/reel/Dfv1_Y2hGVb/
 - 2026-11-15-long-chhath-chhathi-maiya-kaun-hain | claim: 2026-11-15 long by run 43673639018.1 at 2026-11-15T04:14:54.961Z
+- 2026-11-15-long-chhath-chhathi-maiya-kaun-hain | facebook: https://www.facebook.com/388779648425633/videos/1177057764750789 (scheduled 2026-11-15T07:00:00.000Z)
+- 2026-11-15-long-chhath-chhathi-maiya-kaun-hain | youtube: https://youtu.be/C2w678h9mXs (public at 12:30 IST) | long 8:27, 48 scenes, render 8 min, 0 neurons
