@@ -1,0 +1,54 @@
+# Gemini TTS voice test (voice/gemini_tts.py, 15 Nov 2026): the 30 prebuilt Gemini voices say one sentence full of the
+# channel's deity names (2 voices per request: the free tier allows only a few requests a day), then Whisper
+# large-v3-turbo on the CPU (faster-whisper int8, the Kaggle gate's model) scores each voice: CER and every name heard
+# exactly (the gate's rule). Manual only; nothing is published. Result: artifact gemini-voice-ab (one WAV per voice +
+# ab.json) and the table in the run summary. Resumable: `voices` = the ones still missing (comma list, in this order).
+name: Voice test (Gemini voices)
+
+on:
+  workflow_dispatch:
+    inputs:
+      voices:
+        description: comma list of Gemini voices to test, in this order (empty = all 30)
+        required: false
+        default: ''
+      max_req:
+        description: at most this many Gemini requests (2 voices each)
+        required: false
+        default: '15'
+
+permissions:
+  contents: read
+
+jobs:
+  ab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Tools
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q numpy faster-whisper
+      - name: Gemini voices
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_TTS_RPD: ${{ inputs.max_req }}
+        run: |
+          [ -n "$GEMINI_API_KEY" ] || { echo "::error::no GEMINI_API_KEY secret"; exit 1; }
+          python voice/gemini_tts.py ab-synth --out out --max-req "${{ inputs.max_req }}" --voices "${{ inputs.voices }}"
+          cat out/synth.json | python -c "import json,sys; j=json.load(sys.stdin); print(json.dumps(j['requests'], ensure_ascii=False)); print('quota:', j['state'].get('quota',''), j['state'].get('why',''))"
+      - name: Whisper score
+        run: |
+          set -o pipefail
+          python voice/gemini_tts.py ab-score --dir out | tee out/score.txt
+          sed -n '/^| Voice/,$p' out/score.txt >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gemini-voice-ab
+          path: out/
+          retention-days: 14
