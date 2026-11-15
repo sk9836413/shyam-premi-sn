@@ -42,7 +42,8 @@ def left(T0, cfg):
 
 
 def stage_images(inp, spec, cfg):
-    jobs = [{"id": j["id"], "flux_prompt": j["prompt"], "seed": j.get("seed", 42), "w": j.get("w", 576), "h": j.get("h", 1024)}
+    jobs = [{"id": j["id"], "flux_prompt": j["prompt"], "seed": j.get("seed", 42), "w": j.get("w", 576), "h": j.get("h", 1024),
+             **({"negative": j["negative"]} if j.get("negative") else {})}  # negative: true CFG (settings.flux.true_cfg > 1)
             for j in spec.get("images", [])]
     if not jobs:
         return None

@@ -29,6 +29,9 @@ def encode(inp, out):
             pe, pooled, _ = tp.encode_prompt(prompt=j["flux_prompt"], prompt_2=None, device=torch.device("cuda:0"), max_sequence_length=256)
             assert torch.isfinite(pe).all() and torch.isfinite(pooled).all(), "text encoder produced NaN/inf"
             emb[j["id"]] = (pe.float().clamp(-65000, 65000).half().cpu(), pooled.half().cpu())
+            if j.get("negative"):  # optional negative prompt (true CFG, cfg "true_cfg" > 1; Kailash Parivar cast/frames)
+                ne, npooled, _ = tp.encode_prompt(prompt=j["negative"], prompt_2=None, device=torch.device("cuda:0"), max_sequence_length=256)
+                emb[j["id"] + "__neg"] = (ne.float().clamp(-65000, 65000).half().cpu(), npooled.half().cpu())
     torch.save(emb, f"{out}/flux-emb.pt")
 
 
@@ -67,8 +70,12 @@ def main(inp, out, cfg):
         s = time.time()
         pe, pooled = emb[j["id"]]
         w, h = int(j.get("w", size)), int(j.get("h", size))  # per-job size (vertical movie frames 576x1024), else square
+        # True CFG with a negative prompt only when the job has one and cfg true_cfg > 1 (twice the transformer time);
+        # every other caller is unchanged (guidance 0, no negative).
+        neg = emb.get(j["id"] + "__neg") if float(cfg.get("true_cfg", 1) or 1) > 1 else None
+        extra = {"negative_prompt_embeds": neg[0], "negative_pooled_prompt_embeds": neg[1], "true_cfg_scale": float(cfg["true_cfg"])} if neg else {}
         with torch.no_grad():
-            lat = pipe(prompt_embeds=pe, pooled_prompt_embeds=pooled, width=w, height=h, num_inference_steps=steps,
+            lat = pipe(prompt_embeds=pe, pooled_prompt_embeds=pooled, width=w, height=h, num_inference_steps=steps, **extra,
                        guidance_scale=0.0, max_sequence_length=256, output_type="latent",
                        generator=torch.Generator("cuda:0").manual_seed(int(j.get("seed", 42)))).images
             lat = pipe._unpack_latents(lat, h, w, pipe.vae_scale_factor).to("cuda:1", torch.float32)
@@ -79,7 +86,7 @@ def main(inp, out, cfg):
             continue
         arr = ((img.float().clamp(-1, 1) + 1) * 127.5).round().byte().permute(1, 2, 0).cpu().numpy()
         Image.fromarray(arr).save(f"{out}/{j['id']}.png")
-        rec["frames"].append({"id": j["id"], "seconds": round(time.time() - s, 1)})
+        rec["frames"].append({"id": j["id"], "seconds": round(time.time() - s, 1), **({"true_cfg": extra["true_cfg_scale"]} if extra else {})})
         print(f"[flux] {j['id']}: {time.time() - s:.0f}s", flush=True)
     rec["flux_s"] = round(time.time() - T0)
     json.dump(rec, open(f"{out}/flux.json", "w"), indent=2)

@@ -41,9 +41,10 @@ const SLOT = process.env.SPS_SLOT || 'daily';
 const CHAR = SLOT.startsWith('char-');
 // movie: one part of a mini-movie series (story/movie.py dataset -> story/movie_kernel.py: FLUX frames, Wan clips,
 // lip-sync and a Whisper pronunciation check in one session; STORY.md section 7).
-const MOVIE = SLOT === 'movie' || SLOT === 'kalyug';
+const MOVIE = SLOT === 'movie' || SLOT === 'kalyug' || SLOT === 'kailash';
 // kalyug: one "Kalyug ke Bhagwan" episode (story/kalyug.py dataset -> the same story/movie_kernel.py; STORY.md section 8),
-// its own kernel sps-kalyug and dataset sps-kalyug-inputs.
+// its own kernel sps-kalyug and dataset sps-kalyug-inputs. kailash: one "Kailash Parivar" episode (characters/kailash/kailash.py
+// dataset, STORY.md section 9), kernel sps-kailash, dataset sps-kailash-inputs.
 // frames-<slot>: FLUX.1-schnell start frames / story images on the GPU when Workers AI is out of neurons (animate/frames.mjs,
 // kernel animate/kaggle/frames_kernel.py, dataset built by frames.mjs and sent with `upload`).
 const FRAMES = SLOT.startsWith('frames-');
@@ -55,7 +56,7 @@ const CODE = MOVIE ? path.join(DIR, '..', 'story', 'movie_kernel.py') : CHAR ? p
 // Every GPU kernel of both channels (one Kaggle account): `lock` waits while any other one runs.
 // (facts: the "pauranik facts" Short, scripts/facts.mjs; loop: the bhajan loop / veer Shorts, scripts/loop.mjs)
 const ALL_KERNELS = [...['morning', 'evening', 'noon', 'status', 'daily', 'facts', 'loop'].map((x) => `sps-animate-${x}`), 'sps-tts-long',
-  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie', 'sps-kalyug', 'sps-music',
+  'sps-char-shyam', 'sps-char-epifive', 'sps-char-anim', 'sps-movie', 'sps-kalyug', 'sps-kailash', 'sps-music',
   ...['morning', 'evening', 'noon', 'status', 'long', 'photos', 'veo', 'pilot', 'facts', 'loop'].map((x) => `sps-frames-${x}`)];
 const stateOf = (out) => (out.match(/status "(?:KernelWorkerStatus\.)?(\w+)"/i)?.[1] || '').toUpperCase();
 const args = process.argv.slice(2);
