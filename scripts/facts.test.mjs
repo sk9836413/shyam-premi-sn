@@ -169,3 +169,24 @@ test('Kaggle windows of the coordinator', () => {
   assert.equal(inKaggleWindow('18:46'), true);
   assert.equal(inKaggleWindow('21:15'), false);
 });
+
+test('"धर्म की जिज्ञासा" questions: 35-47 s, a cited answer, never pseudo-science or health claims', () => {
+  const j = topics.filter((t) => t.kind === 'jigyasa');
+  assert.ok(j.length >= 20, `about 20 jigyasa topics (has ${j.length})`);
+  assert.ok(j.slice(0, 5).every((t) => t.deity === 'khatu'), 'Khatu Shyam ji questions first (Janmotsav)');
+  assert.ok(j.every((t) => t.variant_only === 'kyun' && t.length[0] === 35));
+  const s = clone(pilot);
+  Object.assign(s, { variant: 'kyun', topic: 'jigyasa-mandir-ghanti', slug: '2026-11-25-facts-jigyasa-mandir-ghanti', release: '2026-11-25',
+    hook: 'Mandir mein ghanti kyun bajate hain?', source: 'Puja paddhati (Ghanta puja mantra); Agama parampara',
+    cover_lines: ['मंदिर में', 'घंटी', 'क्यों बजाते हैं?'], youtube_title: 'Mandir mein ghanti kyun bajate hain? 😱 #facts | Bhakti Katha | मंदिर में घंटी क्यों' });
+  s.youtube_description += `\n${s.source}`;
+  s.scenes = [{ ...pilot.scenes[0], tts: 'मंदिर में घंटी क्यों बजाते हैं? जानिए!', sub: 'Mandir mein ghanti kyun bajate hain? Jaaniye!' },
+    { ...pilot.scenes[1], tts: 'परंपरा के अनुसार, घंटी पूजा का पहला स्वर है। इससे देवताओं का आवाहन होता है।' },
+    { ...pilot.scenes[5], tts: 'घंटी का नाद मन को पूजा में लगाता है। भक्त कहते हैं, अब भगवान के सामने हूँ।' },
+    { ...pilot.scenes[4], animate: undefined, reveal: true, tts: 'पूजा पद्धति का श्लोक कहता है, घंटी देवताओं को बुलाने के लिए बजती है।' },
+    { ...pilot.scenes[12] }, pilot.scenes.at(-1)];
+  const ok = checkFactsSpec(s, { topics });
+  assert.ok(!ok.some((e) => /estimated length|scenes/.test(e)), ok.join('\n'));
+  s.scenes[1].tts = 'वैज्ञानिक कारण: घंटी की आवाज़ से बैक्टीरिया मर जाते हैं।';
+  assert.ok(checkFactsSpec(s, { topics }).some((e) => /pseudo-science/.test(e)));
+});

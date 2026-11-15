@@ -755,6 +755,11 @@ part. Repo variable `FACTS=off` stops it. Facebook: a Page video (over 90 s) or 
   - `kyun`: the shock question "<A> ने <B> को <unexpected action> क्यों…?" (45-62 s, 6-9 scenes). The title and the first
     spoken line ARE the question; the answer scene (`"reveal": true`) lands at ~55-85 % of the video. The question needs
     a real scripture or folk basis (folk: "लोककथा/मान्यता के अनुसार"), never an invented event.
+  - **"धर्म की जिज्ञासा"** (topics with `kind: "jigyasa"`, variant `kyun`, 35-47 s; owner's reference "भगवान को किसी ने
+    नहीं देखा, फिर इतनी सुंदर मूर्तियाँ किसने बनाईं?" 7.75 lakh): an everyday devotee's question (मंदिर में घंटी क्यों?
+    शिवलिंग पर जल क्यों? खाटू श्याम को हारे का सहारा क्यों?), answered from shastra or parampara with the citation and
+    "परंपरा/मान्यता" where it applies, over warm diya-lit pictures of the subject. **Never pseudo-science or health claims**
+    ("घंटी से बैक्टीरिया मरते हैं", "positive energy", "वैज्ञानिक कारण"): the validator rejects them.
   - `list`: countdown (38-55 s): scene 1 the hook, then 3-5 item scenes `"item": 1..n` (a gold number badge is drawn),
     8-10 s each, every item with `"cite"` (its scripture reference) and folk items `"label": "tradition"` + "मान्यता…".
   - `gita` (Sundays, ~1 a week): one real Bhagavad Gita shloka (exact public-domain text) in a scene `"shloka": true`

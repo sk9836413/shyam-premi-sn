@@ -2405,6 +2405,560 @@
     "narad",
     "narad muni"
    ]
+  },
+  {
+   "id": "jigyasa-khatu-haare-ka-sahara",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Khatu Shyam 'Haare ka Sahara' kyun?",
+   "hook_hi": "खाटू श्याम को हारे का सहारा क्यों कहते हैं?",
+   "angle": "Barbarik's promise to his mother to stand with the losing side, how the jaikara grew from it, what it means to devotees (manyata). Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Barbarik ka matri-vachan"
+   },
+   "sources": [
+    "https://www.patrika.com/sikar-news/khatushyamji-history-who-is-shyam-baba-khatushyamji-fair-2024-8768031",
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "haare ka sahara naam"
+   ]
+  },
+  {
+   "id": "jigyasa-khatu-nishan",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Khatu mein nishan kyun chadhate hain?",
+   "hook_hi": "खाटू में निशान क्यों चढ़ाते हैं?",
+   "angle": "The nishan (flag) as the sign of Baba's victory and the devotee's vow, carried on foot to Khatu (manyata); no crowd numbers. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Nishan yatra"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/",
+    "https://www.patrika.com/sikar-news/khatushyamji-history-who-is-shyam-baba-khatushyamji-fair-2024-8768031"
+   ],
+   "keywords": [
+    "nishan"
+   ]
+  },
+  {
+   "id": "jigyasa-khatu-sheesh-pooja",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Khatu mein sirf sheesh ki pooja kyun?",
+   "hook_hi": "खाटू में सिर्फ शीश की पूजा क्यों होती है?",
+   "angle": "Because of the sheesh daan (lok katha) and the sheesh found at Khatu, the deity is worshipped as the sheesh only; how the shringar frames it. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Sheesh swaroop"
+   },
+   "sources": [
+    "https://www.patrika.com/sikar-news/khatushyamji-history-who-is-shyam-baba-khatushyamji-fair-2024-8768031",
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "sheesh ki pooja"
+   ]
+  },
+  {
+   "id": "jigyasa-khatu-neela-ghoda",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Baba Shyam neele ghode ke sawar kyun?",
+   "hook_hi": "बाबा श्याम नीले घोड़े के सवार क्यों?",
+   "angle": "The tradition of Barbarik's blue horse (Leela) and the epithet Leele ka Asvar; the horse in Khatu bhajans and shringar (manyata). Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Leela ghoda"
+   },
+   "sources": [
+    "https://www.patrika.com/sikar-news/khatushyamji-history-who-is-shyam-baba-khatushyamji-fair-2024-8768031",
+    "https://sikar.rajasthan.gov.in/"
+   ],
+   "keywords": [
+    "neele ghode",
+    "leela ghoda"
+   ]
+  },
+  {
+   "id": "jigyasa-khatu-gyaras",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Khatu Shyam ko Gyaras kyun pyari?",
+   "hook_hi": "खाटू श्याम को ग्यारस क्यों प्यारी है?",
+   "angle": "The Janmotsav on Dev Uthani Ekadashi and the Phalgun Ekadashi mela make every Gyaras Baba's day for devotees (manyata); no crowd numbers. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Lok katha (Khatu Shyam parampara)",
+    "ref": "Ekadashi aur Shyam darshan"
+   },
+   "sources": [
+    "https://sikar.rajasthan.gov.in/",
+    "https://www.patrika.com/sikar-news/khatushyamji-history-who-is-shyam-baba-khatushyamji-fair-2024-8768031"
+   ],
+   "keywords": [
+    "gyaras ka naata"
+   ]
+  },
+  {
+   "id": "jigyasa-murti-roop",
+   "p": 1,
+   "deity": "krishna",
+   "name": "Murti aur chitra (Shilpa Shastra)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Murti ka roop kisne tay kiya?",
+   "hook_hi": "भगवान की मूर्ति का रूप किसने तय किया?",
+   "angle": "Nobody photographed the gods: the forms come from the dhyana shlokas of the Puranas and Agamas and the measures of Shilpa Shastra (Vishnudharmottara Purana Chitrasutra, Brihat Samhita ch. 58 on images); the sculptor's meditation. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Vishnudharmottara Purana (Chitrasutra); Brihat Samhita (Varahamihira)",
+    "ref": "Khand 3 (Chitrasutra); adhyay 58 (Pratima lakshana)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-vishnu-purana",
+    "https://www.wisdomlib.org/"
+   ],
+   "keywords": [
+    "murti ka roop",
+    "shilpa shastra"
+   ]
+  },
+  {
+   "id": "jigyasa-mandir-ghanti",
+   "p": 1,
+   "deity": "shiv",
+   "name": "Mandir ki ghanti",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Mandir mein ghanti kyun bajate hain?",
+   "hook_hi": "मंदिर में घंटी क्यों बजाते हैं?",
+   "angle": "The ghanta puja verse of the puja paddhati (\"आगमार्थं तु देवानां गमनार्थं तु रक्षसाम्\"): the bell invites the divine and keeps away what is not; the bell as nada; label parampara. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Puja paddhati (Ghanta puja mantra); Agama parampara",
+    "ref": "Ghanta naad"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-linga-purana",
+    "https://www.wisdomlib.org/"
+   ],
+   "keywords": [
+    "ghanti"
+   ]
+  },
+  {
+   "id": "jigyasa-shivling-jal",
+   "p": 1,
+   "deity": "shiv",
+   "name": "Shivling abhishek",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Shivling par jal kyun chadhate hain?",
+   "hook_hi": "शिवलिंग पर जल क्यों चढ़ाते हैं?",
+   "angle": "Abhisheka in the Shiva Purana (Vidyeshvara Samhita), and the manyata that water cools Neelkanth after the Halahal; Sawan; no health claims. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Shiva Purana; lok manyata",
+    "ref": "Vidyeshvara Samhita (abhishek)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english"
+   ],
+   "keywords": [
+    "shivling par jal"
+   ]
+  },
+  {
+   "id": "jigyasa-tulsi-diya",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Tulsi Mata",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Tulsi par diya kyun jalate hain?",
+   "hook_hi": "तुलसी पर दीया क्यों जलाते हैं?",
+   "angle": "Tulsi as Vishnupriya in the Puranas (Kartik mahatmya), the evening diya as a daily prayer (parampara), Tulsi Vivah; no health claims. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Padma Purana (Kartik mahatmya); parampara",
+    "ref": "Tulsi mahatmya"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/the-padma-purana"
+   ],
+   "keywords": [
+    "tulsi par diya"
+   ]
+  },
+  {
+   "id": "jigyasa-bhog-kyun",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Bhog (Bhagavad Gita 9.26)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Bhagwan ko bhog kyun lagate hain?",
+   "hook_hi": "भगवान को भोग क्यों लगाते हैं?",
+   "angle": "Gita 9.26 (\"पत्रं पुष्पं फलं तोयं\"): Krishna accepts a leaf, a flower, fruit or water offered with love; prasad as grace (parampara). Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "Adhyay 9, shlok 26"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "bhog kyun"
+   ]
+  },
+  {
+   "id": "jigyasa-om-kyun",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Om",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Har mantra Om se kyun shuru hota?",
+   "hook_hi": "हर मंत्र ॐ से क्यों शुरू होता है?",
+   "angle": "Gita 17.24 (\"तस्माद् ॐ इत्युदाहृत्य\") and 8.13, the Mandukya Upanishad on Om; told simply; no pseudo-science. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita; Mandukya Upanishad",
+    "ref": "Adhyay 17, shlok 24; adhyay 8, shlok 13"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "om se kyun"
+   ]
+  },
+  {
+   "id": "jigyasa-peepal-pooja",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Peepal (Ashvattha)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Peepal ki pooja kyun karte hain?",
+   "hook_hi": "पीपल की पूजा क्यों करते हैं?",
+   "angle": "Gita 10.26 (\"अश्वत्थः सर्ववृक्षाणाम्\"): Krishna names the peepal among his vibhutis; Saturday and Amavasya customs as parampara; no oxygen claims. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "Adhyay 10, shlok 26"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "peepal ki pooja"
+   ]
+  },
+  {
+   "id": "jigyasa-shankh-kyun",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shankh",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Pooja mein shankh kyun bajate hain?",
+   "hook_hi": "पूजा में शंख क्यों बजाते हैं?",
+   "angle": "Gita 1.14-18: Krishna's Panchajanya and the Pandavas' conches at Kurukshetra; the conch in Vishnu's hand and in puja (parampara); no health claims. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "Adhyay 1, shlok 14-18"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "shankh kyun"
+   ]
+  },
+  {
+   "id": "jigyasa-kalash-kyun",
+   "p": 2,
+   "deity": "devi",
+   "name": "Kalash sthapana",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Pooja mein kalash kyun rakhte hain?",
+   "hook_hi": "पूजा में कलश क्यों रखते हैं?",
+   "angle": "The kalash sthapana mantra (\"कलशस्य मुखे विष्णुः...\") of the puja paddhati: the kalash as the seat of the deities, mango leaves and coconut (parampara). Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Puja paddhati (Kalash sthapana); parampara",
+    "ref": "Kalash puja mantra"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/"
+   ],
+   "keywords": [
+    "kalash kyun"
+   ]
+  },
+  {
+   "id": "jigyasa-ganga-jal",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Ganga jal",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Ganga jal ko pavitra kyun maante?",
+   "hook_hi": "गंगा जल को पवित्र क्यों मानते हैं?",
+   "angle": "Bala Kand: Ganga descends through Shiv's jata at Bhagirath's tapasya to free his ancestors; Ganga jal in every sanskar (parampara); NO bacteria / never-spoils claims. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Valmiki Ramayan; parampara",
+    "ref": "Bala Kand, sarga 42-44"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "ganga jal"
+   ]
+  },
+  {
+   "id": "jigyasa-rudraksha",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Rudraksha",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Rudraksha ko Shiv ke aansu kyun kehte?",
+   "hook_hi": "रुद्राक्ष को शिव के आँसू क्यों कहते हैं?",
+   "angle": "Shiva Purana (Vidyeshvara Samhita): Rudraksha born from Shiv's tears after long meditation; how devotees wear it (parampara); no health claims. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Shiva Purana",
+    "ref": "Vidyeshvara Samhita (Rudraksha mahatmya)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english"
+   ],
+   "keywords": [
+    "rudraksha"
+   ]
+  },
+  {
+   "id": "jigyasa-parikrama",
+   "p": 3,
+   "deity": "shiv",
+   "name": "Parikrama",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Mandir ki parikrama kyun karte hain?",
+   "hook_hi": "मंदिर की परिक्रमा क्यों करते हैं?",
+   "angle": "Pradakshina keeping the deity on the right, Ganesh's parikrama of his parents (Shiva Purana), why only half a parikrama of a Shivling (parampara: the jal-hari is not crossed). Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Shiva Purana; parampara",
+    "ref": "Rudra Samhita, Kumar Khand; pradakshina vidhi"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/shiva-purana-english"
+   ],
+   "keywords": [
+    "parikrama kyun"
+   ]
+  },
+  {
+   "id": "jigyasa-tilak",
+   "p": 3,
+   "deity": "krishna",
+   "name": "Tilak",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Tilak kyun lagate hain?",
+   "hook_hi": "तिलक क्यों लगाते हैं?",
+   "angle": "Urdhva pundra and tripundra as signs of Vishnu and Shiv bhakti (parampara, Puranic references), the place between the brows; no health claims. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Parampara; Puranon mein tilak ka varnan",
+    "ref": "Urdhva pundra, tripundra"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/"
+   ],
+   "keywords": [
+    "tilak kyun"
+   ]
+  },
+  {
+   "id": "jigyasa-nariyal",
+   "p": 3,
+   "deity": "ganesh",
+   "name": "Shriphal (nariyal)",
+   "playlist": "Ganesh ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Pooja mein nariyal kyun phodte hain?",
+   "hook_hi": "पूजा में नारियल क्यों फोड़ते हैं?",
+   "angle": "Shriphal in every shubh karya, breaking it as offering one's ego (parampara); Ganesh puja; label clearly, no invented history. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Parampara (Shriphal)",
+    "ref": "Shubh karya mein shriphal"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/"
+   ],
+   "keywords": [
+    "nariyal"
+   ]
+  },
+  {
+   "id": "jigyasa-aarti",
+   "p": 3,
+   "deity": "devi",
+   "name": "Aarti",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "kind": "jigyasa",
+   "length": [
+    35,
+    47
+   ],
+   "hook": "Aarti ke baad haath aankhon par kyun?",
+   "hook_hi": "आरती के बाद हाथ आँखों से क्यों लगाते हैं?",
+   "angle": "Taking the aarti's light as the deity's blessing (parampara); what aarti means (a-rati); no health claims. Visuals: warm diya-lit scenes that show the subject itself (the temple bell, the shivling, the tulsi, the artist ...). Answer from shastra or parampara with the citation; NO pseudo-science or health claims (\"bacteria marte hain\", \"positive energy\", \"vaigyanik karan\").",
+   "cite": {
+    "work": "Parampara (aarti vidhi)",
+    "ref": "Aarti"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/"
+   ],
+   "keywords": [
+    "aarti ke baad"
+   ]
   }
  ]
 }

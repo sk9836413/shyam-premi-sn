@@ -58,6 +58,8 @@ const GUNA = /guna|गुना|times/i;
 const DEMEAN = /\b(thappad|slap|slapp|kick|kicked|kicking|lat maar|laat maar|joota|jute|chappal|naked|nude|nanga|vulgar|sexy|drunk|sharab|daaru|toilet|vomit|spit|thook)\b|थप्पड़|लात मार|जूता|चप्पल|नंगा|शराब|थूक/i;
 const STUDIO = /pixar|disney|ghibli|dreamworks|marvel|illumination|amar chitra katha/i;
 const GORE = /\b(blood|bloody|gore|beheaded|beheading|severed|decapitat|corpse|dead body|wound|killing|slaughter)/i;
+// "धर्म की जिज्ञासा" answers come from shastra or parampara (owner, 15 Nov 2026): never pseudo-science or health claims.
+export const PSEUDO = /bacteria|bacteri|virus|vaigyanik karan|scientific reason|science (says|proves)|positive energy|negative energy|vibration|immunity|oxygen|health benefit|rog door|bimari door|बैक्टीरिया|वायरस|वैज्ञानिक कारण|विज्ञान भी मानता|पॉजिटिव एनर्जी|नेगेटिव एनर्जी|सकारात्मक ऊर्जा|नकारात्मक ऊर्जा|इम्युनिटी|ऑक्सीजन|रोग दूर|बीमारी दूर|सेहत के लिए/i;
 
 const read = (f) => { try { return fs.readFileSync(f, 'utf8'); } catch { return ''; } };
 const urls = (a) => (Array.isArray(a) ? a : []).filter((u) => /^https?:\/\/\S+$/.test(u));
@@ -87,6 +89,8 @@ export function checkTopicBank(topics) {
     if (!DEVANAGARI.test(t.hook_hi || '')) e.push(`${n}: hook_hi in Devanagari`);
     if (!(t.angle?.length >= 40)) e.push(`${n}: angle (what to tell) missing`);
     if (/sati\b|rani sati|सती/i.test(`${t.id} ${t.name} ${t.hook} ${t.hook_hi}`)) e.push(`${n}: no sati topics (Sati Prevention Act rule)`);
+    if (PSEUDO.test(`${t.hook} ${t.hook_hi}`)) e.push(`${n}: no pseudo-science or health claims in the hook`);
+    if (t.length && !(Array.isArray(t.length) && t.length[0] >= 30 && t.length[1] <= 165)) e.push(`${n}: length [min, max] seconds`);
     for (const h of [t.hook, t.hook_hi]) {
       if (GUNA.test(h || '') && !(t.numbers_ok || []).some((x) => GUNA.test(x))) e.push(`${n}: "guna" in the hook only when the text says so (numbers_ok)`);
       for (const m of String(h || '').match(NUMBER_WORDS) || []) {
@@ -269,12 +273,14 @@ export function checkFactsSpec(s, { topics = loadTopics('.') } = {}) {
   // scenes
   const scenes = Array.isArray(s.scenes) ? s.scenes : [];
   const body = scenes.filter((sc) => !sc.endcard);
-  const [lo, hi] = SCENES[v] || [5, 16];
+  // a topic may set its own length (the 35-47 s "धर्म की जिज्ञासा" questions); scenes follow it
+  const ownLen = Array.isArray(t?.length) ? t.length : null;
+  const [lo, hi] = ownLen && ownLen[1] <= 50 ? [5, 8] : SCENES[v] || [5, 16];
   need(scenes.length >= lo && scenes.length <= hi, `${v}: ${lo}-${hi} scenes including the end card (has ${scenes.length})`);
   need(scenes.at(-1)?.endcard === true && !scenes.at(-1)?.prompt, 'the last scene is the end card {endcard: true, tts, sub} (no prompt)');
   need(/subscribe/i.test(scenes.at(-1)?.sub || '') && /like/i.test(scenes.at(-1)?.sub || '') && /share/i.test(scenes.at(-1)?.sub || ''), 'end card: like, share and subscribe ask');
   const secs = estimateSeconds(scenes);
-  const [a, b] = LENGTH[v] || [38, 165];
+  const [a, b] = ownLen || LENGTH[v] || [38, 165];
   need(secs >= a && secs <= b, `estimated length ${Math.round(secs)} s; the ${v} variant is ${a}-${b} s (~${CPS} Devanagari characters a second + ~1 s a scene)`);
   scenes.forEach((sc, i) => {
     const n = `scene ${i + 1}`;
@@ -305,6 +311,7 @@ export function checkFactsSpec(s, { topics = loadTopics('.') } = {}) {
   // demeaning actions, never on a deity
   const txt = [s.hook, s.youtube_title, s.title, ...(s.cover_lines || []), ...scenes.flatMap((sc) => [sc.prompt, sc.tts, sc.sub])].join(' ');
   need(!DEMEAN.test(txt), 'respect rule: a dramatic action is fine, never a deity humiliated, hit, kicked or anything vulgar');
+  need(!PSEUDO.test(`${txt} ${s.youtube_description || ''} ${s.instagram_caption || ''} ${s.facebook_caption || ''}`), 'no pseudo-science or health claims ("bacteria", "positive energy", "vaigyanik karan"): answer from shastra or parampara');
   // folk label, numbers
   const folk = t?.label === 'tradition' || facts.some((f) => f.kind === 'tradition') || scenes.some((sc) => sc.label === 'tradition');
   if (folk) need(scenes.some((sc) => FOLK_MARK.test(sc.tts || '')), 'a folk / temple-belief topic: say it in the narration ("मान्यता है…", "लोककथा के अनुसार…")');
@@ -319,8 +326,8 @@ export function checkFactsSpec(s, { topics = loadTopics('.') } = {}) {
   if (v !== 'gita') need(body.some((sc) => sc.moral === true), 'one scene "moral": true: the one-line moral before the end card');
   // variant rules
   if (v === 'kyun') {
-    need(/\?/.test(s.hook || '') && /kyun|kyon|क्यों/i.test(`${s.hook} ${s.youtube_title}`), 'kyun: the hook/title is the "...kyun?" question');
-    need(/\?/.test(first.tts || '') && /क्यों/.test(first.tts || ''), 'kyun: the first spoken line is the question ("... क्यों ...?")');
+    need(/\?/.test(s.hook || '') && /kyun|kyon|kaise|kisne|kaun|क्यों|कैसे|किसने|कौन/i.test(`${s.hook} ${s.youtube_title}`), 'kyun: the hook/title is the "...kyun?" question');
+    need(/\?/.test(first.tts || '') && /क्यों|कैसे|किसने|कौन/.test(first.tts || ''), 'kyun: the first spoken line is the question ("... क्यों ...?")');
     const r = scenes.findIndex((sc) => sc.reveal === true);
     const st = starts(scenes);
     need(r > 0 && st[r] / secs >= 0.5 && st[r] / secs <= 0.85, `kyun: mark the answer scene "reveal": true at ~55-85 % of the video (is ${r > 0 ? Math.round((st[r] / secs) * 100) : '-'} %)`);
