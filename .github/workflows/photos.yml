@@ -256,3 +256,10 @@ jobs:
     if: ${{ vars.COMMENT_REPLIES == 'on' && !inputs.dry_run }}
     uses: ./.github/workflows/comments.yml
     secrets: inherit
+
+  # Viral radar (scripts/viral-radar.mjs via .github/workflows/viral-radar.yml; repo variable RADAR=off stops it): the
+  # first morning dispatch of the day (09:13 IST) runs it once; later dispatches skip in seconds. No new cron.
+  radar:
+    if: ${{ !inputs.dry_run }}
+    uses: ./.github/workflows/viral-radar.yml
+    secrets: inherit

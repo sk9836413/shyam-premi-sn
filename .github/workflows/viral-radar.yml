@@ -1,0 +1,147 @@
+# Viral Radar (owner, 15 Nov 2026; scripts/viral-radar.mjs, summary automation/viral-radar.md): which devotional Shorts
+# are TRULY viral in India this week (>= 100k views, or 30k within 3 days, AND >= 5x their channel's median; likely
+# reuploads skipped), what makes them work (hook type, format, deity, cover / art style, length: rules + Claude Haiku on
+# the title and the thumbnail), and ORIGINAL topic ideas for automation/facts-topics.json, kailash-episodes.json and
+# krishna-pov-topics.json ("status": "idea", citation placeholder; `node scripts/topic-banks.mjs promote` after checking).
+#
+# When: once a day in the MORNING. Triggers (the scheduler Worker's 5 Cloudflare crons are NOT changed):
+#   - photos.yml calls this workflow on each scheduler dispatch (09:13, 10:13, 10:43, 18:46, 19:46 IST); the first
+#     morning one runs it, later ones skip in seconds (today's file exists, or after 13:00 IST);
+#   - its own cron at 07:05 IST as a bonus (GitHub may run it late or drop it);
+#   - by hand: gh workflow run viral-radar.yml -R sk9836413/shyam-premi-sn -f mode=sweep -f force=true
+# Quota (YouTube Data API, shared with the uploads): Monday sweep 8 searches (~840 units), other days 2 searches (~210);
+# ~2,100 units a week, never more than 900 on one day. Repo variable RADAR=off stops it.
+# The Monday growth report (scripts/growth-compare.mjs) adds a "What's working outside" section from these files.
+name: Viral radar
+
+on:
+  schedule:
+    - cron: '35 1 * * *'  # 07:05 IST
+  workflow_call:
+    inputs:
+      mode: { type: string, default: auto }
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: auto (Monday or a missed Monday = sweep, else daily), sweep (8 searches) or daily (2 searches)
+        type: choice
+        options: [auto, sweep, daily]
+        default: auto
+      force:
+        description: Run even if today's file exists or it is after 13:00 IST
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: viral-radar
+      cancel-in-progress: false
+    defaults:
+      run:
+        shell: bash
+    env:
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+      SHYAM_YT_CLIENT_ID: ${{ secrets.SHYAM_YT_CLIENT_ID }}
+      SHYAM_YT_CLIENT_SECRET: ${{ secrets.SHYAM_YT_CLIENT_SECRET }}
+      SHYAM_YT_REFRESH_TOKEN: ${{ secrets.SHYAM_YT_REFRESH_TOKEN }}
+      HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
+      RADAR: ${{ vars.RADAR }}
+      MODE: ${{ inputs.mode || 'auto' }}
+      FORCE: ${{ inputs.force && '1' || '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Due?
+        id: due
+        run: node scripts/viral-radar.mjs due --mode "$MODE" ${FORCE:+--force} | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Search, stats, channel medians, the viral filter
+        id: scan
+        if: steps.due.outputs.run == 'true'
+        run: node scripts/viral-radar.mjs scan --mode "${{ steps.due.outputs.mode }}" --work .radar-work | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Claude reads the hooks, formats and covers
+        if: steps.scan.outputs.items > 0 && env.HAS_CLAUDE == 'true'
+        continue-on-error: true
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --model haiku
+            --max-turns 40
+            --allowedTools "Read,Write,Edit,Glob,Grep,Bash(node scripts/viral-radar.mjs check:*)"
+          prompt: |
+            Analyse this week's truly viral devotional YouTube Shorts for the Shyam Premi SN channel (Khatu Shyam ji first,
+            then Mahadev, Hanuman/Salasar, Krishna, Ram, Devi, Ganesh). Read .radar-work/pending.json: each item has the
+            title, channel, seconds, views, multiple (x the channel's median), a rule-based "heuristic" read, and
+            thumb_file = a local JPG of its thumbnail: Read that image to judge the cover.
+            Write .radar-work/analysis.json:
+            {"items": {"<id>": {"hook_type", "hooks": [...], "format", "deity", "topic", "cover_style", "art_style", "why"}},
+             "ideas": [ ... ]}
+            - hook_type / hooks from: varjit (वर्जित क्यों / pooja niyam: "X को Y क्यों नहीं चढ़ता?"), kyon (😱 क्यों?), jab
+              (जब…), phir-jo-kiya (फिर … ने जो किया…), listicle, kaliyug (Kaliyug connection), chamatkar (संत / लोक देवता
+              चमत्कार), modern-question (nuclear / science question), pov (POV question / "Krishna kehte hain"), series
+              (EP / Part N), rahasya, emotional (emotional-motivational line), question, name.
+            - format: facts, kailash (Mahadev-Parvati-Ganesh family dialogue), krishna-pov, veer (jaikara portrait), loop
+              (bhajan loop), darshan, gita, series, katha, other.
+            - deity: khatu, shiv, hanuman, krishna, ram, devi, ganesh, vishnu, shani, surya, lokdevta, mahabharat, other.
+            - art_style (from the thumbnail): cinematic, illustrated, infographic-2d (flat vector, labels, connector lines,
+              split screen), cartoon-3d, real-photo, murti-darshan, text-card, other. cover_style: one short line on what
+              the cover shows (e.g. "close-up face, 3 text bands, red arrow"). topic: a few words. why: one line.
+            Ideas: at most 3 "facts", 1 "kailash" and 1 "pov" ORIGINAL topic ideas suggested by what works. A topic may
+            overlap (scripture is shared) but every hook / title must be OUR OWN words: never copy or lightly edit a
+            reference title or script. Grep automation/facts-topics.json, kailash-episodes.json, krishna-pov-topics.json
+            first and skip anything already there (ids and hooks, also in their "ideas" arrays).
+            - facts idea: {"bank": "facts", "id": "radar-<slug>", "p": 2, "deity", "name", "playlist" (an existing playlist
+              name from facts-topics.json), "label": "scripture" | "tradition", optional "kind" (jigyasa | astra | garuda |
+              kaliyug | lokdevta) and "variant_only": "kyun" for question hooks, "hook" (Roman Hinglish, max 38
+              characters, no numbers), "hook_hi" (Devanagari), "angle" (what to tell and which text to check, 40+
+              characters), "cite": {"work": "TODO: verify (likely <text, khand/adhyay>)", "ref": "TODO: verify"},
+              "sources": [], "keywords": [2 short Roman phrases], "from": {"refs": ["<the reference Short's URL>"]}}.
+            - kailash idea: the shape of an evergreen episode in automation/kailash-episodes.json ("bank": "kailash",
+              id "radar-<slug>", title formula "😱 <situation>! फिर महादेव ने जो किया… 🔱❤️ | Mahadev Parvati", cover 2-4
+              Devanagari words, lead + cast from existing episodes, story_type, "source": "TODO: verify ..." unless
+              fictional, "from": {"refs": [...]}).
+            - pov idea: the shape of an evergreen topic in automation/krishna-pov-topics.json ("bank": "pov", id
+              "radar-<slug>", source "TODO: verify ..." unless fictional, "from": {"refs": [...]}).
+            Channel rules: no sati topics; Khatu Shyam ji is the sheesh only; no pseudo-science, health / cure claims,
+            fear-mongering, doomsday or dates, and never "proven / scientists confirmed"; folk belief = label tradition.
+            Then run `node scripts/viral-radar.mjs check --work .radar-work` and fix every problem it lists until it
+            prints OK. Change no other file, do not commit.
+
+      - name: Apply (day file, bank ideas, weekly summary)
+        if: steps.due.outputs.run == 'true'
+        run: node scripts/viral-radar.mjs apply --work .radar-work | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Bank checks and tests
+        if: steps.due.outputs.run == 'true'
+        run: |
+          if ! { node scripts/topic-banks.mjs check && node scripts/facts.mjs bank && node --test scripts/viral-radar.test.mjs scripts/topic-banks.test.mjs scripts/facts.test.mjs scripts/kailash-rules.test.mjs scripts/krishna-pov-rules.test.mjs; }; then
+            echo "A bank check failed: the radar's bank changes are dropped (the day file is kept)" | tee -a "$GITHUB_STEP_SUMMARY"
+            git checkout -- automation/facts-topics.json automation/kailash-episodes.json automation/krishna-pov-topics.json
+          fi
+
+      - name: Commit
+        if: always() && steps.due.outputs.run == 'true'
+        run: |
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/viral-radar automation/viral-radar.md automation/facts-topics.json automation/kailash-episodes.json automation/krishna-pov-topics.json
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -qm "Viral radar $(TZ=Asia/Kolkata date +%F) (${{ steps.due.outputs.mode }})"
+          for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done

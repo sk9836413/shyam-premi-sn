@@ -68,3 +68,6 @@ story/kalyug/work/
 story/facts/work/
 story/compile/
 story/loop/work/
+
+# viral radar scratch (pending.json, thumbnails, Claude analysis)
+.radar-work/

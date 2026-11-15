@@ -12,6 +12,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { radarFiles, workingLines } from './viral-radar.mjs';
 
 const FILE = 'automation/growth.md';
 const CHANGE = '2026-11-10';
@@ -184,6 +185,10 @@ async function main() {
     ...formatTable(videos, read('automation/published.md'), { from: addDays(DATE, -14), to: addDays(DATE, -1),
       readSpec: (slug) => { try { return JSON.parse(read(`story/published/${slug}.json`)); } catch { return {}; } } })
       .map(([k, r]) => `| ${k} | ${r.n} | ${f1(r.views / r.n)} | ${f1(r.perDay / r.n)} | ${r.best ? `${r.best.views}: ${r.best.title.replace(/\|/g, '/').slice(0, 50)}` : '-'} |`),
+    '',
+    "### What's working outside (viral radar, last 7 days; automation/viral-radar.md)",
+    '',
+    ...workingLines(radarFiles('.'), addDays(DATE, -1)),
     '',
     `- Subscribers: **${stats.subscribers}**${base ? ` (${stats.subscribers - base[1] >= 0 ? '+' : ''}${stats.subscribers - base[1]} since ${base[0]})` : ' (first snapshot)'}${prev && prev !== base ? `, ${stats.subscribers - prev[1] >= 0 ? '+' : ''}${stats.subscribers - prev[1]} since ${prev[0]}` : ''}.`,
     '',
