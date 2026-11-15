@@ -4,7 +4,7 @@
   "variant": "kyun",
   "art": "cinematic",
   "release": "2026-11-15",
-  "publish_at": "20:45",
+  "publish_at": "18:30",
   "slot": "facts2",
   "no_kaggle": true,
   "bed": "devotional",
@@ -20,7 +20,11 @@
   "style": "hyper-real cinematic devotional film still, warm golden sunset light, deep saturated colours, dramatic rim light, intricate detail, respectful, no text, no letters, no writing, no watermark, no signature",
   "hook": "Chhathi Maiya ne baalak kaise jivit kiya?",
   "cover": "छठी मैया का चमत्कार",
-  "cover_lines": ["छठी मैया ने", "मृत बालक को", "कैसे जिलाया?"],
+  "cover_lines": [
+    "छठी मैया ने",
+    "मृत बालक को",
+    "कैसे जिलाया?"
+  ],
   "source": "Brahmavaivarta Purana, Prakriti Khanda, adhyay 43 (Shashthi upakhyan); Devi Bhagavata Purana 9.46. Chhath mein inhi Shashthi Devi ki pooja: lok manyata",
   "deity": "Chhathi Maiya (Shashthi Devi)",
   "summary": "Brahmavaivarta Purana ki katha: Raja Priyavrat ka mrit putra, Devi Devasena (Shashthi) ne jivit kiya; Chhath mein Chhathi Maiya ke roop mein pooja (manyata)",
@@ -87,12 +91,33 @@
     }
   ],
   "facts": [
-    { "claim": "King Priyavrat (son of Svayambhuva Manu) and queen Malini were childless; Kashyapa performed a putreshti yajna; the son was born dead", "source": "Brahmavaivarta Purana, Prakriti Khanda 43.8-12; Devi Bhagavata Purana 9.46",
-      "sources": ["https://sa.wikisource.org/wiki/ब्रह्मवैवर्तपुराणम्/खण्डः_२_(प्रकृतिखण्डः)/अध्यायः_४३", "https://devi.redzambala.com/devi-bhagavatam/shrimad-devi-bhagavatam-book-9-chapter-46.html", "https://www.isvara.org/archive/brahma-vaivarta-purana-contents/"] },
-    { "claim": "At the cremation ground the king was ready to give up his life; Devi Devasena appeared in a vimana, said she is Shashthi, the sixth part of Prakriti, and revived the child; the king started her worship", "source": "Brahmavaivarta Purana, Prakriti Khanda 43.14-32",
-      "sources": ["https://sa.wikisource.org/wiki/ब्रह्मवैवर्तपुराणम्/खण्डः_२_(प्रकृतिखण्डः)/अध्यायः_४३", "https://devi.redzambala.com/devi-bhagavatam/shrimad-devi-bhagavatam-book-9-chapter-46.html"] },
-    { "claim": "In Chhath this Shashthi Devi is worshipped as Chhathi Maiya (belief)", "source": "Lok manyata (Chhath)", "kind": "tradition",
-      "sources": ["https://www.aajtak.in/art-and-culture/miscellaneous/story/chhath-festival-surya-puja-cultural-heritage-nature-worship-ntcpvp-dskc-2366560-2025-10-25", "https://www.patrika.com/religion-and-spirituality/how-chhath-puja-started-know-chhath-puja-katha-8593100", "https://hindi.oneindia.com/religion-spirituality/who-is-chhathi-maiya-connection-with-surya-dev-raja-priyavrat-story-and-chhath-puja-mythology-1684471.html"] }
+    {
+      "claim": "King Priyavrat (son of Svayambhuva Manu) and queen Malini were childless; Kashyapa performed a putreshti yajna; the son was born dead",
+      "source": "Brahmavaivarta Purana, Prakriti Khanda 43.8-12; Devi Bhagavata Purana 9.46",
+      "sources": [
+        "https://sa.wikisource.org/wiki/ब्रह्मवैवर्तपुराणम्/खण्डः_२_(प्रकृतिखण्डः)/अध्यायः_४३",
+        "https://devi.redzambala.com/devi-bhagavatam/shrimad-devi-bhagavatam-book-9-chapter-46.html",
+        "https://www.isvara.org/archive/brahma-vaivarta-purana-contents/"
+      ]
+    },
+    {
+      "claim": "At the cremation ground the king was ready to give up his life; Devi Devasena appeared in a vimana, said she is Shashthi, the sixth part of Prakriti, and revived the child; the king started her worship",
+      "source": "Brahmavaivarta Purana, Prakriti Khanda 43.14-32",
+      "sources": [
+        "https://sa.wikisource.org/wiki/ब्रह्मवैवर्तपुराणम्/खण्डः_२_(प्रकृतिखण्डः)/अध्यायः_४३",
+        "https://devi.redzambala.com/devi-bhagavatam/shrimad-devi-bhagavatam-book-9-chapter-46.html"
+      ]
+    },
+    {
+      "claim": "In Chhath this Shashthi Devi is worshipped as Chhathi Maiya (belief)",
+      "source": "Lok manyata (Chhath)",
+      "kind": "tradition",
+      "sources": [
+        "https://www.aajtak.in/art-and-culture/miscellaneous/story/chhath-festival-surya-puja-cultural-heritage-nature-worship-ntcpvp-dskc-2366560-2025-10-25",
+        "https://www.patrika.com/religion-and-spirituality/how-chhath-puja-started-know-chhath-puja-katha-8593100",
+        "https://hindi.oneindia.com/religion-spirituality/who-is-chhathi-maiya-connection-with-surya-dev-raja-priyavrat-story-and-chhath-puja-mythology-1684471.html"
+      ]
+    }
   ],
   "youtube_title": "Chhathi Maiya ka sabse bada chamatkar 😱 #facts | Chhath Puja Katha | छठी मैया का चमत्कार",
   "youtube_description": "Chhath Puja 2026: Brahmavaivarta Purana ki woh katha jismein Devi Shashthi (Devasena) ne Raja Priyavrat ke mrit putra ko jivit kar diya.\nSource: Brahmavaivarta Purana, Prakriti Khanda, adhyay 43 (Shashthi upakhyan); Devi Bhagavata Purana 9.46. Chhath mein inhi Shashthi Devi ki pooja: lok manyata\nछठी मैया की कथा: राजा प्रियव्रत, रानी मालिनी और षष्ठी देवी का चमत्कार। छठ में इन्हीं षष्ठी देवी की पूजा लोक मान्यता के अनुसार है।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.\nJai Chhathi Maiya 🙏 Video achha laga ho to Like, Share aur Subscribe karein.\n#facts #story #ChhathPuja #ChhathiMaiya #छठपूजा #Shorts",
