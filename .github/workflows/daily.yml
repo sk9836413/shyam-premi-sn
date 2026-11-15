@@ -135,6 +135,9 @@ env:
   BHAJAN_VOCALS: ${{ vars.BHAJAN_VOCALS }}
   # Owner's one-day cap exception for scripts/upload-guard.mjs (YYYY-MM-DD; any other day = normal cap of 3).
   EXTRA_UPLOAD_DAY: ${{ vars.EXTRA_UPLOAD_DAY }}
+  # One-off extra Shorts for the upload guard only ("YYYY-MM-DD:n,..."; owner, 15 Nov 2026: 4-5 Chhath facts Shorts on
+  # 15-16 Nov). day-plan.mjs ignores it, so only the uploads dispatched for it use the room. Clear it afterwards.
+  EXTRA_UPLOADS: ${{ vars.EXTRA_UPLOADS }}
 
 # Evening runs have their own queue, so the long animated evening job can run beside the morning one; within a
 # slot, runs queue and the later one skips once the slot is in log.md. log.md and published.md merge as unions.
@@ -2439,6 +2442,11 @@ jobs:
           node scripts/validate.mjs --soft-topics "$f"
           mkdir -p "$W" && cp "$f" "$W/scenes.json"
           for k in slug release publish_at variant art; do echo "$k=$(node -p "require('./$f').$k || ''")" >> "$GITHUB_OUTPUT"; done
+          # one-off extra facts Shorts (Chhath 15-16 Nov 2026): their own guard/log slot (facts2..facts9) and no Kaggle GPU
+          echo "slot=$(node -p "require('./$f').slot || 'facts'")" >> "$GITHUB_OUTPUT"
+          echo "kaggle=$(node -p "require('./$f').no_kaggle === true ? 'false' : 'true'")" >> "$GITHUB_OUTPUT"
+          # pictures made and checked ahead (story/facts/images/<slug>-<i>.jpg) are used as they are (no FLUX call for them)
+          sl=$(node -p "require('./$f').slug"); if ls story/facts/images/"$sl"-*.jpg > /dev/null 2>&1; then mkdir -p "$W/images" && cp story/facts/images/"$sl"-*.jpg "$W/images/"; echo "- Pictures made ahead: $(ls "$W/images" | wc -l)" >> "$GITHUB_STEP_SUMMARY"; fi
           echo "SLUG=$(node -p "require('./$f').slug")" >> "$GITHUB_ENV"
           echo "F=$f" >> "$GITHUB_ENV"
 
@@ -2477,7 +2485,9 @@ jobs:
         env:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
           SPS_SLOT: facts
-        run: node animate/frames.mjs "$W/scenes.json" --kaggle-first --wait 40
+        run: |
+          if [ "${{ steps.spec.outputs.kaggle }}" = false ]; then node animate/frames.mjs "$W/scenes.json" --no-kaggle
+          else node animate/frames.mjs "$W/scenes.json" --kaggle-first --wait 40; fi
 
       - name: Animate (Kaggle GPU, outside the coordinator windows)
         id: anim
@@ -2491,6 +2501,7 @@ jobs:
           SPS_HERO14B: '0'
         run: |
           fail() { echo "::warning::Facts animation skipped, using zoompan stills: $1"; echo "- Animation skipped: $1" >> "$GITHUB_STEP_SUMMARY"; exit 1; }
+          [ "${{ steps.spec.outputs.kaggle }}" = false ] && fail "no_kaggle in the spec (stills + zoompan, no GPU session)"
           [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
           if [ "${{ inputs.kaggle_reuse }}" = true ]; then  # re-render the last finished sps-animate-facts session (no new GPU time)
             node animate/kaggle.mjs fetch --to "$W/clips" --stills-to "$W/stills" | tee -a "$GITHUB_STEP_SUMMARY"
@@ -2602,7 +2613,7 @@ jobs:
       - name: Claim the upload
         id: claim
         if: steps.qa.outputs.ok == 'true' && !inputs.dry_run && steps.spec.outputs.release != 'pilot'
-        run: node scripts/upload-guard.mjs claim --day "${{ steps.spec.outputs.release }}" --slot facts --slug "$SLUG"
+        run: node scripts/upload-guard.mjs claim --day "${{ steps.spec.outputs.release }}" --slot "${{ steps.spec.outputs.slot }}" --slug "$SLUG"
 
       - name: YouTube (public at the facts time on the release day)
         id: yt
@@ -2617,7 +2628,7 @@ jobs:
 
       - name: Release the claim after a failed upload
         if: always() && steps.claim.outputs.go == 'true' && steps.yt.outcome != 'success'
-        run: node scripts/upload-guard.mjs release --day "${{ steps.spec.outputs.release }}" --slot facts --slug "$SLUG" --reason "YouTube ${{ steps.yt.outcome }}"
+        run: node scripts/upload-guard.mjs release --day "${{ steps.spec.outputs.release }}" --slot "${{ steps.spec.outputs.slot }}" --slug "$SLUG" --reason "YouTube ${{ steps.yt.outcome }}"
 
       - name: Facebook and Instagram (Graph API)
         id: meta
@@ -2630,7 +2641,8 @@ jobs:
         run: |
           [ -n "$META_PAGE_TOKEN" ] || { echo "::notice::META_* secrets not set; YouTube only"; exit 0; }
           grep -q '"duplicate":true' "$RUNNER_TEMP/yt.json" && { echo "::notice::YouTube already had it (earlier run): no second Facebook/Instagram post"; exit 0; }
-          fb=$(node scripts/fb.mjs flags --date "${{ steps.spec.outputs.release }}" --slot facts || echo --no-fb)
+          slot="${{ steps.spec.outputs.slot }}"; at=""; [ "$slot" = facts ] || at="--at ${{ steps.spec.outputs.publish_at }}"
+          fb=$(node scripts/fb.mjs flags --date "${{ steps.spec.outputs.release }}" --slot "$slot" $at || echo --no-fb)
           node scripts/meta.mjs short --video "$W/out/$SLUG.mp4" --scenes "$W/scenes.json" --video-url "$MEDIA_URL/m/$SLUG.mp4" \
             --publish-at "${{ steps.spec.outputs.release }}T${{ steps.spec.outputs.publish_at }}" $fb | tee "$RUNNER_TEMP/meta.json" || true
 
@@ -2643,7 +2655,7 @@ jobs:
           yt=$(node -p "const y=JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/yt.json', 'utf8')).youtube; y.url + ' (public at ' + y.publishAt + ')'")
           deity=$(node -p "require('./' + process.env.F).deity"); summary=$(node -p "require('./' + process.env.F).summary")
           secs=$(printf '%.0f' "$SECONDS_LONG")
-          echo "$rel | facts | $SLUG | $deity | $summary (variant ${{ steps.spec.outputs.variant }}, art ${{ steps.spec.outputs.art }}, $secs s)" >> automation/log.md
+          echo "$rel | ${{ steps.spec.outputs.slot }} | $SLUG | $deity | $summary (variant ${{ steps.spec.outputs.variant }}, art ${{ steps.spec.outputs.art }}, $secs s)" >> automation/log.md
           social=$(node -p "try { ' | social: ' + JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/meta.json', 'utf8')).summary } catch { '' }")
           echo "- $SLUG | youtube: $yt | facts ${{ steps.spec.outputs.variant }}/${{ steps.spec.outputs.art }}, $secs s, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
           git config user.name "shyam-premi-bot"

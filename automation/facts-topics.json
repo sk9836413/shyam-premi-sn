@@ -4047,6 +4047,151 @@
     "mansa devi",
     "vishahari"
    ]
+  },
+  {
+   "p": 1,
+   "deity": "surya",
+   "name": "Chhathi Maiya / Surya Dev",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "festival": "chhath",
+   "variant_only": "kyun",
+   "length": [
+    40,
+    60
+   ],
+   "id": "chhath-shashthi-devi-priyavrat",
+   "label": "scripture",
+   "hook": "Chhathi Maiya ne baalak kaise jiyaya?",
+   "hook_hi": "छठी मैया ने मरे बालक को कैसे जीवित किया?",
+   "angle": "Brahmavaivarta Purana, Prakriti Khanda adhyay 43 (also Devi Bhagavata 9.46): King Priyavrat and queen Malini, Kashyapa's putreshti yajna, a stillborn son, the king at the cremation ground ready to give up his life, Devi Devasena / Shashthi appears in a vimana, says she is the sixth part of Prakriti, revives the child; the king starts her puja. That Chhath worships this Shashthi Devi = manyata. Do not name her husband (Whisper rule).",
+   "cite": {
+    "work": "Brahmavaivarta Purana",
+    "ref": "Prakriti Khanda, adhyay 43 (Shashthi upakhyan); Devi Bhagavata Purana 9.46"
+   },
+   "sources": [
+    "https://www.isvara.org/archive/brahma-vaivarta-purana-contents/",
+    "https://devi.redzambala.com/devi-bhagavatam/shrimad-devi-bhagavatam-book-9-chapter-46.html"
+   ],
+   "keywords": [
+    "priyavrat",
+    "mrit baalak"
+   ]
+  },
+  {
+   "p": 1,
+   "deity": "surya",
+   "name": "Chhathi Maiya / Surya Dev",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "festival": "chhath",
+   "variant_only": "kyun",
+   "length": [
+    40,
+    60
+   ],
+   "id": "chhath-karna-surya-arghya",
+   "label": "tradition",
+   "hook": "Chhath ka arghya pehle kisne diya?",
+   "hook_hi": "छठ का अर्घ्य सबसे पहले किसने दिया?",
+   "angle": "Karna, son of Surya: Mahabharata Vana Parva (Ganguli sec. 307) he rose from the water at midday, worshipped Surya with joined hands and gave whatever was asked; Udyoga Parva sec. 144 prayed until his back was warmed by the sun; Adi Parva sec. 138 king of Anga; Anga = Bhagalpur-Munger (munger.nic.in). That Chhath began with Karna = lok manyata only. No \"waist-deep for hours\" as scripture.",
+   "cite": {
+    "work": "Mahabharata",
+    "ref": "Vana Parva sec. 307; Udyoga Parva sec. 144; Adi Parva sec. 138 (KM Ganguli)"
+   },
+   "sources": [
+    "https://www.swaveda.com/texts/mahabharata/3307/",
+    "https://munger.nic.in/history/"
+   ],
+   "keywords": [
+    "karna chhath",
+    "karna arghya"
+   ]
+  },
+  {
+   "p": 1,
+   "deity": "surya",
+   "name": "Chhathi Maiya / Surya Dev",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "festival": "chhath",
+   "variant_only": "kyun",
+   "length": [
+    40,
+    60
+   ],
+   "id": "chhath-doobte-suraj-arghya-kyun",
+   "label": "tradition",
+   "hook": "Doobte Suraj ko arghya kyun?",
+   "hook_hi": "छठ में डूबते सूरज को अर्घ्य क्यों देते हैं?",
+   "angle": "The only big festival that honours the setting sun: Sandhya Arghya on Kartik Shukla Shashthi, Usha Arghya at sunrise on Saptami. Manyata: the evening arghya is for Pratyusha (Surya's last ray / shakti), the morning one for Usha (the first ray). Moral: honour those who are setting as much as those rising. No pseudo-science.",
+   "cite": {
+    "work": "Lok parampara (Bihar, Chhath)",
+    "ref": "Sandhya Arghya (Shashthi) and Usha Arghya (Saptami)"
+   },
+   "sources": [
+    "https://www.aajtak.in/art-and-culture/miscellaneous/story/chhath-festival-surya-puja-cultural-heritage-nature-worship-ntcpvp-dskc-2366560-2025-10-25",
+    "https://www.etvbharat.com/hi/state/chhath-2026-sandhya-arghya-2026-date-and-time-bihar-sunset-timing-worship-method-and-importance-brs26111303802"
+   ],
+   "keywords": [
+    "doobte suraj",
+    "pratyusha"
+   ]
+  },
+  {
+   "p": 1,
+   "deity": "surya",
+   "name": "Chhathi Maiya / Surya Dev",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "festival": "chhath",
+   "variant_only": "kyun",
+   "length": [
+    40,
+    60
+   ],
+   "id": "chhath-chhathi-naam-kyun",
+   "label": "scripture",
+   "hook": "Chhathi Maiya ko Chhathi kyun kehte?",
+   "hook_hi": "छठी मैया को छठी क्यों कहते हैं?",
+   "angle": "Name: the vrat falls on Kartik Shukla Shashthi (the sixth tithi); Brahmavaivarta Purana Prakriti Khanda 43.4 / 43.26: Shashthi Devi is the sixth part (shashthansha) of Prakriti, protector of children; Bihar folk songs call her Surya's sister (manyata, not Puranic). Different angle from the 15 Nov long video \"Chhathi Maiya kaun hain\".",
+   "cite": {
+    "work": "Brahmavaivarta Purana",
+    "ref": "Prakriti Khanda, adhyay 43 (verses 4, 26)"
+   },
+   "sources": [
+    "https://www.isvara.org/archive/brahma-vaivarta-purana-contents/",
+    "https://www.prabhatkhabar.com/religion/festivals/who-is-chhathi-maiya-kaun-hain-family-parents-husband-sun-god-relationship"
+   ],
+   "keywords": [
+    "chhathi naam",
+    "shashthansha"
+   ]
+  },
+  {
+   "p": 1,
+   "deity": "surya",
+   "name": "Chhathi Maiya / Surya Dev",
+   "playlist": "Tyohar aur Vrat Kathayein",
+   "festival": "chhath",
+   "variant_only": "kyun",
+   "length": [
+    40,
+    60
+   ],
+   "id": "chhath-sita-draupadi-vrat",
+   "label": "tradition",
+   "hook": "Sita aur Draupadi ka Chhath kaisa?",
+   "hook_hi": "सीता जी और द्रौपदी ने कौन सा व्रत किया?",
+   "angle": "Lok manyata: Mata Sita kept the Surya Shashthi vrat at Munger (Sita Charan, Mudgal rishi ashram); Draupadi kept the Chhath vrat (manyata, not a Mahabharata episode). Scripture beside it: Yudhishthira worshipped Surya on Dhaumya's advice and got the copper vessel (Akshaya Patra), Mahabharata Vana Parva sec. 3. Every folk part labelled.",
+   "cite": {
+    "work": "Lok parampara (Munger); Mahabharata",
+    "ref": "Vana Parva sec. 3 (Yudhishthira, Surya, copper vessel)"
+   },
+   "sources": [
+    "https://www.etvbharat.com/hindi/bihar/state/munger/mata-sita-did-chhath-puja-for-first-time-in-munger/bh20221027235943740740553",
+    "https://ibiblio.org/sripedia/ebooks/mb/m03/m03003.htm"
+   ],
+   "keywords": [
+    "sita charan",
+    "draupadi chhath"
+   ]
   }
  ],
  "ideas": [

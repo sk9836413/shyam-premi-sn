@@ -17,7 +17,7 @@
 //          (log.md / published.md lines of that date, plus live claims of other slots of the same kind). The long
 //          video never counts against the Shorts cap. The skip is logged as "- <slug> | skipped: daily cap ..." in
 //          published.md. EXTRA_UPLOAD_DAY=<date> (repo variable, the owner's one-day exception) adds 1 to that date's
-//          Shorts cap.
+//          Shorts cap; EXTRA_UPLOADS="<date>:<n>,..." (one-off, guard only; see extraUploads) adds n more.
 //        Otherwise it appends "- <slug> | claim: <day> <slot> by run <id> at <ISO>" to published.md on top of
 //        origin/main (git plumbing, the job's checkout is not touched) and pushes. A rejected push means someone else pushed first: fetch, check
 //        again, retry (git's fast-forward rule makes the claim atomic, so only one run can win).
@@ -84,7 +84,21 @@ export function dayUploads({ log = '', pub = '', day }) {
 
 /** The Shorts cap of a date: DAILY_CAP, +1 on the owner's one-day exception (repo variable EXTRA_UPLOAD_DAY=YYYY-MM-DD,
  *  e.g. a big festival). The long video has its own cap (LONG_CAP) and is never affected. */
-export const shortsCap = (day, extra = process.env.EXTRA_UPLOAD_DAY) => (extra && extra.trim() === day ? DAILY_CAP + 1 : DAILY_CAP);
+export const shortsCap = (day, extra = process.env.EXTRA_UPLOAD_DAY, uploads = process.env.EXTRA_UPLOADS) =>
+  (extra && extra.trim() === day ? DAILY_CAP + 1 : DAILY_CAP) + extraUploads(day, uploads);
+
+/** ONE-OFF owner exceptions beyond EXTRA_UPLOAD_DAY (repo variable EXTRA_UPLOADS = "YYYY-MM-DD:n[,YYYY-MM-DD:n]"; owner,
+ *  15 Nov 2026: "Isi format me chath ka 4-5 video aaj live karo" = 4-5 Chhath facts Shorts on 15-16 Nov on top of the
+ *  planned 3). Only this guard reads it (scripts/day-plan.mjs does not), so the day plan never grows by itself: the extra
+ *  room is used only by the uploads dispatched for it. Malformed entries count 0; n is capped at 3. Clear it afterwards. */
+export function extraUploads(day, uploads = process.env.EXTRA_UPLOADS) {
+  let n = 0;
+  for (const part of String(uploads || '').split(',')) {
+    const m = part.trim().match(/^(\d{4}-\d{2}-\d{2}):([1-9])$/);
+    if (m && m[1] === day) n += Math.min(3, Number(m[2]));
+  }
+  return n;
+}
 
 export const claimLine = ({ day, slot, slug, run, now = Date.now() }) => `- ${slug} | claim: ${day} ${slot} by run ${run} at ${new Date(now).toISOString()}`;
 

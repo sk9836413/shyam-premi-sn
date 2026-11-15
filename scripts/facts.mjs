@@ -368,8 +368,14 @@ export function checkFactsSpec(s, { topics = loadTopics('.') } = {}) {
       need(sc.tts.length <= 95, `${n}: an animated scene's tts is max 95 characters (the clip is at most ~8 s)`);
     }
   });
+  // One-off extra facts Shorts of a day (owner, 15 Nov 2026: 4-5 Chhath Shorts on 15-16 Nov): their own guard/log slot
+  // (facts2..facts9, room from the EXTRA_UPLOADS repo variable), `no_kaggle` (zoompan stills, no GPU session: the Kaggle
+  // GPU belonged to the movie parts) and `bed` (facts = tension pad, devotional = tanpura drone; both: whoosh, riser, bell).
+  if (s.slot !== undefined) need(/^facts[2-9]$/.test(s.slot), 'slot: facts2..facts9 (an extra facts Short of the day; the default is facts)');
+  if (s.no_kaggle !== undefined) need(typeof s.no_kaggle === 'boolean', 'no_kaggle: true | false');
+  if (s.bed !== undefined) need(['facts', 'devotional'].includes(s.bed), 'bed: facts | devotional');
   const marked = body.filter((sc) => sc.animate !== undefined).length;
-  need(marked >= 1 && marked <= 4, `mark 1-4 scenes with "animate" (has ${marked}): the GPU budget makes at most 3-4 clips`);
+  need(marked >= (s.no_kaggle === true ? 0 : 1) && marked <= 4, `mark 1-4 scenes with "animate" (has ${marked}): the GPU budget makes at most 3-4 clips`);
   // hook in the first ~3 s: the name first, a question or exclamation, short
   const first = scenes[0] || {};
   need(String(first.tts || '').length <= 75 && /[?!]/.test(first.tts || ''), 'scene 1: the hook in the first ~3 s: max 75 characters, a question or exclamation');

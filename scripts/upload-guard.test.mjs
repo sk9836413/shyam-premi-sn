@@ -1,7 +1,7 @@
 // scripts/upload-guard.mjs decisions (no git, no network). Run: node --test scripts/upload-guard.test.mjs
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { DAILY_CAP, LONG_CAP, claimLine, decide, kindOf, shortsCap } from './upload-guard.mjs';
+import { DAILY_CAP, LONG_CAP, claimLine, decide, extraUploads, kindOf, shortsCap } from './upload-guard.mjs';
 
 const NOW = Date.parse('2026-11-07T13:17:05Z');
 const base = { day: '2026-11-08', slot: 'status', slug: '2026-11-08-status-diwali', run: '42376221296.1', now: NOW };
@@ -143,5 +143,41 @@ describe('dawn uploads count on their publish day', () => {
     const m = '- 2026-11-22-long-mantra-vasudev | youtube: https://youtu.be/m (public at 2026-11-22T00:00:00.000Z)\n';
     assert.equal(decide({ day: '2026-11-21', slot: 'long', slug: '2026-11-21-long-x', run: '1.1', now: NOW14, pub: m }).go, true);
     assert.equal(decide({ day: '2026-11-22', slot: 'long', slug: '2026-11-22-long-y', run: '1.1', now: NOW14, pub: m }).go, false);
+  });
+});
+
+// Owner, 15 Nov 2026 ("Isi format me chath ka 4-5 video aaj live karo"): a one-off EXTRA_UPLOADS="<date>:<n>,..." exception.
+describe('EXTRA_UPLOADS one-off exception', () => {
+  test('parses date:n pairs; other dates, malformed entries and n > 3 are safe', () => {
+    assert.equal(extraUploads('2026-11-15', '2026-11-15:3,2026-11-16:2'), 3);
+    assert.equal(extraUploads('2026-11-16', ' 2026-11-15:3 , 2026-11-16:2 '), 2);
+    assert.equal(extraUploads('2026-11-17', '2026-11-15:3,2026-11-16:2'), 0);
+    assert.equal(extraUploads('2026-11-15', '2026-11-15'), 0);
+    assert.equal(extraUploads('2026-11-15', '2026-11-15:x'), 0);
+    assert.equal(extraUploads('2026-11-15', '2026-11-15:9'), 3);
+    assert.equal(extraUploads('2026-11-15', ''), 0);
+    assert.equal(extraUploads('2026-11-15', undefined), 0);
+  });
+  test('adds to the cap, together with EXTRA_UPLOAD_DAY', () => {
+    assert.equal(shortsCap('2026-11-15', '', '2026-11-15:3'), DAILY_CAP + 3);
+    assert.equal(shortsCap('2026-11-15', '2026-11-15', '2026-11-15:2'), DAILY_CAP + 3);
+    assert.equal(shortsCap('2026-11-18', '', '2026-11-15:3'), DAILY_CAP);
+  });
+  test('15 Nov: status + morning + eve + 3 Chhath facts Shorts go, a 7th is capped', () => {
+    const d = '2026-11-15';
+    let log = `${d} | status | ${d}-status-chhath-puja | c | x
+${d} | morning | ${d}-morning-chhath-geet | c | x
+${d} | eve | ${d}-eve-chhath-usha-arghya | c | x
+`;
+    const cap = shortsCap(d, '2026-11-13', '2026-11-15:3,2026-11-16:2');
+    for (const k of [2, 3, 4]) {
+      const slug = `${d}-facts-chhath-${k}`;
+      assert.equal(decide({ day: d, slot: `facts${k}`, slug, run: '1.1', now: NOW, log, cap }).go, true, slug);
+      log += `${d} | facts${k} | ${slug} | c | x
+`;
+    }
+    assert.equal(decide({ day: d, slot: 'facts5', slug: `${d}-facts-chhath-5`, run: '1.1', now: NOW, log, cap }).cap, true);
+    // the same extra slot twice: blocked by the log line, not by the cap
+    assert.equal(decide({ day: d, slot: 'facts2', slug: `${d}-facts-other`, run: '1.1', now: NOW, log, cap: 99 }).go, false);
   });
 });
