@@ -150,7 +150,9 @@ describe('episode bank (automation/kailash-episodes.json)', () => {
   test('every idea: title formula, cover, tone, cast in the library, a source unless fictional', () => {
     for (const e of bank.episodes) {
       assert.deepEqual([...titleProblems(e.title), ...coverProblems(e.cover), ...toneProblems({ title: e.title, summary: `${e.premise} ${e.resolution}`, moral: e.moral })], [], e.id);
-      for (const c of e.cast) assert.ok(ctx.lib[c], `${e.id}: ${c}`);
+      const lib = e.style === 'cute-3d' ? ctx.lib3d : ctx.lib;  // cute-3d = the Kalyug cartoon cast
+      for (const c of e.cast) assert.ok(lib[c], `${e.id}: ${c}`);
+      assert.ok(!e.variant || ['full', 'mini'].includes(e.variant), `${e.id}: variant`);
       assert.ok(e.cast.includes(e.lead), e.id);
       assert.ok(['scripture', 'parampara', 'fictional'].includes(e.story_type), e.id);
       if (e.story_type !== 'fictional') assert.ok((e.source || '').length >= 20, `${e.id}: source`);
@@ -228,5 +230,29 @@ describe('names Whisper mishears in some voices (measured; the gate itself is ne
     const s = clone(pilot);
     s.scenes[3].lines[2].tts = 'सच कहा, गणेश। यह ज्ञान-फल तुम्हारा हुआ।';
     assert.ok(has(run(s), /गजानन/));
+  });
+});
+
+describe('mini variant and cute-3d style (15 Nov 2026)', () => {
+  const vasuki = JSON.parse(fs.readFileSync('story/kailash/2026-11-21-vasuki-chhupa-diya.json', 'utf8'));
+  test('the Vasuki mini (cute-3d cast) passes: 25-40 s, 6-9 lines', () => {
+    const r = checkKailashSpec(vasuki, ctx);
+    assert.deepEqual(r.problems, []);
+    assert.ok(r.seconds >= 25 && r.seconds <= 40, `${r.seconds}`);
+    assert.ok(r.lines >= 6 && r.lines <= 9);
+  });
+  test('a mini over 9 lines or a full episode under 55 s fails', () => {
+    assert.ok(has(run({ ...clone(pilot), variant: 'mini' }), /6-9 spoken lines/));
+    assert.ok(has(run({ ...clone(vasuki), variant: 'full' }), /10-16 spoken lines|55-75 s/));
+  });
+  test('cute-3d checks the cast against characters/kalyug; realistic against characters/kailash', () => {
+    assert.ok(has(run({ ...clone(vasuki), style: 'realistic' }), /bal-ganesh/));
+    assert.ok(has(run({ ...clone(pilot), style: 'cute-3d' }), /narad|kartikeya|mushak/));
+  });
+  test('the first evergreen idea after the pilot is the Vasuki mini; full and mini alternate', () => {
+    const ev = ctx.bank.episodes.filter((e) => e.kind === 'evergreen' && !e.pilot);
+    assert.equal(ev[0].id, 'vasuki-chhupa-diya');
+    assert.equal(ev[0].variant, 'mini');
+    for (let i = 1; i < ev.length; i++) assert.notEqual(ev[i].variant, ev[i - 1].variant, ev[i].id);
   });
 });

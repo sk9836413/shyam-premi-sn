@@ -1,0 +1,117 @@
+{
+  "format": "kailash",
+  "series": "kailash-parivar",
+  "series_title": "Kailash Parivar",
+  "episode_id": "vasuki-chhupa-diya",
+  "slug": "2026-11-21-kailash-vasuki-chhupa-diya",
+  "release": "2026-11-21",
+  "publish_at": "08:00",
+  "variant": "mini",
+  "style": "cute-3d",
+  "lead": "parvati",
+  "deity": "Mahadev Parvati Ganesh",
+  "topic": "thand mein Mata Parvati ne Mahadev ke Nagdev ko chhupa liya",
+  "story_type": "fictional",
+  "summary": "Kailash Parivar mini: thand mein kaanpte Nagdev ko Mata Parvati ne shawl mein dhak liya; Mahadev dhoondhte hain, Nagdev muskurate gale laut aate hain",
+  "moral": "Mamta har jeev ko apna maan leti hai",
+  "title": "Nagdev kahan gaye?",
+  "title_dev": "नागदेव कहाँ गए?",
+  "cover": "नागदेव कहाँ गए?",
+  "music": "calm",
+  "cast": [
+    "parvati",
+    "mahadev",
+    "bal-ganesh"
+  ],
+  "names": [
+    "पार्वती"
+  ],
+  "scenes": [
+    {
+      "prompt": "A cozy snowy night on Mount Kailash under a starry sky, Mata Parvati sits by a small warm fire wrapped in a soft red shawl, a small friendly blue cobra (Nagdev) curls up shivering near her hands, little Bal Ganesh peeks from behind her, Mahadev sits in calm meditation in the background with eyes closed, warm firelight, medium wide shot",
+      "cast": [
+        "parvati",
+        "bal-ganesh",
+        "mahadev"
+      ],
+      "motion": "in",
+      "seed": 21,
+      "animate": "snowflakes drift slowly, the fire flickers softly and the little cobra shivers, then nestles into the red shawl",
+      "lines": [
+        {
+          "who": "parvati",
+          "tts": "अरे, हमारे नागदेव तो ठंड से काँप रहे हैं!",
+          "sub": "Arey, hamare Nagdev to thand se kaanp rahe hain!",
+          "mood": "wonder"
+        },
+        {
+          "who": "bal-ganesh",
+          "tts": "माँ, इन्हें अपनी शॉल में छुपा लो!",
+          "sub": "Maa, inhe apni shawl mein chhupa lo!",
+          "mood": "excitement"
+        }
+      ]
+    },
+    {
+      "prompt": "Mahadev opens his eyes after meditation on snowy Kailash at night and gently touches his neck, looking around surprised and curious, Mata Parvati beside him hides a smile holding a bundled red shawl, little Bal Ganesh giggles with his hand over his mouth, soft moonlight, medium shot",
+      "cast": [
+        "mahadev",
+        "parvati",
+        "bal-ganesh"
+      ],
+      "motion": "in",
+      "seed": 33,
+      "lines": [
+        {
+          "who": "mahadev",
+          "tts": "पार्वती, मेरे नागदेव कहाँ चले गए?",
+          "sub": "Parvati, mere Nagdev kahan chale gaye?",
+          "mood": "wonder"
+        },
+        {
+          "who": "bal-ganesh",
+          "tts": "पिताजी, वो तो माँ की गोद में सो रहे हैं!",
+          "sub": "Pitaji, wo to maa ki god mein so rahe hain!",
+          "mood": "excitement"
+        }
+      ]
+    },
+    {
+      "prompt": "Mata Parvati gently opens the red shawl and the small friendly blue cobra peeks out warm and happy, then glides back to curl around Mahadev's neck, Mahadev smiles warmly at Parvati, Bal Ganesh claps happily, snowy Kailash at night with soft golden light, medium shot",
+      "cast": [
+        "parvati",
+        "mahadev",
+        "bal-ganesh"
+      ],
+      "motion": "out",
+      "seed": 47,
+      "animate": "the little cobra slowly peeks out of the shawl and glides back around Mahadev's neck, Mahadev smiles gently",
+      "lines": [
+        {
+          "who": "parvati",
+          "tts": "ठंड में काँप रहे थे, तो माँ की तरह ढक लिया।",
+          "sub": "Thand mein kaanp rahe the, to maa ki tarah dhak liya.",
+          "mood": "emotional"
+        },
+        {
+          "who": "mahadev",
+          "tts": "तुम्हारी ममता से तो मेरे नागदेव भी नहीं बच पाए।",
+          "sub": "Tumhari mamta se to mere Nagdev bhi nahi bach paaye.",
+          "mood": "calm"
+        }
+      ]
+    }
+  ],
+  "endcard": {
+    "who": "parvati",
+    "tts": "ममता हर जीव को अपना मान लेती है। अच्छा लगे तो लाइक और सब्सक्राइब करें।",
+    "sub": "Mamta har jeev ko apna maan leti hai. Achha lage to Like aur Subscribe karein.",
+    "mood": "calm"
+  },
+  "youtube_title": "😱 माता पार्वती ने छुपा दिए महादेव के नागदेव! फिर महादेव ने जो किया… 🔱❤️ | Mahadev Parvati",
+  "youtube_description": "Kailash Parivar (mini): sardi ki raat Mahadev ke Nagdev thand se kaanp rahe the. Mata Parvati ne unhe apni shawl mein maa ki tarah dhak liya, aur dhyan se uthe Mahadev unhe dhoondhne lage!\nYeh ek काल्पनिक प्रस्तुति है: भक्तिभाव से बनाई गई कहानी, kisi granth ki katha nahi.\nममता हर जीव को अपना मान लेती है। हर हर महादेव 🔱\nChitra, awaaz aur animation AI se banaye gaye hain (sanketik).\nAchhi lage to Like, Share aur Subscribe karein · Shyam Premi SN\n#MahadevParvati #KailashParivar #Mahadev #Parvati #Shorts",
+  "youtube_tags": "Mahadev Parvati, महादेव पार्वती, Kailash Parivar, कैलाश परिवार, Mahadev Nagdev, महादेव नागदेव, Parvati mamta, Shiv Parvati cute, Bal Ganesh, Mahadev Parvati story, Shiv Parivar",
+  "instagram_caption": "Nagdev kahan gaye? 🐍 Thand mein kaanpte Nagdev ko Mata Parvati ne maa ki tarah shawl mein dhak liya 🔱❤️\nKalpanik prastuti, bhaktibhav se bani kahani.\nHar Har Mahadev!\nAchhi lage to Like, Share aur Follow karein\n#MahadevParvati #KailashParivar #HarHarMahadev #Mahadev #Parvati",
+  "facebook_caption": "ममता हर जीव को अपना मान लेती है 🙏 आपके घर में सबसे ज़्यादा ममता कौन रखता है?\nठंड में काँपते नागदेव को माता पार्वती ने माँ की तरह शॉल में ढक लिया, और महादेव मुस्कुरा उठे: कैलाश परिवार की एक प्यारी सी काल्पनिक कहानी।\n#Mahadev #HarHarMahadev #Parvati",
+  "playlist": "Kailash Parivar"
+}

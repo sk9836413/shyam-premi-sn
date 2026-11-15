@@ -968,6 +968,19 @@ subtitle), mood?}`), `endcard` `{who: a deity, tts, sub}` = the moral in one lin
   `youtube_tags` (8-15, some Devanagari); `instagram_caption` (Roman); `facebook_caption` (the template of section 3:
   #Mahadev #HarHarMahadev +1).
 
+**Mini episodes and the cute-3d style (15 Nov 2026; viral data: "Parvati ne chhipa diya Bholenath ka Nagdev" 12.3 lakh
+at 40 s, "Happiee karwachauth" 1.93 crore at 33 s = a cute 3D Shiv-Parvati, a 20 s cute Shiv-Parvati-Bal Ganesh 48 lakh).**
+Each bank idea has a `variant` and a `style`; copy both into the spec. `"variant": "mini"` = 25-40 s and 6-9 lines
+(the validator and the QA length gate follow it); `"full"` = 55-75 s, 10-16 lines. Full and mini alternate in the
+evergreen order; festival tie-ins are minis. `"style": "cute-3d"` uses the Kalyug ke Bhagwan cartoon cast
+(`characters/kalyug/cast.json`: `mahadev`, `parvati`, `bal-ganesh`; also `bal-krishna`, `bal-hanuman`) with its own
+master portraits, base clips and edge-tts voices; Bal Ganesh is never lip-synced (trunk), he gets motion only, as in
+Kalyug. It is for minis and festival episodes whose story needs only those characters; `"realistic"` (this section's
+cast) for full episodes and for minis that need Nandi, Kartikeya, Narad or Mushak (not in the cartoon cast). Never copy
+another channel's characters, lines or look. The first episode after the pilot is the Vasuki mini
+(`story/kailash/2026-11-21-vasuki-chhupa-diya.json`, cute-3d, our own script). The published.md line records
+`variant, style`; automation/growth.md compares mini vs full and cute-3d vs realistic.
+
 **Names Whisper mishears (measured 15 Nov 2026; the gate is never loosened, the script avoids them):** only Mata
 Parvati (Swara voice) says "गणेश"; the Madhur voices (Mahadev, Mushak, Narad, Kartikeya, Ganesh) say "गजानन". Never
 speak "कार्तिकेय", "स्कंद" or "गणपति" (Whisper 0/6, 0/3, "गणपती"): address Kartikeya as "पुत्र", "भैया" or "मेरे लाल";

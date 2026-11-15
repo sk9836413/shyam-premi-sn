@@ -4,7 +4,8 @@
   "roles": {
     "krishna": {
       "voice": "Schedar",
-      "style": "Say in Hindi in a youthful, warm, loving and wise male voice, speaking gently to a dear friend: slow and soft, with a smile in the voice, real emotion and natural pauses, like a heartfelt storyteller"
+      "style": "Say in Hindi in a youthful, warm, loving and wise male voice, speaking gently to a dear friend: slow and soft, with a smile in the voice, real emotion and natural pauses, like a heartfelt storyteller",
+      "tempo": 1.08
     },
     "mahadev": {
       "voice": "Sadaltager",

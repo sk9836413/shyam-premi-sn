@@ -42,6 +42,22 @@ DEITY_NAMES = ["महादेव", "पार्वती", "गणेश", "�
 MAX_MEAN_CER = 0.15  # the Kalyug pilot measured 4.6 %; a mean above this means garbled audio
 MIN_LIP_SHARE = 0.5  # at least half of the lip-syncable close-up lines must really be lip-synced
 LEN_RANGE = (55, 76)  # seconds (a 75 s spec renders up to ~76 s)
+MINI_RANGE = (25, 41)  # "variant": "mini" episodes (scripts/kailash-rules.mjs MINI)
+CUTE3D_DIR = os.path.join(ROOT, "characters", "kalyug")  # "style": "cute-3d": the Kalyug ke Bhagwan cartoon cast
+
+
+def use_library(spec_path):
+    """Point every module at the spec's character library: characters/kailash (realistic, the default) or, for
+    "style": "cute-3d", the Kalyug cartoon cast (3D look, its own master portraits, base clips and voices)."""
+    global KDIR, LEN_RANGE
+    try:
+        spec = load(spec_path) if spec_path else {}
+    except Exception:  # noqa: BLE001
+        spec = {}
+    if spec.get("style") == "cute-3d":
+        KDIR = K.KDIR = M.CAST_DIR = CUTE3D_DIR
+    if spec.get("variant") == "mini":
+        LEN_RANGE = MINI_RANGE
 
 
 def load(p):
@@ -671,6 +687,14 @@ def cmd_voice(a):
     # (voice/humanize.py). The Gemini pre-check hears the same names as this format's gate (spec names + DEITY_NAMES).
     os.environ["GEMINI_CHECK_NAMES"] = json.dumps(list(dict.fromkeys(load(a.spec).get("names", []) + DEITY_NAMES)), ensure_ascii=False)
     K.cmd_voice(a)
+    # Gemini voices speak slower than edge-tts: an episode they push past the length gate is voiced with edge-tts instead
+    # (a Short that fails QA publishes nothing). The takes stay cached, so a shorter script later costs no request.
+    v = load(os.path.join(a.out, "voice.json"))
+    if v.get("total_s", 0) > LEN_RANGE[1] - 1 and os.environ.get("SPS_GEMINI_TTS", "on") != "off":
+        print(json.dumps({"gemini": f"{v['total_s']} s is over {LEN_RANGE[1] - 1} s: edge-tts voices instead"}), file=sys.stderr)
+        os.environ["SPS_GEMINI_TTS"] = "off"
+        shutil.rmtree(a.out, ignore_errors=True)
+        K.cmd_voice(a)
 
 
 def cmd_keep(a):
@@ -692,6 +716,8 @@ def main():
     p.add_argument("--keep-build", action="store_true"); p.add_argument("--force", action="store_true"); p.add_argument("--base", default=""); p.add_argument("--draw", default="")
     a = p.parse_args()
     a.kaggle = a.kaggle_dirs[0] if a.kaggle_dirs else ""
+    if a.spec and KDIR == HERE:  # (Krishna POV points KDIR at its own library first)
+        use_library(a.spec)
     fn = globals().get(f"cmd_{a.cmd}")
     if not fn:
         raise SystemExit(f"unknown command {a.cmd}")

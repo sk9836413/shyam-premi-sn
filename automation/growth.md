@@ -20,6 +20,11 @@ GPU minutes:
   Mon/Thu/Sat + one festival tie-in a week, 08:00 IST. Replaces the weekday day-status morning Short on its days.
 - **Shri Krishna kehte hain** (`<date>-pov-<topic>`, STORY.md section 10): our own 2D Krishna POV monologue, 45-60 s,
   Tue/Fri + one festival tie-in a week, 08:00 IST. Replaces the weekday day-status morning Short on its days.
+- **Kailash Parivar mini vs full, cute-3d vs realistic** (from the first episode, 21 Nov 2026): every Kailash line in
+  automation/published.md carries `(<variant>, <style>, <seconds> s, ...)`: full = 55-75 s realistic-cinematic,
+  mini = 25-40 s, cute-3d (Kalyug cartoon cast) for minis and festival tie-ins whose story fits Mahadev, Parvati and Bal
+  Ganesh. After 4 weeks compare views per Short and average view duration per variant and per style; shift the bank's
+  order toward the winner.
 Both start only after the owner approves the pilot ("approved": true in automation/kailash-episodes.json /
 automation/krishna-pov-topics.json). Compare after 4 weeks: views per Short vs the day-status Shorts they replace
 (same weekdays) and vs the 84 views/Short baseline of 2-8 Nov; keep, change the days or stop (KAILASH=off /

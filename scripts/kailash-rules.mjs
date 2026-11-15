@@ -15,6 +15,15 @@ export const PLAYLIST = 'Kailash Parivar';
 export const PLAYLIST_FALLBACK = 'Shiv ji ki Kathayein';
 export const LEN = { min: 55, max: 75 };
 export const LINES = { min: 10, max: 16 };
+// "mini" episodes (owner/coordinator, 15 Nov 2026: shorter Shorts do well, e.g. "Parvati ne chhipa diya Bholenath ka
+// Nagdev" 12.3 lakh at 40 s; minis also cost less GPU): 25-40 s, 6-9 lines. Alternate full and mini in the bank.
+export const MINI = { len: { min: 25, max: 40 }, lines: { min: 6, max: 9 } };
+// Styles: "realistic" (characters/kailash, the default, full episodes) or "cute-3d" (the Kalyug ke Bhagwan cartoon cast,
+// characters/kalyug: Mahadev, Parvati, Bal Ganesh, Bal Krishna, Bal Hanuman; minis and festival episodes; 19.3 crore-view
+// reference "Happiee karwachauth" = a cute 3D Shiv-Parvati). Bal Ganesh cannot be lip-synced (trunk): motion only.
+export const STYLES = ['realistic', 'cute-3d'];
+export const styleOf = (s) => (s?.style === 'cute-3d' ? 'cute-3d' : 'realistic');
+export const castDir = (s) => (styleOf(s) === 'cute-3d' ? 'characters/kalyug' : 'characters/kailash');
 export const DEITY_NAMES = ['महादेव', 'पार्वती', 'गणेश', 'कार्तिकेय', 'नंदी'];
 // Title formula: "😱 <situation>! फिर <X> ने जो किया… 🔱❤️ | Mahadev Parvati" (किया / कहा / बताया / सुनाया; or "फिर जो हुआ…").
 export const TITLE_RE = /^\p{Extended_Pictographic}️? [^|]*[ऀ-ॿ][^|]*[!?] फिर (?:[ऀ-ॿ ]+ ने )?जो (?:किया|कहा|बताया|सुनाया|हुआ)… 🔱❤️ \| Mahadev Parvati(?: #Shorts)?$/u;
@@ -138,9 +147,13 @@ export function descriptionProblems(s) {
 export function checkKailashSpec(s, ctx = {}) {
   const P = [];
   const need = (ok, msg) => { if (!ok) P.push(msg); };
-  const lib = ctx.lib || {};
+  const lib = (styleOf(s) === 'cute-3d' ? ctx.lib3d : ctx.lib) || {};
   const bank = ctx.bank || { episodes: [] };
   const pilot = s.release === 'pilot';
+  const mini = s.variant === 'mini';
+  const LN = mini ? MINI.len : LEN, LI = mini ? MINI.lines : LINES;
+  need(!s.variant || s.variant === 'mini' || s.variant === 'full', 'variant: "full" (55-75 s) or "mini" (25-40 s)');
+  need(!s.style || STYLES.includes(s.style), `style: ${STYLES.join(' | ')}`);
   need(s.format === 'kailash' && s.series === 'kailash-parivar' && s.series_title === 'Kailash Parivar', 'format "kailash", series "kailash-parivar", series_title "Kailash Parivar"');
   need(pilot ? /^kailash-pilot-[a-z0-9-]+$/.test(s.slug || '') : /^\d{4}-\d{2}-\d{2}-kailash-[a-z0-9-]+$/.test(s.slug || '') && String(s.slug).startsWith(s.release),
     'slug: <release yyyy-mm-dd>-kailash-<topic in Roman, a-z0-9->');
@@ -161,7 +174,7 @@ export function checkKailashSpec(s, ctx = {}) {
   }
   const cast = Array.isArray(s.cast) ? s.cast : [];
   cast.forEach((c) => need(lib[c], `cast "${c}" is not in characters/kailash/cast.json`));
-  cast.filter((c) => lib[c] && lib[c].kind !== 'voice').forEach((c) => need(!ctx.hasPortrait || ctx.hasPortrait(c), `cast "${c}" has no master portrait yet (characters/kailash/${c}.png, picked by a person)`));
+  cast.filter((c) => lib[c] && lib[c].kind !== 'voice').forEach((c) => need(!ctx.hasPortrait || ctx.hasPortrait(c, s), `cast "${c}" has no master portrait yet (characters/kailash/${c}.png, picked by a person)`));
   need(lib[s.lead]?.kind === 'deity' && cast.includes(s.lead), 'lead: the episode\'s main deity (an id from characters/kailash/cast.json, in cast)');
   need(s.deity && !/[|\n]/.test(s.deity) && s.summary && s.summary.length <= 160 && !/[|\n]/.test(s.summary), 'deity and summary (max 160 characters, no "|") for the log line');
   need(s.moral && s.moral.length <= 160, 'moral: the short moral in one line (max 160)');
@@ -189,6 +202,7 @@ export function checkKailashSpec(s, ctx = {}) {
     need(sc.prompt && sc.prompt.length >= 40 && !/\b(text|letters|writing|sign|caption|words|logo)\b/i.test(sc.prompt.replace(/no (text|letters|writing)/gi, '')), `${w}: prompt missing, too short, or asks for text`);
     (sc.cast || []).forEach((c) => need(cast.includes(c), `${w}: cast "${c}" is not in the spec's cast`));
     const ICON = { mahadev: /mahadev|\bshiva?\b|bholenath/i, parvati: /parvati/i, ganesh: /ganesh|ganesha|ganpati/i, kartikeya: /kartikeya|murugan|skanda/i, nandi: /nandi/i, mushak: /mushak|mouse/i, narad: /narad/i };
+    if (styleOf(s) === 'cute-3d') { ICON['bal-ganesh'] = ICON.ganesh; delete ICON.ganesh; }
     for (const [id, re] of Object.entries(ICON)) need(!re.test(sc.prompt || '') || (sc.cast || []).includes(id), `${w}: the prompt shows ${lib[id]?.name || id}: add "${id}" to the scene's cast (the master look comes from cast.json)`);
     need(['in', 'out', 'pan', 'still', undefined].includes(sc.motion), `${w}: motion in, out, pan or still`);
     if (sc.animate !== undefined) {
@@ -207,8 +221,8 @@ export function checkKailashSpec(s, ctx = {}) {
     'hook: line 1 is the conflict or surprise in max 60 characters (~2-3 s), no greeting');
   need(animated >= 1 && animated <= 3, `mark 1-3 scenes with "animate" (has ${animated}); 2 become Wan clips`);
   need(said.filter((l) => l.who === s.lead).length >= 2, 'the lead deity speaks at least 2 lines');
-  need(n >= LINES.min && n <= LINES.max, `${LINES.min}-${LINES.max} spoken lines incl. the endcard (has ${n})`);
-  need(secs >= LEN.min && secs <= LEN.max, `estimated length ${Math.round(secs)} s; an episode is ${LEN.min}-${LEN.max} s`);
+  need(n >= LI.min && n <= LI.max, `${LI.min}-${LI.max} spoken lines incl. the endcard (has ${n})`);
+  need(secs >= LN.min && secs <= LN.max, `estimated length ${Math.round(secs)} s; ${mini ? 'a mini' : 'an'} episode is ${LN.min}-${LN.max} s`);
   P.push(...nameVoiceProblems(said, lib));
   const names = Array.isArray(s.names) ? s.names : [];
   for (const d of DEITY_NAMES) {
@@ -225,7 +239,8 @@ export function checkKailashSpec(s, ctx = {}) {
 /** File-backed context for validate.mjs. */
 export function loadContext(root = '.') {
   const lib = JSON.parse(fs.readFileSync(`${root}/characters/kailash/cast.json`, 'utf8')).characters;
+  const lib3d = JSON.parse(fs.readFileSync(`${root}/characters/kalyug/cast.json`, 'utf8')).characters;
   const bank = JSON.parse(fs.readFileSync(`${root}/automation/kailash-episodes.json`, 'utf8'));
-  return { lib, bank, hasPortrait: (c) => fs.existsSync(`${root}/characters/kailash/${c}.png`) };
+  return { lib, lib3d, bank, hasPortrait: (c, s) => fs.existsSync(`${root}/${castDir(s)}/${c}.png`) };
 }
 export const checkSpec = checkKailashSpec;

@@ -174,7 +174,9 @@ def cmd_voice(a):
                           "lead": 0.06, "pause": pauses[i], "fx": M.FX.get(chars[l["who"]]["voice"].get("fx", ""), ""), "seed": f"{l['who']}|{i}|{l['tts']}"}
                          for i, (si, l) in enumerate(lines)]) if human_on else {}
     if made:
-        engine = "edge-tts (human chain)"
+        # Gemini roles (voice/gemini-voices.json; Kailash Parivar / Krishna POV casts only) are named in the engine
+        g = sorted({chars[lines[i][1]["who"]]["voice"].get("gemini", "") for i, r in made.items() if r.get("engine") == "gemini"})
+        engine = f"gemini ({', '.join(g)}) + edge-tts (human chain)" if g else "edge-tts (human chain)"
     for i, (si, l) in enumerate(lines):
         v = chars[l["who"]]["voice"]
         raw, out = f"{a.out}/{i:02d}-raw", f"{a.out}/line-{i:02d}.wav"

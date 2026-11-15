@@ -99,9 +99,11 @@ jobs:
           prompt: |
             Write the next "Kailash Parivar" episode of Shyam Premi SN. Its release day (IST) is ${{ steps.d.outputs.release }} at 08:00.
             The idea is "${{ steps.d.outputs.idea }}" in automation/kailash-episodes.json (its title, cover, premise,
-            resolution, moral, story_type and source). Follow automation/STORY.md section 9 exactly (tone rules, title
-            formula, cover, 55-75 s, 10-16 lines, sources or the fiction label) and section 2 for accuracy, with the
-            characters in characters/kailash/cast.json. Lines follow STORY.md "Spoken style". Copy the shape of
+            resolution, moral, story_type and source; its "variant" and "style"). Follow automation/STORY.md section 9
+            exactly (tone rules, title formula, cover, full = 55-75 s and 10-16 lines, "variant": "mini" = 25-40 s and 6-9
+            lines, sources or the fiction label) and section 2 for accuracy. Copy the idea's "variant" and "style" into the
+            spec: "style": "cute-3d" uses the cartoon cast in characters/kalyug/cast.json (mahadev, parvati, bal-ganesh;
+            Bal Ganesh is never lip-synced), otherwise characters/kailash/cast.json. Lines follow STORY.md "Spoken style". Copy the shape of
             story/kailash/pilot-ep1.json. Write story/kailash/${{ steps.d.outputs.release }}-<topic>.json (slug
             ${{ steps.d.outputs.release }}-kailash-${{ steps.d.outputs.idea }}), make
             `node scripts/validate.mjs <that file>` pass, and change nothing else.
@@ -175,7 +177,7 @@ jobs:
         if: steps.kaggle.outcome == 'success'
         run: |
           mkdir -p "$W/out/small"
-          python -I characters/kailash/kailash.py keep --kaggle "$W/kaggle"
+          python -I characters/kailash/kailash.py keep --kaggle "$W/kaggle" --spec "$F"
           v="$W/voice"; [ -f "$W/kaggle/voice/voice.json" ] && v="$W/kaggle/voice"
           echo "V=$v" >> "$GITHUB_ENV"
           python -I characters/kailash/kailash.py render --spec "$F" --voice "$v" --kaggle "$W/kaggle" --out "$W/out/$SLUG.mp4" \
@@ -263,9 +265,11 @@ jobs:
           social=$(node -p "try { ' | social: ' + JSON.parse(require('fs').readFileSync(process.env.RUNNER_TEMP + '/meta.json', 'utf8')).summary } catch { '' }")
           gpu=$(node -p "try { require(process.env.RUNNER_TEMP + '/gpu.json').gpu_minutes + ' GPU min' } catch { 'GPU n/a' }")
           made=$(node -p "const m = require('./' + process.env.W + '/out/meta.json'); m.seconds + ' s, clips ' + m.animated_scenes.length + ', lip-sync ' + m.lip_lines + '/' + m.lipsync_expected")
-          echo "- $SLUG | youtube: $yt | Kailash Parivar ($made, $gpu), made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
+          # variant (full / mini) and style (realistic / cute-3d) for the growth.md comparison
+          vs=$(node -p "const s = require('./' + process.env.F); (s.variant || 'full') + ', ' + (s.style || 'realistic')")
+          echo "- $SLUG | youtube: $yt | Kailash Parivar ($vs, $made, $gpu), made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add automation/log.md automation/published.md "story/published/$SLUG.json" characters/kailash/clips "$F"
+          git add automation/log.md automation/published.md "story/published/$SLUG.json" characters/kailash/clips characters/kalyug/clips "$F"
           git commit -qm "Kailash Parivar $SLUG scheduled for $rel 08:00"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
