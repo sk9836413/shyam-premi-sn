@@ -110,3 +110,4 @@
 - 2026-11-15-eve-chhath-usha-arghya | youtube: https://youtube.com/shorts/Sot2ur43GOk (public at 2026-11-15T14:30:00.000Z) | status variant, made 15 Nov 11:25 IST | social: fb: https://www.facebook.com/reel/2150484872269759 (scheduled 2026-11-15T14:30:00.000Z) | ig: pending 2026-11-15T14:30:00.000Z
 - 2026-11-16-status-chhathi-maiya | claim: 2026-11-16 status by run 43680128608.1 at 2026-11-15T05:57:21.382Z
 - 2026-11-16-status-chhathi-maiya | youtube: https://youtube.com/shorts/Xyv4y1pldqQ (public at 2026-11-15T19:00:00.000Z) | status variant, made 15 Nov 11:27 IST | social: fb: https://www.facebook.com/reel/1113398997990630 (scheduled 2026-11-15T19:00:00.000Z) | ig: pending 2026-11-15T19:00:00.000Z
+- 2026-11-15-facts-chhath-shashthi-devi-priyavrat | claim: 2026-11-15 facts2 by run 43717598979.1 at 2026-11-15T13:16:51.313Z
