@@ -1,0 +1,204 @@
+{
+  "note": "Gemini TTS roles (voice/gemini_tts.py, voice/humanize.py): one prebuilt Gemini voice + a style prompt per character. Never a cloned or famous voice. Chosen 15 Nov 2026 by the objective test below (voice-gemini.yml run 43711313236: one sentence with 12 deity names said by each voice, Whisper large-v3-turbo on the CPU, the Kaggle gate's exact-name rule) + gender/age fit; every production line is still Whisper-checked (any missed name -> that character falls back to edge-tts). Roles not listed (e.g. Mushak) keep edge-tts. Style prompts describe the VOICE, never a deity persona (15 Nov 2026: a 6-line chunk with an 'as Shri Krishna' persona and the sheesh-daan line came back finishReason SAFETY on gemini-3.1-flash-tts-preview; the same line with a neutral style passed). A chunk that hits SAFETY is retried line by line.",
+  "model": "gemini-2.5-flash-preview-tts",
+  "roles": {
+    "krishna": {
+      "voice": "Schedar",
+      "style": "Say in Hindi in a youthful, warm, loving and wise male voice, speaking gently to a dear friend: slow and soft, with a smile in the voice, real emotion and natural pauses, like a heartfelt storyteller"
+    },
+    "mahadev": {
+      "voice": "Sadaltager",
+      "style": "Say in Hindi in a deep, calm, majestic male voice: slow and steady, loving and wise, every word with weight and warmth"
+    },
+    "parvati": {
+      "voice": "Vindemiatrix",
+      "style": "Say in Hindi in a soft, loving, motherly female voice: gentle and warm, with tender affection"
+    },
+    "ganesh": {
+      "voice": "Achernar",
+      "style": "Say in Hindi in the voice of a sweet, playful little boy of about eight: bright, innocent and excited, cute and lively"
+    },
+    "narad": {
+      "voice": "Algieba",
+      "style": "Say in Hindi in a lively, cheerful, playful male voice, a little sing-song, full of energy, like a merry wandering sage"
+    },
+    "kartikeya": {
+      "voice": "Achird",
+      "style": "Say in Hindi in a brave, energetic young man's voice: confident, quick and spirited, with boyish warmth"
+    },
+    "nandi": {
+      "voice": "Rasalgethi",
+      "style": "Say in Hindi in a gentle, humble, devoted male voice: warm and calm"
+    },
+    "narrator": {
+      "voice": "Rasalgethi",
+      "style": "Say in Hindi, as a warm devotional storyteller (sutradhar): calm, clear and gentle, with feeling"
+    },
+    "facts": {
+      "voice": "Enceladus",
+      "style": "Say in Hindi, as a dramatic mystery storyteller revealing a little-known fact: curious and intriguing, building suspense, lowering the voice for secrets and lifting it for the reveal, clear and not too fast"
+    },
+    "jaikara": {
+      "voice": "Alnilam",
+      "style": "Call out in Hindi with full devotional power, like the leader of a temple crowd's jaikara: loud, proud and stirring, stretching the last word"
+    }
+  },
+  "ab_2026_11_15": {
+    "run": "voice-gemini.yml 43711313236 (2 voices per request; the free tier stopped at 10 requests/day for this model: GenerateRequestsPerDayPerProjectPerModel-FreeTier=10)",
+    "text": "महादेव और माता पार्वती के पास गणेश, नंदी और नारद जी बैठे थे। तभी श्रीकृष्ण ने राधा और कान्हा की बात छेड़ी, और खाटू श्याम बाबा, यानी बर्बरीक की कथा सुनकर भोलेनाथ मुस्कुराए।",
+    "whisper": "large-v3-turbo (faster-whisper, CPU int8); names = exact substring (Kaggle gate rule)",
+    "valid": {
+      "Vindemiatrix": {
+        "gender": "f",
+        "cer": 0.037,
+        "names": "9/12",
+        "missed": [
+          "नारद",
+          "श्रीकृष्ण",
+          "श्याम"
+        ]
+      },
+      "Schedar": {
+        "gender": "m",
+        "cer": 0.037,
+        "names": "7/12",
+        "missed": [
+          "नारद",
+          "श्रीकृष्ण",
+          "कान्हा",
+          "बर्बरीक",
+          "भोलेनाथ"
+        ]
+      },
+      "Sulafat": {
+        "gender": "f",
+        "cer": 0.06,
+        "names": "7/12",
+        "missed": [
+          "महादेव",
+          "नारद",
+          "श्रीकृष्ण",
+          "कान्हा",
+          "श्याम"
+        ]
+      },
+      "Algieba": {
+        "gender": "m",
+        "cer": 0.045,
+        "names": "6/12",
+        "missed": [
+          "पार्वती",
+          "नारद",
+          "कान्हा",
+          "बर्बरीक",
+          "भोलेनाथ",
+          "श्रीकृष्ण"
+        ]
+      },
+      "Sadaltager": {
+        "gender": "m",
+        "cer": 0.045,
+        "names": "6/12",
+        "missed": [
+          "नारद",
+          "श्रीकृष्ण",
+          "खाटू",
+          "श्याम",
+          "बर्बरीक",
+          "भोलेनाथ"
+        ]
+      },
+      "Rasalgethi": {
+        "gender": "m",
+        "cer": 0.052,
+        "names": "6/12",
+        "missed": [
+          "नारद",
+          "श्रीकृष्ण",
+          "कान्हा",
+          "श्याम",
+          "बर्बरीक",
+          "भोलेनाथ"
+        ]
+      },
+      "Achernar": {
+        "gender": "f",
+        "cer": 0.06,
+        "names": "6/12",
+        "missed": [
+          "नारद",
+          "श्रीकृष्ण",
+          "कान्हा",
+          "श्याम",
+          "बर्बरीक",
+          "भोलेनाथ"
+        ]
+      },
+      "Achird": {
+        "gender": "m",
+        "cer": 0.06,
+        "names": "6/12",
+        "missed": [
+          "महादेव",
+          "नारद",
+          "श्रीकृष्ण",
+          "कान्हा",
+          "बर्बरीक",
+          "भोलेनाथ"
+        ]
+      },
+      "Despina": {
+        "gender": "f",
+        "cer": 0.06,
+        "names": "6/12",
+        "missed": [
+          "नारद",
+          "श्रीकृष्ण",
+          "कान्हा",
+          "श्याम",
+          "बर्बरीक",
+          "भोलेनाथ"
+        ]
+      },
+      "Alnilam": {
+        "gender": "m",
+        "cer": 0.082,
+        "names": "5/12",
+        "missed": [
+          "गणेश",
+          "नारद",
+          "श्रीकृष्ण",
+          "कान्हा",
+          "श्याम",
+          "बर्बरीक",
+          "भोलेनाथ"
+        ]
+      }
+    },
+    "partial": {
+      "Enceladus": "said the sentence 1.5 times (split failed): 8/12 names in it incl. खाटू श्याम; missed नारद (नारत), बर्बरीक (बरबरीक), भोलेनाथ (भूलेनाथ)",
+      "Charon, Orus, Algenib, Iapetus, Umbriel": "the model split ONE sentence between the two speakers in their requests: not scored (retest)"
+    },
+    "untested": [
+      "Gacrux",
+      "Kore",
+      "Leda",
+      "Puck",
+      "Sadachbia",
+      "Fenrir",
+      "Zubenelgenubi",
+      "Aoede",
+      "Callirrhoe",
+      "Autonoe",
+      "Erinome",
+      "Laomedeia",
+      "Pulcherrima",
+      "Zephyr"
+    ],
+    "lessons": [
+      "Whisper writes नारद जी as नारजी for EVERY voice (and edge-tts): never put जी right after नारद in a script line (say नारद मुनि).",
+      "श्रीकृष्ण is heard as श्री कृष्ण (space) by every voice: scripts say कृष्ण or श्री कृष्ण, never the joined form.",
+      "Most voices: कान्हा -> कानहा, बर्बरीक -> बरबरीक/बर्बरी, भोलेनाथ -> भोले नाथ, श्याम -> शाम (the known Whisper bias): the per-line check falls back to edge-tts for such lines' speaker."
+    ]
+  }
+}

@@ -11,7 +11,8 @@
       "voice": {
         "edge": "hi-IN-MadhurNeural",
         "rate": "-4%",
-        "pitch": "-4Hz"
+        "pitch": "-4Hz",
+        "gemini": "narrator"
       }
     },
     "krishna": {
@@ -38,7 +39,8 @@
         "edge": "hi-IN-MadhurNeural",
         "rate": "-8%",
         "pitch": "-2Hz",
-        "fx": "divine"
+        "fx": "divine",
+        "gemini": "krishna"
       },
       "talk": "Shri Krishna talks warmly to the camera: his mouth opens and closes gently as he speaks, he blinks and tilts his head very slightly, the peacock feather sways.",
       "face_box": [

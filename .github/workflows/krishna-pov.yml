@@ -119,10 +119,26 @@ jobs:
         if: steps.spec.outcome == 'success'
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core libfribidi0 libraqm0 > /dev/null
-          pip install -q edge-tts pillow numpy opencv-python-headless kokoro-onnx==0.6.1 soundfile==0.14.0 'kaggle>=2.2' six
+          pip install -q edge-tts pillow numpy opencv-python-headless kokoro-onnx==0.6.1 soundfile==0.14.0 faster-whisper 'kaggle>=2.2' six
+
+      # Gemini voices (voice/gemini_tts.py): takes cached across runs (a re-run never asks again), the Whisper
+      # large-v3-turbo model for the per-line name pre-check cached too.
+      - name: Cache Gemini voices + Whisper turbo
+        if: steps.spec.outcome == 'success'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/sps-gemini-tts
+            ~/.cache/huggingface
+          key: gemini-tts-${{ github.run_id }}
+          restore-keys: gemini-tts-
 
       - name: Voices
         if: steps.spec.outcome == 'success'
+        env:
+          # Gemini voice per character (voice/gemini-voices.json); repo variable GEMINI_TTS=off = edge-tts only.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SPS_GEMINI_TTS: ${{ vars.GEMINI_TTS || 'on' }}
         run: python -I characters/krishna-pov/pov.py voice --spec "$F" --out "$W/voice" | tee -a "$GITHUB_STEP_SUMMARY"
 
       - name: Kaggle (frames, clips, lip-sync, pronunciation check)

@@ -26,6 +26,8 @@ W, H = M.W, M.H
 
 
 class Episode(KL.Episode):
+    BED_KIND = "pov"  # tanpura + bansuri-like flute + pad (voice/beds.py)
+
     def header(self):
         """Logo, the series pill and the small topic label (spec.label, e.g. "Ghar ke buzurg"), AI line."""
         from PIL import Image, ImageDraw

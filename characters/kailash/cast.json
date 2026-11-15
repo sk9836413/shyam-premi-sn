@@ -11,7 +11,8 @@
       "voice": {
         "edge": "hi-IN-MadhurNeural",
         "rate": "-4%",
-        "pitch": "-4Hz"
+        "pitch": "-4Hz",
+        "gemini": "narrator"
       }
     },
     "mahadev": {
@@ -38,7 +39,8 @@
         "edge": "hi-IN-MadhurNeural",
         "rate": "-14%",
         "pitch": "-26Hz",
-        "fx": "divine"
+        "fx": "divine",
+        "gemini": "mahadev"
       },
       "mouth": [
         0.5,
@@ -71,7 +73,8 @@
         "edge": "hi-IN-SwaraNeural",
         "rate": "-10%",
         "pitch": "-8Hz",
-        "fx": "divine"
+        "fx": "divine",
+        "gemini": "parvati"
       },
       "mouth": [
         0.5,
@@ -104,7 +107,8 @@
         "edge": "hi-IN-MadhurNeural",
         "rate": "+8%",
         "pitch": "+44Hz",
-        "child": true
+        "child": true,
+        "gemini": "ganesh"
       },
       "talk": "Bal Ganesh happily talks to the camera: the corners of his small smiling mouth under the curled trunk open and close as he speaks, the trunk bobs gently with the words, he blinks and his ears move softly."
     },
@@ -132,7 +136,8 @@
         "edge": "hi-IN-MadhurNeural",
         "rate": "+4%",
         "pitch": "+22Hz",
-        "child": true
+        "child": true,
+        "gemini": "kartikeya"
       },
       "mouth": [
         0.5,
@@ -164,7 +169,8 @@
       "voice": {
         "edge": "hi-IN-MadhurNeural",
         "rate": "-6%",
-        "pitch": "-14Hz"
+        "pitch": "-14Hz",
+        "gemini": "nandi"
       },
       "talk": "Nandi gently speaks to the camera: his soft mouth and lips move a little with the words, he blinks slowly and nods very slightly, the small bells on his neck sway."
     },
@@ -219,7 +225,8 @@
       "voice": {
         "edge": "hi-IN-MadhurNeural",
         "rate": "+2%",
-        "pitch": "+6Hz"
+        "pitch": "+6Hz",
+        "gemini": "narad"
       },
       "mouth": [
         0.5,

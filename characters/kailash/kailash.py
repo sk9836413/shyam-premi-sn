@@ -20,7 +20,7 @@
 #   python -I characters/kailash/kailash.py keep    --kaggle W/kaggle                                       new base clips -> library
 #   python -I characters/kailash/kailash.py gate    --quota Q.json                                          Kaggle window + quota
 #   python -I characters/kailash/kailash.py gpu     --kaggle W/kaggle [--kaggle W2 ...]                       GPU minutes used
-import argparse, datetime, glob, json, math, os, shutil, subprocess, sys, time
+import argparse, datetime, glob, hashlib, json, math, os, shutil, subprocess, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
@@ -383,8 +383,48 @@ class Episode(K.Episode):
             shutil.rmtree(self.build, ignore_errors=True)
         print(json.dumps({"out": self.a.out, **meta}))
 
+    BED_KIND = "kailash"  # voice/beds.py kind (Krishna POV: "pov")
+    BED_GAIN = 0.85       # bed level under the voice before the sidechain (the bed is written at -24 dBFS RMS)
+
+    def bed_events(self, plan):
+        """Bell at scene changes, a chime when the lead first appears and at the end card (seconds)."""
+        ev, t, prev, seen = {"bell": [0.0], "chime": []}, 0.0, None, False
+        lead = self.spec.get("lead")
+        for i, si, l, kind, d in plan:
+            if si != prev and isinstance(si, int):
+                if not seen and lead in self.spec["scenes"][si].get("cast", []):
+                    ev["chime"].append(max(0, t - 0.15))
+                    seen = True
+                elif si > 0:
+                    ev["bell"].append(t)
+            if si == "end" and prev != "end":
+                ev["chime"].append(t)
+            prev = si
+            t += d
+        return ev
+
     def mix(self, video, voice, total, plan):
-        """Calm tanpura-like drone + soft pad + mountain wind (all synthesized, no recorded music), a soft bell on scene
+        """Synthesized music bed (voice/beds.py: Kailash = tanpura drone + pad + mountain wind; Krishna POV = tanpura +
+        bansuri-like flute + pad), bells/chimes at scene changes; ducked under the voices (sidechain), -14 LUFS.
+        SOUND_BEDS=off = the old aevalsrc drone bed (owner A/B, 15 Nov 2026)."""
+        if os.environ.get("SOUND_BEDS", "on") == "off":
+            return self.mix_old(video, voice, total, plan)
+        bed = f"{self.build}/bed.wav"
+        sys.path.insert(0, os.path.join(ROOT, "voice"))
+        import beds  # noqa: E402
+        beds.write(bed, beds.make_bed(self.BED_KIND, total + 0.5, self.bed_events(plan),
+                                      seed=int(hashlib.sha1(self.spec.get("slug", "x").encode()).hexdigest()[:6], 16)))
+        f = [f"[2:a]aformat=sample_rates=48000:channel_layouts=stereo,volume={self.BED_GAIN},atrim=duration={total:.2f},"
+             f"afade=t=out:st={max(0, total - 1.5):.2f}:d=1.5[bed]",
+             "[1:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[vo][sc]",
+             # ~9 dB of ducking while someone speaks, back up in the pauses (release 600 ms: no pumping between words)
+             "[bed][sc]sidechaincompress=threshold=0.025:ratio=4:attack=30:release=600:knee=4[duck]",
+             "[vo][duck]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]"]
+        ff("-i", video, "-i", voice, "-i", bed, "-filter_complex", ";".join(f), "-map", "0:v", "-map", "[a]", "-c:v", "copy",
+           "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", "-t", f"{total:.3f}", self.a.out)
+
+    def mix_old(self, video, voice, total, plan):
+        """(Before 15 Nov 2026) Calm tanpura-like drone + soft pad + mountain wind (all synthesized, no recorded music), a soft bell on scene
         changes and a chime when the lead first appears; ducked under the voices (sidechain), -14 LUFS."""
         T = f"{total + 0.5:.2f}"
         drone = (f"aevalsrc='0.09*sin(2*PI*138.59*t)*(1+0.25*sin(2*PI*0.18*t))+0.06*sin(2*PI*207.65*t)*(1+0.2*sin(2*PI*0.23*t))|"
@@ -624,7 +664,10 @@ def cmd_gpu(a):
 
 
 def cmd_voice(a):
-    K.cmd_voice(a)  # fixed edge-tts voice per character (cast.json) + the human chain (voice/humanize.py)
+    # Fixed voice per character (cast.json): Gemini role (voice/gemini-voices.json) or edge-tts + the human chain
+    # (voice/humanize.py). The Gemini pre-check hears the same names as this format's gate (spec names + DEITY_NAMES).
+    os.environ["GEMINI_CHECK_NAMES"] = json.dumps(list(dict.fromkeys(load(a.spec).get("names", []) + DEITY_NAMES)), ensure_ascii=False)
+    K.cmd_voice(a)
 
 
 def cmd_keep(a):

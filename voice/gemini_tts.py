@@ -9,9 +9,9 @@
 # The Kaggle/facts pronunciation gates stay exactly as strict as before (owner rule: never loosened); the name check
 # here is an EXTRA pre-check so a Gemini mispronunciation never reaches them.
 #
-# Free tier: requests are spaced (GEMINI_TTS_RPM, default 3/min) and counted per Pacific day in the cache's state file
-# (GEMINI_TTS_RPD, default 14; the API's daily quota resets at midnight Pacific = 13:30 IST); a 429 marks the day as
-# spent. Cache: one WAV per sha256(model|voice|style|text) in GEMINI_TTS_CACHE (default ~/.cache/sps-gemini-tts), so a
+# Free tier: requests are spaced (GEMINI_TTS_RPM, default 3/min) and counted per model and Pacific day in the cache's
+# state file (GEMINI_TTS_RPD, default 10 = the measured free quota; it resets at midnight Pacific = 13:30 IST); a 429
+# marks that model's day as spent. Cache: one WAV per sha256(model|voice|style|text) in GEMINI_TTS_CACHE (default ~/.cache/sps-gemini-tts), so a
 # re-render never asks again. The key comes from GEMINI_API_KEY or ~/.epifive/gemini.env and is never printed.
 #
 #   python voice/gemini_tts.py say --role krishna --text "..." --out x.wav       (or --voice Charon --style "...")
@@ -35,9 +35,13 @@ import numpy as np
 SR = 24000
 HERE = os.path.dirname(os.path.abspath(__file__))
 MODEL = os.environ.get("GEMINI_TTS_MODEL", "gemini-2.5-flash-preview-tts")
+# Free-tier quotas are per model (15 Nov 2026: GenerateRequestsPerDayPerProjectPerModel-FreeTier = 10 for 2.5 Flash TTS),
+# so a role whose primary model is spent for the day may use the next model of this chain (all of ONE episode's lines
+# of a role always come from one model). gemini-3.8-flash-tts is NOT in it: it read the style prompt aloud (15 Nov test).
+MODELS = [m.strip() for m in (os.environ.get("GEMINI_TTS_MODELS") or f"{MODEL},gemini-3.1-flash-tts-preview").split(",") if m.strip()]
 CACHE = os.environ.get("GEMINI_TTS_CACHE") or os.path.join(os.path.expanduser("~"), ".cache", "sps-gemini-tts")
 RPM = float(os.environ.get("GEMINI_TTS_RPM") or 3)
-RPD = int(os.environ.get("GEMINI_TTS_RPD") or 14)
+RPD = int(os.environ.get("GEMINI_TTS_RPD") or 10)
 PROFILES = os.path.join(HERE, "gemini-voices.json")
 URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
@@ -91,13 +95,14 @@ def _state_path():
 
 
 def load_state():
+    """{"day": <Pacific date>, "last": <time of the last request>, "models": {model: {"requests", "spent", ...}}}"""
     try:
         s = json.load(open(_state_path(), encoding="utf-8"))
     except Exception:  # noqa: BLE001
         s = {}
     day = pacific_day()
-    if s.get("day") != day:
-        s = {"day": day, "requests": 0, "spent": False, "last": s.get("last", 0)}
+    if s.get("day") != day or "models" not in s:
+        s = {"day": day, "last": s.get("last", 0), "models": {}}
     return s
 
 
@@ -106,9 +111,9 @@ def save_state(s):
     json.dump(s, open(_state_path(), "w", encoding="utf-8"))
 
 
-def budget_left():
-    s = load_state()
-    return 0 if s.get("spent") else max(0, RPD - int(s.get("requests", 0)))
+def budget_left(model=MODEL):
+    m = load_state()["models"].get(model, {})
+    return 0 if m.get("spent") else max(0, RPD - int(m.get("requests", 0)))
 
 
 # --------------------------------------------------------------------------------------------------- profiles --
@@ -165,27 +170,28 @@ def _quota_info(j):
 
 
 def _request(body, model=MODEL):
-    """One paced request -> PCM bytes. Counts against the day's budget; a 429 marks the day spent."""
+    """One paced request -> PCM bytes. Counts against the model's day budget; a 429 marks that model's day spent."""
     s = load_state()
-    if s.get("spent") or int(s.get("requests", 0)) >= RPD:
-        raise Unavailable(f"Gemini TTS daily budget spent ({s.get('requests', 0)}/{RPD} on {s['day']} Pacific)")
+    m = s["models"].setdefault(model, {"requests": 0, "spent": False})
+    if m.get("spent") or int(m.get("requests", 0)) >= RPD:
+        raise Unavailable(f"Gemini TTS daily budget spent for {model} ({m.get('requests', 0)}/{RPD} on {s['day']} Pacific)")
     wait = s.get("last", 0) + 60.0 / max(RPM, 0.1) + 1 - time.time()
     if wait > 0:
         time.sleep(wait)
     status, j = 0, {}
     for attempt in range(3):
         s["last"] = time.time()
-        s["requests"] = int(s.get("requests", 0)) + 1
+        m["requests"] = int(m.get("requests", 0)) + 1
         save_state(s)
         status, j = _post(body, model)
         if status == 200:
             break
         if status == 429:
-            s["spent"] = True
-            s["why"] = ((j.get("error") or {}).get("message", "") or "")[:200]
-            s["quota"] = _quota_info(j)
+            m["spent"] = True
+            m["why"] = ((j.get("error") or {}).get("message", "") or "")[:200]
+            m["quota"] = _quota_info(j)
             save_state(s)
-            raise Unavailable(f"Gemini TTS 429 (quota): {s['quota'] or s['why'][:120]}")
+            raise Unavailable(f"Gemini TTS 429 (quota) {model}: {m['quota'] or m['why'][:120]}")
         if status in (500, 502, 503, 504, 0) and attempt < 2:
             time.sleep(15 * (attempt + 1))
             continue
@@ -216,6 +222,12 @@ def read_wav(path):
         return np.frombuffer(w.readframes(w.getnframes()), dtype="<i2").astype(np.float64) / 32768.0
 
 
+def cached(text, voice, style="", mood=None, model=MODEL):
+    """True when synth() would answer from the cache (no request)."""
+    f = os.path.join(CACHE, f"{cache_key(prompt(text, style, mood), voice, '', model)}.wav")
+    return os.path.exists(f) and os.path.getsize(f) > 1000
+
+
 def synth(text, voice, style="", out=None, mood=None, model=MODEL, use_cache=True):
     """One line -> a cached WAV path (24 kHz mono). Raises Unavailable (the caller falls back to edge-tts)."""
     if voice not in VOICES:
@@ -237,7 +249,13 @@ def synth(text, voice, style="", out=None, mood=None, model=MODEL, use_cache=Tru
 
 def synth_role(text, role_name, out=None, mood=None):
     r = role(role_name)
-    return synth(text, r["voice"], r.get("style", ""), out=out, mood=mood)
+    return synth(text, r["voice"], r.get("style", ""), out=out, mood=mood, model=r.get("model", MODEL))
+
+
+def models_for(r):
+    """The role's model chain: its own model first (voice/gemini-voices.json), then the rest of MODELS."""
+    first = r.get("model") or MODELS[0]
+    return [first] + [m for m in MODELS if m != first]
 
 
 # ------------------------------------------------------------------------------------------------ name check --
@@ -344,7 +362,7 @@ def cmd_ab_synth(a):
                 done.add(v)
         log.append({"pair": pair, "seconds": round(len(x) / SR, 2), "split_gap_s": gap})
         print(f"{pair}: {len(x) / SR:.1f} s, split at a {gap} s pause", flush=True)
-    json.dump({"model": MODEL, "text": AB_TEXT, "requests": log, "state": load_state()},
+    json.dump({"model": MODEL, "text": AB_TEXT, "requests": log, "state": load_state()["models"].get(MODEL, {})},
               open(os.path.join(a.out, "synth.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 
@@ -375,8 +393,8 @@ def cmd_say(a):
     if a.role:
         p = synth_role(a.text, a.role, out=a.out, mood=a.mood)
     else:
-        p = synth(a.text, a.voice, a.style or "", out=a.out, mood=a.mood)
-    print(json.dumps({"out": p, "seconds": round(len(read_wav(p)) / SR, 2), "budget_left": budget_left()}))
+        p = synth(a.text, a.voice, a.style or "", out=a.out, mood=a.mood, model=a.tts_model)
+    print(json.dumps({"out": p, "seconds": round(len(read_wav(p)) / SR, 2), "budget_left": budget_left(a.tts_model)}))
 
 
 def main():
@@ -386,9 +404,10 @@ def main():
     p.add_argument("--text"); p.add_argument("--voice", default="Charon"); p.add_argument("--style"); p.add_argument("--role")
     p.add_argument("--mood"); p.add_argument("--out"); p.add_argument("--dir"); p.add_argument("--model")
     p.add_argument("--max-req", type=int, default=0); p.add_argument("--voices", default="")
+    p.add_argument("--tts-model", default=MODEL)
     a = p.parse_args()
     if a.cmd == "budget":
-        print(json.dumps({"left": budget_left(), "state": load_state(), "enabled": enabled()}))
+        print(json.dumps({"left": {m: budget_left(m) for m in MODELS}, "state": load_state(), "enabled": enabled()}))
         return
     {"say": cmd_say, "ab-synth": cmd_ab_synth, "ab-score": cmd_ab_score}[a.cmd](a)
 

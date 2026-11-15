@@ -142,8 +142,11 @@ const leads = spec.scenes.map(() => 0);
 const extraHold = spec.scenes.map(() => 0);
 const bhajanHold = spec.scenes.map(() => 0); // seconds the bhajan timeline adds to the last scene (outro / whole bars)
 function ttsHuman() {
+  // Gemini voice (voice/gemini_tts.py, 15 Nov 2026): the facts narrator role; any problem -> edge-tts (humanize.py).
+  const gemini = spec.gemini_voice || (spec.format === 'facts' ? 'facts' : undefined);
   const items = spec.scenes.map((s, i) => ({
     text: s.tts, voice: s.voice || spec.voice || 'hm_omega', mood: s.mood, out: path.join(work, `voice-${i}.wav`), lead: i === 0 ? 0 : HUMAN_LEAD,
+    ...(gemini ? { gemini } : {}),
   }));
   const job = path.join(work, 'voice-job.json');
   fs.writeFileSync(job, JSON.stringify({ items, concurrency: 5 }));
@@ -153,6 +156,8 @@ function ttsHuman() {
   const res = JSON.parse(r.stdout.trim().split('\n').pop());
   const bad = res.find((x) => x.error);
   if (bad) throw new Error(`humanize: ${bad.error}`);
+  const gem = (r.stderr || '').split('\n').find((l) => l.startsWith('{"gemini"'));
+  if (gem) { spec.voice_engine = JSON.parse(gem).gemini; console.log(`voice engine: ${gem}`); }
   res.forEach((x, i) => { leads[i] = x.lead; extraHold[i] = ['emotional', 'serious', 'mantra'].includes(x.last_mood) ? 0.2 : 0; });
   return res.map((x) => x.speech_s);
 }
@@ -455,13 +460,17 @@ const starts = clips.map((_, i) => clips.slice(0, i).reduce((a, c) => a + c.seco
 // nature | quiet | none).
 const words = spec.scenes.map((s) => `${s.prompt || ''} ${s.animate || ''}`).join(' ').toLowerCase();
 const PLACE = /temple|mandir|courtyard|devotee|darshan|murti/;
-const amb = BH_SONG ? 'none' : spec.ambience || (/aarti|diya|lamp|flame/.test(words) && PLACE.test(words) ? 'aarti'
+// Facts Shorts (15 Nov 2026, the viral "kya aap jaante hain" sound): a synthesized cinematic bed (voice/beds.py "facts":
+// tension pad + heartbeat pulse, a boom on the cover, a whoosh into the hook, a riser landing on the reveal, a temple bell
+// at the moral) replaces the drone, the ambience and the library track. SOUND_BEDS=off = the old bed.
+const FACTS_BED = spec.format === 'facts' && process.env.SOUND_BEDS !== 'off' && !BH_SONG;
+const amb = BH_SONG || FACTS_BED ? 'none' : spec.ambience || (/aarti|diya|lamp|flame/.test(words) && PLACE.test(words) ? 'aarti'
   : PLACE.test(words) ? 'temple' : /forest|grove|river|mountain|field|village|sky|garden/.test(words) ? 'nature' : 'quiet');
 const T = total.toFixed(2);
 // Music engine (music/engine.mjs, off unless the repo variable MUSIC_ENGINE=on): a licence-checked library track takes
 // the drone's place in the ducked bed; any problem keeps the drone. The pick is saved as spec.music (7-day no-repeat).
 let music = null;
-if (process.env.MUSIC_ENGINE === 'on' && !BH_SONG) {
+if (process.env.MUSIC_ENGINE === 'on' && !BH_SONG && !FACTS_BED) {
   try { music = (await import('../music/engine.mjs')).musicFor(spec); } catch (e) { console.log(`music engine skipped: ${e.message}`); }
   if (music) { spec.music = music.meta; console.log(`music: ${music.meta.id} (${music.meta.mood})`); }
 }
@@ -473,6 +482,23 @@ const layers = amb === 'none' ? [] : [
   // diya crackle: sparse random clicks, band-limited
   ...(['aarti', 'temple'].includes(amb) ? [`aevalsrc='if(lt(random(0),${amb === 'aarti' ? 0.0009 : 0.0004}),(random(1)-0.5)*1.4,0)':s=48000:d=${T},highpass=f=1800,lowpass=f=7500,volume=${amb === 'aarti' ? 0.5 : 0.3}`] : []),
 ];
+let bedWav = null;
+if (FACTS_BED) {
+  const at = (k) => (k >= 0 && k < starts.length ? starts[k] : null);
+  const reveal = spec.scenes.findIndex((sc) => sc.reveal === true);
+  const moral = spec.scenes.findIndex((sc) => sc.moral === true);
+  const events = {
+    boom: [0.05], whoosh: [0.45],
+    swell: [at(reveal > 0 ? reveal : Math.round(spec.scenes.length * 0.6))].filter((x) => x != null && x > 3),
+    bell: [at(moral)].filter((x) => x != null).map((x) => x + 0.15),
+  };
+  bedWav = path.join(work, 'bed.wav');
+  const r = spawnSync(PYTHON, ['-I', path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../voice/beds.py'), '--kind', 'facts',
+    '--dur', (total + 0.5).toFixed(2), '--events', JSON.stringify(events), '--seed', String([...spec.slug].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 100000, 7)), '--out', bedWav],
+  { encoding: 'utf8' });
+  if (r.status !== 0 || !fs.existsSync(bedWav)) { console.log(`facts bed failed, using the drone: ${(r.stderr || '').trim().split('\n').pop()}`); bedWav = null; }
+  else console.log(`music: synthesized facts bed (${JSON.stringify(events)})`);
+}
 // Distant temple bell (inharmonic partials) at each later scene change.
 const bellAt = amb === 'quiet' || amb === 'none' ? [] : starts.slice(1).filter((t) => t > 1 && t < total - 2.5);
 const bell2 = `aevalsrc='0.20*sin(2*PI*587*t)*exp(-1.6*t)+0.12*sin(2*PI*1620*t)*exp(-2.4*t)+0.07*sin(2*PI*3170*t)*exp(-3.6*t)+0.04*sin(2*PI*5240*t)*exp(-5*t)':s=48000:d=4`;
@@ -489,7 +515,8 @@ clips.forEach((c, i) => {
 // Voice bus; music + ambience bus ducked under it (sidechain), then the whole mix normalised to -14 LUFS.
 const A0 = 2 * n + 2; // first ambience input
 f.push(`${mix.join('')}amix=inputs=${n}:duration=longest:normalize=0,apad=whole_dur=${T},asplit=2[vox][key]`);
-f.push(`[${n}:a]${music ? `${music.filter},atrim=duration=${T}` : `volume=${BH_SONG ? 0 : 0.5}`}[dr]`, `[${n + 1}:a]aformat=channel_layouts=stereo${BH_SONG ? ',volume=0' : ''}[bl]`);
+f.push(`[${n}:a]${bedWav ? `aformat=sample_rates=48000:channel_layouts=stereo,volume=0.8,atrim=duration=${T}` : music ? `${music.filter},atrim=duration=${T}` : `volume=${BH_SONG ? 0 : 0.5}`}[dr]`,
+  `[${n + 1}:a]aformat=channel_layouts=stereo${BH_SONG || bedWav ? ',volume=0' : ''}[bl]`);
 layers.forEach((_, k) => f.push(`[${A0 + k}:a]aformat=sample_rates=48000:channel_layouts=stereo[am${k}]`));
 bellAt.forEach((t, k) => { const ms = Math.round(t * 1000); f.push(`[${A0 + layers.length + k}:a]aformat=channel_layouts=stereo,adelay=${ms}|${ms}[bb${k}]`); });
 const bedIns = ['[dr]', '[bl]', ...layers.map((_, k) => `[am${k}]`), ...bellAt.map((_, k) => `[bb${k}]`)];
@@ -507,7 +534,7 @@ f.push(`[duck][vox]${bhajan ? '[bh]' : ''}amix=inputs=${bhajan ? 3 : 2}:duration
 fs.mkdirSync(path.join(base, 'out'), { recursive: true });
 const out = path.join(base, 'out', `${spec.slug}.mp4`);
 run([
-  ...clips.flatMap((c) => ['-i', c.file]), ...(music ? music.input : ['-f', 'lavfi', '-i', drone]), '-f', 'lavfi', '-i', bell, ...clips.flatMap((c) => ['-i', c.voice]),
+  ...clips.flatMap((c) => ['-i', c.file]), ...(bedWav ? ['-i', bedWav] : music ? music.input : ['-f', 'lavfi', '-i', drone]), '-f', 'lavfi', '-i', bell, ...clips.flatMap((c) => ['-i', c.voice]),
   ...layers.flatMap((l) => ['-f', 'lavfi', '-i', l]), ...bellAt.flatMap(() => ['-f', 'lavfi', '-i', bell2]),
   ...(bhajan ? ['-ss', String(bhPlan.from), '-i', bhajan.track.file] : []),
   '-filter_complex', f.join(';'), '-map', `[${prev}]`, '-map', '[a]',
