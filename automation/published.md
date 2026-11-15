@@ -123,3 +123,4 @@
 - 2026-11-15-facts-chhath-sita-draupadi-vrat | withheld: the Whisper gate FAILED (scene 1 द्रौपदी heard "द्रापदी") but the facts job's `qa | tee` let it through; YouTube zDW14BaY7CU set private + unscheduled, the scheduled Facebook Reel 1475408104757250 deleted, Instagram not posted (gate pipe fixed; re-made as 2026-11-15-facts-chhath-sita-draupadi-katha)
 - 2026-11-15-facts-chhath-sita-draupadi-vrat | instagram: skipped (withheld: pronunciation gate failed)
 - 2026-11-15-facts-chhath-sita-draupadi-katha | skipped: pronunciation gate (names not heard right: scene 1 द्रौपदी->द्रापदी) 15 Nov 19:24 IST
+- 2026-11-15-facts-chhath-sita-draupadi-katha | claim: 2026-11-15 facts5 by run 43721507122.1 at 2026-11-15T14:01:41.593Z
