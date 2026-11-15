@@ -2286,7 +2286,9 @@ jobs:
         if: steps.spec.outcome == 'success'
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core fonts-noto-color-emoji > /dev/null
-          pip install -q 'kaggle>=2.2' six
+          pip install -q 'kaggle>=2.2' six numpy edge-tts
+          # veer: the jaikara voice is Whisper-checked (voice/humanize.py) before it is used
+          [ "$(node -p "require('./' + process.env.W + '/scenes.json').kind")" = veer ] && pip install -q faster-whisper || true
 
       - name: Artwork (Workers AI FLUX, else Kaggle FLUX)
         if: steps.spec.outcome == 'success'
@@ -2300,6 +2302,12 @@ jobs:
       - name: Validate and render
         id: render
         if: steps.spec.outcome == 'success'
+        env:
+          # veer: dhol-like opener + boom (voice/beds.py) and the jaikara called out by the Gemini "jaikara" voice when it
+          # passes the Whisper check (else no voice). SOUND_BEDS=off = the old plain bed; GEMINI_TTS=off = no voice.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SPS_GEMINI_TTS: ${{ vars.GEMINI_TTS || 'on' }}
+          SOUND_BEDS: ${{ vars.SOUND_BEDS }}
         run: |
           node scripts/validate.mjs "$W/scenes.json"
           node story/render-loop.mjs "$W/scenes.json" | tee -a "$GITHUB_STEP_SUMMARY"

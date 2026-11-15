@@ -6,7 +6,10 @@
 #   kailash Kailash Parivar: deep tanpura drone + soft pad + mountain wind (the old bed, fuller and audible when ducked).
 #   facts   "Kya aap jaante hain?" facts: cinematic tension pad (low cluster, slow pulse), a riser + swell into the
 #           reveal, a whoosh + boom on the hook and the cover, a temple bell at the moral.
-#   veer    veer jaikara: dhol-like hits (dagga bass + tilli slap) in a steady chaal, a big boom on the jaikara.
+#   devotional  facts Shorts of a festival (spec "bed": "devotional", e.g. Chhath 15-16 Nov 2026): a soft tanpura drone
+#           + a warm pad instead of the tension pad; same whoosh on the hook, riser into the reveal, bell at the moral.
+#   veer    veer jaikara: dhol-like opener hits (dagga bass + tilli slap) and a big boom before the music; with
+#           {"chaal": [start]} a steady dhol chaal + low pad (when no recorded rhythm plays under it).
 # Events (seconds) place the one-shot sounds: {"whoosh": [..], "boom": [..], "swell": [..], "bell": [..], "chime": [..]}.
 # The renderers duck the bed under the voice with a sidechain compressor and bring the mix to -14 LUFS; the bed itself
 # is written at a fixed level (BED_RMS) so every format's voice/bed balance is set by one number in its renderer.
@@ -308,19 +311,29 @@ def make_bed(kind, dur, events=None, seed=7, bpm=100):
         bed = low + high + pulse
         bed *= (0.8 + 0.2 * np.sin(2 * np.pi * 0.04 * t))[:, None]
         bed = _reverb(bed, rng, wet=0.3, rt60=2.4)
+    elif kind == "devotional":
+        bed = tanpura(dur, rng, cycle=4.8, gain=0.6) + pad(dur, rng, [SA / 2, SA, SA * 1.5], gain=0.28, breathe=0.12)
+        bed = _reverb(bed, rng, wet=0.4, rt60=2.6)
     elif kind == "veer":
-        bed = dhol(dur, rng, bpm=bpm, start=float(ev.get("dhol_from", [1.2])[0]) if ev.get("dhol_from") else 1.2, gain=0.9)
-        bed += pad(dur, rng, [SA / 2, SA * 0.75], gain=0.35)
-        bed = _reverb(bed, rng, wet=0.18, rt60=1.6)
+        # "chaal": a steady dhol pattern + a low pad (only when nothing else plays the rhythm); else just the opener hits
+        if ev.get("chaal"):
+            bed = dhol(dur, rng, bpm=bpm, start=float(ev["chaal"][0]), gain=0.9) + pad(dur, rng, [SA / 2, SA * 0.75], gain=0.35)
+            bed = _reverb(bed, rng, wet=0.18, rt60=1.6)
+        else:
+            bed = np.zeros((n, 2))
     else:
         raise SystemExit(f"unknown bed kind {kind}")
     bed = bed[:n] if len(bed) >= n else np.pad(bed, ((0, n - len(bed)), (0, 0)))
     # level the music part, then add the one-shots on top (they are meant to stand out a little)
-    bed *= BED_RMS / (np.sqrt(np.mean(bed ** 2)) + 1e-12)
+    if np.any(bed):
+        bed *= BED_RMS / (np.sqrt(np.mean(bed ** 2)) + 1e-12)
     shots = np.zeros_like(bed)
     for at in ev.get("whoosh", []):
         w = whoosh(rng)
         _place(shots, w, max(0, at - len(w) / SR), 0, 0.30)
+    for at in ev.get("hits", []):  # dhol opener hits (veer): the dagga side, hard
+        _place(shots, dagga(rng, 1.2), at, -0.05, 0.75)
+        _place(shots, tilli(rng), at + 0.01, 0.2, 0.25)
     for at in ev.get("boom", []):
         _place(shots, boom(rng), at, 0, 0.55)
     for at in ev.get("swell", []):  # a riser that lands on `at` (the reveal)
@@ -331,10 +344,27 @@ def make_bed(kind, dur, events=None, seed=7, bpm=100):
     for at in ev.get("chime", []):
         _place(shots, chime(rng), at, -0.2, 0.18)
     shots = _reverb(shots, rng, wet=0.25, rt60=2.0) if np.any(shots) else shots
+    if kind == "veer":
+        shots *= 1.7  # the opener IS the veer's punch: the loudest thing in the first second
     bed = bed + shots
     bed *= _env(n, 0.3, 1.2)[:, None]
     pk = np.max(np.abs(bed))
     return bed * (0.95 / pk) if pk > 0.95 else bed
+
+
+def loudnorm_2pass(src, dst, i=-14.0, tp=-1.5, lra=11.0, ffmpeg="ffmpeg"):
+    """EBU R128 two-pass: measure, then normalise linearly to exactly `i` LUFS (single-pass loudnorm undershoots dialogue
+    with a wide range by ~2 LU: the Kailash pilot measured -16.2). Falls back to dynamic mode when the gain would push
+    the true peak over `tp`, which loudnorm handles itself."""
+    import re
+    import subprocess
+    r = subprocess.run([ffmpeg, "-hide_banner", "-i", src, "-af", f"loudnorm=I={i}:TP={tp}:LRA={lra}:print_format=json", "-f", "null", "-"],
+                       capture_output=True, text=True)
+    m = json.loads(re.findall(r"\{[^{}]*\}", r.stderr)[-1])
+    af = (f"loudnorm=I={i}:TP={tp}:LRA={lra}:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:"
+          f"measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,aresample=48000")
+    subprocess.run([ffmpeg, "-v", "error", "-y", "-i", src, "-af", af, "-ar", "48000", "-c:a", "pcm_s16le", dst], check=True)
+    return m
 
 
 def write(path, st):
@@ -347,7 +377,7 @@ def write(path, st):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--kind", required=True, choices=["pov", "kailash", "facts", "veer"])
+    p.add_argument("--kind", required=True, choices=["pov", "kailash", "facts", "devotional", "veer"])
     p.add_argument("--dur", type=float, required=True)
     p.add_argument("--events", default="{}")
     p.add_argument("--seed", type=int, default=7)

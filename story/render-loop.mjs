@@ -53,6 +53,9 @@ export function textOverlay(text, png, kind) {
 
 /** Seamless audio loop of [from, from+dur]: the last X s cross-fade into the first X s (veer beds just fade). */
 function audio(spec, out) {
+  if (spec.kind === 'veer' && process.env.SOUND_BEDS !== 'off') {
+    try { return veerAudio(spec, out); } catch (e) { console.error(`veer sound fell back to the plain bed: ${e.message.split('\n').pop()}`); }
+  }
   const { file, from = 0, dur } = spec.audio;
   const T = dur.toFixed(3);
   const loud = 'loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000';
@@ -65,6 +68,46 @@ function audio(spec, out) {
   } else {
     run(['-ss', String(from), '-t', T, '-i', file, '-af', `aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.5,afade=t=out:st=${(dur - 1.2).toFixed(2)}:d=1.2,${loud}`, '-c:a', 'aac', '-b:a', '192k', out]);
   }
+}
+
+// VEER sound (15 Nov 2026, the viral veer references): a dhol-like opener (two hard dagga hits and a big boom,
+// voice/beds.py "veer", synthesized), the jaikara CALLED OUT by the Gemini "jaikara" voice (voice/gemini-voices.json;
+// used only when it passed the Whisper name check, else no voice: an unchecked voice never goes out), then the bhajan
+// chorus or the library bed comes in (ducked under the voice). No synthesized beat under the music: it would fight the
+// recording's own tempo.
+const PY = process.env.PYTHON || 'python';
+const OPEN = 0.75; // s: the music enters on the boom
+function veerAudio(spec, out) {
+  const { file, from = 0, dur } = spec.audio;
+  const T = dur.toFixed(3);
+  const work = path.dirname(out);
+  const base = path.join(work, 'veer-base.wav'), bed = path.join(work, 'veer-bed.wav'), voice = path.join(work, 'veer-voice.wav');
+  const ms = Math.round(OPEN * 1000);
+  run(['-ss', String(from), '-t', (dur - OPEN).toFixed(3), '-i', file, '-af', `aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.25,` +
+    `afade=t=out:st=${(dur - OPEN - 1.2).toFixed(2)}:d=1.2,adelay=${ms}|${ms},apad=whole_dur=${T}`, '-c:a', 'pcm_s16le', base]);
+  const b = spawnSync(PY, ['-I', path.join(ROOT, 'voice/beds.py'), '--kind', 'veer', '--dur', T,
+    '--events', JSON.stringify({ hits: [0.05, 0.4], boom: [OPEN] }), '--out', bed], { encoding: 'utf8' });
+  if (b.status !== 0) throw new Error(`beds.py: ${b.stderr}`);
+  let said = false;
+  if (spec.jaikara) {
+    const job = path.join(work, 'veer-voice.json');
+    fs.writeFileSync(job, JSON.stringify({ items: [{ text: `${spec.jaikara}!`, gemini: 'jaikara', mood: 'excitement', out: voice, lead: OPEN + 0.1, pause: 0.2,
+      voice: { edge: 'hi-IN-MadhurNeural', rate: '+4%', pitch: '-2Hz' } }] }));
+    const r = spawnSync(PY, ['-I', path.join(ROOT, 'voice/humanize.py'), job], { encoding: 'utf8', env: { ...process.env, FFMPEG_PATH: FF } });
+    try { said = r.status === 0 && JSON.parse(r.stdout.trim().split('\n').pop())[0].engine === 'gemini'; } catch { said = false; }
+    console.error(said ? 'veer: jaikara called out (Gemini voice, Whisper-checked)' : `veer: no spoken jaikara (${(r.stderr || '').trim().split('\n').pop() || 'no Gemini voice'})`);
+  }
+  const ins = ['-i', base, '-i', bed, ...(said ? ['-i', voice] : [])];
+  const f = ['[1:a]aformat=sample_rates=48000:channel_layouts=stereo[bd]'];
+  if (said) {
+    f.push('[2:a]aresample=48000,aformat=channel_layouts=stereo,volume=1.6,apad,asplit=2[vo][sc]',
+      '[0:a][sc]sidechaincompress=threshold=0.03:ratio=6:attack=15:release=500[duck]',
+      `[duck][bd][vo]amix=inputs=3:normalize=0:duration=first,atrim=duration=${T}[mx]`);
+  } else {
+    f.push(`[0:a][bd]amix=inputs=2:normalize=0:duration=first,atrim=duration=${T}[mx]`);
+  }
+  f.push('[mx]loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[o]');
+  run([...ins, '-filter_complex', f.join(';'), '-map', '[o]', '-c:a', 'aac', '-b:a', '192k', out]);
 }
 
 export function renderLoop(specFile) {

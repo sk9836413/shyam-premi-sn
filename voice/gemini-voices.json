@@ -36,7 +36,8 @@
     },
     "facts": {
       "voice": "Enceladus",
-      "style": "Say in Hindi, as a dramatic mystery storyteller revealing a little-known fact: curious and intriguing, building suspense, lowering the voice for secrets and lifting it for the reveal, clear and not too fast"
+      "style": "Say in Hindi, as a dramatic mystery storyteller revealing a little-known fact: curious and intriguing, building suspense, lowering the voice for secrets and lifting it for the reveal, at a lively, brisk pace",
+      "tempo": 1.15
     },
     "jaikara": {
       "voice": "Alnilam",

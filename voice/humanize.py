@@ -328,6 +328,27 @@ def check_names():
     return list(v) if isinstance(v, list) and v else GEMINI_NAMES
 
 
+def facts_missed(text, heard):
+    """Names the facts gate (scripts/facts.mjs lineNames: every deity/character position, the key sound) would reject."""
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    js = ("import('./scripts/facts.mjs').then((m) => { const [t, h] = JSON.parse(process.argv[1]); "
+          "console.log(JSON.stringify(m.lineNames(t, h).wrong.map((w) => w.word))); })")
+    r = subprocess.run(["node", "-e", js, json.dumps([text, heard], ensure_ascii=False)], cwd=root, capture_output=True,
+                       text=True, encoding="utf-8")
+    if r.returncode:
+        raise RuntimeError(f"facts name check: {r.stderr.strip()[-200:]}")
+    return json.loads(r.stdout.strip().splitlines()[-1])
+
+
+def _tempo(x, t):
+    """Speed a piece up (or down) without changing its pitch (ffmpeg atempo; 1.0-1.2 sounds natural)."""
+    r = subprocess.run([FF, "-v", "error", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-i", "-", "-af", f"atempo={t:.3f}",
+                        "-f", "f32le", "-ar", str(SR), "-ac", "1", "-"], input=x.astype(np.float32).tobytes(), capture_output=True)
+    if r.returncode:
+        raise RuntimeError(r.stderr.decode("utf-8", "ignore")[-300:])
+    return np.frombuffer(r.stdout, dtype=np.float32).astype(np.float64)
+
+
 def _gemini_role(item, v):
     return item.get("gemini") or (v.get("gemini") if isinstance(v, dict) else None)
 
@@ -463,6 +484,8 @@ def gemini_prepass(items, plans, tmp, G=None):
                 _write(f, piece / (np.max(np.abs(piece)) + 1e-9) * 0.7, SR)
                 heard = G.transcribe(f)
                 os.remove(f)
+                if os.environ.get("GEMINI_CHECK") == "facts":  # the facts gate's own rule (scripts/facts.mjs lineNames)
+                    return heard, facts_missed(items[i]["text"], heard), G.cer(items[i]["text"], heard)
                 names = [n for n in dict.fromkeys(list(items[i].get("names") or []) + check_names()) if n in items[i]["text"]]
                 return heard, G.missed(names, heard), G.cer(items[i]["text"], heard)
 
@@ -479,6 +502,9 @@ def gemini_prepass(items, plans, tmp, G=None):
                 checks.append({"i": i, "cer": ce, "missed": miss})
                 if miss or ce > GEMINI_MAX_CER:
                     raise G.Unavailable(f"line {i}: {'missed ' + ', '.join(miss) if miss else f'CER {ce}'} (heard: {heard[:60]})")
+            tempo = float(prof.get("tempo") or 1.0)
+            if abs(tempo - 1.0) > 0.01:  # e.g. the facts narrator: Gemini tells it ~30 % slower than edge-tts
+                pieces = {i: _tempo(x, tempo) for i, x in pieces.items()}
             out.update(pieces)
             report["roles"][r] = {"engine": f"gemini {prof['voice']}", "model": model, "lines": len(idx), "requests": len(chunks),
                                   "mean_cer": round(sum(ch["cer"] for ch in checks) / len(checks), 4)}

@@ -632,6 +632,11 @@ Short** (YouTube publishAt, Facebook scheduled Page video, Instagram queued Reel
 of the day's 3 uploads: the movie part comes first, then status Shorts, then the evening darshan (day-plan priority);
 no long video, no noon Short and no Kalyug episode on a movie day.
 
+**Kaggle timing (15 Nov 2026).** Every reliable trigger of the movie job (scheduler 10:43 / 18:46 IST) falls inside a
+Kaggle blocked window (09:00-11:30, 18:30-21:00 IST), so the job then asks `movie_retry` to dispatch `slot=movie` again
+right after the window (about 11:32 / 21:02 IST) with a 120-min Kaggle queue; a session that sat in Kaggle's queue too
+long (QUEUED_TOO_LONG) gets one retry with a 120-min queue. Manual: `gh workflow run daily.yml -f slot=movie -f queue_minutes=120`.
+
 **Queue.** `automation/movie-series.md`: series in order (mandir-series.md order; a festival in the next 7 days or a
 `trends` topic may jump the queue), each with its parts, sources and status. Finish a series before starting the next.
 
@@ -868,6 +873,42 @@ its blurred picture with its number and title, an outro, chapters with each stor
 thumbnail, the Shorts' links in the description, and afterwards a "Poori series" link in each Short's description (the
 API cannot set a Short's related video or pin a comment). The Shorts are never re-uploaded as Shorts. If it does not run
 or fails, the long job tells its katha as before. growth.md tracks it as the `long` format with "compilation".
+
+## Voices and sound of the new formats (owner, 15 Nov 2026: "the sound isn't enjoyable"; no action from you)
+
+**Voices.** Kailash Parivar, Shri Krishna kehte hain, the facts narrator and the veer jaikara are spoken by Google's
+prebuilt **Gemini TTS** voices with a style prompt per character (`voice/gemini-voices.json`, `voice/gemini_tts.py`,
+`voice/humanize.py`): Krishna = Schedar, Mahadev = Sadaltager, Parvati = Vindemiatrix, Bal Ganesh = Achernar, Narad =
+Algieba, Kartikeya = Achird, Nandi and the sutradhar = Rasalgethi, facts = Enceladus (sped up 1.15x), jaikara = Alnilam;
+Mushak and every other format keep edge-tts; **the mini-movie keeps its edge-tts voices**. Never a cloned or famous
+voice. Chosen by an objective test (each voice says one sentence with 12 deity names, Whisper large-v3-turbo, the gate's
+exact-name rule + CER; results in `voice/gemini-voices.json` `ab_2026_11_15`). Style prompts describe the VOICE, never a
+deity persona (a persona prompt + the sheesh-daan line was blocked as SAFETY).
+- **Free tier:** 10 requests per model per day (resets 13:30 IST). A character's lines go in ONE request per 6 lines and
+  are cut at the pauses; model chain gemini-2.5-flash-preview-tts, then gemini-3.1-flash-tts-preview.
+- **Pronunciation first (never loosened):** every Gemini line is Whisper-checked against the SAME names the format's gate
+  checks (Kailash/POV: spec names + DEITY_NAMES, exact; facts: the facts gate's key-sound rule) and CER <= 0.25; a miss
+  gets one retry with the names spelled out, then that WHOLE character goes back to its edge-tts voice for the episode
+  (quota, 429, SAFETY and errors do the same). The renderers' own gates still run afterwards. Gemini says "बर्बरीक" in a
+  way Whisper writes "बरबरीक", so Krishna lines with बर्बरीक in the POV names list fall back to edge-tts: in Krishna POV
+  scripts prefer "बाबा श्याम" / "शीश के दानी" unless the name is needed.
+- **Whisper spellings to avoid in scripts (every voice):** "नारद जी" (heard नारजी: say "नारद मुनि"), "श्रीकृष्ण" joined
+  (heard श्री कृष्ण), "कान्हा" (कानहा), "भोलेनाथ" (भोले नाथ).
+- **Terms (Gemini API Additional Terms, checked 15 Nov 2026):** Google claims no ownership of generated content; we are
+  responsible for its use and Google may generate similar content for others. On the free (unpaid) tier Google may use
+  prompts and outputs to improve its products and human reviewers may read them: never send private data (our scripts
+  are public devotional text). Users must be 18+; the Prohibited Use Policy applies. No attribution or labelling rule
+  for audio, but we keep ours: YouTube `containsSyntheticMedia` = true and "Chitra, awaaz aur animation AI se banaye
+  gaye hain (sanketik)." in every description.
+- Kill switches: repo variable `GEMINI_TTS=off` (edge-tts only), `SOUND_BEDS=off` (the old beds).
+
+**Music beds** (`voice/beds.py`, synthesized with numpy: no samples, no downloaded music), ducked under the voice by a
+sidechain compressor (about 18 dB under the speech while someone talks, 11-13 dB under it in the pauses), the mix at
+-14 LUFS (two-pass loudnorm): Krishna POV = tanpura + a bansuri-like flute playing slow Bhupali phrases + a soft pad;
+Kailash = deep tanpura drone + pad + mountain wind, bells at scene changes; facts = cinematic tension pad with a quiet
+heartbeat pulse, a boom on the cover, a whoosh into the hook, a riser landing on the `reveal` scene and a temple bell on
+the `moral` scene; veer = two dhol-like opener hits and a boom, then the jaikara called out (Gemini voice only when it
+passed the Whisper check, else no voice) and the bhajan chorus / library bed (no synthesized beat under recorded music).
 
 ## 9. "Kailash Parivar" (08:00 on Mon/Thu/Sat and festival tie-in days when it fits; workflow `kailash.yml`)
 

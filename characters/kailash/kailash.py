@@ -384,7 +384,7 @@ class Episode(K.Episode):
         print(json.dumps({"out": self.a.out, **meta}))
 
     BED_KIND = "kailash"  # voice/beds.py kind (Krishna POV: "pov")
-    BED_GAIN = 0.85       # bed level under the voice before the sidechain (the bed is written at -24 dBFS RMS)
+    BED_GAIN = 0.85       # bed under the voice: ~19 dB below the speech while speaking, ~13 dB below in the pauses (measured 15 Nov)
 
     def bed_events(self, plan):
         """Bell at scene changes, a chime when the lead first appears and at the end card (seconds)."""
@@ -419,9 +419,12 @@ class Episode(K.Episode):
              "[1:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[vo][sc]",
              # ~9 dB of ducking while someone speaks, back up in the pauses (release 600 ms: no pumping between words)
              "[bed][sc]sidechaincompress=threshold=0.025:ratio=4:attack=30:release=600:knee=4[duck]",
-             "[vo][duck]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[a]"]
-        ff("-i", video, "-i", voice, "-i", bed, "-filter_complex", ";".join(f), "-map", "0:v", "-map", "[a]", "-c:v", "copy",
-           "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", "-t", f"{total:.3f}", self.a.out)
+             "[vo][duck]amix=inputs=2:duration=first:normalize=0,aresample=48000[a]"]
+        raw, norm = f"{self.build}/mix-raw.wav", f"{self.build}/mix.wav"
+        ff("-i", voice, "-i", voice, "-i", bed, "-filter_complex", ";".join(f), "-map", "[a]", "-t", f"{total:.3f}", "-c:a", "pcm_s16le", raw)
+        beds.loudnorm_2pass(raw, norm, ffmpeg=os.environ.get("FFMPEG_PATH") or "ffmpeg")  # exactly -14 LUFS
+        ff("-i", video, "-i", norm, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
+           "-movflags", "+faststart", "-t", f"{total:.3f}", self.a.out)
 
     def mix_old(self, video, voice, total, plan):
         """(Before 15 Nov 2026) Calm tanpura-like drone + soft pad + mountain wind (all synthesized, no recorded music), a soft bell on scene

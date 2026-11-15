@@ -27,6 +27,7 @@ W, H = M.W, M.H
 
 class Episode(KL.Episode):
     BED_KIND = "pov"  # tanpura + bansuri-like flute + pad (voice/beds.py)
+    BED_GAIN = 0.6    # the flute bed is fuller: ~18 dB under the speech, ~11 dB under it in the pauses (measured 15 Nov)
 
     def header(self):
         """Logo, the series pill and the small topic label (spec.label, e.g. "Ghar ke buzurg"), AI line."""

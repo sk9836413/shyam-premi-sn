@@ -151,7 +151,7 @@ function ttsHuman() {
   const job = path.join(work, 'voice-job.json');
   fs.writeFileSync(job, JSON.stringify({ items, concurrency: 5 }));
   const r = spawnSync(PYTHON, ['-I', path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../voice/humanize.py'), job],
-    { encoding: 'utf8', env: { ...process.env, FFMPEG_PATH: FF }, maxBuffer: 1 << 24 });
+    { encoding: 'utf8', env: { ...process.env, FFMPEG_PATH: FF, ...(spec.format === 'facts' ? { GEMINI_CHECK: 'facts' } : {}) }, maxBuffer: 1 << 24 });
   if (r.status !== 0) throw new Error(`humanize: ${(r.stderr || '').trim().split('\n').pop()}`);
   const res = JSON.parse(r.stdout.trim().split('\n').pop());
   const bad = res.find((x) => x.error);
@@ -493,11 +493,11 @@ if (FACTS_BED) {
     bell: [at(moral)].filter((x) => x != null).map((x) => x + 0.15),
   };
   bedWav = path.join(work, 'bed.wav');
-  const r = spawnSync(PYTHON, ['-I', path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../voice/beds.py'), '--kind', 'facts',
+  const r = spawnSync(PYTHON, ['-I', path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../voice/beds.py'), '--kind', spec.bed === 'devotional' ? 'devotional' : 'facts',
     '--dur', (total + 0.5).toFixed(2), '--events', JSON.stringify(events), '--seed', String([...spec.slug].reduce((a, c) => (a * 31 + c.charCodeAt(0)) % 100000, 7)), '--out', bedWav],
   { encoding: 'utf8' });
   if (r.status !== 0 || !fs.existsSync(bedWav)) { console.log(`facts bed failed, using the drone: ${(r.stderr || '').trim().split('\n').pop()}`); bedWav = null; }
-  else console.log(`music: synthesized facts bed (${JSON.stringify(events)})`);
+  else console.log(`music: synthesized ${spec.bed === 'devotional' ? 'devotional (tanpura) ' : ''}facts bed (${JSON.stringify(events)})`);
 }
 // Distant temple bell (inharmonic partials) at each later scene change.
 const bellAt = amb === 'quiet' || amb === 'none' ? [] : starts.slice(1).filter((t) => t > 1 && t < total - 2.5);
