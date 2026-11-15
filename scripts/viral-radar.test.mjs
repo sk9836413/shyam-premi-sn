@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
-  analysisProblems, classify, COPY_MAX, median, medianBudget, modeFor, overlap, QUERIES, queriesFor, quotaUnits, RADAR_CAP,
+  analysisProblems, classify, rescoreDay, strongOf, COPY_MAX, median, medianBudget, modeFor, overlap, QUERIES, queriesFor, quotaUnits, RADAR_CAP,
   reuploadSignals, SEARCHES, seconds, THRESH, viralCheck, weeklyPlan, workingLines,
 } from './viral-radar.mjs';
 
@@ -40,12 +40,15 @@ test('likely reuploads: two signals of tiny / new channel, random topics, spammy
   const now = Date.parse('2026-11-15T12:00:00Z');
   const devotional = ['जय श्री राम', 'महादेव की कथा', 'खाटू श्याम भजन', 'हनुमान चालीसा', 'राधा कृष्ण'];
   const random = ['funny cat', 'cricket highlights', 'prank video', 'movie scene', 'jai mahadev'];
-  assert.deepEqual(reuploadSignals({ views: 2e6, title: 'महादेव' }, { subs: 50000, titles: devotional, created: '2020-01-01T00:00:00Z' }, now), { signals: [], likely: false });
+  assert.deepEqual(reuploadSignals({ views: 2e6, title: 'महादेव' }, { subs: 50000, titles: devotional, created: '2020-01-01T00:00:00Z' }, now), { signals: [], likely: false, offTopic: false });
   const r = reuploadSignals({ views: 2e6, title: 'Mahadev #viral' }, { subs: 300, titles: random, created: '2026-10-20T00:00:00Z' }, now);
   assert.deepEqual(r.signals, ['tiny channel', 'new channel', 'random topics', 'spammy title']);
   assert.equal(r.likely, true);
   assert.deepEqual(reuploadSignals({ views: 5e6, title: 'x' }, { subs: 10000, titles: devotional }, now).signals, ['views far beyond subscribers']);
   assert.equal(reuploadSignals({ views: 5e6, title: 'x' }, { subs: 10000, titles: devotional }, now).likely, false, 'one signal is not enough');
+  // off topic: a vlog / fun / kids channel or random topics is not counted even with one signal
+  const fam = reuploadSignals({ views: 6e6, title: 'Mata Rani', channel: 'The Family Funny' }, { subs: 156000, dev_share: { n: 20, share: 0.6 } }, now);
+  assert.deepEqual([fam.signals, fam.likely, fam.offTopic], [['non-devotional channel'], false, true]);
   // the channel cache keeps only the devotional share, not other channels' titles
   assert.deepEqual(reuploadSignals({ views: 2e6, title: 'x' }, { subs: 50000, dev_share: { n: 10, share: 0.2 } }, now).signals, ['random topics']);
 });
@@ -98,6 +101,8 @@ test('classifier: hook types incl. वर्जित क्यों, Kaliyug c
   assert.equal(classify('रावण को हराने वाले 4 योद्धा', 50).hook, 'listicle');
   assert.equal(classify('Jabalpur ka mandir', 30).hook, 'name', '"Jab" only as a word');
   assert.equal(classify('x', 25).length, '<=30 s');
+  assert.equal(classify('What Are Elephants Doing on Kumbhakarna 😱?', 35).hook, 'strange-visual');
+  assert.equal(classify('कुंभकर्ण पर हाथी क्या कर रहे हैं? 😱', 35).hook, 'strange-visual');
 });
 
 test('analysis check: enums, our own words (no copied titles), idea schema, per-bank limits', () => {
@@ -126,4 +131,16 @@ test('what\'s working lines for the Monday growth report', () => {
   assert.match(l, /वर्जित क्यों/);
   assert.match(l, /facts:x/);
   assert.match(workingLines([], '2026-11-16')[0], /no truly viral/);
+});
+
+test('strong channels: one per channel, no signals; rescore re-applies the filter without API calls', () => {
+  const r = (id, ch, views, extra = {}) => ({ id, channelId: ch, channel: ch, views, viral: false, strong_channel: true, reupload: [], ...extra });
+  const s = strongOf([r('a', 'c1', 9e5), r('b', 'c1', 8e5), r('c', 'c2', 7e5), r('d', 'c3', 6e5, { reupload: ['non-devotional channel'] })]);
+  assert.deepEqual(s.map((x) => x.id), ['a', 'c']);
+  const day = { date: '2026-11-15', counts: {}, reuploads: [], strong: [],
+    viral: [{ id: 'v1', title: 'माता रानी', channel: 'The kids fun', channelId: 'k', views: 7e6, ageDays: 5, subs: 11600, median: 8e4, n_shorts: 20, multiple: 87, seconds: 6 },
+      { id: 'v2', title: 'माँ दुर्गा प्रकट', channel: 'BhaktiVerse 3D', channelId: 'b', views: 3.2e6, ageDays: 6, subs: 36100, median: 1700, n_shorts: 20, multiple: 1855, seconds: 44 }] };
+  const out = rescoreDay(day, { k: { dev_share: { n: 20, share: 1 } }, b: { dev_share: { n: 20, share: 0.85 } } });
+  assert.deepEqual(out.viral.map((x) => x.id), ['v2']);
+  assert.ok(out.reuploads.some((x) => x.id === 'v1'));
 });

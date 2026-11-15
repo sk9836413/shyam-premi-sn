@@ -91,9 +91,10 @@ jobs:
             title, channel, seconds, views, multiple (x the channel's median), a rule-based "heuristic" read, and
             thumb_file = a local JPG of its thumbnail: Read that image to judge the cover.
             Write .radar-work/analysis.json:
-            {"items": {"<id>": {"hook_type", "hooks": [...], "format", "deity", "topic", "cover_style", "art_style", "why"}},
+            {"items": {"<id>": {"hook_type", "hooks": [...], "format", "deity", "topic", "cover_style", "art_style", "why", "reupload_suspect"}},
              "ideas": [ ... ]}
-            - hook_type / hooks from: varjit (वर्जित क्यों / pooja niyam: "X को Y क्यों नहीं चढ़ता?"), kyon (😱 क्यों?), jab
+            - hook_type / hooks from: strange-visual (the cover shows ONE odd, oddly-scaled scene that raises a question by
+              itself, e.g. a tiny elephant on a sleeping giant's chest; title "X क्या कर रहे हैं? 😱"), varjit (वर्जित क्यों / pooja niyam: "X को Y क्यों नहीं चढ़ता?"), kyon (😱 क्यों?), jab
               (जब…), phir-jo-kiya (फिर … ने जो किया…), listicle, kaliyug (Kaliyug connection), chamatkar (संत / लोक देवता
               चमत्कार), modern-question (nuclear / science question), pov (POV question / "Krishna kehte hain"), series
               (EP / Part N), rahasya, emotional (emotional-motivational line), question, name.
@@ -103,6 +104,7 @@ jobs:
             - art_style (from the thumbnail): cinematic, illustrated, infographic-2d (flat vector, labels, connector lines,
               split screen), cartoon-3d, real-photo, murti-darshan, text-card, other. cover_style: one short line on what
               the cover shows (e.g. "close-up face, 3 text bands, red arrow"). topic: a few words. why: one line.
+              reupload_suspect: true when the thumbnail is a TV-serial / film still or carries another channel's watermark.
             Ideas: at most 3 "facts", 1 "kailash" and 1 "pov" ORIGINAL topic ideas suggested by what works. A topic may
             overlap (scripture is shared) but every hook / title must be OUR OWN words: never copy or lightly edit a
             reference title or script. Grep automation/facts-topics.json, kailash-episodes.json, krishna-pov-topics.json

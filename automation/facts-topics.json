@@ -3973,6 +3973,80 @@
    "keywords": [
     "aloo singh"
    ]
+  },
+  {
+   "id": "kumbhkaran-jagane-ke-upay",
+   "p": 1,
+   "deity": "ram",
+   "name": "Kumbhakarna (Ramayan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Kumbhkaran par haathi kyun chale?",
+   "hook_hi": "कुंभकर्ण के ऊपर हाथी क्या कर रहे थे?",
+   "angle": "Strange-visual cover: ONE oddly scaled scene (a tiny elephant standing on the sleeping giant's chest) that raises the question by itself. Answer from Valmiki Yuddha Kand sarga 60: Ravan sends rakshasas to wake Kumbhakarna, a heap of food as tall as a hill (60.30-31), drums, cymbals, conches (60.41), horses, camels, donkeys and elephants driven over him (60.44), only a great number of elephants stirs him (60.54). Comic for Kumbhakarna, never gore; the existing kumbhkaran-neend topic tells why he sleeps, this one only the waking.",
+   "cite": {
+    "work": "Valmiki Ramayan",
+    "ref": "Yuddha Kand, sarga 60 (Kumbhakarna ko jagana)"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/utf8/yuddha/sarga60/yuddhasans60.htm",
+    "https://www.wisdomlib.org/hinduism/book/the-ramayana-of-valmiki"
+   ],
+   "keywords": [
+    "kumbhkaran ko jagana",
+    "haathi chale"
+   ]
+  },
+  {
+   "id": "ravan-adhuri-ichhayein",
+   "p": 2,
+   "deity": "ram",
+   "name": "Ravan ki adhuri ichhayein",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "variant_only": "list",
+   "numbers_ok": [
+    "5",
+    "paanch",
+    "पाँच"
+   ],
+   "hook": "Ravan ki 5 adhuri ichhayein",
+   "hook_hi": "रावण की पाँच अधूरी इच्छाएँ",
+   "angle": "Lokkatha only (no Valmiki verse): the wishes folk tellings give Ravan (a stairway to swarg, fragrance in gold, sweet sea water, smoke-free fire, ...): every item labelled \"लोककथा के अनुसार\" with \"label\": \"tradition\"; say once that the Valmiki Ramayan does not list them. Moral: pride makes plans that never finish.",
+   "cite": {
+    "work": "Lok katha (Ravan ki ichhayein)",
+    "ref": "Lok parampara; Valmiki Ramayan mein varnan nahi"
+   },
+   "sources": [
+    "https://www.valmikiramayan.net/"
+   ],
+   "keywords": [
+    "adhuri ichhayein"
+   ]
+  },
+  {
+   "id": "mansa-devi-vishahari",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Mansa Devi (Vishahari)",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Mansa Devi kis ki putri hain?",
+   "hook_hi": "मनसा देवी किसकी पुत्री हैं?",
+   "angle": "Which source says what: Devi Bhagavat Purana 9.47-48 (and the Brahmavaivarta Prakriti Khand): Manasa is the mind-born daughter of rishi Kashyap, serves Mahadev at Kailash, mother of Astik who saved the nagas at Janmejay's yagya, her twelve names. The Bengal / Bihar (Anga) folk epics (Manasamangal, Bihula-Bishahari lokgatha) make her Shiv's own daughter, Vishahari: said as \"लोककथा\". No snakebite cure claims.",
+   "cite": {
+    "work": "Devi Bhagavat Purana",
+    "ref": "Skandh 9, adhyay 47-48 (Manasa upakhyan)"
+   },
+   "sources": [
+    "https://www.wisdomlib.org/hinduism/book/devi-bhagavata-purana/d/doc57360.html",
+    "https://www.wisdomlib.org/hinduism/book/devi-bhagavata-purana/d/doc57361.html"
+   ],
+   "keywords": [
+    "mansa devi",
+    "vishahari"
+   ]
   }
  ],
  "ideas": [

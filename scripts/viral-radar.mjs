@@ -8,6 +8,7 @@
 //        + .radar-work/pending.json and thumbnails for Claude
 //   node scripts/viral-radar.mjs check --work .radar-work                  validate Claude's analysis.json (exit 1 = fix it)
 //   node scripts/viral-radar.mjs apply --work .radar-work [--date D]       merge the analysis, add the ideas to the banks
+//   node scripts/viral-radar.mjs rescore [--date D]                       re-apply the filter to a day file (no API calls)
 //   node scripts/viral-radar.mjs summary [--date D]                       the weekly section of automation/viral-radar.md
 //   node scripts/viral-radar.mjs budget                                   print the quota plan
 //
@@ -20,6 +21,7 @@
 //
 // "TRULY viral" (filter): views >= 100k (or >= 30k within 3 days of upload) AND views >= 5 x the median views of that
 // channel's other recent Shorts (at least 3 of them). That drops one-off lottery hits of big channels and reuploads.
+// Off topic (not counted): a vlog / fun / kids / shop channel name, or under half of the channel's titles devotional.
 // Likely reuploads (no watermark detection): a tiny channel (< 1,000 subscribers or views > 200 x subscribers), a new
 // channel (< 60 days), random topics (under half of its recent titles devotional), spammy titles; two signals = skipped.
 // Channels whose median is itself >= 40k are "consistently strong" (listed apart: style to learn from, not outliers).
@@ -109,6 +111,8 @@ export function viralCheck({ views = 0, ageDays = 99 }, med, n = 0, t = THRESH) 
 }
 
 const DEVOTIONAL = /श्याम|खाटू|बाबा|महादेव|शिव|भोले|शंकर|हनुमान|बालाजी|बजरंग|राम|सीता|कृष्ण|कान्हा|राधा|गोविंद|माता|माँ|मां|दुर्गा|देवी|काली|लक्ष्मी|गणेश|गणपति|भगवान|प्रभु|भक्त|भजन|आरती|मंदिर|कथा|पुराण|महाभारत|रामायण|गीता|मंत्र|जय|हरि|विष्णु|नारायण|शनि|सनातन|धर्म|पूजा|व्रत|तीर्थ|गुरु|संत|\b(shyam|khatu|baba|mahadev|shiv|shiva|bhole|hanuman|balaji|bajrang|ram|krishna|kanha|radha|mata|durga|devi|kali|ganesh|ganpati|bhagwan|bhakti|bhajan|aarti|mandir|temple|katha|purana|mahabharat|ramayan|gita|mantra|jai|hari|vishnu|narayan|shani|sanatan|dharma|puja|vrat|guru|sant|god|lord|mythology|hindu)\b/i;
+// A channel named like a vlog / fun / kids / shop channel is not our kind even when one devotional clip took off.
+const OFF_TOPIC_CHANNEL = /vlogs?\b|\bblog\b|funny|\bfun\b|comedy|\bkids?\b|prank|gaming|meme|selling|explore with|family/i;
 const SPAM = /#viral|#trending|#fyp|#foryou|credit|copyright|re-?upload|full video|#reels|#explore/i;
 
 /** Share of devotional titles among a channel's recent uploads (the cache keeps only this, not the titles). */
@@ -123,19 +127,22 @@ export function reuploadSignals(v, ch = {}, now = Date.now()) {
   const share = ch.titles ? devotionalShare(ch.titles) : ch.dev_share;
   if (share && share.n >= 5 && share.share < 0.5) s.push('random topics');
   if (SPAM.test(v.title || '')) s.push('spammy title');
-  return { signals: s, likely: s.length >= 2 };
+  if (OFF_TOPIC_CHANNEL.test(v.channel || ch.title || '')) s.push('non-devotional channel');
+  // likely reupload: two signals; off topic (not a devotional channel): random topics or a vlog/fun/kids channel name
+  return { signals: s, likely: s.length >= 2, offTopic: s.includes('random topics') || s.includes('non-devotional channel') };
 }
 
 // ---------------------------------------------------------------- heuristic classifier (Claude refines it)
 
-export const HOOKS = ['varjit', 'kyon', 'jab', 'phir-jo-kiya', 'listicle', 'kaliyug', 'chamatkar', 'modern-question', 'pov', 'series', 'rahasya', 'emotional', 'question', 'name'];
-export const HOOK_LABEL = { varjit: 'वर्जित क्यों / pooja niyam', kyon: '😱 क्यों?', jab: 'जब…', 'phir-jo-kiya': 'फिर … ने जो किया…', listicle: 'listicle', kaliyug: 'Kaliyug connection',
+export const HOOKS = ['strange-visual', 'varjit', 'kyon', 'jab', 'phir-jo-kiya', 'listicle', 'kaliyug', 'chamatkar', 'modern-question', 'pov', 'series', 'rahasya', 'emotional', 'question', 'name'];
+export const HOOK_LABEL = { 'strange-visual': 'strange visual ("X क्या कर रहे हैं? 😱")', varjit: 'वर्जित क्यों / pooja niyam', kyon: '😱 क्यों?', jab: 'जब…', 'phir-jo-kiya': 'फिर … ने जो किया…', listicle: 'listicle', kaliyug: 'Kaliyug connection',
   chamatkar: 'संत / लोक देवता चमत्कार', 'modern-question': 'modern question', pov: 'POV question', series: 'series EP / Part', rahasya: 'रहस्य / secret', emotional: 'emotional-motivational line', question: 'other question', name: 'name / plain' };
 export const FORMATS = ['facts', 'kailash', 'krishna-pov', 'veer', 'loop', 'darshan', 'gita', 'series', 'katha', 'other'];
 export const ART = ['cinematic', 'illustrated', 'infographic-2d', 'cartoon-3d', 'real-photo', 'murti-darshan', 'text-card', 'other'];
 export const DEITIES = ['khatu', 'shiv', 'hanuman', 'krishna', 'ram', 'devi', 'ganesh', 'vishnu', 'shani', 'surya', 'lokdevta', 'mahabharat', 'other'];
 
 const HOOK_RE = [
+  ['strange-visual', /क्या कर रह[ेी] (हैं|है|थे|थी)|what (are|is|were) .{2,40} doing|kya kar rah[ei]/i],
   ['varjit', /वर्जित|नहीं चढ़|नहीं चढा|क्यों नहीं|मना है|नियम|गलती से भी|भूलकर भी|varjit|niyam|never offer|kyun nahi|kyon nahi/i],
   ['kaliyug', /कलियुग|कलयुग|kali ?yug|kalyug|कल्कि|kalki/i],
   ['chamatkar', /चमत्कार|chamatkar|miracle|गोरखनाथ|gorakh|गोगा|goga|रामदेव|ramdev|तेजाजी|tejaji|पाबूजी|pabuji|करणी|karni|जीण|jeen mata|सालासर|salasar/i],
@@ -229,6 +236,49 @@ async function videosById(yt, ids) {
   return out;
 }
 
+/** Consistently strong channels: median >= 40k, no reupload / off-topic signal, one (the best) Short per channel. */
+export function strongOf(rows) {
+  const seen = new Set();
+  return rows.filter((r) => !r.viral && r.strong_channel && !(r.reupload || []).length).sort((a, b) => b.views - a.views)
+    .filter((r) => !seen.has(r.channelId) && seen.add(r.channelId)).slice(0, 10);
+}
+
+/** Claude saw a TV-serial / film still or another channel's watermark on the cover: a likely reupload. */
+const SUSPECT = 'TV / film still or watermark (thumbnail)';
+function markSuspect(it) {
+  if (it.analysis?.reupload_suspect !== true) return;
+  it.reupload = [...new Set([...(it.reupload || []), SUSPECT])];
+  it.likely_reupload = true;
+  it.viral = false;
+}
+function moveSuspects(day) {
+  const out = [...(day.viral || []), ...(day.strong || [])].filter((r) => r.likely_reupload);
+  day.viral = (day.viral || []).filter((r) => !r.likely_reupload);
+  day.strong = (day.strong || []).filter((r) => !r.likely_reupload);
+  const have = new Set((day.reuploads || []).map((x) => x.id));
+  day.reuploads = [...(day.reuploads || []), ...out.filter((r) => !have.has(r.id)).map(({ id, url, title, channel, views, reupload }) => ({ id, url, title, channel, views, signals: reupload }))];
+  day.counts = { ...day.counts, viral: day.viral.length, strong: day.strong.length };
+}
+
+/** Re-apply the current signals to a day file (no API calls; e.g. after a filter change). */
+export function rescoreDay(day, cache = {}, now = Date.now()) {
+  const rows = [...(day.viral || []), ...(day.strong || [])];
+  const out = [];
+  for (const r of rows) {
+    const re = reuploadSignals(r, { ...(cache[r.channelId] || {}), subs: r.subs, title: r.channel }, now);
+    const check = viralCheck(r, r.median, r.n_shorts);
+    const row = { ...r, reupload: re.signals, likely_reupload: re.likely, off_topic: re.offTopic, viral: check.viral && !re.likely && !re.offTopic, heuristic: classify(r.title, r.seconds) };
+    markSuspect(row);
+    out.push(row);
+  }
+  const viral = out.filter((r) => r.viral).sort((a, b) => b.multiple - a.multiple || b.views - a.views);
+  const strong = strongOf(out);
+  const dropped = out.filter((r) => !r.viral && !strong.includes(r));
+  return { ...day, viral, strong, reuploads: [...(day.reuploads || []), ...dropped.filter((r) => r.likely_reupload || r.off_topic && !(day.reuploads || []).some((x) => x.id === r.id))
+    .map(({ id, url, title, channel, views, reupload }) => ({ id, url, title, channel, views, signals: reupload }))],
+  counts: { ...day.counts, viral: viral.length, strong: strong.length } };
+}
+
 // ---------------------------------------------------------------- scan
 
 export function radarFiles(root = '.') {
@@ -290,11 +340,11 @@ async function scan({ date, mode, work, root = '.' }) {
     const check = viralCheck(v, med, others.length);
     const re = reuploadSignals(v, c, now);
     return { ...v, subs: c.subs ?? null, median: med, n_shorts: others.length, multiple: check.multiple === Infinity ? null : check.multiple && Math.round(check.multiple * 10) / 10,
-      viral: check.viral && !re.likely, strong_channel: med != null && med >= THRESH.strongMedian, why_not: check.why, reupload: re.signals, likely_reupload: re.likely,
+      viral: check.viral && !re.likely && !re.offTopic, off_topic: re.offTopic, strong_channel: med != null && med >= THRESH.strongMedian, why_not: check.why, reupload: re.signals, likely_reupload: re.likely,
       heuristic: classify(v.title, v.seconds) };
   });
   const viral = rows.filter((r) => r.viral).sort((a, b) => b.multiple - a.multiple || b.views - a.views);
-  const strong = rows.filter((r) => !r.viral && r.strong_channel && !r.likely_reupload).sort((a, b) => b.views - a.views).slice(0, 10);
+  const strong = strongOf(rows);
   const out = {
     date, mode, queries, thresholds: THRESH,
     quota: { searches: yt.used.search, list_calls: yt.used.list, units: yt.used.units, cap: RADAR_CAP },
@@ -349,6 +399,7 @@ export function analysisProblems(an, pending, root = '.') {
     if (!ART.includes(a.art_style)) e.push(`items.${id}: art_style one of ${ART.join(', ')}`);
     if (!(typeof a.topic === 'string' && a.topic.length >= 3)) e.push(`items.${id}: topic (a few words)`);
     if (!(typeof a.cover_style === 'string' && a.cover_style.length >= 3)) e.push(`items.${id}: cover_style (what the thumbnail shows)`);
+    if (a.reupload_suspect !== undefined && typeof a.reupload_suspect !== 'boolean') e.push(`items.${id}: reupload_suspect true | false`);
   }
   const counts = {};
   const used = new Set(Object.keys(BANKS).flatMap((b) => { const d = readJson(path.join(root, BANKS[b].file), {}); return [...(d[BANKS[b].items] || []), ...(d.ideas || [])].map((x) => x.id); }));
@@ -382,8 +433,10 @@ function apply({ date, work, root = '.' }) {
     for (const it of list) {
       const a = an.items?.[it.id];
       it.analysis = a && !badItem.has(it.id) ? { ...a, by: 'claude' } : { hook_type: it.heuristic.hook, hooks: it.heuristic.hooks, format: it.heuristic.format, deity: it.heuristic.deity, by: 'rules' };
+      markSuspect(it);
     }
   }
+  moveSuspects(day);
   const added = [];
   for (const [k, x] of (an.ideas || []).entries()) {
     if (badIdea.has(k) || !BANKS[x.bank]) continue;
@@ -524,6 +577,14 @@ async function main() {
     const r = apply({ date, work });
     writeSummary(date);
     console.log(`applied: ${r.added.length} ideas added (${r.added.join(', ') || '-'}); ${r.problems} analysis problems; ${SUMMARY} updated`);
+    return;
+  }
+  if (cmd === 'rescore') {
+    const f = path.join(OUT_DIR, `${date}.json`);
+    const day = rescoreDay(readJson(f, null) || {}, readJson(CHANNELS, {}));
+    fs.writeFileSync(f, `${JSON.stringify(day, null, 1)}\n`);
+    writeSummary(date);
+    console.log(`rescored ${f}: ${day.viral.length} viral, ${day.strong.length} strong`);
     return;
   }
   if (cmd === 'summary') { writeSummary(date); console.log(`${SUMMARY} updated for the week of ${date}`); return; }
