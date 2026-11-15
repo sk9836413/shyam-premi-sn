@@ -1,0 +1,116 @@
+{
+  "slug": "2026-11-16-facts-chhath-doobte-suraj-arghya-kyun",
+  "format": "facts",
+  "variant": "kyun",
+  "art": "cinematic",
+  "release": "2026-11-16",
+  "publish_at": "04:30",
+  "slot": "facts2",
+  "no_kaggle": true,
+  "bed": "devotional",
+  "topic": "chhath-doobte-suraj-arghya-kyun",
+  "festival": "Chhath Puja (Usha Arghya)",
+  "title": "Doobte Suraj ko Arghya Kyun",
+  "kicker": "Chhath Usha Arghya",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Chhathi Maiya",
+  "music_mood": "emotional",
+  "sub_size": 60,
+  "style": "hyper-real cinematic devotional film still, warm golden sunset and sunrise light, deep saturated colours, dramatic rim light, intricate detail, respectful, no text, no letters, no writing, no watermark, no signature",
+  "hook": "Chhath mein doobte Suraj ko arghya kyun?",
+  "cover": "डूबते सूरज को अर्घ्य",
+  "cover_lines": [
+    "छठ में डूबते",
+    "सूरज को अर्घ्य",
+    "क्यों?"
+  ],
+  "source": "Lok parampara (Bihar, Chhath): Sandhya Arghya Kartik Shukla Shashthi, Usha Arghya Saptami; Usha aur Pratyusha ki manyata",
+  "deity": "Surya Dev / Chhathi Maiya (Chhath Usha Arghya)",
+  "summary": "Chhath mein doobte aur ugte Suraj ko arghya kyun: Shashthi ki shaam Sandhya Arghya, Saptami ki bhor Usha Arghya; Usha aur Pratyusha ki manyata",
+  "scenes": [
+    {
+      "prompt": "Dramatic cinematic close-up portrait of Surya Dev, the radiant sun god with a calm majestic face, a golden crown with sun-ray motifs, glowing golden skin and a huge blazing sun disc behind his head, orange sunset clouds, the face in the lower half of the frame",
+      "deity": true,
+      "hero": true,
+      "motion": "in",
+      "tts": "छठ में डूबते सूरज को अर्घ्य क्यों देते हैं?",
+      "sub": "Chhath mein doobte Suraj ko arghya kyun dete hain?"
+    },
+    {
+      "prompt": "A huge orange setting sun sinking into a wide calm river, women devotees in bright saris standing in the water seen from behind raising bamboo soop baskets with lit diyas, golden reflections, cinematic wide shot",
+      "motion": "pan",
+      "tts": "दुनिया उगते सूरज को प्रणाम करती है। पर छठ में व्रती पहले डूबते सूरज को अर्घ्य देते हैं।",
+      "sub": "Duniya ugte Suraj ko pranaam karti hai. Par Chhath mein vrati pehle doobte Suraj ko arghya dete hain."
+    },
+    {
+      "prompt": "River ghat steps at dusk decorated with sugarcane canopies, rows of lit clay diyas and bamboo soop baskets full of fruits and thekua, devotees seen from behind, deep blue and orange sky, cinematic",
+      "motion": "in",
+      "tts": "कार्तिक शुक्ल षष्ठी की शाम संध्या अर्घ्य होता है। और सप्तमी की भोर, उगते सूरज को उषा अर्घ्य।",
+      "sub": "Kartik Shukla Shashthi ki shaam Sandhya Arghya hota hai. Aur Saptami ki bhor, ugte Suraj ko Usha Arghya."
+    },
+    {
+      "prompt": "A radiant goddess of the dawn in soft pink and gold silk rising from misty river water at sunrise with the first golden ray of the sun on her face, gentle serene expression, cinematic",
+      "deity": true,
+      "motion": "in",
+      "label": "tradition",
+      "tts": "मान्यता है कि सूर्य देव की दो शक्तियाँ हैं, उषा और प्रत्यूषा। उषा, सुबह की पहली किरण।",
+      "sub": "Manyata hai ki Surya Dev ki do shaktiyaan hain, Usha aur Pratyusha. Usha, subah ki pehli kiran."
+    },
+    {
+      "prompt": "A radiant goddess of the evening in deep orange and crimson silk standing on a river at sunset holding a glowing lamp, the last golden ray of the setting sun around her, serene, cinematic",
+      "deity": true,
+      "motion": "out",
+      "label": "tradition",
+      "tts": "और प्रत्यूषा, शाम की आख़िरी किरण। शाम का अर्घ्य प्रत्यूषा को, और भोर का अर्घ्य उषा को।",
+      "sub": "Aur Pratyusha, shaam ki aakhri kiran. Shaam ka arghya Pratyusha ko, aur bhor ka arghya Usha ko.",
+      "reveal": true
+    },
+    {
+      "prompt": "An elderly woman and a young woman seen from behind standing together in a river at golden sunrise, both raising a bamboo soop basket with a lit diya towards the rising sun, mist on the water, tender, cinematic",
+      "motion": "in",
+      "moral": true,
+      "tts": "सीख यही है, जो ढल रहा है, उसका भी उतना ही सम्मान करो, जितना उगते का।",
+      "sub": "Seekh yahi hai, jo dhal raha hai, uska bhi utna hi samman karo, jitna ugte ka."
+    },
+    {
+      "endcard": true,
+      "tts": "आज उषा अर्घ्य है। छठी मैया सबकी मनोकामना पूरी करें! कमेंट में लिखें जय छठी मैया, और लाइक, शेयर, सब्सक्राइब करें।",
+      "sub": "Aaj Usha Arghya hai. Chhathi Maiya sabki manokamna poori karein! Comment mein likhein Jai Chhathi Maiya. Like, Share, Subscribe!"
+    }
+  ],
+  "facts": [
+    {
+      "claim": "Chhath has Sandhya Arghya to the setting sun on Kartik Shukla Shashthi (15 Nov 2026) and Usha Arghya to the rising sun on Saptami (16 Nov 2026)",
+      "source": "Chhath Puja 2026 calendar",
+      "sources": [
+        "https://www.timesnowhindi.com/spirituality/chhath-puja-calendar-2026-sandhya-arghya-usha-arghya-date-time-article-156490739",
+        "https://www.etvbharat.com/hi/state/chhath-2026-sandhya-arghya-2026-date-and-time-bihar-sunset-timing-worship-method-and-importance-brs26111303802"
+      ]
+    },
+    {
+      "claim": "Belief: the morning arghya honours Usha (the first ray of the sun) and the evening arghya Pratyusha (the last ray), called Surya's shaktis / consorts",
+      "source": "Lok manyata (Chhath)",
+      "kind": "tradition",
+      "sources": [
+        "https://www.aajtak.in/art-and-culture/miscellaneous/story/chhath-festival-surya-puja-cultural-heritage-nature-worship-ntcpvp-dskc-2366560-2025-10-25",
+        "https://www.etvbharat.com/hi/state/chhath-2026-sandhya-arghya-2026-date-and-time-bihar-sunset-timing-worship-method-and-importance-brs26111303802",
+        "https://www.republicbharat.com/religion/chhath-puja-2026-so-why-do-we-worship-the-setting-sun-during-chhath-learn-about-this-mythological-story-related-to-sun-god-s-wives-usha-and-pratyusha-2026-11-13-132840"
+      ]
+    },
+    {
+      "claim": "Vratis stand in water and offer arghya with bamboo soop baskets of fruits and thekua to the setting sun first, then to the rising sun",
+      "source": "Lok parampara (Bihar, Chhath)",
+      "kind": "tradition",
+      "sources": [
+        "https://www.etvbharat.com/hi/state/chhath-2026-sandhya-arghya-2026-date-and-time-bihar-sunset-timing-worship-method-and-importance-brs26111303802",
+        "https://www.aajtak.in/art-and-culture/miscellaneous/story/chhath-festival-surya-puja-cultural-heritage-nature-worship-ntcpvp-dskc-2366560-2025-10-25"
+      ]
+    }
+  ],
+  "youtube_title": "Chhath: doobte Suraj ko arghya kyun 😱 #facts | Chhath Puja Katha | डूबते सूरज को अर्घ्य क्यों",
+  "youtube_description": "Chhath Puja 2026 Usha Arghya: duniya ugte Suraj ko pranaam karti hai, par Chhath mein pehle doobte Suraj ko arghya kyun? Usha aur Pratyusha ki manyata.\nSource: Lok parampara (Bihar, Chhath): Sandhya Arghya Kartik Shukla Shashthi, Usha Arghya Saptami; Usha aur Pratyusha ki manyata\nछठ में डूबते और उगते सूरज को अर्घ्य: शाम का अर्घ्य प्रत्यूषा को और भोर का अर्घ्य उषा को, यह लोक मान्यता है।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.\nJai Chhathi Maiya 🙏 Video achha laga ho to Like, Share aur Subscribe karein.\n#facts #story #ChhathPuja #UshaArghya #छठपूजा #Shorts",
+  "youtube_tags": "Chhath Puja 2026, छठ पूजा 2026, doobte suraj ko arghya kyun, डूबते सूरज को अर्घ्य क्यों, Usha Arghya 2026, उषा अर्घ्य, Sandhya Arghya, संध्या अर्घ्य, Usha Pratyusha, उषा प्रत्यूषा, Chhath Puja facts, छठ पूजा का रहस्य",
+  "instagram_caption": "Chhath mein doobte Suraj ko arghya kyun? 🙏\nShashthi ki shaam Sandhya Arghya, Saptami ki bhor Usha Arghya. Manyata hai: shaam ka arghya Pratyusha (aakhri kiran) ko, bhor ka Usha (pehli kiran) ko.\nChitra AI se (sanketik).\nJai Chhathi Maiya! Achha laga ho to Like, Share aur Follow karein.\n#ChhathPuja #ChhathiMaiya #Chhath2026 #UshaArghya #facts #Bihar",
+  "facebook_caption": "जय छठी मैया 🙏 आज उषा अर्घ्य किस घाट पर दिया?\nछठ में पहले डूबते सूरज को अर्घ्य, फिर उगते सूरज को। मान्यता है, शाम का अर्घ्य प्रत्यूषा को और भोर का अर्घ्य उषा को।\n#ChhathPuja #ChhathiMaiya #Bhakti"
+}

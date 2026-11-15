@@ -1,0 +1,139 @@
+{
+  "slug": "2026-11-15-facts-chhath-karna-surya-arghya",
+  "format": "facts",
+  "variant": "kyun",
+  "art": "cinematic",
+  "release": "2026-11-15",
+  "publish_at": "22:15",
+  "slot": "facts3",
+  "no_kaggle": true,
+  "bed": "devotional",
+  "topic": "chhath-karna-surya-arghya",
+  "festival": "Chhath Puja (Sandhya Arghya)",
+  "title": "Chhath aur Karna ka Rahasya",
+  "kicker": "Chhath Puja 2026",
+  "playlist": "Tyohar aur Vrat Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Chhathi Maiya",
+  "music_mood": "emotional",
+  "sub_size": 60,
+  "style": "hyper-real cinematic devotional film still, warm golden sunrise light, deep saturated colours, dramatic rim light, intricate detail, respectful, no text, no letters, no writing, no watermark, no signature",
+  "hook": "Chhath ka arghya sabse pehle kisne diya?",
+  "cover": "छठ और कर्ण",
+  "cover_lines": [
+    "छठ का अर्घ्य",
+    "सबसे पहले",
+    "किसने दिया?"
+  ],
+  "source": "Mahabharata (KM Ganguli): Vana Parva sec. 307, Udyoga Parva sec. 144, Adi Parva sec. 138; Anga = Bhagalpur-Munger (munger.nic.in); Chhath ki shuruaat Karna se: lok manyata",
+  "deity": "Surya Dev / Karna (Chhath Puja)",
+  "summary": "Surya putra Karna ki roz ki Surya pooja (Mahabharata), Anga desh = Bhagalpur-Munger; jal mein khade hokar arghya ki parampara Karna se: lok manyata",
+  "scenes": [
+    {
+      "prompt": "Dramatic cinematic close-up portrait of the Mahabharata warrior Karna facing the camera, centered in the frame, a noble handsome young man with warm brown skin and a calm proud face, shining golden armour and round golden earrings, a huge rising sun glowing behind his head like a halo, river mist behind him, the face in the lower half of the frame",
+      "hero": true,
+      "motion": "in",
+      "tts": "छठ का अर्घ्य सबसे पहले किसने दिया था?",
+      "sub": "Chhath ka arghya sabse pehle kisne diya tha?"
+    },
+    {
+      "prompt": "Women devotees in bright saris standing in a river at sunrise seen from behind, raising bamboo soop baskets with fruits and lit diyas towards the rising sun, golden mist on the water, cinematic wide shot",
+      "motion": "pan",
+      "tts": "जल में खड़े होकर सूर्य को अर्घ्य, यह परंपरा कितनी पुरानी है? जवाब महाभारत में है।",
+      "sub": "Jal mein khade hokar Surya ko arghya, yeh parampara kitni purani hai? Jawaab Mahabharat mein hai."
+    },
+    {
+      "prompt": "A young prince in royal silk placing a golden crown on the head of the warrior Karna in golden armour inside a grand ancient palace hall, courtiers watching, warm golden light, cinematic",
+      "motion": "in",
+      "tts": "सूर्य पुत्र कर्ण को दुर्योधन ने अंग देश का राजा बनाया। अंग, यानी आज के बिहार का भागलपुर, मुंगेर इलाका।",
+      "sub": "Surya putra Karna ko Duryodhan ne Ang desh ka raja banaya. Ang, yaani aaj ke Bihar ka Bhagalpur, Munger ilaka."
+    },
+    {
+      "prompt": "The warrior Karna in golden armour standing on the bank of a wide river at dawn with his back to the camera, both arms raised towards the rising sun, water dripping, golden light rays, cinematic wide shot",
+      "motion": "in",
+      "tts": "महाभारत के अनुसार कर्ण रोज़ जल से निकलकर, हाथ जोड़कर सूर्य देव की पूजा करते थे।",
+      "sub": "Mahabharat ke anusar Karna roz jal se nikalkar, haath jodkar Surya Dev ki pooja karte the."
+    },
+    {
+      "prompt": "Close view of the warrior Karna seen from behind on a river bank, golden armour glowing in strong morning sunlight, warm sunbeams falling on his back and shoulders, mist over the water, cinematic",
+      "motion": "out",
+      "tts": "और तब तक प्रार्थना करते, जब तक सूरज की किरणें उनकी पीठ को गर्म न कर दें।",
+      "sub": "Aur tab tak prarthana karte, jab tak Suraj ki kirnein unki peeth ko garm na kar dein."
+    },
+    {
+      "prompt": "A long line of devotees in a calm river at sunrise holding diyas and bamboo soop baskets towards a huge golden rising sun, a faint golden silhouette of an ancient warrior in the sky above them, epic cinematic wide shot",
+      "motion": "in",
+      "reveal": true,
+      "label": "tradition",
+      "tts": "लोक मान्यता है, कि जल में खड़े होकर अर्घ्य की यह परंपरा, कर्ण से ही शुरू हुई।",
+      "sub": "Lok manyata hai, ki jal mein khade hokar arghya ki yeh parampara, Karna se hi shuru hui."
+    },
+    {
+      "prompt": "The noble warrior Karna with warm brown skin in shining golden armour on river ghat steps at sunrise, smiling kindly as he hands a golden pot to an old Brahmin with folded hands, warm golden light, cinematic",
+      "motion": "pan",
+      "tts": "उस समय जो भी माँगता, कर्ण कभी मना नहीं करते। इसीलिए वे दानवीर कहलाए।",
+      "sub": "Us samay jo bhi maangta, Karna kabhi mana nahi karte. Isiliye ve Daanveer kehlaye."
+    },
+    {
+      "prompt": "A bamboo soop basket with fruits, thekua and a lit diya floating on a calm river at sunrise, golden rays across the water, peaceful, cinematic close shot",
+      "motion": "in",
+      "moral": true,
+      "tts": "सीख यही है, सूर्य जैसा तेज उसी को मिलता है, जो रोज़ नियम निभाए और दिल खोलकर दे।",
+      "sub": "Seekh yahi hai, Surya jaisa tej usi ko milta hai, jo roz niyam nibhaaye aur dil kholkar de."
+    },
+    {
+      "endcard": true,
+      "tts": "छठी मैया सबकी मनोकामना पूरी करें! कमेंट में लिखें जय छठी मैया, और लाइक, शेयर, सब्सक्राइब करें।",
+      "sub": "Chhathi Maiya sabki manokamna poori karein! Comment mein likhein Jai Chhathi Maiya, aur Like, Share, Subscribe karein."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "Duryodhana made Karna (son of Surya) king of Anga",
+      "source": "Mahabharata, Adi Parva, Sambhava sub-parva, sec. 138 (KM Ganguli)",
+      "sources": [
+        "https://www.swaveda.com/texts/mahabharata/1138/",
+        "https://ibiblio.org/sripedia/ebooks/mb/m01/m01139.htm",
+        "https://munger.nic.in/history/"
+      ]
+    },
+    {
+      "claim": "Anga comprised the modern Bhagalpur and Munger districts of Bihar",
+      "source": "Munger district administration (history); Bhagalpur district administration",
+      "sources": [
+        "https://munger.nic.in/history/",
+        "https://bhagalpur.nic.in/history/"
+      ]
+    },
+    {
+      "claim": "Karna, rising from the water at midday, worshipped Surya with joined hands and gave away whatever was asked at that time",
+      "source": "Mahabharata, Vana Parva, Kundala-harana sub-parva, sec. 307 (KM Ganguli)",
+      "sources": [
+        "https://www.swaveda.com/texts/mahabharata/3307/",
+        "https://ibiblio.org/sripedia/ebooks/mb/m03/m03300.htm"
+      ]
+    },
+    {
+      "claim": "Karna said his prayers until his back was heated by the rays of the sun",
+      "source": "Mahabharata, Udyoga Parva, Bhagavat-yana sub-parva, sec. 144 (KM Ganguli)",
+      "sources": [
+        "https://ibiblio.org/sripedia/ebooks/mb/m05/m05144.htm",
+        "https://www.swaveda.com/texts/mahabharata/5144/"
+      ]
+    },
+    {
+      "claim": "Folk belief links the Chhath / Surya arghya tradition to Karna's sun worship (not a Mahabharata statement)",
+      "source": "Lok manyata (Bihar, Chhath)",
+      "kind": "tradition",
+      "sources": [
+        "https://www.aajtak.in/religion/worship/story/chhath-puja-2017-surya-pujan-significance-mahabharat-dropadi-tdha-468012-2017-10-23",
+        "https://www.etvbharat.com/hi/state/chhath-2026-sandhya-arghya-2026-date-and-time-bihar-sunset-timing-worship-method-and-importance-brs26111303802"
+      ]
+    }
+  ],
+  "youtube_title": "Chhath ka arghya pehle kisne diya 😱 #facts | Karna Katha | छठ और कर्ण का रहस्य",
+  "youtube_description": "Chhath Puja 2026: Surya putra Karna aur Chhath ka connection. Mahabharata mein Karna ki roz ki Surya pooja, Ang desh (aaj ka Bhagalpur-Munger, Bihar), aur jal mein khade hokar arghya ki parampara ki lok manyata.\nSource: Mahabharata (KM Ganguli): Vana Parva sec. 307, Udyoga Parva sec. 144, Adi Parva sec. 138; Anga = Bhagalpur-Munger (munger.nic.in); Chhath ki shuruaat Karna se: lok manyata\nछठ और कर्ण की कथा: सूर्य पुत्र कर्ण की सूर्य उपासना महाभारत में है; छठ की शुरुआत कर्ण से होना लोक मान्यता है।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.\nJai Chhathi Maiya 🙏 Video achha laga ho to Like, Share aur Subscribe karein.\n#facts #story #ChhathPuja #Karna #छठपूजा #Shorts",
+  "youtube_tags": "Chhath Puja 2026, छठ पूजा 2026, Chhath aur Karna, छठ और कर्ण, Karna Surya pooja, कर्ण की सूर्य पूजा, Chhath ki shuruaat, छठ की शुरुआत, Surya arghya, सूर्य अर्घ्य, Ang desh Bhagalpur, अंग देश, Chhath Puja facts",
+  "instagram_caption": "Chhath ka arghya sabse pehle kisne diya? 🙏\nMahabharata: Surya putra Karna roz jal se nikalkar Surya Dev ki pooja karte the (Vana Parva 307, Udyoga Parva 144). Karna Ang desh (aaj ka Bhagalpur-Munger) ke raja the. Chhath ki shuruaat Karna se hui, yeh lok manyata hai.\nChitra AI se (sanketik).\nJai Chhathi Maiya! Achha laga ho to Like, Share aur Follow karein.\n#ChhathPuja #ChhathiMaiya #Chhath2026 #facts #Karna #Bihar",
+  "facebook_caption": "जय छठी मैया 🙏 आपके यहाँ छठ का अर्घ्य किस नदी या पोखर पर होता है?\nमहाभारत में सूर्य पुत्र कर्ण रोज़ जल से निकलकर सूर्य देव की पूजा करते थे। अंग देश, आज का भागलपुर-मुंगेर। छठ की शुरुआत कर्ण से होना लोक मान्यता है।\n#ChhathPuja #ChhathiMaiya #Bhakti"
+}
