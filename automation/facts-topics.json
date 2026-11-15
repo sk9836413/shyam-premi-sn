@@ -4263,6 +4263,65 @@
     ],
     "added": "2026-11-15"
    }
+  },
+  {
+   "id": "radar-bharat-paduka",
+   "p": 2,
+   "deity": "ram",
+   "name": "Bharat aur Ram ki paduka",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "art_hint": "illustrated",
+   "hook": "Bharat ne Ram se kya maanga tha?",
+   "hook_hi": "भरत ने राम से आख़िर क्या माँगा था?",
+   "angle": "Valmiki Ramayan, Ayodhya Kand: Bharat comes to Chitrakoot to bring Ram back; Ram will not break his word to Dashrath; Bharat asks for Ram's paduka (sandals) and carries them back as the seat of the kingdom. Say only what the text says, and what Bharat did with them during the exile.",
+   "cite": {
+    "work": "TODO: verify (likely Valmiki Ramayan)",
+    "ref": "TODO: verify (likely Ayodhya Kand, Bharat-Ram milan sargas)"
+   },
+   "sources": [],
+   "keywords": [
+    "bharat ram",
+    "ram paduka"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-15",
+    "refs": [
+     "https://youtube.com/shorts/kKVfKK2z8sQ"
+    ],
+    "added": "2026-11-15"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-navratri-kanya-poojan",
+   "p": 2,
+   "deity": "devi",
+   "name": "Navratri mein Kanya Poojan",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "tradition",
+   "art_hint": "infographic-2d",
+   "variant_only": "kyun",
+   "hook": "Navratri mein kanya poojan kyun?",
+   "hook_hi": "नवरात्रि में कन्या पूजन क्यों होता है?",
+   "angle": "Tradition, not a verse: kanya poojan is parampara in Navratri (ashtami and navami), and the belief is that the girl stands for Maa's form. Check the Devi Mahatmya (Durga Saptashati, Markandeya Purana) for what the text says about the forms, and label the kanya custom as tradition, never as a line of the text.",
+   "cite": {
+    "work": "TODO: verify (likely Devi Mahatmya, Markandeya Purana)",
+    "ref": "TODO: verify (likely Durga Saptashati, chapter on the forms)"
+   },
+   "sources": [],
+   "keywords": [
+    "kanya poojan",
+    "navratri kanya"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-15",
+    "refs": [
+     "https://youtube.com/shorts/MDGMPRyzrEQ"
+    ],
+    "added": "2026-11-15"
+   },
+   "status": "idea"
   }
  ]
 }
