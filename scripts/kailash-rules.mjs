@@ -36,6 +36,29 @@ const WEAK_OPENER_DEV = /^(नमस्ते|नमस्कार|प्रण
 const GENTLE_BAN = /\b(run|running|fight|fighting|dance|dancing|battle|explod\w*|lightning|fast|fly|flying|jump\w*)\b/i;
 const URL = /^https?:\/\//;
 
+// Names the Whisper gate (large-v3-turbo) hears wrongly in some voices: measured 15 Nov 2026 on Kaggle, 3 voices x 12
+// test sentences (E:\SK\kailash-pilot\workartest). The gate is never loosened, so the script avoids them instead:
+// गणेश right only in the Swara voice (Parvati 2/2; Madhur deep and child heard "गनेश" 4/4) -> others say "गजानन" (3/3);
+// कार्तिकेय 0/6 ("कार्ति के", "कार्थिके"), स्कंद 0/3, गणपति 0/3 ("गणपती") -> never spoken (titles/descriptions are fine).
+// पार्वती 3/3, नंदी 3/3, महादेव, गजानन 3/3 pass.
+export const NAME_VOICE = [
+  { word: 'गणेश', ok: (v) => /Swara/.test(v.edge || ''), msg: 'only a Swara voice (Mata Parvati) says "गणेश" (Whisper hears the Madhur voices as "गनेश"): the others say "गजानन"' },
+  { word: 'कार्तिकेय', ok: () => false, msg: 'never speak "कार्तिकेय" (Whisper 0/6): address him as "पुत्र", "भैया" or "मेरे लाल"; the name stays in titles and descriptions' },
+  { word: 'स्कंद', ok: () => false, msg: 'never speak "स्कंद" (Whisper 0/3)' },
+  { word: 'गणपति', ok: () => false, msg: 'never speak "गणपति" (Whisper writes "गणपती"): say "गजानन"' },
+];
+
+/** Name/voice problems of the spoken lines (lines: [{who, tts}], lib = cast characters). */
+export function nameVoiceProblems(lines, lib = {}) {
+  const out = [];
+  lines.forEach((l, i) => {
+    for (const r of NAME_VOICE) {
+      if ((l.tts || '').includes(r.word) && !r.ok(lib[l.who]?.voice || {})) out.push(`line ${i + 1} (${l.who}): ${r.msg}`);
+    }
+  });
+  return out;
+}
+
 /** Speaking-time estimate (s) of one line: edge-tts Madhur ~13.6, Swara ~11.6 Devanagari characters a second at +0%,
  *  scaled by the character's rate, + 0.45 s for the pause (measured for the Kalyug/movie voices). */
 export function lineSeconds(tts, voice = {}) {
@@ -186,6 +209,7 @@ export function checkKailashSpec(s, ctx = {}) {
   need(said.filter((l) => l.who === s.lead).length >= 2, 'the lead deity speaks at least 2 lines');
   need(n >= LINES.min && n <= LINES.max, `${LINES.min}-${LINES.max} spoken lines incl. the endcard (has ${n})`);
   need(secs >= LEN.min && secs <= LEN.max, `estimated length ${Math.round(secs)} s; an episode is ${LEN.min}-${LEN.max} s`);
+  P.push(...nameVoiceProblems(said, lib));
   const names = Array.isArray(s.names) ? s.names : [];
   for (const d of DEITY_NAMES) {
     if (said.some((l) => (l.tts || '').includes(d))) need(names.includes(d), `names: add "${d}" (it is spoken: the Whisper gate checks it)`);

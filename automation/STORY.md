@@ -909,6 +909,11 @@ subtitle), mood?}`), `endcard` `{who: a deity, tts, sub}` = the moral in one lin
   `youtube_tags` (8-15, some Devanagari); `instagram_caption` (Roman); `facebook_caption` (the template of section 3:
   #Mahadev #HarHarMahadev +1).
 
+**Names Whisper mishears (measured 15 Nov 2026; the gate is never loosened, the script avoids them):** only Mata
+Parvati (Swara voice) says "गणेश"; the Madhur voices (Mahadev, Mushak, Narad, Kartikeya, Ganesh) say "गजानन". Never
+speak "कार्तिकेय", "स्कंद" or "गणपति" (Whisper 0/6, 0/3, "गणपती"): address Kartikeya as "पुत्र", "भैया" or "मेरे लाल";
+his name stays in the title and description. "महादेव", "पार्वती", "नंदी", "गजानन" pass. The validator checks this.
+
 **Quality gate (automatic; a failed check publishes nothing and logs why in published.md):** Whisper must hear every
 deity name exactly (never loosened); at least half of the lip-syncable close-ups really lip-synced after the
 beard/blur reject gate; character consistency against the master sheet (base clips vs master portraits, scene faces

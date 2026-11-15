@@ -2,7 +2,7 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { checkKailashSpec, coverProblems, descriptionProblems, lineSeconds, loadContext, titleProblems, toneProblems } from './kailash-rules.mjs';
+import { checkKailashSpec, nameVoiceProblems, coverProblems, descriptionProblems, lineSeconds, loadContext, titleProblems, toneProblems } from './kailash-rules.mjs';
 
 const pilot = JSON.parse(fs.readFileSync('story/kailash/pilot-ep1.json', 'utf8'));
 const ctx = { ...loadContext('.'), hasPortrait: () => true };
@@ -120,8 +120,8 @@ describe('length, lines, hook, endcard, names', () => {
   });
   test('a spoken deity name must be in names (Whisper gate)', () => {
     const s = clone(pilot);
-    s.names = s.names.filter((n) => n !== 'कार्तिकेय');
-    assert.ok(has(run(s), /names: add "कार्तिकेय"/));
+    s.names = s.names.filter((n) => n !== 'महादेव');
+    assert.ok(has(run(s), /names: add "महादेव"/));
   });
   test('episode_id must be in the bank; festival episodes air in their window', () => {
     const s = clone(pilot);
@@ -212,5 +212,21 @@ describe('schedule helpers (scripts/kailash-plan.mjs)', async () => {
     const used = usedIds('2026-12-10 | kailash | 2026-12-10-kailash-parvati-tapasya | Parvati | x\n', [], bank);
     assert.ok(used.has('parvati-tapasya'));
     assert.notEqual(pickEpisode('2026-12-12', bank, used).id, 'parvati-tapasya');
+  });
+});
+
+describe('names Whisper mishears in some voices (measured; the gate itself is never loosened)', () => {
+  test('गणेश only in the Swara voice; कार्तिकेय / स्कंद / गणपति never spoken', () => {
+    const lib = ctx.lib;
+    assert.deepEqual(nameVoiceProblems([{ who: 'parvati', tts: 'मेरे गणेश ने कहा।' }], lib), []);
+    assert.equal(nameVoiceProblems([{ who: 'mahadev', tts: 'सच कहा, गणेश।' }], lib).length, 1);
+    assert.equal(nameVoiceProblems([{ who: 'parvati', tts: 'कार्तिकेय, आओ।' }], lib).length, 1);
+    assert.equal(nameVoiceProblems([{ who: 'mushak', tts: 'गणपति बप्पा!' }], lib).length, 1);
+    assert.deepEqual(nameVoiceProblems([{ who: 'mahadev', tts: 'गजानन, तुमने ठीक कहा।' }], lib), []);
+  });
+  test('the rule is part of the spec check', () => {
+    const s = clone(pilot);
+    s.scenes[3].lines[2].tts = 'सच कहा, गणेश। यह ज्ञान-फल तुम्हारा हुआ।';
+    assert.ok(has(run(s), /गजानन/));
   });
 });
