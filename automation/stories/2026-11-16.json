@@ -6,17 +6,18 @@
       "type": "video",
       "source": "2026-11-16-morning-chhath-usha-arghya-geet",
       "fb": {
-        "claim": {
-          "run": "43799873878.1",
-          "at": "2026-11-16T03:46:17.035Z"
-        }
+        "id": "39952491377728826",
+        "at": "2026-11-16T03:46:47.007Z"
       },
       "ig": {
-        "claim": {
-          "run": "43799873878.1",
-          "at": "2026-11-16T03:46:17.035Z"
-        }
-      }
+        "id": "18141290735504887",
+        "at": "2026-11-16T03:47:41.245Z"
+      },
+      "seconds": {
+        "source": 89,
+        "story": 59
+      },
+      "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-16-video.mp4"
     }
   ]
 }
