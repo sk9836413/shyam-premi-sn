@@ -18,6 +18,23 @@
         "story": 59
       },
       "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-16-video.mp4"
+    },
+    {
+      "key": "morning",
+      "type": "image",
+      "source": "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-16-1-1.jpg",
+      "fb": {
+        "claim": {
+          "run": "43805810882.1",
+          "at": "2026-11-16T04:44:14.127Z"
+        }
+      },
+      "ig": {
+        "claim": {
+          "run": "43805810882.1",
+          "at": "2026-11-16T04:44:14.127Z"
+        }
+      }
     }
   ]
 }
