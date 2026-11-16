@@ -138,3 +138,4 @@
 - 2026-11-16-morning-chhath-usha-arghya-geet | instagram: https://www.instagram.com/reel/Dfya6FOhn3x/
 - 2026-11-16-facts-chhath-doobte-suraj-arghya-kyun | instagram: https://www.instagram.com/reel/DfybKEVTQ0k/
 - 2026-11-16-facts-chhath-chhathi-naam-kyun | instagram: https://www.instagram.com/reel/DfybQLrxaeR/
+- 2026-11-16-long-chhath-surya-mandir-parana-niyam | claim: 2026-11-16 long by run 43799871453.1 at 2026-11-16T04:19:35.613Z
