@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-17",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-17T01:00:00.000Z",
+      "igAt": "2026-11-17T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-17-1-1.jpg"
+      ],
+      "caption": "गोपाष्टमी की हार्दिक शुभकामनाएं 🐄\nAaj ka din Gau Mata aur Bhagwan Gopal ki seva ko samarpit hai.\nManyata hai ki is din Shri Krishna ne pehli baar gaayein charane ki leela shuru ki thi.\nगौ माता और गोपाल जी की कृपा सदा बनी रहे 🙏\nAapke ghar ya gaon mein Gopashtami par Gau Mata ki pooja kaise hoti hai?\n\n🙏 Shyam Janmotsav (20 Nov) ka card apne naam aur photo ke saath banayein, free: https://sk9836413.github.io/shyam-premi-sn/janmotsav/?utm_source=instagram&utm_medium=social&utm_campaign=janmotsav2026&utm_content=festival\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#Gopashtami #GauMata #JaiShreeKrishna #Gopal #Krishna #Bhakti #Braj",
+      "fbCaption": "गोपाष्टमी की शुभकामनाएं 🙏 गौ माता की सेवा से मन को शांति मिलती है। आपके यहां गोपाष्टमी पर गौ पूजा कैसे होती है?\nमान्यता है कि आज के दिन श्रीकृष्ण ने पहली बार गौ चारण की लीला शुरू की थी।\nगौ माता और गोपाल जी की कृपा सदा बनी रहे।\n\n🙏 Shyam Janmotsav (20 Nov) ka card apne naam aur photo ke saath banayein, free: https://sk9836413.github.io/shyam-premi-sn/janmotsav/?utm_source=facebook&utm_medium=social&utm_campaign=janmotsav2026&utm_content=festival\nChitra AI dwara banaya gaya hai (sanketik).\n\n#Gopashtami #GauMata #JaiShreeKrishna",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1608680727941558",
+        "scheduled": "2026-11-17T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-17T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

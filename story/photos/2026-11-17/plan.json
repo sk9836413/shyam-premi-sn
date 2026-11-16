@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-17",
+  "weekday": "Mangalvar",
+  "festival": "गौ माता और गोपाल जी की कृपा सदा बनी रहे",
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-17T01:00:00.000Z",
+      "igAt": "2026-11-17T03:43:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "gopashtami",
+        "name": "Gopashtami (status Shorts: status 11-17 00:30).",
+        "big": "गोपाष्टमी",
+        "line": "की हार्दिक शुभकामनाएं 🐄",
+        "blessing": "गौ माता और गोपाल जी की कृपा सदा बनी रहे",
+        "tags": [
+          "#Gopashtami",
+          "#GauMata",
+          "#JaiShreeKrishna"
+        ]
+      },
+      "flux": "Little blue-skinned Bal Krishna with a peacock-feather crown and a yellow silk pitambar standing beside a white cow decorated for Gopashtami puja with a red kumkum tilak, a marigold garland and a small brass bell, her calf nearby, a brass puja thali with a lit diya, a green Braj pasture at sunrise, golden light",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    }
+  ]
+}
