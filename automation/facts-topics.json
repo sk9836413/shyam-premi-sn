@@ -4569,6 +4569,97 @@
     "added": "2026-11-15"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-durga-visarjan-kyun",
+   "p": 2,
+   "deity": "devi",
+   "name": "Maa Durga (visarjan)",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "tradition",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Maa Durga ka visarjan kyun?",
+   "hook_hi": "माँ दुर्गा का विसर्जन क्यों?",
+   "angle": "Visarjan kya hai aur pratima jal mein kyun padharati hai: rivaaj, shraddha aur manyata ka bhaav. Kisi granth ka dava na karein; parampara ke saath 'manyata hai' kahein aur source check karein.",
+   "cite": {
+    "work": "TODO: verify (Durga Puja visarjan custom: find the text or the local tradition)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "Durga visarjan",
+    "Navratri ka ant"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-16",
+    "refs": [
+     "https://youtube.com/shorts/J3bRy8f_lyw",
+     "https://youtube.com/shorts/rqH7xW-Ir7E"
+    ],
+    "added": "2026-11-16"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-chunari-kyun",
+   "p": 2,
+   "deity": "devi",
+   "name": "Maa Devi (chunari)",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "tradition",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Mata ko chunari kyun chadhate?",
+   "hook_hi": "माता को चुनरी क्यों चढ़ाते हैं?",
+   "angle": "Devi mandiron mein chunari chadhane ka rivaaj: suhaag, shraddha aur shakti ka pratik maana jaata hai (manyata). Mandir ka naam aur sthaaneey parampara source se check karke batana; kisi granth ka dava na karein.",
+   "cite": {
+    "work": "TODO: verify (temple or local custom source for the chunari offering)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "Mata ki chunari",
+    "Devi mandir"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-16",
+    "refs": [
+     "https://youtube.com/shorts/MDGMPRyzrEQ"
+    ],
+    "added": "2026-11-16"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-ram-samudra-baan",
+   "p": 2,
+   "deity": "ram",
+   "name": "Shri Ram (samudra)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "astra",
+   "variant_only": "kyun",
+   "hook": "Ram ne samudra par baan kyun uthaya?",
+   "hook_hi": "राम ने समुद्र पर बाण क्यों उठाया?",
+   "angle": "Samudra se raasta maanga, na mila to Ram ne dhanush par astra chadhaya; tab samudra prakat hua aur setu ka upaay bataya. Valmiki Ramayan Yuddha Kanda ya Ramcharitmanas mein kaun sa prasang hai, check karke likhna.",
+   "cite": {
+    "work": "TODO: verify (likely Valmiki Ramayan, Yuddha Kanda, sarga 21-22)",
+    "ref": "TODO: verify sarga"
+   },
+   "sources": [],
+   "keywords": [
+    "Ram Setu",
+    "Samudra par baan"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-16",
+    "refs": [
+     "https://youtube.com/shorts/VjFNL_6Slzg"
+    ],
+    "added": "2026-11-16"
+   },
+   "status": "idea"
   }
  ]
 }

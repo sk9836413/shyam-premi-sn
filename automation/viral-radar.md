@@ -10,6 +10,39 @@ Which devotional Shorts are TRULY viral in India each week, and why (scripts/vir
 - Ideas go into the banks as "status": "idea" with a citation to verify (`node scripts/topic-banks.mjs promote`).
   Our own words only: titles and scripts of other channels are never copied.
 
+## Week of 2026-11-16
+
+Runs: 2026-11-15 sweep, 2026-11-16 sweep; quota used 1729 units (cap 900/day).
+
+### Top 10 truly viral references
+
+| # | Title | Channel | Views | x median | Age | Length | Hook | Format | Deity | Art / cover |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | [बूढ़ी माँ की पुकार सुनकर खुद प्रकट हुईं माँ दुर्गा 😭🙏 / माँ की असीम ](https://youtube.com/shorts/Is6wfUsW4js) | BhaktiVerse 3D | 32.4 L | 1855.5 | 6.8 d | 44 s | emotional-motivational line | katha | devi | cinematic: glowing Durga in red-gold sari, golden light burs |
+| 2 | [श्री राम जन्मभूमि अयोध्या का नजारा🚩/अयोध्या #trandingshorts #shorts #](https://youtube.com/shorts/6h2vU8m5iQw) | Bhakti Soothingly | 31.3 L | 957.8 | 7 d | 17 s | name / plain | darshan | ram | real-photo: drone shot of the lit temple at dusk, two-line D |
+| 3 | [बागेश्वर महाराज के बयान पर मचा बवाल! राम जी के 5 पिता! शास्त्रों में म](https://youtube.com/shorts/Um4CHpY6rgA) | SARVESHWAR SHARAN  | 24.3 L | 923.3 | 5.5 d | 156 s | other question | other | ram | text-card: 2 real photos of speakers, Ram illustration, 3 te |
+| 4 | [जल में समा गईं माँ दुर्गा, भक्तों की आँखें हुईं नम 😢🙏 / जय माता दी �](https://youtube.com/shorts/cmbAxtdk4a8) | Manish  | 9.0 L | 876.2 | 6.4 d | 11 s | emotional-motivational line | other | devi | cinematic: AI Durga statue half in river, marigold, text ban |
+| 5 | [जोड़ी हो तो ऐसी हो  / Jodi Ho To Aisi Ho / Radha Krishna Bhajan #short](https://youtube.com/shorts/8OKh9uSUeHg) | Aparna Dev Darshan  | 10.4 L | 620.8 | 3.7 d | 20 s | name / plain | loop | krishna | cartoon-3d: AI Radha-Krishna by a lotus pond with koi and a  |
+| 6 | [माँ दुर्गा का जल में दिव्य मिलन 🙏😭 / विसर्जन का भावुक दृश्य / Jai Ma](https://youtube.com/shorts/J3bRy8f_lyw) | Manish  | 4.5 L | 440.3 | 5.9 d | 11 s | emotional-motivational line | other | devi | cinematic: AI Durga statues in water, marigold petals, cryin |
+| 7 | [विसर्जन के बाद माँ दुर्गा की अनोखी कहानी 😢🌺 / माँ की विदाई का भावुक ](https://youtube.com/shorts/rqH7xW-Ir7E) | Manish  | 4.6 L | 352.1 | 6.9 d | 11 s | emotional-motivational line | katha | devi | cinematic: close-up of a crying Durga statue, red and gold,  |
+| 8 | [माता रानी का चमत्कार! 🙏❤️ #Shorts #navratri #durga #maa #ai #animatio](https://youtube.com/shorts/MDGMPRyzrEQ) | Bhakti Leela Dham | 30.0 L | 181 | 6 d | 21 s | संत / लोक देवता चमत्कार | other | devi | cartoon-3d: dark tiger on the ground, crowned weeping goddes |
+| 9 | [500 वर्ष का बनवास जो बिताया है चलो अयोध्या श्री राम ने बुलाया है#jaysh](https://youtube.com/shorts/viy126XoFdM) | mmvines | 15.4 L | 113.2 | 3 d | 59 s | emotional-motivational line | other | ram | other: unrelated stunt: a man lying on a road, giant cookie  |
+| 10 | [राधा की तमन्ना🙏🏻#radhakrishna #status #krishnastatus#ytshorts #bhaja](https://youtube.com/shorts/_AvicfDlCs0) | Reena Desi jaatni  | 9.1 L | 45 | 5 d | 11 s | name / plain | loop | krishna | cinematic: AI Krishna pouring water for Radha, diyas and pet |
+
+### What's working
+
+- 34 truly viral devotional Shorts in 7 days (>= 100k or 30k in 3 days, >= 5x their channel's median).
+- Hooks: name / plain 22, emotional-motivational line 7, other question 1, संत / लोक देवता चमत्कार 1.
+- Formats: other 15, katha 11, loop 4, facts 2; deities: ram 14, krishna 11, devi 6, shiv 2.
+- Art: cinematic 8, other 3, real-photo 2, cartoon-3d 2; length: <=30 s 22, 31-60 s 6, 121-180 s 5, 61-120 s 1.
+- Best: "बूढ़ी माँ की पुकार सुनकर खुद प्रकट हुईं माँ दुर्गा 😭🙏 / मा" 32.4 L (1855.5x, emotional-motivational line); "श्री राम जन्मभूमि अयोध्या का नजारा🚩/अयोध्या #trandingshorts" 31.3 L (957.8x, name / plain); "बागेश्वर महाराज के बयान पर मचा बवाल! राम जी के 5 पिता! शास्त" 24.3 L (923.3x, other question).
+- New ideas in the banks (status "idea", citation to verify): facts:radar-bharat-paduka, facts:radar-navratri-kanya-poojan, kailash:radar-namak-kam-pyaar-zyada, pov:radar-ghamand-vinamrata, facts:radar-durga-visarjan-kyun, facts:radar-chunari-kyun, facts:radar-ram-samudra-baan, kailash:radar-ganesh-vidai-mata-roi, pov:radar-kuch-chhoot-jaye.
+
+### Consistently strong channels (median >= 40k: style to learn from, not outliers)
+
+- Factorial xyz: "श्री राम के क्रोध से कांप उठा समुद्र! 🌊🙏 | रामायण की अद्भु" 6.3 L (channel median 7.1 L)
+- Priyansh Shukla: "जब बाली ने खींची हनुमान जी की आधी शक्ति! 😱" 9.1 L (channel median 6.0 L)
+
 ## Week of 2026-11-15
 
 Runs: 2026-11-15 sweep; quota used 865 units (cap 900/day).
