@@ -147,3 +147,4 @@
 - 2026-11-17-facts-khatu-baba-ke-naam | youtube: https://youtube.com/shorts/Lx56n9u4W5s (public at 2026-11-17T11:30:00.000Z) | facts story/cinematic, 120 s, made 16 Nov 11:13 IST | social: fb: https://www.facebook.com/388779648425633/videos/1892300118612159 (scheduled 2026-11-17T11:30:00.000Z) | ig: pending 2026-11-17T11:30:00.000Z
 - 2026-11-18-movie-khatu-shyam-amar-katha-part-2 | claim: 2026-11-18 movie by run 43814062726.1 at 2026-11-16T07:30:04.126Z
 - 2026-11-18-movie-khatu-shyam-amar-katha-part-2 | youtube: https://youtube.com/shorts/5M-V4IzEH10 (public at 2026-11-18T01:30:00.000Z) | movie part (125.35 s, clips 4, lip-sync 12), made 16 Nov 13:00 IST | social: fb: https://www.facebook.com/388779648425633/videos/1677617113953854 (scheduled 2026-11-18T02:00:00.000Z) | ig: pending 2026-11-18T01:30:00.000Z
+- 2026-11-16-evening-chhath-parana-geet | instagram: https://www.instagram.com/reel/Dfzd4SmJmKo/
