@@ -149,3 +149,4 @@
 - 2026-11-18-movie-khatu-shyam-amar-katha-part-2 | youtube: https://youtube.com/shorts/5M-V4IzEH10 (public at 2026-11-18T01:30:00.000Z) | movie part (125.35 s, clips 4, lip-sync 12), made 16 Nov 13:00 IST | social: fb: https://www.facebook.com/388779648425633/videos/1677617113953854 (scheduled 2026-11-18T02:00:00.000Z) | ig: pending 2026-11-18T01:30:00.000Z
 - 2026-11-16-evening-chhath-parana-geet | instagram: https://www.instagram.com/reel/Dfzd4SmJmKo/
 - 2026-11-17-status-gopashtami | youtube: https://youtube.com/shorts/1H9-jlUaOuY (public at 2026-11-16T19:00:00.000Z) | status variant, made 16 Nov 19:30 IST | social: fb: https://www.facebook.com/reel/1208268765211741 (scheduled 2026-11-16T19:00:00.000Z) | ig: pending 2026-11-16T19:00:00.000Z
+- 2026-11-19-movie-khatu-shyam-amar-katha-part-3 | claim: 2026-11-19 movie by run 43908021465.1 at 2026-11-16T19:15:02.466Z
