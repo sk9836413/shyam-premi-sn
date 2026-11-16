@@ -77,3 +77,4 @@
 2026-11-17 | movie | 2026-11-17-movie-khatu-shyam-amar-katha-part-1 | Khatu Shyam ji (Barbarik) | Movie Part 1/4: Barbarik ka janm, maa Morvi se yudh-kala, teen baan (manyata: Shiv ji), haare ka sahara banne ka vachan, raaste mein Brahmin
 2026-11-16 | long | 2026-11-16-long-chhath-surya-mandir-parana-niyam | Surya Dev / Chhathi Maiya (Chhath Puja, Usha Arghya) | Chhath: Sandhya aur Usha Arghya ka mahatva, Bihar ke Deo Surya Mandir, parana aur Chhath ke niyam (manyata)
 2026-11-16 | evening | 2026-11-16-evening-chhath-parana-geet | Chhath Puja (Parana) | Chhath bhajan Short "Chhath Parana Geet 2026", song bhajan-chhath26g-08-devi (AI-sung original, whole soundtrack), public 19:00 IST
+2026-11-17 | facts | 2026-11-17-facts-khatu-baba-ke-naam | Khatu Shyam ji (Barbarik) | Baba Shyam ke 5 naam: Morvinandan, Haare ka Sahara, Sheesh ke Daani, Shyam, Lakhdatar, aur Skanda Purana ka chhupa naam Suhriday (variant story, art cinematic, 120 s)

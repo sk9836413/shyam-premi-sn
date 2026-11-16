@@ -144,3 +144,4 @@
 - 2026-11-16-evening-chhath-parana-geet | claim: 2026-11-16 evening by run 43808790515.1 at 2026-11-16T05:18:31.666Z
 - 2026-11-16-evening-chhath-parana-geet | youtube: https://youtube.com/shorts/gUsdnqIbYgE (public at 2026-11-16T13:30:00.000Z) | bhajan Short, made 16 Nov 10:48 IST | social: fb: https://www.facebook.com/reel/1150161681109540 (scheduled 2026-11-16T15:00:00.000Z) | ig: pending 2026-11-16T13:30:00.000Z
 - 2026-11-17-facts-khatu-baba-ke-naam | claim: 2026-11-17 facts by run 43808790515.1 at 2026-11-16T05:43:32.467Z
+- 2026-11-17-facts-khatu-baba-ke-naam | youtube: https://youtube.com/shorts/Lx56n9u4W5s (public at 2026-11-17T11:30:00.000Z) | facts story/cinematic, 120 s, made 16 Nov 11:13 IST | social: fb: https://www.facebook.com/388779648425633/videos/1892300118612159 (scheduled 2026-11-17T11:30:00.000Z) | ig: pending 2026-11-17T11:30:00.000Z
