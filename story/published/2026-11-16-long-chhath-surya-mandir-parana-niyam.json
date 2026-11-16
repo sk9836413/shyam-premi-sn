@@ -1,0 +1,482 @@
+{
+  "slug": "2026-11-16-long-chhath-surya-mandir-parana-niyam",
+  "format": "long",
+  "title": "Chhath: Surya Mandir, Parana aur Niyam",
+  "kicker": "Chhath · Usha Arghya",
+  "playlist": "Surya Dev ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Chhath: Sandhya aur Usha Arghya",
+  "source": "Lok katha (Chhath parampara) aur Bihar ke Surya mandiron ki lok manyataon ke anusar",
+  "deity": "Surya Dev / Chhathi Maiya (Chhath Puja, Usha Arghya)",
+  "summary": "Chhath: Sandhya aur Usha Arghya ka mahatva, Bihar ke Deo Surya Mandir, parana aur Chhath ke niyam (manyata)",
+  "thumbnail": {
+    "image": 0,
+    "focus": "center",
+    "text": "Surya Mandir aur Parana",
+    "hi": "छठ: सूर्य मंदिर और पारण"
+  },
+  "images": [
+    {
+      "prompt": "close-up portrait of radiant Surya Dev, the sun god, serene face, golden crown and sun-ray halo, warm orange and gold glow, wide devotional scene, face in the middle"
+    },
+    {
+      "prompt": "wide scene of a river ghat at sunset, women in bright sarees standing knee-deep in water holding bamboo soop baskets with offerings, glowing orange setting sun, floating diyas, families on the bank"
+    },
+    {
+      "prompt": "wide scene of a river at dawn, devotees standing in the water with folded hands as the golden sun rises, soft mist over the water, bamboo baskets on the bank, serene"
+    },
+    {
+      "prompt": "Surya Dev riding a golden chariot pulled by seven horses across a glowing sky, warm golden rays, majestic, wide cosmic scene"
+    },
+    {
+      "prompt": "ancient stone sun temple of Bihar with a tall tower, its entrance facing the glowing setting sun in the west, a stepped holy tank in front with small devotees, warm evening light, wide scene, temple in the middle"
+    },
+    {
+      "prompt": "divine architect Vishwakarma shaping stone pillars of a temple under a starry night sky, golden divine glow, tools in hand, legendary scene, wide, subject in the middle"
+    },
+    {
+      "prompt": "old weathered stone sun temple beside a village pond in rural India, morning mist, a few villagers with diyas, quiet and peaceful, wide scene"
+    },
+    {
+      "prompt": "grand ancient stone sun temples at sunrise, one shaped like a huge chariot with carved wheels and horses, another with carved pillars and a stepped water tank, golden sky, wide scene"
+    },
+    {
+      "prompt": "close-up of a bamboo soop with thekua sweets, bananas, sugarcane and lit clay diyas on a river bank at sunrise, warm golden light, shallow depth of field"
+    },
+    {
+      "prompt": "tired but happy woman devotee in a yellow saree at the river bank at dawn, family gently offering her prasad and water, loving faces, soft golden light, emotional"
+    },
+    {
+      "prompt": "clean village home courtyard in the morning, a woman cooking pumpkin and rice on a clay chulha with mango wood, brass utensils kept neatly apart, warm light"
+    },
+    {
+      "prompt": "three generations of a family at a river ghat at dawn with folded hands facing the rising sun, hundreds of diyas on the water, peaceful and emotional, wide scene"
+    },
+    {
+      "prompt": "village courtyard at dusk, women making jaggery kheer and rotis on a clay chulha for the Kharna prasad, brass plates, banana leaves, warm firelight, peaceful"
+    },
+    {
+      "prompt": "golden sunrise over a calm river with no people, glowing horizon, soft mist, gentle ripples reflecting an orange sky, wide peaceful scene"
+    }
+  ],
+  "chapters": [
+    {
+      "title": "Chhath ka Sawaal",
+      "scenes": [
+        {
+          "img": 0,
+          "focus": "center",
+          "motion": "in",
+          "tts": "छठ में डूबते सूरज को भी अर्घ्य? और उगते को भी? ऐसा क्यों होता है?",
+          "sub": "Chhath mein doobte Suraj ko bhi arghya? Aur ugte ko bhi? Aisa kyon hota hai?"
+        },
+        {
+          "img": 2,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "आज सुबह उषा अर्घ्य हुआ। अब व्रती पारण करेंगे, और छठ का व्रत पूरा होगा।",
+          "sub": "Aaj subah Usha Arghya hua. Ab vrati parana karenge, aur Chhath ka vrat poora hoga."
+        },
+        {
+          "img": 13,
+          "focus": "top",
+          "motion": "out",
+          "tts": "इस कथा में जानिए, दोनों अर्घ्य का महत्व, बिहार के सूर्य मंदिर, पारण और छठ के नियम।",
+          "sub": "Is katha mein jaaniye, dono arghya ka mahatva, Bihar ke Surya mandir, parana aur Chhath ke niyam.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Doobta aur Ugta Suraj",
+      "scenes": [
+        {
+          "img": 1,
+          "focus": "center",
+          "motion": "in",
+          "tts": "छठ चार दिन का पर्व है। नहाय-खाय, खरना, संध्या अर्घ्य और उषा अर्घ्य।",
+          "sub": "Chhath chaar din ka parv hai. Nahay-Khay, Kharna, Sandhya Arghya aur Usha Arghya."
+        },
+        {
+          "img": 1,
+          "focus": "bottom",
+          "motion": "panl",
+          "tts": "षष्ठी की शाम, व्रती जल में खड़े होकर डूबते सूरज को अर्घ्य देते हैं।",
+          "sub": "Shashthi ki shaam, vrati jal mein khade hokar doobte Suraj ko arghya dete hain."
+        },
+        {
+          "img": 2,
+          "focus": "center",
+          "motion": "in",
+          "tts": "और सप्तमी की सुबह, उगते सूरज को अर्घ्य। यहीं पर चार दिन का यह व्रत पूरा होता है।",
+          "sub": "Aur Saptami ki subah, ugte Suraj ko arghya. Yahin par chaar din ka yeh vrat poora hota hai."
+        },
+        {
+          "img": 3,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "सूर्य देव वही हैं, जिनके दर्शन हम रोज़ करते हैं। उन्हीं की रोशनी से जीवन चलता है।",
+          "sub": "Surya Dev wahi hain, jinke darshan hum roz karte hain. Unhi ki roshni se jeevan chalta hai."
+        },
+        {
+          "img": 1,
+          "focus": "top",
+          "motion": "out",
+          "tts": "मान्यता है, शाम का अर्घ्य दिन भर के साथ के लिए आभार है। सुबह का, नए दिन की प्रार्थना।",
+          "sub": "Manyata hai, shaam ka arghya din bhar ke saath ke liye aabhaar hai. Subah ka, naye din ki prarthana.",
+          "mood": "emotional"
+        },
+        {
+          "img": 3,
+          "focus": "bottom",
+          "motion": "panl",
+          "tts": "कुछ लोग कहते हैं, सूर्य की दो शक्तियाँ हैं, उषा और प्रत्यूषा। शाम और सुबह, दोनों उन्हीं के नाम।",
+          "sub": "Kuch log kehte hain, Surya ki do shaktiyan hain, Usha aur Pratyusha. Shaam aur subah, dono unhi ke naam."
+        },
+        {
+          "img": 11,
+          "focus": "center",
+          "motion": "in",
+          "tts": "यह लोक मान्यता है। इसका कोई एक तय ग्रंथ-पाठ नहीं। भाव यही है, उगते और डूबते, दोनों का सम्मान।",
+          "sub": "Yeh lok manyata hai. Iska koi ek tay granth-paath nahin. Bhaav yahi hai, ugte aur doobte, dono ka sammaan."
+        },
+        {
+          "img": 13,
+          "focus": "center",
+          "motion": "out",
+          "tts": "सोचो… जीवन में भी तो सुख और दुख आते-जाते हैं। छठ हर हाल में धन्यवाद कहना सिखाता है।",
+          "sub": "Socho… jeevan mein bhi to sukh aur dukh aate-jaate hain. Chhath har haal mein dhanyavaad kehna sikhata hai.",
+          "mood": "wonder"
+        },
+        {
+          "img": 4,
+          "focus": "bottom",
+          "motion": "in",
+          "tts": "अब चलते हैं बिहार के उस मंदिर में, जहाँ सूर्य देव का द्वार पश्चिम की ओर है।",
+          "sub": "Ab chalte hain Bihar ke us mandir mein, jahan Surya Dev ka dwaar pashchim ki or hai.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Deo Surya Mandir",
+      "scenes": [
+        {
+          "img": 4,
+          "focus": "center",
+          "motion": "in",
+          "tts": "देव सूर्य मंदिर, बिहार के औरंगाबाद ज़िले के देव कस्बे में है।",
+          "sub": "Deo Surya Mandir, Bihar ke Aurangabad zile ke Deo qasbe mein hai."
+        },
+        {
+          "img": 4,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "इसकी खास बात है, इसका द्वार पश्चिम की ओर है। ज़्यादातर सूर्य मंदिर पूरब की ओर देखते हैं।",
+          "sub": "Iski khaas baat hai, iska dwaar pashchim ki or hai. Zyaadatar Surya mandir poorab ki or dekhte hain."
+        },
+        {
+          "img": 5,
+          "focus": "center",
+          "motion": "in",
+          "tts": "लोक कथा कहती है, भगवान विश्वकर्मा ने इसे एक ही रात में बनाया। यह मान्यता है।",
+          "sub": "Lok katha kehti hai, Bhagwan Vishwakarma ne ise ek hi raat mein banaya. Yeh manyata hai."
+        },
+        {
+          "img": 5,
+          "focus": "top",
+          "motion": "out",
+          "tts": "कुछ कथाओं में कहा जाता है, इसे चंद्रवंशी राजा ऐल ने बनवाया। यह भी लोक परंपरा है।",
+          "sub": "Kuch kathaon mein kaha jaata hai, ise Chandravanshi raja Ail ne banwaya. Yeh bhi lok parampara hai."
+        },
+        {
+          "img": 4,
+          "focus": "top",
+          "motion": "panl",
+          "tts": "ज़िले की सरकारी वेबसाइट इसे पंद्रहवीं सदी का बताती है। उमगा के राजा भैरवेन्द्र का नाम लेती है।",
+          "sub": "Zile ki sarkari website ise pandrahvin sadi ka batati hai. Umga ke raja Bhairavendra ka naam leti hai."
+        },
+        {
+          "img": 5,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "यानी उम्र पर एक राय नहीं है। कोई हज़ार साल से पुराना कहता है, कोई कुछ और। हम सच-सच यही कहेंगे।",
+          "sub": "Yaani umr par ek raay nahin hai. Koi hazaar saal se purana kehta hai, koi kuch aur. Hum sach-sach yahi kahenge."
+        },
+        {
+          "img": 11,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "छठ पर यहाँ दूर-दूर से श्रद्धालु आते हैं। पटना, गया, नवादा, भोजपुर, रोहतास से भी।",
+          "sub": "Chhath par yahan door-door se shraddhalu aate hain. Patna, Gaya, Nawada, Bhojpur, Rohtas se bhi."
+        },
+        {
+          "img": 1,
+          "focus": "bottom",
+          "motion": "in",
+          "tts": "मंदिर के पास कुंड है, जहाँ स्नान की परंपरा है। भक्त वहीं अर्घ्य भी देते हैं।",
+          "sub": "Mandir ke paas kund hai, jahan snaan ki parampara hai. Bhakt wahin arghya bhi dete hain."
+        },
+        {
+          "img": 6,
+          "focus": "center",
+          "motion": "panl",
+          "tts": "बिहार में सूर्य के और भी पुराने मंदिर माने जाते हैं। चलो, उनके बारे में भी जानें।",
+          "sub": "Bihar mein Surya ke aur bhi purane mandir maane jaate hain. Chalo, unke baare mein bhi jaanein.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Ulaar aur Doosre Surya Mandir",
+      "scenes": [
+        {
+          "img": 6,
+          "focus": "center",
+          "motion": "in",
+          "tts": "पटना ज़िले में उलार का नाम भी बिहार के पुराने सूर्य मंदिरों में गिना जाता है।",
+          "sub": "Patna zile mein Ulaar ka naam bhi Bihar ke purane Surya mandiron mein ginaa jaata hai."
+        },
+        {
+          "img": 6,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "इसका नाम संसद के एक दस्तावेज़ में भी आया है। पर मंदिर के बारे में और जानकारी कम मिलती है।",
+          "sub": "Iska naam sansad ke ek dastavez mein bhi aaya hai. Par mandir ke baare mein aur jaankari kam milti hai."
+        },
+        {
+          "img": 6,
+          "focus": "top",
+          "motion": "out",
+          "tts": "इसलिए हम न इसका साल बताएँगे, न कोई कहानी गढ़ेंगे। जो पक्का नहीं, वह नहीं कहते।",
+          "sub": "Isliye hum na iska saal batayenge, na koi kahani gadhenge. Jo pakka nahin, woh nahin kehte."
+        },
+        {
+          "img": 7,
+          "focus": "center",
+          "motion": "in",
+          "tts": "देश में और भी प्रसिद्ध सूर्य मंदिर हैं। ओडिशा का कोणार्क, पत्थर के रथ जैसा मंदिर।",
+          "sub": "Desh mein aur bhi prasiddh Surya mandir hain. Odisha ka Konark, patthar ke rath jaisa mandir."
+        },
+        {
+          "img": 7,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "और गुजरात का मोढेरा, जिसके सामने सीढ़ियों वाला कुंड है। ये छठ से जुड़े नहीं, बस सूर्य उपासना की निशानी हैं।",
+          "sub": "Aur Gujarat ka Modhera, jiske saamne seedhiyon wala kund hai. Ye Chhath se jude nahin, bas Surya upasana ki nishani hain."
+        },
+        {
+          "img": 8,
+          "focus": "center",
+          "motion": "in",
+          "tts": "सुबह का अर्घ्य हो गया। अब सवाल है, व्रत पूरा कैसे होता है? यानी पारण।",
+          "sub": "Subah ka arghya ho gaya. Ab sawaal hai, vrat poora kaise hota hai? Yaani parana.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Parana: Vrat ka Poorn Hona",
+      "scenes": [
+        {
+          "img": 2,
+          "focus": "bottom",
+          "motion": "in",
+          "tts": "छठ का व्रत लगभग छत्तीस घंटे का निर्जला व्रत माना जाता है। न अन्न, न जल।",
+          "sub": "Chhath ka vrat lagbhag chhattis ghante ka nirjala vrat maana jaata hai. Na ann, na jal."
+        },
+        {
+          "img": 13,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "सुबह उगते सूरज को अर्घ्य देने के बाद, यह व्रत पूरा माना जाता है।",
+          "sub": "Subah ugte Suraj ko arghya dene ke baad, yeh vrat poora maana jaata hai."
+        },
+        {
+          "img": 9,
+          "focus": "center",
+          "motion": "in",
+          "tts": "फिर घाट पर ही परिवार आगे आता है। व्रती को थोड़ा प्रसाद और जल दिया जाता है।",
+          "sub": "Phir ghaat par hi parivaar aage aata hai. Vrati ko thoda prasad aur jal diya jaata hai.",
+          "mood": "emotional"
+        },
+        {
+          "img": 8,
+          "focus": "center",
+          "motion": "panl",
+          "tts": "प्रसाद में ठेकुआ और मौसमी फल होते हैं। कई जगह अर्घ्य का जल भी ग्रहण करते हैं।",
+          "sub": "Prasad mein thekua aur mausami phal hote hain. Kai jagah arghya ka jal bhi grahan karte hain."
+        },
+        {
+          "img": 9,
+          "focus": "bottom",
+          "motion": "out",
+          "tts": "पर सब जगह एक जैसा नहीं होता। पहले क्या खाना है, यह घर की परंपरा तय करती है।",
+          "sub": "Par sab jagah ek jaisa nahin hota. Pehle kya khana hai, yeh ghar ki parampara tay karti hai."
+        },
+        {
+          "img": 10,
+          "focus": "center",
+          "motion": "in",
+          "tts": "फिर घर लौटकर सात्विक भोजन होता है। और प्रसाद पड़ोसियों में बाँटा जाता है।",
+          "sub": "Phir ghar lautkar satvik bhojan hota hai. Aur prasad padosiyon mein baanta jaata hai."
+        },
+        {
+          "img": 8,
+          "focus": "top",
+          "motion": "pan",
+          "tts": "पारण का समय और विधि, अपने पंचांग या घर के बड़ों से पूछ लें। हम कोई समय पक्का नहीं बताते।",
+          "sub": "Parana ka samay aur vidhi, apne panchang ya ghar ke badon se pooch lein. Hum koi samay pakka nahin batate."
+        },
+        {
+          "img": 12,
+          "focus": "top",
+          "motion": "in",
+          "tts": "अब छठ के वे नियम, जिनके कारण यह व्रत इतना पवित्र माना जाता है।",
+          "sub": "Ab Chhath ke ve niyam, jinke kaaran yeh vrat itna pavitra maana jaata hai.",
+          "teaser": true
+        }
+      ]
+    },
+    {
+      "title": "Chhath ke Niyam",
+      "scenes": [
+        {
+          "img": 10,
+          "focus": "center",
+          "motion": "out",
+          "tts": "पहला नियम, पवित्रता। व्रत से पहले घर और आसपास की सफ़ाई होती है।",
+          "sub": "Pehla niyam, pavitrata. Vrat se pehle ghar aur aaspaas ki safai hoti hai."
+        },
+        {
+          "img": 10,
+          "focus": "bottom",
+          "motion": "panl",
+          "tts": "प्रसाद बनाने के बर्तन अलग रखे जाते हैं। और खाना साफ़-सुथरी जगह पर बनता है।",
+          "sub": "Prasad banane ke bartan alag rakhe jaate hain. Aur khana saaf-suthri jagah par banta hai."
+        },
+        {
+          "img": 10,
+          "focus": "top",
+          "motion": "in",
+          "tts": "दूसरा नियम, सात्विक भोजन। नहाय-खाय पर कद्दू-भात, बिना प्याज़ और लहसुन के।",
+          "sub": "Doosra niyam, satvik bhojan. Nahay-Khay par kaddu-bhaat, bina pyaaz aur lahsun ke."
+        },
+        {
+          "img": 12,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "खरना की शाम गुड़ की खीर और रोटी का प्रसाद बनता है। उसके बाद निर्जला व्रत शुरू होता है।",
+          "sub": "Kharna ki shaam gud ki kheer aur roti ka prasad banta hai. Uske baad nirjala vrat shuru hota hai."
+        },
+        {
+          "img": 9,
+          "focus": "top",
+          "motion": "out",
+          "tts": "कई घरों में व्रती चार दिन ज़मीन पर चटाई बिछाकर सोती हैं। साधारण सूती कपड़े पहनती हैं।",
+          "sub": "Kai gharon mein vrati chaar din zameen par chatai bichhakar soti hain. Saadharan sooti kapde pehanti hain."
+        },
+        {
+          "img": 12,
+          "focus": "bottom",
+          "motion": "in",
+          "tts": "नमक, प्याज़, लहसुन से भी कई परिवार दूर रहते हैं। यह घर-घर की परंपरा है।",
+          "sub": "Namak, pyaaz, lahsun se bhi kai parivaar door rehte hain. Yeh ghar-ghar ki parampara hai."
+        },
+        {
+          "img": 11,
+          "focus": "center",
+          "motion": "pan",
+          "tts": "तीसरा नियम, मन की शुद्धि। इन दिनों झगड़े और बुरे विचार से बचने की सीख दी जाती है।",
+          "sub": "Teesra niyam, man ki shuddhi. In dinon jhagde aur bure vichaar se bachne ki seekh di jaati hai.",
+          "mood": "calm"
+        },
+        {
+          "img": 0,
+          "focus": "top",
+          "motion": "panl",
+          "tts": "एक बात और, बेटा। यह व्रत कठिन है। बीमार, बुज़ुर्ग या गर्भवती हों, तो डॉक्टर से पूछकर ही रखें।",
+          "sub": "Ek baat aur, beta. Yeh vrat kathin hai. Beemar, bujurg ya garbhvati hon, to doctor se poochkar hi rakhein.",
+          "mood": "serious"
+        },
+        {
+          "img": 11,
+          "focus": "top",
+          "motion": "out",
+          "tts": "श्रद्धा सबसे बड़ी चीज़ है। पर सेहत और समझदारी भी, उतनी ही ज़रूरी।",
+          "sub": "Shraddha sabse badi cheez hai. Par sehat aur samajhdaari bhi, utni hi zaroori."
+        }
+      ]
+    },
+    {
+      "title": "Aashirwad aur Sandesh",
+      "scenes": [
+        {
+          "img": 3,
+          "focus": "center",
+          "motion": "in",
+          "tts": "तो बेटा, छठ हमें क्या सिखाता है? डूबते और उगते, दोनों सूरज का सम्मान।",
+          "sub": "To beta, Chhath hamein kya sikhata hai? Doobte aur ugte, dono Suraj ka sammaan."
+        },
+        {
+          "img": 13,
+          "focus": "bottom",
+          "motion": "pan",
+          "tts": "सफ़ाई, संयम, प्रकृति से प्रेम, और परिवार का साथ। यही इस पर्व की असली पूँजी है।",
+          "sub": "Safai, sanyam, prakriti se prem, aur parivaar ka saath. Yahi is parv ki asli poonji hai."
+        },
+        {
+          "img": 0,
+          "focus": "center",
+          "motion": "in",
+          "tts": "जिन्होंने चार दिन यह व्रत निभाया, उन्हें प्रणाम। छठी मैया सबके घर सुख-शांति दें।",
+          "sub": "Jinhone chaar din yeh vrat nibhaya, unhe pranaam. Chhathi Maiya sabke ghar sukh-shaanti dein."
+        },
+        {
+          "img": 2,
+          "focus": "top",
+          "motion": "out",
+          "tts": "ॐ सूर्याय नमः। जय छठी मैया!",
+          "sub": "Om Suryaya Namah. Jai Chhathi Maiya!"
+        },
+        {
+          "endcard": true,
+          "tts": "जय छठी मैया! कथा अच्छी लगी हो तो लाइक करें, शेयर करें और श्याम प्रेमी एसएन को सब्सक्राइब करें।",
+          "sub": "Jai Chhathi Maiya! Katha achhi lagi ho to Like, Share aur Subscribe karein · Shyam Premi SN"
+        }
+      ]
+    }
+  ],
+  "youtube_title": "Chhath Surya Mandir, Parana aur Niyam | छठ सूर्य मंदिर, पारण और नियम | Sampoorn Katha",
+  "youtube_description": "Chhath Puja ke Usha Arghya din par jaaniye: doobte aur ugte Suraj ko arghya kyon, Bihar ka Deo Surya Mandir, parana kaise hota hai aur Chhath ke niyam.\nYe katha Lok katha (Chhath parampara) aur Bihar ke Surya mandiron ki lok manyataon ke anusar hai. Kai baatein manyata hain, aur jagah-jagah parampara alag ho sakti hai.\nChitra AI dwara banaye gaye hain (sanketik).\nइस वीडियो में छठ के सूर्य मंदिर, पारण और व्रत के नियम, सरल हिंदी में।\nॐ सूर्याय नमः। जय छठी मैया!\nJai Shree Shyam 🙏\nKatha achhi lagi ho to Like, Share aur Subscribe karein.\n#ChhathPuja #SuryaDev #UshaArghya #DeoSuryaMandir\n\nभजन: मौलिक रचना, AI द्वारा गाया गया (ACE-Step)",
+  "youtube_tags": "Chhath Puja parana, छठ पूजा पारण, Chhath ke niyam, छठ के नियम, Deo Surya Mandir, देव सूर्य मंदिर, Usha Arghya, उषा अर्घ्य, Sandhya Arghya, संध्या अर्घ्य, Surya Dev, सूर्य देव, Chhath vrat vidhi, छठ व्रत विधि, Chhath 2026",
+  "music": {
+    "id": "gen-i-emotional-harmonium",
+    "mood": "emotional",
+    "title": "i-emotional-harmonium",
+    "licence": "original, generated by ACE-Step 1.5 (MIT; commercial use of outputs allowed per the model card)",
+    "licence_url": "https://huggingface.co/ACE-Step/Ace-Step1.5",
+    "attribution": null,
+    "reused": false
+  },
+  "bhajan": {
+    "id": "bhajan-chhath26g-08-devi",
+    "title": "Chhathi Maiya Tohar Kirpa",
+    "title_hi": "छठी मइया तोहर किरपा",
+    "deity": "devi",
+    "mood": "thaath",
+    "festival": "chhath",
+    "match": "festival",
+    "mode": "long",
+    "licence": "original, generated by ACE-Step 1.5 (MIT)",
+    "model": "ACE-Step 1.5 (acestep-v15-turbo DiT fp32 + acestep-5Hz-lm-1.7B)",
+    "singer": "AI (ACE-Step 1.5), no real singer cloned",
+    "intro": 25,
+    "from": 0,
+    "outro_start": 377.2,
+    "seconds": 135,
+    "narration": true
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "slug": "2026-11-16-long-chhath-surya-mandir-parana-niyam",
+  "seconds": 512.2,
+  "scenes": 49,
+  "chapters": [
+    {
+      "title": "Bhajan",
+      "start": 0
+    },
+    {
+      "title": "Chhath ka Sawaal",
+      "start": 25
+    },
+    {
+      "title": "Doobta aur Ugta Suraj",
+      "start": 45.1
+    },
+    {
+      "title": "Deo Surya Mandir",
+      "start": 112.97
+    },
+    {
+      "title": "Ulaar aur Doosre Surya Mandir",
+      "start": 179.13
+    },
+    {
+      "title": "Parana: Vrat ka Poorn Hona",
+      "start": 224.13
+    },
+    {
+      "title": "Chhath ke Niyam",
+      "start": 278.4
+    },
+    {
+      "title": "Aashirwad aur Sandesh",
+      "start": 342.8
+    },
+    {
+      "title": "Bhajan: Chhathi Maiya Tohar Kirpa",
+      "start": 377.2
+    }
+  ],
+  "images": 14,
+  "images_generated": 0,
+  "neurons": 0,
+  "render_seconds": 640,
+  "real_photos": 0,
+  "thumbnail_variants": {
+    "winner": "b",
+    "scores": [
+      {
+        "kind": "a",
+        "score": 69,
+        "contrast": 0.666,
+        "face": 0.36
+      },
+      {
+        "kind": "b",
+        "score": 79,
+        "contrast": 0.788,
+        "face": 0.39
+      }
+    ]
+  },
+  "bhajan": {
+    "id": "bhajan-chhath26g-08-devi",
+    "intro": [
+      0,
+      25
+    ],
+    "katha": [
+      25,
+      376.6
+    ],
+    "outro": [
+      377.2,
+      512.2
+    ]
+  }
+}
