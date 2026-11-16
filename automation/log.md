@@ -79,3 +79,4 @@
 2026-11-16 | evening | 2026-11-16-evening-chhath-parana-geet | Chhath Puja (Parana) | Chhath bhajan Short "Chhath Parana Geet 2026", song bhajan-chhath26g-08-devi (AI-sung original, whole soundtrack), public 19:00 IST
 2026-11-17 | facts | 2026-11-17-facts-khatu-baba-ke-naam | Khatu Shyam ji (Barbarik) | Baba Shyam ke 5 naam: Morvinandan, Haare ka Sahara, Sheesh ke Daani, Shyam, Lakhdatar, aur Skanda Purana ka chhupa naam Suhriday (variant story, art cinematic, 120 s)
 2026-11-18 | movie | 2026-11-18-movie-khatu-shyam-amar-katha-part-2 | Khatu Shyam ji (Barbarik) | Movie Part 2/4: Brahmin vesh mein Shri Krishna, ek hi baan kaafi, peepal ke patton ki pariksha, chhupa patta, daan ka vachan, sheesh ki maang
+2026-11-17 | status | 2026-11-17-status-gopashtami | Gopashtami | status Short variant 1 "Gopashtami Status 2026" (15-25 s loop, download link), public 00:30 IST
