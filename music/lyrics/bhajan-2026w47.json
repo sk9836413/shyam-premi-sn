@@ -1,0 +1,83 @@
+{
+ "batch": "bhajan-2026w47",
+ "songs": [
+  {
+   "slot": 1, "deity": "khatu", "mood": "thaath", "festival": "janmotsav",
+   "title_hi": "श्याम जन्मोत्सव आया", "title_roman": "Shyam Janmotsav Aaya",
+   "lyrics": "[chorus]\nआया आया श्याम का जन्मोत्सव आया\nखाटू वाले श्याम की जय बोलो\nनाचो गाओ सब मिल झूमो\n[verse]\nसज गया दरबार फूलों से प्यारा\nबज रहे ढोल नगाड़े सारे\nशीश के दानी को सब पुकारें\n[chorus]\nआया आया श्याम का जन्मोत्सव आया\nखाटू वाले श्याम की जय बोलो\nनाचो गाओ सब मिल झूमो",
+   "public_domain_text": null
+  },
+  {
+   "slot": 2, "deity": "khatu", "mood": "bhaavuk", "festival": "janmotsav",
+   "title_hi": "तेरे जन्मदिन पर श्याम", "title_roman": "Tere Janamdin Par Shyam",
+   "lyrics": "[chorus]\nतेरे जन्मदिन पर आया हूँ बाबा\nहारा हुआ हूँ मेरे श्याम\nबस इतनी सी है अरदास\n[verse]\nखाली झोली लेकर आया तेरे द्वार\nतू ही सांवरा है मेरा सहारा\nहर आंसू को तूने संभाला\n[chorus]\nतेरे जन्मदिन पर आया हूँ बाबा\nहारा हुआ हूँ मेरे श्याम\nबस इतनी सी है अरदास",
+   "public_domain_text": null
+  },
+  {
+   "slot": 3, "deity": "vishnu", "mood": "thaath", "festival": "tulsi",
+   "title_hi": "तुलसी के घर नारायण", "title_roman": "Tulsi Ke Ghar Narayan",
+   "lyrics": "[chorus]\nतुलसी के आंगन आए नारायण\nबजने लगी शहनाई रे\nमंडप सजा है मंगल गाओ\n[verse]\nशालिग्राम बने हैं दूल्हा प्यारे\nतुलसी मइया दुल्हन बनके आईं\nदीप जलाओ घर घर सारे\n[chorus]\nतुलसी के आंगन आए नारायण\nबजने लगी शहनाई रे\nमंडप सजा है मंगल गाओ",
+   "public_domain_text": null
+  },
+  {
+   "slot": 4, "deity": "shiv", "mood": "thaath", "festival": "pradosh",
+   "title_hi": "प्रदोष में भोले", "title_roman": "Pradosh Mein Bhole",
+   "lyrics": "[chorus]\nप्रदोष की संध्या में गूंजे भोले\nहर हर महादेव बोलो\nडमरू बजे ढोल संग डोले\n[verse]\nजल चढ़ाओ बेलपत्र चढ़ाओ\nशिव के चरणों में शीश झुकाओ\nदीप जलाकर आरती गाओ\n[chorus]\nप्रदोष की संध्या में गूंजे भोले\nहर हर महादेव बोलो\nडमरू बजे ढोल संग डोले",
+   "public_domain_text": null
+  },
+  {
+   "slot": 5, "deity": "khatu", "mood": "thaath", "festival": null,
+   "title_hi": "श्याम धणी का डंका", "title_roman": "Shyam Dhani Ka Danka",
+   "lyrics": "[chorus]\nबाजे डंका बाजे डंका श्याम धणी का\nलखदातार की जय जयकार\nहारे का सहारा है दरबार\n[verse]\nखाटू नगरी में मेला लगा है\nनीले घोड़े का सवार आया है\nभक्तों का रेला झूम रहा है\n[chorus]\nबाजे डंका बाजे डंका श्याम धणी का\nलखदातार की जय जयकार\nहारे का सहारा है दरबार",
+   "public_domain_text": null
+  },
+  {
+   "slot": 6, "deity": "khatu", "mood": "bhaavuk", "festival": null,
+   "title_hi": "थाम ले हाथ मेरा", "title_roman": "Thaam Le Haath Mera",
+   "lyrics": "[chorus]\nथाम ले हाथ मेरा ओ मेरे श्याम\nटूट गया हूँ अब संभाल ले\nतेरे सिवा कौन है मेरा\n[verse]\nदुनिया ने छोड़ा तूने अपनाया\nहारे हुए को गले से लगाया\nसांवरे तेरा ही आसरा पाया\n[chorus]\nथाम ले हाथ मेरा ओ मेरे श्याम\nटूट गया हूँ अब संभाल ले\nतेरे सिवा कौन है मेरा",
+   "public_domain_text": null
+  },
+  {
+   "slot": 7, "deity": "shiv", "mood": "thaath", "festival": null,
+   "title_hi": "शिव शंकर का जयकारा", "title_roman": "Shiv Shankar Ka Jaikara",
+   "lyrics": "[chorus]\nजयकारा लगा दो शिव शंकर का\nबोलो बोलो हर हर भोले\nकैलाश वाले की जय हो\n[verse]\nजटा में गंगा सिर पे चंदा\nगले में सर्प का हार सजा है\nनंदी पे बैठा मेरा भोला\n[chorus]\nजयकारा लगा दो शिव शंकर का\nबोलो बोलो हर हर भोले\nकैलाश वाले की जय हो",
+   "public_domain_text": null
+  },
+  {
+   "slot": 8, "deity": "hanuman", "mood": "thaath", "festival": null,
+   "title_hi": "बालाजी का दरबार", "title_roman": "Balaji Ka Darbar",
+   "lyrics": "[chorus]\nसालासर वाले बालाजी की जय\nबोलो जय बजरंग बली\nहनुमान तेरा दरबार सजा है\n[verse]\nकंधे पे गदा मन में राम\nराम नाम की धुन लगी है\nसंकट हर लेते पल भर में\n[chorus]\nसालासर वाले बालाजी की जय\nबोलो जय बजरंग बली\nहनुमान तेरा दरबार सजा है",
+   "public_domain_text": null
+  },
+  {
+   "slot": 9, "deity": "khatu", "mood": "thaath", "festival": null,
+   "title_hi": "शीश के दानी की सवारी", "title_roman": "Sheesh Ke Dani Ki Sawari",
+   "lyrics": "[chorus]\nनिकली सवारी शीश के दानी की\nखाटू वाले श्याम की जय हो\nनीले का सवार आया रे\n[verse]\nनिशान उठाकर पैदल चले हैं\nरींगस से खाटू भक्त चले हैं\nजयकारे गूंजे गली गली में\n[chorus]\nनिकली सवारी शीश के दानी की\nखाटू वाले श्याम की जय हो\nनीले का सवार आया रे",
+   "public_domain_text": null
+  },
+  {
+   "slot": 10, "deity": "krishna", "mood": "bhaavuk", "festival": null,
+   "title_hi": "ॐ नमो भगवते वासुदेवाय", "title_roman": "Om Namo Bhagavate Vasudevaya",
+   "lyrics": "[chorus]\nॐ नमो भगवते वासुदेवाय\nकृष्ण कृष्ण मेरे कान्हा\nॐ नमो भगवते वासुदेवाय\n[verse]\nमन की बंसी तेरे नाम की बजे\nहर सांस में बस तू ही बसे\nगोविंद तेरी शरण में रहूं\n[chorus]\nॐ नमो भगवते वासुदेवाय\nकृष्ण कृष्ण मेरे कान्हा\nॐ नमो भगवते वासुदेवाय",
+   "public_domain_text": "Vedic / Vaishnava mantra: Om Namo Bhagavate Vasudevaya"
+  },
+  {
+   "slot": 11, "deity": "shiv", "mood": "thaath", "festival": null,
+   "title_hi": "महादेव का तांडव", "title_roman": "Mahadev Ka Tandav",
+   "lyrics": "[chorus]\nमहादेव महादेव भोलेनाथ\nतांडव करे तो कांपे जहान\nनीलकंठ मेरा सबसे महान\n[verse]\nडमरू की थाप पे धरती नाचे\nकैलाश पर बैठा बेपरवाह है\nत्रिशूल उठे तो झुकता आसमान\n[chorus]\nमहादेव महादेव भोलेनाथ\nतांडव करे तो कांपे जहान\nनीलकंठ मेरा सबसे महान",
+   "public_domain_text": null
+  },
+  {
+   "slot": 12, "deity": "khatu", "mood": "bhaavuk", "festival": null,
+   "title_hi": "सांवरे तेरे दर पर", "title_roman": "Sanware Tere Dar Par",
+   "lyrics": "[chorus]\nसांवरे तेरे दर पर आकर\nमिल गया मुझको सुकून श्याम\nअब न कोई शिकवा बाकी\n[verse]\nजब अंधेरा छाया था मन में\nतेरे नाम ने राह दिखाई\nहारे का साथी तू ही निकला\n[chorus]\nसांवरे तेरे दर पर आकर\nमिल गया मुझको सुकून श्याम\nअब न कोई शिकवा बाकी",
+   "public_domain_text": null
+  },
+  {
+   "slot": 13, "deity": "devi", "mood": "thaath", "festival": null,
+   "title_hi": "शक्ति रूप गौरी", "title_roman": "Shakti Roop Gauri",
+   "lyrics": "[chorus]\nशक्ति का रूप धरे गौरी भवानी\nपार्वती मां की जय जयकार\nझुक गया सारा संसार\n[verse]\nकैलाश पर्वत पर माँ विराजे\nहाथ में त्रिशूल तेज सुहाना\nशिव की शक्ति है जगत की रानी\n[chorus]\nशक्ति का रूप धरे गौरी भवानी\nपार्वती मां की जय जयकार\nझुक गया सारा संसार",
+   "public_domain_text": null
+  }
+ ]
+}
