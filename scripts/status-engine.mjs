@@ -62,14 +62,16 @@ export function placements(festivals) {
   for (const f of festivals) {
     variantsOf(f).forEach((v, k) => {
       const names = f.names || [{ en: f.label, hi: f.label }];
-      out.push({ date: addDays(f.date, v.offset), slot: v.slot, at: v.at, offset: v.offset, k, festival: f, name: names[k % names.length], picks: v.picks, tier: f.tier });
+      out.push({ date: addDays(f.date, v.offset), slot: v.slot, at: v.at, offset: v.offset, k, festival: f, name: names[k % names.length], picks: v.picks, hook: v.hook, tier: f.tier });
     });
   }
   return out.sort((a, b) => `${a.date}T${a.at}`.localeCompare(`${b.date}T${b.at}`));
 }
 
-/** The bold Hindi hook of the first frame (and its spoken and Roman forms). */
+/** The bold Hindi hook of the first frame (and its spoken and Roman forms). A festivals.json variant may set its own
+ *  `hook` {hi, say?, roman} (Gopashtami 2026: "गोपाष्टमी की शुभकामनाएं 🐄" instead of "आज है गोपाष्टमी 🙏"). */
 export function hookFor(p) {
+  if (p.hook?.hi && p.hook?.roman) return { hi: p.hook.hi, say: p.hook.say || `${noEmoji(p.hook.hi)}!`, roman: p.hook.roman };
   const { hi, en } = p.name;
   if (p.slot === 'eve') {
     const [h, r] = p.offset <= -2 ? ['परसों है', 'Parson hai'] : ['कल है', 'Kal hai'];

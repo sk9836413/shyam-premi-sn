@@ -181,6 +181,20 @@ export const THEMES = {
       { prompt: 'Rows of lit clay diyas and sugarcane stalks on a decorated river ghat at dusk, bamboo baskets with fruits and thekua, peaceful devotional mood', motion: 'pan', hold: 6, big: 'जय छठी मैया', line: 'सबके घर सुख-समृद्धि', tts: 'जय छठी मैया!', sub: 'Jai Chhathi Maiya!' },
     ],
   }),
+  // Gopashtami (Kartik Shukla Ashtami; owner, 16 Nov 2026: "Kal Gopashtami hai uske liye taiyar ho"). Krishna is always
+  // blue-skinned with the peacock-feather crown and yellow pitambar, Balram fair-skinned in blue; the cows are decorated
+  // for gau puja (tilak, garland). The date story (first day of go-charan) is parampara/manyata, said so in desc and tts.
+  gopashtami: T({
+    playlist: 'Vishnu ji aur Krishna ki Kathayein', deity: 'Shri Krishna (Gopal) / Gau Mata', mantra: null,
+    desc: 'Kartik Shukla Ashtami ko Gopashtami manayi jati hai: parampara ke anusar isi din Bal Krishna aur Balram ji ne pehli baar gauon ko charana shuru kiya (Shrimad Bhagavat mein Vrindavan ki go-charan leela). Is din gau mata ki pooja, tilak, mala aur gud-roti se seva ki jati hai',
+    hashtags: ['#Gopashtami', '#Gopashtami2026', '#GauMata', '#JaiShreeKrishna', '#Gopal'],
+    tags: ['Gopashtami 2026', 'गोपाष्टमी', 'गोपाष्टमी की शुभकामनाएं', 'Happy Gopashtami', 'Gau Mata status', 'गौ माता', 'Gopal Krishna status', 'गौ पूजा', 'Jai Shree Krishna', 'Gau puja'],
+    scenes: [
+      { prompt: 'Little blue-skinned Bal Krishna with a peacock-feather crown, a yellow silk pitambar and a flute tucked in his waist sash, lovingly resting his hand on the forehead of a white cow decorated with a red kumkum tilak, a marigold garland and a small brass bell, her calf beside her, a green Braj pasture by the Yamuna at sunrise, soft golden light', animate: 'a very slow gentle camera push-in, the marigold garland and the grass sway softly in the breeze, the golden sunrise light glows, Krishna and the faces stay still', deity: true, motion: 'in', hold: 6, big: 'जय श्री गोपाल', line: 'गोपाष्टमी की शुभकामनाएं', tts: 'गौ माता और गोपाल जी की कृपा आपके घर पर सदा बनी रहे।', sub: 'Gau Mata aur Gopal ji ki kripa aapke ghar par sada bani rahe.' },
+      { prompt: 'Young Bal Krishna, blue-skinned with a peacock-feather crown and a yellow dhoti, holding a flute, and his elder brother Balram ji, fair-skinned in blue garments holding a small wooden staff, walking with a herd of white and brown cows on the green pastures of Vrindavan at sunrise, kadamb trees and the Yamuna river behind, seen from a gentle distance', deity: true, motion: 'pan', hold: 6, big: 'कान्हा बने गोपाल', line: 'कान्हा-बलराम की गौ-चारण लीला', tts: 'मान्यता है, इसी दिन कान्हा और बलराम जी ने पहली बार गौएं चराईं।', sub: 'Manyata hai, isi din Kanha aur Balram ji ne pehli baar gauein charayin.' },
+      { prompt: 'A white cow and her calf decorated for Gopashtami puja in a village courtyard at sunrise: a red kumkum tilak on the forehead, a marigold garland, a colourful embroidered cloth on her back, a brass puja thali with a lit diya, jaggery, green grass and a roti offered before her, a devotee in a red saree seen from behind with folded hands, warm golden light', animate: 'the diya flame flickers softly and the marigold garland sways gently, the cow and the calf stay calm and still', motion: 'out', hold: 6, big: 'गौ माता की जय', line: 'गौ सेवा ही गोपाल की सेवा', tts: 'गौ माता की जय! जय श्री कृष्ण।', sub: 'Gau Mata ki jai! Jai Shree Krishna.' },
+    ],
+  }),
   // ---- big festivals (6 scenes; each variant shows 3 of them) ----
   devdeepawali: T({
     playlist: 'Shiv ji ki Kathayein', deity: 'Shiv ji / Ganga Maiya', mantra: 'shiv', big: true,

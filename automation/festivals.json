@@ -114,12 +114,32 @@
     {
       "date": "2026-11-17",
       "key": "gopashtami",
-      "tier": "info",
+      "tier": "status",
+      "theme": "gopashtami",
       "label": "Gopashtami",
+      "names": [
+        {
+          "en": "Gopashtami",
+          "hi": "गोपाष्टमी"
+        }
+      ],
+      "variants": [
+        {
+          "slot": "status",
+          "offset": 0,
+          "at": "00:30",
+          "hook": {
+            "hi": "गोपाष्टमी की शुभकामनाएं 🐄",
+            "say": "गोपाष्टमी की शुभकामनाएं!",
+            "roman": "Gopashtami ki shubhkamnayein 🐄"
+          }
+        }
+      ],
       "sources": [
         "D: festivals-november.html?year=2026: Gopashtami Tue 17 Nov",
         "P: festivals/gopashtami.html?loc=1261481: 17 Nov (Ashtami 4:20 AM 17th to 6:05 AM 18th)"
-      ]
+      ],
+      "note": "16 Nov 2026 (owner: 'Kal Gopashtami hai uske liye taiyar ho'): tier info -> status, only the 00:30 variant (16 Nov was already at its Shorts cap, so no 20:00 eve); own hook on the first frame"
     },
     {
       "date": "2026-11-18",

@@ -65,6 +65,17 @@ describe('titles', () => {
     const j = placements(festivals.filter((f) => f.key === 'khatu-shyam-janmotsav'));
     assert.deepEqual(j.map((p) => hookFor(p).hi), ['परसों है श्याम बाबा जन्मोत्सव 🙏', 'कल है खाटू श्याम जन्मोत्सव 🙏', 'आज है देवउठनी एकादशी 🙏', 'खाटू श्याम जन्मदिन की बधाई 🙏']);
   });
+  test('a variant `hook` replaces the default one (Gopashtami 2026: only the 00:30 Short, its own greeting)', () => {
+    const g = placements(festivals.filter((f) => f.key === 'gopashtami'));
+    assert.deepEqual(g.map((p) => `${p.date} ${p.slot} ${p.at}`), ['2026-11-17 status 00:30']);
+    assert.deepEqual(hookFor(g[0]), { hi: 'गोपाष्टमी की शुभकामनाएं 🐄', say: 'गोपाष्टमी की शुभकामनाएं!', roman: 'Gopashtami ki shubhkamnayein 🐄' });
+    assert.equal(titleOf(g[0]), 'Gopashtami Status 2026 | गोपाष्टमी स्टेटस वीडियो #Shorts');
+    const v = buildVariant(buildFamily(g[0].festival, '.'), g[0]);
+    assert.equal(v.scenes[0].big, 'गोपाष्टमी की शुभकामनाएं 🐄');
+    assert.equal(v.playlist, 'Vishnu ji aur Krishna ki Kathayein');
+    assert.ok(planDay('2026-11-17', inputs).uploads.some((u) => u.slot === 'status' && u.festival === 'gopashtami'));
+    assert.ok(planDay('2026-11-17', inputs).uploads.some((u) => u.slot === 'movie'));
+  });
 });
 
 describe('what the status job makes now (due)', () => {

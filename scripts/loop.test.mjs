@@ -1,5 +1,6 @@
 // node --test scripts/loop.test.mjs  (bhajan loop / veer Shorts: QA-passed bhajans only, variety, rotation)
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import test from 'node:test';
 import { buildSpec, checkLoopSpec, chorusWindows, LOOP_SECONDS, passedBhajans, pickLoop, VEER_SECONDS } from './loop.mjs';
 import { dawnUploads, planDay } from './day-plan.mjs';
@@ -8,7 +9,9 @@ const bhajans = passedBhajans('.');
 
 test('only bhajans that passed the existing QA gate (all names right, CER <= 0.40); the Khatu owner take is out', () => {
   assert.ok(bhajans.length >= 3);
-  assert.ok(bhajans.every((b) => b.deity !== 'khatu'), 'no Khatu bhajan has passed the name gate yet');
+  // (until 16 Nov 2026 no Khatu bhajan had passed; w47-05/09 did, with every name right, so they may loop now)
+  const lic = (id) => JSON.parse(fs.readFileSync(`music/library/${id}.licence.json`, 'utf8')).qa;
+  for (const b of bhajans) assert.ok(lic(b.id).names.right === lic(b.id).names.checked && lic(b.id).cer <= 0.40, `${b.id}: name gate`);
   assert.ok(!bhajans.some((b) => b.id === 'bhajan-khatu-haare-ka-sahara-owner'));
 });
 
