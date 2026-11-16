@@ -135,3 +135,6 @@
 - 2026-11-16-status-chhathi-maiya | instagram: https://www.instagram.com/reel/Dfxe05Kh4kL/
 - 2026-11-17-movie-khatu-shyam-amar-katha-part-1 | claim: 2026-11-17 movie by run 43743653441.1 at 2026-11-15T20:41:52.638Z
 - 2026-11-17-movie-khatu-shyam-amar-katha-part-1 | youtube: https://youtube.com/shorts/qV28guoKGWA (public at 2026-11-17T01:30:00.000Z) | movie part (127.76 s, clips 4, lip-sync 4), made 16 Nov 02:12 IST | social: fb: https://www.facebook.com/388779648425633/videos/1495367169457450 (scheduled 2026-11-17T02:00:00.000Z) | ig: pending 2026-11-17T01:30:00.000Z
+- 2026-11-16-morning-chhath-usha-arghya-geet | instagram: https://www.instagram.com/reel/Dfya6FOhn3x/
+- 2026-11-16-facts-chhath-doobte-suraj-arghya-kyun | instagram: https://www.instagram.com/reel/DfybKEVTQ0k/
+- 2026-11-16-facts-chhath-chhathi-naam-kyun | instagram: https://www.instagram.com/reel/DfybQLrxaeR/
