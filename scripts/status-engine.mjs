@@ -18,7 +18,8 @@
 //        each due variant (pictures and Kaggle clips of the base reused) and prints one line per variant:
 //        <file>\t<slug>\t<day>\t<slot>\t<at>
 //   node scripts/status-engine.mjs day --date D --out story/today/scenes.json [--log automation/log.md]   the morning
-//        day status Short (the story job runs it instead of Claude when day-plan says kind=daystatus)
+//        day status Short: normally made THE EVENING BEFORE by `due` / `variants` (owner, 16 Nov 2026: public 06:00 IST
+//        for the morning WhatsApp status); the story job runs `day` only when that render is missing
 //   node scripts/status-engine.mjs plan [--from D] [--to D]    every planned status upload with its title (dry run)
 //   node scripts/status-engine.mjs calendar                    rewrite automation/calendar.md from festivals.json
 import fs from 'node:fs';
@@ -28,6 +29,11 @@ import { DAY_THEMES, DEFAULT_PICKS, MANTRA, THEMES } from './status-themes.mjs';
 
 export const STYLE = '3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing';
 export const CTA = 'स्टेटस पर लगाएं 📲';
+// Share push (owner, 16 Nov 2026: the status Shorts that worked were SHARED, Choti Diwali 31 shares, Dhanteras 25): the
+// last line of every status Short's YouTube description (scripts/youtube.mjs keeps it last, after the download link,
+// festival links and the bhajan line). A share ask, not like/comment bait; NOT on Facebook, whose bait rule
+// (scripts/fb.mjs FB_BAIT) forbids "शेयर" (Meta demotes share asks), and the FB caption is built without it.
+export const SHARE_LINE = '📲 अपने WhatsApp स्टेटस पर लगाएं और परिवार में शेयर करें 🙏';
 const LAST_LINE = 'अपनों को भेजें, सब्सक्राइब करें 🙏';
 const LAST_SAY = 'स्टेटस पर लगाएं, और सबको भेजें।';
 const LAST_SUB = 'Status par lagayein, sabko bhejein! Subscribe: Shyam Premi SN';
@@ -165,7 +171,7 @@ function compose({ base, scenes, hook, slug, date, title, name, desc, hashtags, 
   return {
     slug, format: 'status', loop: true, date, ...(festival ? { festival_date: festival } : {}), festival: base.festival || name.en,
     family: base.slug, title: 'Shyam Premi SN', kicker: kicker(name.en), playlist: base.playlist, voice: base.voice || 'hf_alpha',
-    signoff: base.signoff || 'Jai Shree Shyam', style: base.style || STYLE, cta: CTA,
+    signoff: base.signoff || 'Jai Shree Shyam', style: base.style || STYLE, cta: CTA, share_line: SHARE_LINE,
     ...(mantraSrc ? { mantra_source: mantraSrc } : {}), ...extra,
     scenes: s,
     youtube_title: title, youtube_description: description, youtube_tags: allTags.join(', '),
@@ -211,12 +217,24 @@ export function dayStatus(date, { theme } = {}) {
 
 // ---------------------------------------------------------------- what the status job makes now
 
+/** Tomorrow's day status Short (owner, 16 Nov 2026: public 06:00 IST, made the evening before; day-plan.mjs
+ *  DAWN.daystatus): { date, theme, at } or { skip: reason }. */
+export function dayStatusDue({ today, log = '', planFor }) {
+  const date = addDays(today, 1);
+  const u = planFor(date).uploads.find((x) => x.slot === 'morning' && x.kind === 'daystatus' && x.dawn);
+  if (!u) return { skip: `${date}: no day status Short in the plan` };
+  if (new RegExp(`^${date} \\| morning \\|`, 'm').test(log)) return { skip: `${date} morning: already in log.md` };
+  return { date, theme: u.theme, at: u.at };
+}
+
 /**
  * The variants of ONE family (festival) to make in this run. eve variants publish today (evening), status/statusday
  * variants tomorrow; with `family` every not-yet-logged variant of that festival from today on (dry: all of them).
  * planFor(date) = scripts/day-plan.mjs planDay: a variant the 3-a-day cap dropped is not made.
+ * When no festival variant is due, tomorrow's DAY STATUS Short (dayStatusDue) is the run's family instead
+ * ({ family: date, daystatus: { date, theme, at } }); festivals always go first (their times are tighter).
  */
-export function due({ today, now = Date.now(), log = '', festivals, planFor, family = '', dry = false }) {
+export function due({ today, now = Date.now(), log = '', festivals, planFor, family = '', dry = false, days = true }) {
   const tomorrow = addDays(today, 1);
   const skipped = [];
   const ok = [];
@@ -231,7 +249,14 @@ export function due({ today, now = Date.now(), log = '', festivals, planFor, fam
     if (now > at + GRACE_MIN[p.slot] * 60e3) { skipped.push(`${id}: too late (public time ${p.at} passed)`); continue; }
     ok.push(p);
   }
-  if (!ok.length) return { family: null, variants: [], skipped };
+  if (!ok.length) {
+    if (!family && days) {
+      const ds = dayStatusDue({ today, log, planFor });
+      if (ds.date) return { family: ds.date, key: 'day-status', daystatus: ds, variants: [], skipped };
+      skipped.push(ds.skip);
+    }
+    return { family: null, variants: [], skipped };
+  }
   const fam = ok[0].festival;
   const variants = ok.filter((p) => p.festival.key === fam.key);
   return { family: fam.date, key: fam.key, festival: fam, variants, skipped };
@@ -269,13 +294,20 @@ async function main() {
     const dir = opt('--out') || '.';
     fs.mkdirSync(dir, { recursive: true });
     const res = { today, now_ist: istNow().slice(0, 16), family: r.family, key: r.key || '', variants: r.variants.map(brief), skipped: r.skipped };
-    if (r.family) {
+    if (r.daystatus) {
+      // the day status Short is its own base (its pictures and clips are made once, then the spec is re-composed with them)
+      const base = dayStatus(r.daystatus.date, { theme: r.daystatus.theme });
+      fs.writeFileSync(path.join(dir, 'family.json'), `${JSON.stringify(base, null, 2)}\n`);
+      res.base_slug = base.slug;
+      res.variants = [{ slug: base.slug, day: r.daystatus.date, slot: 'morning', at: r.daystatus.at, title: base.youtube_title, daystatus: true, theme: r.daystatus.theme }];
+    } else if (r.family) {
       const base = buildFamily(r.festival, '.');
       fs.writeFileSync(path.join(dir, 'family.json'), `${JSON.stringify(base, null, 2)}\n`);
       res.base_slug = base.slug;
     }
     fs.writeFileSync(path.join(dir, 'due.json'), `${JSON.stringify(res, null, 2)}\n`);
-    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `day=${r.family || ''}\ncount=${r.variants.length}\n`);
+    // `day` keys the work-dir cache: a day status gets its own (a festival family of the same date keeps its clips)
+    if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, `day=${r.daystatus ? `${r.family}-daystatus` : r.family || ''}\ncount=${res.variants.length}\n`);
     return out(res);
   }
   if (cmd === 'variants') {
@@ -285,6 +317,15 @@ async function main() {
     const d = JSON.parse(read(opt('--due')));
     const all = placements(festivals);
     for (const v of d.variants) {
+      if (v.daystatus) {
+        const spec = dayStatus(v.day, { theme: v.theme });
+        spec.scenes = spec.scenes.map((sc, j) => reuseAssets(sc, j, base, dir));
+        Object.assign(spec, { publish_at: v.at, slot: 'morning' });
+        const file = path.join(dir, `v-${spec.slug}.json`);
+        fs.writeFileSync(file, `${JSON.stringify(spec, null, 2)}\n`);
+        console.log([file, spec.slug, v.day, 'morning', v.at].join('\t'));
+        continue;
+      }
       const p = all.find((x) => x.festival.key === v.festival && x.k === v.k);
       const spec = buildVariant(base, p, { dir });
       const file = path.join(dir, `v-${spec.slug}.json`);

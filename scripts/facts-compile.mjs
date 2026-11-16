@@ -49,11 +49,16 @@ export function pendingShorts(date, root = '.') {
 }
 
 /** Is the date's long video the compilation? { go, why, shorts } */
+// Owner, 16 Nov 2026: "keep the weekly facts compilation long only if facts start working; otherwise off": it runs only
+// after a positive facts review (automation/facts-review.json verdict "on", scripts/growth-compare.mjs --facts-review),
+// on a Saturday that has no other long video (the plain katha is stopped, so most Saturdays have none).
 export function compileDue(date, { root = '.', inputs = loadInputs(root) } = {}) {
   if (process.env.FACTS === 'off') return { go: false, why: 'FACTS=off' };
+  const r = inputs.factsReview;
+  if (r?.verdict !== 'on' || date < r.date) return { go: false, why: `facts not working yet (facts review: ${r ? `${r.date} median ${r.median}, ${r.verdict}` : 'not done yet'}): no compilation` };
   if (weekday(date) !== DAY) return { go: false, why: 'not a Saturday' };
   const long = planDay(date, inputs).uploads.find((u) => u.slot === 'long');
-  if (!long || long.kind !== 'long' || long.topic !== 'series') return { go: false, why: `the long video is ${long?.kind} ${long?.topic || ''} (festival / mantra / jukebox days keep it)` };
+  if (long) return { go: false, why: `the long video is ${long.kind} ${long.topic || ''} (festival / mantra / jukebox days keep it)` };
   const shorts = pendingShorts(date, root);
   const secs = shorts.reduce((a, s) => a + s.seconds, 0);
   if (shorts.length < MIN_SHORTS || secs < MIN_SECONDS) return { go: false, why: `${shorts.length} facts Shorts / ${secs} s not compiled yet (needs ${MIN_SHORTS} and ${MIN_SECONDS} s)` };

@@ -19,6 +19,8 @@
 //           (movie parts, the Dadi-Chhotu noon Short) go out as normal Page videos (meta.mjs decides by duration).
 //   Dawn    (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log"; day-plan.mjs DAWN) a bhajan Short public on
 //           YouTube at 05:45 is a Reel at 06:00 (DAWN_FB.bhajan), placed right after the status Reels so it keeps 06:00;
+//           the day status Short (owner, 16 Nov 2026: public 06:00 for the morning WhatsApp status; DAWN_FB.daystatus)
+//           is a Reel at 06:00 too (its YouTube description ends with a share ask; the Facebook caption never does);
 //           a bhajan / mantra long video (jukebox, mantra jaap) is the 05:30 feed video. Apart from these, no Reel is
 //           planned before DAY_START (07:00) and a Reel scheduled at upload time never lands in the night (01:00-07:00)
 //           unless it is a dawn Reel or already late; 00:30 status -> 06:00 dawn bhajan is 5.5 h, well over GAP_MIN.
@@ -89,7 +91,7 @@ function shortsOf(date, inputs) {
   const place = (u) => pl.find((x) => x.date === date && x.slot === u.slot && x.festival.key === u.festival);
   const list = p.uploads.filter((u) => u.slot !== 'long').map((u) => {
     const x = u.kind === 'status' ? place(u) : null;
-    return { slot: u.slot, kind: u.kind || u.slot, ...(u.dawn ? { dawn: true, want: DAWN_FB.bhajan } : {}),
+    return { slot: u.slot, kind: u.kind || u.slot, ...(u.dawn ? { dawn: true, want: DAWN_FB[u.kind] || DAWN_FB.bhajan } : {}),
       ...(u.festival ? { festival: u.festival, festivalDate: x?.festival.date || null, tier: x?.tier } : {}) };
   });
   return { p, list };
@@ -200,7 +202,7 @@ export function fbDecision({ date, slot, festivalDate = null, now = Date.now(), 
   grid.sort((a, b) => Math.abs(a - target) - Math.abs(b - target) || a - b);
   const cands = [want >= start ? want : now, ...grid];
   const t = cands.find(free) ?? cands.reduce((best, c) => (gapOf(c) > gapOf(best) ? c : best), cands[0]);
-  const label = `${slot}${v.dawn ? ' (dawn bhajan)' : ''}${v.adhoc ? ' (not in the plan)' : ''}`;
+  const label = `${slot}${v.dawn ? ` (dawn ${v.kind === 'daystatus' ? 'day status' : 'bhajan'})` : ''}${v.adhoc ? ' (not in the plan)' : ''}`;
   if (t < start) return { post: true, at: 'now', why: `${label}: ${v.at} IST has passed; posting now (${GAP_MIN} min clear of the other Reels)` };
   const at = istStamp(t);
   const moved = t === want ? '' : ` (planned ${wantAt || v.at}; moved to stay ${GAP_MIN} min from the other Reels${free(t) ? '' : ' as far as possible'})`;

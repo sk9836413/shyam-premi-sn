@@ -67,15 +67,11 @@ test('spec rules: titles, disclosure, Hanuman never bearded, Khatu = sheesh only
   assert.ok(checkLoopSpec(bad).some((e) => /sheesh/.test(e)));
 });
 
-test('day plan: the morning slot alternates with loop / veer on normal days only, public at dawn', () => {
+test('day plan (owner, 16 Nov 2026): the day status Short is the morning upload every day; loop / veer no longer take it', () => {
   const inputs = { loops: true, festivals: new Map(), placements: [] };
-  const mon = planDay('2026-11-23', inputs).uploads.find((u) => u.slot === 'morning');
-  assert.equal(mon.kind, 'veer');
-  assert.equal(mon.at, '05:45');
-  assert.equal(planDay('2026-11-24', inputs).uploads.find((u) => u.slot === 'morning').kind, 'daystatus');
-  const fest = { ...inputs, festivals: new Map([['2026-11-23', { name: 'X Vrat', tier: 'status', key: 'x', theme: 'x' }]]) };
-  assert.notEqual(planDay('2026-11-23', fest).uploads.find((u) => u.slot === 'morning').kind, 'veer', 'festival days keep their morning Short');
-  assert.equal(planDay('2026-11-23', { festivals: new Map(), placements: [] }).uploads.find((u) => u.slot === 'morning').kind, 'daystatus', 'off unless loadInputs turns it on');
-  assert.deepEqual(dawnUploads('2026-11-23', inputs).loops, [{ day: '2026-11-23', slot: 'morning', kind: 'veer' }]);
-  assert.equal(dawnUploads('2026-11-23', inputs, '2026-11-23 | morning | x |').loops, undefined);
+  for (const d of ['2026-11-23', '2026-11-25', '2026-11-27', '2026-11-28']) {
+    const m = planDay(d, inputs).uploads.find((u) => u.slot === 'morning');
+    assert.deepEqual([m.kind, m.at], ['daystatus', '06:00'], d);
+    assert.equal(dawnUploads(d, inputs).loops, undefined, d);
+  }
 });

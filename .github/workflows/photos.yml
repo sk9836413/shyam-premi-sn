@@ -17,7 +17,8 @@
 # DAWN RETRY (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log"; scripts/day-plan.mjs DAWN): tomorrow's 05:45 bhajan
 # Short and 05:30 bhajan / mantra long video are rendered the evening before by daily.yml's evening runs (the scheduler's
 # 18:46 IST dispatch); the 19:46 IST run of this workflow dispatches daily.yml slot=dawn when one is still missing (a
-# workflow_dispatch with the job token: no new cron, the scheduler Worker untouched).
+# workflow_dispatch with the job token: no new cron, the scheduler Worker untouched). Since 16 Nov 2026 it also counts
+# tomorrow's 06:00 day status Short (made by daily.yml's status job, which slot=dawn now runs too).
 # Separate from daily.yml on purpose: a failed photo post never touches the video pipeline. The repo is public, so the
 # Actions minutes are free. dry_run = plan, write and render (the cards are the run's artifact), publish nothing.
 name: Photo posts
@@ -80,7 +81,7 @@ jobs:
           { [ $h -ge 19 ] && [ $h -lt 23 ]; } || { echo "Not an evening run ($h h IST)"; exit 0; }
           d=$(TZ=Asia/Kolkata date -d tomorrow +%F)
           node scripts/day-plan.mjs --date "$d" --dawn > "$RUNNER_TEMP/dawn.json"
-          n=$(node -p "const r=require(process.env.RUNNER_TEMP + '/dawn.json'); r.bhajans.length + (r.long ? 1 : 0)")
+          n=$(node -p "const r=require(process.env.RUNNER_TEMP + '/dawn.json'); r.bhajans.length + (r.long ? 1 : 0) + (r.daystatus ? 1 : 0)")
           [ "$n" != 0 ] || { echo "No dawn upload of $d is missing"; exit 0; }
           gh workflow run daily.yml -R "$GITHUB_REPOSITORY" --ref main -f slot=dawn
           echo "- Dawn retry: dispatched daily.yml slot=dawn for $d ($(cat "$RUNNER_TEMP/dawn.json"))" >> "$GITHUB_STEP_SUMMARY"

@@ -10,6 +10,12 @@
 #   status engine, or a famous-temple darshan on festival days) > evening famous-temple darshan 19:00 > Kalyug ke
 #   Bhagwan (Tue/Thu/Sat, KALYUG=on) > Dadi-Chhotu (Wed). Katha Shorts are cut. The long katha is not in this cap.
 # A slot that is not planned for the day skips at once (no render). Photo posts and the Veo kit are not uploads.
+# RE-PLANNED 16 Nov 2026 (owner: "to aisa hi karo"; YouTube Analytics 25 Oct - 16 Nov; scripts/day-plan.mjs header):
+#   movie > festival status > DAY STATUS (every non-festival day, public 06:00 IST, made the evening before by job
+#   `status`) > evening darshan > Kailash / POV > facts (max 2 a week until the 25 Nov review) > Kalyug > Dadi-Chhotu.
+#   The plain long katha is STOPPED: the long slot is only the weekly mantra jaap or a festival bhajan jukebox (jobs
+#   `mantra` / `jukebox`); job `long` tells a katha only for a date-scoped override or slot=long. Loop / veer only on
+#   slot=loop. Status Shorts' YouTube descriptions end with a WhatsApp share line (not on Facebook).
 # The long katha video (16:9, 5-10 min, scheduled for 12:30 IST, every day) is made by job `long` after every
 # morning-slot run: the scheduler Worker dispatches slot=morning at 09:13 and 10:13 IST daily (and the schedule polls
 # here), so it fires every day; the first run makes it, the rest skip (log.md). Subject from day-plan (the prompt).
@@ -290,6 +296,8 @@ jobs:
           tomorrow=$(TZ=Asia/Kolkata date -d tomorrow +%F)
           if [ "$slot" = dawn ]; then
             dawn "$tomorrow"
+            # + the status job: tomorrow's 06:00 day status Short (status-engine due) when the evening run did not make it
+            echo "status=true" >> "$GITHUB_OUTPUT"
             echo "bhajans=[${bh#,}]" >> "$GITHUB_OUTPUT"; echo "loops=[${lp#,}]" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::Tomorrow's dawn uploads only ($tomorrow)"; exit 0
           fi
@@ -440,7 +448,8 @@ jobs:
             and append one line to automation/log.md. Change nothing else.
 
       # The morning "day status" Short (Somvar Mahadev, Mangalvar Salasar Balaji, ...; Ekadashi: Gyaras Khatu Shyam) is
-      # made by the status engine (scripts/status-themes.mjs), not by Claude: 15-25 s loop, bold Hindi hook, "स्टेटस पर
+      # made THE EVENING BEFORE by the status job (public 06:00 IST; owner, 16 Nov 2026); this step only runs when that
+      # render is missing (public on render). Made by the status engine (scripts/status-themes.mjs), not by Claude: 15-25 s loop, bold Hindi hook, "स्टेटस पर
       # लगाएं", title "<Day> <Deity> Status | <Hindi> स्टेटस वीडियो #Shorts"; names and the first picture rotate weekly.
       - name: Day status (status engine)
         if: steps.date.outputs.done != 'true' && steps.date.outputs.kind == 'daystatus'
@@ -701,6 +710,9 @@ jobs:
           echo "::error::YouTube: ${{ steps.yt.outcome }}, Make: ${{ steps.make.outcome }}"
           exit 1
 
+  # STOPPED as a daily katha (owner, 16 Nov 2026: long katha 18-22% retention, 38-57 views): day-plan.mjs plans a long
+  # video only for the weekly mantra jaap / a festival jukebox (their own jobs) or a date-scoped override, so this job now
+  # runs a katha only for an override day or an explicit slot=long dispatch. Below: the original design.
   # Long katha video (automation/STORY.md section 5) EVERY day (owner, 13 Nov 2026; scripts/day-plan.mjs, outside the
   # 3-Shorts cap, upload guard cap 1 long a day): 16:9, 5-10 min, private with publishAt 12:30 IST (straight away when
   # that has passed). Subject: day-plan's `what` (festival katha/vidhi on a festival day unless a long video told it in
@@ -769,6 +781,10 @@ jobs:
             echo "::notice::$today long video already made"
           elif [ "${{ inputs.slot }}" != long ] && [ "$(node -p "require(process.env.RUNNER_TEMP + '/plan.json').planned" 2>/dev/null)" != true ]; then
             echo "::notice::No long video today: $(node -p "require(process.env.RUNNER_TEMP + '/plan.json').why" 2>/dev/null)"
+          elif [ "${{ inputs.slot }}" != long ] && [ "$(node -p "require(process.env.RUNNER_TEMP + '/plan.json').kind" 2>/dev/null)" != long ]; then
+            # A mantra jaap / jukebox day whose own job did not make it: no katha instead (owner, 16 Nov 2026: the plain
+            # long katha is stopped); its job retries on the next run.
+            echo "::notice::Today's long video is a $(node -p "require(process.env.RUNNER_TEMP + '/plan.json').kind" 2>/dev/null) (its own job), not a katha"
           else
             echo "GO=1" >> "$GITHUB_ENV"
           fi
@@ -1033,6 +1049,12 @@ jobs:
   # media Worker (7-day download link in the description), uploaded private with publishAt (a late `eve` goes out at
   # once), scheduled as a Facebook Reel and queued for Instagram (the `instagram` job). Only variants that fit the
   # 3-a-day cap exist (scripts/day-plan.mjs), and scripts/upload-guard.mjs claims "<day> <slot>" before each upload.
+  # DAY STATUS (owner, 16 Nov 2026: a status Short every day, public 06:00 IST for the morning WhatsApp status): when no
+  # festival variant is due, the run's family is TOMORROW's weekday day status Short (Gyaras Khatu Shyam on Ekadashi;
+  # status-engine `due` -> dayStatusDue), made the same way (pictures + clips once, cache key <date>-daystatus), uploaded
+  # with publishAt <date> 06:00 under the <date> morning slot; the YouTube description ends with the share line
+  # (status-engine SHARE_LINE, YouTube only). Also runs after slot=dawn (photos.yml's 19:46 IST retry). If it is still
+  # missing on the day, the morning run's story job makes it (status-engine `day`) and it goes public on render.
   status:
     needs: story
     if: always() && needs.story.outputs.status == 'true'
@@ -1243,7 +1265,8 @@ jobs:
             yt=$(j "$RUNNER_TEMP/yt.json" "const y=j.youtube; y.url+(y.publishAt?' (public at '+y.publishAt+')':' (public now)')")
             fest=$(j "$file" "j.festival")
             social=$(j "$RUNNER_TEMP/meta.json" "' | social: '+j.summary")
-            echo "$day | $slot | $slug | $fest | status Short variant $(j "$file" "j.variant") \"$(j "$file" "j.youtube_title.split(' | ')[0]")\" (15-25 s loop, download link), public $at IST" >> automation/log.md
+            what=$(j "$file" "j.day_status ? 'Day status Short' : 'status Short variant ' + j.variant")
+            echo "$day | $slot | $slug | $fest | $what \"$(j "$file" "j.youtube_title.split(' | ')[0]")\" (15-25 s loop, download link), public $at IST" >> automation/log.md
             echo "- $slug | youtube: $yt | status variant, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
             git add automation/log.md automation/published.md "story/published/$slug.json"
             git commit -qm "Status $slug"
@@ -2124,8 +2147,9 @@ jobs:
           git commit -qm "Kalyug ke Bhagwan $SLUG scheduled for $rel 08:00"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
-  # Weekly facts compilation (owner, 15 Nov 2026; scripts/facts-compile.mjs): on Saturdays whose long video is a plain
-  # series katha, when 4+ facts Shorts of the last 21 days (6+ min) are not compiled yet, the day's 12:30 long video is
+  # Weekly facts compilation (owner, 15 Nov 2026; scripts/facts-compile.mjs): ONLY after a positive facts review
+  # (automation/facts-review.json verdict "on"; owner, 16 Nov 2026: "only if facts start working"), on Saturdays with no
+  # other long video, when 4+ facts Shorts of the last 21 days (6+ min) are not compiled yet, the day's 12:30 long video is
   # ONE 16:9 compilation of them (15 s hook intro, the Shorts as 9:16 panels, outro, chapters with each source, big-text
   # thumbnail, links to the Shorts; afterwards a "full video" link in each Short's description). The Shorts' videos come
   # from the facts job's artifacts (30 days). Runs on morning runs before `long`, which skips once log.md has the day's
@@ -2233,8 +2257,10 @@ jobs:
           git commit -qm "Long $SLUG (facts compilation)"
           for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
 
-  # Bhajan loop / veer Shorts (owner, 15 Nov 2026; scripts/loop.mjs, story/render-loop.mjs): on normal days the morning
-  # day-status Short alternates with them (Mon veer Mahakal, Wed loop, Fri loop, Sat veer Hanuman; day-plan.mjs). Built
+  # Bhajan loop / veer Shorts (owner, 15 Nov 2026; scripts/loop.mjs, story/render-loop.mjs). Since 16 Nov 2026 the day
+  # status Short is the morning upload EVERY day (owner-approved plan), so day-plan.mjs no longer plans loop / veer: this
+  # job runs only on a manual slot=loop dispatch (+ loop_date / loop_kind). Original rotation: Mon veer Mahakal, Wed loop,
+  # Fri loop, Sat veer Hanuman. Built
   # from the QA-passed bhajan library (no Claude), ONE new FLUX artwork, a seamless 12-15 s chorus loop (veer: 30-40 s, the
   # jaikara on top), public 05:45 IST (bhajan audio content 05:30-06:30, owner rule) and RENDERED THE EVENING BEFORE (the
   # Date step's dawn() lists tomorrow's loop items); the morning run makes it when that render is missing. No passed
@@ -2671,6 +2697,9 @@ jobs:
   # Weekly measurement of the "max 3 uploads a day" change (scripts/growth-compare.mjs -> automation/growth.md): on Monday
   # (IST) morning runs, the average views per Short of 2-8 Nov (before) vs 10-16 Nov and the last 7 days, plus the
   # subscriber change. YouTube Data API, the same credentials as the uploads; a few quota units. Never fails the workflow.
+  # FACTS REVIEW (owner, 16 Nov 2026): on the first morning run from 25 Nov 2026 (day-plan.mjs FACTS_REVIEW) without a
+  # verdict, `growth-compare.mjs --facts-review` writes automation/facts-review.json (median views of the facts Shorts:
+  # under 20 = "off", the planner stops facts; else "on") and a "## Facts review" section in growth.md.
   growth:
     needs: story
     if: always() && needs.story.outputs.long == 'true' && !inputs.dry_run
@@ -2694,11 +2723,18 @@ jobs:
           SHYAM_YT_REFRESH_TOKEN: ${{ secrets.SHYAM_YT_REFRESH_TOKEN }}
         run: |
           today=$(TZ=Asia/Kolkata date +%F)
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [[ ! "$today" < 2026-11-25 ]] && [ ! -s automation/facts-review.json ]; then
+            if node scripts/growth-compare.mjs --date "$today" --facts-review > "$RUNNER_TEMP/facts-review.txt"; then
+              cat "$RUNNER_TEMP/facts-review.txt" | tee -a "$GITHUB_STEP_SUMMARY"
+              git add automation/facts-review.json automation/growth.md && git commit -qm "Facts review $today"
+              for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
+            fi
+          fi
           [ "$(TZ=Asia/Kolkata date +%u)" = 1 ] || { echo "Not Monday (IST): nothing to do"; exit 0; }
           grep -q "^## Week of $today" automation/growth.md 2>/dev/null && { echo "Already written today"; exit 0; }
           node scripts/growth-compare.mjs --date "$today" | tee -a "$GITHUB_STEP_SUMMARY"
-          git config user.name "shyam-premi-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/growth.md && git commit -qm "Growth comparison $today"
           for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
 

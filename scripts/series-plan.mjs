@@ -7,16 +7,17 @@
 // day a week and never a big festival, which has no morning slot to give: its idea airs on the nearest series day inside
 // the idea's window). Never on movie days (17-20 Nov 2026 keep the movie part) or on date-scoped override days
 // (automation/chhath-2026.json: Chhath until 16 Nov).
-// Under the 3-Shorts cap (owner, 15 Nov 2026: "kailash replaces the weakest slot"; POV "prioritised over plain katha"):
-// a series Short ranks after the festival status Shorts, the morning Short, the evening temple darshan and the facts
-// Short, before Kalyug ke Bhagwan and the Dadi-Chhotu noon Short; when the cap would still drop it, it takes the place
-// of the weekday day-status morning Short (the old plain katha slot), on a festival day of the festival-morning temple
-// darshan (the evening darshan stays), else of that day's facts Short. It never displaces a dawn bhajan loop/veer Short, a festival status Short (incl. the Khatu Gyaras status), the
-// evening temple darshan or a movie part. If its episode is not in log.md by the morning
-// run (QA gate failed), the morning Short runs after all (morningFallback).
+// Under the 3-Shorts cap (owner, 16 Nov 2026: movie > festival status > day status > darshan > Kailash / POV > facts):
+// a series Short ranks after the festival status Shorts, the morning day status Short and the evening temple darshan,
+// before the facts Short, Kalyug ke Bhagwan and the Dadi-Chhotu noon Short. When the cap would still drop it, it takes
+// the place of the festival-morning temple darshan (the second darshan of a festival day; the evening darshan stays),
+// else of that day's facts Short. It never displaces the day status Short (incl. the Khatu Gyaras status), a festival
+// status Short, the evening temple darshan or a movie part. If its episode is not in log.md by the morning run (QA gate
+// failed), the morning Short runs after all (morningFallback; only when it replaced a morning Short).
 import fs from 'node:fs';
 import path from 'node:path';
 
+// priority 3.6 / 3.7: after the evening darshan (3), before facts (3.8; scripts/day-plan.mjs PRIORITY)
 export const SERIES = [
   { slot: 'kailash', name: 'Kailash Parivar', days: [1, 4, 6], at: '08:00', priority: 3.6, order: 2.5, bank: 'automation/kailash-episodes.json', items: 'episodes', env: 'KAILASH' },
   { slot: 'pov', name: 'Shri Krishna kehte hain (Shyam POV)', days: [2, 5], at: '08:00', priority: 3.7, order: 2.6, bank: 'automation/krishna-pov-topics.json', items: 'topics', env: 'KRISHNA_POV' },
@@ -75,17 +76,16 @@ export function candidate(cfg, date, si = {}, ctx = {}) {
   return { slot: cfg.slot, ...(tie ? { tieIn: tie } : { ownDay: true }), what: `${cfg.name} episode (${cfg.at}, made the evening before${tie ? `; festival tie-in ${tie}` : ''})` };
 }
 
-/** When the series candidate would be dropped by the cap, it replaces the weekday day-status morning Short (or, on its
- *  festival tie-in day, the festival-morning temple darshan). Mutates and returns cands. */
+/** When the series candidate would be dropped by the cap, it replaces the festival-morning temple darshan (a festival
+ *  tie-in day) or the day's facts Short, never the day status Short. Mutates and returns cands. */
 export function makeRoom(slot, cands, cap, rank) {
   const k = cands.find((c) => c.slot === slot);
   if (!k) return cands;
   const kept = [...cands].map((c, i) => ({ c, i })).sort((a, b) => rank(a.c) - rank(b.c) || a.i - b.i).slice(0, cap).map((x) => x.c);
   if (kept.includes(k)) return cands;
-  // the weakest kept Short it may take: the weekday day-status morning Short, on its tie-in day the festival-morning
-  // temple darshan, else the facts Short (never a dawn bhajan loop/veer, a festival status or the evening darshan)
+  // the weakest kept Short it may take: the festival-morning temple darshan, else the facts Short (never the day
+  // status, a festival status or the evening darshan; owner, 16 Nov 2026)
   const order = [
-    (c) => c.slot === 'morning' && c.kind === 'daystatus' && typeof c.theme === 'number',
     (c) => c.slot === 'morning' && c.kind === 'temple',
     (c) => c.slot === 'facts' && !c.logged,
   ];

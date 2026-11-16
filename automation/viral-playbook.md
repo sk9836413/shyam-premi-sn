@@ -13,6 +13,16 @@ Every writer/renderer of Shyam Premi Shorts should follow this. Numbers = views 
 | 6 | Bhakt katha PART series, payoff part titled by the miracle | 21.3 L (Sudama part 4) | series (movie engine) |
 | 7 | Loop / veer / status with a song (lottery) | up to 1 Cr but driven by copyrighted songs | `loop`, `veer` with OUR bhajans |
 
+## Our own channel data (YouTube Analytics, 25 Oct - 16 Nov 2026; owner-approved plan 16 Nov 2026)
+- **Status Shorts win by SHARES:** Choti Diwali 799 views / 31 shares, Dhanteras 456 / 25, Chhath Usha Arghya 239. So a
+  status Short every day (day status 06:00 on non-festival days), and every status Short's YouTube description ends with
+  "📲 अपने WhatsApp स्टेटस पर लगाएं और परिवार में शेयर करें 🙏" (a share ask; never on Facebook, whose bait rule forbids it).
+- **Famous-temple darshan wins on retention:** Khatu Moravinandan 76%, Salasar 72%, Shakambhari 62% (135-173 views);
+  Hare ka Sahara 73%, Barbarik sheesh daan 90%.
+- **Long katha (5-7 min) failed:** 18-22% retention, 38-57 views -> stopped; the long slot is the weekly mantra jaap and
+  festival bhajan jukeboxes (the Chhath jukebox: 170 views).
+- **Facts Shorts so far:** 1-7 views each -> max 2 a week until the 25 Nov review (median under 20 = off).
+
 ## Rules that made the difference
 1. **First second = a question or a shock.** 😱 / "क्यों?" / "जब…" / "फिर … ने जो किया…" / "सब साथ छोड़ दें…". Never "आज सुनिए…".
 2. **Cover frame:** 3-line big text (white / giant yellow / white on red band), red arrow, OR one strange oddly-scaled scene that asks a question by itself.

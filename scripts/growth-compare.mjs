@@ -9,10 +9,18 @@
 // days, plus the subscriber change since the baseline snapshot. The Data API only has lifetime views, so younger
 // videos have had less time: the table also shows views per day of age, the fairer number while the windows differ
 // in age. Shorts = videos up to 180 s; the date is the IST day the video went public.
+//
+//   node scripts/growth-compare.mjs --date 2026-11-25 --facts-review   FACTS REVIEW (owner, 16 Nov 2026: facts Shorts got
+//        1-7 views; max 2 a week until 25 Nov, then compare): the median views of the public facts Shorts from 15 Nov
+//        that are at least 2 days old -> automation/facts-review.json { date, n, median, verdict } (median under 20 =
+//        "off": scripts/day-plan.mjs stops planning facts from that date; else "on": the weekly limit ends) and a
+//        "## Facts review" section in growth.md. Exit 1 without a verdict (no facts Short old enough yet).
+// growth.md keeps every "## " section this script does not write itself (e.g. "## Facts review", "## Character series").
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { radarFiles, workingLines } from './viral-radar.mjs';
+import { FACTS_MEDIAN_MIN, FACTS_REVIEW_FILE } from './day-plan.mjs';
 
 const FILE = 'automation/growth.md';
 const CHANGE = '2026-11-10';
@@ -123,9 +131,48 @@ export function formatTable(videos, pub, { from, to, readSpec = () => ({}) }) {
   return [...rows.entries()].sort((a, b) => b[1].views / b[1].n - a[1].views / a[1].n);
 }
 
+// ---- Facts review (owner, 16 Nov 2026) -----------------------------------------------------------------------------
+export const FACTS_SINCE = '2026-11-15'; // the first facts Shorts (the Chhath ones)
+export const FACTS_MIN_AGE_DAYS = 2;
+export const median = (xs) => { const a = [...xs].sort((x, y) => x - y); const n = a.length; return n ? (n % 2 ? a[(n - 1) / 2] : (a[n / 2 - 1] + a[n / 2]) / 2) : null; };
+/** { date, since, n, median, min, verdict: 'off' | 'on' | null, videos } of the public facts Shorts (published.md slug
+ *  "<date>-facts-...") from `since` that are at least FACTS_MIN_AGE_DAYS old on `date`. */
+export function factsReview(videos, pub, { date, since = FACTS_SINCE } = {}) {
+  const slugOf = new Map([...String(pub || '').matchAll(/^- (\S+) \| youtube: https?:\/\/(?:youtu\.be\/|(?:www\.)?youtube\.com\/(?:shorts\/|watch\?v=))([\w-]{6,})/gm)].map((m) => [m[2], m[1]]));
+  const last = new Date(Date.parse(`${date}T12:00:00Z`) - FACTS_MIN_AGE_DAYS * 864e5).toISOString().slice(0, 10);
+  const facts = videos.filter((v) => /^\d{4}-\d{2}-\d{2}-facts\d*-/.test(slugOf.get(v.id) || '') && v.day >= since && v.day <= last)
+    .map((v) => ({ id: v.id, slug: slugOf.get(v.id), day: v.day, views: v.views, title: v.title }))
+    .sort((a, b) => a.day.localeCompare(b.day));
+  const med = median(facts.map((v) => v.views));
+  const verdict = !facts.length ? null : med < FACTS_MEDIAN_MIN ? 'off' : 'on';
+  return { date, since, n: facts.length, median: med, min: FACTS_MEDIAN_MIN, verdict, videos: facts };
+}
+export function factsReviewSection(r) {
+  const v = r.verdict === 'off'
+    ? `OFF: scripts/day-plan.mjs plans no facts Short from ${r.date} (automation/facts-review.json; to try again, set its verdict to "on" or delete it)`
+    : 'ON: facts stay (the 2-a-week limit ends; the cap and the priority still apply)';
+  return [
+    `## Facts review ${r.date}`,
+    '',
+    `Owner, 16 Nov 2026: facts Shorts max 2 a week until 25 Nov, then compare; median under ${r.min} views = facts off.`,
+    '',
+    '| Day | Views | Short |',
+    '|---|---|---|',
+    ...r.videos.map((x) => `| ${x.day} | ${x.views} | ${String(x.title || x.slug).replace(/\|/g, '/').slice(0, 70)} |`),
+    '',
+    `- ${r.n} facts Shorts public ${r.since} to ${FACTS_MIN_AGE_DAYS} days before ${r.date}: median **${r.median}** views -> verdict **${v}**.`,
+    '',
+  ].join('\n');
+}
+
 const SNAP = /^\| (\d{4}-\d{2}-\d{2}) \| (\d+) \| (\d+) \| (\d+) \|$/gm;
-function writeFile({ snapshot, section }) {
+function writeFile({ snapshot, section, extra }) {
   const old = read(FILE);
+  // sections this script does not write themselves ("## Facts review ...", "## Character series", ...) are kept as they
+  // are (a new facts review replaces the one of the same title)
+  const kept = old.split(/^(?=## )/m).filter((p) => p.startsWith('## ') && !p.startsWith('## Week of ') && !p.startsWith('## Subscriber snapshots')
+    && !(extra && p.split('\n')[0] === extra.split('\n')[0]));
+  if (extra) kept.unshift(extra);
   const snaps = new Map([...old.matchAll(SNAP)].map((m) => [m[1], m.slice(2, 5).map(Number)]));
   if (snapshot) snaps.set(DATE, [snapshot.subscribers, snapshot.views, snapshot.videos]);
   const sections = old.split(/^(?=## Week of )/m).filter((p) => p.startsWith('## Week of ') && !p.startsWith(`## Week of ${DATE}`));
@@ -146,6 +193,7 @@ function writeFile({ snapshot, section }) {
     '|---|---|---|---|',
     ...rows,
     '',
+    ...kept.map((p) => p.trimEnd() + '\n'),
     ...sections.map((p) => p.trimEnd() + '\n'),
   ].join('\n');
   fs.writeFileSync(FILE, out.trimEnd() + '\n');
@@ -154,6 +202,15 @@ function writeFile({ snapshot, section }) {
 
 async function main() {
   const { stats, videos } = await channel();
+  if (args.includes('--facts-review')) {
+    const r = factsReview(videos, read('automation/published.md'), { date: DATE });
+    if (!r.verdict) { console.log(`Facts review ${DATE}: no public facts Short old enough yet`); process.exit(1); }
+    fs.writeFileSync(FACTS_REVIEW_FILE, `${JSON.stringify({ date: DATE, n: r.n, median: r.median, min: r.min, verdict: r.verdict, since: r.since, videos: r.videos.map(({ title, ...v }) => v) }, null, 2)}\n`);
+    const sec = factsReviewSection(r);
+    writeFile({ extra: sec });
+    console.log(sec);
+    return;
+  }
   if (args.includes('--snapshot')) {
     writeFile({ snapshot: stats });
     console.log(`Snapshot ${DATE}: ${stats.subscribers} subscribers, ${stats.views} views, ${stats.videos} videos`);

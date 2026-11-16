@@ -102,6 +102,16 @@ export function syntheticMedia(spec = {}) {
   return true; // AI pictures + AI narration on every video, and AI singing when spec.bhajan is set
 }
 
+/** Status Shorts (festival + day status; scripts/status-engine.mjs SHARE_LINE, owner 16 Nov 2026): the spec's
+ *  `share_line` is the description's LAST line, whatever was added after it (download link, festival links, bhajan
+ *  line, chapters). YouTube only: Facebook's bait rule forbids share asks (scripts/fb.mjs). */
+export function withShareLine(description, spec = {}) {
+  const line = String(spec.share_line || '').replace(/[<>]/g, '').trim();
+  if (!line) return description;
+  const rest = String(description || '').split('\n').filter((l) => l.trim() !== line).join('\n').trimEnd();
+  return rest ? `${rest}\n\n${line}` : line;
+}
+
 export function metaFromScenes(file, metaFile) {
   const s = JSON.parse(fs.readFileSync(file, 'utf8'));
   const title = String(s.youtube_title || '').replace(/[<>]/g, '').trim();
@@ -112,6 +122,7 @@ export function metaFromScenes(file, metaFile) {
       description += `\n\nAdhyay (Chapters):\n${chapters.map((c, i) => `${stamp(i === 0 ? 0 : c.start)} ${c.title}`).join('\n')}`;
     }
   }
+  description = withShareLine(description, s);
   // Other channels' / organisations' names never go up (YouTube spam & deceptive-practices policy; scripts/bhakti-seo.mjs):
   // such a tag is dropped, such a title or description stops the upload.
   const tags = String(s.youtube_tags || '').split(',').map((t) => t.replace(/[<>]/g, '').trim()).filter((t) => t && !thirdPartyNames(t).length);

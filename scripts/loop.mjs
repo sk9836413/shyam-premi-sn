@@ -16,8 +16,9 @@
 // (new seed + style), at most one use of the same bhajan in 3 days, a different chorus window than its last use.
 // GATE: only bhajans that passed the existing QA gate (licence qa.names all right, CER <= 0.40); Khatu bhajans are out
 // until one passes (Whisper hears शाम); festival songs only near their festival. Never loosened.
-// ROTATION (scripts/day-plan.mjs): on normal days the morning day-status Short alternates with these: Mon veer (Mahakal),
-// Wed loop, Fri loop, Sat veer (Hanuman); Tue/Thu/Sun keep the day status Short; festival days unchanged. LOOPS=off stops.
+// ROTATION: Mon veer (Mahakal), Wed loop, Fri loop, Sat veer (Hanuman) = the default kind of a date. Since 16 Nov 2026
+// scripts/day-plan.mjs no longer puts loop / veer in the morning slot (the day status Short is the morning upload every
+// day, owner-approved plan); they run only on a manual daily.yml slot=loop dispatch.
 //
 //   node scripts/loop.mjs spec --date D [--kind loop|veer] [--deity shiv] --out <dir>/scenes.json   build the day's spec
 //   node scripts/loop.mjs check <scenes.json>                                                     the loop rules

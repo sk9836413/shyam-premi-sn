@@ -7,7 +7,9 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { addDays, loadInputs, planDay } from './day-plan.mjs';
-import { buildFamily, buildVariant, dayStatus, due, hookFor, loadFestivals, placements, slugOf, titleOf } from './status-engine.mjs';
+import { SHARE_LINE, buildFamily, buildVariant, dayStatus, dayStatusDue, due, hookFor, loadFestivals, placements, slugOf, titleOf } from './status-engine.mjs';
+import { withShareLine } from './youtube.mjs';
+import { checkFbCaption } from './fb.mjs';
 
 const festivals = loadFestivals('.');
 const inputs = loadInputs('.');
@@ -104,6 +106,40 @@ describe('what the status job makes now (due)', () => {
   test('family mode (slot=status + status_date) with dry: every variant of that festival', () => {
     const r = due({ today: '2026-11-11', log, festivals, planFor, family: '2026-11-20', dry: true });
     assert.equal(r.variants.length, 4);
+  });
+  // owner, 16 Nov 2026: a status Short every day, public 06:00 IST, made the evening before
+  test('no festival variant due: the family is TOMORROW\'s day status Short (06:00, morning slot)', () => {
+    const r = due({ today: '2026-11-17', now: at('2026-11-17T18:46:00+05:30'), log, festivals, planFor });
+    assert.equal(r.family, '2026-11-18');
+    assert.deepEqual(r.daystatus, { date: '2026-11-18', theme: 3, at: '06:00' });
+    assert.deepEqual(r.variants, []);
+  });
+  test('festival variants go first; a logged morning slot, a festival morning or family mode give no day status', () => {
+    assert.equal(due({ today: '2026-11-19', now: at('2026-11-19T10:43:00+05:30'), log, festivals, planFor }).daystatus, undefined);
+    const logged = due({ today: '2026-11-17', now: at('2026-11-17T18:46:00+05:30'), log: '2026-11-18 | morning | 2026-11-18-morning-budhvar-ganesh | g | s\n', festivals, planFor });
+    assert.equal(logged.family, null);
+    assert.ok(logged.skipped.some((x) => /already in log\.md/.test(x)));
+    assert.match(dayStatusDue({ today: '2026-11-20', planFor }).skip, /no day status/); // 21 Nov Tulsi Vivah: festival darshan morning
+    assert.equal(due({ today: '2026-11-17', log, festivals, planFor, family: '2026-11-20', dry: true }).daystatus, undefined);
+  });
+});
+
+describe('share push (owner, 16 Nov 2026)', () => {
+  test('every status Short (festival variants and the day status) carries the share line; YouTube puts it LAST', () => {
+    const v = buildVariant(buildFamily(festivals.find((x) => x.key === 'khatu-shyam-janmotsav'), '.'), placements(festivals).find((p) => p.festival.key === 'khatu-shyam-janmotsav'));
+    for (const spec of [v, dayStatus('2026-11-18')]) {
+      assert.equal(spec.share_line, SHARE_LINE);
+      const d = withShareLine(`${spec.youtube_description}\n\nStatus video download karein: https://x\n\nभजन: मौलिक रचना`, spec);
+      assert.equal(d.split('\n').at(-1), SHARE_LINE);
+      assert.equal(d.split(SHARE_LINE).length, 2, 'once');
+      assert.equal(withShareLine(d, spec), d, 'idempotent');
+    }
+    assert.match(SHARE_LINE, /WhatsApp स्टेटस/);
+    assert.equal(withShareLine('x', {}), 'x', 'other videos unchanged');
+  });
+  test('Facebook never gets it: the bait rule forbids "शेयर", and the status FB caption does not contain it', () => {
+    assert.ok(checkFbCaption(`जय श्री श्याम 🙏 आज किसके दर्शन किए?\nखाटू वाले श्याम\n${SHARE_LINE}\n#KhatuShyam #JaiShreeShyam #Bhakti`).some((e) => /bait/.test(e)));
+    assert.doesNotMatch(dayStatus('2026-11-18').facebook_caption, /शेयर/);
   });
 });
 

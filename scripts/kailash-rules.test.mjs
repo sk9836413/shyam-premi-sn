@@ -185,13 +185,16 @@ describe('schedule helpers (scripts/kailash-plan.mjs)', async () => {
     assert.equal(kailashCandidate('2026-11-16', inputs, { wd: 1, override: { slots: {} } }), null);
     assert.ok(kailashCandidate('2026-11-24', { kailash: false, kailashLogged: inputs.kailashLogged }, { wd: 2 }).logged);
   });
-  test('under the cap it replaces the weekday day-status morning Short, never status or the evening darshan', () => {
-    const P = { status: 1, eve: 1, morning: 2, evening: 3, facts: 3.5, kailash: 3.6, kalyug: 4 };
+  test('under the cap (owner, 16 Nov 2026) it never replaces the day status, a status or the evening darshan; it takes a festival-morning darshan', () => {
+    const P = { status: 1, eve: 1, morning: 2, evening: 3, kailash: 3.6, facts: 3.8, kalyug: 4 };
     const rank = (c) => c.rank ?? P[c.slot];
     const cands = [{ slot: 'eve' }, { slot: 'morning', kind: 'daystatus', theme: 1 }, { slot: 'evening', kind: 'temple' }, { slot: 'facts' }, { slot: 'kailash' }];
     makeRoomForKailash(cands, 3, rank);
     const kept = [...cands].sort((a, b) => rank(a) - rank(b)).slice(0, 3).map((c) => c.slot);
-    assert.deepEqual(kept.sort(), ['eve', 'evening', 'kailash']);
+    assert.deepEqual(kept.sort(), ['eve', 'evening', 'morning']);
+    const fest = [{ slot: 'status' }, { slot: 'morning', kind: 'temple' }, { slot: 'evening', kind: 'temple' }, { slot: 'kailash' }];
+    makeRoomForKailash(fest, 3, rank);
+    assert.deepEqual(fest.map((c) => c.slot).sort(), ['evening', 'kailash', 'status']);
     const gyaras = [{ slot: 'status' }, { slot: 'morning', kind: 'daystatus', theme: 'gyaras' }, { slot: 'evening' }, { slot: 'kailash' }];
     makeRoomForKailash(gyaras, 3, rank);
     assert.ok(gyaras.some((c) => c.slot === 'morning')); // the Khatu Gyaras status Short stays

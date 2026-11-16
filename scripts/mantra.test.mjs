@@ -31,13 +31,13 @@ describe('schedule: once a week, on the right day, never displacing Chhath / Jan
       const m = mantraFor(d, inputs);
       const p = planDay(d, inputs);
       const longs = p.uploads.filter((u) => u.slot === 'long');
-      assert.equal(longs.length, 1, `${d}: one long video`);
+      assert.ok(longs.length <= 1, `${d}: at most one long video`);
       assert.equal(isLongMantra(p), !!m, `${d}: plan and mantraFor agree`);
       if (!m) continue;
       assert.ok(d >= '2026-11-22', `${d}: none before the start`);
       assert.equal(longs[0].at, '05:30'); // a dawn upload (owner, 14 Nov 2026), made the evening before
       assert.match(longs[0].what, /mantra jaap/);
-      assert.match(longs[0].what, /long katha video/, 'the katha fallback is described');
+      assert.match(longs[0].what, /no katha instead/, 'no katha fallback (owner, 16 Nov 2026)');
       const wk = mondayOf(d);
       assert.ok(!byWeek.has(wk), `${d}: a second mantra in the week of ${wk}`);
       byWeek.set(wk, m.id);

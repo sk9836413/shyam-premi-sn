@@ -1,8 +1,8 @@
 # Shyam Premi SN: daily story video instructions
 
 You write the devotional story videos for **Shyam Premi SN** (YouTube, Instagram, Facebook): the
-`morning` and `evening` Shorts (sections 1-4), and on their rotation days the long katha video (slot `long`,
-section 5) or the Dadi-Chhotu Short (slot `noon`, section 6).
+`morning` (festival days) and `evening` temple darshan Shorts (sections 1-4), the facts Shorts, and the Dadi-Chhotu
+Short (slot `noon`, section 6). The plain long katha video (section 5) is stopped (owner, 16 Nov 2026).
 
 **At most 3 YouTube uploads a day (owner, 9 Nov 2026).** At 3-4 uploads a day (2-6 Nov) Shorts got hundreds of views;
 at 5-6 a day (7-9 Nov) they fell to 0-15, most likely YouTube's repetitive / mass-produced AI content signals. So every
@@ -11,20 +11,35 @@ upload must be high quality and clearly different.
 **Re-plan around what goes viral (owner, 11 Nov 2026; data of all 109 videos).** Festival "status" Shorts average 154
 views (Choti Diwali Status 2026: 798, Dhanteras Status: 456; the big festivals, out the night before or just after
 midnight); famous-temple darshan Shorts 60 (Moravinandan Khatu Shyam 173, Shakambhari Sakrai 163, Salasar Balaji 133);
-katha Shorts 18, the worst: **no more katha Shorts**. Generic "X Darshan" Shorts of the last days got 1-10. The workflow
-(`scripts/day-plan.mjs`) fills every day by priority, max 3 Shorts, plus one long video every day:
+katha Shorts 18, the worst: **no more katha Shorts**. Generic "X Darshan" Shorts of the last days got 1-10.
+
+**Video plan of 16 Nov 2026 (owner: "to aisa hi karo"; YouTube Analytics 25 Oct - 16 Nov).**
+- Festival status Shorts get the views because they get **shared**: Choti Diwali 799 views / 31 shares, Dhanteras 456 /
+  25 shares, Chhath Usha Arghya 239. So **every day gets a status Short**: the weekday day status on every non-festival
+  day (movie days too), public **06:00 IST** for the morning WhatsApp status, with the "स्टेटस पर लगाएं 📲" pill, and every
+  status Short's YouTube description ends with "📲 अपने WhatsApp स्टेटस पर लगाएं और परिवार में शेयर करें 🙏" (a share ask; NOT
+  on Facebook, whose bait rule forbids it).
+- Famous-temple darshan has the best **retention**: Khatu Moravinandan 76%, Salasar 72%, Shakambhari 62% (135-173 views);
+  Hare ka Sahara 73%, Barbarik sheesh daan 90%. The evening darshan stays, on those searched temples first.
+- The **long katha** (5-7 min) got 18-22% retention and 38-57 views: **stopped**. The long slot is only the weekly mantra
+  jaap and a festival bhajan jukebox (the Chhath jukebox got 170 views).
+- The new **facts Shorts** got 1-7 views each: at most 2 a week until the 25 Nov 2026 review (median under 20 views =
+  facts off).
+
+The workflow (`scripts/day-plan.mjs`) fills every day by priority, max 3 Shorts (+ at most 1 long video):
 
 | Priority | Upload | Made by |
 |---|---|---|
 | 0 | the mini-movie part, 07:00 (17-20 Nov) | `movie` job (section 7) |
 | 1 | festival status Shorts: `eve` 20:00 the evening before, `status` 00:30 on the day, `statusday` 08:30 (big festivals) | `status` job, `scripts/status-engine.mjs` (no action from you) |
-| 2 | `morning`: on normal days the weekday **day status** Short (Somvar Mahadev, Mangalvar Hanuman/Salasar Balaji, Budhvar Ganesh, Guruvar Vishnu/Sai, Shukravar Lakshmi/Santoshi, Shanivar Shani dev, Ravivar Surya; Ekadashi: Gyaras Khatu Shyam) | the status engine (no action from you) |
-| 2 | `morning` on other festival days: a **famous-temple darshan** Short tied to the festival's deity | you (sections 1-4) |
-| 3 | `evening` 19:00: a **famous-temple darshan** Short | you (sections 1-4) |
-| 3.5 | `facts` 17:00: the "pauranik facts / rahasya" Short (from 17 Nov 2026, where the cap has room) | `facts` job, you write it (section "Facts Shorts") |
-| 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`) | `kalyug` job (section 8) |
-| 5 | `noon` Dadi-Chhotu Wed 15:00 | you (section 6) |
-| own cap | `long` video **every day** (16:9; outside the 3 Shorts, 1 a day): a katha at 12:30; a bhajan / mantra long video (jukebox, weekly mantra jaap) at **05:30** | you (section 5) for the katha; `jukebox` / `mantra` jobs |
+| 2 | `morning` on every non-festival day (movie days too): the weekday **day status** Short, public **06:00**, made the evening before (Somvar Mahadev, Mangalvar Hanuman/Salasar Balaji, Budhvar Ganesh, Guruvar Vishnu/Sai, Shukravar Lakshmi/Santoshi, Shanivar Shani dev, Ravivar Surya; Ekadashi: Gyaras Khatu Shyam) | the `status` job, status engine (no action from you) |
+| 2 | `morning` on other festival days (not movie / big-festival days): a **famous-temple darshan** Short tied to the festival's deity | you (sections 1-4) |
+| 3 | `evening` 19:00: a **famous-temple darshan** Short (Khatu Shyam ji, Salasar Balaji, Mehandipur Balaji, Shakambhari Mata, Jeen Mata, Rani Sati Dadi with the sati rules first) | you (sections 1-4) |
+| 3.6 / 3.7 | "Kailash Parivar" (Mon/Thu/Sat) / "Shri Krishna kehte hain" (Tue/Fri) 08:00, when approved; never instead of the day status or the evening darshan | sections 9-10 |
+| 3.8 | `facts` 17:00: the "pauranik facts / rahasya" Short, **max 2 a week** until the 25 Nov 2026 review | `facts` job, you write it (section "Facts Shorts") |
+| 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`), only if the cap has room | `kalyug` job (section 8) |
+| 5 | `noon` Dadi-Chhotu Wed 15:00, only if the cap has room | you (section 6) |
+| own cap | `long` (16:9, outside the 3 Shorts, max 1 a day): ONLY the weekly mantra jaap (Sundays, a Krishna week's Ekadashi) or a festival bhajan jukebox (>= 4 full-length QA-passed bhajans of that festival), at **05:30**; no plain katha | `mantra` / `jukebox` jobs |
 
 Any Short below the first three that day is left out (the prompt tells you your slot's plan). Movie days and big-festival
 days have no `morning` Short of yours.
@@ -37,8 +52,9 @@ Devotees play bhajans early in the morning, so bhajan and mantra content is publ
 | Upload | YouTube | Facebook | Instagram | Story | Rendered |
 |---|---|---|---|---|---|
 | bhajan Short of the morning slot (any future bhajan Short without its own time) | **05:45** (publishAt) | Reel **06:00** (scheduled) | queued for 06:00, the first trigger after it | the video story ~06:30-07:00 (first trigger after 06:30), the morning card from 07:00 | **the evening before** |
+| **day status Short** (every non-festival day; owner, 16 Nov 2026) | **06:00** (publishAt) | Reel **06:00** (scheduled) | queued for 06:00 | as the best public Short | **the evening before** (`status` job; if missing, the morning run, public on render) |
 | bhajan / mantra long video (jukebox, mantra jaap) | **05:30** | feed video **05:30** | - | - | **the evening before** |
-| katha long video | 12:30 | feed 12:30 | - | - | the morning |
+| katha long video (only a date-scoped override now) | 12:30 | feed 12:30 | - | - | the morning |
 | a bhajan Short with its own `at` (e.g. the 16 Nov 19:00 Parana Short) | its `at` | the Reel plan | with YouTube | normal | on the day |
 
 - **The evening-before render** hangs on the reliable triggers: daily.yml evening-slot runs from 17:00 IST (the
@@ -116,10 +132,11 @@ Work out today's date in India (IST) and pick the subject in this order:
    story instead: Khatu Shyam ji is the channel's main deity.
 
 4. **Famous temples (Mandir series).** The `evening` Short (and the `morning` Short on festival days) is a
-   **famous-temple darshan**: a well-known temple people search for by name (Khatu Shyam ji at least twice a week:
-   Moravinandan Khatu Shyam got 173 views; Salasar Balaji, Shakambhari Mata Sakrai, Mehandipur Balaji, Jeen Mata,
-   Somnath, Mahakaleshwar, Kashi Vishwanath, Banke Bihari, Nathdwara Shrinathji, ... from
-   `automation/mandir-series.md`): its name, place and one well-sourced fact, following that file's accuracy and
+   **famous-temple darshan**: a well-known temple people search for by name. **Retention data (16 Nov 2026):** Khatu
+   Moravinandan 76%, Salasar 72%, Shakambhari 62% (135-173 views), Hare ka Sahara 73%, Barbarik sheesh daan 90%: prefer
+   Khatu Shyam ji (at least twice a week), Salasar Balaji, Mehandipur Balaji, Shakambhari Mata Sakrai, Jeen Mata and Rani
+   Sati Dadi (the sati-temple rules in full), then Somnath, Mahakaleshwar, Kashi Vishwanath, Banke Bihari, Nathdwara
+   Shrinathji, ... from `automation/mandir-series.md`: its name, place and one well-sourced fact, following that file's accuracy and
    **sati-temple rules**. Put the temple name first in the title, in Roman and Devanagari, plus Darshan
    ("Salasar Balaji Dham Darshan | सालासर बालाजी धाम दर्शन #Shorts"). Never a generic "<Deity> Darshan" without a temple:
    those got 1-10 views. On a festival day pick a famous temple of that festival's deity (Ekadashi: a Vishnu/Krishna
@@ -129,8 +146,9 @@ Work out today's date in India (IST) and pick the subject in this order:
 
 **Khatu Shyam Baba Janmotsav countdown (15-19 Nov 2026).** The Janmotsav is on Dev Uthani Ekadashi, **20 Nov 2026**
 (calendar.md), the channel's biggest day. On the days before it the `evening` darshan Short counts down to it whenever
-it runs (16, 17, 18 and 19 Nov; 15 Nov has two Chhath status Shorts, so no evening Short); this overrides the temple
-rotation. The Janmotsav status Shorts go out on their own (18 + 19 Nov 20:00, 20 Nov 00:30 + 08:30; janmotsav-promo.md). Put the countdown in `kicker` (`Janmotsav: 5 din`, ... `Janmotsav: kal`) and end with "Janmotsav
+it runs (16, 17, 18 and 19 Nov; 15 Nov has two Chhath status Shorts, so no evening Short; under the 16 Nov 2026 plan
+17-19 Nov are full with the movie part, the Gopashtami / day status and the Janmotsav eve status Shorts, so the evening
+darshan is not planned on those days); this overrides the temple rotation. The Janmotsav status Shorts go out on their own (18 + 19 Nov 20:00, 20 Nov 00:30 + 08:30; janmotsav-promo.md). Put the countdown in `kicker` (`Janmotsav: 5 din`, ... `Janmotsav: kal`) and end with "Janmotsav
 tak roz dekhiye". One angle per day, each different from what log.md already has (tell a new part, not a repeat):
 - 15 Nov: who Barbarik was (Ghatotkach and Maurvi's son, the three arrows boon), as Mahabharat lok katha.
 - 16 Nov: Barbarik's vow to side with the losing side and the sheesh daan to Shri Krishna (new details, not the 27 Oct / 3 Nov lines).
@@ -402,6 +420,11 @@ Use the slug format `<yyyy-mm-dd>-<slot>-<short-english-slug>`, e.g. `2026-10-26
 Do not render, upload, publish, commit or push: later workflow steps do that.
 
 ## 5. Long video (slot `long` only)
+
+**STOPPED as a daily katha (owner, 16 Nov 2026):** the long katha (5-7 min) got 18-22% retention and 38-57 views. The
+long slot is now only the weekly mantra jaap and a festival bhajan jukebox (their own jobs), so you write a long katha
+only when the prompt explicitly gives you the `long` slot (a date-scoped override such as `automation/chhath-2026.json`,
+or a manual `slot=long` dispatch). The rules below apply then.
 
 Only when the prompt says the slot is `long`. **Every day** (owner, 13 Nov 2026: long videos are the channel's only
 source of watch hours), after the morning Short, you write one **long katha video**: 16:9, **5-10 minutes**, a regular
@@ -754,9 +777,12 @@ difference, not the length. **Write your own scripts and titles**; never copy an
 they are scripture).
 
 **Schedule** (`scripts/day-plan.mjs` slot `facts`, public **17:00 IST**, made the evening before by job `facts`): from
-17 Nov 2026, one a day wherever the 3-Shorts cap has room: after the festival status, morning and evening darshan Shorts,
-before Kalyug and Dadi-Chhotu (it replaces the weakest slot, never a darshan or status Short). Movie days keep the movie
-part. Repo variable `FACTS=off` stops it. Facebook: a Page video (over 90 s) or a Reel at its own time (`scripts/fb.mjs`).
+17 Nov 2026 wherever the 3-Shorts cap has room, LAST in the priority (after the festival status, day status, darshan and
+Kailash / POV Shorts; owner, 16 Nov 2026). The first facts Shorts got 1-7 views each, so **at most 2 a week (Mon-Sun)
+until the review on 25 Nov 2026**: `scripts/growth-compare.mjs --facts-review` (the growth job, first morning run from
+25 Nov) writes `automation/facts-review.json` and a "Facts review" section in growth.md: a median under 20 views =
+verdict "off", the planner stops facts; else "on", the weekly limit ends. Movie days keep the movie part. Repo variable
+`FACTS=off` stops it too. Facebook: a Page video (over 90 s) or a Reel at its own time (`scripts/fb.mjs`).
 
 **Topic, variant, art** (`node scripts/facts.mjs pick --date D`; the job's prompt names them):
 - Topic from `automation/facts-topics.json` (100+ topics, each with `cite` = the work + kand/sarga, parva, khand or the
@@ -848,9 +874,9 @@ re-voices once with the plain chain; a second failure means no upload ("skipped:
 ## Bhajan loop and veer Shorts (format `loop`; job `loop`; owner, 15 Nov 2026; no action from you)
 
 `scripts/loop.mjs` builds them from the library, `story/render-loop.mjs` renders, the `loop` job publishes at **05:45
-IST** (made the evening before; bhajan audio content goes public 05:30-06:30). On **normal days** the morning day-status
-Short alternates with them: **Mon veer (Mahakal), Wed loop, Fri loop, Sat veer (Hanuman)**; Tue/Thu/Sun keep the day
-status Short, festival days keep their morning Short (`scripts/day-plan.mjs`, repo variable `LOOPS=off` stops it).
+IST** (made the evening before; bhajan audio content goes public 05:30-06:30). **Not in the day plan since 16 Nov 2026**
+(the day status Short is the morning upload every day); they run only on a manual daily.yml `slot=loop` dispatch
+(`loop_date`, `loop_kind`; default kind by weekday: Mon veer Mahakal, Wed loop, Fri loop, Sat veer Hanuman).
 - **loop**: a seamless 12-15 s chorus loop of OUR OWN QA-passed AI bhajan (licence qa: every name right, CER <= 0.40; never
   downloaded or trending audio; no Khatu bhajan until one passes the name gate), ONE new FLUX artwork (clay art /
   miniature painting / oil painting, rotating), a periodic zoom (the last frame equals the first), the chorus line as big
@@ -865,14 +891,14 @@ status Short, festival days keep their morning Short (`scripts/day-plan.mjs`, re
 ## Weekly facts compilation (long video; job `compile`; owner, 15 Nov 2026; no action from you)
 
 Reference: "Ramayana Was Darker Than You Think: 5 Forgotten Stories" (a long documentary listicle, 5.95 lakh views in 9
-days). On **Saturdays** whose long video would be a plain series katha (not a festival katha, mantra jaap or jukebox),
-when 4+ facts Shorts of the last 21 days (6+ minutes) are not compiled yet, `scripts/facts-compile.mjs` makes the 12:30
+days). **Only after a positive facts review** (owner, 16 Nov 2026: "only if facts start working"; `automation/facts-review.json`
+verdict "on"), on **Saturdays** with no other long video (no mantra jaap or jukebox), when 4+ facts Shorts of the last 21 days (6+ minutes) are not compiled yet, `scripts/facts-compile.mjs` makes the 12:30
 long video from them: a curiosity listicle title ("खाटू श्याम जी के N रहस्य जो बहुत कम लोग जानते हैं 😱", "रामायण की N
 कहानियाँ जो आपको किसी ने नहीं सुनाईं", "महाभारत की N भूली हुई कहानियाँ"), a 15 s hook intro, each Short as a 9:16 panel over
 its blurred picture with its number and title, an outro, chapters with each story's source, the big-text brush-band
 thumbnail, the Shorts' links in the description, and afterwards a "Poori series" link in each Short's description (the
 API cannot set a Short's related video or pin a comment). The Shorts are never re-uploaded as Shorts. If it does not run
-or fails, the long job tells its katha as before. growth.md tracks it as the `long` format with "compilation".
+or fails, the day has no long video (no katha instead). growth.md tracks it as the `long` format with "compilation".
 
 ## Voices and sound of the new formats (owner, 15 Nov 2026: "the sound isn't enjoyable"; no action from you)
 
