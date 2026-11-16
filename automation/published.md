@@ -141,3 +141,4 @@
 - 2026-11-16-long-chhath-surya-mandir-parana-niyam | claim: 2026-11-16 long by run 43799871453.1 at 2026-11-16T04:19:35.613Z
 - 2026-11-16-long-chhath-surya-mandir-parana-niyam | facebook: https://www.facebook.com/388779648425633/videos/1113607707948748 (scheduled 2026-11-16T07:00:00.000Z)
 - 2026-11-16-long-chhath-surya-mandir-parana-niyam | youtube: https://youtu.be/ggiV_nq7GHY (public at 12:30 IST) | long 8:32, 49 scenes, render 11 min, 0 neurons
+- 2026-11-16-evening-chhath-parana-geet | claim: 2026-11-16 evening by run 43808790515.1 at 2026-11-16T05:18:31.666Z
