@@ -4660,6 +4660,97 @@
     "added": "2026-11-16"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-hanuman-sankatmochan",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Hanuman ji Sankatmochan kyun kehte?",
+   "hook_hi": "हनुमान जी को संकटमोचन क्यों कहते?",
+   "angle": "Tell why Tulsidas calls Hanuman ji the sankat-harta: the Sundar Kand rescue acts (Sita ki khoj, Lanka dahan) and the Hanuman Chalisa line 'sankat katai mite sab peera'. Check both texts before recording.",
+   "cite": {
+    "work": "TODO: verify (likely Hanuman Chalisa, Tulsidas; Ramcharitmanas Sundar Kand)",
+    "ref": "TODO: verify (chaupai 'sankat katai mite sab peera' and the Sundar Kand verse for the rescue)"
+   },
+   "sources": [],
+   "keywords": [
+    "Hanuman ji",
+    "Sankatmochan"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-17",
+    "refs": [
+     "https://youtube.com/shorts/BuXsVsLk8rc"
+    ],
+    "added": "2026-11-17"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-lakshman-14-saal-jaagran",
+   "p": 2,
+   "deity": "ram",
+   "name": "Lakshman (Ramayan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Lakshman 14 saal soye kyun nahi?",
+   "hook_hi": "लक्ष्मण 14 साल क्यों नहीं सोए?",
+   "angle": "Valmiki Ramayana (Ayodhya Kand): Lakshman vowed to stay awake guarding Ram and Sita for the 14 years of exile; tell the vow and why he kept it, and name the later Urmila sleep tale as parampara only.",
+   "cite": {
+    "work": "TODO: verify (likely Valmiki Ramayana, Ayodhya Kand)",
+    "ref": "TODO: verify (Lakshman's vow to stay awake in the forest; the sarga)"
+   },
+   "sources": [],
+   "keywords": [
+    "Lakshman",
+    "14 saal"
+   ],
+   "numbers_ok": [
+    "14"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-17",
+    "refs": [
+     "https://youtube.com/shorts/kIFpbyqyP6c"
+    ],
+    "added": "2026-11-17"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-ganesh-modak-kyun",
+   "p": 2,
+   "deity": "ganesh",
+   "name": "Ganesh ji",
+   "playlist": "Ganesh ji ki Kathayein",
+   "label": "tradition",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Ganesh ji ko modak kyun pasand?",
+   "hook_hi": "गणेश जी को मोदक क्यों पसंद?",
+   "angle": "Folk tradition: say that Ganesh ji's love of modak is told in puja parampara ('kehte hain'), and name the text it draws on (Ganesh Purana / Brahmavaivarta Purana) only after it is checked; no rule is invented.",
+   "cite": {
+    "work": "TODO: verify (likely Ganesh Purana, Brahmavaivarta Purana Ganesh Khanda)",
+    "ref": "TODO: verify (the modak bhog passage, or say parampara only)"
+   },
+   "sources": [],
+   "keywords": [
+    "Ganesh ji",
+    "Modak"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-17",
+    "refs": [],
+    "added": "2026-11-17"
+   },
+   "status": "idea"
   }
  ]
 }

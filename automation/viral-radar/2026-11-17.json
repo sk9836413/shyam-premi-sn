@@ -1,0 +1,1850 @@
+{
+ "date": "2026-11-17",
+ "mode": "daily",
+ "queries": [
+  "राधा कृष्ण",
+  "श्री राम"
+ ],
+ "thresholds": {
+  "views": 100000,
+  "fastViews": 30000,
+  "fastDays": 3,
+  "multiple": 5,
+  "minShorts": 3,
+  "strongMedian": 40000,
+  "maxSeconds": 180
+ },
+ "quota": {
+  "searches": 2,
+  "list_calls": 54,
+  "units": 254,
+  "cap": 900
+ },
+ "counts": {
+  "found": 100,
+  "shorts": 99,
+  "over_threshold": 97,
+  "viral": 31,
+  "strong": 2,
+  "likely_reuploads": 15
+ },
+ "viral": [
+  {
+   "id": "Um4CHpY6rgA",
+   "url": "https://youtube.com/shorts/Um4CHpY6rgA",
+   "title": "बागेश्वर महाराज के बयान पर मचा बवाल! राम जी के 5 पिता! शास्त्रों में मिलते हैं ये अद्भुत प्रसंग",
+   "channel": "SARVESHWAR SHARAN ",
+   "channelId": "UC7BbWHtmK8vpIE5peyxS9xA",
+   "published": "2026-11-10T15:24:47Z",
+   "ageDays": 6.5,
+   "seconds": 156,
+   "views": 2576168,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/Um4CHpY6rgA/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 46200,
+   "median": 2633,
+   "n_shorts": 29,
+   "multiple": 978.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle",
+     "rahasya"
+    ],
+    "hook": "listicle",
+    "format": "other",
+    "deity": "other",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "listicle",
+    "hooks": [
+     "listicle",
+     "rahasya"
+    ],
+    "format": "other",
+    "deity": "ram",
+    "topic": "Ram ke 5 pita (vivad)",
+    "cover_style": "two speakers' photos, red text band 'श्रीराम के 5 पिता थे', Ram idol in the middle",
+    "art_style": "text-card",
+    "why": "A controversy hook with a number and a question mark; the big text band and real speaker photos make a clear cover",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "8OKh9uSUeHg",
+   "url": "https://youtube.com/shorts/8OKh9uSUeHg",
+   "title": "जोड़ी हो तो ऐसी हो  | Jodi Ho To Aisi Ho | Radha Krishna Bhajan #shorts",
+   "channel": "Aparna Dev Darshan ",
+   "channelId": "UCgzRPr5tbaIljsmXmtQ_-xQ",
+   "published": "2026-11-12T10:30:30Z",
+   "ageDays": 4.7,
+   "seconds": 20,
+   "views": 1330456,
+   "likes": 24672,
+   "thumb": "https://i.ytimg.com/vi/8OKh9uSUeHg/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 33100,
+   "median": 1670,
+   "n_shorts": 29,
+   "multiple": 796.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "loop",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional",
+     "name"
+    ],
+    "format": "loop",
+    "deity": "krishna",
+    "topic": "Radha-Krishna jodi bhajan",
+    "cover_style": "Radha and Krishna at a lotus pond with koi fish and a bunny, bright 3D render",
+    "art_style": "cartoon-3d",
+    "why": "A short bhajan loop whose 'jodi' line carries the hook; the bright 3D cover is a fresh, non-serial look",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "L6MHIoRvMYA",
+   "url": "https://youtube.com/shorts/L6MHIoRvMYA",
+   "title": "आख़िर राधा रानी ने रुक्मिणी देवी को धूल क्यों दी? #shorts #radhakrishna",
+   "channel": "AnantVerse",
+   "channelId": "UCgsUL9POUa9vuWKG3Hr2fDQ",
+   "published": "2026-11-10T07:34:42Z",
+   "ageDays": 6.8,
+   "seconds": 178,
+   "views": 834082,
+   "likes": 35425,
+   "thumb": "https://i.ytimg.com/vi/L6MHIoRvMYA/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 20800,
+   "median": 2374,
+   "n_shorts": 28,
+   "multiple": 351.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "hook": "kyon",
+    "format": "facts",
+    "deity": "krishna",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "format": "facts",
+    "deity": "krishna",
+    "topic": "Radha ne Rukmini ko dhool kyon di",
+    "cover_style": "single bridal portrait of a woman in red and gold with a tiara, glossy AI look, no text",
+    "art_style": "cinematic",
+    "why": "A 'kyon' question about two famous women in Krishna's story; the cover is a clean portrait with no text band",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "viy126XoFdM",
+   "url": "https://youtube.com/shorts/viy126XoFdM",
+   "title": "500 वर्ष का बनवास जो बिताया है चलो अयोध्या श्री राम ने बुलाया है#jayshrreram#youtubeshorts",
+   "channel": "mmvines",
+   "channelId": "UCYML6I5HjxrKhBGuUpYMWSA",
+   "published": "2026-11-13T03:17:12Z",
+   "ageDays": 4,
+   "seconds": 59,
+   "views": 2896099,
+   "likes": 30686,
+   "thumb": "https://i.ytimg.com/vi/viy126XoFdM/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 4000000,
+   "median": 13639,
+   "n_shorts": 30,
+   "multiple": 212.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle"
+    ],
+    "hook": "listicle",
+    "format": "other",
+    "deity": "ram",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional"
+    ],
+    "format": "other",
+    "deity": "ram",
+    "topic": "Ram ko Ayodhya bulaya (500 varsh)",
+    "cover_style": "M and Z cookie letters floating over a road, a man lying down; no deity on screen",
+    "art_style": "other",
+    "why": "The devotional line is on a fun/vines channel, and the cover is an unrelated stunt VFX with no deity, so the cover adds nothing; not a reupload sign",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "BuXsVsLk8rc",
+   "url": "https://youtube.com/shorts/BuXsVsLk8rc",
+   "title": "श्री हनुमान चालीसा पाठ 🚩 | संकटमोचन हनुमान जी की कृपा | Hanuman Chalisa | Jai Shri Ram#shorts bhakti",
+   "channel": "Patel भक्ती ",
+   "channelId": "UCrCHIhzm0w5K2rjecpCCt4A",
+   "published": "2026-11-12T04:44:30Z",
+   "ageDays": 5,
+   "seconds": 20,
+   "views": 1000323,
+   "likes": 8084,
+   "thumb": "https://i.ytimg.com/vi/BuXsVsLk8rc/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 40300,
+   "median": 5909,
+   "n_shorts": 29,
+   "multiple": 169.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "hanuman",
+    "topic": "Hanuman Chalisa paath, 20 s",
+    "cover_style": "Hanuman with a glowing mace striking a dark armoured demon; cinematic AI action",
+    "art_style": "cinematic",
+    "why": "A 20-second Chalisa recitation with the name 'Hanuman' in the hook and a bold action cover; no watermark",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "hHF_a9sXf8o",
+   "url": "https://youtube.com/shorts/hHF_a9sXf8o",
+   "title": "राधा की तमन्ना है, कान्हा मुझे मिल जाए ❤️  Radha Krishna Bhajan  Original Krishna Love Song  2026",
+   "channel": "Bablookumar0022",
+   "channelId": "UCipKKIeMQKqTNEvUV9XhCDg",
+   "published": "2026-11-10T11:57:01Z",
+   "ageDays": 6.7,
+   "seconds": 11,
+   "views": 746133,
+   "likes": 3116,
+   "thumb": "https://i.ytimg.com/vi/hHF_a9sXf8o/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 1790,
+   "median": 5159,
+   "n_shorts": 29,
+   "multiple": 144.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "views far beyond subscribers"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "loop",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional"
+    ],
+    "format": "loop",
+    "deity": "krishna",
+    "topic": "Radha ki tamanna, Krishna prem geet",
+    "cover_style": "Radha in braid and lehenga among straw, rats and a scorpion; Krishna blurred behind",
+    "art_style": "cinematic",
+    "why": "A love-song line with 'kanha' in it; the cover is a dramatic scene (rats, scorpion) that does not show the bhajan itself",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "MK-74pZxtm8",
+   "url": "https://youtube.com/shorts/MK-74pZxtm8",
+   "title": "अजब गजब सी अदाओं की निशानी ❤️🌸 | राधा कृष्ण 🙏💖",
+   "channel": "Ruchi",
+   "channelId": "UCc-dUMw2P788gx77Guh7KrA",
+   "published": "2026-11-10T03:50:09Z",
+   "ageDays": 7,
+   "seconds": 11,
+   "views": 563857,
+   "likes": 2488,
+   "thumb": "https://i.ytimg.com/vi/MK-74pZxtm8/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 11500,
+   "median": 6567.5,
+   "n_shorts": 30,
+   "multiple": 85.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "topic": "Radha-Krishna ki adaayein (lyric)",
+    "cover_style": "Radha in beige lehenga with a long braid beside a clay pot in a village; glossy AI portrait",
+    "art_style": "cinematic",
+    "why": "The same lyric as another Short; the glossy AI village portrait is not a serial still, so it is kept",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "9tvfb_1cIZ0",
+   "url": "https://youtube.com/shorts/9tvfb_1cIZ0",
+   "title": "500 वर्ष का बनवास जो बिताया है चलो अयोध्या श्री राम ने बुलाया है#jayshrreram#youtubeshorts",
+   "channel": "mmvines",
+   "channelId": "UCYML6I5HjxrKhBGuUpYMWSA",
+   "published": "2026-11-14T02:30:18Z",
+   "ageDays": 3.1,
+   "seconds": 58,
+   "views": 903128,
+   "likes": 9831,
+   "thumb": "https://i.ytimg.com/vi/9tvfb_1cIZ0/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 4000000,
+   "median": 13639,
+   "n_shorts": 30,
+   "multiple": 66.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle"
+    ],
+    "hook": "listicle",
+    "format": "other",
+    "deity": "ram",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional"
+    ],
+    "format": "other",
+    "deity": "ram",
+    "topic": "Ram ko Ayodhya bulaya (500 varsh)",
+    "cover_style": "bus, plane and a dump truck over a man lying on a road; no deity on screen",
+    "art_style": "other",
+    "why": "The same Ram line as another Short on a fun/vines channel; the stunt cover has no deity, so the cover adds nothing; not a reupload sign",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "nOjDXF7RRRU",
+   "url": "https://youtube.com/shorts/nOjDXF7RRRU",
+   "title": "एक राम भक्त की कहानी 🚩🙏🏼 || जय श्री राम || राम नवम || राम जी स्टेटस | #ram #youtubeshorts #shorts",
+   "channel": "mmvines",
+   "channelId": "UCYML6I5HjxrKhBGuUpYMWSA",
+   "published": "2026-11-13T03:29:49Z",
+   "ageDays": 4,
+   "seconds": 22,
+   "views": 801124,
+   "likes": 5000,
+   "thumb": "https://i.ytimg.com/vi/nOjDXF7RRRU/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 4000000,
+   "median": 13639,
+   "n_shorts": 30,
+   "multiple": 58.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "_AvicfDlCs0",
+   "url": "https://youtube.com/shorts/_AvicfDlCs0",
+   "title": "राधा की तमन्ना🙏🏻#radhakrishna #status #krishnastatus#ytshorts #bhajan #bhakti#song#viral #like #song",
+   "channel": "Reena Desi jaatni ",
+   "channelId": "UCJzvkkXehgg1xfgbs84TItg",
+   "published": "2026-11-11T04:50:04Z",
+   "ageDays": 6,
+   "seconds": 11,
+   "views": 1043101,
+   "likes": 5144,
+   "thumb": "https://i.ytimg.com/vi/_AvicfDlCs0/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 333000,
+   "median": 20253.5,
+   "n_shorts": 30,
+   "multiple": 51.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "loop",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "jjQVZsAylNI",
+   "url": "https://youtube.com/shorts/jjQVZsAylNI",
+   "title": "Radha Ki Tamanna Hai 💗🕉️🦚|| Pure Krishna Love Vibes✨#ytshorts #radhakrishna #shorts",
+   "channel": "Mamta Yadav",
+   "channelId": "UCm5GwTLs46brCV9LtlDDfuA",
+   "published": "2026-11-10T02:55:14Z",
+   "ageDays": 7,
+   "seconds": 11,
+   "views": 735168,
+   "likes": 3699,
+   "thumb": "https://i.ytimg.com/vi/jjQVZsAylNI/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 6830,
+   "median": 16074,
+   "n_shorts": 29,
+   "multiple": 45.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "1smEgav5w2A",
+   "url": "https://youtube.com/shorts/1smEgav5w2A",
+   "title": "Ayodhya’s Sky Lit Up With a Spectacular Shri Ram Drone Show on Diwali! 😱🚩✨ #shorts",
+   "channel": "Rahul shorts",
+   "channelId": "UCIgZ68A8WWzbXbpiHV4H5Yg",
+   "published": "2026-11-14T14:15:24Z",
+   "ageDays": 2.6,
+   "seconds": 30,
+   "views": 1296961,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/1smEgav5w2A/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 242000,
+   "median": 32160,
+   "n_shorts": 29,
+   "multiple": 40.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "nzktuC_-GqM",
+   "url": "https://youtube.com/shorts/nzktuC_-GqM",
+   "title": "Radhe Krishna #वीडियो # #yashomatimaiyasebolenandlala",
+   "channel": "Krishna pandit ",
+   "channelId": "UCyVEUKgD2ajYqCdp24zB5QQ",
+   "published": "2026-11-10T18:03:52Z",
+   "ageDays": 6.4,
+   "seconds": 11,
+   "views": 1108379,
+   "likes": 4219,
+   "thumb": "https://i.ytimg.com/vi/nzktuC_-GqM/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 8030,
+   "median": 32691,
+   "n_shorts": 25,
+   "multiple": 33.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "GpO79iuFH4o",
+   "url": "https://youtube.com/shorts/GpO79iuFH4o",
+   "title": "ये जोड़ी हो तो ऐसी हो राधे श्याम जैसी हो ✨🙏🏻#krishna #radhakrishna #bhakti #trending #viral #status",
+   "channel": "DivineShortsHub",
+   "channelId": "UCFNKOJzbzTohmkCrXJThiYA",
+   "published": "2026-11-11T11:30:04Z",
+   "ageDays": 5.7,
+   "seconds": 41,
+   "views": 813773,
+   "likes": 8299,
+   "thumb": "https://i.ytimg.com/vi/GpO79iuFH4o/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 46900,
+   "median": 26441,
+   "n_shorts": 29,
+   "multiple": 30.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "sKRbOVxfmUY",
+   "url": "https://youtube.com/shorts/sKRbOVxfmUY",
+   "title": "When Lakshman Got Angry at Shri Ram! | Ramayan #facts",
+   "channel": "History Uncovered India",
+   "channelId": "UC02s8MD5-OEVR6llNau0NuA",
+   "published": "2026-11-13T02:32:27Z",
+   "ageDays": 4,
+   "seconds": 35,
+   "views": 1108644,
+   "likes": 31939,
+   "thumb": "https://i.ytimg.com/vi/sKRbOVxfmUY/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 45100,
+   "median": 41308,
+   "n_shorts": 29,
+   "multiple": 26.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "facts",
+    "deity": "ram",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "facts",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "FTePfsHlDCU",
+   "url": "https://youtube.com/shorts/FTePfsHlDCU",
+   "title": "एक राम भक्त की कहानी 🚩 जय श्री राम🚩🙏 #shorts #trend #jaishreeram #ram #bhakti #viralvideo #trending",
+   "channel": "chandankumar098",
+   "channelId": "UCt0znjLbJbqxw3iNkQKuedg",
+   "published": "2026-11-11T04:34:20Z",
+   "ageDays": 6,
+   "seconds": 7,
+   "views": 1167050,
+   "likes": 3593,
+   "thumb": "https://i.ytimg.com/vi/FTePfsHlDCU/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 14800,
+   "median": 52924,
+   "n_shorts": 29,
+   "multiple": 22.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "6VmaPPgnxlM",
+   "url": "https://youtube.com/shorts/6VmaPPgnxlM",
+   "title": "🚩 अंत में दर्शन होंगे बजरंगबली के 🙏 जय श्री राम ❤️ #shorts #jaishreeram",
+   "channel": "Charbhuja jewellers ",
+   "channelId": "UC1ZpCjnItj1BA1Oz5TPO_KQ",
+   "published": "2026-11-10T08:16:17Z",
+   "ageDays": 6.8,
+   "seconds": 8,
+   "views": 806465,
+   "likes": 42384,
+   "thumb": "https://i.ytimg.com/vi/6VmaPPgnxlM/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 192000,
+   "median": 37976,
+   "n_shorts": 29,
+   "multiple": 21.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "darshan",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "n3gItr9ArqQ",
+   "url": "https://youtube.com/shorts/n3gItr9ArqQ",
+   "title": "Radha Krishna #वीडियो #वायरल #love #yashomatimaiyasebolenandlala",
+   "channel": "Krishna pandit ",
+   "channelId": "UCyVEUKgD2ajYqCdp24zB5QQ",
+   "published": "2026-11-15T18:34:41Z",
+   "ageDays": 1.4,
+   "seconds": 11,
+   "views": 646754,
+   "likes": 2536,
+   "thumb": "https://i.ytimg.com/vi/n3gItr9ArqQ/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 8030,
+   "median": 32691,
+   "n_shorts": 25,
+   "multiple": 19.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "ctxm8rDdpzc",
+   "url": "https://youtube.com/shorts/ctxm8rDdpzc",
+   "title": "DIY Shri Ram $ well making with clay flower🌺#shorts#ytshorts#viral #viralvideo #jaishreeram#trending",
+   "channel": "Bhakti Amrit (SK)",
+   "channelId": "UCR_HMJIUU9_WTpe86jwzEKw",
+   "published": "2026-11-09T23:30:20Z",
+   "ageDays": 7.2,
+   "seconds": 49,
+   "views": 4013652,
+   "likes": 56077,
+   "thumb": "https://i.ytimg.com/vi/ctxm8rDdpzc/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 578000,
+   "median": 207307,
+   "n_shorts": 29,
+   "multiple": 19.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "ram",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "TR0kZftBwZM",
+   "url": "https://youtube.com/shorts/TR0kZftBwZM",
+   "title": "एक राम भक्त की कहानी 🚩 जय श्री राम🚩🙏 #shorts #trend #jaishreeram #ram #bhakti #viralvideo #trending",
+   "channel": "chandankumar098",
+   "channelId": "UCt0znjLbJbqxw3iNkQKuedg",
+   "published": "2026-11-13T05:39:55Z",
+   "ageDays": 3.9,
+   "seconds": 6,
+   "views": 950915,
+   "likes": 2979,
+   "thumb": "https://i.ytimg.com/vi/TR0kZftBwZM/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 14800,
+   "median": 52924,
+   "n_shorts": 29,
+   "multiple": 18,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "Wzzo13ojPSE",
+   "url": "https://youtube.com/shorts/Wzzo13ojPSE",
+   "title": "एक राम भक्त की कहानी 🚩🙏 || जय श्री राम || राम नवम || राम जी स्टेटस || #shorts #viral #ram",
+   "channel": "Adarsh Life 2.0",
+   "channelId": "UCaMQXGSq5xP3Sgt2zBOi7nw",
+   "published": "2026-11-14T01:12:46Z",
+   "ageDays": 3.1,
+   "seconds": 14,
+   "views": 1839172,
+   "likes": 7268,
+   "thumb": "https://i.ytimg.com/vi/Wzzo13ojPSE/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 14000,
+   "median": 109607,
+   "n_shorts": 29,
+   "multiple": 16.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "VtUoZa3-E-8",
+   "url": "https://youtube.com/shorts/VtUoZa3-E-8",
+   "title": "एक राम भक्त की कहानी 🚩🙏 || जय श्री राम || राम नवम || राम जी स्टेटस || #shorts #viral #ram",
+   "channel": "Adarsh Life 2.0",
+   "channelId": "UCaMQXGSq5xP3Sgt2zBOi7nw",
+   "published": "2026-11-10T01:09:17Z",
+   "ageDays": 7.1,
+   "seconds": 14,
+   "views": 1671478,
+   "likes": 7270,
+   "thumb": "https://i.ytimg.com/vi/VtUoZa3-E-8/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 14000,
+   "median": 109607,
+   "n_shorts": 29,
+   "multiple": 15.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "ZC_jkUgbMpo",
+   "url": "https://youtube.com/shorts/ZC_jkUgbMpo",
+   "title": "Radha krishna🙏 @KartikBind88  #new #shorts #viral #youtubeshorts #radhakrishna #radheradhe #viral",
+   "channel": "Kartik Bind",
+   "channelId": "UC1d7OpFZWX2JYXh6cUuk1KQ",
+   "published": "2026-11-13T13:00:43Z",
+   "ageDays": 3.6,
+   "seconds": 22,
+   "views": 1881529,
+   "likes": 11790,
+   "thumb": "https://i.ytimg.com/vi/ZC_jkUgbMpo/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 42400,
+   "median": 141158,
+   "n_shorts": 29,
+   "multiple": 13.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "XGE6bC-rm_8",
+   "url": "https://youtube.com/shorts/XGE6bC-rm_8",
+   "title": "माता सीता की अग्निपरीक्षा पर भड़के लक्ष्मण जी! 😡🔥 श्री राम को ही दे दी चेतावनी #shorts #ramayan",
+   "channel": "NKR STUDIOS OFFICIAL ",
+   "channelId": "UC1OmI4HbfKrzo-APVSGpWkQ",
+   "published": "2026-11-14T12:35:04Z",
+   "ageDays": 2.6,
+   "seconds": 30,
+   "views": 1001863,
+   "likes": 33513,
+   "thumb": "https://i.ytimg.com/vi/XGE6bC-rm_8/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 10600,
+   "median": 93862,
+   "n_shorts": 29,
+   "multiple": 10.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "6fXarmq0W_s",
+   "url": "https://youtube.com/shorts/6fXarmq0W_s",
+   "title": "एक राम भक्त कि कहानी 🚩 जय श्री राम 🚩🙏 #shorts #trend #jayshriram #ram #bhakti #viralvideos #trending",
+   "channel": "sk shivaa 77",
+   "channelId": "UC2-sfN2G2oj36THdgWe5yPw",
+   "published": "2026-11-13T01:49:30Z",
+   "ageDays": 4.1,
+   "seconds": 8,
+   "views": 874773,
+   "likes": 2929,
+   "thumb": "https://i.ytimg.com/vi/6fXarmq0W_s/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 67100,
+   "median": 85675,
+   "n_shorts": 29,
+   "multiple": 10.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "0FEnE8fueIw",
+   "url": "https://youtube.com/shorts/0FEnE8fueIw",
+   "title": "एक राम भक्त की कहानी 🚩🙏 || जय श्री राम || राम नवम || राम जी स्टेटस || #shorts #viral #ram",
+   "channel": "Adarsh Life 2.0",
+   "channelId": "UCaMQXGSq5xP3Sgt2zBOi7nw",
+   "published": "2026-11-12T12:49:59Z",
+   "ageDays": 4.6,
+   "seconds": 13,
+   "views": 984700,
+   "likes": 4048,
+   "thumb": "https://i.ytimg.com/vi/0FEnE8fueIw/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 14000,
+   "median": 109607,
+   "n_shorts": 29,
+   "multiple": 9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "JOFsNHGx7Nk",
+   "url": "https://youtube.com/shorts/JOFsNHGx7Nk",
+   "title": "एक राम भक्त कि कहानी 🚩 जय श्री राम 🚩🙏 #shorts #trend #jayshriram #ram #bhakti #viralvideos #trending",
+   "channel": "sk shivaa 77",
+   "channelId": "UC2-sfN2G2oj36THdgWe5yPw",
+   "published": "2026-11-10T03:58:27Z",
+   "ageDays": 7,
+   "seconds": 8,
+   "views": 773623,
+   "likes": 2600,
+   "thumb": "https://i.ytimg.com/vi/JOFsNHGx7Nk/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 67100,
+   "median": 85675,
+   "n_shorts": 29,
+   "multiple": 9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "djlpLPenAvY",
+   "url": "https://youtube.com/shorts/djlpLPenAvY",
+   "title": "Story of a Ram devotee 🚩🙏🏻 || Jai Shri Ram || Navam || Ram Ji Status | #ram #youtubeshorts #shorts",
+   "channel": "VfxFun Tv",
+   "channelId": "UCxzOhaQ9JGeeIkRQMEBzG4g",
+   "published": "2026-11-10T12:33:32Z",
+   "ageDays": 6.6,
+   "seconds": 22,
+   "views": 3422380,
+   "likes": 16355,
+   "thumb": "https://i.ytimg.com/vi/djlpLPenAvY/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 41700,
+   "median": 515269,
+   "n_shorts": 29,
+   "multiple": 6.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "kRwiH4xtQDk",
+   "url": "https://youtube.com/shorts/kRwiH4xtQDk",
+   "title": "महाकाली के विष से बेहोश हुईं राधा, अब महादेव ही बचा सकते हैं जान!",
+   "channel": "RadhaKrishn Hindi Shorts",
+   "channelId": "UCOGl2LVUANOvdBXCJLijfvw",
+   "published": "2026-11-10T07:30:32Z",
+   "ageDays": 6.8,
+   "seconds": 59,
+   "views": 790697,
+   "likes": 18217,
+   "thumb": "https://i.ytimg.com/vi/kRwiH4xtQDk/hqdefault.jpg",
+   "query": "राधा कृष्ण",
+   "subs": 18700,
+   "median": 131068,
+   "n_shorts": 29,
+   "multiple": 6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "-PuQs5dd0jk",
+   "url": "https://youtube.com/shorts/-PuQs5dd0jk",
+   "title": "🙏 जय श्री राम! #hanuman #ramleela #viralvideo #shorts",
+   "channel": "Trivu Sharma",
+   "channelId": "UC_o39PU6bJoLrzFq74gZuiA",
+   "published": "2026-11-12T14:16:04Z",
+   "ageDays": 4.6,
+   "seconds": 10,
+   "views": 777743,
+   "likes": 4473,
+   "thumb": "https://i.ytimg.com/vi/-PuQs5dd0jk/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 14400,
+   "median": 140022,
+   "n_shorts": 29,
+   "multiple": 5.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "bKO8qBSTeuA",
+   "url": "https://youtube.com/shorts/bKO8qBSTeuA",
+   "title": "एक राम भक्त की कहानी 🚩🙏 || जय श्री राम || राम नवम || राम जी स्टेटस || #shorts #viral #ram",
+   "channel": "Adarsh Life 2.0",
+   "channelId": "UCaMQXGSq5xP3Sgt2zBOi7nw",
+   "published": "2026-11-10T12:52:51Z",
+   "ageDays": 6.6,
+   "seconds": 12,
+   "views": 578249,
+   "likes": 2616,
+   "thumb": "https://i.ytimg.com/vi/bKO8qBSTeuA/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 14000,
+   "median": 109607,
+   "n_shorts": 29,
+   "multiple": 5.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "by": "rules"
+   }
+  }
+ ],
+ "strong": [
+  {
+   "id": "VjFNL_6Slzg",
+   "url": "https://youtube.com/shorts/VjFNL_6Slzg",
+   "title": "श्री राम के क्रोध से कांप उठा समुद्र! 🌊🙏 | रामायण की अद्भुत कथा 🚩 #shreeram",
+   "channel": "Factorial xyz",
+   "channelId": "UC_ySFz0XNyK1s16XGu4fxmg",
+   "published": "2026-11-13T05:10:30Z",
+   "ageDays": 3.9,
+   "seconds": 129,
+   "views": 971155,
+   "likes": 33507,
+   "thumb": "https://i.ytimg.com/vi/VjFNL_6Slzg/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 1030000,
+   "median": 714160,
+   "n_shorts": 29,
+   "multiple": 1.4,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "1.4x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "topic": "Ram ka krodh, samundra kaanpa",
+    "cover_style": "Ram drawing a glowing bow with an army behind and a blue-skinned figure in the background; cinematic AI",
+    "art_style": "cinematic",
+    "why": "A katha hook ('samundra kaanp utha') from a strong channel; the cinematic AI cover reads well but is not outlier-viral",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "EtVXYbm2xz8",
+   "url": "https://youtube.com/shorts/EtVXYbm2xz8",
+   "title": "मेरे तन में भी राम मेरे मन में भी राम, जय श्रीराम, श्रीराम, #ramjistatus #diwali #shorts #bhaidooj",
+   "channel": "Rahul Panwar",
+   "channelId": "UCM5WJk2WSH0MDpNSXrV_hcQ",
+   "published": "2026-11-10T14:51:49Z",
+   "ageDays": 6.5,
+   "seconds": 36,
+   "views": 532064,
+   "likes": 4665,
+   "thumb": "https://i.ytimg.com/vi/EtVXYbm2xz8/hqdefault.jpg",
+   "query": "श्री राम",
+   "subs": 17800,
+   "median": 195386,
+   "n_shorts": 29,
+   "multiple": 2.7,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "2.7x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "other",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional"
+    ],
+    "format": "other",
+    "deity": "ram",
+    "topic": "Mere tan mein Ram (bhai dooj)",
+    "cover_style": "a man with arms raised between giant Ram, Lakshman and Hanuman idols, four god-heads on top",
+    "art_style": "real-photo",
+    "why": "A Ram-naam line with a festival tag; the real-photo cover with large murtis is the only one that shows a real shrine feel",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  }
+ ],
+ "near": [
+  {
+   "id": "3-LpwB0uc1U",
+   "url": "https://youtube.com/shorts/3-LpwB0uc1U",
+   "title": "#tov",
+   "channel": "@chin Box20",
+   "views": 1105796,
+   "multiple": 63.7,
+   "why_not": []
+  },
+  {
+   "id": "fm4hOdr9FRY",
+   "url": "https://youtube.com/shorts/fm4hOdr9FRY",
+   "title": "🚩 कुंडा में गूंजेगा जय श्री राम! 🚩राजा भैया जी के सानिध्य में दिव्य हनुमंत कथा। #bageshwardhamsarkar",
+   "channel": "avadhesh mishra",
+   "views": 666685,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "-T_DdM0p2LA",
+   "url": "https://youtube.com/shorts/-T_DdM0p2LA",
+   "title": "राधे राधे 🙏🌼🌸राधे कृष्णा 🌹🌺🌿#bhaktisong #viral #ytstudio #status #radhakrishna #youtube #shorts",
+   "channel": "HAR HAR MAHADEV 🙏",
+   "views": 654347,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "TOgsQhQe3xk",
+   "url": "https://youtube.com/shorts/TOgsQhQe3xk",
+   "title": "🔥राधा की तमन्ना💕🙏🏻#radhakrishna #status #krishnastatus#ytshorts #bhajan #bhakti#song#viral #like#yt",
+   "channel": "AyushiBhakti Bliss",
+   "views": 650457,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "oB1SGCjLzwQ",
+   "url": "https://youtube.com/shorts/oB1SGCjLzwQ",
+   "title": "एक राम भक्त की कहानी 🚩🙏🏼 || जय श्री राम || राम नवम || राम जी स्टेटस #shorts #ram",
+   "channel": "Lalit Nishu VFX",
+   "views": 645507,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "9scUn8HVINo",
+   "url": "https://youtube.com/shorts/9scUn8HVINo",
+   "title": "राधा की तमन्ना है... ❤️, कान्हा मुझे मिल जाए | Radha Krishna Bhajan #krishna #radhakrishna #radha",
+   "channel": "BNC Bhakti Vibes",
+   "views": 623672,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "lDe_XQYbrHA",
+   "url": "https://youtube.com/shorts/lDe_XQYbrHA",
+   "title": "🪔🎇Dil Ki Diwali 1 Saal Mein Aaye Ram 🪔 | #DiwaliSpecial #Bhajan #trendingshorts #ram #ganesh #short",
+   "channel": "Vraj Mishra",
+   "views": 617247,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "rbzLc2ZiR20",
+   "url": "https://youtube.com/shorts/rbzLc2ZiR20",
+   "title": "राजा भैया कुंडा में श्री राम कथा कर रहे हैं इस पवन अवसर पर अपने कुंडा मे बृजभूषण शरण जी पधार रहे हैं",
+   "channel": "lavkesh Fact boys ",
+   "views": 606000,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  }
+ ],
+ "reuploads": [
+  {
+   "id": "mqzY7Gp9aHY",
+   "url": "https://youtube.com/shorts/mqzY7Gp9aHY",
+   "title": "एक राम भक्त की कहानी 🚩 जय श्री राम🚩🙏 #shorts #trend #jaishreeram #ram #bhakti #viralvideo #trending",
+   "channel": "chandankumar098",
+   "views": 8456911,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "y4Y9kwyvNsE",
+   "url": "https://youtube.com/shorts/y4Y9kwyvNsE",
+   "title": "This Ramayana Theory Will Surprise You! 🚩 | Jai Shree Ram 🙏 | Part 1 | #ramayan #ram #jaishreeram",
+   "channel": "Got It",
+   "views": 8098274,
+   "signals": [
+    "views far beyond subscribers",
+    "random topics"
+   ]
+  },
+  {
+   "id": "f8C5VDEUox4",
+   "url": "https://youtube.com/shorts/f8C5VDEUox4",
+   "title": "Radha ke lagi chot😭😭",
+   "channel": "krishna ai vedio creator",
+   "views": 2743018,
+   "signals": [
+    "views far beyond subscribers",
+    "random topics"
+   ]
+  },
+  {
+   "id": "GkHB8u3NAmM",
+   "url": "https://youtube.com/shorts/GkHB8u3NAmM",
+   "title": "🙏🌺राधे कृष्णा🌺🙏 #shortvideo #youtubeshorts #trending #shorts #shortsfeed #viral #viralshorts ❤️🌺",
+   "channel": "Sanvi Blog ",
+   "views": 2524557,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "3lnwHUt2LzQ",
+   "url": "https://youtube.com/shorts/3lnwHUt2LzQ",
+   "title": "Radha Ki Tamanna Hai 💗🕉️🦚|| Pure Krishna Love Vibes✨#ytshorts #radhakrishna #shorts #viral #tranding",
+   "channel": "Are you ready ",
+   "views": 2292051,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "oN4dcYmLTKE",
+   "url": "https://youtube.com/shorts/oN4dcYmLTKE",
+   "title": "Jay Shri Ram || Ram Bhakt ki kahani || #trending",
+   "channel": "Kiran Family Official",
+   "views": 1601134,
+   "signals": [
+    "spammy title",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "TjDogpHr5-4",
+   "url": "https://youtube.com/shorts/TjDogpHr5-4",
+   "title": "राधा की तमन्ना🙏🏻#radhakrishna #radheradhe #status #krishna #viralvideo #shortvideo",
+   "channel": "hanumanpremi",
+   "views": 1140853,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "ZrS9AgBgMm0",
+   "url": "https://youtube.com/shorts/ZrS9AgBgMm0",
+   "title": "Radha Ki Tamanna Hai 💗🕉️🦚|| Pure Krishna Love Vibes✨#ytshorts #radhakrishna #shorts #viral #bhakti",
+   "channel": "Are you ready ",
+   "views": 1046149,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "3RY-3dMyY-8",
+   "url": "https://youtube.com/shorts/3RY-3dMyY-8",
+   "title": "Radha Ki Tamanna Hai 💗🕉️🦚|| Pure Krishna Love Vibes✨#ytshorts #radhakrishna #shorts #viral #bhakti",
+   "channel": "Are you ready ",
+   "views": 972418,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "w2bp0kaEWBc",
+   "url": "https://youtube.com/shorts/w2bp0kaEWBc",
+   "title": "श्री राम की गली में तुम जाना 🚩Wahan Nachte Milenge Hanumana | Hanuman Bhajans #nachtemilengehanu",
+   "channel": "Sant Shree ",
+   "views": 853455,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "hvncegrV3nk",
+   "url": "https://youtube.com/shorts/hvncegrV3nk",
+   "title": "🥰❣️🎇🪔ajab gajab Si adao ke nishani #shorts #radhakrishna #song #viral",
+   "channel": "Anjali Ai official ",
+   "views": 782058,
+   "signals": [
+    "views far beyond subscribers",
+    "random topics",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "ihl0pdQqM2s",
+   "url": "https://youtube.com/shorts/ihl0pdQqM2s",
+   "title": "श्री राम की गली में तुम जाना 🚩Wahan Nachte Milenge Hanumana | Hanuman Bhajans #nachtemilengehanu",
+   "channel": "Sant Shree ",
+   "views": 653252,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "PCTekm7tw9g",
+   "url": "https://youtube.com/shorts/PCTekm7tw9g",
+   "title": "राधा रानी ने लगाया मरहम! 😭💔 | radhe krishna story | #shorts #viral #bhakti",
+   "channel": "@Bipul Kumar",
+   "views": 629389,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "8rsh0NaJpsE",
+   "url": "https://youtube.com/shorts/8rsh0NaJpsE",
+   "title": "🙏 जय श्री राम 🚩 जय बजरंगबली ❤️ | Hanuman Ji Status 🔥 | Jai Shree Ram #shorts #hanuman",
+   "channel": "DEEPAK DJ MAU",
+   "views": 472125,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "iwl-HTJMQFg",
+   "url": "https://youtube.com/shorts/iwl-HTJMQFg",
+   "title": "श्री राम और माता सीता जी का सुंदर दृश्य #ramayan #trending #edit #sanatan #devotional #viral",
+   "channel": "ANKIT EDITZz",
+   "views": 432655,
+   "signals": [
+    "tiny channel",
+    "new channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "w54Mdg1X2vs",
+   "url": "https://youtube.com/shorts/w54Mdg1X2vs",
+   "title": "माता सीता ने बोली श्री राम जी से की मै आपकी दासी.!#motivationalvideo#positivethoughts#positivitypost",
+   "channel": "Ranita",
+   "views": 2474685,
+   "signals": [
+    "views far beyond subscribers",
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "kIFpbyqyP6c",
+   "url": "https://youtube.com/shorts/kIFpbyqyP6c",
+   "title": "🚩श्री राम और लक्ष्मण के बीच का यह संवाद आंखें खोल देगा 🙏 जय सियाराम 🙏",
+   "channel": "Rahul Yadav",
+   "views": 1069061,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "keGswoFVJqM",
+   "url": "https://youtube.com/shorts/keGswoFVJqM",
+   "title": "#radhekrishnabhaktisangam राधे राधे 🥰🤗",
+   "channel": "निशिका आजाद ",
+   "views": 800713,
+   "signals": [
+    "views far beyond subscribers",
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "1jJlqrXRG9w",
+   "url": "https://youtube.com/shorts/1jJlqrXRG9w",
+   "title": "💖 वृंदावन की गलियों में दिल खो गया ❤️🙏 | Radha Krishna Bhajan #radhakrishna #shorts",
+   "channel": "Radhe Radhe bhajan ",
+   "views": 856405,
+   "signals": [
+    "views far beyond subscribers",
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "NbcGK9FC44Q",
+   "url": "https://youtube.com/shorts/NbcGK9FC44Q",
+   "title": "Radha Ki Tamanna Hai 💗🕉️🦚|| Pure Krishna Love Vibes✨#ytshorts #radhakrishna #shorts#radhakrishna",
+   "channel": "Rubi Verma",
+   "views": 889092,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "IYoCMfC3W_M",
+   "url": "https://youtube.com/shorts/IYoCMfC3W_M",
+   "title": "🌸 अजब गजब सी अदाओं की निशानी ❤️ | राधा कृष्ण 🙏💖",
+   "channel": "Ruchi",
+   "views": 711132,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "Wep_pKJhE68",
+   "url": "https://youtube.com/shorts/Wep_pKJhE68",
+   "title": "राधा की तमन्ना है, कान्हा मुझे मिल जाए ❤️  Radha Krishna Bhajan  Original Krishna Love Song  2026",
+   "channel": "Bablookumar0022",
+   "views": 509642,
+   "signals": [
+    "views far beyond subscribers",
+    "TV / film still or watermark (thumbnail)"
+   ]
+  }
+ ],
+ "ideas_added": [
+  "facts:radar-hanuman-sankatmochan",
+  "facts:radar-lakshman-14-saal-jaagran",
+  "facts:radar-ganesh-modak-kyun",
+  "kailash:radar-modak-thaali-khaali",
+  "pov:radar-ananya-bhakti-yog-kshem"
+ ],
+ "analysis_problems": []
+}
