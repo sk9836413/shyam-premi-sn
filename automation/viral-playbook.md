@@ -23,6 +23,15 @@ Every writer/renderer of Shyam Premi Shorts should follow this. Numbers = views 
   festival bhajan jukeboxes (the Chhath jukebox: 170 views).
 - **Facts Shorts so far:** 1-7 views each -> max 2 a week until the 25 Nov review (median under 20 = off).
 
+## Shorts feed audit (17 Nov 2026, automation/feed-audit-2026-11-17.md; YouTube Analytics retention curves)
+- **Status = search, darshan = feed.** Status Shorts: 72% of views from search, 14% from the Shorts feed, 67% kept at 3 s
+  (a 42-point drop), 35% viewed, 5-16% reach the end. Darshan Shorts: 77% from the feed, 120% kept at 3 s, 57% viewed.
+- Status loops are now 12-20 s, end on their own picture (no subscribe line), and show the festival name big on frame 0.
+- Darshan hooks need the temple name AND a reason to keep watching ("Neele ghode ka asvar kaun?" 94% feed views;
+  name-only hooks after 9 Nov got almost no feed views); validate.mjs enforces it.
+- Returning (subscribed) viewers come from Khatu Shyam ji / Rajasthan temple Shorts, never from status Shorts.
+- The Monday growth report has a "Retention (Shorts feed)" table (scripts/retention.mjs).
+
 ## Rules that made the difference
 1. **First second = a question or a shock.** 😱 / "क्यों?" / "जब…" / "फिर … ने जो किया…" / "सब साथ छोड़ दें…". Never "आज सुनिए…".
 2. **Cover frame:** 3-line big text (white / giant yellow / white on red band), red arrow, OR one strange oddly-scaled scene that asks a question by itself.

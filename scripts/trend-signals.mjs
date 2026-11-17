@@ -226,7 +226,9 @@ async function channelData() {
     }];
   }));
   const out = { mode: 'data-api', videos, scope };
-  if (!/yt-analytics(-monetary)?\.readonly/.test(scope)) {
+  // The Analytics API also accepts youtube.readonly for these non-revenue reports (verified 17 Nov 2026 with the channel's
+  // own token, which has no yt-analytics scope; scripts/retention.mjs uses the same token).
+  if (!/yt-analytics(-monetary)?\.readonly|youtube\.readonly/.test(scope)) {
     out.note = 'The token has no yt-analytics.readonly scope, so these are Data API lifetime views (no average view percentage, no search terms). '
       + 'To unlock them, the owner enables the "YouTube Analytics API" in the Google Cloud project, re-runs `node scripts/youtube.mjs auth` '
       + '(the scope is now requested) and updates the YT_REFRESH_TOKEN secret.';
