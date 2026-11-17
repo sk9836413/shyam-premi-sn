@@ -105,11 +105,16 @@ export function syntheticMedia(spec = {}) {
 /** Status Shorts (festival + day status; scripts/status-engine.mjs SHARE_LINE, owner 16 Nov 2026): the spec's
  *  `share_line` is the description's LAST line, whatever was added after it (download link, festival links, bhajan
  *  line, chapters). YouTube only: Facebook's bait rule forbids share asks (scripts/fb.mjs). */
+// Status Shorts also say what subscribing gives (owner, 17 Nov 2026: Gopashtami status brought 2 subscribers). A plain
+// benefit line, not a reward for subscribing (YouTube's incentivization rules).
+export const SUBSCRIBE_LINE = '🔔 हर एकादशी और त्योहार का नया स्टेटस पाने के लिए चैनल सब्सक्राइब करें 🙏';
+
 export function withShareLine(description, spec = {}) {
   const line = String(spec.share_line || '').replace(/[<>]/g, '').trim();
   if (!line) return description;
-  const rest = String(description || '').split('\n').filter((l) => l.trim() !== line).join('\n').trimEnd();
-  return rest ? `${rest}\n\n${line}` : line;
+  const rest = String(description || '').split('\n').filter((l) => l.trim() !== line && l.trim() !== SUBSCRIBE_LINE).join('\n').trimEnd();
+  const tail = `${SUBSCRIBE_LINE}\n${line}`;
+  return rest ? `${rest}\n\n${tail}` : tail;
 }
 
 export function metaFromScenes(file, metaFile) {
