@@ -153,3 +153,4 @@
 - 2026-11-19-movie-khatu-shyam-amar-katha-part-3 | youtube: https://youtube.com/shorts/qbsIi9rUV6U (public at 2026-11-19T01:30:00.000Z) | movie part (114.86 s, clips 4, lip-sync 4), made 17 Nov 00:45 IST | social: fb: https://www.facebook.com/388779648425633/videos/40171014289213099 (scheduled 2026-11-19T02:00:00.000Z) | ig: pending 2026-11-19T01:30:00.000Z
 - 2026-11-17-status-gopashtami | instagram: https://www.instagram.com/reel/Df0aAfbNN4s/
 - 2026-11-17-movie-khatu-shyam-amar-katha-part-1 | instagram: https://www.instagram.com/reel/Df0_ll_qW21/
+- 2026-11-18-status-akshaya-navami | claim: 2026-11-18 status by run 44022534060.1 at 2026-11-17T05:55:53.036Z
