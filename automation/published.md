@@ -155,3 +155,4 @@
 - 2026-11-17-movie-khatu-shyam-amar-katha-part-1 | instagram: https://www.instagram.com/reel/Df0_ll_qW21/
 - 2026-11-18-status-akshaya-navami | claim: 2026-11-18 status by run 44022534060.1 at 2026-11-17T05:55:53.036Z
 - 2026-11-18-status-akshaya-navami | youtube: https://youtube.com/shorts/UIejHf4VM5c (public at 2026-11-17T19:00:00.000Z) | status variant, made 17 Nov 11:26 IST | social: fb: https://www.facebook.com/reel/1680414093855286 (scheduled 2026-11-17T19:00:00.000Z) | ig: pending 2026-11-17T19:00:00.000Z
+- 2026-11-20-movie-khatu-shyam-amar-katha-part-4 | claim: 2026-11-20 movie by run 44028301076.1 at 2026-11-17T07:38:52.574Z
