@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-18",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "ashtavinayak-theur",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/ashtavinayak-theur/commons-shri-cintamani-of-theur-b751ef.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-18T01:00:00.000Z",
+      "igAt": "2026-11-18T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-18-1-1.jpg"
+      ],
+      "caption": "सुप्रभात 🙏 गणपति बाप्पा मोरया।\nBudhvar ka din Ganesh ji ko samarpit mana jata hai.\nAaj ka darshan hai Chintamani Ganpati, Theur, jo Ashtavinayak yatra ke ashtavinayakon mein se ek hain.\nमान्यता है कि बाप्पा चिंता हरकर मन को शांति देते हैं।\nAapne Ashtavinayak ke kitne mandir dekhe hain?\n\n🙏 Shyam Janmotsav (20 Nov) ka card apne naam aur photo ke saath banayein, free: https://sk9836413.github.io/shyam-premi-sn/janmotsav/?utm_source=instagram&utm_medium=social&utm_campaign=janmotsav2026&utm_content=darshan\n\n📷 Photo: Borayin Maitreya Larios, CC BY 2.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Shri_Cintamani_of_Theur.jpg\n\n#Ganesh #GaneshJi #GanpatiBappaMorya #Ashtavinayak #Theur #Chintamani #SuprabhatDarshan #Bhakti",
+      "fbCaption": "सुप्रभात 🙏 गणपति बाप्पा मोरया। क्या आपने कभी अष्टविनायक के चिंतामणि गणपति, थेऊर के दर्शन किए हैं?\nबुधवार गणेश जी का दिन माना जाता है। आज चिंतामणि गणपति के दर्शन करें।\n\n🙏 Shyam Janmotsav (20 Nov) ka card apne naam aur photo ke saath banayein, free: https://sk9836413.github.io/shyam-premi-sn/janmotsav/?utm_source=facebook&utm_medium=social&utm_campaign=janmotsav2026&utm_content=darshan\n📷 Photo: Borayin Maitreya Larios, CC BY 2.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Shri_Cintamani_of_Theur.jpg\n\n#Ganesh #GanpatiBappaMorya #Ashtavinayak",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1609730261169938",
+        "scheduled": "2026-11-18T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-18T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-18",
+  "weekday": "Budhvar",
+  "festival": null,
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-18T01:00:00.000Z",
+      "igAt": "2026-11-18T03:43:00.000Z",
+      "kind": "darshan",
+      "temple": "ashtavinayak-theur",
+      "templeName": "Chintamani, Theur",
+      "category": "ganesh",
+      "photos": [
+        {
+          "file": "footage/ashtavinayak-theur/commons-shri-cintamani-of-theur-b751ef.jpg",
+          "credit": "Photo: Borayin Maitreya Larios, CC BY 2.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Shri_Cintamani_of_Theur.jpg",
+          "licence": "CC BY 2.0",
+          "author": "Borayin Maitreya Larios",
+          "title": "File:Shri Cintamani of Theur.jpg"
+        }
+      ],
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    }
+  ]
+}
