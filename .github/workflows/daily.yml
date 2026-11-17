@@ -38,7 +38,7 @@
 # evening-slot run (10:43 IST dispatch, the evening schedule, the 18:46 IST retry) the engine picks what is due: today's
 # `eve` variant (public 20:00) and tomorrow's 00:30 `status` / 08:30 `statusday` variants of ONE festival. Its base spec
 # (story/status/<date>.json or the theme) is animated once on Kaggle; every variant reuses those pictures/clips with its
-# own hook, picture order and title, is rendered as a 15-25 s loop, hosted on the media Worker (download link), uploaded
+# own hook, picture order and title, is rendered as a 12-20 s loop, hosted on the media Worker (download link), uploaded
 # private with publishAt, scheduled on Facebook and queued for Instagram. slot=status (+ status_date = the festival day)
 # runs only that job; with dry_run it renders and hosts every variant of that festival but never uploads or logs. The
 # images and clips are cached per festival day, so a dry run's clips are reused by the real run.
@@ -449,7 +449,7 @@ jobs:
 
       # The morning "day status" Short (Somvar Mahadev, Mangalvar Salasar Balaji, ...; Ekadashi: Gyaras Khatu Shyam) is
       # made THE EVENING BEFORE by the status job (public 06:00 IST; owner, 16 Nov 2026); this step only runs when that
-      # render is missing (public on render). Made by the status engine (scripts/status-themes.mjs), not by Claude: 15-25 s loop, bold Hindi hook, "स्टेटस पर
+      # render is missing (public on render). Made by the status engine (scripts/status-themes.mjs), not by Claude: 12-20 s loop, bold Hindi hook, "स्टेटस पर
       # लगाएं", title "<Day> <Deity> Status | <Hindi> स्टेटस वीडियो #Shorts"; names and the first picture rotate weekly.
       - name: Day status (status engine)
         if: steps.date.outputs.done != 'true' && steps.date.outputs.kind == 'daystatus'
@@ -1045,7 +1045,7 @@ jobs:
   # tomorrow's WhatsApp status), tomorrow's `status` (00:30 IST) and, for big festivals, `statusday` (08:30 IST). The
   # festival's base spec (story/status/<date>.json, else its theme in scripts/status-themes.mjs) gets its pictures and
   # Kaggle clips ONCE; each variant reuses them with its own bold Hindi hook, picture order and title ("<Festival> Status
-  # 2026 | <Hindi> स्टेटस वीडियो #Shorts"), is rendered as a 15-25 s loop (story/render-story.mjs `loop`), hosted on the
+  # 2026 | <Hindi> स्टेटस वीडियो #Shorts"), is rendered as a 12-20 s loop (story/render-story.mjs `loop`), hosted on the
   # media Worker (7-day download link in the description), uploaded private with publishAt (a late `eve` goes out at
   # once), scheduled as a Facebook Reel and queued for Instagram (the `instagram` job). Only variants that fit the
   # 3-a-day cap exist (scripts/day-plan.mjs), and scripts/upload-guard.mjs claims "<day> <slot>" before each upload.
@@ -1266,7 +1266,7 @@ jobs:
             fest=$(j "$file" "j.festival")
             social=$(j "$RUNNER_TEMP/meta.json" "' | social: '+j.summary")
             what=$(j "$file" "j.day_status ? 'Day status Short' : 'status Short variant ' + j.variant")
-            echo "$day | $slot | $slug | $fest | $what \"$(j "$file" "j.youtube_title.split(' | ')[0]")\" (15-25 s loop, download link), public $at IST" >> automation/log.md
+            echo "$day | $slot | $slug | $fest | $what \"$(j "$file" "j.youtube_title.split(' | ')[0]")\" (12-20 s loop, download link), public $at IST" >> automation/log.md
             echo "- $slug | youtube: $yt | status variant, made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
             git add automation/log.md automation/published.md "story/published/$slug.json"
             git commit -qm "Status $slug"

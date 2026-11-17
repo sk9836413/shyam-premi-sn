@@ -243,7 +243,7 @@ other scenes (darshan, katha). For a temple not in temples.json, still set `temp
 usually finds nothing, which is fine.
 
 **Festival status Shorts and day status Shorts (no action needed).** The status engine (`scripts/status-engine.mjs`,
-calendar `automation/festivals.json`, two panchang sources per date) makes every festival's 15-25 s loopable "<Festival>
+calendar `automation/festivals.json`, two panchang sources per date) makes every festival's 12-20 s loopable "<Festival>
 Status 2026 | <Hindi> स्टेटस वीडियो #Shorts" Shorts (20:00 the evening before, 00:30 on the day, 08:30 on big festivals)
 and the weekday day status Shorts of the `morning` slot. They are in log.md as `eve`, `status`, `statusday` and
 `morning` lines. Never make a status Short yourself and never repeat their festival/weekday title words: your Short is
@@ -256,7 +256,10 @@ a temple darshan.
 - `evening` (published about 19:00 IST): a **famous-temple darshan Short** of 25-35 s (Khatu Shyam ji at least twice a
   week): 4-5 scenes (the temple/darshan close-up, one well-sourced fact or the bhav, the mantra or jaikara, end card),
   calm and beautiful rather than a story. It must differ from this morning's video and the day's status Shorts: check
-  today's lines in `automation/log.md`.
+  today's lines in `automation/log.md`. **The hook gives the temple name AND a reason to keep watching** (feed audit
+  17 Nov 2026: "Neele ghode ka asvar kaun?" 76% viewed, 94% of views from the Shorts feed; "Vaishno Devi Mata ka darbar"
+  51%, no feed views): a question ("... kyun?", "... kaun?", "... mein kya hai khaas?") or one striking true fact
+  ("Somnath: pehla Jyotirlinga"). scripts/validate.mjs rejects a plain "<Temple> darshan" hook.
 - **Evening hook A/B** (owner, 15 Nov 2026; reference "Everyone Is Against Me… But God Is With Me 🔱" 3.57 lakh views, 20
   s, one dark diya-lit sanctum with a slow push-in): when the plan says "EMOTIONAL-HOOK arm" (odd days of the month), set
   `"hook_style": "emotional"` and lead the title, `hook` and `cover` with a relatable emotional line that still names the

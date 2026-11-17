@@ -109,14 +109,15 @@ describe('what the status job makes now (due)', () => {
   });
   // owner, 16 Nov 2026: a status Short every day, public 06:00 IST, made the evening before
   test('no festival variant due: the family is TOMORROW\'s day status Short (06:00, morning slot)', () => {
-    const r = due({ today: '2026-11-17', now: at('2026-11-17T18:46:00+05:30'), log, festivals, planFor });
-    assert.equal(r.family, '2026-11-18');
-    assert.deepEqual(r.daystatus, { date: '2026-11-18', theme: 3, at: '06:00' });
+    // (18 Nov 2026 has its Akshaya Navami status Short since 17 Nov 2026, so a plain Wednesday: 25 Nov)
+    const r = due({ today: '2026-11-24', now: at('2026-11-24T18:46:00+05:30'), log, festivals, planFor });
+    assert.equal(r.family, '2026-11-25');
+    assert.deepEqual(r.daystatus, { date: '2026-11-25', theme: 3, at: '06:00' });
     assert.deepEqual(r.variants, []);
   });
   test('festival variants go first; a logged morning slot, a festival morning or family mode give no day status', () => {
     assert.equal(due({ today: '2026-11-19', now: at('2026-11-19T10:43:00+05:30'), log, festivals, planFor }).daystatus, undefined);
-    const logged = due({ today: '2026-11-17', now: at('2026-11-17T18:46:00+05:30'), log: '2026-11-18 | morning | 2026-11-18-morning-budhvar-ganesh | g | s\n', festivals, planFor });
+    const logged = due({ today: '2026-11-24', now: at('2026-11-24T18:46:00+05:30'), log: '2026-11-25 | morning | 2026-11-25-morning-budhvar-ganesh | g | s\n', festivals, planFor });
     assert.equal(logged.family, null);
     assert.ok(logged.skipped.some((x) => /already in log\.md/.test(x)));
     assert.match(dayStatusDue({ today: '2026-11-20', planFor }).skip, /no day status/); // 21 Nov Tulsi Vivah: festival darshan morning

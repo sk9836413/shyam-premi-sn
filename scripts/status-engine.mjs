@@ -34,9 +34,12 @@ export const CTA = 'स्टेटस पर लगाएं 📲';
 // festival links and the bhajan line). A share ask, not like/comment bait; NOT on Facebook, whose bait rule
 // (scripts/fb.mjs FB_BAIT) forbids "शेयर" (Meta demotes share asks), and the FB caption is built without it.
 export const SHARE_LINE = '📲 अपने WhatsApp स्टेटस पर लगाएं और परिवार में शेयर करें 🙏';
-const LAST_LINE = 'अपनों को भेजें, सब्सक्राइब करें 🙏';
-const LAST_SAY = 'स्टेटस पर लगाएं, और सबको भेजें।';
-const LAST_SUB = 'Status par lagayein, sabko bhejein! Subscribe: Shyam Premi SN';
+// Shorts feed audit (17 Nov 2026, automation/feed-audit-2026-11-17.md): status Shorts lost 40-60% of viewers in the first
+// 3 s and only 5-16% reached the end (no replays), so a status loop is now 12-20 s (3 scenes of STATUS_HOLD s, the song
+// rounds up to whole bars), its last scene ends on its own picture and line (no "सब्सक्राइब" line, no spoken ask: that
+// broke the loop into an end card; the subscribe ask stays in the description and the channel's first comment
+// scripts/first-comment.mjs), and a scene with an animated clip opens the video when the first pick has none.
+export const STATUS_HOLD = 5;
 export const DEFAULT_VARIANTS = {
   status: [{ slot: 'eve', offset: -1, at: '20:00' }, { slot: 'status', offset: 0, at: '00:30' }],
   big: [{ slot: 'eve', offset: -1, at: '20:00' }, { slot: 'status', offset: 0, at: '00:30' }, { slot: 'statusday', offset: 0, at: '08:30' }],
@@ -139,17 +142,17 @@ function reuseAssets(scene, j, base, dir) {
   return scene;
 }
 
-/** Shared by festival variants and day status Shorts: hook on the first frame, the status ask on the last, loop. */
+/** Shared by festival variants and day status Shorts: hook on the first frame, the status ask (cta pill) on every scene, loop. */
 function compose({ base, scenes, hook, slug, date, title, name, desc, hashtags, tags, festival, extra = {} }) {
-  const s = scenes.map((x) => { const c = clone(x); delete c.endcard; c.hold = c.hold || 6; return c; });
-  const first = s[0], last = s[s.length - 1];
+  const s = scenes.map((x) => { const c = clone(x); delete c.endcard; c.hold = Math.min(c.hold || STATUS_HOLD, STATUS_HOLD); return c; });
+  // Frame 0 = motion: an animated scene (Kaggle clip) goes first when the first pick is a still.
+  const moving = s.findIndex((x) => x.video);
+  if (moving > 0 && !s[0].video) s.unshift(...s.splice(moving, 1));
+  const first = s[0];
   if (first.big && first.big.length <= 48) first.line = first.big; // the blessing moves under the hook
   first.big = hook.hi;
   first.tts = joinTts(hook.say, first.tts);
   first.sub = `${noEmoji(hook.roman)}! ${first.sub}`;
-  last.line = LAST_LINE;
-  last.tts = joinTts(last.tts, LAST_SAY);
-  last.sub = `${last.sub} ${LAST_SUB}`;
   const mantraSrc = mantraSource(s, base.mantra_source);
   const year = (date || '').slice(0, 4);
   const firstRoman = noEmoji(hook.roman);
@@ -166,7 +169,10 @@ function compose({ base, scenes, hook, slug, date, title, name, desc, hashtags, 
     ...(festival ? [`Tithi: Drik Panchang aur Prokerala (New Delhi), ${dateText(festival)}.`] : []),
     'Chitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.',
   ].join('\n');
-  const allTags = [...new Set([`${name.en} status`, ...(festival ? [`${name.en} status ${year}`] : []), `${name.hi} स्टेटस`, `${name.en} whatsapp status`, ...tags, 'Shyam Premi SN'])].slice(0, 15);
+  // Search is the proven traffic of status Shorts (Gopashtami Status 2026: 95% of views from YouTube search), so the tags
+  // carry the searched forms first: "<Festival> status (2026)", "whatsapp status", "status video" and the Hindi forms.
+  const allTags = [...new Set([`${name.en} status`, ...(festival ? [`${name.en} status ${year}`] : []), `${name.hi} स्टेटस`, `${name.en} whatsapp status`,
+    `${name.en} status video`, `${name.hi} स्टेटस वीडियो`, `${name.hi} व्हाट्सएप स्टेटस`, ...tags, 'Shyam Premi SN'])].slice(0, 15);
   const caption = (n) => [`${hook.roman}`, s[0].sub.replace(/^[^!]*!\s*/, ''), 'Status par lagayein, apno ko bhejein 🙏', hashtags.slice(0, n).join(' ')].join('\n');
   return {
     slug, format: 'status', loop: true, date, ...(festival ? { festival_date: festival } : {}), festival: base.festival || name.en,
@@ -342,7 +348,7 @@ async function main() {
     const file = opt('--out') || 'story/today/scenes.json';
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, `${JSON.stringify(spec, null, 2)}\n`);
-    if (opt('--log')) fs.appendFileSync(opt('--log'), `${date} | morning | ${spec.slug} | ${spec.deity} | Day status Short "${spec.youtube_title.split(' | ')[0]}" (status engine, 15-25 s loop)\n`);
+    if (opt('--log')) fs.appendFileSync(opt('--log'), `${date} | morning | ${spec.slug} | ${spec.deity} | Day status Short "${spec.youtube_title.split(' | ')[0]}" (status engine, 12-20 s loop)\n`);
     return out({ slug: spec.slug, title: spec.youtube_title, file });
   }
   if (cmd === 'plan') {

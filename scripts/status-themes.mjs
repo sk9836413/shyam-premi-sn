@@ -195,6 +195,34 @@ export const THEMES = {
       { prompt: 'A white cow and her calf decorated for Gopashtami puja in a village courtyard at sunrise: a red kumkum tilak on the forehead, a marigold garland, a colourful embroidered cloth on her back, a brass puja thali with a lit diya, jaggery, green grass and a roti offered before her, a devotee in a red saree seen from behind with folded hands, warm golden light', animate: 'the diya flame flickers softly and the marigold garland sways gently, the cow and the calf stay calm and still', motion: 'out', hold: 6, big: 'गौ माता की जय', line: 'गौ सेवा ही गोपाल की सेवा', tts: 'गौ माता की जय! जय श्री कृष्ण।', sub: 'Gau Mata ki jai! Jai Shree Krishna.' },
     ],
   }),
+  // Akshaya (Amla) Navami, Kartik Shukla Navami (feed audit 17 Nov 2026: every searchable festival gets a status Short;
+  // search brought 95% of Gopashtami's views). Amla-tree puja for Bhagwan Vishnu and akshaya punya of daan are the common
+  // parampara; the "Satyug began on this day" belief is a manyata, so it is not stated as fact.
+  akshayanavami: T({
+    playlist: 'Vishnu ji aur Krishna ki Kathayein', deity: 'Bhagwan Vishnu (Amla vriksh puja)', mantra: 'vishnu',
+    desc: 'Kartik Shukla Navami ko Akshaya Navami (Amla Navami) manayi jati hai: parampara ke anusar is din aanwle ke vriksh ki pooja hoti hai, jismein Bhagwan Vishnu ka vaas mana jata hai, aur is din kiya gaya daan-punya akshaya (kabhi kam na hone wala) mana jata hai',
+    hashtags: ['#AkshayaNavami', '#AmlaNavami', '#AkshayaNavami2026', '#JaiShreeHari', '#KartikMaas'],
+    tags: ['Amla Navami status', 'आंवला नवमी', 'आंवला नवमी स्टेटस', 'Akshaya Navami 2026', 'अक्षय नवमी 2026', 'Amla Navami 2026', 'Amla vriksh puja', 'Jai Shree Hari'],
+    scenes: [
+      { prompt: 'A large green amla (Indian gooseberry) tree with round green fruits in a village courtyard at sunrise, a red sacred thread tied around its trunk, a brass puja thali with a lit diya, kumkum, rice and amla fruits at its roots, marigold flowers, soft golden light', animate: 'a very slow gentle push-in, the leaves sway softly in the breeze and the diya flame flickers', motion: 'in', hold: 6, big: 'आंवला नवमी की शुभकामनाएं', line: 'आंवले की पूजा, श्री हरि का आशीर्वाद', tts: 'आंवले के वृक्ष की पूजा से घर में सुख और समृद्धि आए।', sub: 'Aanwle ke vriksh ki pooja se ghar mein sukh aur samriddhi aaye.' },
+      { prompt: `Divine darshan of ${VISHNU}, standing in soft golden light beneath the branches of a green amla tree laden with round fruits, Maa Lakshmi beside him, lotus flowers at their feet, a peaceful heavenly glow`, deity: true, motion: 'pan', hold: 6, big: 'जय श्री हरि', line: 'आंवले में श्री हरि का वास', tts: 'मान्यता है, आंवले के वृक्ष में श्री हरि का वास होता है।', sub: 'Manyata hai, aanwle ke vriksh mein Shri Hari ka vaas hota hai.' },
+      { prompt: 'Women in festive red and yellow saris seen from behind walking around a big amla tree with a red sacred thread, offering water from brass lotas, a family sitting for a meal under the tree, diyas and marigold garlands, warm morning light', animate: 'the water pours slowly from the brass lota and the leaves sway gently, the people stay calm', motion: 'out', hold: 6, big: 'अक्षय पुण्य', line: 'दान-पुण्य कभी कम न हो', tts: 'ॐ नमो भगवते वासुदेवाय।', sub: 'Om Namo Bhagavate Vasudevaya.', mantra: 'ॐ नमो भगवते वासुदेवाय' },
+    ],
+  }),
+  // Vaikuntha Chaturdashi, Kartik Shukla Chaturdashi: the day of Hari and Har. The katha of Bhagwan Vishnu offering a
+  // thousand lotuses to Shiv ji in Kashi (and his lotus-eye for the missing one) is told as katha / manyata; the Ujjain
+  // "Hari-Har milan" procession and Vishnu puja at night, Shiv puja at dawn are the common parampara.
+  vaikuntha: T({
+    playlist: 'Shiv ji ki Kathayein', deity: 'Bhagwan Vishnu aur Bhagwan Shiv (Hari-Har)', mantra: 'vishnu',
+    desc: 'Kartik Shukla Chaturdashi ko Vaikuntha Chaturdashi manayi jati hai: yeh Hari (Bhagwan Vishnu) aur Har (Bhagwan Shiv) dono ki pooja ka din hai; katha ke anusar Bhagwan Vishnu ne Kashi mein Shiv ji ko hazaar kamal arpit kiye, aur Ujjain mein is din Hari-Har milan ki parampara hai',
+    hashtags: ['#VaikunthaChaturdashi', '#BaikunthChaturdashi', '#HariHar', '#HarHarMahadev', '#JaiShreeHari'],
+    tags: ['Vaikuntha Chaturdashi 2026', 'वैकुंठ चतुर्दशी 2026', 'Baikunth Chaturdashi status', 'बैकुंठ चतुर्दशी स्टेटस', 'Hari Har milan', 'हरि हर मिलन', 'Har Har Mahadev', 'Jai Shree Hari'],
+    scenes: [
+      { prompt: `Divine darshan of ${VISHNU}, and ${SHIV}, standing side by side in a heavenly golden sky above clouds, a soft halo behind both, lotus flowers and bel leaves floating around them, serene and peaceful`, animate: 'a very slow gentle push-in, the clouds drift and the halo glows softly, the faces stay still', deity: true, motion: 'in', hold: 6, big: 'हरि हर मिलन', line: 'वैकुंठ चतुर्दशी की शुभकामनाएं', tts: 'हरि और हर की कृपा आप पर सदा बनी रहे।', sub: 'Hari aur Har ki kripa aap par sada bani rahe.' },
+      { prompt: 'A stone Shivling in an ancient Kashi temple sanctum covered with fresh pink and white lotus flowers, a brass lamp and bel leaves, a tulsi leaf offering on a silver plate, soft lamp light, devotional night', animate: 'the lamp flame flickers softly and a few lotus petals move gently', deity: true, motion: 'out', hold: 6, big: 'हज़ार कमल', line: 'श्री हरि ने महादेव को अर्पित किए', tts: 'कथा है, श्री हरि ने काशी में महादेव को हज़ार कमल अर्पित किए।', sub: 'Katha hai, Shri Hari ne Kashi mein Mahadev ko hazaar kamal arpit kiye.' },
+      { prompt: 'The ghats of Varanasi at night with rows of lit clay diyas on the stone steps, the river Ganga reflecting the lights, temple spires against a starry sky, peaceful festive night', motion: 'pan', hold: 6, big: 'जय श्री हरि', line: 'हर हर महादेव', tts: 'ॐ नमो भगवते वासुदेवाय।', sub: 'Om Namo Bhagavate Vasudevaya.', mantra: 'ॐ नमो भगवते वासुदेवाय' },
+    ],
+  }),
   // ---- big festivals (6 scenes; each variant shows 3 of them) ----
   devdeepawali: T({
     playlist: 'Shiv ji ki Kathayein', deity: 'Shiv ji / Ganga Maiya', mantra: 'shiv', big: true,

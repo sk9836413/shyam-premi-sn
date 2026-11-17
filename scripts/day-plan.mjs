@@ -272,11 +272,14 @@ export function planDay(date, inputs = {}) {
   // status Short): a famous-temple darshan of the deity (not on movie days: the movie part is the morning upload).
   if (!bigToday) {
     if (fest && !GYARAS_THEMES.includes(fest.theme)) {
-      if (!movie) cands.push({ slot: 'morning', kind: 'temple', what: `famous-temple darshan Short tied to ${fest.name} (a well-known, searched temple of that deity; STORY.md)` });
+      // Upload timing (feed audit 17 Nov 2026): a darshan goes out when the Indian audience is active (19:00-20:00), not in
+      // the 11:00-16:00 dead hours, so when the cap leaves room for only one darshan it is the 19:00 evening one (this
+      // ~10:30 festival-morning darshan ranks just after it).
+      if (!movie) cands.push({ slot: 'morning', kind: 'temple', rank: PRIORITY.evening + 0.1, what: `famous-temple darshan Short tied to ${fest.name} (a well-known, searched temple of that deity; STORY.md)` });
     } else {
       const theme = fest ? 'gyaras' : wd;
       cands.push({ slot: 'morning', kind: 'daystatus', theme, at: DAWN.daystatus, dawn: true,
-        what: `day status Short: ${DAY_THEMES[theme].names[0].en} (15-25 s loop, "स्टेटस पर लगाएं 📲" pill; public ${DAWN.daystatus} IST for the morning WhatsApp status, made the evening before by the status job; scripts/status-engine.mjs)` });
+        what: `day status Short: ${DAY_THEMES[theme].names[0].en} (12-20 s loop, "स्टेटस पर लगाएं 📲" pill; public ${DAWN.daystatus} IST for the morning WhatsApp status, made the evening before by the status job; scripts/status-engine.mjs)` });
     }
   }
   // Evening hook A/B (owner, 15 Nov 2026; reference "Everyone is against me... but God is with me" 3.57 lakh): on odd

@@ -37,6 +37,8 @@ function html(scene, spec) {
     .box{position:absolute;left:50px;right:50px;bottom:120px;text-align:center}
     .big{font-family:'Yatra','Noto Color Emoji',sans-serif;font-size:118px;line-height:1.12;color:#FFD54A;
       text-shadow:0 0 18px rgba(255,140,0,.55),0 5px 0 #5a1f00,0 8px 22px rgba(0,0,0,.85)}
+    .pre{font-family:'Yatra',sans-serif;font-size:66px;line-height:1.1;color:#fff;margin-bottom:6px;
+      text-shadow:0 3px 12px rgba(0,0,0,.95)}
     .line{font-family:'Yatra','Noto Color Emoji',sans-serif;font-size:62px;line-height:1.3;color:#fff;margin-top:18px;
       text-shadow:0 3px 12px rgba(0,0,0,.95)}
     .mantra{font-family:'Tiro','Noto Color Emoji',serif;font-size:54px;line-height:1.35;color:#FFB74D;margin-top:22px;
@@ -54,9 +56,13 @@ function html(scene, spec) {
     const [a, b] = String(spec.endline || END_LINE).split(' | ');
     body = `<div class="end"><div class="e1">${esc(a)}</div>${b ? `<div class="e2">${esc(b)}</div>` : ''}</div>`;
   } else {
-    const len = [...String(scene.big || '')].length;
-    const size = len <= 14 ? 118 : len <= 22 ? 100 : 84; // a long hook ("परसों है ...") still fits on two lines
-    body = `<div class="panel"></div><div class="box"${spec.cta ? ' style="bottom:150px"' : ''}>${scene.big ? `<div class="big" style="font-size:${size}px">${esc(scene.big)}</div>` : ''}` +
+    // Shorts feed audit (17 Nov 2026): the status Shorts with a short huge first-frame word ("शुभ धनतेरस", 118 px) kept
+    // 85-106% of viewers at 3 s, the long hooks ("आज है छठ पूजा नहाय खाय 🙏", 84 px) 40-61%. So "आज है / कल है / परसों है"
+    // is drawn as a small line above, and the festival name (what the viewer searched) is the big word (its emoji never wraps onto a line of its own).
+    const [, pre = '', name = String(scene.big || '')] = String(scene.big || '').match(/^(आज है|कल है|परसों है)\s+(.+)$/) || [];
+    const len = [...name].length;
+    const size = len <= 14 ? 118 : len <= 22 ? 100 : 84; // a long hook still fits on two lines
+    body = `<div class="panel"></div><div class="box"${spec.cta ? ' style="bottom:150px"' : ''}>${pre ? `<div class="pre">${esc(pre)}</div>` : ''}${scene.big ? `<div class="big" style="font-size:${size}px">${esc(name).replace(/\s+(\S+)$/u, ' $1')}</div>` : ''}` +
       `${scene.line ? `<div class="line">${esc(scene.line)}</div>` : ''}${scene.mantra ? `<div class="mantra">${esc(scene.mantra)}</div>` : ''}</div>` +
       `${spec.cta ? `<div class="cta"><span>${esc(spec.cta)}</span></div>` : ''}`;
   }

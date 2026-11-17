@@ -144,12 +144,31 @@
     {
       "date": "2026-11-18",
       "key": "akshaya-navami",
-      "tier": "info",
+      "tier": "status",
+      "theme": "akshayanavami",
       "label": "Akshaya (Amla) Navami",
+      "names": [
+        {
+          "en": "Akshaya Navami",
+          "hi": "अक्षय नवमी"
+        },
+        {
+          "en": "Amla Navami",
+          "hi": "आंवला नवमी"
+        }
+      ],
+      "variants": [
+        {
+          "slot": "status",
+          "offset": 0,
+          "at": "00:30"
+        }
+      ],
       "sources": [
         "D: festivals-november.html?year=2026: Akshaya Navami Wed 18 Nov",
         "P: festivals/akshaya-navami.html?loc=1261481: 18 Nov"
-      ]
+      ],
+      "note": "17 Nov 2026 (feed audit: every searchable festival gets a status Short; search = 95% of Gopashtami Status views): tier info -> status, only the 00:30 variant (17 Nov was already at its Shorts cap, so no 20:00 eve)"
     },
     {
       "date": "2026-11-20",
@@ -268,12 +287,24 @@
     {
       "date": "2026-11-23",
       "key": "vaikuntha-chaturdashi",
-      "tier": "info",
+      "tier": "status",
+      "theme": "vaikuntha",
       "label": "Vaikuntha Chaturdashi",
+      "names": [
+        {
+          "en": "Vaikuntha Chaturdashi",
+          "hi": "वैकुंठ चतुर्दशी"
+        },
+        {
+          "en": "Baikunth Chaturdashi",
+          "hi": "बैकुंठ चतुर्दशी"
+        }
+      ],
       "sources": [
         "D: festivals-november.html?year=2026: Vaikuntha Chaturdashi Mon 23 Nov",
         "mpanchang.com/festivals/vaikuntha-chaturdashi/: 23 Nov 2026 (prokerala has no page)"
-      ]
+      ],
+      "note": "17 Nov 2026 (feed audit: every searchable festival gets a status Short): tier info -> status (eve 22 Nov 20:00 + 00:30 on the day; both spellings are searched)"
     },
     {
       "date": "2026-11-24",

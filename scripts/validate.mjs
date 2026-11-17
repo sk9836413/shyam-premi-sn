@@ -42,7 +42,7 @@ const NAMES = new RegExp('\\b(' + [
   'shrinathji', 'sanwaliya', 'tirupati', 'vaishno', 'kamakhya', 'char dham', 'ashtavinayak',
   // festival status Shorts (scripts/status-engine.mjs, automation/festivals.json) and the weekday day status Shorts
   'nahay', 'pradosh', 'sankashti', 'sakat', 'bhairav', 'kalbhairav', 'vivah', 'gita', 'lohri', 'sankranti', 'makar', 'uthani',
-  'gopashtami', 'santoshi', 'gyaras', 'somvar', 'mangalvar', 'budhvar', 'guruvar', 'shukravar', 'shanivar', 'ravivar',
+  'gopashtami', 'akshaya', 'amla', 'vaikuntha', 'baikunth', 'santoshi', 'gyaras', 'somvar', 'mangalvar', 'budhvar', 'guruvar', 'shukravar', 'shanivar', 'ravivar',
 ].join('|') + ')', 'i');
 const GENERIC = new Set(['ki', 'ka', 'ke', 'aur', 'mein', 'me', 'se', 'ko', 'hai', 'ji', 'jai', 'shree', 'shri', 'katha', 'kahani',
   'darshan', 'status', 'video', 'shorts', 'sampoorn', 'mandir', 'dham', 'temple', 'kyun', 'kya', 'kaise', 'baba', 'part', 'the']);
@@ -407,7 +407,7 @@ if (s.bhajan_short === true) {
 // 15-30 s vertical: 2-3 darshan scenes with a big Hindi blessing (Devanagari overlay), an optional well-known mantra,
 // then the end card with the fixed share/subscribe line. Written in advance, so this check is strict.
 // Loop specs (`loop: true`, status engine, 11 Nov 2026): festival variants (slots eve / status / statusday) and the
-// morning day status Short: 3 scenes and NO end card (the video ends on its own first frame), 15-25 s, a bold Hindi hook
+// morning day status Short: 3 scenes and NO end card (the video ends on its own first frame), 12-20 s, a bold Hindi hook
 // on the first frame, "स्टेटस पर लगाएं" on screen, title "<Festival> Status <year> | <Hindi> स्टेटस वीडियो #Shorts".
 if (s.format === 'status') {
   const loop = s.loop === true;
@@ -460,7 +460,8 @@ if (s.format === 'status') {
   // A big festival's base spec (story/status/2026-11-20.json) holds the pictures of all its variants: it is never
   // rendered itself, so only its variants have to fit the length.
   const family = !loop && scenes.length > 4;
-  const [lo, hi] = loop ? [15, 25] : [15, 30];
+  // Loops 12-20 s (Shorts feed audit 17 Nov 2026: shorter loops get a higher average % viewed and replays).
+  const [lo, hi] = loop ? [12, 20] : [15, 30];
   if (!family) need(secs >= lo && secs <= hi, `estimated length ${Math.round(secs)} s; a ${loop ? 'loop ' : ''}status video is ${lo}-${hi} s`);
   // A festival variant reuses its family's Kaggle clips (the base spec is what gets animated), so it may mark none.
   need(animated <= 3 && (animated >= 1 || s.slot), `mark 1-3 scenes with "animate" (has ${animated})`);
@@ -711,9 +712,9 @@ if (s.format === 'movie') {
 // Sati temples (automation/mandir-series.md): no fair/mela/procession talk at all, and the legal disclaimer is required.
 if (/sati/i.test(`${s.slug || ''} ${s.temple || ''} ${s.title || ''}`)) {
   const all = JSON.stringify(s);
-  need(!/(mela|yatra|juloos|jaloos|procession|bhado|bhadi|amavasya)|मेला|यात्रा|भादो|भादी|अमावस्या/i.test(all), 'sati temple: never mention a mela, yatra, procession or the Bhado/Bhadi amavasya gathering (mandir-series.md)');
+  need(!/\b(mela|yatra|juloos|jaloos|procession|bhado|bhadi|amavasya)\b|मेला|यात्रा|भादो|भादी|अमावस्या/i.test(all), 'sati temple: never mention a mela, yatra, procession or the Bhado/Bhadi amavasya gathering (mandir-series.md)');
   need(/Sati Nivaran Adhiniyam 1987/.test(all), 'sati temple: the legal disclaimer (Sati Nivaran Adhiniyam 1987) must be spoken and in the description');
-  need(!/balidaan|amar tyag|mahima|chita|agni|aag/i.test(all), 'sati temple: no praise of the act and no fire imagery');
+  need(!/balidaan|amar tyag|mahima|chita|\bagni\b|\baag\b/i.test(all), 'sati temple: no praise of the act and no fire imagery');
 }
 
 if (s.format === 'dialogue') {
@@ -844,6 +845,15 @@ need(totalTts <= maxChars, `total narration ${totalTts} characters; keep it unde
 need(s.hook && s.hook.length <= 38 && !DEVANAGARI.test(s.hook), 'hook: Roman Hinglish, 1-38 characters');
 need(!/^(aaj suniye|namaste|jai shree shyam)/i.test(scenes[0]?.sub || ''), 'scene 1 must open with the dramatic moment or a question, not a greeting');
 checkHook(s.hook);
+// Shorts feed audit (17 Nov 2026, automation/feed-audit-2026-11-17.md): the evening darshan Shorts with a curiosity hook
+// ("Neele ghode ka asvar kaun?", "Daadhi-moochh wale Hanuman ji!", "Shyam Kund mein kya hai khaas?") held 62-76% average
+// view and got 75-95% of their views from the Shorts feed; the name-only hooks from 9 Nov ("Vaishno Devi Mata ka darbar",
+// "Khatu Shyam Mandir, Sikar darshan") 15-51% and almost no feed views. The first second (cover = temple name, hook from
+// 0.36 s) must give the name AND a reason to keep watching. The emotional A/B arm has its own formula.
+const CURIOUS = /[?!]|\b(kyun|kyon|kaun|kya|kaise|kahan|kab|kitn[aei]|rahasya|raaz|khaas|anokh[aei]|adbhut|ajab|chamatkar|pehl[aei]|ekmatra|ikl[aou]ta|sabse|akel[aei]|jagrit|sach)\b/i;
+if (/-evening-/.test(s.slug || '') && s.hook_style !== 'emotional') {
+  need(CURIOUS.test(s.hook || ''), `hook: name the temple AND give a reason to keep watching (a question or a striking true fact), e.g. "Neele ghode ka asvar kaun?", "Salasar Balaji ki daadhi kyun?", "Somnath: pehla Jyotirlinga" (is "${s.hook}"); a plain "<Temple> darshan" loses the Shorts feed`);
+}
 checkOpening(scenes[0]?.sub, scenes[0]?.tts);
 checkCover();
 checkTitle(48);

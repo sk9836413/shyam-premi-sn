@@ -524,7 +524,9 @@ const bedIns = ['[dr]', '[bl]', ...layers.map((_, k) => `[am${k}]`), ...bellAt.m
 const bedFade = bhajan && !BH_SONG ? `,afade=t=out:st=${bhPlan.bedFadeAt}:d=1.2` : '';
 f.push(`${bedIns.join('')}amix=inputs=${bedIns.length}:duration=first:normalize=0${bedFade}[bed]`);
 f.push('[bed][key]sidechaincompress=threshold=0.02:ratio=5:attack=25:release=450:makeup=1[duck]');
-const OUTFADE = STATUS && spec.loop ? 0.6 : 2; // a loop status Short only dips at the end, then replays
+// A loop status Short only dips for 0.25 s at the end (feed audit 17 Nov 2026: a longer fade-out is an audible gap at the
+// replay point; the song is back at full level on frame 0 of the replay), then replays.
+const OUTFADE = STATUS && spec.loop ? 0.25 : 2;
 const BH = A0 + layers.length + bellAt.length; // bhajan input (after the bells)
 if (bhajan) {
   const ms = Math.round(bhPlan.start * 1000);

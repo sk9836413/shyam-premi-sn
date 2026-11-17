@@ -219,11 +219,12 @@ describe('festival dates (automation/festivals.json)', () => {
   const inputs = loadInputs('.');
   const on = (d) => planDay(d, inputs).uploads;
   const has = (d, slot, key) => on(d).some((u) => u.slot === slot && u.festival === key);
-  test('Janmotsav week 17-20 Nov 2026: movie at 07:00 every day + 4 Janmotsav status variants + the 06:00 day status on 18/19', () => {
+  test('Janmotsav week 17-20 Nov 2026: movie at 07:00 every day + 4 Janmotsav status variants + Akshaya Navami 00:30 on 18 (17 Nov 2026: info -> status) + the 06:00 day status on 19', () => {
     for (const d of ['2026-11-17', '2026-11-18', '2026-11-19', '2026-11-20']) assert.ok(on(d).some((u) => u.slot === 'movie' && u.at === '07:00'), d);
     assert.ok(has('2026-11-18', 'eve', 'khatu-shyam-janmotsav'));
     assert.ok(has('2026-11-19', 'eve', 'khatu-shyam-janmotsav'));
-    assert.deepEqual(on('2026-11-18').map((u) => `${u.slot} ${u.at}`), ['morning 06:00', 'movie 07:00', 'eve 20:00']);
+    assert.ok(has('2026-11-18', 'status', 'akshaya-navami'));
+    assert.deepEqual(on('2026-11-18').map((u) => `${u.slot} ${u.at}`), ['status 00:30', 'movie 07:00', 'eve 20:00']);
     assert.deepEqual(on('2026-11-19').map((u) => `${u.slot} ${u.at}`), ['morning 06:00', 'movie 07:00', 'eve 20:00']);
     assert.deepEqual(on('2026-11-20').map((u) => `${u.slot} ${u.at}`), ['status 00:30', 'movie 07:00', 'statusday 08:30']);
     assert.ok(has('2026-11-20', 'status', 'khatu-shyam-janmotsav') && has('2026-11-20', 'statusday', 'khatu-shyam-janmotsav'));
@@ -335,8 +336,8 @@ describe('dawn uploads (bhajan Short 05:45, bhajan / mantra long video 05:30)', 
     assert.ok(!planDay('2026-11-17', inputs).uploads.some((u) => u.slot === 'long'), '17 Nov: no katha long (owner, 16 Nov 2026)');
     assert.deepEqual(dawnUploads('2026-11-17', inputs, ''), { date: '2026-11-17', bhajans: [], long: '', longAt: '' });
     // a non-festival day reports its 06:00 day status Short (made by the status job), unless log.md has the morning slot
-    assert.deepEqual(dawnUploads('2026-11-18', inputs, '').daystatus, { day: '2026-11-18', slot: 'morning', at: '06:00' });
-    assert.equal(dawnUploads('2026-11-18', inputs, '2026-11-18 | morning | 2026-11-18-morning-budhvar-ganesh | g | s\n').daystatus, undefined);
+    assert.deepEqual(dawnUploads('2026-11-25', inputs, '').daystatus, { day: '2026-11-25', slot: 'morning', at: '06:00' });
+    assert.equal(dawnUploads('2026-11-25', inputs, '2026-11-25 | morning | 2026-11-25-morning-budhvar-ganesh | g | s\n').daystatus, undefined);
   });
   test('dawnUploads leaves out what log.md already has (the evening run renders only what is missing)', () => {
     const inputs = realInputs();
