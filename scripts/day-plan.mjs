@@ -109,7 +109,7 @@ export const BHAJAN_FALLBACK = 'Chhath Surya temple or ghat darshan Short (no Ch
 const TIER = { big: 0, status: 1 };
 const GYARAS_THEMES = ['ekadashi', 'gita'];
 // The evening darshan's temples (owner, 16 Nov 2026, from the retention data): searched temples people stay for.
-export const DARSHAN_PREFER = 'prefer the high-retention, searched temples: Khatu Shyam ji (Moravinandan Khatu Shyam 76% retention, Hare ka Sahara 73%, Barbarik sheesh daan 90%), Salasar Balaji (72%), Mehandipur Balaji, Shakambhari Mata Sakrai (62%), Jeen Mata, Rani Sati Dadi (the sati-temple rules of mandir-series.md in full), not one used in the last 30 days';
+export const DARSHAN_PREFER = 'prefer the high-retention, searched temples: Khatu Shyam ji (Moravinandan Khatu Shyam 76% retention, Hare ka Sahara 73%, Barbarik sheesh daan 90%), Salasar Balaji (72%), Mehandipur Balaji, Shakambhari Mata Sakrai (62%), Jeen Mata, Rani Sati Dadi (Jhunjhunu) and Dhandhan Dham Sati Dadi (Tida-Gela Maiya, Dhandhan, Sikar; owner 17 Nov 2026: focus on both Dadi temples, about one darshan each per fortnight) with the sati-temple rules of mandir-series.md in full (darshan, temple, mela and bhakti only; never depict, praise or recommend the sati act), not one used in the last 30 days except Khatu Shyam ji and the two Dadi temples, which may repeat after 14 days';
 
 const read = (f) => { try { return fs.readFileSync(f, 'utf8'); } catch { return ''; } };
 export const weekday = (date) => new Date(`${date}T12:00:00Z`).getUTCDay();
