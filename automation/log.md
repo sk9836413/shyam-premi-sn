@@ -82,3 +82,4 @@
 2026-11-17 | status | 2026-11-17-status-gopashtami | Gopashtami | status Short variant 1 "Gopashtami Status 2026" (15-25 s loop, download link), public 00:30 IST
 2026-11-19 | movie | 2026-11-19-movie-khatu-shyam-amar-katha-part-3 | Khatu Shyam ji (Barbarik) | Movie Part 3/4: asli roop ki maang, Shri Krishna ka darshan, yudh dekhne ki ichchha, Phalgun Shukla Dwadashi ko sheesh daan (parampara), sheesh pahadi par
 2026-11-17 | morning | 2026-11-17-movie-khatu-shyam-amar-katha-part-1 | Khatu Shyam ji (Barbarik) | mini-movie part (scheduled 07:00, replaces the katha Short)
+2026-11-18 | status | 2026-11-18-status-akshaya-navami | Akshaya (Amla) Navami | status Short variant 1 "Akshaya Navami Status 2026" (12-20 s loop, download link), public 00:30 IST
