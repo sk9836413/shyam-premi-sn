@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-19",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "guruvayur",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/guruvayur/commons-009392022-guruvayur-temple-kerala-024-10d27d.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-19T01:00:00.000Z",
+      "igAt": "2026-11-19T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-19-1-1.jpg"
+      ],
+      "caption": "Suprabhat 🙏 Guruvar ka din Bhagwan Vishnu ko samarpit mana jata hai.\nAaj Kerala ke Guruvayur Sri Krishna mandir ke darshan karte hain.\nश्रीकृष्ण के चरणों में सबका प्रणाम। हरे कृष्ण 🙏\nAapka din shanti aur sukoon se bhara ho.\nAapne Guruvayur ya Kerala ke kisi mandir ke darshan kab kiye the?\n\n🙏 Shyam Janmotsav (20 Nov) ka card apne naam aur photo ke saath banayein, free: https://sk9836413.github.io/shyam-premi-sn/janmotsav/?utm_source=instagram&utm_medium=social&utm_campaign=janmotsav2026&utm_content=darshan\n\n📷 Photo: Ms Sarah Welch, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:009392022_Guruvayur_temple,_Kerala_024.jpg\n\n#Guruvayur #GuruvayurTemple #Krishna #Vishnu #Kerala #Suprabhat #Guruvar #Bhakti",
+      "fbCaption": "सुप्रभात 🙏 हरे कृष्ण। क्या आपने कभी केरल के गुरुवायूर श्रीकृष्ण मंदिर के दर्शन किए हैं?\nगुरुवार का दिन भगवान विष्णु को समर्पित माना जाता है।\nआज की सुबह श्रीकृष्ण के चरणों में प्रणाम।\n\n🙏 Shyam Janmotsav (20 Nov) ka card apne naam aur photo ke saath banayein, free: https://sk9836413.github.io/shyam-premi-sn/janmotsav/?utm_source=facebook&utm_medium=social&utm_campaign=janmotsav2026&utm_content=darshan\n📷 Photo: Ms Sarah Welch, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:009392022_Guruvayur_temple,_Kerala_024.jpg\n\n#Guruvayur #Krishna #Bhakti",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1610767224399575",
+        "scheduled": "2026-11-19T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-19T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}
