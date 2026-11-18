@@ -160,3 +160,4 @@
 - 2026-11-17-facts-khatu-baba-ke-naam | instagram: https://www.instagram.com/reel/Df2BK3zJDRm/
 - 2026-11-18-status-akshaya-navami | instagram: https://www.instagram.com/reel/Df22Vn5KqM-/
 - 2026-11-18-movie-khatu-shyam-amar-katha-part-2 | instagram: https://www.instagram.com/reel/Df3kYerROsA/
+- 2026-11-18-eve-shyam-baba-janmotsav | claim: 2026-11-18 eve by run 44242692898.1 at 2026-11-18T06:41:44.614Z
