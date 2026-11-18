@@ -159,3 +159,4 @@
 - 2026-11-20-movie-khatu-shyam-amar-katha-part-4 | youtube: https://youtube.com/shorts/JyP95sABfVI (public at 2026-11-20T01:30:00.000Z) | movie part (108.17 s, clips 4, lip-sync 0), made 17 Nov 13:09 IST | social: fb: https://www.facebook.com/388779648425633/videos/1652298663196663 (scheduled 2026-11-20T01:30:00.000Z) | ig: pending 2026-11-20T01:30:00.000Z
 - 2026-11-17-facts-khatu-baba-ke-naam | instagram: https://www.instagram.com/reel/Df2BK3zJDRm/
 - 2026-11-18-status-akshaya-navami | instagram: https://www.instagram.com/reel/Df22Vn5KqM-/
+- 2026-11-18-movie-khatu-shyam-amar-katha-part-2 | instagram: https://www.instagram.com/reel/Df3kYerROsA/
