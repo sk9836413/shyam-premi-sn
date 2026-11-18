@@ -1,0 +1,1193 @@
+{
+ "date": "2026-11-18",
+ "mode": "daily",
+ "queries": [
+  "माता रानी|दुर्गा",
+  "पौराणिक कथा"
+ ],
+ "thresholds": {
+  "views": 100000,
+  "fastViews": 30000,
+  "fastDays": 3,
+  "multiple": 5,
+  "minShorts": 3,
+  "strongMedian": 40000,
+  "maxSeconds": 180
+ },
+ "quota": {
+  "searches": 2,
+  "list_calls": 54,
+  "units": 254,
+  "cap": 900
+ },
+ "counts": {
+  "found": 100,
+  "shorts": 93,
+  "over_threshold": 58,
+  "viral": 17,
+  "strong": 2,
+  "likely_reuploads": 14
+ },
+ "viral": [
+  {
+   "id": "m-pAzJqfVS0",
+   "url": "https://youtube.com/shorts/m-pAzJqfVS0",
+   "title": "🌺#माँ दुर्गा की अंतिम विदाई 🙏 | नम आँखों से भक्तों ने दी माँ को विदाई ❤️ | अगले बरस फिर आना",
+   "channel": "Benny Bhalchanra",
+   "channelId": "UCCkA_O0imYwmJwG0eAgaE3Q",
+   "published": "2026-11-12T02:27:25Z",
+   "ageDays": 6.1,
+   "seconds": 11,
+   "views": 1062151,
+   "likes": 5726,
+   "thumb": "https://i.ytimg.com/vi/m-pAzJqfVS0/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 2210,
+   "median": 1241,
+   "n_shorts": 30,
+   "multiple": 855.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "views far beyond subscribers"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "devi",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "topic": "Durga visarjan: bhakton ki vidaai",
+    "cover_style": "Durga idol on a float in the sea, crying devotees around, no text",
+    "art_style": "cinematic",
+    "why": "Farewell emotion carries an 11s clip to 855x the channel median; the cover is the emotion itself",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "jDW2D-3RQqk",
+   "url": "https://youtube.com/shorts/jDW2D-3RQqk",
+   "title": "jay maa durga🙏😂#bhakti #jaimaadurga  #shorts 🌺 | mata rani bhajan 2026",
+   "channel": "Radha Rani Bhakti Dham",
+   "channelId": "UCWj4_fe3phubtV8K5DRFlVQ",
+   "published": "2026-11-13T08:30:13Z",
+   "ageDays": 4.8,
+   "seconds": 11,
+   "views": 690900,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/jDW2D-3RQqk/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 4030,
+   "median": 1412,
+   "n_shorts": 29,
+   "multiple": 489.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "loop",
+    "deity": "devi",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "devi",
+    "topic": "Maa Durga bhajan loop with murti visual",
+    "cover_style": "underwater goddess murti with smoke and bubbles, no text",
+    "art_style": "murti-darshan",
+    "why": "Bhajan loop: the title is a plain name hook; the odd underwater murti is what makes the cover stop the scroll",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "VlnGxCQQThM",
+   "url": "https://youtube.com/shorts/VlnGxCQQThM",
+   "title": "सूर्यदेव के सात घोड़े और अरुण देव की अद्भुत कथा 😱| सूर्य रथ का रहस्य | Surya Dev Story#shorts",
+   "channel": "Divya Katha Sansar",
+   "channelId": "UC9uFGVnqnGtJbITVtHIxcsg",
+   "published": "2026-11-15T14:52:18Z",
+   "ageDays": 2.5,
+   "seconds": 180,
+   "views": 629064,
+   "likes": 25739,
+   "thumb": "https://i.ytimg.com/vi/VlnGxCQQThM/hqdefault.jpg",
+   "query": "पौराणिक कथा",
+   "subs": 6470,
+   "median": 1535,
+   "n_shorts": 29,
+   "multiple": 409.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "surya",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "facts",
+    "deity": "surya",
+    "topic": "Arun dev: Surya ke sarthi ki katha",
+    "cover_style": "young deity rising from a cracked golden egg with glow, two women behind, no text",
+    "art_style": "cinematic",
+    "why": "Rahasya title on a 3-min story at 410x; the cracked-egg cover raises its own question",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "YIYOXX_gFuU",
+   "url": "https://youtube.com/shorts/YIYOXX_gFuU",
+   "title": "पूजा में अक्षत ही क्यों चढ़ाए जाते हैं? जानिए 2 अनसुनी पौराणिक कथाएँ #Akshat #SabutChawal #Mahadev",
+   "channel": "सनातन के अनसुने तथ्य",
+   "channelId": "UCAFUA1y6wmMUs9vbtdNFdkQ",
+   "published": "2026-11-15T06:00:11Z",
+   "ageDays": 2.9,
+   "seconds": 117,
+   "views": 429009,
+   "likes": 8258,
+   "thumb": "https://i.ytimg.com/vi/YIYOXX_gFuU/hqdefault.jpg",
+   "query": "पौराणिक कथा",
+   "subs": 2930,
+   "median": 2620,
+   "n_shorts": 29,
+   "multiple": 163.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle",
+     "kyon",
+     "question"
+    ],
+    "hook": "listicle",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "varjit",
+    "hooks": [
+     "varjit",
+     "kyon"
+    ],
+    "format": "facts",
+    "deity": "other",
+    "topic": "Pooja mein akshat (sabut chawal) kyun chadhate hain",
+    "cover_style": "hand pouring rice over a brass bowl, three Devanagari text bands, red hibiscus",
+    "art_style": "text-card",
+    "why": "Pooja-niyam question (kyun chadhate) at 164x; the cover is a three-line text card over a rice close-up",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "uFQ7GLmQni0",
+   "url": "https://youtube.com/shorts/uFQ7GLmQni0",
+   "title": "माँ दुर्गा और गणेश जी नदी में क्यों रह गए? 😢🙏 | POP Idol Reality#shorts",
+   "channel": "Swati Singh",
+   "channelId": "UCK0W-1aykVnwQT6gF9AxkGQ",
+   "published": "2026-11-11T14:19:33Z",
+   "ageDays": 6.6,
+   "seconds": 26,
+   "views": 672958,
+   "likes": 11661,
+   "thumb": "https://i.ytimg.com/vi/uFQ7GLmQni0/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 15600,
+   "median": 4405,
+   "n_shorts": 29,
+   "multiple": 152.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "hook": "kyon",
+    "format": "facts",
+    "deity": "ganesh",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "format": "facts",
+    "deity": "devi",
+    "topic": "Durga aur Ganesh murti nadi mein rah gaye",
+    "cover_style": "underwater Durga and baby Ganesh murtis with bubbles, no text",
+    "art_style": "murti-darshan",
+    "why": "Kyon question on a 26s clip at 153x; the underwater pair on the cover shows the question before reading the title",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "tipigFbmqDQ",
+   "url": "https://youtube.com/shorts/tipigFbmqDQ",
+   "title": "Mata Rani Bhakti song Mata Rani Bhajan Sherawali Mata Song Mata Rani Special Songs",
+   "channel": "Dnyaneshwar Ghavte",
+   "channelId": "UCoOtyngM1XhblW5tPsIGoHQ",
+   "published": "2026-11-14T05:34:59Z",
+   "ageDays": 3.9,
+   "seconds": 11,
+   "views": 450686,
+   "likes": 3390,
+   "thumb": "https://i.ytimg.com/vi/tipigFbmqDQ/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 2820,
+   "median": 4186,
+   "n_shorts": 29,
+   "multiple": 107.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "loop",
+    "deity": "devi",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "devi",
+    "topic": "Mata Rani bhajan (sherawali song)",
+    "cover_style": "goddess murti half-submerged in a river, no text",
+    "art_style": "murti-darshan",
+    "why": "Generic bhajan title with keyword stuffing at 108x; the cover is a plain murti photo, the bhajan does the work",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "U6BuzpBThII",
+   "url": "https://youtube.com/shorts/U6BuzpBThII",
+   "title": "छठी मैया कौन हैं? 🙏 जानिए छठ पूजा की अद्भुत पौराणिक कथा | #chathpuja #shorts #mata",
+   "channel": "Rudra_Ai",
+   "channelId": "UCXSIN3kHrVLtTdU_wdcx5hw",
+   "published": "2026-11-15T07:01:25Z",
+   "ageDays": 2.9,
+   "seconds": 179,
+   "views": 820232,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/U6BuzpBThII/hqdefault.jpg",
+   "query": "पौराणिक कथा",
+   "subs": 69700,
+   "median": 9142,
+   "n_shorts": 29,
+   "multiple": 89.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "facts",
+    "deity": "devi",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question",
+     "rahasya"
+    ],
+    "format": "katha",
+    "deity": "devi",
+    "topic": "Chhathi Maiya kaun hain: puranik katha",
+    "cover_style": "two figures in white and gold with a divine figure in the sky, text band 'छठ मईया की रहस्यमयी कथा'",
+    "art_style": "cinematic",
+    "why": "Who-is question plus a rahasya cover line on a 3-min story at 90x; the cover text does the hook",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "5sRr5r9P0Gc",
+   "url": "https://youtube.com/shorts/5sRr5r9P0Gc",
+   "title": "क्या हुआ जब माता रानी के चमत्कार से भ्रूण हुआ पुनर्जीवित😳😱|SANATAN DHARMA🚩#shorts #shortvideo #maa",
+   "channel": "The Habitat Colors",
+   "channelId": "UChgkMpl8OCAxbvHZacKO0Mg",
+   "published": "2026-11-16T04:30:32Z",
+   "ageDays": 2,
+   "seconds": 31,
+   "views": 439085,
+   "likes": 7133,
+   "thumb": "https://i.ytimg.com/vi/5sRr5r9P0Gc/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 547000,
+   "median": 7191,
+   "n_shorts": 29,
+   "multiple": 61.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "chamatkar",
+     "jab"
+    ],
+    "hook": "chamatkar",
+    "format": "other",
+    "deity": "devi",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "chamatkar",
+    "hooks": [
+     "chamatkar",
+     "jab"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "topic": "Mata Rani ka chamatkar (revival miracle claim)",
+    "cover_style": "Durga with a child on a lotus, two Devanagari text bands, channel name",
+    "art_style": "text-card",
+    "why": "Miracle hook at 61x, but a revival claim is a health-type claim our channel must not copy; the watermark is the uploader's own name",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "47qU5DSzpcE",
+   "url": "https://youtube.com/shorts/47qU5DSzpcE",
+   "title": "🌺😭 दो माँ दुर्गा की विदाई देखकर रो पड़े भक्त! 🙏❤️ #MaaDurga #Visarjan #Viral #Trending #4K #Shorts",
+   "channel": "Bhaktisansar",
+   "channelId": "UC55a8CLI31VnC_Hd9HFofHQ",
+   "published": "2026-11-13T02:31:05Z",
+   "ageDays": 5.1,
+   "seconds": 21,
+   "views": 326349,
+   "likes": 5799,
+   "thumb": "https://i.ytimg.com/vi/47qU5DSzpcE/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 12600,
+   "median": 6287,
+   "n_shorts": 29,
+   "multiple": 51.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "emotional"
+    ],
+    "hook": "emotional",
+    "format": "other",
+    "deity": "devi",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "topic": "Maa Durga visarjan: bhakt ro pade",
+    "cover_style": "Durga murti close-up with a tear, night ghat lamps, no text",
+    "art_style": "cinematic",
+    "why": "Crying devotee line on a 21s clip at 52x; the single tear on the murti face is the whole cover",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "kO1vBOlWHN8",
+   "url": "https://youtube.com/shorts/kO1vBOlWHN8",
+   "title": "लड्डू का मामला है माता रानी चलो जल्दी ख़त्म ना हो part ~4 #chhathpuja #छठपूजा 🤣😂🤪🙏😝😜😜😝😂🤣",
+   "channel": "Team Revengers ",
+   "channelId": "UCxA-Wn0udXO27uIxGMgwUJw",
+   "published": "2026-11-13T08:01:38Z",
+   "ageDays": 4.8,
+   "seconds": 11,
+   "views": 1357634,
+   "likes": 41804,
+   "thumb": "https://i.ytimg.com/vi/kO1vBOlWHN8/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 252000,
+   "median": 37843,
+   "n_shorts": 29,
+   "multiple": 35.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "devi",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "topic": "Mata Rani comedy 'laddu' part series",
+    "cover_style": "Durga on a swing with a lion, one comic Devanagari line, same still as parts 5 and 6",
+    "art_style": "cinematic",
+    "why": "Comedy part series at 36x; the cover line is a joke, not a question, and the same still runs on every part",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "OBMIvGtOPYM",
+   "url": "https://youtube.com/shorts/OBMIvGtOPYM",
+   "title": "लड्डू का मामला है माता रानी चलो जल्दी ख़त्म ना हो part ~5 #chhathpuja #छठपूजा 🤣😂🤪🙏😝😜😜😝😂🤣",
+   "channel": "Team Revengers ",
+   "channelId": "UCxA-Wn0udXO27uIxGMgwUJw",
+   "published": "2026-11-15T08:01:01Z",
+   "ageDays": 2.8,
+   "seconds": 14,
+   "views": 621240,
+   "likes": 20113,
+   "thumb": "https://i.ytimg.com/vi/OBMIvGtOPYM/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 252000,
+   "median": 37843,
+   "n_shorts": 29,
+   "multiple": 16.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "devi",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "topic": "Mata Rani comedy 'laddu' part series",
+    "cover_style": "Durga on a swing with a lion, one comic Devanagari line, same still as parts 4 and 6",
+    "art_style": "cinematic",
+    "why": "Part 5 of the comedy series at 16x; the cover reuses the same still, so the title and the joke carry it",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "-t6cTusAm_s",
+   "url": "https://youtube.com/shorts/-t6cTusAm_s",
+   "title": "Jaya Mata Di 👣🙏Mata Rani ki Mahima #shorts #matarani #viralvideo #viralshorts #status  #chhathpuja",
+   "channel": "Ns sara girl",
+   "channelId": "UCt8Iyk48YmhcKJsd2B-JE8A",
+   "published": "2026-11-15T13:28:08Z",
+   "ageDays": 2.6,
+   "seconds": 55,
+   "views": 350879,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/-t6cTusAm_s/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 19100,
+   "median": 21869,
+   "n_shorts": 29,
+   "multiple": 16,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "devi",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "topic": "Mata Rani ki mahima, village puja",
+    "cover_style": "village woman offering puja with a lamp, idol and cash on a mat, no text",
+    "art_style": "real-photo",
+    "why": "Real-photo village puja at 16x; the cover is a quiet devotional scene with no hook line",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "_rzLdqZ8CHI",
+   "url": "https://youtube.com/shorts/_rzLdqZ8CHI",
+   "title": "माँ दुर्गा का टूटा मंदिर फिर बना भव्य 🙏❤️ | Jai Mata Di #shorts",
+   "channel": "Mahakal Tapasya",
+   "channelId": "UC9QIzuJEdSrfW_XgrvbAFNw",
+   "published": "2026-11-12T03:42:18Z",
+   "ageDays": 6,
+   "seconds": 38,
+   "views": 385017,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/_rzLdqZ8CHI/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 100000,
+   "median": 36248,
+   "n_shorts": 29,
+   "multiple": 10.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "veer",
+    "deity": "devi",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "topic": "Tuta mandir phir bana: Durga shrine",
+    "cover_style": "thatched hut shrine with Durga under a lightning sky, small channel watermark",
+    "art_style": "cinematic",
+    "why": "Temple-restored story at 10.6x; the cover is an AI-painted scene, the watermark is its own channel",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "rzTYxIBaajQ",
+   "url": "https://youtube.com/shorts/rzTYxIBaajQ",
+   "title": "Mata rani ki mahima 👣🙏🚩 jay mata rani #shorts #viralvideo #shortvideo",
+   "channel": "Vishal Kumar",
+   "channelId": "UC9h4uTIUp3PosKWQF3pjmdQ",
+   "published": "2026-11-13T00:35:40Z",
+   "ageDays": 5.1,
+   "seconds": 49,
+   "views": 355199,
+   "likes": 7041,
+   "thumb": "https://i.ytimg.com/vi/rzTYxIBaajQ/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 321000,
+   "median": 34429,
+   "n_shorts": 29,
+   "multiple": 10.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "devi",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "topic": "Mata rani ki mahima (shock-reaction cover)",
+    "cover_style": "woman with hands on cheeks and mouth open in a field, no deity in frame",
+    "art_style": "real-photo",
+    "why": "Shock-face cover at 10x with no deity visible; the devotional link is weak, so it is not a model for us",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "SP4rdv_ayMw",
+   "url": "https://youtube.com/shorts/SP4rdv_ayMw",
+   "title": "लड्डू का मामला है माता रानी चलो जल्दी ख़त्म ना हो part ~6 #chhathpuja #छठपूजा 🤣😂🤪🙏😝😜😜😝😂🤣",
+   "channel": "Team Revengers ",
+   "channelId": "UCxA-Wn0udXO27uIxGMgwUJw",
+   "published": "2026-11-16T08:01:33Z",
+   "ageDays": 1.8,
+   "seconds": 11,
+   "views": 337623,
+   "likes": 8375,
+   "thumb": "https://i.ytimg.com/vi/SP4rdv_ayMw/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 252000,
+   "median": 37843,
+   "n_shorts": 29,
+   "multiple": 8.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "devi",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "topic": "Mata Rani comedy 'laddu' part series",
+    "cover_style": "Durga on a swing with a lion, one comic Devanagari line, same still as parts 4 and 5",
+    "art_style": "cinematic",
+    "why": "Part 6 of the comedy series at 9x; same cover still as the other parts",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "A2O9AG8P1kw",
+   "url": "https://youtube.com/shorts/A2O9AG8P1kw",
+   "title": "दुर्गा माँ और काली लड़की || माता रानी और भक्त || सास की साजिश |",
+   "channel": "AS Fact",
+   "channelId": "UCCtsOgxWylnKcsLaCjUsVTg",
+   "published": "2026-11-11T04:00:08Z",
+   "ageDays": 7,
+   "seconds": 50,
+   "views": 692167,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/A2O9AG8P1kw/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 395000,
+   "median": 109788,
+   "n_shorts": 29,
+   "multiple": 6.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "devi",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "devi",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "HPFE5R2Azp0",
+   "url": "https://youtube.com/shorts/HPFE5R2Azp0",
+   "title": "माता पार्वती ने मां दुर्गा बनकर महिषासुर का अंत किया Mahakali part 66 #shortsfeed #serial #mahakali",
+   "channel": "Parivikaa",
+   "channelId": "UCq9IBrGJIoqdPbuKT23Ixbg",
+   "published": "2026-11-11T01:40:33Z",
+   "ageDays": 7.1,
+   "seconds": 67,
+   "views": 574520,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/HPFE5R2Azp0/hqdefault.jpg",
+   "query": "माता रानी|दुर्गा",
+   "subs": 34000,
+   "median": 110203,
+   "n_shorts": 29,
+   "multiple": 5.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "series"
+    ],
+    "hook": "series",
+    "format": "series",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "series",
+    "hooks": [
+     "series"
+    ],
+    "format": "series",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  }
+ ],
+ "strong": [
+  {
+   "id": "_POPnX52GTM",
+   "url": "https://youtube.com/shorts/_POPnX52GTM",
+   "title": "जब बाली ने खींची हनुमान जी की आधी शक्ति! 😱",
+   "channel": "Priyansh Shukla",
+   "channelId": "UCdefYfRohqSQt6EI4DVC_9w",
+   "published": "2026-11-11T13:05:37Z",
+   "ageDays": 6.6,
+   "seconds": 123,
+   "views": 1604571,
+   "likes": 80889,
+   "thumb": "https://i.ytimg.com/vi/_POPnX52GTM/hqdefault.jpg",
+   "query": "पौराणिक कथा",
+   "subs": 2670000,
+   "median": 596530,
+   "n_shorts": 29,
+   "multiple": 2.7,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "2.7x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "topic": "Bali ne Hanuman ki aadhi shakti khinchi",
+    "cover_style": "Hanuman in flight carrying a mountain over a river landscape, no text",
+    "art_style": "cinematic",
+    "why": "Jab-hook on a strong channel at 2.7x; the cover is one big scene, the question sits in the title",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "6B-YRMl5PE0",
+   "url": "https://youtube.com/shorts/6B-YRMl5PE0",
+   "title": "रावण, जो कैलाश उठा सकता था, उसे एक देवी ने पैर के अंगूठे से चूर कर दिया?#story",
+   "channel": "Mister Virat Kumar Subhash Chandra Bose",
+   "channelId": "UCsAEZ4ts5J3zFi9MDGiFYCg",
+   "published": "2026-11-12T15:56:58Z",
+   "ageDays": 5.5,
+   "seconds": 165,
+   "views": 867641,
+   "likes": 48623,
+   "thumb": "https://i.ytimg.com/vi/6B-YRMl5PE0/hqdefault.jpg",
+   "query": "पौराणिक कथा",
+   "subs": 918000,
+   "median": 497697,
+   "n_shorts": 29,
+   "multiple": 1.7,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "1.7x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "strange-visual",
+    "hooks": [
+     "strange-visual",
+     "question"
+    ],
+    "format": "katha",
+    "deity": "devi",
+    "topic": "Ravan ko devi ke angootha se chur karna",
+    "cover_style": "giant Kali standing on ten-headed Ravan, trident, lightning sky, no text",
+    "art_style": "cinematic",
+    "why": "One odd oversized scene (a giant foot on Ravan's heads) plus a question title; a strong channel at 1.7x",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  }
+ ],
+ "near": [
+  {
+   "id": "KM6_NwENjCU",
+   "url": "https://youtube.com/shorts/KM6_NwENjCU",
+   "title": "माँ दुर्गा का सम्मान करना ही सच्ची भक्ति है 🙏💔😭 | Maa Durga Ka Dard #matarani",
+   "channel": "bhakti p",
+   "views": 303739,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "XJYRvfVUVmY",
+   "url": "https://youtube.com/shorts/XJYRvfVUVmY",
+   "title": "😢टूटे हुए माँ दुर्गा के मंदिर को भक्त ने बना दिया स्वर्ग जैसा सुंदर🙏जय माता दीShorts like subscribe",
+   "channel": "@NirmasahaniVlogs",
+   "views": 301847,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "ggQSGW96M1s",
+   "url": "https://youtube.com/shorts/ggQSGW96M1s",
+   "title": "माता रानी पर भरोसा रखो | #viralvideo #trendingshorts #youtubeshorts #ranateam90",
+   "channel": "Rana Team 90",
+   "views": 300393,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "Z9NYhVQdOAY",
+   "url": "https://youtube.com/shorts/Z9NYhVQdOAY",
+   "title": "🚩🦁जय माता दी दुर्गा माता मूर्ति बनाना सीखे #shorts #viralshorts #ytshorts #art#popular #short",
+   "channel": "Arvind art and craft ",
+   "views": 266755,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "MdevR_0rEL4",
+   "url": "https://youtube.com/shorts/MdevR_0rEL4",
+   "title": "प्रिया माता रानी से क्या मांगी है #shorts #shortvideo #amarnathsdk",
+   "channel": "Amarnath💓SDK",
+   "views": 262991,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "BYArHntQ6AU",
+   "url": "https://youtube.com/shorts/BYArHntQ6AU",
+   "title": "टूटे मंदिर को फिर से माता रानी का सुंदर धाम बना दिया। 🙏❤️ #MataLakshmi #JaiMataDi #Bhakti",
+   "channel": "Abhishek Kumar",
+   "views": 239233,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "78SKjZpasP0",
+   "url": "https://youtube.com/shorts/78SKjZpasP0",
+   "title": "jay mata di 🐾🙏 mata rani ki mahima #shorts #shortvideo #status #viralshorts #viralvideo",
+   "channel": "swati maurya",
+   "views": 227644,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "gsLMTb6r5qo",
+   "url": "https://youtube.com/shorts/gsLMTb6r5qo",
+   "title": "माँ दुर्गा ने भक्तों से क्या माँगा? 😢💔🙏 | ये बात हर भक्त जरूर सुने | Maa Durga #matarani",
+   "channel": "bhakti p",
+   "views": 224301,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  }
+ ],
+ "reuploads": [
+  {
+   "id": "QaLAs4wQF6E",
+   "url": "https://youtube.com/shorts/QaLAs4wQF6E",
+   "title": "Mata Rani ki Mahima 🙏 #shorts #shortvideo #status #viralshorts #viralvideo",
+   "channel": "Creator Akash",
+   "views": 1225771,
+   "signals": [
+    "random topics",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "FarCvyQ40e8",
+   "url": "https://youtube.com/shorts/FarCvyQ40e8",
+   "title": "viral mata Rani status #shortvideo #lovemata RaniX#maa#mataraniarti#viralvideo#maadurga",
+   "channel": "181pariofficial ",
+   "views": 1120962,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "9nYWYI9X2-c",
+   "url": "https://youtube.com/shorts/9nYWYI9X2-c",
+   "title": "jay mata di 👣🙏🏻 mata rani ki mahima #shorts #shortvideo #status #viralvideo #viralshorts",
+   "channel": "Prakash life vlog",
+   "views": 1098041,
+   "signals": [
+    "spammy title",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "4OogsvNRNM4",
+   "url": "https://youtube.com/shorts/4OogsvNRNM4",
+   "title": "😭😱😭 वायरल माता रानी की अंतिम विदाई पर रो पड़ा मूर्तिकार | देखकर हर कोई हुआ भावुक #matarani #madurga",
+   "channel": "Prisha Varnit Vlogs ",
+   "views": 596756,
+   "signals": [
+    "random topics",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "_xsjwIsPGLs",
+   "url": "https://youtube.com/shorts/_xsjwIsPGLs",
+   "title": "Maa Durga Idol Making Process ❤️Beautiful Durga Maa Murti Making in Factory 🌺",
+   "channel": "Akashcreation",
+   "views": 552802,
+   "signals": [
+    "views far beyond subscribers",
+    "new channel"
+   ]
+  },
+  {
+   "id": "gatDJSo9BNk",
+   "url": "https://youtube.com/shorts/gatDJSo9BNk",
+   "title": "जय माता रानी कृपा सदा बनाए रखिए #shortvideo #shorts",
+   "channel": "Ganji Fun",
+   "views": 480018,
+   "signals": [
+    "random topics",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "S0ghXsWTRIE",
+   "url": "https://youtube.com/shorts/S0ghXsWTRIE",
+   "title": "Jai mata di 👣 mata rani ki Mahima 🙏 #shorts #shortvideo #status #viralshort #viralvideo #bhakti",
+   "channel": "Ankita ki bhakti ",
+   "views": 448062,
+   "signals": [
+    "new channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "mxc89LIYA6Q",
+   "url": "https://youtube.com/shorts/mxc89LIYA6Q",
+   "title": "एक भक्त ने माता रानी की मदद की 🙏🚩 #viral #emotional #viralnow #viralstory #viralmoment#viraltoday",
+   "channel": "Raj bhai story",
+   "views": 437580,
+   "signals": [
+    "new channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "5eMnCoPsrj4",
+   "url": "https://youtube.com/shorts/5eMnCoPsrj4",
+   "title": "Mata rani ki mahima 🙏 #shorts #shortsvideo #status #viralshorts #viralvideo",
+   "channel": "Mr.Aakash",
+   "views": 295553,
+   "signals": [
+    "new channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "J57V8hR4gXw",
+   "url": "https://youtube.com/shorts/J57V8hR4gXw",
+   "title": "Mata Rani ki status video 🤗#viralvideo #matarani #maa #kalimaa #jaimatadi #shortsfeed #shorts",
+   "channel": "Yoganksharmavlogs",
+   "views": 246172,
+   "signals": [
+    "spammy title",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "-V9X4C1oWDc",
+   "url": "https://youtube.com/shorts/-V9X4C1oWDc",
+   "title": "एक राम भक्त की कहानी 🚩🙏🏻 || mata rani ki kripa🥳😂#shorts #shortsfeed #trending",
+   "channel": "Harshita Fun Official ",
+   "views": 196306,
+   "signals": [
+    "spammy title",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "2R5XjoWkYSw",
+   "url": "https://youtube.com/shorts/2R5XjoWkYSw",
+   "title": "Jai mata di 👣 mata rani ki Mahima 🙏 #shorts #shortvideo #status #viralshort #viralvideo #bhakti",
+   "channel": "Ankita ki bhakti ",
+   "views": 193444,
+   "signals": [
+    "new channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "cA_PfeLSeLo",
+   "url": "https://youtube.com/shorts/cA_PfeLSeLo",
+   "title": "Mata Rani Ki Mahima 🐾🙏 Jay Mata Di🚩🙏 #shorts #shortvideo #status #viralvideo #viralshorts #bhakti",
+   "channel": "Priyanka ki Bhakti",
+   "views": 189232,
+   "signals": [
+    "new channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "-xUZiyxr5jo",
+   "url": "https://youtube.com/shorts/-xUZiyxr5jo",
+   "title": "माँ दुर्गा और उनकी बहन की आखिरी विदाई 😭🙏 | मिट्टी की मूर्ति का दर्द | जय माता दी #shorts",
+   "channel": "Chhathi maiya ",
+   "views": 157071,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  }
+ ],
+ "ideas_added": [
+  "facts:radar-murti-visarjan-jal",
+  "facts:radar-akshat-kyun-chadhate",
+  "facts:radar-aruna-bina-pair",
+  "kailash:radar-akshat-gayab",
+  "pov:radar-visarjan-main-kahin-nahi"
+ ],
+ "analysis_problems": []
+}

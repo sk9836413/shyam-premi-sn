@@ -4751,6 +4751,95 @@
     "added": "2026-11-17"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-murti-visarjan-jal",
+   "p": 2,
+   "deity": "devi",
+   "name": "Murti visarjan",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "tradition",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Murti visarjan jal mein kyun?",
+   "hook_hi": "मूर्ति विसर्जन जल में क्यों?",
+   "angle": "Why the murti is immersed in water: parampara says the deity's presence (pran pratishtha) is returned to its source and the clay goes back to the earth, with the aarti and the farewell words. Tell it as manyata and name the texts; no science claim about water or clay.",
+   "cite": {
+    "work": "TODO: verify (likely puja-vidhi parampara; a Dharmashastra nibandha on visarjan)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "visarjan",
+    "jal mein"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-18",
+    "refs": [
+     "https://youtube.com/shorts/uFQ7GLmQni0"
+    ],
+    "added": "2026-11-18"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-akshat-kyun-chadhate",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Akshat (sabut chawal)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Akshat (sabut chawal) kyun chadhate?",
+   "hook_hi": "अक्षत (साबुत चावल) क्यों चढ़ाते?",
+   "angle": "What akshat (whole, unbroken rice) stands for in puja: parampara says an unbroken grain is a pure, complete offering, and it is offered with haldi and roli. Tell the tradition and name the text the video quotes; no health or science claim about rice.",
+   "cite": {
+    "work": "TODO: verify (likely puja-vidhi parampara; check the akshat prakaran in a puja-vidhi text)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "akshat",
+    "pooja niyam"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-18",
+    "refs": [
+     "https://youtube.com/shorts/YIYOXX_gFuU"
+    ],
+    "added": "2026-11-18"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-aruna-bina-pair",
+   "p": 2,
+   "deity": "surya",
+   "name": "Arun dev (Surya ke sarthi)",
+   "playlist": "Surya Dev ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Surya ka sarthi bina pair kyun?",
+   "hook_hi": "सूर्य का सारथी बिना पैरों के क्यों?",
+   "angle": "Aruna, Surya's charioteer, was born without legs after his mother Vinata broke her egg too early; Surya still gave him the reins. Tell the Adi Parva story: the mother's haste, the curse, and Surya's care, with the moral of patience (dhairya).",
+   "cite": {
+    "work": "TODO: verify (likely Mahabharata, Adi Parva, Vinata-Kadru prasang; Aruna as Surya's sarthi)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "surya sarthi",
+    "aruna"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-18",
+    "refs": [
+     "https://youtube.com/shorts/VlnGxCQQThM"
+    ],
+    "added": "2026-11-18"
+   },
+   "status": "idea"
   }
  ]
 }
