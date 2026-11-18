@@ -86,3 +86,4 @@
 2026-11-20 | movie | 2026-11-20-movie-khatu-shyam-amar-katha-part-4 | Khatu Shyam ji (Barbarik) | Movie Part 4/4 (Janmotsav): shrey ka vivaad, sheesh ne sirf Sudarshan chakra dekha, Shyam naam ka vardan, Khatu mein sheesh (lok katha), Shyam Kund
 2026-11-18 | morning | 2026-11-18-movie-khatu-shyam-amar-katha-part-2 | Khatu Shyam ji (Barbarik) | mini-movie part (scheduled 07:00, replaces the katha Short)
 2026-11-18 | eve | 2026-11-18-eve-shyam-baba-janmotsav | Khatu Shyam Janmotsav (Dev Uthani Ekadashi) | status Short variant 1 "Shyam Baba Janmotsav Status 2026" (12-20 s loop, download link), public 20:00 IST
+2026-11-19 | morning | 2026-11-19-morning-guruvar-vishnu | Guruvar Sai Baba | Day status Short "Guruvar Sai Baba Status" (12-20 s loop, download link), public 06:00 IST

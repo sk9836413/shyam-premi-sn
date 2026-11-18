@@ -163,3 +163,4 @@
 - 2026-11-18-eve-shyam-baba-janmotsav | claim: 2026-11-18 eve by run 44242692898.1 at 2026-11-18T06:41:44.614Z
 - 2026-11-18-eve-shyam-baba-janmotsav | youtube: https://youtube.com/shorts/gSIVwpBUcKY (public at 2026-11-18T14:30:00.000Z) | status variant, made 18 Nov 12:12 IST | social: fb: https://www.facebook.com/reel/1126574813421593 (scheduled 2026-11-18T14:30:00.000Z) | ig: pending 2026-11-18T14:30:00.000Z
 - 2026-11-19-morning-guruvar-vishnu | claim: 2026-11-19 morning by run 44312090795.1 at 2026-11-18T14:02:53.285Z
+- 2026-11-19-morning-guruvar-vishnu | youtube: https://youtube.com/shorts/ZVBLM3tgTkU (public at 2026-11-19T00:30:00.000Z) | status variant, made 18 Nov 19:33 IST | social: fb: https://www.facebook.com/reel/4702218386700677 (scheduled 2026-11-19T00:30:00.000Z) | ig: pending 2026-11-19T00:30:00.000Z
