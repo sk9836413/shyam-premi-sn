@@ -4840,6 +4840,93 @@
     "added": "2026-11-18"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-samundra-shivling",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Stambheshwar Mahadev (Gujarat)",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Samundra mein Shivling kyun?",
+   "hook_hi": "समुद्र में शिवलिंग क्यों?",
+   "angle": "Sthal-katha of Stambheshwar Mahadev in Gujarat: why the Shivling stands in the sea and what the local telling says about the tide. Check the temple board and one Gujarati source, tell it only as the local tradition.",
+   "cite": {
+    "work": "TODO: verify (Stambheshwar Mahadev sthal-katha, Gujarat)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "stambheshwar",
+    "samundra shiv"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-19",
+    "refs": [
+     "https://youtube.com/shorts/jfNpJmzUhvw"
+    ],
+    "added": "2026-11-19"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-ravan-shivling-baidyanath",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Ravan aur Baidyanath Shivling",
+   "playlist": "12 Jyotirlinga",
+   "label": "tradition",
+   "hook": "Ravan ka Shivling kahan ruk gaya?",
+   "hook_hi": "रावण का शिवलिंग कहाँ रुक गया?",
+   "angle": "Deoghar (Baidyanath) sthal-katha: Ravan carries the Shivling from Kailash towards Lanka, sets it down on the way, and the linga stays fixed at the spot. Check the Shiva Purana telling and the temple board; say it is the local tradition, and do not add details the text does not give.",
+   "cite": {
+    "work": "TODO: verify (Shiva Purana, Koti Rudra Samhita: Baidyanath / Ravan sthal-katha)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "ravan shivling",
+    "baidyanath"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-19",
+    "refs": [
+     "https://youtube.com/shorts/gKtQL4jdTAY"
+    ],
+    "added": "2026-11-19"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-garuda-garbh-vachan",
+   "p": 2,
+   "deity": "vishnu",
+   "name": "Garuda Purana: garbh ka vachan",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "kind": "garuda",
+   "hook": "Garbh mein bachche ka vachan kya hai?",
+   "hook_hi": "गर्भ में बच्चे का वचन क्या है?",
+   "angle": "Garuda Purana (Achar Kanda, garbh-vivechan) and the folk belief that the unborn child remembers its promise to the Lord. Check which verses speak of the garbh; where the text does not say it, present it as lok manyata, and close on the lesson: do good karma and remember the Lord.",
+   "cite": {
+    "work": "TODO: verify (Garuda Purana, Achar Kanda: garbh)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "garbh",
+    "garuda purana"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-19",
+    "refs": [
+     "https://youtube.com/shorts/YI6lt7pcUpc"
+    ],
+    "added": "2026-11-19"
+   },
+   "status": "idea"
   }
  ]
 }

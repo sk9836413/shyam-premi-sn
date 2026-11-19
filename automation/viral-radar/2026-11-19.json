@@ -1,0 +1,616 @@
+{
+ "date": "2026-11-19",
+ "mode": "daily",
+ "queries": [
+  "रहस्य मंदिर",
+  "गरुड़ पुराण"
+ ],
+ "thresholds": {
+  "views": 100000,
+  "fastViews": 30000,
+  "fastDays": 3,
+  "multiple": 5,
+  "minShorts": 3,
+  "strongMedian": 40000,
+  "maxSeconds": 180
+ },
+ "quota": {
+  "searches": 2,
+  "list_calls": 32,
+  "units": 232,
+  "cap": 900
+ },
+ "counts": {
+  "found": 100,
+  "shorts": 95,
+  "over_threshold": 17,
+  "viral": 7,
+  "strong": 3,
+  "likely_reuploads": 3
+ },
+ "viral": [
+  {
+   "id": "jfNpJmzUhvw",
+   "url": "https://youtube.com/shorts/jfNpJmzUhvw",
+   "title": "समुद्र में गायब होता शिव मंदिर! गुजरात के स्तंभेश्वर महादेव का रहस्य #shiv #historyfacts #viral #fpy",
+   "channel": "Khoji Itihaas",
+   "channelId": "UCv6RfPezXqWb2pUUQMOvg_g",
+   "published": "2026-11-13T14:02:11Z",
+   "ageDays": 5.6,
+   "seconds": 33,
+   "views": 137031,
+   "likes": 1246,
+   "thumb": "https://i.ytimg.com/vi/jfNpJmzUhvw/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 1250,
+   "median": 1432,
+   "n_shorts": 29,
+   "multiple": 95.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "facts",
+    "deity": "shiv",
+    "topic": "Stambheshwar Mahadev in the sea (Gujarat)",
+    "cover_style": "temple in sea at sunset, 2 big Hindi text bands, red glow",
+    "art_style": "real-photo",
+    "why": "Mystery title on a real temple photo; 96x its channel median, the strongest outlier of the week",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "gKtQL4jdTAY",
+   "url": "https://youtube.com/shorts/gKtQL4jdTAY",
+   "title": "बाबा बैद्यनाथ धाम का रहस्य! 🔱 21 मंदिर, पंचशूल और 110 KM की कांवड़ यात्रा  #shorts #shiva",
+   "channel": "Rishu's History Trails",
+   "channelId": "UCpzvZZaDxhnfSTJBsgjbH-w",
+   "published": "2026-11-12T13:00:31Z",
+   "ageDays": 6.6,
+   "seconds": 173,
+   "views": 719236,
+   "likes": 26336,
+   "thumb": "https://i.ytimg.com/vi/gKtQL4jdTAY/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 60800,
+   "median": 9679,
+   "n_shorts": 29,
+   "multiple": 74.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle",
+     "rahasya"
+    ],
+    "hook": "listicle",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya",
+     "listicle"
+    ],
+    "format": "facts",
+    "deity": "shiv",
+    "topic": "Baidyanath Dham: 21 temples, Panchshool, 110 km kanwar yatra",
+    "cover_style": "aerial drone shot of temple, 'Jyotirlinga + Shaktipeeth' line, 'Baidyanath Dham' band",
+    "art_style": "real-photo",
+    "why": "Jyotirlinga name plus a secret promise on a 173 s run; 74x median, and the cover places the story at once",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "YI6lt7pcUpc",
+   "url": "https://youtube.com/shorts/YI6lt7pcUpc",
+   "title": "माँ के पेट में बच्चा भगवान से क्या वादा करता है? 😱 | गर्भ का रहस्य | गरुड़ पुराण #shorts",
+   "channel": "Shlok Rahasya | श्लोक रहस्य",
+   "channelId": "UCHnMJXEDkXkgh5tPPSyaR4g",
+   "published": "2026-11-15T01:30:10Z",
+   "ageDays": 4.1,
+   "seconds": 79,
+   "views": 160742,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/YI6lt7pcUpc/hqdefault.jpg",
+   "query": "गरुड़ पुराण",
+   "subs": 3310,
+   "median": 3210,
+   "n_shorts": 29,
+   "multiple": 50.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya",
+     "question"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "devi",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "strange-visual",
+    "hooks": [
+     "strange-visual",
+     "question"
+    ],
+    "format": "facts",
+    "deity": "vishnu",
+    "topic": "Garbh mein bachche ka vachan (Garuda Purana)",
+    "cover_style": "tiny figure on top of a huge sphere holding a fetus, 'माँ के पेट में बच्चे का वादा!' band, small label tag",
+    "art_style": "illustrated",
+    "why": "The oddly scaled cover raises the question by itself; 50x median on a Garuda Purana topic that stays calm",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "S-B6X58jU_Y",
+   "url": "https://youtube.com/shorts/S-B6X58jU_Y",
+   "title": "कलियुग के अंत में गर्जना करेंगे यागंती के नंदी? भविष्यवाणी का रहस्य #shiv #untoldhistory #mystery",
+   "channel": "Khoji Itihaas",
+   "channelId": "UCv6RfPezXqWb2pUUQMOvg_g",
+   "published": "2026-11-16T12:40:01Z",
+   "ageDays": 2.6,
+   "seconds": 33,
+   "views": 71443,
+   "likes": 1394,
+   "thumb": "https://i.ytimg.com/vi/S-B6X58jU_Y/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 1250,
+   "median": 1432,
+   "n_shorts": 29,
+   "multiple": 49.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kaliyug",
+     "rahasya",
+     "question"
+    ],
+    "hook": "kaliyug",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "kaliyug",
+    "hooks": [
+     "kaliyug",
+     "rahasya",
+     "question"
+    ],
+    "format": "facts",
+    "deity": "shiv",
+    "topic": "Yagantī Nandi: roar and the Kaliyug prophecy",
+    "cover_style": "stone Nandi close-up, 'नंदी की गर्जना!' + 'कलियुग का अंत?' bands, red glow",
+    "art_style": "real-photo",
+    "why": "Kaliyug plus a prophecy frame pulls 50x; the end-of-era framing is doomsday, which we keep out, so only the Kaliyug link is usable",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "lZC5Dc1eVTc",
+   "url": "https://youtube.com/shorts/lZC5Dc1eVTc",
+   "title": "मृत्यु के बाद आत्मा का 1 साल का सफर! गरुड़ पुराण का रहस्य 😱 | Garuda Purana | PART 2",
+   "channel": "Pauranik Jeevant",
+   "channelId": "UCxV7EnjDXBAr2l_hr_UMRKA",
+   "published": "2026-11-15T12:30:32Z",
+   "ageDays": 3.6,
+   "seconds": 164,
+   "views": 511660,
+   "likes": 13450,
+   "thumb": "https://i.ytimg.com/vi/lZC5Dc1eVTc/hqdefault.jpg",
+   "query": "गरुड़ पुराण",
+   "subs": 26800,
+   "median": 10895,
+   "n_shorts": 29,
+   "multiple": 47,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "series",
+     "listicle",
+     "rahasya"
+    ],
+    "hook": "series",
+    "format": "series",
+    "deity": "vishnu",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "series",
+    "hooks": [
+     "series",
+     "rahasya"
+    ],
+    "format": "series",
+    "deity": "vishnu",
+    "topic": "Garuda Purana: the soul's one-year journey (part 2)",
+    "cover_style": "blue cartoon soul swimming among crocodiles in a storm, shocked face, no text",
+    "art_style": "cartoon-3d",
+    "why": "Part 2 of a series on a 164 s run; 47x median, and the cover with no text lets the scene carry it",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "BZzbLibIBq4",
+   "url": "https://youtube.com/shorts/BZzbLibIBq4",
+   "title": "माता की एक जल्दबाज़ी और जन्म से अपंग हुए सूर्य के सारथी अरुण! 😱 Garuda Puran Katha #viral #shorts",
+   "channel": "Shiv Shakti Official",
+   "channelId": "UCcqMgLVqLXQO-nbX6dn8UqQ",
+   "published": "2026-11-12T07:45:03Z",
+   "ageDays": 6.8,
+   "seconds": 159,
+   "views": 334130,
+   "likes": 13888,
+   "thumb": "https://i.ytimg.com/vi/BZzbLibIBq4/hqdefault.jpg",
+   "query": "गरुड़ पुराण",
+   "subs": 53300,
+   "median": 11314,
+   "n_shorts": 29,
+   "multiple": 29.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "devi",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "surya",
+    "topic": "Aruna: mother's haste, Surya's charioteer (Garuda Purana katha)",
+    "cover_style": "shocked woman in yellow saree, temple background, smoke, no text",
+    "art_style": "cinematic",
+    "why": "A named character katha with a shocked-face cover; 30x median, the name is the hook and the face is the cover",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "QMMopwmzkrg",
+   "url": "https://youtube.com/shorts/QMMopwmzkrg",
+   "title": "1500 KM पैदल चलकर भक्त के लिए गवाही देने आए भगवान कृष्ण! 😱 साक्षी गोपाल मंदिर का रहस्य",
+   "channel": "Niladri Katha",
+   "channelId": "UC8U65Klrzy4uUnpNt3OWqFA",
+   "published": "2026-11-12T08:00:49Z",
+   "ageDays": 6.8,
+   "seconds": 174,
+   "views": 2368344,
+   "likes": 79281,
+   "thumb": "https://i.ytimg.com/vi/QMMopwmzkrg/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 148000,
+   "median": 153148,
+   "n_shorts": 29,
+   "multiple": 15.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle",
+     "rahasya"
+    ],
+    "hook": "listicle",
+    "format": "facts",
+    "deity": "krishna",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "katha",
+    "deity": "krishna",
+    "topic": "Sakshi Gopal temple: Krishna walks as a witness",
+    "cover_style": "wide shot of white marble temple, peacocks, figure in orange at the door, no text",
+    "art_style": "real-photo",
+    "why": "No cover text, so the title carries a miracle story; 15.5x on 2.4M views, the biggest reach of the week",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  }
+ ],
+ "strong": [
+  {
+   "id": "3BJW28HpDs4",
+   "url": "https://youtube.com/shorts/3BJW28HpDs4",
+   "title": "मरने के बाद पहली रात आत्मा कहाँ होती है? 😳 गरुड़ पुराण का रहस्य",
+   "channel": "Learn With Vishu",
+   "channelId": "UCT3WpjJnuYNOYnjBTZ-UZfg",
+   "published": "2026-11-15T03:30:29Z",
+   "ageDays": 4,
+   "seconds": 106,
+   "views": 406595,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/3BJW28HpDs4/hqdefault.jpg",
+   "query": "गरुड़ पुराण",
+   "subs": 9790,
+   "median": 257538.5,
+   "n_shorts": 8,
+   "multiple": 1.6,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "1.6x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya",
+     "question"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "vishnu",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question",
+     "rahasya"
+    ],
+    "format": "facts",
+    "deity": "vishnu",
+    "topic": "Soul's first night after death (Garuda Purana)",
+    "cover_style": "flat red backdrop, horned figure at left, small blue soul in a ring with skulls, no text",
+    "art_style": "illustrated",
+    "why": "Question title, but only 1.6x on a strong channel, so not truly viral; the horns and skulls tone is one we avoid",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "GVD9tw439yU",
+   "url": "https://youtube.com/shorts/GVD9tw439yU",
+   "title": "देवरानी-जेठानी मंदिर का रहस्य! जीव-जंतुओं से बनी भगवान शिव की अद्भुत प्रतिमा #DevraniJethaniTemple",
+   "channel": "CG Hindi Fact",
+   "channelId": "UC49AhTBc3HScO8L-36VA1_Q",
+   "published": "2026-11-13T12:26:57Z",
+   "ageDays": 5.6,
+   "seconds": 89,
+   "views": 140475,
+   "likes": 2084,
+   "thumb": "https://i.ytimg.com/vi/GVD9tw439yU/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 11700,
+   "median": 44009,
+   "n_shorts": 29,
+   "multiple": 3.2,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "3.2x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "facts",
+    "deity": "shiv",
+    "topic": "Devrani-Jethani temple: Shiv murti carved from creatures",
+    "cover_style": "stone Rudra Shiv statue, one Devanagari caption band",
+    "art_style": "real-photo",
+    "why": "Mystery title with a good cover, but 3.2x on a strong channel: a solid performer, not a breakout",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "J1CGSEYcrVk",
+   "url": "https://youtube.com/shorts/J1CGSEYcrVk",
+   "title": "नीलकंठ महादेव का गुप्त रहस्य🚩 |समुद्र मंथन का वो विष महादेव ने यहां पिया था|neelkanthmahadev#shorts",
+   "channel": "Dharmik Yatra vlog1M",
+   "channelId": "UCtKzR_rIbrHqvwOnFp_jwWw",
+   "published": "2026-11-17T12:03:52Z",
+   "ageDays": 1.7,
+   "seconds": 179,
+   "views": 38426,
+   "likes": 3680,
+   "thumb": "https://i.ytimg.com/vi/J1CGSEYcrVk/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 305000,
+   "median": 47980,
+   "n_shorts": 29,
+   "multiple": 0.8,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "0.8x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "topic": "Neelkanth Mahadev: the poison-holding Shiv secret",
+    "cover_style": "man in brown jacket on steep stone steps in mist, black text box 'नीलकंठ महादेव का गुप्त रहस्य'",
+    "art_style": "real-photo",
+    "why": "Vlog-style travel frame with a secret title; 0.8x, not viral, and the channel name reads as a vlog (off-topic under the filter)",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  }
+ ],
+ "near": [
+  {
+   "id": "nX1w4GWwcDE",
+   "url": "https://youtube.com/shorts/nX1w4GWwcDE",
+   "title": "भारत का रहस्यमयी हनुमान मंदिर! जहां के चमत्कार जानकर रह जाएंगे हैरान 😱 | Hanuman Temple Mystery",
+   "channel": "Madan Singh Ghumakkad",
+   "views": 238574,
+   "multiple": 45.5,
+   "why_not": []
+  },
+  {
+   "id": "6C6jnmrPTls",
+   "url": "https://youtube.com/shorts/6C6jnmrPTls",
+   "title": "मृत्यु के बाद आत्मा कहाँ जाती है? 😱 गरुड़ पुराण के 16 भयानक नगरों का रहस्य! #shorts #facts",
+   "channel": "RAAZVERSE ",
+   "views": 89350,
+   "multiple": 3.6,
+   "why_not": [
+    "3.6x the channel median (needs 5x)"
+   ]
+  },
+  {
+   "id": "TXUby8DOw78",
+   "url": "https://youtube.com/shorts/TXUby8DOw78",
+   "title": "केदारनाथ के 10 रहस्य जानकर चौंक जाएंगे! 😱🔱 #Kedarnath #Mahadev #Shorts #HarHarMahadev",
+   "channel": "⭐ Deep Bisht All In One Vlogs ",
+   "views": 46825,
+   "multiple": 50.6,
+   "why_not": []
+  },
+  {
+   "id": "1x0F22Wp6Uk",
+   "url": "https://youtube.com/shorts/1x0F22Wp6Uk",
+   "title": "माँ बगलामुखी का रहस्यमयी मंदिर! 😳🔱 दिव्य दर्शन ! #shorts #facts #youtubeshorts",
+   "channel": "Har har mahadev ji 😘🛕",
+   "views": 42974,
+   "multiple": 1.5,
+   "why_not": [
+    "1.5x the channel median (needs 5x)"
+   ]
+  }
+ ],
+ "reuploads": [
+  {
+   "id": "G80MP91wFoY",
+   "url": "https://youtube.com/shorts/G80MP91wFoY",
+   "title": "जय जगन्नाथ जी मंदिर का अद्भूत रहस्य 🙏 #viral #shorts",
+   "channel": "kamlesh ke sath hasi majak",
+   "views": 48435,
+   "signals": [
+    "tiny channel",
+    "new channel",
+    "random topics",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "yH9emOPoA-o",
+   "url": "https://youtube.com/shorts/yH9emOPoA-o",
+   "title": "🔱 \"शिवजी ने खोज निकाला अपने मंदिर का रहस्य! सच सामने आते ही सब रह गए हैरान 🙏🚩\"",
+   "channel": "Google Rana",
+   "views": 37002,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "ACoOwRyQpnc",
+   "url": "https://youtube.com/shorts/ACoOwRyQpnc",
+   "title": "भगवान जगन्नाथ की मृत्यु का रहस्य! 😱 नबाकलेवर की अद्भुत परंपरा | Puri Jagannath Mystery #facts",
+   "channel": "DivyaKatha AI Short",
+   "views": 31745,
+   "signals": [
+    "tiny channel",
+    "random topics"
+   ]
+  }
+ ],
+ "ideas_added": [
+  "facts:radar-samundra-shivling",
+  "facts:radar-ravan-shivling-baidyanath",
+  "facts:radar-garuda-garbh-vachan",
+  "kailash:radar-kamandal-jal-kam",
+  "pov:radar-sach-ki-gawahi"
+ ],
+ "analysis_problems": []
+}
