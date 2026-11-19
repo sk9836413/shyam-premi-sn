@@ -173,3 +173,5 @@
 - 2026-11-20-status-dev-uthani-ekadashi | youtube: https://youtube.com/shorts/6waVWvyVvsI (public at 2026-11-19T19:00:00.000Z) | status variant, made 19 Nov 10:47 IST | social: fb: https://www.facebook.com/reel/1646618470275130 (scheduled 2026-11-19T19:00:00.000Z) | ig: pending 2026-11-19T19:00:00.000Z
 - 2026-11-20-statusday-khatu-shyam-birthday | claim: 2026-11-20 statusday by run 44463631450.1 at 2026-11-19T05:19:01.588Z
 - 2026-11-20-statusday-khatu-shyam-birthday | youtube: https://youtube.com/shorts/oC3_9XMAEKw (public at 2026-11-20T03:00:00.000Z) | status variant, made 19 Nov 10:49 IST | social: fb: https://www.facebook.com/reel/1659894745920584 (scheduled 2026-11-20T03:00:00.000Z) | ig: pending 2026-11-20T03:00:00.000Z
+- 2026-11-19-eve-khatu-shyam-janmotsav | instagram: skipped (missed the 2026-11-19T14:30:00.000Z slot by 6 h)
+- 2026-11-20-status-dev-uthani-ekadashi | instagram: https://www.instagram.com/reel/Df7-IY4hbjQ/
