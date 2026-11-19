@@ -88,3 +88,4 @@
 2026-11-18 | eve | 2026-11-18-eve-shyam-baba-janmotsav | Khatu Shyam Janmotsav (Dev Uthani Ekadashi) | status Short variant 1 "Shyam Baba Janmotsav Status 2026" (12-20 s loop, download link), public 20:00 IST
 2026-11-19 | morning | 2026-11-19-morning-guruvar-vishnu | Guruvar Sai Baba | Day status Short "Guruvar Sai Baba Status" (12-20 s loop, download link), public 06:00 IST
 2026-11-19 | eve | 2026-11-19-eve-khatu-shyam-janmotsav | Khatu Shyam Janmotsav (Dev Uthani Ekadashi) | status Short variant 2 "Khatu Shyam Janmotsav Status 2026" (12-20 s loop, download link), public 20:00 IST
+2026-11-20 | status | 2026-11-20-status-dev-uthani-ekadashi | Khatu Shyam Janmotsav (Dev Uthani Ekadashi) | status Short variant 3 "Dev Uthani Ekadashi Status 2026" (12-20 s loop, download link), public 00:30 IST
