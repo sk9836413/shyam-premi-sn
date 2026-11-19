@@ -165,3 +165,5 @@
 - 2026-11-19-morning-guruvar-vishnu | claim: 2026-11-19 morning by run 44312090795.1 at 2026-11-18T14:02:53.285Z
 - 2026-11-19-morning-guruvar-vishnu | youtube: https://youtube.com/shorts/ZVBLM3tgTkU (public at 2026-11-19T00:30:00.000Z) | status variant, made 18 Nov 19:33 IST | social: fb: https://www.facebook.com/reel/4702218386700677 (scheduled 2026-11-19T00:30:00.000Z) | ig: pending 2026-11-19T00:30:00.000Z
 - 2026-11-18-eve-shyam-baba-janmotsav | instagram: skipped (missed the 2026-11-18T14:30:00.000Z slot by 6 h)
+- 2026-11-19-movie-khatu-shyam-amar-katha-part-3 | instagram: https://www.instagram.com/reel/Df6JKwdhMpg/
+- 2026-11-19-morning-guruvar-vishnu | instagram: https://www.instagram.com/reel/Df6JUjChlwx/
