@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-20",
+  "weekday": "Shukravar",
+  "festival": "बाबा श्याम के जन्मोत्सव की हार्दिक शुभकामनाएं",
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-20T01:00:00.000Z",
+      "igAt": "2026-11-20T03:43:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "janmotsav",
+        "name": "Khatu Shyam Baba Janmotsav = Dev Uthani (Prabodhini) Ekadashi; Shyam Baba Janmotsav; Khatu Shyam Janmotsav; Dev Uthani Ekadashi; Khatu Shyam Birthday (BIG, status Shorts: eve 11-18 20:00, eve 11-19 20:00, status 11-20 00:30, statusday 11-20 08:30).",
+        "big": "श्याम जन्मोत्सव",
+        "line": "जय श्री श्याम 🙏",
+        "blessing": "बाबा श्याम के जन्मोत्सव की हार्दिक शुभकामनाएं",
+        "tags": [
+          "#KhatuShyamJanmotsav",
+          "#DevUthaniEkadashi"
+        ]
+      },
+      "bank": "brand/photo-bank/khatu/kaggle-cast-2.jpg",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    }
+  ]
+}

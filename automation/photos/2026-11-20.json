@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-20",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": "brand/photo-bank/khatu/kaggle-cast-2.jpg",
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-20T01:00:00.000Z",
+      "igAt": "2026-11-20T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-20-1-1.jpg"
+      ],
+      "caption": "Jai Shree Shyam 🙏\nAaj Dev Uthani Ekadashi hai, aur Khatu Shyam Baba ka janmotsav bhi.\nबाबा श्याम के जन्मोत्सव की हार्दिक शुभकामनाएं।\nHaare ke sahare, sheesh ke daani Shyam Baba ke charnon mein sabhi ko pranam.\nAapke ghar mein aaj Shyam Baba ka janmotsav kaise manaya ja raha hai?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#KhatuShyamJanmotsav #DevUthaniEkadashi #JaiShreeShyam #KhatuShyam #ShyamBaba #KhatuDham #Bhakti",
+      "fbCaption": "जय श्री श्याम 🙏 आज बाबा श्याम का जन्मोत्सव है। क्या आपके घर में आज श्याम बाबा का जन्मोत्सव मनाया जा रहा है?\nआज देवउठनी एकादशी है और खाटू श्याम बाबा के जन्मोत्सव की हार्दिक शुभकामनाएं।\nहारे के सहारे श्याम बाबा सभी पर कृपा बनाए रखें।\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#KhatuShyam #JaiShreeShyam #KhatuShyamJanmotsav",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1611941517615479",
+        "scheduled": "2026-11-20T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-20T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}
