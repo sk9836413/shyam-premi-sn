@@ -168,3 +168,4 @@
 - 2026-11-19-movie-khatu-shyam-amar-katha-part-3 | instagram: https://www.instagram.com/reel/Df6JKwdhMpg/
 - 2026-11-19-morning-guruvar-vishnu | instagram: https://www.instagram.com/reel/Df6JUjChlwx/
 - 2026-11-19-eve-khatu-shyam-janmotsav | claim: 2026-11-19 eve by run 44463631450.1 at 2026-11-19T05:15:43.579Z
+- 2026-11-19-eve-khatu-shyam-janmotsav | youtube: https://youtube.com/shorts/ud4SP8RajCQ (public at 2026-11-19T14:30:00.000Z) | status variant, made 19 Nov 10:45 IST | social: fb: https://www.facebook.com/reel/1426694926292111 (scheduled 2026-11-19T14:30:00.000Z) | ig: pending 2026-11-19T14:30:00.000Z
