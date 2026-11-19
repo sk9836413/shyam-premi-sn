@@ -171,3 +171,4 @@
 - 2026-11-19-eve-khatu-shyam-janmotsav | youtube: https://youtube.com/shorts/ud4SP8RajCQ (public at 2026-11-19T14:30:00.000Z) | status variant, made 19 Nov 10:45 IST | social: fb: https://www.facebook.com/reel/1426694926292111 (scheduled 2026-11-19T14:30:00.000Z) | ig: pending 2026-11-19T14:30:00.000Z
 - 2026-11-20-status-dev-uthani-ekadashi | claim: 2026-11-20 status by run 44463631450.1 at 2026-11-19T05:17:20.295Z
 - 2026-11-20-status-dev-uthani-ekadashi | youtube: https://youtube.com/shorts/6waVWvyVvsI (public at 2026-11-19T19:00:00.000Z) | status variant, made 19 Nov 10:47 IST | social: fb: https://www.facebook.com/reel/1646618470275130 (scheduled 2026-11-19T19:00:00.000Z) | ig: pending 2026-11-19T19:00:00.000Z
+- 2026-11-20-statusday-khatu-shyam-birthday | claim: 2026-11-20 statusday by run 44463631450.1 at 2026-11-19T05:19:01.588Z
