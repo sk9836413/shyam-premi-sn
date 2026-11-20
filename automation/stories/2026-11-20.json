@@ -14,6 +14,23 @@
         "at": "2026-11-20T03:44:24.335Z"
       },
       "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-20-morning.jpg"
+    },
+    {
+      "key": "video",
+      "type": "video",
+      "source": "2026-11-20-status-dev-uthani-ekadashi",
+      "fb": {
+        "claim": {
+          "run": "44676317957.1",
+          "at": "2026-11-20T04:44:09.500Z"
+        }
+      },
+      "ig": {
+        "claim": {
+          "run": "44676317957.1",
+          "at": "2026-11-20T04:44:09.500Z"
+        }
+      }
     }
   ]
 }
