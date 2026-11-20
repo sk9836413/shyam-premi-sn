@@ -32,6 +32,7 @@ export const SKIP_FILE = path.join(ROOT, 'automation', 'owner-footage-skip.txt')
 export const SEND_LINE = 'इसे अपने परिवार को भेजें 🙏';
 export const TAGS = ['#KhatuShyam', '#JaiShreeShyam', '#ShyamBaba', '#KhatuShyamDarshan'];
 export const LUFS = -14;
+export const MAX_SECONDS = 90; // Facebook Reels stop at 90 s (meta.mjs FB_REEL_MAX); the reels are 11-30 s
 const IST = 5.5 * 3600e3;
 const read = (f) => (fs.existsSync(f) ? fs.readFileSync(f, 'utf8') : '');
 
@@ -158,6 +159,7 @@ export function prepareClip(c, { src, out }) {
   if (!fs.existsSync(video)) return { clip: c.id, status: 'missing', file: video };
   const t = trackOf(c.music);
   const dur = duration(video);
+  if (!(dur >= 3 && dur <= MAX_SECONDS)) return { clip: c.id, status: 'too-long', file: video, seconds: dur, why: `a Short / Facebook Reel here is 3-${MAX_SECONDS} s` };
   const fades = `afade=t=in:d=0.5,afade=t=out:st=${(dur - 1.5).toFixed(2)}:d=1.5`;
   const chain = `aresample=48000,aformat=channel_layouts=stereo,${fades}`;
   const probe = spawnSync(FF, ['-hide_banner', '-nostats', '-i', t.file, '-t', String(dur), '-af', `${chain},loudnorm=I=${LUFS}:TP=-1.5:LRA=11:print_format=json`, '-f', 'null', '-'], { encoding: 'utf8' });

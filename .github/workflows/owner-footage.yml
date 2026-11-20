@@ -3,8 +3,8 @@
 # Short (upload-guard slot `owner`, its own cap of 1, outside the 3 Shorts), public at the plan's time (09:30 IST) on
 # YouTube (publishAt), Facebook (scheduled, fb.mjs spacing) and Instagram (queued; daily.yml's `instagram` job flushes it).
 # The reels (music already mixed in) are assets of the GitHub release named in the plan, never in git history.
-# No cron of its own: daily.yml calls it after every evening-slot run (tomorrow's reel, uploaded the evening before) and
-# every morning-slot run (today's, only if last evening's is missing). workflow_dispatch: a date, or publish at once.
+# No cron of its own: daily.yml calls it on every trigger (from 17:00 IST tomorrow's reel, uploaded the evening before;
+# before 17:00 today's, only if last evening's is missing). workflow_dispatch: a date, or publish at once.
 # Skip list: automation/owner-footage-skip.txt. Also posts the owner's photo carousel (Instagram) when it is due.
 name: Owner footage
 
@@ -80,6 +80,8 @@ jobs:
           mkdir -p "$W/out"
           gh release download "$REL" -p "$ASSET" -D "$W" --clobber
           mv "$W/$ASSET" "$W/out/$SLUG.mp4"
+          secs=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$W/out/$SLUG.mp4")
+          node -e "process.exit(Number('$secs') >= 3 && Number('$secs') <= 90 ? 0 : 1)" || { echo "::error::$ASSET is $secs s: a Short / Facebook Reel must be 3-90 s. Replace the release asset (scripts/owner-footage.mjs prepare)"; exit 1; }
           node scripts/owner-footage.mjs spec --clip "$CLIP" --day "$DAY" --out "$W/scenes.json" | tee "$RUNNER_TEMP/spec.json"
           echo "- Owner footage $SLUG: clip $CLIP, $(ffprobe -v error -show_entries format=duration -of csv=p=0 "$W/out/$SLUG.mp4") s, music $(node -p "require('./$W/scenes.json').music.id"), AI flags $(node -p "JSON.stringify(require('$RUNNER_TEMP/spec.json').ai)"), public ${AT:-now} IST" >> "$GITHUB_STEP_SUMMARY"
 

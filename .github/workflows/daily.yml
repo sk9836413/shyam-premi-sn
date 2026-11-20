@@ -2810,11 +2810,11 @@ jobs:
     secrets: inherit
 
   # Owner footage (owner, 20 Nov 2026: "daily upload me daal do"; .github/workflows/owner-footage.yml): the owner's own real
-  # darshan reels, one a day as an EXTRA Short (upload-guard slot `owner`, own cap of 1). After every evening-slot run:
-  # tomorrow's reel (public 09:30 IST); after every morning-slot run: today's, only when last evening's is missing. No cron.
+  # darshan reels, one a day as an EXTRA Short (upload-guard slot `owner`, own cap of 1). Runs on every trigger, like the
+  # instagram job (no wait for a long render): from 17:00 IST tomorrow's reel (public 09:30 IST), before that today's,
+  # only when last evening's is missing; a day that has its reel skips in seconds. No cron of its own.
   owner-footage:
-    needs: story
-    if: always() && (needs.story.outputs.kalyug == 'true' || needs.story.outputs.long == 'true') && !inputs.dry_run
+    if: ${{ !inputs.dry_run }}
     uses: ./.github/workflows/owner-footage.yml
     secrets: inherit
 
