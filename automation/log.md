@@ -91,3 +91,4 @@
 2026-11-20 | status | 2026-11-20-status-dev-uthani-ekadashi | Khatu Shyam Janmotsav (Dev Uthani Ekadashi) | status Short variant 3 "Dev Uthani Ekadashi Status 2026" (12-20 s loop, download link), public 00:30 IST
 2026-11-20 | statusday | 2026-11-20-statusday-khatu-shyam-birthday | Khatu Shyam Janmotsav (Dev Uthani Ekadashi) | status Short variant 4 "Khatu Shyam Birthday Status 2026" (12-20 s loop, download link), public 08:30 IST
 2026-11-20 | morning | 2026-11-20-movie-khatu-shyam-amar-katha-part-4 | Khatu Shyam ji (Barbarik) | mini-movie part (scheduled 07:00, replaces the katha Short)
+2026-11-21 | status | 2026-11-21-status-tulsi-vivah | Tulsi Vivah (Dwadashi) | status Short variant 2 "Tulsi Vivah Status 2026" (12-20 s loop, download link), public 00:30 IST
