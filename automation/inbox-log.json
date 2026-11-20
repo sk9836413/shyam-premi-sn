@@ -1,0 +1,23 @@
+{
+  "note": "Darshan inbox state (scripts/inbox.mjs): one entry per Gmail message id. No mail addresses here. Files: queued (reels in automation/owner-footage.json), bank / stored (stills in footage/), waiting (private Drive file or a retry), rejected (with the reason the receipt gave).",
+  "mails": {
+    "1a1fa3a1936dea36": {
+      "subject": "Shyam laddu gopal",
+      "day": "2026-11-21",
+      "thread": "1a1fa3a1936dea36",
+      "first_seen": "2026-11-21",
+      "subj": { "kind": "deity", "deity": "krishna", "place": null, "festival": null, "temple": null, "slug": "laddu-gopal-darshan-own" },
+      "files": {
+        "att:5062b0bb-b7e7-412f-a97e-3ff49bcffa0d.mp4:3497569": {
+          "name": "5062b0bb-b7e7-412f-a97e-3ff49bcffa0d.mp4",
+          "status": "rejected",
+          "why": "video par kisi aur ka handle (@...) aur Instagram watermark hai: ye aapki apni recording nahi lagti, isliye use nahi hoga",
+          "by": "manual review, 21 Nov 2026 (frame check before the first run)"
+        }
+      },
+      "clips": [],
+      "stills": [],
+      "receipts": 0
+    }
+  }
+}
