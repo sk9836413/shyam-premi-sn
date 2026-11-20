@@ -6,7 +6,14 @@
       "day": "2026-11-21",
       "thread": "1a1fa3a1936dea36",
       "first_seen": "2026-11-21",
-      "subj": { "kind": "deity", "deity": "krishna", "place": null, "festival": null, "temple": null, "slug": "laddu-gopal-darshan-own" },
+      "subj": {
+        "kind": "deity",
+        "deity": "krishna",
+        "place": null,
+        "festival": null,
+        "temple": null,
+        "slug": "laddu-gopal-darshan-own"
+      },
       "files": {
         "att:5062b0bb-b7e7-412f-a97e-3ff49bcffa0d.mp4:3497569": {
           "name": "5062b0bb-b7e7-412f-a97e-3ff49bcffa0d.mp4",
@@ -17,7 +24,98 @@
       },
       "clips": [],
       "stills": [],
-      "receipts": 0
+      "receipts": 1,
+      "status": "done"
+    },
+    "1a1fa37ed4cdabb6": {
+      "subject": "Shyam Baidyanath dham deoghar",
+      "day": "2026-11-20",
+      "thread": "1a1fa37ed4cdabb6",
+      "first_seen": "2026-11-21",
+      "subj": {
+        "kind": "temple",
+        "deity": "shiv",
+        "place": "Baidyanath Dham, Deoghar",
+        "festival": null,
+        "temple": "baidyanath-dham",
+        "slug": "baidyanath-dham-deoghar-darshan-own"
+      },
+      "files": {
+        "nolink:62ed7464-b220-473a-9937-bcc8f0245282.mov": {
+          "name": "62ed7464-b220-473a-9937-bcc8f0245282.mov",
+          "status": "rejected",
+          "why": "mail mein iska Drive link nahi aaya (phone se upload poora nahi hua tha). Dobara bhejein"
+        },
+        "nolink:55477f44-b137-4642-bcca-49145daa7faa.mov": {
+          "name": "55477f44-b137-4642-bcca-49145daa7faa.mov",
+          "status": "rejected",
+          "why": "mail mein iska Drive link nahi aaya (phone se upload poora nahi hua tha). Dobara bhejein"
+        },
+        "nolink:68907bcf-e497-4b25-bb21-c2e425aa5680.mov": {
+          "name": "68907bcf-e497-4b25-bb21-c2e425aa5680.mov",
+          "status": "rejected",
+          "why": "mail mein iska Drive link nahi aaya (phone se upload poora nahi hua tha). Dobara bhejein"
+        }
+      },
+      "clips": [],
+      "stills": [],
+      "receipts": 1,
+      "status": "done"
+    },
+    "1a1fa3884f94d396": {
+      "subject": "Shyam chath puja",
+      "day": "2026-11-20",
+      "thread": "1a1fa3884f94d396",
+      "first_seen": "2026-11-21",
+      "subj": {
+        "kind": "festival",
+        "deity": "devi",
+        "place": null,
+        "festival": "chhath",
+        "temple": null,
+        "slug": "chhath-puja-own"
+      },
+      "files": {
+        "drive:1nDj5bxAkQ3vm8qg33krhBdfY2WvRqPlu": {
+          "name": "IMG_2315.mov",
+          "status": "waiting",
+          "why": "Drive file private hai (\"Anyone with the link\" nahi). Share -> \"Anyone with the link\" kar dein, apne aap utha lenge"
+        },
+        "drive:1rf_SPjTvUE46QU2PjjKXMF8EfhOLqoW2": {
+          "name": "IMG_2314.mov",
+          "status": "waiting",
+          "why": "Drive file private hai (\"Anyone with the link\" nahi). Share -> \"Anyone with the link\" kar dein, apne aap utha lenge"
+        }
+      },
+      "clips": [],
+      "stills": [],
+      "receipts": 1,
+      "status": "waiting"
+    },
+    "1a1fa38f0694b97e": {
+      "subject": "Shyam Baidyanath dham deoghar",
+      "day": "2026-11-20",
+      "thread": "1a1fa38f0694b97e",
+      "first_seen": "2026-11-21",
+      "subj": {
+        "kind": "temple",
+        "deity": "shiv",
+        "place": "Baidyanath Dham, Deoghar",
+        "festival": null,
+        "temple": "baidyanath-dham",
+        "slug": "baidyanath-dham-deoghar-darshan-own"
+      },
+      "files": {
+        "drive:1LjrRgsTPOg1Ci_YQTHV3dTi6TtShewli": {
+          "name": "IMG_2305.mov",
+          "status": "waiting",
+          "why": "Drive file private hai (\"Anyone with the link\" nahi). Share -> \"Anyone with the link\" kar dein, apne aap utha lenge"
+        }
+      },
+      "clips": [],
+      "stills": [],
+      "receipts": 1,
+      "status": "waiting"
     }
   }
 }
