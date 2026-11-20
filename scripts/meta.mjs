@@ -23,6 +23,10 @@
 // flush  Publishes every queued Instagram Reel whose time is within 20 minutes (waits for it) and no more than
 //        6 hours past; appends "- <slug> | instagram: <url | error ... | skipped ...>" (2 attempts at most).
 //
+// Trial Reels (Instagram): a spec with `ig_trial` ("SS_PERFORMANCE" | "MANUAL"; scripts/status-engine.mjs trialVariant)
+//        is published as a Trial Reel: the container gets trial_params {graduation_strategy}, which the Graph API
+//        documents for the standard (video_url) Reels upload only, so a trial Reel is always queued (--ig-at /
+//        --publish-at) and published by `flush` from its hosted video_url; it goes to non-followers first.
 // Duplicates: short, long and flush first look for the same caption/title among the Page's Reels, videos and scheduled
 //        posts and the Instagram media of the last 36 h; a hit is reported as "(already posted, not repeated)".
 // Env (GitHub secrets) or %USERPROFILE%\.shyampremisk\social.env: META_PAGE_ID, META_PAGE_TOKEN, IG_USER_ID,
@@ -33,7 +37,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { fbLongText, fbVideoCaption, igHashtags } from './fb.mjs';
+import { capHashtags, fbLongText, fbVideoCaption, igHashtags } from './fb.mjs';
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
 import { aiDisclosure, metaAiParam } from './ai-disclosure.mjs';
 
@@ -129,7 +133,8 @@ export function captions(spec) {
   return {
     facebook: String(spec.facebook_caption || fallback).trim(),
     // the Khatu Shyam tags only on Khatu Shyam content (fb.mjs igHashtags; owner, 13 Nov 2026)
-    instagram: igHashtags(String(spec.instagram_caption || fallback).trim(), spec).slice(0, 2200),
+    // at most 5 hashtags (fb.mjs capHashtags; research 20 Nov 2026: short, relevant captions)
+    instagram: capHashtags(igHashtags(String(spec.instagram_caption || fallback).trim(), spec)).slice(0, 2200),
   };
 }
 
@@ -294,11 +299,24 @@ const fbVideoLabelled = async (file, opts, ai) => {
 // Instagram: create the container, poll status_code until FINISHED (15 s steps, 10 minutes), then media_publish.
 // is_ai_generated on the container = Instagram's AI label (Content Publishing API, changelog 22 Jun 2026); `ai` =
 // metaAiParam(spec) from scripts/ai-disclosure.mjs, {} = no label.
-async function igReel(caption, { file, videoUrl, ai = { is_ai_generated: 'true' } }) {
-  if (!env.IG_USER_ID) throw new Error('IG_USER_ID not set');
+export const TRIAL_STRATEGIES = ['MANUAL', 'SS_PERFORMANCE'];
+/** The Reels container parameters (trial: a graduation strategy of TRIAL_STRATEGIES = a Trial Reel). */
+export function igReelParams(caption, { ai = { is_ai_generated: 'true' }, trial = null } = {}) {
   const params = { media_type: 'REELS', share_to_feed: 'true', caption, ...ai };
-  const container = await graph('POST', `${env.IG_USER_ID}/media`, file ? { ...params, upload_type: 'resumable' } : { ...params, video_url: videoUrl });
-  if (file) await rupload(container.uri, file);
+  if (trial) {
+    if (!TRIAL_STRATEGIES.includes(trial)) throw new Error(`ig_trial must be one of ${TRIAL_STRATEGIES.join(', ')} (got ${trial})`);
+    params.trial_params = JSON.stringify({ graduation_strategy: trial });
+    delete params.share_to_feed; // a trial reel goes to non-followers first, not to the followers' feed
+  }
+  return params;
+}
+async function igReel(caption, { file, videoUrl, ai = { is_ai_generated: 'true' }, trial = null }) {
+  if (!env.IG_USER_ID) throw new Error('IG_USER_ID not set');
+  if (trial && !videoUrl) throw new Error('a Trial Reel needs a hosted video_url (standard upload)');
+  const params = igReelParams(caption, { ai, trial });
+  const resumable = file && !trial;
+  const container = await graph('POST', `${env.IG_USER_ID}/media`, resumable ? { ...params, upload_type: 'resumable' } : { ...params, video_url: videoUrl });
+  if (resumable) await rupload(container.uri, file);
   const end = Date.now() + 10 * 60e3;
   for (;;) {
     const { status_code: code, status } = await graph('GET', container.id, { fields: 'status_code,status' });
@@ -309,7 +327,7 @@ async function igReel(caption, { file, videoUrl, ai = { is_ai_generated: 'true' 
   }
   const { id } = await graph('POST', `${env.IG_USER_ID}/media_publish`, { creation_id: container.id });
   const { permalink } = await graph('GET', id, { fields: 'permalink' }).catch(() => ({}));
-  return { id, url: permalink || `https://www.instagram.com/khatushyampremisn/`, type: 'reel' };
+  return { id, url: permalink || `https://www.instagram.com/khatushyampremisn/`, type: trial ? 'trial reel' : 'reel' };
 }
 
 // Duplicate guard (7 Nov 2026: the Diwali status Reel went to the Page twice, 18:48 and 19:32 IST): before posting,
@@ -386,7 +404,7 @@ async function shortUnsafe({ video, spec, videoUrl, publishAt, fbAt, igAt, noFb 
     if (plan.igAt) {
       if (!videoUrl) r.instagram = { error: 'no hosted video_url to publish from later' };
       else r.instagram = { pending: plan.igAt };
-    } else await attempt('instagram', () => igReel(text.instagram, { file: video, ai }));
+    } else await attempt('instagram', () => igReel(text.instagram, spec.ig_trial ? { videoUrl, ai, trial: spec.ig_trial } : { file: video, ai }));
   }
   if (errors.length) r.status = 'partial-failure';
   if (errors.length && errors.length === [r.facebook, r.instagram].filter((x) => x && !x.pending && !x.skipped).length && errors.some((e) => isAuthError(e.code))) r.authFailed = true;
@@ -436,7 +454,8 @@ async function flush({ log, dryRun }) {
         const qspec = JSON.parse(fs.readFileSync(specFile, 'utf8'));
         const caption = captions(qspec).instagram;
         const dup = await orNull(igExisting(caption));
-        cell = dup ? `${dup.url} (already posted, not repeated)` : (await igReel(caption, { videoUrl: `${env.MEDIA_URL}/m/${q.slug}.mp4`, ai: metaAiParam(qspec) })).url;
+        const reel = dup ? null : await igReel(caption, { videoUrl: `${env.MEDIA_URL}/m/${q.slug}.mp4`, ai: metaAiParam(qspec), trial: qspec.ig_trial || null });
+        cell = dup ? `${dup.url} (already posted, not repeated)` : `${reel.url}${qspec.ig_trial ? ` (trial reel, ${qspec.ig_trial})` : ''}`;
       } catch (e) {
         cell = `error ${redact(e.message).slice(0, 160)}`;
       }

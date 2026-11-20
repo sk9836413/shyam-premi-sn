@@ -32,6 +32,21 @@ Every writer/renderer of Shyam Premi Shorts should follow this. Numbers = views 
 - Returning (subscribed) viewers come from Khatu Shyam ji / Rajasthan temple Shorts, never from status Shorts.
 - The Monday growth report has a "Retention (Shorts feed)" table (scripts/retention.mjs).
 
+## Algorithm research (20 Nov 2026, E:/SK/epifive-social/ALGO-RESEARCH-2026-11.md) applied to status Shorts
+- **First 1-2 s:** frame 0 = the deity's face, large (status-engine compose puts a deity scene first; prompts ask for the
+  face large and clear), the festival name in 2-4 huge Hindi words; the YouTube thumbnail is the same frame (0.1 s).
+- **Sends (Instagram's strongest signal for non-followers):** the last 3 s are the forwardable greeting ("आपको और आपके
+  परिवार को / <festival> की शुभकामनाएं 🙏", pill "इसे अपने परिवार को भेजें 🙏"); Instagram caption = the same greeting + the
+  send line; Facebook = the greeting only (its bait rule forbids asks). Never "share to 5 people", never follow/subscribe
+  gating.
+- **Length / loop:** 15-30 s (3 scenes of 6 s), the greeting fades back into frame 0.
+- **Captions:** short and relevant, at most 5 hashtags on Instagram (meta.mjs / photos.mjs cap them), exactly 3 on Facebook.
+  YouTube keeps the search title "<Festival> Status 2026 | <Hindi> स्टेटस वीडियो #Shorts".
+- **Trial Reels:** the Graph API supports them (`trial_params`); a greeting-first second hook of each festival's 00:30
+  variant goes out as a Trial Reel at 07:30 when the repo variable IG_TRIAL is "on" (off until the owner turns it on).
+- **Weekly:** the Monday report adds "Shorts of the last 7 days" (engaged views, % viewed, feed share, top 3 by feed
+  share); viewed-vs-swiped and Instagram/Facebook insights are owner screenshots (not in the APIs we can use).
+
 ## Rules that made the difference
 1. **First second = a question or a shock.** 😱 / "क्यों?" / "जब…" / "फिर … ने जो किया…" / "सब साथ छोड़ दें…". Never "आज सुनिए…".
 2. **Cover frame:** 3-line big text (white / giant yellow / white on red band), red arrow, OR one strange oddly-scaled scene that asks a question by itself.

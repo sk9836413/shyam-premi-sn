@@ -1,14 +1,16 @@
 {
-  "about": "Festival status engine calendar, 11 Nov 2026 - 31 Jan 2027 (scripts/status-engine.mjs, scripts/day-plan.mjs). Every date was checked on 11 Nov 2026 for New Delhi in two panchang sources (D = drikpanchang.com, Smarta, Purnimanta; P = prokerala.com with loc=1261481 = New Delhi); the second source is named where prokerala has no page. tier big = 3 status variants (evening before 20:00, 00:30, 08:30; Janmotsav 4), status = 2 (evening before 20:00, 00:30), info = in the calendar for the story writer only (no status Short). names: one per variant in time order (title '<en> Status <year> | <hi> स्टेटस वीडियो #Shorts'). theme: scripts/status-themes.mjs; spec: a hand-written base spec that replaces the theme. automation/calendar.md is generated from this file (node scripts/status-engine.mjs calendar).",
+  "about": "Festival status engine calendar, 11 Nov 2026 - 31 Mar 2027 (scripts/status-engine.mjs, scripts/day-plan.mjs). Every date was checked on 11 Nov 2026 (Feb-Mar 2027 rows on 20 Nov 2026) for New Delhi in two panchang sources (D = drikpanchang.com, Smarta, Purnimanta; P = prokerala.com with loc=1261481 = New Delhi); the second source is named where prokerala has no page. tier big = 3 status variants (evening before 20:00, 00:30, 08:30; Janmotsav 4), status = 2 (evening before 20:00, 00:30), info = in the calendar for the story writer only (no status Short). names: one per variant in time order (title '<en> Status <year> | <hi> स्टेटस वीडियो #Shorts'). theme: scripts/status-themes.mjs; spec: a hand-written base spec that replaces the theme. automation/calendar.md is generated from this file (node scripts/status-engine.mjs calendar).",
   "sources": {
     "D": "https://www.drikpanchang.com (month lists /festivals/month/festivals-<month>.html?year=YYYY; /vrats/ekadashidates.html, /vrats/pradoshdates.html, /vrats/masik-shivaratri-dates.html, /vrats/purnimasidates.html, /vrats/amavasyadates.html, /vrats/sankashti-chaturthi-dates.html; /sankranti/makar-sankranti-date-time.html?year=2027)",
-    "P": "https://www.prokerala.com (?loc=1261481 = New Delhi; month grid /general/calendar/hinducalendar.php?year=YYYY&mon=<month>&sb=1&loc=1261481; festival pages /festivals/<slug>.html?loc=1261481)"
+    "P": "https://www.prokerala.com (?loc=1261481 = New Delhi; month grid /general/calendar/hinducalendar.php?year=YYYY&mon=<month>&sb=1&loc=1261481; festival pages /festivals/<slug>.html?loc=1261481)",
+    "T": "https://www.timeanddate.com/holidays/india/holi (third source for Holi 2027, where D and P differ)",
+    "K": "https://www.khatu.org (Khatu Shyam Phalgun mela parampara) and https://www.thedailyjagran.com (Khatu Shyam Falgun Mela 2026 dates)"
   },
   "excluded": [
-    "Mauni Amavasya 2027 = Sat 6 Feb 2027 (D 'Mauni Amavas'; P mauni-amavasya.html): after 31 Jan, not in this window.",
-    "Basant (Vasant) Panchami 2027 = Thu 11 Feb 2027 (D 'Vasant Panchami'; P basant-panchami.html): after 31 Jan, not in this window.",
-    "Shattila Ekadashi 2027 = Tue 2 Feb 2027 (D only): after 31 Jan.",
-    "Guru Nanak Jayanti (24 Nov 2026, D + P): another faith's festival, not used for status Shorts on this devotional channel."
+    "Guru Nanak Jayanti (24 Nov 2026, D + P): another faith's festival, not used for status Shorts on this devotional channel.",
+    "Papmochani Ekadashi 2027 = Fri 2 Apr 2027 (D): after 31 Mar, not in this window. Chaitra Navratri / Ram Navami 2027: April.",
+    "Phulera Dooj 10 Mar, Ratha Saptami 13 Feb, Ranga Panchami 27 Mar 2027: D only (P does not list them), no status Short.",
+    "Holi Bhai Dooj 24 Mar 2027 (D): not a status Short (Bhai Dooj of Kartik is the searched one)."
   ],
   "festivals": [
     {
@@ -763,6 +765,626 @@
       "sources": [
         "D: vrats/sankashti-chaturthi-dates.html?year=2027: Lambodara Sankashti Mon 25 Jan (moonrise 9:16 PM)",
         "P: festivals/sakat-chauth.html?loc=1261481: 25 Jan (moonrise 9:12 PM)"
+      ]
+    },
+    {
+      "date": "2027-02-02",
+      "key": "shattila-ekadashi",
+      "tier": "status",
+      "theme": "ekadashi",
+      "label": "Shattila Ekadashi",
+      "names": [
+        {
+          "en": "Shattila Ekadashi",
+          "hi": "षटतिला एकादशी"
+        },
+        {
+          "en": "Shattila Ekadashi Vrat",
+          "hi": "षटतिला एकादशी व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2027: Shattila Ekadashi Tue 2 Feb (tithi 8:41 AM 1st to 11:10 AM 2nd)",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Shat Tila Ekadashi 2 Feb (Krishna Ekadashi at sunrise)"
+      ]
+    },
+    {
+      "date": "2027-02-03",
+      "key": "budh-pradosh-feb",
+      "tier": "status",
+      "theme": "pradosh",
+      "label": "Budh Pradosh Vrat",
+      "names": [
+        {
+          "en": "Budh Pradosh Vrat",
+          "hi": "बुध प्रदोष व्रत"
+        },
+        {
+          "en": "Pradosh Vrat",
+          "hi": "प्रदोष व्रत"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-february.html?year=2027: Budha Pradosh Vrat Wed 3 Feb (Magha Krishna Trayodashi)",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Pradosh Vrat 3 Feb"
+      ]
+    },
+    {
+      "date": "2027-02-04",
+      "key": "masik-shivratri-feb",
+      "tier": "status",
+      "theme": "shivratri",
+      "label": "Masik Shivratri",
+      "names": [
+        {
+          "en": "Masik Shivratri",
+          "hi": "मासिक शिवरात्रि"
+        },
+        {
+          "en": "Shivratri",
+          "hi": "शिवरात्रि"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-february.html?year=2027: Masik Shivaratri Thu 4 Feb (Magha Krishna Chaturdashi)",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Trayodashi at sunrise 4 Feb, Chaturdashi at sunrise 5 Feb, so Chaturdashi covers the night (Nishita) of 4 Feb"
+      ]
+    },
+    {
+      "date": "2027-02-06",
+      "key": "mauni-amavasya",
+      "tier": "status",
+      "theme": "amavasya",
+      "label": "Mauni Amavasya (Magh Amavasya)",
+      "names": [
+        {
+          "en": "Mauni Amavasya",
+          "hi": "मौनी अमावस्या"
+        },
+        {
+          "en": "Magh Amavasya",
+          "hi": "माघ अमावस्या"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-february.html?year=2027: Mauni Amavas Sat 6 Feb (also Magha Amavasya, Darsha Amavasya)",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Amavasya 6 Feb (Krishna Amavasya at sunrise); P mauni-amavasya.html: 6 Feb 2027"
+      ]
+    },
+    {
+      "date": "2027-02-10",
+      "key": "ganesh-jayanti",
+      "tier": "status",
+      "theme": "ganeshjayanti",
+      "label": "Ganesh Jayanti (Magh Shukla Chaturthi)",
+      "names": [
+        {
+          "en": "Ganesh Jayanti",
+          "hi": "गणेश जयंती"
+        },
+        {
+          "en": "Maghi Ganesh Jayanti",
+          "hi": "माघी गणेश जयंती"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-february.html?year=2027: Ganesha Jayanti Wed 10 Feb (Magha Shukla Chaturthi)",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Shukla Chaturthi at sunrise 10 Feb"
+      ]
+    },
+    {
+      "date": "2027-02-11",
+      "key": "basant-panchami",
+      "tier": "big",
+      "theme": "basant",
+      "label": "Basant (Vasant) Panchami, Saraswati Puja",
+      "names": [
+        {
+          "en": "Basant Panchami",
+          "hi": "बसंत पंचमी"
+        },
+        {
+          "en": "Vasant Panchami",
+          "hi": "वसंत पंचमी"
+        },
+        {
+          "en": "Saraswati Puja",
+          "hi": "सरस्वती पूजा"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-february.html?year=2027: Vasant Panchami + Saraswati Jayanti Thu 11 Feb (Magha Shukla Panchami)",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Basant (Vasant) Panchami 11 Feb"
+      ]
+    },
+    {
+      "date": "2027-02-17",
+      "key": "jaya-ekadashi",
+      "tier": "status",
+      "theme": "ekadashi",
+      "label": "Jaya Ekadashi",
+      "names": [
+        {
+          "en": "Jaya Ekadashi",
+          "hi": "जया एकादशी"
+        },
+        {
+          "en": "Jaya Ekadashi Vrat",
+          "hi": "जया एकादशी व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2027: Jaya Ekadashi Wed 17 Feb (tithi 8:19 PM 16th to 5:31 PM 17th)",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Jaya Ekadashi 17 Feb"
+      ]
+    },
+    {
+      "date": "2027-02-18",
+      "key": "guru-pradosh-feb",
+      "tier": "status",
+      "theme": "pradosh",
+      "label": "Guru Pradosh Vrat",
+      "names": [
+        {
+          "en": "Guru Pradosh Vrat",
+          "hi": "गुरु प्रदोष व्रत"
+        },
+        {
+          "en": "Pradosh Vrat",
+          "hi": "प्रदोष व्रत"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-february.html?year=2027: Guru Pradosh Vrat Thu 18 Feb (Magha Shukla Trayodashi)",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Pradosh Vrat 18 Feb"
+      ]
+    },
+    {
+      "date": "2027-02-20",
+      "key": "magh-purnima",
+      "tier": "status",
+      "theme": "purnima",
+      "label": "Magh Purnima",
+      "names": [
+        {
+          "en": "Magh Purnima",
+          "hi": "माघ पूर्णिमा"
+        },
+        {
+          "en": "Maghi Purnima",
+          "hi": "माघी पूर्णिमा"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-february.html?year=2027: Magha Purnima + Magha Purnima Vrat Sat 20 Feb",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Purnima + Purnima Vrat 20 Feb"
+      ]
+    },
+    {
+      "date": "2027-02-24",
+      "key": "dwijapriya-sankashti",
+      "tier": "status",
+      "theme": "sankashti",
+      "label": "Dwijapriya Sankashti Chaturthi",
+      "names": [
+        {
+          "en": "Sankashti Chaturthi",
+          "hi": "संकष्टी चतुर्थी"
+        },
+        {
+          "en": "Dwijapriya Sankashti",
+          "hi": "द्विजप्रिय संकष्टी"
+        }
+      ],
+      "sources": [
+        "D: vrats/sankashti-chaturthi-dates.html?year=2027: Dwijapriya Sankashti Wed 24 Feb (moonrise 10:03 PM)",
+        "P: hinducalendar.php?year=2027&mon=february&loc=1261481: Krishna Chaturthi at sunrise 24 Feb"
+      ]
+    },
+    {
+      "date": "2027-03-01",
+      "key": "khatu-phalgun-mela-countdown",
+      "tier": "status",
+      "theme": "phalgunmela",
+      "label": "Khatu Shyam Phalgun Mela countdown (17 days to Phalgun Ekadashi)",
+      "names": [
+        {
+          "en": "Phalgun Mela Khatu Shyam",
+          "hi": "फाल्गुन मेला खाटू श्याम"
+        }
+      ],
+      "variants": [
+        {
+          "slot": "status",
+          "offset": 0,
+          "at": "00:30",
+          "picks": [
+            0,
+            1,
+            2
+          ],
+          "hook": {
+            "hi": "फाल्गुन मेला आ रहा है 🙏",
+            "say": "फाल्गुन मेला आ रहा है!",
+            "roman": "Phalgun Mela aa raha hai 🙏"
+          }
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2027: Amalaki (Phalgun Shukla) Ekadashi Thu 18 Mar 2027 (tithi 4:21 AM 18th to 1:51 AM 19th)",
+        "P: hinducalendar.php?year=2027&mon=march&loc=1261481: Amalaki Ekadashi 18 Mar",
+        "Khatu parampara: khatu.org (2026 mela: Phalgun Shukla Chaturthi to Dwadashi, 21-28 Feb 2026, main day Amalaki Ekadashi; the sheesh appeared at Shyam Kund on Phalgun Sudi Ekadashi, so the mela lasts till Dwadashi) + Dainik Jagran (thedailyjagran.com, Khatu Shyam Falgun Mela 2026); the 2027 mela dates are announced by the Shri Shyam Mandir Committee / Sikar administration, recheck in Feb 2027"
+      ]
+    },
+    {
+      "date": "2027-03-04",
+      "key": "vijaya-ekadashi",
+      "tier": "status",
+      "theme": "ekadashi",
+      "label": "Vijaya Ekadashi",
+      "names": [
+        {
+          "en": "Vijaya Ekadashi",
+          "hi": "विजया एकादशी"
+        },
+        {
+          "en": "Vijaya Ekadashi Vrat",
+          "hi": "विजया एकादशी व्रत"
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2027: Vijaya Ekadashi Thu 4 Mar (tithi 4:44 AM 3rd to 7:24 AM 4th)",
+        "P: hinducalendar.php?year=2027&mon=march&loc=1261481: Krishna Ekadashi at sunrise on 3 and 4 Mar (Smarta: 4 Mar, D)"
+      ]
+    },
+    {
+      "date": "2027-03-05",
+      "key": "shukra-pradosh-mar",
+      "tier": "status",
+      "theme": "pradosh",
+      "label": "Shukra Pradosh Vrat",
+      "names": [
+        {
+          "en": "Shukra Pradosh Vrat",
+          "hi": "शुक्र प्रदोष व्रत"
+        },
+        {
+          "en": "Pradosh Vrat",
+          "hi": "प्रदोष व्रत"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Shukra Pradosh Vrat Fri 5 Mar",
+        "P: hinducalendar.php?year=2027&mon=march&loc=1261481: Pradosh Vrat 5 Mar"
+      ]
+    },
+    {
+      "date": "2027-03-06",
+      "key": "mahashivratri",
+      "tier": "big",
+      "theme": "mahashivratri",
+      "label": "Mahashivratri",
+      "names": [
+        {
+          "en": "Mahashivratri",
+          "hi": "महाशिवरात्रि"
+        },
+        {
+          "en": "Maha Shivratri",
+          "hi": "महा शिवरात्रि"
+        },
+        {
+          "en": "Shivratri",
+          "hi": "शिवरात्रि"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Maha Shivaratri Sat 6 Mar",
+        "P: hinducalendar.php?year=2027&mon=march&loc=1261481: Maha Shivaratri 6 Mar"
+      ]
+    },
+    {
+      "date": "2027-03-08",
+      "key": "somvati-amavasya",
+      "tier": "status",
+      "theme": "amavasya",
+      "label": "Somvati Amavasya (Phalgun Amavasya)",
+      "names": [
+        {
+          "en": "Somvati Amavasya",
+          "hi": "सोमवती अमावस्या"
+        },
+        {
+          "en": "Phalgun Amavasya",
+          "hi": "फाल्गुन अमावस्या"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Somavati Amavasya + Phalguna Amavasya Mon 8 Mar (Darsha Amavasya 7 Mar)",
+        "P: hinducalendar.php?year=2027&mon=march&loc=1261481: Amavasya 8 Mar (Amavasya at sunrise)"
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "key": "khatu-lakkhi-mela",
+      "tier": "status",
+      "theme": "phalgunmela",
+      "label": "Khatu Shyam Lakkhi Mela (Phalgun Shukla Chaturthi; 2026 the mela began on this tithi)",
+      "names": [
+        {
+          "en": "Khatu Shyam Lakkhi Mela",
+          "hi": "खाटू श्याम लक्खी मेला"
+        }
+      ],
+      "variants": [
+        {
+          "slot": "status",
+          "offset": 0,
+          "at": "00:30",
+          "picks": [
+            3,
+            2,
+            1
+          ],
+          "hook": {
+            "hi": "बाबा श्याम का लक्खी मेला 🙏",
+            "say": "बाबा श्याम का लक्खी मेला!",
+            "roman": "Baba Shyam ka Lakkhi Mela 🙏"
+          }
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Dhundhiraja Chaturthi (Phalgun Shukla Chaturthi) Fri 12 Mar",
+        "Khatu parampara: khatu.org (2026 mela: Phalgun Shukla Chaturthi to Dwadashi, 21-28 Feb 2026, main day Amalaki Ekadashi; the sheesh appeared at Shyam Kund on Phalgun Sudi Ekadashi, so the mela lasts till Dwadashi) + Dainik Jagran (thedailyjagran.com, Khatu Shyam Falgun Mela 2026); the 2027 mela dates are announced by the Shri Shyam Mandir Committee / Sikar administration, recheck in Feb 2027"
+      ]
+    },
+    {
+      "date": "2027-03-14",
+      "key": "khatu-nishan-yatra",
+      "tier": "status",
+      "theme": "phalgunmela",
+      "label": "Khatu Nishan Yatra (Phalgun mela, Ringas to Khatu)",
+      "names": [
+        {
+          "en": "Khatu Nishan Yatra",
+          "hi": "खाटू निशान यात्रा"
+        }
+      ],
+      "variants": [
+        {
+          "slot": "status",
+          "offset": 0,
+          "at": "00:30",
+          "picks": [
+            5,
+            1,
+            4
+          ],
+          "hook": {
+            "hi": "खाटू निशान यात्रा 🚩",
+            "say": "खाटू निशान यात्रा!",
+            "roman": "Khatu Nishan Yatra 🚩"
+          }
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Skanda Sashti 13 Mar and Masik Durgashtami 16 Mar (Phalgun Shukla), so 14 Mar is inside the mela days (Chaturthi 12 Mar to Dwadashi 19 Mar)",
+        "Khatu parampara: khatu.org (2026 mela: Phalgun Shukla Chaturthi to Dwadashi, 21-28 Feb 2026, main day Amalaki Ekadashi; the sheesh appeared at Shyam Kund on Phalgun Sudi Ekadashi, so the mela lasts till Dwadashi) + Dainik Jagran (thedailyjagran.com, Khatu Shyam Falgun Mela 2026); the 2027 mela dates are announced by the Shri Shyam Mandir Committee / Sikar administration, recheck in Feb 2027"
+      ]
+    },
+    {
+      "date": "2027-03-18",
+      "key": "khatu-phalgun-ekadashi",
+      "tier": "big",
+      "theme": "phalgunmela",
+      "label": "Khatu Shyam Phalgun Mela main day = Phalgun Shukla (Amalaki) Ekadashi",
+      "names": [
+        {
+          "en": "Khatu Phalgun Mela",
+          "hi": "खाटू फाल्गुन मेला"
+        },
+        {
+          "en": "Phalgun Ekadashi",
+          "hi": "फाल्गुन एकादशी"
+        },
+        {
+          "en": "Khatu Shyam Ekadashi",
+          "hi": "खाटू श्याम एकादशी"
+        },
+        {
+          "en": "Amalaki Ekadashi",
+          "hi": "आमलकी एकादशी"
+        }
+      ],
+      "variants": [
+        {
+          "slot": "eve",
+          "offset": -2,
+          "at": "20:00",
+          "picks": [
+            1,
+            0,
+            2
+          ]
+        },
+        {
+          "slot": "eve",
+          "offset": -1,
+          "at": "20:00",
+          "picks": [
+            3,
+            4,
+            2
+          ]
+        },
+        {
+          "slot": "status",
+          "offset": 0,
+          "at": "00:30",
+          "picks": [
+            5,
+            1,
+            4
+          ]
+        },
+        {
+          "slot": "statusday",
+          "offset": 0,
+          "at": "08:30",
+          "picks": [
+            0,
+            2,
+            4
+          ]
+        }
+      ],
+      "sources": [
+        "D: vrats/ekadashidates.html?year=2027: Amalaki Ekadashi Thu 18 Mar (tithi 4:21 AM 18th to 1:51 AM 19th)",
+        "P: hinducalendar.php?year=2027&mon=march&loc=1261481: Amalaki Ekadashi (Shukla Ekadashi) 18 Mar",
+        "Khatu parampara: khatu.org (2026 mela: Phalgun Shukla Chaturthi to Dwadashi, 21-28 Feb 2026, main day Amalaki Ekadashi; the sheesh appeared at Shyam Kund on Phalgun Sudi Ekadashi, so the mela lasts till Dwadashi) + Dainik Jagran (thedailyjagran.com, Khatu Shyam Falgun Mela 2026); the 2027 mela dates are announced by the Shri Shyam Mandir Committee / Sikar administration, recheck in Feb 2027"
+      ]
+    },
+    {
+      "date": "2027-03-19",
+      "key": "khatu-phalgun-dwadashi",
+      "tier": "status",
+      "theme": "phalgunmela",
+      "label": "Khatu Shyam Phalgun Dwadashi (last day of the mela)",
+      "names": [
+        {
+          "en": "Khatu Shyam Dwadashi",
+          "hi": "खाटू श्याम द्वादशी"
+        }
+      ],
+      "variants": [
+        {
+          "slot": "status",
+          "offset": 0,
+          "at": "00:30",
+          "picks": [
+            3,
+            2,
+            1
+          ],
+          "hook": {
+            "hi": "जय श्री श्याम: फाल्गुन द्वादशी 🙏",
+            "say": "जय श्री श्याम, फाल्गुन द्वादशी!",
+            "roman": "Jai Shree Shyam: Phalgun Dwadashi 🙏"
+          }
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Narasimha Dwadashi (Phalgun Shukla Dwadashi) Fri 19 Mar",
+        "Khatu parampara: khatu.org (2026 mela: Phalgun Shukla Chaturthi to Dwadashi, 21-28 Feb 2026, main day Amalaki Ekadashi; the sheesh appeared at Shyam Kund on Phalgun Sudi Ekadashi, so the mela lasts till Dwadashi) + Dainik Jagran (thedailyjagran.com, Khatu Shyam Falgun Mela 2026); the 2027 mela dates are announced by the Shri Shyam Mandir Committee / Sikar administration, recheck in Feb 2027"
+      ]
+    },
+    {
+      "date": "2027-03-20",
+      "key": "shani-pradosh-mar",
+      "tier": "status",
+      "theme": "pradosh",
+      "label": "Shani Pradosh Vrat",
+      "names": [
+        {
+          "en": "Shani Pradosh Vrat",
+          "hi": "शनि प्रदोष व्रत"
+        },
+        {
+          "en": "Pradosh Vrat",
+          "hi": "प्रदोष व्रत"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Shani Trayodashi + Shani Pradosh Vrat Sat 20 Mar",
+        "P: hinducalendar.php?year=2027&mon=march&loc=1261481: Pradosh Vrat (Shukla Trayodashi) 20 Mar"
+      ]
+    },
+    {
+      "date": "2027-03-21",
+      "key": "holika-dahan",
+      "tier": "status",
+      "theme": "holika",
+      "label": "Holika Dahan (Chhoti Holi)",
+      "names": [
+        {
+          "en": "Holika Dahan",
+          "hi": "होलिका दहन"
+        },
+        {
+          "en": "Holika Dahan Puja",
+          "hi": "होलिका दहन पूजा"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Holika Dahan + Chhoti Holi Sun 21 Mar",
+        "P: festivals/holi.html?loc=1261481: Purnima tithi 6:22 PM 21 Mar to 4:13 PM 22 Mar, so the Purnima evening (Holika Dahan) is 21 Mar (that page also names 22 Mar and Holi 23 Mar: it contradicts itself)"
+      ]
+    },
+    {
+      "date": "2027-03-22",
+      "key": "holi",
+      "tier": "big",
+      "theme": "holi",
+      "label": "Holi (Dhulandi)",
+      "names": [
+        {
+          "en": "Holi",
+          "hi": "होली"
+        },
+        {
+          "en": "Happy Holi",
+          "hi": "हैप्पी होली"
+        },
+        {
+          "en": "Rangwali Holi",
+          "hi": "रंगवाली होली"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Holi + Dol Purnima Mon 22 Mar",
+        "timeanddate.com/holidays/india/holi: Holi Mon 22 Mar 2027 (gazetted holiday); P (prokerala) lists Holi on Tue 23 Mar: the majority date 22 Mar is used"
+      ]
+    },
+    {
+      "date": "2027-03-25",
+      "key": "bhalachandra-sankashti",
+      "tier": "status",
+      "theme": "sankashti",
+      "label": "Bhalachandra Sankashti Chaturthi",
+      "names": [
+        {
+          "en": "Sankashti Chaturthi",
+          "hi": "संकष्टी चतुर्थी"
+        },
+        {
+          "en": "Bhalachandra Sankashti",
+          "hi": "भालचंद्र संकष्टी"
+        }
+      ],
+      "sources": [
+        "D: vrats/sankashti-chaturthi-dates.html?year=2027: Bhalachandra Sankashti Thu 25 Mar (moonrise 9:49 PM)",
+        "P: hinducalendar.php?year=2027&mon=march&loc=1261481: Tritiya at sunrise 25 Mar, Chaturthi at sunrise 26 Mar, so Chaturthi covers the 25 Mar moonrise"
+      ]
+    },
+    {
+      "date": "2027-03-30",
+      "key": "sheetala-ashtami",
+      "tier": "status",
+      "theme": "sheetala",
+      "label": "Sheetala Ashtami (Basoda)",
+      "names": [
+        {
+          "en": "Sheetala Ashtami",
+          "hi": "शीतला अष्टमी"
+        },
+        {
+          "en": "Basoda",
+          "hi": "बसोड़ा"
+        }
+      ],
+      "sources": [
+        "D: festivals/month/festivals-march.html?year=2027: Sheetala Ashtami + Basoda Tue 30 Mar",
+        "P: festivals/sheetala-ashtami.html?loc=1261481: 30 Mar 2027 (Ashtami 5:11 PM 29th to 7:40 PM 30th)"
       ]
     }
   ]

@@ -43,6 +43,8 @@ const NAMES = new RegExp('\\b(' + [
   // festival status Shorts (scripts/status-engine.mjs, automation/festivals.json) and the weekday day status Shorts
   'nahay', 'pradosh', 'sankashti', 'sakat', 'bhairav', 'kalbhairav', 'vivah', 'gita', 'lohri', 'sankranti', 'makar', 'uthani',
   'gopashtami', 'akshaya', 'amla', 'vaikuntha', 'baikunth', 'santoshi', 'gyaras', 'somvar', 'mangalvar', 'budhvar', 'guruvar', 'shukravar', 'shanivar', 'ravivar',
+  // Feb-Mar 2027 rows (festivals.json, 20 Nov 2026)
+  'basant', 'vasant', 'mahashivratri', 'holika', 'sheetala', 'basoda', 'mauni', 'somvati', 'phalgun',
 ].join('|') + ')', 'i');
 const GENERIC = new Set(['ki', 'ka', 'ke', 'aur', 'mein', 'me', 'se', 'ko', 'hai', 'ji', 'jai', 'shree', 'shri', 'katha', 'kahani',
   'darshan', 'status', 'video', 'shorts', 'sampoorn', 'mandir', 'dham', 'temple', 'kyun', 'kya', 'kaise', 'baba', 'part', 'the']);
@@ -407,7 +409,7 @@ if (s.bhajan_short === true) {
 // 15-30 s vertical: 2-3 darshan scenes with a big Hindi blessing (Devanagari overlay), an optional well-known mantra,
 // then the end card with the fixed share/subscribe line. Written in advance, so this check is strict.
 // Loop specs (`loop: true`, status engine, 11 Nov 2026): festival variants (slots eve / status / statusday) and the
-// morning day status Short: 3 scenes and NO end card (the video ends on its own first frame), 12-20 s, a bold Hindi hook
+// morning day status Short: 3 scenes and NO end card (the video ends on its own first frame), 15-30 s, a bold Hindi hook
 // on the first frame, "स्टेटस पर लगाएं" on screen, title "<Festival> Status <year> | <Hindi> स्टेटस वीडियो #Shorts".
 if (s.format === 'status') {
   const loop = s.loop === true;
@@ -429,6 +431,12 @@ if (s.format === 'status') {
     need(scenes.length === 3 && !hasEnd, `a loop status Short has exactly 3 scenes and no end card (it ends on its own first frame; has ${scenes.length})`);
     need(/स्टेटस/.test(`${s.cta || ''} ${scenes.map((sc) => sc.line || '').join(' ')}`), 'tell the viewer to put it on their status: cta "स्टेटस पर लगाएं 📲" or a line with "स्टेटस पर लगाएं"');
     need(scenes[0] && DEVANAGARI.test(scenes[0].big || '') && (scenes[0].big || '').length >= 6, 'scene 1: big must be the bold Hindi hook of the first frame, e.g. "कल है खाटू श्याम जन्मोत्सव 🙏"');
+    // Frame 0 = the deity's face (research 20 Nov 2026: the first 1-2 s decide viewed vs swiped away).
+    need(!scenes.some((sc) => sc.deity) || scenes[0]?.deity === true, 'scene 1: a deity scene opens the video (deity: true first; status-engine compose orders it)');
+    // The forwardable greeting of the last seconds (status-engine spec.send): Hindi, no share-count or follow bait.
+    const sd = s.send || {};
+    need(DEVANAGARI.test(sd.big || '') && [...(sd.big || '')].length <= 44 && (!sd.pre || [...sd.pre].length <= 30), 'send: the closing greeting { pre, big, pill } in Devanagari (big max 44, pre max 30 characters)');
+    need(!/\d|शेयर|फॉरवर्ड|कमेंट|लाइक|सब्सक्राइब|फॉलो|\b(share|forward|comment|like|subscribe|follow)\b/i.test(`${sd.pre || ''} ${sd.big || ''} ${sd.pill || ''}`), 'send: a greeting and "इसे अपने परिवार को भेजें 🙏" only: no share-count, comment, like, follow or subscribe ask');
   } else {
     need(scenes.length >= 3 && scenes.length <= 7, `2-6 darshan scenes plus the end card (6 = a big festival family spec) (has ${scenes.length} scenes)`);
   }
@@ -460,8 +468,8 @@ if (s.format === 'status') {
   // A big festival's base spec (story/status/2026-11-20.json) holds the pictures of all its variants: it is never
   // rendered itself, so only its variants have to fit the length.
   const family = !loop && scenes.length > 4;
-  // Loops 12-20 s (Shorts feed audit 17 Nov 2026: shorter loops get a higher average % viewed and replays).
-  const [lo, hi] = loop ? [12, 20] : [15, 30];
+  // Loops 15-30 s (research 20 Nov 2026: 15-30 s, an ending that flows back into frame 0; was 12-20 s after the 17 Nov audit).
+  const [lo, hi] = [15, 30];
   if (!family) need(secs >= lo && secs <= hi, `estimated length ${Math.round(secs)} s; a ${loop ? 'loop ' : ''}status video is ${lo}-${hi} s`);
   // A festival variant reuses its family's Kaggle clips (the base spec is what gets animated), so it may mark none.
   need(animated <= 3 && (animated >= 1 || s.slot), `mark 1-3 scenes with "animate" (has ${animated})`);
@@ -476,7 +484,14 @@ if (s.format === 'status') {
   need(!/[<>]/.test(yt + desc + (s.youtube_tags || '')), 'YouTube fields must not contain < or >');
   const tags = (s.youtube_tags || '').split(',').map((t) => t.trim()).filter(Boolean);
   need(tags.length >= 10 && tags.length <= 15 && DEVANAGARI.test(s.youtube_tags || ''), `youtube_tags: 10-15 tags with some Devanagari (has ${tags.length})`);
-  need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
+  if (loop) {
+    // Status loops (research 20 Nov 2026): the Instagram caption carries the forwardable greeting and the send line in
+    // Hindi (the same words as the video's last seconds), the rest Roman, and at most 5 hashtags.
+    const ig = String(s.instagram_caption || '');
+    const hindiOk = new Set([s.greeting, s.send?.pill].filter(Boolean).map((x) => x.trim()));
+    need(ig && ig.length <= 2200 && ig.split('\n').every((l) => !DEVANAGARI.test(l) || hindiOk.has(l.trim())), 'instagram_caption: Roman, 1-2200 characters (Hindi only in the greeting and send lines)');
+    need((ig.match(/#[\p{L}\p{N}_]+/gu) || []).length <= 5, 'instagram_caption: at most 5 hashtags (short, relevant captions)');
+  } else need(s.instagram_caption && s.instagram_caption.length <= 2200 && !DEVANAGARI.test(s.instagram_caption), 'instagram_caption: Roman, 1-2200 characters');
   need((s.facebook_caption || '').trim() && !DEVANAGARI.test(s.facebook_caption), 'facebook_caption: Roman, not empty');
   need(!BAIT.test(JSON.stringify(s)), 'remove engagement bait, fear or money/miracle promises');
   if (problems.length) {

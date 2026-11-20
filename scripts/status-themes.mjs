@@ -21,7 +21,13 @@ export const MANTRA = {
   bhairav: ['ॐ कालभैरवाय नमः', 'Kaal Bhairav naam mantra (Kashi parampara)'],
   gita: ['कर्मण्येवाधिकारस्ते मा फलेषु कदाचन', 'Shrimad Bhagavad Gita, adhyay 2, shlok 47'],
   ram: ['श्री राम जय राम जय जय राम', 'Shri Ram jap (Samarth Ramdas parampara)'],
+  saraswati: ['ॐ ऐं सरस्वत्यै नमः', 'Maa Saraswati ka beej mantra (Saraswati puja parampara)'],
 };
+
+// The forwardable greeting of the last 2-3 s (owner research 20 Nov 2026, ALGO-RESEARCH-2026-11.md: Instagram ranks
+// SENDS per reach highest for non-followers; festival wishes are what families forward). `wish` = [small line, big
+// line]; {name} = the variant's Hindi festival name. Default: "आपको और आपके परिवार को" / "<name> की शुभकामनाएं 🙏".
+export const DEFAULT_WISH = ['आपको और आपके परिवार को', '{name} की शुभकामनाएं 🙏'];
 
 const T = (o) => ({ playlist: 'Tyohar aur Vrat Kathayein', voice: 'hf_alpha', ...o });
 
@@ -95,6 +101,7 @@ export const THEMES = {
   }),
   amavasya: T({
     playlist: 'Tyohar aur Vrat Kathayein', deity: 'Pitru / Shiv ji', mantra: 'shiv',
+    wish: ['आप और आपके परिवार पर', 'पितरों का आशीर्वाद बना रहे 🙏'],
     desc: 'Amavasya par snan, daan aur pitron ko yaad karne ki parampara hai; shaam ko deep jalaya jata hai',
     hashtags: ['#Amavasya', '#AmavasyaStatus', '#Pitru', '#HarHarMahadev', '#Daan'],
     tags: ['Amavasya status', 'Amavasya whatsapp status', 'अमावस्या', 'अमावस्या स्टेटस', 'Amavasya 2026', 'Pitru status', 'पितरों का आशीर्वाद', 'Snan daan'],
@@ -223,18 +230,123 @@ export const THEMES = {
       { prompt: 'The ghats of Varanasi at night with rows of lit clay diyas on the stone steps, the river Ganga reflecting the lights, temple spires against a starry sky, peaceful festive night', motion: 'pan', hold: 6, big: 'जय श्री हरि', line: 'हर हर महादेव', tts: 'ॐ नमो भगवते वासुदेवाय।', sub: 'Om Namo Bhagavate Vasudevaya.', mantra: 'ॐ नमो भगवते वासुदेवाय' },
     ],
   }),
+  // ---- Feb-Mar 2027 (festivals.json, verified 20 Nov 2026 on Drik Panchang + Prokerala) ----
+  // Ganesh Jayanti, Magh Shukla Chaturthi (Drik 10 Feb 2027): Ganesh ji's birth anniversary in the Magh parampara
+  // (Tilkund Chaturthi in Maharashtra); til-gud bhog is the common custom.
+  ganeshjayanti: T({
+    playlist: 'Ganesh ji ki Kathayein', deity: 'Ganesh ji', mantra: 'ganesh',
+    desc: 'Magh Shukla Chaturthi ko Ganesh Jayanti manayi jati hai: parampara ke anusar is din Ganesh ji ki janm-tithi ki pooja hoti hai aur til-gud ke laddoo ka bhog lagta hai',
+    hashtags: ['#GaneshJayanti', '#GaneshJi', '#GanpatiBappaMorya', '#Vighnaharta'],
+    tags: ['Ganesh Jayanti status', 'Ganesh Jayanti 2027', 'गणेश जयंती', 'गणेश जयंती स्टेटस', 'Maghi Ganesh Jayanti', 'Ganpati Bappa Morya', 'गणपति बप्पा मोरया', 'Ganesh ji status'],
+    scenes: [
+      { prompt: `Divine darshan of ${GANESH}, seated on a golden throne decorated with red hibiscus, durva grass and marigold garlands, a plate of sesame and jaggery laddoos before him, warm festive temple light`, animate: 'a very slow push-in, diya flames flicker softly and flower petals drift, the face stays still', deity: true, motion: 'in', hold: 6, big: 'गणपति बप्पा मोरया', line: 'गणेश जयंती की शुभकामनाएं', tts: 'विघ्नहर्ता गणेश जी आपके घर सुख और समृद्धि लाएं।', sub: 'Vighnaharta Ganesh ji aapke ghar sukh aur samriddhi laayein.' },
+      { prompt: 'A brass plate of sesame and jaggery laddoos, modak, durva grass and red hibiscus flowers on a red cloth before a small decorated Ganesh shrine at a home altar, a lit diya, soft winter morning light', animate: 'the diya flame flickers and a few petals settle gently', motion: 'out', hold: 6, big: 'तिल-गुड़ का भोग', line: 'प्रथम पूज्य गणेश जी', tts: 'तिल गुड़ का भोग, और प्रथम पूज्य गणेश जी का आशीर्वाद।', sub: 'Til gud ka bhog, aur pratham poojya Ganesh ji ka ashirwad.' },
+      { prompt: 'A small old stone Ganesh temple decorated with marigold garlands and saffron flags at sunrise, a brass bell at the gate, a mouse figure on the steps, peaceful village morning', motion: 'pan', hold: 6, big: 'ॐ गं गणपतये नमः', mantra: 'ॐ गं गणपतये नमः', tts: 'ॐ गं गणपतये नमः।', sub: 'Om Gam Ganapataye Namah.' },
+    ],
+  }),
+  // Holika Dahan, Phalgun Purnima evening (Drik 21 Mar 2027). The katha is Bhakt Prahlad's bhakti and Bhagwan Narasimha's
+  // protection: the picture shows the pyre and Prahlad safe, never a person in the fire.
+  holika: T({
+    playlist: 'Vishnu ji aur Krishna ki Kathayein', deity: 'Bhagwan Narasimha / Bhakt Prahlad', mantra: 'vishnu',
+    desc: 'Phalgun Purnima ki shaam Holika Dahan hota hai: katha ke anusar Bhagwan Vishnu ne apne bhakt Prahlad ki raksha ki; yeh buraai par achchhai ki jeet aur bhakti ka parv hai',
+    hashtags: ['#HolikaDahan', '#Holi', '#BhaktPrahlad', '#JaiShreeHari'],
+    tags: ['Holika Dahan status', 'Holika Dahan 2027', 'होलिका दहन', 'होलिका दहन स्टेटस', 'Holi status', 'Bhakt Prahlad', 'भक्त प्रह्लाद', 'Holika puja'],
+    scenes: [
+      { prompt: 'Divine darshan of Bhagwan Narasimha with a calm, protective lion face, a golden mane and a jewelled crown, gently blessing the young boy devotee Prahlad who sits with folded hands and a peaceful smile, a warm golden glow around them, night sky', animate: 'a very slow push-in, the golden glow pulses softly, the faces stay still', deity: true, motion: 'in', hold: 6, big: 'बुराई पर अच्छाई की जीत', line: 'होलिका दहन की शुभकामनाएं', tts: 'भक्त प्रह्लाद की तरह, सच्ची भक्ति की सदा जीत हो।', sub: 'Bhakt Prahlad ki tarah, sachchi bhakti ki sada jeet ho.' },
+      { prompt: 'A tall traditional Holika pyre of wood and dried cow-dung cakes tied with a red and white sacred thread in a village square at night, glowing flames and sparks rising, families seen from behind walking around it with brass lotas of water', animate: 'the flames rise and sparks drift upward slowly, the people stay calm', motion: 'out', hold: 6, big: 'होली की अग्नि', line: 'मन की हर बुराई जल जाए', tts: 'होली की अग्नि में मन की हर बुराई जल जाए।', sub: 'Holi ki agni mein man ki har buraai jal jaaye.' },
+      { prompt: 'A brass puja thali with roli, rice, a coconut, raw cotton thread, green wheat ears, gulal and a lit diya on a red cloth, ready for Holika puja, warm night light', motion: 'pan', hold: 6, big: 'होलिका पूजा', line: 'कच्चा सूत, नारियल और गेहूं की बालियां', tts: 'ॐ नमो भगवते वासुदेवाय।', sub: 'Om Namo Bhagavate Vasudevaya.', mantra: 'ॐ नमो भगवते वासुदेवाय' },
+    ],
+  }),
+  // Sheetala Ashtami / Basoda, Chaitra Krishna Ashtami (Drik + Prokerala 30 Mar 2027): big in Rajasthan; food cooked the
+  // day before is offered cold to Maa Sheetala (donkey vahan, broom, kalash, neem: the common iconography).
+  sheetala: T({
+    playlist: 'Maa Durga aur Devi ki Kathayein', deity: 'Maa Sheetala', mantra: null,
+    desc: 'Chaitra Krishna Ashtami ko Sheetala Ashtami (Basoda) manayi jati hai: parampara ke anusar ek din pehle bana thanda bhojan Maa Sheetala ko bhog lagaya jata hai aur parivaar ke aarogya ki kaamna ki jati hai',
+    hashtags: ['#SheetalaAshtami', '#Basoda', '#SheetalaMata', '#JaiMataDi'],
+    tags: ['Sheetala Ashtami status', 'Sheetala Ashtami 2027', 'शीतला अष्टमी', 'शीतला अष्टमी स्टेटस', 'Basoda status', 'बसोड़ा', 'Sheetala Mata', 'शीतला माता'],
+    scenes: [
+      { prompt: 'Divine darshan of Maa Sheetala, a calm and gentle Hindu goddess with a kind face, a red saree and a silver crown, seated on a donkey, holding a small broom and a kalash of cool water, fresh neem leaves around her, a small Rajasthan village temple in soft morning light', animate: 'a very slow push-in, the neem leaves sway gently and the light glows softly, the face stays still', deity: true, motion: 'in', hold: 6, big: 'जय शीतला माता', line: 'शीतला अष्टमी की शुभकामनाएं', tts: 'शीतला माता आपके परिवार को आरोग्य और सुख दें।', sub: 'Sheetala Mata aapke parivaar ko aarogya aur sukh dein.' },
+      { prompt: 'A brass thali of basoda food made the day before, puris, sweet rice, curd, bajra roti and kanji in small clay pots, neem leaves and red flowers on a cloth at a home altar, cool morning light', animate: 'soft morning light moves slowly across the thali and the neem leaves stir gently', motion: 'out', hold: 6, big: 'बसोड़ा', line: 'ठंडे भोजन का भोग', tts: 'एक दिन पहले बने ठंडे भोजन का माँ को भोग।', sub: 'Ek din pehle bane thande bhojan ka Maa ko bhog.' },
+      { prompt: 'Women in colourful Rajasthani lehariya odhnis seen from behind walking at dawn to a small Sheetala Mata temple under a big neem tree, carrying covered brass thalis, a quiet village lane', motion: 'pan', hold: 6, big: 'माँ की कृपा', line: 'घर में सदा आरोग्य रहे', tts: 'जय शीतला माता! घर में सदा आरोग्य रहे।', sub: 'Jai Sheetala Mata! Ghar mein sada aarogya rahe.' },
+    ],
+  }),
   // ---- big festivals (6 scenes; each variant shows 3 of them) ----
+  // Basant (Vasant) Panchami, Magh Shukla Panchami (Drik + Prokerala 11 Feb 2027): Saraswati puja, yellow colours, spring.
+  basant: T({
+    playlist: 'Maa Durga aur Devi ki Kathayein', deity: 'Maa Saraswati', mantra: 'saraswati', big: true,
+    desc: 'Magh Shukla Panchami ko Basant Panchami manayi jati hai: Maa Saraswati ki pooja, peele vastra aur peele phoolon ke saath basant ritu ka swagat; parampara ke anusar is din vidya aarambh shubh mana jata hai',
+    hashtags: ['#BasantPanchami', '#VasantPanchami', '#MaaSaraswati', '#SaraswatiPuja', '#JaiMaaSaraswati'],
+    tags: ['Basant Panchami status', 'Basant Panchami 2027', 'Vasant Panchami status', 'बसंत पंचमी', 'बसंत पंचमी स्टेटस', 'सरस्वती पूजा', 'Saraswati Puja status', 'Maa Saraswati status', 'वसंत पंचमी', 'Happy Basant Panchami'],
+    scenes: [
+      { prompt: 'Divine darshan of Maa Saraswati, a serene Hindu goddess with a gentle smiling face, a white saree and a golden crown, playing the veena while seated on a white lotus beside a calm river, a white swan near her, yellow mustard flowers around, soft spring morning light', animate: 'a very slow push-in, the river ripples and mustard flowers sway gently, the face stays still', deity: true, motion: 'in', hold: 6, big: 'जय माँ सरस्वती', line: 'बसंत पंचमी की शुभकामनाएं', tts: 'माँ सरस्वती आपको विद्या, बुद्धि और सफलता दें।', sub: 'Maa Saraswati aapko vidya, buddhi aur safalta dein.' },
+      { prompt: 'Endless fields of bright yellow mustard flowers at sunrise in a north Indian village, a small temple with a saffron flag, butterflies, a clear spring sky', animate: 'the mustard flowers sway in the breeze and butterflies flutter slowly', motion: 'out', hold: 6, big: 'बसंत ऋतु', line: 'पीले फूलों से सजी धरती', tts: 'बसंत आया, धरती पीले फूलों से सज गई।', sub: 'Basant aaya, dharti peele phoolon se saj gayi.' },
+      { prompt: 'A home altar for Maa Saraswati with yellow flowers, a veena, books, a pen and an ink pot, a bowl of yellow sweet rice and a lit brass diya on a yellow cloth, warm morning light', motion: 'pan', hold: 6, big: 'विद्या का वरदान', line: 'किताब और कलम की पूजा', tts: 'आज किताब और कलम की पूजा, विद्या का वरदान।', sub: 'Aaj kitaab aur kalam ki pooja, vidya ka vardaan.' },
+      { prompt: 'Close darshan of Maa Saraswati with a calm gentle face, a white saree and a golden crown, holding a book and a rosary, a soft white halo behind her, a peacock beside her, white lotus flowers, serene light', animate: 'a very slow push-in, the halo glows softly and lotus petals drift, the face stays still', deity: true, motion: 'in', hold: 6, big: 'वीणा वादिनी', line: 'माँ शारदे की कृपा', tts: 'वीणा वादिनी माँ शारदे, सबके मन में ज्ञान का दीप जलाएं।', sub: 'Veena vadini Maa Sharde, sabke man mein gyaan ka deep jalayein.' },
+      { prompt: 'Children in yellow clothes seen from behind flying yellow and orange kites from a rooftop on a bright spring morning, a clear blue sky, mustard fields far away', animate: 'the kites float and sway in the breeze', motion: 'out', hold: 6, big: 'पीला रंग, नई उमंग', line: 'खुशियों का बसंत', tts: 'पीले रंग की नई उमंग, खुशियों का बसंत।', sub: 'Peele rang ki nayi umang, khushiyon ka Basant.' },
+      { prompt: 'Maa Saraswati with a calm face seated on a graceful white swan gliding over a lotus pond at dawn, the veena in her hands, a soft white and yellow glow', animate: 'the swan glides slowly and the water ripples, the face stays still', deity: true, motion: 'pan', hold: 6, big: 'ॐ ऐं सरस्वत्यै नमः', mantra: 'ॐ ऐं सरस्वत्यै नमः', tts: 'ॐ ऐं सरस्वत्यै नमः।', sub: 'Om Aim Saraswatyai Namah.' },
+    ],
+  }),
+  // Mahashivratri, Phalgun Krishna Chaturdashi (Drik + Prokerala 6 Mar 2027): night puja and jagran; Shiv-Parvati vivah
+  // is told as manyata.
+  mahashivratri: T({
+    playlist: 'Shiv ji ki Kathayein', deity: 'Shiv ji', mantra: 'shiv', big: true,
+    desc: 'Phalgun Krishna Chaturdashi ko Mahashivratri manayi jati hai: raat bhar Bhagwan Shiv ki pooja, jalabhishek, belpatra aur jagran; manyata hai ki isi din Shiv-Parvati ka vivah hua tha',
+    hashtags: ['#Mahashivratri', '#HarHarMahadev', '#OmNamahShivaya', '#Mahadev', '#Bholenath'],
+    tags: ['Mahashivratri status', 'Mahashivratri 2027', 'Maha Shivratri status', 'महाशिवरात्रि', 'महाशिवरात्रि स्टेटस', 'शिवरात्रि स्टेटस', 'Har Har Mahadev status', 'Bholenath status', 'Om Namah Shivaya', 'महादेव स्टेटस'],
+    scenes: [
+      { prompt: `${SHIV}, seated on a tiger skin on Mount Kailash under a starry night sky, a calm blue glow, a crescent moon above, snow peaks behind`, animate: 'the stars twinkle softly and a gentle mist drifts, the face stays still and serene', deity: true, motion: 'in', hold: 6, big: 'हर हर महादेव', line: 'महाशिवरात्रि की शुभकामनाएं', tts: 'भोलेनाथ आपके हर संकट को हर लें।', sub: 'Bholenath aapke har sankat ko har lein.' },
+      { prompt: 'A black stone Shivling at midnight in an old temple sanctum, a stream of milk and water being offered from a brass lota, bel leaves, white dhatura flowers and rudraksha, many small diyas glowing around it', animate: 'the milk stream flows slowly and the diya flames flicker', motion: 'out', hold: 6, big: 'जलाभिषेक', line: 'बेलपत्र, जल और दूध', tts: 'बेलपत्र, जल और दूध से भोलेनाथ का अभिषेक।', sub: 'Belpatra, jal aur doodh se Bholenath ka abhishek.' },
+      { prompt: 'A temple trident with a small damru tied to it, rudraksha malas and bel leaves on a stone altar, a deep blue night sky with a thin crescent moon, a Shiv temple spire glowing with lamps', motion: 'pan', hold: 6, big: 'रात्रि जागरण', line: 'रात भर शिव का ध्यान', tts: 'आज की रात शिव का ध्यान, मन को शांति देता है।', sub: 'Aaj ki raat Shiv ka dhyaan, man ko shanti deta hai.' },
+      { prompt: `${SHIV}, with Maa Parvati beside him in a red bridal saree on Mount Kailash, both with calm smiling faces, flowers falling from the sky, Nandi resting in front, a soft golden glow`, animate: 'flower petals drift down slowly and the golden glow pulses softly, the faces stay still', deity: true, motion: 'in', hold: 6, big: 'शिव-पार्वती', line: 'शिव-शक्ति का पावन पर्व', tts: 'शिव पार्वती की कृपा से घर में सुख शांति बनी रहे।', sub: 'Shiv Parvati ki kripa se ghar mein sukh shanti bani rahe.' },
+      { prompt: 'Devotees seen from behind walking at night towards a lit Shiv temple carrying brass kalash of water and bel leaves, saffron flags, temple bells and rows of oil lamps on the steps', animate: 'the lamp flames flicker and the flags flutter gently, the people walk calmly', motion: 'out', hold: 6, big: 'बम बम भोले', line: 'शिव भक्ति की रात', tts: 'बम बम भोले! शिव भक्ति की यह पावन रात।', sub: 'Bam Bam Bhole! Shiv bhakti ki yeh paavan raat.' },
+      { prompt: 'Close darshan of Bhagwan Shiv with a calm blue-grey face and closed eyes in meditation, a crescent moon and the Ganga in his matted hair, rudraksha malas, a soft blue glow and night stars behind', animate: 'a very slow push-in, the glow pulses softly and the Ganga stream shimmers in his hair, the face stays still', deity: true, motion: 'pan', hold: 6, big: 'ॐ नमः शिवाय', mantra: 'ॐ नमः शिवाय', tts: 'ॐ नमः शिवाय।', sub: 'Om Namah Shivaya.' },
+    ],
+  }),
+  // Holi (Dhulandi), the day after Holika Dahan (Drik 22 Mar 2027, gazetted holiday 22 Mar per timeanddate.com;
+  // Prokerala lists 23 Mar). Braj Holi of Radha-Krishna, and Baba Shyam's Phalgun Holi at Khatu (sheesh only).
+  holi: T({
+    playlist: 'Vishnu ji aur Krishna ki Kathayein', deity: 'Radha Krishna / Khatu Shyam ji', mantra: null, big: true,
+    desc: 'Phalgun Purnima ke baad Holi rangon, gulal aur prem ka tyohar hai: Braj mein Radha-Krishna ki Holi aur Khatu mein Phalgun mein Baba Shyam ke darbar ki Holi ki parampara hai',
+    hashtags: ['#Holi', '#HappyHoli', '#Holi2027', '#RadheKrishna', '#Bhakti'],
+    tags: ['Holi status', 'Holi 2027', 'Happy Holi status', 'होली', 'होली स्टेटस', 'होली की शुभकामनाएं', 'Radha Krishna Holi status', 'राधा कृष्ण होली', 'Holi whatsapp status', 'Khatu Shyam Holi'],
+    scenes: [
+      { prompt: 'Divine darshan of Radha and Krishna playing Holi in a Vrindavan garden, Krishna with a peacock feather crown, blue complexion and a joyful smile, Radha in a red lehenga smiling, soft clouds of pink, yellow and green gulal in the air, flower petals, warm spring light', animate: 'soft clouds of gulal drift slowly and petals fall, the faces stay still', deity: true, motion: 'in', hold: 6, big: 'होली है', line: 'रंगों का पावन त्योहार', tts: 'राधा कृष्ण के प्रेम के रंग आपके जीवन में भर जाएं।', sub: 'Radha Krishna ke prem ke rang aapke jeevan mein bhar jaayein.' },
+      { prompt: 'Brass bowls full of bright gulal powders in pink, yellow, green and orange with marigold flowers, a brass pichkari and a plate of gujiya sweets on a white cloth, festive morning light', animate: 'a little gulal powder drifts up softly in the light', motion: 'out', hold: 6, big: 'रंग, गुलाल, गुजिया', line: 'मिठास और रंगों की होली', tts: 'रंग, गुलाल और गुजिया की मिठास से भरी होली।', sub: 'Rang, gulal aur gujiya ki mithaas se bhari Holi.' },
+      { prompt: 'Families in white clothes seen from behind playing Holi with colourful gulal in a Rajasthani haveli courtyard, flower petals in the air, a dhol in the corner, joyful festive mood', motion: 'pan', hold: 6, big: 'अपनों के संग', line: 'प्रेम और भाईचारे की होली', tts: 'अपनों के संग, प्रेम और भाईचारे की होली।', sub: 'Apno ke sang, prem aur bhaichare ki Holi.' },
+      { prompt: `Darshan of ${SHEESH}, decorated for Phalgun with pink, yellow and green flower garlands and a little gulal, rose petals drifting, a festive temple sanctum with diyas`, animate: 'rose petals drift slowly and the diya light glows, the face stays still', deity: true, motion: 'in', hold: 6, big: 'श्याम संग होली', line: 'खाटू में फाल्गुन की होली', tts: 'बाबा श्याम के दरबार में फाल्गुन की होली।', sub: 'Baba Shyam ke darbar mein Phalgun ki Holi.' },
+      { prompt: 'A Krishna temple courtyard in Vrindavan showered with rose and marigold petals during phoolon ki Holi, priests seen from behind throwing petals, colourful soft light, devotional joy', animate: 'flower petals fall slowly through the air', motion: 'out', hold: 6, big: 'फूलों की होली', line: 'वृंदावन की प्रेम भरी होली', tts: 'वृंदावन की फूलों वाली, प्रेम भरी होली।', sub: 'Vrindavan ki phoolon wali, prem bhari Holi.' },
+      { prompt: 'Close darshan of Shri Krishna with a peacock feather crown, blue complexion and a joyful smile, a touch of pink gulal on his cheeks, holding a flute, soft clouds of colourful gulal behind him', animate: 'a very slow push-in, the gulal clouds drift softly, the face stays still', deity: true, motion: 'pan', hold: 6, big: 'राधे राधे', line: 'बांके बिहारी की जय', tts: 'राधे राधे! बांके बिहारी लाल की जय।', sub: 'Radhe Radhe! Banke Bihari Lal ki jai.' },
+    ],
+  }),
+  // Khatu Shyam ji Phalgun (Lakkhi) mela: the channel's biggest yearly moment. Main day = Phalgun Shukla Ekadashi
+  // (Amalaki Ekadashi, Drik + Prokerala 18 Mar 2027); the mela runs to Dwadashi (khatu.org: the sheesh appeared at Shyam
+  // Kund on Phalgun Sudi Ekadashi and was offered on Dwadashi; 2026 mela: Phalgun Shukla Chaturthi-Dwadashi, 21-28 Feb).
+  // Nishan yatra = devotees walking from Ringas to Khatu with flags. Khatu Shyam ji is the sheesh only.
+  phalgunmela: T({
+    playlist: 'Khatu Shyam ji ki Kathayein', deity: 'Khatu Shyam ji', mantra: null, big: true,
+    desc: 'Phalgun Shukla Ekadashi ko Khatu Dham mein Baba Shyam ka Phalgun (Lakkhi) mela bharta hai: lakhon bhakt Ringas se nishan lekar paidal yatra karte hain; manyata hai ki Phalgun Sudi Ekadashi ko Shyam Kund mein Baba ka sheesh prakat hua',
+    hashtags: ['#KhatuShyam', '#JaiShreeShyam', '#PhalgunMela', '#KhatuShyamMela', '#HaareKaSahara'],
+    tags: ['Khatu Shyam mela status', 'Khatu Shyam Phalgun mela 2027', 'खाटू श्याम मेला', 'खाटू श्याम मेला स्टेटस', 'Phalgun mela Khatu', 'फाल्गुन मेला', 'Lakkhi mela Khatu', 'निशान यात्रा', 'Jai Shree Shyam', 'हारे का सहारा'],
+    scenes: [
+      { prompt: `Darshan of ${SHEESH}, decorated for the Phalgun mela with fresh rose and marigold garlands and colourful flowers, glowing diyas, a grand festive sanctum`, animate: 'the diya light glows and a few rose petals drift slowly, the face stays still', deity: true, motion: 'in', hold: 6, big: 'जय श्री श्याम', line: 'बाबा श्याम का फाल्गुन मेला', tts: 'हारे का सहारा, बाबा श्याम हमारा! फाल्गुन मेले की जय।', sub: 'Haare ka sahara, Baba Shyam hamara! Phalgun mele ki jai.' },
+      { prompt: 'Thousands of devotees seen from behind walking on a long country road in Rajasthan towards Khatu, carrying tall saffron, blue and red nishan flags, morning sun, joyful pilgrimage', animate: 'the nishan flags flutter in the breeze and the people walk slowly ahead', motion: 'out', hold: 6, big: 'निशान यात्रा', line: 'रींगस से खाटू तक पैदल', tts: 'रींगस से खाटू तक, निशान लेकर पैदल यात्रा।', sub: 'Ringas se Khatu tak, nishan lekar paidal yatra.' },
+      { prompt: 'A grand white marble Hindu temple in a small Rajasthan town at night lit with warm lights and flower decorations, saffron flags on top, a festive crowd seen from far away, a glowing sky', motion: 'pan', hold: 6, big: 'खाटू धाम', line: 'हारे का सहारा, बाबा श्याम हमारा', tts: 'खाटू धाम में आज भक्ति का सागर उमड़ा है।', sub: 'Khatu Dham mein aaj bhakti ka saagar umda hai.' },
+      { prompt: `Close darshan of ${SHEESH}, with a soft golden glow, rose petals drifting in front, devotional evening light`, animate: 'a very slow push-in, rose petals drift and the golden glow pulses softly, the face stays still', deity: true, motion: 'in', hold: 6, big: 'फाल्गुन एकादशी', line: 'बाबा के दरबार में लक्खी मेला', tts: 'फाल्गुन एकादशी पर बाबा श्याम सबकी झोली भरें।', sub: 'Phalgun Ekadashi par Baba Shyam sabki jholi bharein.' },
+      { prompt: 'A holy stepped temple pond in Rajasthan at dawn, devotees seen from behind with folded hands at the water, temple bells and saffron flags around it, soft mist and golden light', animate: 'the water ripples softly and the mist drifts', motion: 'out', hold: 6, big: 'श्याम कुंड', line: 'मान्यता: यहीं प्रकट हुआ बाबा का शीश', tts: 'मान्यता है, श्याम कुंड में बाबा का शीश प्रकट हुआ।', sub: 'Manyata hai, Shyam Kund mein Baba ka sheesh prakat hua.' },
+      { prompt: `Darshan of ${SHEESH}, at night with rows of lit diyas and soft colourful flower petals for Phalgun, a devotional glow`, animate: 'the diya flames flicker and petals drift gently, the face stays still', deity: true, motion: 'pan', hold: 6, big: 'हारे का सहारा', line: 'बाबा श्याम सबकी झोली भरें', tts: 'जय श्री श्याम! बाबा श्याम सबकी झोली भरें।', sub: 'Jai Shree Shyam! Baba Shyam sabki jholi bharein.' },
+    ],
+  }),
   devdeepawali: T({
     playlist: 'Shiv ji ki Kathayein', deity: 'Shiv ji / Ganga Maiya', mantra: 'shiv', big: true,
     desc: 'Kartik Purnima ko Kashi mein Dev Deepawali manayi jati hai: Ganga ghaton par lakhon deep jalaye jate hain; parampara ke anusar isi din Bhagwan Shiv ne Tripurasur ka ant kiya aur devtaon ne deep jalaye',
     hashtags: ['#DevDeepawali', '#KartikPurnima', '#Kashi', '#Varanasi', '#HarHarMahadev', '#GangaAarti'],
     tags: ['Dev Deepawali status', 'Dev Deepawali 2026', 'Kartik Purnima status', 'देव दीपावली', 'देव दीपावली स्टेटस', 'कार्तिक पूर्णिमा', 'Kashi Dev Deepawali', 'Varanasi ghat diye', 'Ganga aarti status', 'Har Har Mahadev'],
     scenes: [
-      { prompt: 'The ghats of Varanasi on Dev Deepawali night glowing with countless clay diyas along every stone step, the river Ganga reflecting the lights, temple spires, a full moon above', animate: 'the diya flames flicker and their reflections shimmer on the rippling river', motion: 'in', hold: 6, big: 'देव दीपावली', line: 'काशी में देवों की दिवाली', tts: 'काशी के घाटों पर आज देवों की दिवाली है।', sub: 'Kashi ke ghaton par aaj devon ki Diwali hai.' },
-      { prompt: `${SHIV}, seated on a white rock above the Ganga at Kashi at night, lakhs of diyas glowing on the ghats below, a full moon behind his head`, animate: 'a very slow push-in, the river lights shimmer and the moon glows softly, the face stays still', deity: true, motion: 'out', hold: 6, big: 'हर हर महादेव', line: 'बाबा विश्वनाथ की जय', tts: 'बाबा विश्वनाथ की कृपा से हर घर रोशन रहे।', sub: 'Baba Vishwanath ki kripa se har ghar roshan rahe.' },
+      { prompt: `${SHIV}, seated on a white rock above the Ganga at Kashi at night, lakhs of diyas glowing on the ghats below, a full moon behind his head`, animate: 'a very slow push-in, the river lights shimmer and the moon glows softly, the face stays still', deity: true, motion: 'in', hold: 6, big: 'हर हर महादेव', line: 'बाबा विश्वनाथ की जय', tts: 'बाबा विश्वनाथ की कृपा से हर घर रोशन रहे।', sub: 'Baba Vishwanath ki kripa se har ghar roshan rahe.' },
+      { prompt: 'The ghats of Varanasi on Dev Deepawali night glowing with countless clay diyas along every stone step, the river Ganga reflecting the lights, temple spires, a full moon above', animate: 'the diya flames flicker and their reflections shimmer on the rippling river', motion: 'out', hold: 6, big: 'देव दीपावली', line: 'काशी में देवों की दिवाली', tts: 'काशी के घाटों पर आज देवों की दिवाली है।', sub: 'Kashi ke ghaton par aaj devon ki Diwali hai.' },
       { prompt: 'Leaf boats carrying lit diyas and marigold flowers floating on the river Ganga at night, thousands of small lights drifting, a ghat with lamps in soft focus', motion: 'pan', hold: 6, big: 'दीपदान', line: 'माँ गंगा को दीप अर्पण', tts: 'माँ गंगा को दीपदान, मन को शांति देता है।', sub: 'Maa Ganga ko deepdaan, man ko shanti deta hai.' },
-      { prompt: 'Priests in saffron performing the grand Ganga aarti with tall multi-tiered brass lamps on a Varanasi ghat at night, conch shells, bells and marigold decorations, golden glow', animate: 'the large aarti lamps move slowly in circles and the flames glow, smoke drifts', motion: 'in', hold: 6, big: 'गंगा आरती', line: 'जय गंगा मैया', tts: 'जय गंगा मैया! हर हर गंगे।', sub: 'Jai Ganga Maiya! Har Har Gange.' },
-      { prompt: 'A bright full moon over the river Ganga at Kashi on Kartik Purnima, temple spires and ghats outlined with glowing diyas, a peaceful night', motion: 'out', hold: 6, big: 'कार्तिक पूर्णिमा', line: 'स्नान, दान और दीप', tts: 'कार्तिक पूर्णिमा पर स्नान, दान और दीप का महत्व है।', sub: 'Kartik Purnima par snan, daan aur deep ka mahatva hai.' },
+      { prompt: 'Divine darshan of Maa Ganga, a serene Hindu goddess with a gentle face, fair complexion, a white and blue saree and a silver crown, seated on her makara vahan on the river at Kashi on Kartik Purnima night, holding a kalash and a lotus, rows of lit diyas on the ghats behind her, a full moon above', animate: 'a very slow push-in, the river ripples and the diya lights shimmer softly, the face stays still', deity: true, motion: 'in', hold: 6, big: 'कार्तिक पूर्णिमा', line: 'जय गंगा मैया', tts: 'कार्तिक पूर्णिमा पर माँ गंगा सबका कल्याण करें।', sub: 'Kartik Purnima par Maa Ganga sabka kalyan karein.' },
+      { prompt: 'Priests in saffron performing the grand Ganga aarti with tall multi-tiered brass lamps on a Varanasi ghat at night, conch shells, bells and marigold decorations, golden glow', animate: 'the large aarti lamps move slowly in circles and the flames glow, smoke drifts', motion: 'out', hold: 6, big: 'गंगा आरती', line: 'जय गंगा मैया', tts: 'जय गंगा मैया! हर हर गंगे।', sub: 'Jai Ganga Maiya! Har Har Gange.' },
       { prompt: 'A stone Shivling on a Varanasi ghat surrounded by rows of lit clay diyas, bel leaves and white flowers, the glowing river and boats behind, devotional night', animate: 'the diya flames flicker softly and the river lights shimmer', deity: true, motion: 'pan', hold: 6, big: 'ॐ नमः शिवाय', mantra: 'ॐ नमः शिवाय', tts: 'ॐ नमः शिवाय।', sub: 'Om Namah Shivaya.' },
     ],
   }),
@@ -247,7 +359,7 @@ export const THEMES = {
       { prompt: 'Surya dev, the radiant sun god with a golden crown and a calm face, riding a golden chariot pulled by seven white horses across a glowing sunrise sky above clouds', animate: 'the horses gallop slowly in place, golden sun rays shimmer, the face stays still', deity: true, motion: 'in', hold: 6, big: 'मकर संक्रांति', line: 'सूर्य देव की जय', tts: 'सूर्य देव आपके जीवन में नई रोशनी और ऊर्जा भरें।', sub: 'Surya dev aapke jeevan mein nayi roshni aur urja bharein.' },
       { prompt: 'Colourful kites flying over old Rajasthani rooftops on a bright winter morning, families flying kites seen from behind, a clear blue sky, festive mood', animate: 'the kites float and sway in the breeze, the strings move gently', motion: 'out', hold: 6, big: 'पतंग उत्सव', line: 'खुशियों की ऊँची उड़ान', tts: 'आपकी खुशियाँ भी पतंग की तरह ऊँची उड़ें।', sub: 'Aapki khushiyan bhi patang ki tarah oonchi udein.' },
       { prompt: 'A brass plate of sesame and jaggery laddoos, chikki, khichdi in a clay pot and a lit diya on a red cloth, marigold flowers, warm winter sunlight', motion: 'pan', hold: 6, big: 'तिल-गुड़', line: 'मीठा खाओ, मीठा बोलो', tts: 'तिल गुड़ खाओ, और मीठा मीठा बोलो।', sub: 'Til gud khao, aur meetha meetha bolo.' },
-      { prompt: 'Devotees taking a holy dip at the sangam at sunrise on a misty winter morning, offering water to the rising sun with folded hands, seen from behind, saffron flags on the bank', animate: 'the river ripples, mist drifts slowly and the sunlight sparkles on the water', motion: 'in', hold: 6, big: 'संक्रांति स्नान', line: 'गंगा स्नान और दान', tts: 'संक्रांति पर स्नान और दान का बड़ा महत्व है।', sub: 'Sankranti par snan aur daan ka bada mahatva hai.' },
+      { prompt: 'Divine darshan of Surya dev with a calm radiant golden face and a golden crown, rising in a glowing sun disc above the misty sangam on a winter sunrise, devotees in the river below offering water with folded hands seen from behind, saffron flags on the bank', animate: 'a very slow push-in, the river ripples, mist drifts slowly and the golden rays shimmer, the face stays still', deity: true, motion: 'in', hold: 6, big: 'संक्रांति स्नान', line: 'गंगा स्नान और दान', tts: 'संक्रांति पर स्नान और दान का बड़ा महत्व है।', sub: 'Sankranti par snan aur daan ka bada mahatva hai.' },
       { prompt: 'Golden sunrise over green mustard and wheat fields with a small village temple, a farmer family offering water to the sun, birds flying, the start of Uttarayan', motion: 'out', hold: 6, big: 'उत्तरायण', line: 'नई फसल, नई उम्मीद', tts: 'आज से उत्तरायण शुरू, नई फसल और नई उम्मीद।', sub: 'Aaj se Uttarayan shuru, nayi fasal aur nayi ummeed.' },
       { prompt: 'Close-up darshan of Surya dev with a radiant golden face and crown, a glowing sun disc behind his head, lotus flowers in his hands, warm sunrise colours', animate: 'a very slow push-in, the golden rays shimmer softly, the face stays still', deity: true, motion: 'pan', hold: 6, big: 'ॐ सूर्याय नमः', mantra: 'ॐ सूर्याय नमः', tts: 'ॐ सूर्याय नमः।', sub: 'Om Suryaya Namah.' },
     ],
@@ -259,13 +371,13 @@ export const DEFAULT_PICKS = { 3: [[0, 1, 2], [1, 2, 0], [2, 0, 1]], 6: [[0, 1, 
 
 /** Weekday "day status" Shorts (morning slot of normal days; Ekadashi days: Gyaras Khatu Shyam). names rotate weekly. */
 export const DAY_THEMES = {
-  1: T({ key: 'somvar-mahadev', playlist: 'Shiv ji ki Kathayein', deity: 'Shiv ji (Somvar)', mantra: 'shiv',
+  1: T({ key: 'somvar-mahadev', wish: ['आपका दिन मंगलमय हो', 'शुभ सोमवार, हर हर महादेव 🙏'], playlist: 'Shiv ji ki Kathayein', deity: 'Shiv ji (Somvar)', mantra: 'shiv',
     names: [{ en: 'Somvar Mahadev', hi: 'सोमवार महादेव' }, { en: 'Somvar Shiv ji', hi: 'सोमवार शिव जी' }, { en: 'Monday Mahadev', hi: 'मंडे महादेव' }, { en: 'Somvar Bholenath', hi: 'सोमवार भोलेनाथ' }],
     hooks: ['सोमवार: हर हर महादेव 🙏', 'जय भोलेनाथ! शुभ सोमवार 🙏'],
     desc: 'Somvar Bhagwan Shiv ka din hai', hashtags: ['#SomvarStatus', '#Mahadev', '#HarHarMahadev', '#OmNamahShivaya', '#Bholenath'],
     tags: ['Somvar status', 'Mahadev status', 'Monday Mahadev status', 'सोमवार स्टेटस', 'महादेव स्टेटस', 'शुभ सोमवार', 'Har Har Mahadev', 'Bholenath status', 'Om Namah Shivaya'],
     scenes: THEMES.shivratri.scenes.map((s, i) => (i === 0 ? { ...s, big: 'शुभ सोमवार', line: 'भोलेनाथ की कृपा बनी रहे', tts: 'भोलेनाथ की कृपा से आपका पूरा हफ्ता शुभ हो।', sub: 'Bholenath ki kripa se aapka poora hafta shubh ho.' } : s)) }),
-  2: T({ key: 'mangalvar-salasar-balaji', playlist: 'Hanuman ji ki Kathayein', deity: 'Hanuman ji / Salasar Balaji (Mangalvar)', mantra: 'ram', voice: 'hm_omega',
+  2: T({ key: 'mangalvar-salasar-balaji', wish: ['आपका दिन मंगलमय हो', 'शुभ मंगलवार, जय बजरंगबली 🙏'], playlist: 'Hanuman ji ki Kathayein', deity: 'Hanuman ji / Salasar Balaji (Mangalvar)', mantra: 'ram', voice: 'hm_omega',
     names: [{ en: 'Mangalvar Hanuman ji', hi: 'मंगलवार हनुमान जी' }, { en: 'Salasar Balaji', hi: 'सालासर बालाजी', lead: 0 }, { en: 'Mangalvar Bajrangbali', hi: 'मंगलवार बजरंगबली' }, { en: 'Tuesday Hanuman ji', hi: 'मंगलवार हनुमान' }],
     hooks: ['मंगलवार: जय बजरंगबली 🙏', 'जय सालासर बालाजी 🙏'],
     desc: 'Mangalvar Hanuman ji ka din hai; Salasar (Churu, Rajasthan) mein Balaji daadhi-moochh wale roop mein pooje jate hain', hashtags: ['#MangalvarStatus', '#HanumanJi', '#SalasarBalaji', '#JaiBajrangbali', '#JaiShreeRam'],
@@ -275,19 +387,19 @@ export const DAY_THEMES = {
       { prompt: 'Hanuman ji flying over the ocean carrying the Sanjeevani mountain in one hand, a mace in the other, powerful and calm, golden sunset clouds', animate: 'the clouds drift past and the sunlight glows, Hanuman ji stays steady', deity: true, motion: 'out', hold: 6, big: 'संकट मोचन', line: 'जय बजरंगबली', tts: 'संकट मोचन हनुमान जी, सदा आपके साथ हैं।', sub: 'Sankat Mochan Hanuman ji, sada aapke saath hain.' },
       { prompt: 'Hanuman ji kneeling with folded hands before Shri Ram and Maa Sita in a golden palace hall, devotional light, flowers', motion: 'pan', hold: 6, big: 'जय श्री राम', mantra: 'श्री राम जय राम जय जय राम', tts: 'श्री राम जय राम जय जय राम।', sub: 'Shri Ram Jai Ram Jai Jai Ram.' },
     ] }),
-  3: T({ key: 'budhvar-ganesh', playlist: 'Ganesh ji ki Kathayein', deity: 'Ganesh ji (Budhvar)', mantra: 'ganesh',
+  3: T({ key: 'budhvar-ganesh', wish: ['आपका दिन शुभ हो', 'शुभ बुधवार, गणपति बप्पा मोरया 🙏'], playlist: 'Ganesh ji ki Kathayein', deity: 'Ganesh ji (Budhvar)', mantra: 'ganesh',
     names: [{ en: 'Budhvar Ganesh ji', hi: 'बुधवार गणेश जी' }, { en: 'Ganpati Bappa', hi: 'गणपति बप्पा' }, { en: 'Budhvar Ganpati', hi: 'बुधवार गणपति' }],
     hooks: ['बुधवार: गणपति बप्पा मोरया 🙏', 'जय गणेश देवा! शुभ बुधवार 🙏'],
     desc: 'Budhvar Ganesh ji ka din hai', hashtags: ['#BudhvarStatus', '#GaneshJi', '#GanpatiBappaMorya', '#Vighnaharta'],
     tags: ['Budhvar status', 'Ganesh ji status', 'Ganpati Bappa status', 'बुधवार स्टेटस', 'गणेश जी स्टेटस', 'गणपति बप्पा मोरया', 'Wednesday Ganesh status', 'Vighnaharta'],
     scenes: THEMES.sankashti.scenes.map((s, i) => (i === 1 ? { prompt: 'A grand Ganesh temple sanctum decorated with marigold and rose garlands, brass bells and rows of lit diyas, devotees with folded hands in soft focus, golden morning light', animate: 'the bells sway gently and the diya flames flicker', motion: 'out', hold: 6, big: 'शुभ बुधवार', line: 'हर काम में शुभ आरंभ', tts: 'गणेश जी के आशीर्वाद से हर काम का शुभ आरंभ हो।', sub: 'Ganesh ji ke ashirwad se har kaam ka shubh aarambh ho.' } : s)) }),
-  4: T({ key: 'guruvar-vishnu', playlist: 'Vishnu ji aur Krishna ki Kathayein', deity: 'Vishnu ji / Sai Baba (Guruvar)', mantra: 'vishnu',
+  4: T({ key: 'guruvar-vishnu', wish: ['आपका दिन शुभ हो', 'शुभ गुरुवार, जय श्री हरि 🙏'], playlist: 'Vishnu ji aur Krishna ki Kathayein', deity: 'Vishnu ji / Sai Baba (Guruvar)', mantra: 'vishnu',
     names: [{ en: 'Guruvar Vishnu ji', hi: 'गुरुवार विष्णु जी', lead: 0 }, { en: 'Guruvar Sai Baba', hi: 'गुरुवार साईं बाबा', lead: 1 }, { en: 'Thursday Vishnu ji', hi: 'गुरुवार श्री हरि', lead: 2 }],
     hooks: ['गुरुवार: जय श्री हरि 🙏', 'ॐ साईं राम! शुभ गुरुवार 🙏'],
     desc: 'Guruvar Bhagwan Vishnu (aur bahut se bhakton ke liye Sai Baba) ka din hai', hashtags: ['#GuruvarStatus', '#JaiShreeHari', '#VishnuJi', '#SaiBaba', '#OmSaiRam'],
     tags: ['Guruvar status', 'Vishnu ji status', 'Sai Baba status', 'गुरुवार स्टेटस', 'विष्णु जी स्टेटस', 'साईं बाबा स्टेटस', 'Thursday status', 'Om Sai Ram', 'Jai Shree Hari'],
     scenes: [THEMES.ekadashi.scenes[0], { prompt: 'Shirdi Sai Baba seated calmly on a stone with one leg folded, white kafni robe and white head cloth, a gentle blessing hand, an old Dwarkamai mosque wall behind, warm lamp light', animate: 'a very slow push-in, the lamp light glows softly, the face stays still', deity: true, motion: 'out', hold: 6, big: 'ॐ साईं राम', line: 'श्रद्धा और सबूरी', tts: 'श्रद्धा और सबूरी, जीवन को आसान बना देती है।', sub: 'Shraddha aur saburi, jeevan ko aasaan bana deti hai.' }, THEMES.ekadashi.scenes[2]] }),
-  5: T({ key: 'shukravar-lakshmi', playlist: 'Maa Durga aur Devi ki Kathayein', deity: 'Maa Lakshmi / Santoshi Mata (Shukravar)', mantra: 'lakshmi',
+  5: T({ key: 'shukravar-lakshmi', wish: ['आपका दिन शुभ हो', 'शुभ शुक्रवार, जय माता दी 🙏'], playlist: 'Maa Durga aur Devi ki Kathayein', deity: 'Maa Lakshmi / Santoshi Mata (Shukravar)', mantra: 'lakshmi',
     names: [{ en: 'Shukravar Lakshmi Mata', hi: 'शुक्रवार लक्ष्मी माता', lead: 0 }, { en: 'Santoshi Mata', hi: 'संतोषी माता', lead: 1 }, { en: 'Shukravar Maa Lakshmi', hi: 'शुक्रवार माँ लक्ष्मी' }],
     hooks: ['शुक्रवार: जय माँ लक्ष्मी 🙏', 'जय संतोषी माता! शुभ शुक्रवार 🙏'],
     desc: 'Shukravar Maa Lakshmi aur Santoshi Mata ka din hai', hashtags: ['#ShukravarStatus', '#MaaLakshmi', '#SantoshiMata', '#JaiMataDi'],
@@ -297,7 +409,7 @@ export const DAY_THEMES = {
       { prompt: 'Divine darshan of Santoshi Mata, a gentle Hindu goddess in a red saree with a golden crown, holding a trident, a sword and a bowl of rice, a calm smile, a decorated temple sanctum with lamps', animate: 'the lamp flames flicker softly and flower petals drift, the face stays still', deity: true, motion: 'out', hold: 6, big: 'जय संतोषी माता', line: 'मन में संतोष, घर में सुख', tts: 'मन में संतोष हो, तो घर में सुख आता है।', sub: 'Man mein santosh ho, to ghar mein sukh aata hai.' },
       { prompt: 'A home altar on Friday evening with a silver kalash, lotus flowers, a lit diya, kumkum and a plate of gud-chana, a soft rangoli in front, warm light', motion: 'pan', hold: 6, big: 'ॐ श्रीं महालक्ष्म्यै नमः', mantra: 'ॐ श्रीं महालक्ष्म्यै नमः', tts: 'ॐ श्रीं महालक्ष्म्यै नमः।', sub: 'Om Shreem Mahalakshmyai Namah.' },
     ] }),
-  6: T({ key: 'shanivar-shani-dev', playlist: 'Shani Dev ki Kathayein', deity: 'Shani dev (Shanivar)', mantra: 'shani', voice: 'hm_omega',
+  6: T({ key: 'shanivar-shani-dev', wish: ['आपका दिन शुभ हो', 'शुभ शनिवार, जय शनि देव 🙏'], playlist: 'Shani Dev ki Kathayein', deity: 'Shani dev (Shanivar)', mantra: 'shani', voice: 'hm_omega',
     names: [{ en: 'Shanivar Shani Dev', hi: 'शनिवार शनि देव' }, { en: 'Shani Dev', hi: 'शनि देव' }, { en: 'Saturday Shani Dev', hi: 'शनिवार शनि महाराज' }],
     hooks: ['शनिवार: जय शनि देव 🙏', 'जय शनि महाराज! शुभ शनिवार 🙏'],
     desc: 'Shanivar Shani dev ka din hai; peepal ke neeche sarson ke tel ka deepak jalane ki parampara hai', hashtags: ['#ShanivarStatus', '#ShaniDev', '#JaiShaniDev', '#ShaniMaharaj'],
@@ -307,13 +419,13 @@ export const DAY_THEMES = {
       { prompt: 'A clay diya with mustard oil glowing under a huge old peepal tree on a Saturday evening, black sesame seeds and blue flowers offered, a small Shani shrine nearby, twilight', animate: 'the diya flame flickers and the peepal leaves sway gently', motion: 'out', hold: 6, big: 'पीपल का दीपक', line: 'शनिवार की शाम', tts: 'शनिवार की शाम, पीपल के नीचे एक दीपक जलाइए।', sub: 'Shanivar ki shaam, peepal ke neeche ek deepak jalaiye.' },
       { prompt: 'Hanuman ji in a calm blessing pose beside Shani dev in a temple painting style, oil lamps and blue flowers, devotional light', deity: true, motion: 'pan', hold: 6, big: 'ॐ शं शनैश्चराय नमः', mantra: 'ॐ शं शनैश्चराय नमः', tts: 'ॐ शं शनैश्चराय नमः।', sub: 'Om Sham Shanaishcharaya Namah.' },
     ] }),
-  0: T({ key: 'ravivar-surya-dev', playlist: 'Surya Dev ki Kathayein', deity: 'Surya dev (Ravivar)', mantra: 'surya', voice: 'hm_omega',
+  0: T({ key: 'ravivar-surya-dev', wish: ['आपका दिन शुभ हो', 'शुभ रविवार, जय सूर्य देव 🙏'], playlist: 'Surya Dev ki Kathayein', deity: 'Surya dev (Ravivar)', mantra: 'surya', voice: 'hm_omega',
     names: [{ en: 'Ravivar Surya Dev', hi: 'रविवार सूर्य देव' }, { en: 'Surya Dev', hi: 'सूर्य देव' }, { en: 'Sunday Surya Dev', hi: 'रविवार सूर्य नारायण' }],
     hooks: ['रविवार: जय सूर्य देव 🙏', 'जय सूर्य नारायण! शुभ रविवार 🙏'],
     desc: 'Ravivar Surya dev ka din hai; subah Surya dev ko jal (arghya) dene ki parampara hai', hashtags: ['#RavivarStatus', '#SuryaDev', '#JaiSuryaDev', '#GoodMorning'],
     tags: ['Ravivar status', 'Surya Dev status', 'Sunday status', 'रविवार स्टेटस', 'सूर्य देव स्टेटस', 'शुभ रविवार', 'Surya arghya', 'Jai Surya Dev'],
     scenes: [THEMES.sankranti.scenes[5], { prompt: 'A devotee offering water from a copper lota to the rising sun on a riverbank at dawn, seen from behind, the water stream sparkling in golden light, birds flying', animate: 'the water stream sparkles and flows slowly, the sun glows and birds glide', motion: 'out', hold: 6, big: 'सूर्य को अर्घ्य', line: 'शुभ रविवार', tts: 'सुबह सूर्य को जल चढ़ाइए, दिन भर ऊर्जा बनी रहेगी।', sub: 'Subah Surya ko jal chadhaiye, din bhar urja bani rahegi.' }, THEMES.sankranti.scenes[0]] }),
-  gyaras: T({ key: 'gyaras-khatu-shyam', playlist: 'Khatu Shyam ji ki Kathayein', deity: 'Khatu Shyam ji (Gyaras)', mantra: null,
+  gyaras: T({ key: 'gyaras-khatu-shyam', wish: ['आपको और आपके परिवार को', 'ग्यारस की शुभकामनाएं, जय श्री श्याम 🙏'], playlist: 'Khatu Shyam ji ki Kathayein', deity: 'Khatu Shyam ji (Gyaras)', mantra: null,
     names: [{ en: 'Gyaras Khatu Shyam', hi: 'ग्यारस खाटू श्याम' }, { en: 'Ekadashi Shyam Baba', hi: 'एकादशी श्याम बाबा' }],
     hooks: ['ग्यारस: जय श्री श्याम 🙏', 'एकादशी पर बाबा श्याम के दर्शन 🙏'],
     desc: 'Khatu parampara mein har Ekadashi (Gyaras) Baba Shyam ka vishesh din hai', hashtags: ['#KhatuShyam', '#Gyaras', '#JaiShreeShyam', '#HaareKaSahara', '#ShyamBaba'],

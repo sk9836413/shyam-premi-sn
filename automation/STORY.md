@@ -243,9 +243,13 @@ other scenes (darshan, katha). For a temple not in temples.json, still set `temp
 usually finds nothing, which is fine.
 
 **Festival status Shorts and day status Shorts (no action needed).** The status engine (`scripts/status-engine.mjs`,
-calendar `automation/festivals.json`, two panchang sources per date) makes every festival's 12-20 s loopable "<Festival>
-Status 2026 | <Hindi> स्टेटस वीडियो #Shorts" Shorts (20:00 the evening before, 00:30 on the day, 08:30 on big festivals)
-and the weekday day status Shorts of the `morning` slot. They are in log.md as `eve`, `status`, `statusday` and
+calendar `automation/festivals.json` to 31 Mar 2027, two panchang sources per date) makes every festival's 15-30 s
+loopable "<Festival> Status 2026 | <Hindi> स्टेटस वीडियो #Shorts" Shorts (20:00 the evening before, 00:30 on the day, 08:30
+on big festivals) and the weekday day status Shorts of the `morning` slot. Since 20 Nov 2026 (research of that day): frame
+0 is the deity's face with the festival name big, the last 3 s are a forwardable greeting ("आपको और आपके परिवार को /
+<festival> की शुभकामनाएं 🙏" + "इसे अपने परिवार को भेजें 🙏") that fades back into frame 0, the Instagram caption carries the
+same greeting with at most 5 hashtags, and Facebook gets the greeting without any ask. The Khatu Shyam Phalgun mela 2027
+is a series (1, 12, 14, 16-19 Mar 2027); on those days the evening darshan should be Khatu Shyam ji / Ringas-Khatu. They are in log.md as `eve`, `status`, `statusday` and
 `morning` lines. Never make a status Short yourself and never repeat their festival/weekday title words: your Short is
 a temple darshan.
 
@@ -383,8 +387,9 @@ bhakts search YouTube in Hindi, so the YouTube fields also carry the main keywor
   the deity and story name, the mantra, then `Jai Shree Shyam 🙏`, then 3–5 hashtags.
 - `youtube_tags`: 10–15 comma-separated search phrases, about half Roman and half Devanagari
   (`Hanuman ji ki katha, हनुमान जी की कथा, संजीवनी बूटी, Khatu Shyam, खाटू श्याम …`).
-- `instagram_caption`: hook line, 2–3 lines of the story's message, the mantra, then 5–10 relevant
-  hashtags that match the subject (Khatu Shyam ji: `#KhatuShyam #JaiShreeShyam #KhatuDham …`; anything else its own
+- `instagram_caption`: hook line, 1–2 short lines of the story's message (the mantra if it fits), then 3–5 relevant
+  hashtags (research 20 Nov 2026: short, relevant captions; Meta reads hashtag stuffing as spam, and scripts/meta.mjs
+  keeps only the first 5) that match the subject (Khatu Shyam ji: `#KhatuShyam #JaiShreeShyam #KhatuDham …`; anything else its own
   tags, e.g. `#Somnath #HarHarMahadev #Jyotirlinga …` or `#ChhathPuja #ChhathiMaiya …`, never the Khatu Shyam tags on
   another subject: the script drops them there). Max 2,200 characters.
 - `facebook_caption`: the Facebook template below.

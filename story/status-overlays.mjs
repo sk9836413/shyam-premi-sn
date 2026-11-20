@@ -7,6 +7,10 @@
 //   spec.cta      (loop status Shorts, scripts/status-engine.mjs) a red pill at the bottom of every scene, e.g.
 //                 "स्टेटस पर लगाएं 📲"; scene 1's big is then the bold hook ("कल है खाटू श्याम जन्मोत्सव 🙏"), sized to fit
 //   end card      spec.endline (default "Apne parivaar ko bhejein 🙏 | Subscribe: Shyam Premi SN"), split at " | "
+//   send card     spec.send { pre, big, pill } (loop status Shorts, research 20 Nov 2026: Instagram ranks sends per reach
+//                 highest): the forwardable greeting of the last seconds ("आपको और आपके परिवार को" small, "<festival> की
+//                 शुभकामनाएं 🙏" big, the pill "इसे अपने परिवार को भेजें 🙏"), makeSendOverlay -> overlay-send.png; render-story
+//                 fades it in over the last scene's own overlay, then the loop fades into frame 0
 // Fonts: brand/fonts (SIL OFL). Emoji: the system colour emoji font (CI installs fonts-noto-color-emoji).
 // CHROME = path to Chrome/Edge if it is not found automatically.
 import { spawnSync } from 'node:child_process';
@@ -48,11 +52,19 @@ function html(scene, spec) {
       text-shadow:0 4px 0 #3b1500,0 6px 18px rgba(0,0,0,.9)}
     .e2{display:inline-block;margin-top:40px;padding:18px 44px;border-radius:60px;background:#c4161c;
       font-family:'Yatra',sans-serif;font-size:60px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.6)}
+    .panel.send{height:820px;background:linear-gradient(to bottom,rgba(26,8,0,0) 0%,rgba(26,8,0,.82) 22%,rgba(26,8,0,.93) 100%)}
     .cta{position:absolute;left:0;right:0;bottom:26px;text-align:center}
     .cta span{display:inline-block;padding:10px 38px;border-radius:50px;background:#c4161c;border:3px solid #FFD54A;
       font-family:'Yatra','Noto Color Emoji',sans-serif;font-size:46px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.6)}`;
   let body;
-  if (scene.endcard) {
+  if (scene.send) {
+    const sd = scene.send;
+    const len = [...String(sd.big || '')].length;
+    const size = len <= 16 ? 108 : len <= 26 ? 94 : 80;
+    body = `<div class="panel send"></div><div class="box" style="bottom:160px">${sd.pre ? `<div class="pre">${esc(sd.pre)}</div>` : ''}` +
+      `<div class="big" style="font-size:${size}px">${esc(sd.big).replace(/\s+(\S+)$/u, ' $1')}</div></div>` +
+      `${sd.pill ? `<div class="cta"><span>${esc(sd.pill)}</span></div>` : ''}`;
+  } else if (scene.endcard) {
     const [a, b] = String(spec.endline || END_LINE).split(' | ');
     body = `<div class="end"><div class="e1">${esc(a)}</div>${b ? `<div class="e2">${esc(b)}</div>` : ''}</div>`;
   } else {
@@ -69,21 +81,32 @@ function html(scene, spec) {
   return `<!doctype html><html><head><meta charset="utf-8"><style>${css}</style></head><body>${body}</body></html>`;
 }
 
+function shoot(exe, page, png, label) {
+  fs.rmSync(png, { force: true });
+  const r = spawnSync(exe, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-sandbox', '--allow-file-access-from-files',
+    '--force-device-scale-factor=1', '--default-background-color=00000000', '--window-size=1080,1920',
+    '--virtual-time-budget=3000', `--screenshot=${png}`, pathToFileURL(page).href], { encoding: 'utf8', timeout: 90000 });
+  if (!fs.existsSync(png)) throw new Error(`overlay ${label}: Chrome made no PNG (${(r.stderr || '').trim().split('\n').pop()})`);
+  return png;
+}
+
 /** Writes overlay-<i>.png into `work` for every scene; returns the paths (null where a scene has no text). */
 export function makeOverlays(spec, work) {
   const exe = chrome();
   return spec.scenes.map((scene, i) => {
     if (!scene.endcard && !scene.big && !scene.line && !scene.mantra) return null;
     const page = path.join(work, `overlay-${i}.html`);
-    const png = path.join(work, `overlay-${i}.png`);
     fs.writeFileSync(page, html(scene, spec));
-    fs.rmSync(png, { force: true });
-    const r = spawnSync(exe, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-sandbox', '--allow-file-access-from-files',
-      '--force-device-scale-factor=1', '--default-background-color=00000000', '--window-size=1080,1920',
-      '--virtual-time-budget=3000', `--screenshot=${png}`, pathToFileURL(page).href], { encoding: 'utf8', timeout: 90000 });
-    if (!fs.existsSync(png)) throw new Error(`overlay ${i}: Chrome made no PNG (${(r.stderr || '').trim().split('\n').pop()})`);
-    return png;
+    return shoot(exe, page, path.join(work, `overlay-${i}.png`), i);
   });
+}
+
+/** The send card of a loop status Short (spec.send), or null: overlay-send.png in `work`. */
+export function makeSendOverlay(spec, work) {
+  if (!spec.send?.big) return null;
+  const page = path.join(work, 'overlay-send.html');
+  fs.writeFileSync(page, html({ send: spec.send }, spec));
+  return shoot(chrome(), page, path.join(work, 'overlay-send.png'), 'send');
 }
 
 // Preview: node story/status-overlays.mjs <spec.json> <outdir>
@@ -91,5 +114,5 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
   const spec = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
   const out = path.resolve(process.argv[3] || '.');
   fs.mkdirSync(out, { recursive: true });
-  console.log(JSON.stringify(makeOverlays(spec, out)));
+  console.log(JSON.stringify([...makeOverlays(spec, out), makeSendOverlay(spec, out)]));
 }

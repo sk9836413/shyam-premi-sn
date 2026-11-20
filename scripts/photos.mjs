@@ -31,7 +31,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { linkLines } from './festival-links.mjs';
-import { checkFbCaption, fbPhotoCaption, fbSubject, igTagList, photoSubject } from './fb.mjs';
+import { IG_TAGS_MAX, checkFbCaption, fbPhotoCaption, fbSubject, igTagList, photoSubject } from './fb.mjs';
 import { cardHtml, imageSize, renderCards } from './photo-cards.mjs';
 import { photosFor, FOOTAGE } from './real-photos.mjs';
 
@@ -557,7 +557,8 @@ export function caption(post, links = []) {
   if (post.ai) parts.push('Chitra AI dwara banaya gaya hai (sanketik).');
   if (post.credits?.length) parts.push(post.credits.map((c) => `📷 ${c}`).join('\n'));
   // Instagram: the Khatu Shyam tags only on Khatu Shyam content (fb.mjs igTagList; owner, 13 Nov 2026)
-  parts.push(igTagList(post.text.hashtags, entrySubject({ festival: post.festival, temple: post.temple, templeName: post.fbInfo?.templeName }, post.text.hashtags)).join(' '));
+  // at most IG_TAGS_MAX (5) hashtags on Instagram, the subject's first (research 20 Nov 2026: short, relevant captions)
+  parts.push(igTagList(post.text.hashtags, entrySubject({ festival: post.festival, temple: post.temple, templeName: post.fbInfo?.templeName }, post.text.hashtags)).slice(0, IG_TAGS_MAX).join(' '));
   return parts.join('\n\n').slice(0, 2200);
 }
 

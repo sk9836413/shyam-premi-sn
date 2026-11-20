@@ -344,6 +344,7 @@ const DEITY_TAGS = {
 const FESTIVAL_TAGS = [
   [/chhath|छठ/i, (song) => ['#ChhathPuja', song ? '#ChhathGeet' : '#ChhathiMaiya', '#Bhakti']],
   [/gyaras|ग्यारस/i, () => ['#Gyaras', '#Ekadashi', '#Bhakti']],
+  [/phalgun\s*mela|lakkhi|nishan\s*yatra|फाल्गुन\s*मेला|लक्खी/i, () => ['#KhatuShyamMela', '#PhalgunMela', '#Bhakti']],
   [/ekadashi|एकादशी/i, () => ['#Ekadashi', '#JaiShreeHari', '#Bhakti']],
   [/dev\s*deep|देव\s*दीपावली/i, () => ['#DevDeepawali', '#HarHarMahadev', '#Bhakti']],
   [/diwali|deepawali|दिवाली|दीपावली/i, () => ['#Diwali', '#ShubhDeepawali', '#Bhakti']],
@@ -352,6 +353,7 @@ const FESTIVAL_TAGS = [
   [/bhai\s*dooj|bhaiya\s*dooj|भाई\s*दूज/i, () => ['#BhaiDooj', '#YamDwitiya', '#Bhakti']],
   [/tulsi\s*vivah|तुलसी\s*विवाह/i, () => ['#TulsiVivah', '#JaiShreeHari', '#Bhakti']],
   [/pradosh|प्रदोष/i, () => ['#PradoshVrat', '#HarHarMahadev', '#Bhakti']],
+  [/maha\s*shivratri|महाशिवरात्रि/i, () => ['#Mahashivratri', '#HarHarMahadev', '#Bhakti']],
   [/shivratri|शिवरात्रि/i, () => ['#Shivratri', '#HarHarMahadev', '#Bhakti']],
   [/sakat/i, () => ['#SakatChauth', '#GanpatiBappaMorya', '#Bhakti']],
   [/sankashti|संकष्टी/i, () => ['#SankashtiChaturthi', '#GanpatiBappaMorya', '#Bhakti']],
@@ -361,6 +363,11 @@ const FESTIVAL_TAGS = [
   [/navratri|नवरात्रि/i, () => ['#Navratri', '#JaiMataDi', '#Bhakti']],
   [/janmashtami|जन्माष्टमी/i, () => ['#Janmashtami', '#JaiShreeKrishna', '#Bhakti']],
   [/sankranti|संक्रांति/i, () => ['#MakarSankranti', '#SuryaDev', '#Bhakti']],
+  [/holika|होलिका/i, () => ['#HolikaDahan', '#BhaktPrahlad', '#Bhakti']],
+  [/\bholi\b|होली/i, () => ['#Holi', '#HappyHoli', '#Bhakti']],
+  [/basant|vasant|बसंत|वसंत/i, () => ['#BasantPanchami', '#MaaSaraswati', '#Bhakti']],
+  [/sheetala|shitala|basoda|शीतला|बसोड़ा/i, () => ['#SheetalaAshtami', '#SheetalaMata', '#Bhakti']],
+  [/ganesh\s*jayanti|गणेश\s*जयंती/i, () => ['#GaneshJayanti', '#GanpatiBappaMorya', '#Bhakti']],
   [/shakambhari|शाकंभरी/i, () => ['#Shakambhari', '#JaiMataDi', '#Bhakti']],
   [/amavasya|अमावस्या/i, () => ['#Amavasya', '#SanatanDharma', '#Bhakti']],
   [/purnima|पूर्णिमा/i, () => ['#Purnima', '#SanatanDharma', '#Bhakti']],
@@ -465,6 +472,25 @@ export function igHashtags(text, spec) {
   return out.join('\n');
 }
 
+// Instagram captions: short and relevant, at most IG_TAGS_MAX hashtags (research 20 Nov 2026, ALGO-RESEARCH-2026-11.md:
+// Meta treats hashtag-stuffed captions as a spam signal; 3-5 relevant tags). capHashtags keeps the first n distinct tags
+// in caption order (the subject's tags come first: igHashtags / igTagList) and drops the rest; empty tag lines go.
+export const IG_TAGS_MAX = 5;
+export function capHashtags(text, max = IG_TAGS_MAX) {
+  const seen = new Set();
+  const out = String(text ?? '').split('\n').map((l) => {
+    const had = /#[\p{L}\p{N}_]/u.test(l);
+    const kept = l.replace(/(^|\s)(#[\p{L}\p{N}_]+)/gu, (m, sp, t) => {
+      const k = t.toLowerCase();
+      if (seen.has(k) || seen.size >= max) return sp;
+      seen.add(k);
+      return m;
+    }).replace(/[ \t]{2,}/g, ' ').replace(/[ \t]+$/, '');
+    return had && !kept.trim() ? null : kept;
+  }).filter((l) => l !== null);
+  return out.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
 /** The Devanagari name a spec is about: the Devanagari half of youtube_title, minus "स्टेटस वीडियो"/"दर्शन"-style words. */
 export function hindiName(spec) {
   const yt = String(spec.youtube_title || '').replace(/#shorts/gi, '');
@@ -497,7 +523,11 @@ export function composeVideoBody(spec, kind = 'temple') {
   const romanLines = [spec.scenes?.[0]?.sub?.replace(/^[^!]*!\s*/, ''), ...String(spec.youtube_description || '').split('\n')]
     .map((l) => noTags(l)).filter((l) => l && !DEV.test(l) && l.length > 20 && !CTA_LINE.test(l) && !l.includes('?'));
   const ctx = [];
-  if (devLines[0]) ctx.push(cut(devLines[0], 140));
+  // Status Shorts (research 20 Nov 2026): the forwardable greeting of the video's last seconds (spec.greeting, e.g.
+  // "आपको और आपके परिवार को देव दीपावली की शुभकामनाएं 🙏") is the first context line; a wish, never a "send/share" ask.
+  const greeting = isStatus && DEV.test(String(spec.greeting || '')) && !FB_BAIT.test(spec.greeting) ? String(spec.greeting).trim() : '';
+  if (greeting) ctx.push(cut(greeting, 140));
+  else if (devLines[0]) ctx.push(cut(devLines[0], 140));
   if (romanLines[0]) ctx.push(cut(romanLines[0], ctx.length ? 90 : 140));
   if (!ctx.length) ctx.push('जय श्री श्याम, सबका कल्याण हो 🙏');
   if (devShare([bhaav, q, ...ctx].join(' ')) < 0.45 && ctx.length === 2) ctx.pop();

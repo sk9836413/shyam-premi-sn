@@ -309,6 +309,11 @@ if (process.argv.includes('--prepare')) {
 }
 
 const overlays = STATUS ? (await import('./status-overlays.mjs')).makeOverlays(spec, work) : [];
+// Send card (loop status Shorts, scripts/status-engine.mjs spec.send; research 20 Nov 2026): over the LAST scene, its own
+// overlay fades out and the forwardable greeting fades in for the final spec.send.seconds (default 3 s, the last 0.5 s
+// of which cross-fade into frame 0 below), so the video ends on the line people forward to family.
+const SEND = STATUS && spec.loop && spec.send?.big ? (await import('./status-overlays.mjs')).makeSendOverlay(spec, work) : null;
+const SEND_SECONDS = Math.max(2, Math.min(4, Number(spec.send?.seconds) || 3));
 // Status Shorts already open on the big blessing (shown from frame one below), so they need no extra cover.
 let COVER = null;
 if (!STATUS) {
@@ -344,15 +349,23 @@ for (const [i, scene] of spec.scenes.entries()) {
   const ov = overlays[i] && fs.existsSync(overlays[i]) ? overlays[i] : null;
   const ovIn = ov ? ['-loop', '1', '-framerate', String(FPS), '-t', String(30), '-i', ov] : [];
   // Scene 1 of a status Short shows its blessing from the first frame (that frame is the cover); later scenes fade it in.
-  const withOverlay = (n) => (ov ? `[vpre];[${n}:v]format=rgba${i === 0 ? '' : ',fade=t=in:st=0.25:d=0.6:alpha=1'}[ovl];[vpre][ovl]overlay=0:0:shortest=1` : '');
+  const lastScene = i === spec.scenes.length - 1;
+  // (the send card's start is set below, once the scene's length is known)
+  let sendAt = 0;
+  const send = SEND && lastScene && !scene.endcard && fs.existsSync(SEND) ? SEND : null;
+  const sendIn = send ? ['-loop', '1', '-framerate', String(FPS), '-t', String(30), '-i', send] : [];
+  const ovOut = () => (send ? `,fade=t=out:st=${sendAt.toFixed(2)}:d=0.4:alpha=1` : '');
+  const withSend = (n) => (send ? `[vsnd];[${n}:v]format=rgba,fade=t=in:st=${sendAt.toFixed(2)}:d=0.45:alpha=1[snd];[vsnd][snd]overlay=0:0:shortest=1` : '');
+  const withOverlay = (n) => (ov ? `[vpre];[${n}:v]format=rgba${i === 0 ? '' : ',fade=t=in:st=0.25:d=0.6:alpha=1'}${ovOut()}[ovl];[vpre][ovl]overlay=0:0:shortest=1` : '') + withSend(n + (ov ? 1 : 0));
   const cover = i === 0 && COVER && !scene.endcard;
   const coverIn = cover ? ['-loop', '1', '-framerate', String(FPS), '-t', '1', '-i', COVER] : [];
   const withCover = (n) => (cover ? `[vcov];[${n}:v]format=rgba,fade=t=out:st=${COVER_END}:d=0.08:alpha=1[cov];[vcov][cov]overlay=0:0:eof_action=pass` : '');
-  const coverAt = (LOGO ? 2 : 1) + (ov ? 1 : 0);
+  const coverAt = (LOGO ? 2 : 1) + (ov ? 1 : 0) + (send ? 1 : 0);
   let animated = false;
   // Tight pacing keeps Shorts short (viewers who finish and replay are what YouTube rewards).
   const seconds = sceneSeconds(i);
   const frames = Math.round(seconds * FPS);
+  sendAt = Math.max(1.2, seconds - SEND_SECONDS);
   const titleFile = path.join(work, 'title.txt');
   fs.writeFileSync(titleFile, `${spec.kicker}  |  ${spec.title}`);
   const esc = (p) => p.replace(/\\/g, '/').replace(/:/g, '\\:');
@@ -399,7 +412,7 @@ for (const [i, scene] of spec.scenes.entries()) {
       // An enhanced clip is already 1080 px (Real-ESRGAN): only a light sharpen; a raw 704 px clip keeps the old one.
       const big = Number(spawnSync(FFPROBE, ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width', '-of', 'csv=p=0', vid], { encoding: 'utf8' }).stdout.trim()) >= 1000;
       try {
-        run(['-i', vid, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, ...coverIn, '-filter_complex', [
+        run(['-i', vid, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, ...sendIn, ...coverIn, '-filter_complex', [
           `[0:v]setpts=${slow.toFixed(3)}*PTS,fps=${FPS},tpad=stop_mode=clone:stop_duration=${seconds.toFixed(2)},` +
             `trim=duration=${seconds.toFixed(2)},setpts=PTS-STARTPTS,format=yuv420p,split[a][b]`,
           `[a]scale=${H}:${H},crop=${W}:${H},boxblur=28:4,eq=brightness=-0.18[bgl]`,
@@ -430,7 +443,7 @@ for (const [i, scene] of spec.scenes.entries()) {
         fs.writeFileSync(cf, `Asli photo: ${shot.author}`.slice(0, 60));
         credit = `,drawtext=fontfile='${FONT}':textfile='${esc(cf)}':fontsize=26:fontcolor=white@0.9:box=1:boxcolor=0x000000@0.45:boxborderw=8:x=w-text_w-24:y=1290`;
       }
-      run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, ...coverIn, '-filter_complex', [
+      run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, ...sendIn, ...coverIn, '-filter_complex', [
         `[0:v]${cover(W, H)},boxblur=28:4,eq=brightness=-0.18[bg]`,
         `[0:v]${anyAspect ? cover(2160, 2160) : 'scale=2160:2160:flags=lanczos'},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${W}:fps=${FPS}${shot ? '' : `,unsharp=3:3:0.3${LOOK}${GRAIN}`}[fg]`,
         `[bg]loop=loop=${frames}:size=1,fps=${FPS}[bgl]`,

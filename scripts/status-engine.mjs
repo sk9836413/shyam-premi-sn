@@ -20,12 +20,14 @@
 //   node scripts/status-engine.mjs day --date D --out story/today/scenes.json [--log automation/log.md]   the morning
 //        day status Short: normally made THE EVENING BEFORE by `due` / `variants` (owner, 16 Nov 2026: public 06:00 IST
 //        for the morning WhatsApp status); the story job runs `day` only when that render is missing
+//   node scripts/status-engine.mjs trial --base <W>/scenes.json --spec <W>/v-<slug>.json [--out F] [--graduation MANUAL]
+//        the Instagram Trial Reel spec of a festival variant (trialVariant; daily.yml, only when vars.IG_TRIAL == "on")
 //   node scripts/status-engine.mjs plan [--from D] [--to D]    every planned status upload with its title (dry run)
 //   node scripts/status-engine.mjs calendar                    rewrite automation/calendar.md from festivals.json
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { DAY_THEMES, DEFAULT_PICKS, MANTRA, THEMES } from './status-themes.mjs';
+import { DAY_THEMES, DEFAULT_PICKS, DEFAULT_WISH, MANTRA, THEMES } from './status-themes.mjs';
 
 export const STYLE = '3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing';
 export const CTA = 'स्टेटस पर लगाएं 📲';
@@ -39,7 +41,35 @@ export const SHARE_LINE = '📲 अपने WhatsApp स्टेटस पर 
 // rounds up to whole bars), its last scene ends on its own picture and line (no "सब्सक्राइब" line, no spoken ask: that
 // broke the loop into an end card; the subscribe ask stays in the description and the channel's first comment
 // scripts/first-comment.mjs), and a scene with an animated clip opens the video when the first pick has none.
-export const STATUS_HOLD = 5;
+// Research of 20 Nov 2026 (E:/SK/epifive-social/ALGO-RESEARCH-2026-11.md; YouTube "viewed vs swiped away" and Instagram
+// watch time decide reach in the first 1-2 s; Instagram ranks SENDS per reach highest for non-followers):
+//   - frame 0 = the deity's face, large, with the festival name big (faceFirst + the deity-first scene order in compose);
+//     the YouTube thumbnail is that same frame (scripts/youtube.mjs coverFrame, 0.1 s);
+//   - the last SEND_SECONDS show a forwardable greeting ("आपको और आपके परिवार को / <festival> की शुभकामनाएं 🙏") with the
+//     pill SEND_PILL, then the loop fades into frame 0 (render-story.mjs + status-overlays.mjs, spec.send);
+//   - 15-30 s: 3 scenes of STATUS_HOLD = 6 s (~17-20 s with the bar-rounded song);
+//   - Instagram caption: the greeting, one Roman line, SEND_PILL and at most IG_TAGS_MAX hashtags.
+export const STATUS_HOLD = 6;
+export const SEND_PILL = 'इसे अपने परिवार को भेजें 🙏';
+export const SEND_SECONDS = 3;
+export const IG_TAGS_MAX = 5;
+// Instagram Trial Reels (Graph API POST /{ig-user}/media with `trial_params` {graduation_strategy: MANUAL |
+// SS_PERFORMANCE}, media_type REELS, standard upload by video_url; developers.facebook.com reference, checked 20 Nov
+// 2026): a second hook of a festival's 00:30 variant is shown to non-followers first (`trial` below; daily.yml runs it
+// only when the repo variable IG_TRIAL is "on"). SS_PERFORMANCE = Instagram shares it to followers if it performs well.
+export const TRIAL_GRADUATION = 'SS_PERFORMANCE';
+export const TRIAL_AT = '07:30';
+export const FACE_FIRST = "the deity's face large, sharp and clearly visible in the upper half of the picture";
+/** A deity scene's prompt asks for the face large and clear (frame 0 is a deity picture); a Shivling has no face. */
+export function faceFirst(scene) {
+  if (scene?.deity && scene.prompt && !/shivling/i.test(scene.prompt) && !scene.prompt.includes(FACE_FIRST)) scene.prompt = `${scene.prompt}, ${FACE_FIRST}`;
+  return scene;
+}
+/** The forwardable greeting of the last seconds: { pre, big, line } (theme `wish` or DEFAULT_WISH; {name} = Hindi name). */
+export function wishFor(wish, nameHi) {
+  const [pre, big] = (Array.isArray(wish) && wish.length === 2 ? wish : DEFAULT_WISH).map((x) => x.replace('{name}', nameHi));
+  return { pre, big, line: `${pre}${/(को|पर)$/.test(pre) ? "" : ","} ${big}` };
+}
 export const DEFAULT_VARIANTS = {
   status: [{ slot: 'eve', offset: -1, at: '20:00' }, { slot: 'status', offset: 0, at: '00:30' }],
   big: [{ slot: 'eve', offset: -1, at: '20:00' }, { slot: 'status', offset: 0, at: '00:30' }, { slot: 'statusday', offset: 0, at: '08:30' }],
@@ -105,7 +135,7 @@ export function buildFamily(f, root = '.') {
   return {
     slug: `${f.date}-status-${f.key}`, format: 'status', date: f.date, festival: f.label, theme: f.theme,
     title: 'Shyam Premi SN', kicker: kicker(f.names?.[0]?.en || f.label), playlist: t.playlist, voice: t.voice, signoff: 'Jai Shree Shyam', style: STYLE,
-    desc: t.desc, deity: t.deity, hashtags: t.hashtags, tags: t.tags, scenes: clone(t.scenes),
+    desc: t.desc, deity: t.deity, hashtags: t.hashtags, tags: t.tags, ...(t.wish ? { wish: t.wish } : {}), scenes: clone(t.scenes).map(faceFirst),
   };
 }
 
@@ -143,22 +173,26 @@ function reuseAssets(scene, j, base, dir) {
 }
 
 /** Shared by festival variants and day status Shorts: hook on the first frame, the status ask (cta pill) on every scene, loop. */
-function compose({ base, scenes, hook, slug, date, title, name, desc, hashtags, tags, festival, extra = {} }) {
-  const s = scenes.map((x) => { const c = clone(x); delete c.endcard; c.hold = Math.min(c.hold || STATUS_HOLD, STATUS_HOLD); return c; });
-  // Frame 0 = motion: an animated scene (Kaggle clip) goes first when the first pick is a still.
-  const moving = s.findIndex((x) => x.video);
-  if (moving > 0 && !s[0].video) s.unshift(...s.splice(moving, 1));
+function compose({ base, scenes, hook, slug, date, title, name, desc, hashtags, tags, festival, wish, extra = {} }) {
+  const s = scenes.map((x) => { const c = faceFirst(clone(x)); delete c.endcard; c.hold = Math.min(c.hold || STATUS_HOLD, STATUS_HOLD); return c; });
+  // Frame 0 = the deity's face (research 20 Nov 2026), moving where possible (feed audit 17 Nov 2026: animated first
+  // scenes held viewers): a deity scene with a clip, else a deity scene, else a scene with a clip, else the first pick.
+  const lead = [(x) => x.deity && x.video, (x) => x.deity, (x) => x.video].map((f) => s.findIndex(f)).find((i) => i >= 0) ?? 0;
+  if (lead > 0) s.unshift(...s.splice(lead, 1));
   const first = s[0];
-  if (first.big && first.big.length <= 48) first.line = first.big; // the blessing moves under the hook
+  // the blessing moves under the hook (unless the hook already says it: "आज है कार्तिक पूर्णिमा" over "कार्तिक पूर्णिमा")
+  if (first.big && first.big.length <= 48 && !noEmoji(hook.hi).includes(noEmoji(first.big))) first.line = first.big;
   first.big = hook.hi;
   first.tts = joinTts(hook.say, first.tts);
   first.sub = `${noEmoji(hook.roman)}! ${first.sub}`;
+  const greet = wishFor(wish ?? base.wish, name.hi);
   const mantraSrc = mantraSource(s, base.mantra_source);
   const year = (date || '').slice(0, 4);
   const firstRoman = noEmoji(hook.roman);
   const description = [
     `${firstRoman}! ${desc}. WhatsApp status ke liye sundar video.`,
     `${hook.hi} ${noEmoji(s[0].line || '')}`.trim(),
+    greet.line,
     ...(mantraSrc ? [`Mantra: ${s.find((x) => x.mantra).mantra} (${mantraSrc})`] : []),
     '',
     'Is status video ko download karke apne WhatsApp / Instagram status par lagayein.',
@@ -173,15 +207,20 @@ function compose({ base, scenes, hook, slug, date, title, name, desc, hashtags, 
   // carry the searched forms first: "<Festival> status (2026)", "whatsapp status", "status video" and the Hindi forms.
   const allTags = [...new Set([`${name.en} status`, ...(festival ? [`${name.en} status ${year}`] : []), `${name.hi} स्टेटस`, `${name.en} whatsapp status`,
     `${name.en} status video`, `${name.hi} स्टेटस वीडियो`, `${name.hi} व्हाट्सएप स्टेटस`, ...tags, 'Shyam Premi SN'])].slice(0, 15);
-  const caption = (n) => [`${hook.roman}`, s[0].sub.replace(/^[^!]*!\s*/, ''), 'Status par lagayein, apno ko bhejein 🙏', hashtags.slice(0, n).join(' ')].join('\n');
+  const rest = s[0].sub.replace(/^[^!]*!\s*/, '');
+  // Instagram: short and relevant (research 20 Nov 2026: 3-5 hashtags, no stuffing); the greeting and the send line in
+  // Hindi, the same words as the video's last seconds. Facebook's text is composed by scripts/fb.mjs (greeting, no ask).
+  const igCaption = [greet.line, `${hook.roman} ${rest}`.trim(), SEND_PILL, [...new Set(hashtags)].slice(0, IG_TAGS_MAX).join(' ')].join('\n');
+  const fbCaption = [hook.roman, rest, hashtags.slice(0, 3).join(' ')].join('\n');
   return {
     slug, format: 'status', loop: true, date, ...(festival ? { festival_date: festival } : {}), festival: base.festival || name.en,
     family: base.slug, title: 'Shyam Premi SN', kicker: kicker(name.en), playlist: base.playlist, voice: base.voice || 'hf_alpha',
     signoff: base.signoff || 'Jai Shree Shyam', style: base.style || STYLE, cta: CTA, share_line: SHARE_LINE,
+    send: { pre: greet.pre, big: greet.big, pill: SEND_PILL, seconds: SEND_SECONDS }, greeting: greet.line, status_name: { en: name.en, hi: name.hi },
     ...(mantraSrc ? { mantra_source: mantraSrc } : {}), ...extra,
     scenes: s,
     youtube_title: title, youtube_description: description, youtube_tags: allTags.join(', '),
-    instagram_caption: caption(6), facebook_caption: caption(4),
+    instagram_caption: igCaption, facebook_caption: fbCaption,
   };
 }
 
@@ -197,8 +236,22 @@ export function buildVariant(base, p, { dir } = {}) {
   const tags = base.tags || t.tags || String(base.youtube_tags || '').split(',').map((x) => x.trim()).filter(Boolean);
   return compose({
     base, scenes, hook: hookFor(p), slug: slugOf(p), date: p.date, title: titleOf(p), name: p.name, desc, hashtags, tags,
-    festival: f.date, extra: { publish_at: p.at, variant: p.k + 1, slot: p.slot },
+    festival: f.date, wish: base.wish || t.wish, extra: { publish_at: p.at, variant: p.k + 1, slot: p.slot },
   });
+}
+
+/** The Instagram Trial Reel of a festival variant (placement p): the same pictures, rotated, and a greeting-first hook
+ *  ("<festival> की शुभकामनाएं 🙏" instead of "आज है ..."), so the two hooks can be compared on non-followers. Instagram only:
+ *  slug "<variant slug>-trial", `ig_trial` = the graduation strategy, Instagram queue time TRIAL_AT on the public day. */
+export function trialVariant(base, p, { dir, graduation = TRIAL_GRADUATION } = {}) {
+  const content = base.scenes.filter((s) => !s.endcard);
+  const picks = picksFor(content, p);
+  const n = p.name;
+  const long = `${n.hi} की शुभकामनाएं 🙏`;
+  const hi = [long, `शुभ ${n.hi} 🙏`, `${n.hi} 🙏`].find((x) => x.length <= 34) || `${n.hi} 🙏`; // validate.mjs: hook max 34
+  const hook = { hi, say: `${noEmoji(hi)}!`, roman: `${n.en} ki shubhkamnayein 🙏` };
+  const spec = buildVariant(base, { ...p, hook, picks: [...picks.slice(1), picks[0]] }, { dir });
+  return { ...spec, slug: `${spec.slug}-trial`, trial_of: spec.slug, ig_trial: graduation, publish_at: TRIAL_AT };
 }
 
 const weekNo = (date) => Math.floor(Date.parse(`${date}T00:00:00Z`) / (7 * 864e5));
@@ -217,7 +270,7 @@ export function dayStatus(date, { theme } = {}) {
   const base = { slug: `day-${t.key}`, festival: name.en, playlist: t.playlist, voice: t.voice, signoff: 'Jai Shree Shyam', style: STYLE };
   return compose({
     base, scenes: order.map((i) => t.scenes[i]), hook, slug: `${date}-morning-${t.key}`, date, title: dayTitle(name), name,
-    desc: t.desc, hashtags: t.hashtags, tags: t.tags, extra: { deity: t.deity, day_status: t.key },
+    desc: t.desc, hashtags: t.hashtags, tags: t.tags, wish: t.wish, extra: { deity: t.deity, day_status: t.key },
   });
 }
 
@@ -339,6 +392,17 @@ async function main() {
       console.log([file, spec.slug, p.date, p.slot, p.at].join('\t'));
     }
     return;
+  }
+  if (cmd === 'trial') {
+    const baseFile = opt('--base');
+    const base = JSON.parse(read(baseFile));
+    const v = JSON.parse(read(opt('--spec')));
+    const p = placements(festivals).find((x) => slugOf(x) === v.slug);
+    if (!p) throw new Error(`trial: ${v.slug} is not a festival variant (day status Shorts get no trial reel)`);
+    const spec = trialVariant(base, p, { dir: path.dirname(path.resolve(baseFile)), graduation: opt('--graduation') || TRIAL_GRADUATION });
+    const file = opt('--out') || path.join(path.dirname(path.resolve(baseFile)), `t-${v.slug}.json`);
+    fs.writeFileSync(file, `${JSON.stringify(spec, null, 2)}\n`);
+    return out({ file, slug: spec.slug, at: `${p.date}T${TRIAL_AT}`, graduation: spec.ig_trial });
   }
   if (cmd === 'day') {
     const date = opt('--date') || dp.istToday();

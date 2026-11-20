@@ -7,9 +7,10 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { addDays, loadInputs, planDay } from './day-plan.mjs';
-import { SHARE_LINE, buildFamily, buildVariant, dayStatus, dayStatusDue, due, hookFor, loadFestivals, placements, slugOf, titleOf } from './status-engine.mjs';
+import { FACE_FIRST, IG_TAGS_MAX, SEND_PILL, SHARE_LINE, STATUS_HOLD, TRIAL_AT, buildFamily, buildVariant, dayStatus, dayStatusDue, due, hookFor, loadFestivals, placements, slugOf, titleOf, trialVariant, wishFor } from './status-engine.mjs';
 import { withShareLine } from './youtube.mjs';
-import { checkFbCaption } from './fb.mjs';
+import { capHashtags, checkFbCaption, fbVideoCaption } from './fb.mjs';
+import { igReelParams } from './meta.mjs';
 
 const festivals = loadFestivals('.');
 const inputs = loadInputs('.');
@@ -29,9 +30,22 @@ describe('calendar', () => {
       }
     }
   });
-  test('the window ends 31 Jan 2027; Mauni Amavasya and Basant Panchami (Feb 2027) are not in it', () => {
-    assert.ok(festivals.every((f) => f.date <= '2027-01-31'));
-    assert.ok(!festivals.some((f) => /mauni|basant|vasant/i.test(f.key)));
+  test('the window runs to 31 Mar 2027 with every big Feb-Mar festival planned (20 Nov 2026)', () => {
+    assert.ok(festivals.every((f) => f.date <= '2027-03-31'));
+    const at = (key) => festivals.find((f) => f.key === key)?.date;
+    assert.deepEqual(['mauni-amavasya', 'basant-panchami', 'mahashivratri', 'khatu-phalgun-ekadashi', 'holika-dahan', 'holi', 'sheetala-ashtami'].map(at),
+      ['2027-02-06', '2027-02-11', '2027-03-06', '2027-03-18', '2027-03-21', '2027-03-22', '2027-03-30']);
+    // every Ekadashi of the window has a status Short (Ekadashi = Gyaras, the Khatu day)
+    for (const d of ['2026-12-04', '2026-12-20', '2027-01-03', '2027-01-18', '2027-02-02', '2027-02-17', '2027-03-04', '2027-03-18']) {
+      assert.ok(festivals.some((f) => f.date === d && f.tier !== 'info'), d);
+    }
+  });
+  test('Khatu Shyam Phalgun mela: a series from 17 days before to Dwadashi, every Short planned within the cap', () => {
+    const mela = placements(festivals.filter((f) => f.theme === 'phalgunmela'));
+    assert.deepEqual(mela.map((p) => `${p.date} ${p.slot}`), ['2027-03-01 status', '2027-03-12 status', '2027-03-14 status', '2027-03-16 eve', '2027-03-17 eve',
+      '2027-03-18 status', '2027-03-18 statusday', '2027-03-19 status']);
+    for (const p of mela) assert.ok(planDay(p.date, inputs).uploads.some((u) => u.slot === p.slot && u.festival === p.festival.key && u.k === p.k), `${p.date} ${p.slot}`);
+    for (const f of festivals.filter((x) => x.theme === 'phalgunmela')) assert.ok(f.sources.some((x) => /khatu\.org/.test(x)), f.key);
   });
 });
 
@@ -162,8 +176,9 @@ describe('specs pass scripts/validate.mjs', () => {
       check(spec);
     }
   });
+  // (Janmotsav 2026 is past; its hand-written spec predates the deity-first rule of 20 Nov 2026)
   test('big festivals: each variant opens on a different picture', () => {
-    for (const key of ['khatu-shyam-janmotsav', 'dev-deepawali', 'makar-sankranti']) {
+    for (const key of ['dev-deepawali', 'makar-sankranti', 'basant-panchami', 'mahashivratri', 'holi']) {
       const f = festivals.find((x) => x.key === key);
       const firsts = placements([f]).map((p) => buildVariant(buildFamily(f, '.'), p).scenes[0].prompt);
       assert.equal(new Set(firsts).size, firsts.length, key);
@@ -177,8 +192,68 @@ describe('specs pass scripts/validate.mjs', () => {
       }
     }
   });
+  test('trial reel specs pass too (Instagram only, greeting-first hook)', () => {
+    for (const p of placements(festivals).filter((x) => x.slot === 'status' && x.date >= '2026-11-21')) {
+      const t = trialVariant(buildFamily(p.festival, '.'), p);
+      assert.equal(t.slug, `${slugOf(p)}-trial`);
+      check(t);
+    }
+  });
   test('day status Shorts for every weekday and Gyaras', () => {
     for (let i = 0; i < 7; i++) check(dayStatus(addDays('2026-11-16', i)));
     check(dayStatus('2026-12-04', { theme: 'gyaras' }));
+  });
+});
+
+describe('first frame, send card, length, captions (research 20 Nov 2026)', () => {
+  const upcoming = placements(festivals).filter((p) => p.date >= '2026-11-21');
+  const specs = [...upcoming.map((p) => buildVariant(buildFamily(p.festival, '.'), p)), ...[0, 1, 2, 3, 4, 5, 6].map((i) => dayStatus(addDays('2026-11-23', i)))];
+  test('frame 0 is a deity picture whenever the Short has one, its prompt asking for the face large and clear', () => {
+    for (const s of specs) {
+      if (!s.scenes.some((x) => x.deity)) continue;
+      assert.equal(s.scenes[0].deity, true, s.slug);
+      if (!/shivling/i.test(s.scenes[0].prompt)) assert.ok(s.scenes[0].prompt.endsWith(FACE_FIRST), s.slug);
+    }
+  });
+  test('every status Short ends on a forwardable greeting: the send card, and the same line on Instagram and Facebook', () => {
+    for (const s of specs) {
+      assert.ok(s.send.big && s.send.pill === SEND_PILL && s.greeting === wishFor([s.send.pre, s.send.big], '').line, s.slug);
+      assert.doesNotMatch(`${s.send.pre} ${s.send.big}`, /शेयर|\d/);
+      assert.ok(s.instagram_caption.split('\n').includes(s.greeting) && s.instagram_caption.includes(SEND_PILL), s.slug);
+      const fb = fbVideoCaption(s).text;
+      assert.ok(fb.includes(s.greeting), `${s.slug}: ${fb}`);
+      assert.doesNotMatch(fb, /भेजें|शेयर/);
+    }
+    const dd = specs.find((s) => /dev-deepawali/.test(s.slug));
+    assert.equal(dd.greeting, 'आपको और आपके परिवार को देव दीपावली की शुभकामनाएं 🙏');
+    assert.equal(dayStatus('2026-11-23').greeting, 'आपका दिन मंगलमय हो, शुभ सोमवार, हर हर महादेव 🙏');
+  });
+  test('15-30 s: 3 scenes of 6 s', () => {
+    assert.equal(STATUS_HOLD, 6);
+    for (const s of specs) assert.ok(s.scenes.every((x) => x.hold === 6) && s.scenes.length === 3, s.slug);
+  });
+  test('Instagram captions: at most 5 hashtags, short', () => {
+    for (const s of specs) {
+      assert.ok((s.instagram_caption.match(/#\w+/g) || []).length <= IG_TAGS_MAX, s.slug);
+      assert.ok(s.instagram_caption.split('\n').length <= 4 && s.instagram_caption.length < 400, s.slug);
+    }
+    assert.equal(capHashtags('Somnath darshan 🙏\n\n#A #B #C #D #E #F #G\nPhoto: x'), 'Somnath darshan 🙏\n\n#A #B #C #D #E\nPhoto: x');
+    assert.equal(capHashtags('a #A b #a\n#B #C\n#D #E #F'), 'a #A b\n#B #C\n#D #E');
+  });
+  test('the trial reel: another hook, Instagram trial_params, queued at TRIAL_AT', () => {
+    const f = festivals.find((x) => x.key === 'dev-deepawali');
+    const p = placements([f]).find((x) => x.slot === 'status');
+    const main = buildVariant(buildFamily(f, '.'), p);
+    const t = trialVariant(buildFamily(f, '.'), p);
+    assert.notEqual(t.scenes[0].big, main.scenes[0].big);
+    assert.match(t.scenes[0].big, /शुभकामनाएं/);
+    assert.notEqual(t.instagram_caption, main.instagram_caption);
+    assert.equal(t.ig_trial, 'SS_PERFORMANCE');
+    assert.equal(t.publish_at, TRIAL_AT);
+    const params = igReelParams('x', { trial: t.ig_trial });
+    assert.deepEqual(JSON.parse(params.trial_params), { graduation_strategy: 'SS_PERFORMANCE' });
+    assert.equal(params.media_type, 'REELS');
+    assert.equal(igReelParams('x').trial_params, undefined);
+    assert.throws(() => igReelParams('x', { trial: 'ALWAYS' }));
   });
 });
