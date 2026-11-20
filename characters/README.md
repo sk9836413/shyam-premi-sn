@@ -149,7 +149,8 @@ Dono pilots ek saath chale:
 
 **Risks**
 - YouTube: templated/repetitive content (inauthentic content policy), har video mein kahani + facts alag rakhna zaroori.
-  Upload par `containsSyntheticMedia: true` aur description: "Chitra AI dwara banaye gaye hain (sanketik). Awaaz aur
+  Upload par AI flag `scripts/ai-disclosure.mjs` tay karta hai (stylized 3D + AI awaaz: YouTube flag nahi, Meta label
+  haan; AI bhajan ya realistic chitra: dono) aur description: "Chitra AI dwara banaye gaye hain (sanketik). Awaaz aur
   animation AI se."
 - Hindi voice reference hamari edge-tts clip hai (owner/coordinator ne allow kiya). Lambe samay ke liye behtar: ghar ke
   kisi member ki apni recorded awaaz (likhit consent ke saath) ya Indic Parler-TTS (HF login ke baad) se reference.

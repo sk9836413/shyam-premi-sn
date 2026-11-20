@@ -14,6 +14,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { aiDisclosure } from './ai-disclosure.mjs';
 import { bhaktiPhrase, hasSearchedPhrase, thirdPartyNames } from './bhakti-seo.mjs';
 
 export const REPS = 108;
@@ -158,7 +159,9 @@ export function checkMantraSpec(s, cat) {
   need(cat && d.includes(cat.disclosure), 'youtube_description: the AI disclosure line (mantras.json disclosure)');
   need(/subscribe/i.test(d), 'youtube_description: a like/share/subscribe line');
   need(!/\b\d{1,2}:\d{2}\b/.test(d), 'youtube_description: no timestamps (chapters come from the meta file)');
-  need(s.synthetic === true, 'synthetic: true (YouTube containsSyntheticMedia)');
+  // The AI-sung takes are AI music: YouTube's flag and Meta's label (scripts/ai-disclosure.mjs) must both be on.
+  const ai = aiDisclosure(s);
+  need(ai.youtube && ai.meta, 'AI disclosure: the mantra takes (spec.bhajan mode "mantra") must make the YouTube + Meta AI labels true');
   const tags = String(s.youtube_tags || '').split(',').map((x) => x.trim()).filter(Boolean);
   need(tags.length >= 10 && tags.length <= 15 && tags.some((t) => /[ऀ-ॿ]/.test(t)), 'youtube_tags: 10-15, some in Devanagari');
   const malas = Array.isArray(s.malas) ? s.malas : [];

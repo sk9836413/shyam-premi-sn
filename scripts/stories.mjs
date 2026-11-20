@@ -47,6 +47,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { metaAiParam } from './ai-disclosure.mjs';
 import { esc, renderCards } from './photo-cards.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -329,7 +330,7 @@ async function fbPhotoStory(imageUrl) {
   return { id: r.post_id || photo.id };
 }
 
-async function fbVideoStory(file) {
+async function fbVideoStory(file, ai = { is_ai_generated: 'true' }) {
   const start = await graph('POST', `${env.META_PAGE_ID}/video_stories`, { upload_phase: 'start' });
   const data = fs.readFileSync(file);
   const up = await fetch(start.upload_url || `https://rupload.facebook.com/video-upload/${VERSION}/${start.video_id}`, {
@@ -337,8 +338,8 @@ async function fbVideoStory(file) {
   }).catch((e) => { throw new Error(redact(`video story upload: ${e.message}`)); });
   const uj = await up.json().catch(() => ({}));
   if (!up.ok || uj.success === false || uj.error) throw new Error(redact(`video story upload: ${uj.error?.message || uj.debug_info?.message || up.statusText}`));
-  // The Shorts are AI-made (pictures, voice), so the story carries Meta's AI label like the Reels do.
-  const r = await graph('POST', `${env.META_PAGE_ID}/video_stories`, { upload_phase: 'finish', video_id: start.video_id, is_ai_generated: 'true' }, 180000);
+  // Meta's AI label (Page Stories API finish step) exactly as the Short's Reel got it: scripts/ai-disclosure.mjs.
+  const r = await graph('POST', `${env.META_PAGE_ID}/video_stories`, { upload_phase: 'finish', video_id: start.video_id, ...ai }, 180000);
   if (r.success === false) throw new Error('video_stories finish answered success=false');
   return { id: r.post_id || start.video_id };
 }
@@ -419,9 +420,20 @@ async function makeMedia(item, date, dryRun) {
   return { file, info: { source: Math.round(info.seconds), story: Math.round(out.seconds * 10) / 10 }, url: dryRun ? null : await host(file, `story-${date}-video.mp4`, 'video/mp4') };
 }
 
+/** Meta's AI label for a video story = the source Short's (story/published/<slug>.json); a missing spec = labelled.
+ *  Image stories (the photo cards) need none: Meta's labelling rule does not apply to images. */
+export function storyAiParam(slug, root = ROOT) {
+  try {
+    return metaAiParam(JSON.parse(fs.readFileSync(path.join(root, 'story', 'published', `${slug}.json`), 'utf8')));
+  } catch {
+    return { is_ai_generated: 'true' };
+  }
+}
+
 async function postOne(platform, item, media) {
-  if (platform === 'fb') return item.type === 'image' ? fbPhotoStory(media.url) : fbVideoStory(media.file);
-  return igStory(item.type === 'image' ? { image_url: media.url } : { video_url: media.url });
+  if (item.type === 'image') return platform === 'fb' ? fbPhotoStory(media.url) : igStory({ image_url: media.url });
+  const ai = storyAiParam(item.slug);
+  return platform === 'fb' ? fbVideoStory(media.file, ai) : igStory({ video_url: media.url, ...ai });
 }
 
 export async function run({ date = istDate(), now = Date.now(), dryRun = false, all = false, push = false, only = null, log = console.log } = {}) {

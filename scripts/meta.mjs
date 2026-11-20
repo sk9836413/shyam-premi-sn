@@ -35,6 +35,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { fbLongText, fbVideoCaption, igHashtags } from './fb.mjs';
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
+import { aiDisclosure, metaAiParam } from './ai-disclosure.mjs';
 
 export const FB_REEL_MAX = 90;
 export const IG_REEL_MAX = 15 * 60;
@@ -188,14 +189,28 @@ async function rupload(url, file) {
   }
 }
 
-async function fbReel(file, description, schedule) {
+// Meta's AI label (is_ai_generated, Reels Publishing API finish step) when scripts/ai-disclosure.mjs says Meta requires
+// it (AI voice, AI music or photorealistic AI video); `ai` = metaAiParam(spec), {} = no label.
+async function fbReel(file, description, schedule, ai = { is_ai_generated: 'true' }) {
   const start = await graph('POST', `${env.META_PAGE_ID}/video_reels`, { upload_phase: 'start' });
   await rupload(start.upload_url || `https://rupload.facebook.com/video-upload/${VERSION}/${start.video_id}`, file);
-  // The visuals and voices are AI-made, so the Reel carries Meta's AI label (as YouTube's synthetic-content flag).
   await graph('POST', `${env.META_PAGE_ID}/video_reels`, {
-    upload_phase: 'finish', video_id: start.video_id, video_state: 'PUBLISHED', description, is_ai_generated: 'true', ...schedule,
+    upload_phase: 'finish', video_id: start.video_id, video_state: 'PUBLISHED', description, ...ai, ...schedule,
   });
-  return { id: start.video_id, url: `https://www.facebook.com/reel/${start.video_id}`, type: 'reel' };
+  return { id: start.video_id, url: `https://www.facebook.com/reel/${start.video_id}`, type: 'reel', aiLabel: Boolean(ai.is_ai_generated) };
+}
+
+// A normal Page video: POST /{page}/videos has no AI-disclosure parameter (Graph API v27 reference, checked 20 Nov 2026),
+// so the label is asked for afterwards on the video (is_ai_generated, the v27 edit field). Never fails the upload: a
+// refusal is returned for the run log and the owner sets "AI info" in Meta Business Suite by hand.
+export async function fbVideoAiLabel(id, ai, { post = graph } = {}) {
+  if (!ai.is_ai_generated) return { aiLabel: false };
+  try {
+    await post('POST', id, { is_ai_generated: 'true' });
+    return { aiLabel: true };
+  } catch (e) {
+    return { aiLabel: `not set by the API (${redact(e.message).slice(0, 120)}): add the AI label in Meta Business Suite` };
+  }
 }
 
 // A normal Page video (the long katha, movie parts and other videos over the 90 s Reel limit), uploaded RESUMABLY in
@@ -271,11 +286,17 @@ export async function fbVideoResumable(file, { title, description, thumb, schedu
 }
 
 const fbVideo = (file, opts) => fbVideoResumable(file, opts);
+const fbVideoLabelled = async (file, opts, ai) => {
+  const fb = await fbVideo(file, opts);
+  return { ...fb, ...(await fbVideoAiLabel(fb.id, ai)) };
+};
 
 // Instagram: create the container, poll status_code until FINISHED (15 s steps, 10 minutes), then media_publish.
-async function igReel(caption, { file, videoUrl }) {
+// is_ai_generated on the container = Instagram's AI label (Content Publishing API, changelog 22 Jun 2026); `ai` =
+// metaAiParam(spec) from scripts/ai-disclosure.mjs, {} = no label.
+async function igReel(caption, { file, videoUrl, ai = { is_ai_generated: 'true' } }) {
   if (!env.IG_USER_ID) throw new Error('IG_USER_ID not set');
-  const params = { media_type: 'REELS', share_to_feed: 'true', caption };
+  const params = { media_type: 'REELS', share_to_feed: 'true', caption, ...ai };
   const container = await graph('POST', `${env.IG_USER_ID}/media`, file ? { ...params, upload_type: 'resumable' } : { ...params, video_url: videoUrl });
   if (file) await rupload(container.uri, file);
   const end = Date.now() + 10 * 60e3;
@@ -344,8 +365,9 @@ async function shortUnsafe({ video, spec, videoUrl, publishAt, fbAt, igAt, noFb 
   const text = captions(spec);
   const fbText = fbVideoCaption(spec);
   text.facebook = fbText.text;
-  if (dryRun) return { status: 'dry-run', version: VERSION, video: info, plan, facebook_caption: fbText, chars: { facebook: text.facebook.length, instagram: text.instagram.length } };
-  const r = { status: 'ok', slug: spec.slug, seconds: Math.round(info.seconds) };
+  const ai = metaAiParam(spec);
+  if (dryRun) return { status: 'dry-run', version: VERSION, video: info, plan, facebook_caption: fbText, chars: { facebook: text.facebook.length, instagram: text.instagram.length }, aiLabel: aiDisclosure(spec).why.meta };
+  const r = { status: 'ok', slug: spec.slug, seconds: Math.round(info.seconds), aiLabel: Boolean(ai.is_ai_generated) };
   const errors = [];
   const attempt = async (key, fn) => {
     try { r[key] = await fn(); } catch (e) { r[key] = { error: redact(e.message) }; errors.push(e); }
@@ -354,7 +376,7 @@ async function shortUnsafe({ video, spec, videoUrl, publishAt, fbAt, igAt, noFb 
   if (plan.fb === 'skip') r.facebook = { skipped: 'not in the Facebook plan' };
   else {
     await attempt('facebook', async () => (await orNull(fbExisting(text.facebook))) || ({
-      ...(plan.fb === 'reel' ? await fbReel(video, text.facebook, plan.fbSchedule) : await fbVideo(video, { title: spec.title, description: text.facebook, schedule: plan.fbSchedule })),
+      ...(plan.fb === 'reel' ? await fbReel(video, text.facebook, plan.fbSchedule, ai) : await fbVideoLabelled(video, { title: spec.title, description: text.facebook, schedule: plan.fbSchedule }, ai)),
       ...scheduled,
     }));
   }
@@ -364,7 +386,7 @@ async function shortUnsafe({ video, spec, videoUrl, publishAt, fbAt, igAt, noFb 
     if (plan.igAt) {
       if (!videoUrl) r.instagram = { error: 'no hosted video_url to publish from later' };
       else r.instagram = { pending: plan.igAt };
-    } else await attempt('instagram', () => igReel(text.instagram, { file: video }));
+    } else await attempt('instagram', () => igReel(text.instagram, { file: video, ai }));
   }
   if (errors.length) r.status = 'partial-failure';
   if (errors.length && errors.length === [r.facebook, r.instagram].filter((x) => x && !x.pending && !x.skipped).length && errors.some((e) => isAuthError(e.code))) r.authFailed = true;
@@ -381,13 +403,13 @@ async function postLong({ video, spec, meta, thumbnail, publishAt, noFb, dryRun 
   const schedule = at ? { published: 'false', scheduled_publish_time: String(Math.floor(at / 1000)) } : {};
   if (dryRun) {
     const bytes = fs.statSync(video).size;
-    return { status: 'dry-run', version: VERSION, ...post, schedule, thumbnail: Boolean(thumbnail && fs.existsSync(thumbnail)),
+    return { status: 'dry-run', version: VERSION, ...post, schedule, thumbnail: Boolean(thumbnail && fs.existsSync(thumbnail)), aiLabel: aiDisclosure(spec).why.meta,
       upload: { method: 'resumable', endpoint: `graph-video.facebook.com/${VERSION}/<page>/videos`, phases: ['start', 'transfer (chunks Facebook asks for)', 'finish'], bytes, mb: +(bytes / 1048576).toFixed(1) } };
   }
   try {
     const dup = await orNull(fbExisting(post.description, post.title));
     if (dup) return { status: 'ok', slug: spec.slug, facebook: dup };
-    const fb = await fbVideo(video, { ...post, thumb: thumbnail, schedule });
+    const fb = await fbVideoLabelled(video, { ...post, thumb: thumbnail, schedule }, metaAiParam(spec));
     return { status: 'ok', slug: spec.slug, facebook: { ...fb, ...(at ? { scheduled: new Date(at).toISOString() } : {}) } };
   } catch (e) {
     return { status: 'error', slug: spec.slug, error: redact(e.message), ...(isAuthError(e.code) ? { authFailed: true } : {}) };
@@ -411,9 +433,10 @@ async function flush({ log, dryRun }) {
         if (!fs.existsSync(specFile)) throw new Error(`${specFile} missing`);
         const wait = Date.parse(q.at) - Date.now();
         if (wait > 0) await sleep(wait);
-        const caption = captions(JSON.parse(fs.readFileSync(specFile, 'utf8'))).instagram;
+        const qspec = JSON.parse(fs.readFileSync(specFile, 'utf8'));
+        const caption = captions(qspec).instagram;
         const dup = await orNull(igExisting(caption));
-        cell = dup ? `${dup.url} (already posted, not repeated)` : (await igReel(caption, { videoUrl: `${env.MEDIA_URL}/m/${q.slug}.mp4` })).url;
+        cell = dup ? `${dup.url} (already posted, not repeated)` : (await igReel(caption, { videoUrl: `${env.MEDIA_URL}/m/${q.slug}.mp4`, ai: metaAiParam(qspec) })).url;
       } catch (e) {
         cell = `error ${redact(e.message).slice(0, 160)}`;
       }

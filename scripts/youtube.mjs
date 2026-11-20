@@ -34,6 +34,7 @@ import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { aiDisclosure } from './ai-disclosure.mjs';
 import { BHAKTI_PLAYLIST, BHAKTI_PLAYLIST_DESCRIPTION, isBhajanVideo, thirdPartyNames } from './bhakti-seo.mjs';
 
 const ENV_FILE = path.join(os.homedir(), '.shyampremisk', 'youtube.env');
@@ -94,12 +95,12 @@ const stamp = (sec) => {
   return h ? `${h}:${String(m).padStart(2, '0')}:${String(x).padStart(2, '0')}` : `${m}:${String(x).padStart(2, '0')}`;
 };
 
-// YouTube's altered / synthetic content disclosure (videos.insert status.containsSyntheticMedia, Data API v3): the
-// pictures, the narration voice and, since 14 Nov 2026, the AI-sung bhajans (spec.bhajan, music/bhajan.mjs) are
-// generated, so every upload declares it; a video with a bhajan can never go up without it.
-// eslint-disable-next-line no-unused-vars
+// YouTube's altered / synthetic content disclosure (videos.insert status.containsSyntheticMedia, Data API v3): decided
+// per video by scripts/ai-disclosure.mjs (owner, 20 Nov 2026: exactly what YouTube requires; AI-sung bhajans / mantra
+// takes and realistic AI visuals = true, stylized art with an AI narrator = false). A video with a bhajan can never go
+// up without it.
 export function syntheticMedia(spec = {}) {
-  return true; // AI pictures + AI narration on every video, and AI singing when spec.bhajan is set
+  return aiDisclosure(spec).youtube;
 }
 
 /** Status Shorts (festival + day status; scripts/status-engine.mjs SHARE_LINE, owner 16 Nov 2026): the spec's
@@ -151,7 +152,7 @@ function publishAt(hhmm) {
   return at - Date.now() > 15 * 60e3 ? new Date(at).toISOString() : null;
 }
 
-// The visuals, voice and bhajans are AI-generated, so the video carries YouTube's synthetic-content label.
+// containsSyntheticMedia = scripts/ai-disclosure.mjs's decision (meta.synthetic); a meta without it is declared (unsure = label).
 export function uploadStatus(meta, opts = {}) {
   return {
     ...(opts.publishAt ? { privacyStatus: 'private', publishAt: opts.publishAt } : { privacyStatus: 'public' }),
@@ -358,6 +359,7 @@ async function main() {
       process.exitCode = 3;
       return { status: 'quota', error: e.message };
     }
+    youtube.synthetic = meta.synthetic; // the AI disclosure sent (scripts/ai-disclosure.mjs), for the run log
     let units = 52; // playlists.list 1 + playlistItems.insert 50 + token/misc; videos.insert uses its own bucket
     const thumb = option('--thumbnail') || (!long && !args.includes('--no-cover-thumbnail') ? coverFrame(video) : null);
     if (thumb) {

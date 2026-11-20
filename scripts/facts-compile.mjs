@@ -84,7 +84,9 @@ export function compileTitle(shorts) {
 export function compileSpec(date, shorts) {
   const t = compileTitle(shorts);
   const slug = `${date}-long-facts-${t.roman.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '')}`;
-  const list = shorts.map((s, i) => ({ n: i + 1, slug: s.slug, url: s.url, seconds: s.seconds, title: s.spec.title || s.spec.hook, hook: s.spec.hook, source: s.spec.source, deity: s.spec.deity }));
+  // art + ai_music per Short: the compilation's AI disclosure follows its parts (scripts/ai-disclosure.mjs).
+  const list = shorts.map((s, i) => ({ n: i + 1, slug: s.slug, url: s.url, seconds: s.seconds, title: s.spec.title || s.spec.hook, hook: s.spec.hook, source: s.spec.source, deity: s.spec.deity,
+    art: s.spec.art || null, ai_music: Boolean(s.spec.bhajan) }));
   return {
     slug, format: 'long', kind: 'compilation', date, title: t.roman, playlist: 'Khatu Shyam ji ki Kathayein', deity: 'Pauranik facts (sankalan)',
     summary: `Weekly facts compilation: ${list.map((c) => c.slug.replace(/^\d{4}-\d{2}-\d{2}-facts-/, '')).join(', ')}`.slice(0, 160),
@@ -98,7 +100,6 @@ export function compileSpec(date, shorts) {
       ...list.map((c) => `${c.n}. ${c.title}: ${c.source} | Short: ${c.url}`),
       'Chitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.', 'Jai Shree Shyam 🙏 Achha laga ho to Like, Share aur Subscribe karein.', '#facts #story #PauranikKatha #Bhakti'].join('\n'),
     youtube_tags: ['pauranik katha', 'पौराणिक कथा', 'pauranik rahasya', 'पौराणिक रहस्य', t.roman, t.hi.replace(' 😱', ''), 'facts', 'Khatu Shyam', 'खाटू श्याम', 'Ramayan', 'रामायण', 'Mahabharat', 'महाभारत'].join(', '),
-    synthetic: true,
   };
 }
 

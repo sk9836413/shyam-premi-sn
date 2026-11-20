@@ -15,8 +15,8 @@
 //           ended; the instrumental bed stays under the narration.
 // Selection: the deity / festival must match (no match = the instrumental engine as before); never the same bhajan
 // on the channel within 5 days (story/published/*.json keep spec.bhajan.id); stable per slug.
-// Disclosure: videos with a bhajan get BHAJAN_LINE in the description / captions; YouTube uploads always set
-// status.containsSyntheticMedia = true (scripts/youtube.mjs syntheticMedia).
+// Disclosure: videos with a bhajan get BHAJAN_LINE in the description / captions, and scripts/ai-disclosure.mjs always
+// sets YouTube's status.containsSyntheticMedia and Meta's AI label for them (AI-made music).
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

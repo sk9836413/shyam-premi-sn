@@ -268,7 +268,6 @@ function render() {
     youtube_description: mantraDescription({ m, malas: malasSpec, seconds: total, credits, cat }),
     youtube_tags: withTags(m.tags.join(', '), ['मंत्र जाप', 'mantra jaap']).split(', ').slice(0, 15).join(', '),
     facebook_caption: '',
-    synthetic: true,
     seconds: +total.toFixed(2), lufs_in: lufsIn, malas: malasSpec, chapters,
     pictures: set.map((f) => path.relative(ROOT, f).replace(/\\/g, '/')),
     intro: { tts: m.intro_tts.join(' '), seconds: +introLen.toFixed(2) },

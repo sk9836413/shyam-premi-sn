@@ -927,8 +927,10 @@ deity persona (a persona prompt + the sheesh-daan line was blocked as SAFETY).
   responsible for its use and Google may generate similar content for others. On the free (unpaid) tier Google may use
   prompts and outputs to improve its products and human reviewers may read them: never send private data (our scripts
   are public devotional text). Users must be 18+; the Prohibited Use Policy applies. No attribution or labelling rule
-  for audio, but we keep ours: YouTube `containsSyntheticMedia` = true and "Chitra, awaaz aur animation AI se banaye
-  gaye hain (sanketik)." in every description.
+  for audio, but we keep ours: "Chitra, awaaz aur animation AI se banaye gaye hain (sanketik)." in every description.
+  The platform flags (YouTube `containsSyntheticMedia`, Meta `is_ai_generated`) are decided per video by
+  `scripts/ai-disclosure.mjs` (owner, 20 Nov 2026: exactly what each platform requires): AI-sung music or realistic AI
+  visuals = both; stylized art with an AI narrator = Meta only (realistic-sounding AI audio); unsure = label.
 - Kill switches: repo variable `GEMINI_TTS=off` (edge-tts only), `SOUND_BEDS=off` (the old beds).
 
 **Music beds** (`voice/beds.py`, synthesized with numpy: no samples, no downloaded music), ducked under the voice by a

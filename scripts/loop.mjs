@@ -198,7 +198,8 @@ export function buildSpec(date, pick, { bed = null, at = '05:45' } = {}) {
     slug, format: 'loop', kind: pick.kind, date, publish_at: at, deity: D.roman, title: veer ? D.jaikara_roman : `${D.roman} Bhajan`,
     kicker: veer ? 'Jaikara' : 'Bhakti Geet', playlist: D.playlist, picture_style: pick.style, style: `${pick.style}, no text, no letters`,
     scenes: [{ prompt, seed: pick.seed, deity: true }],
-    audio: b ? { bhajan_id: b.id, file: b.file, from: pick.window.from, dur: pick.window.dur, bpm: b.bpm } : { music_id: bed?.id, file: bed?.file, from: 0, dur: VEER_SECONDS[0] + 4 },
+    // audio.licence: scripts/ai-disclosure.mjs labels a veer bed only when it is AI-generated (a CC0 recording needs no label).
+    audio: b ? { bhajan_id: b.id, file: b.file, from: pick.window.from, dur: pick.window.dur, bpm: b.bpm } : { music_id: bed?.id, file: bed?.file, licence: bed?.licence ?? null, from: 0, dur: VEER_SECONDS[0] + 4 },
     lyric: veer ? null : line, jaikara: veer ? D.jaikara : null,
     summary: `${pick.kind} Short: ${D.roman}, ${b ? `bhajan ${b.id} chorus ${pick.window.from}-${(pick.window.from + pick.window.dur).toFixed(1)} s` : `bed ${bed?.id}`}, art ${pick.style.split(',')[0]}, seed ${pick.seed}`,
     youtube_title,
@@ -208,7 +209,6 @@ export function buildSpec(date, pick, { bed = null, at = '05:45' } = {}) {
     youtube_tags: [D.roman, D.hi, `${D.roman} bhajan`, `${D.hi} भजन`, D.jaikara_roman, D.jaikara, 'Bhakti song', 'भक्ति गीत', 'bhakti status', 'भक्ति स्टेटस', 'devotional shorts', 'सनातन धर्म'].join(', '),
     instagram_caption: `${D.jaikara_roman} 🙏\n${veer ? `${D.roman} ka veer roop.` : `${D.roman} ka bhajan (original AI rachna).`} Chitra AI se (sanketik).\n${D.fb} #bhaktisong #shorts`,
     facebook_caption: `${D.jaikara} 🙏 आज किसके लिए प्रार्थना कर रहे हैं?\n${veer ? `${D.hi} का वीर रूप।` : `${D.hi} का भजन, मौलिक रचना।`}\n${D.fb}`,
-    synthetic: true,
   };
 }
 

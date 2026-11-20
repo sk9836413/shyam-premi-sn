@@ -14,6 +14,7 @@ import {
 import { recordUse, timeline } from './mantra-long.mjs';
 import { buildBatch, gateTake, mantraNameCheck, needs, stylesFor, sungUnit, takeJob } from '../music/mantra-takes.mjs';
 import { hasSearchedPhrase, isBhajanVideo } from './bhakti-seo.mjs';
+import { aiDisclosure } from './ai-disclosure.mjs';
 import { metaFromScenes, syntheticMedia, uploadStatus } from './youtube.mjs';
 
 const cat = loadMantras('.');
@@ -256,7 +257,7 @@ describe('title, description and validator rules', () => {
     return {
       slug: mantraSlug('2026-11-22', id), format: 'long', kind: 'mantra', mantra: id, date: '2026-11-22', deity: m.deity, source: m.source_hi,
       youtube_title: mantraTitle(m), youtube_description: mantraDescription({ m, malas, seconds: 2100, credits: ['Photo: A, CC BY 2.0, via Wikimedia Commons (https://x)'], cat }),
-      youtube_tags: m.tags.join(', '), synthetic: true, seconds: 2100, malas,
+      youtube_tags: m.tags.join(', '), seconds: 2100, malas, bhajan: { mode: 'mantra', id: malas.map((x) => x.take).join(',') },
       chapters: [{ title: 'Parichay', start: 0 }, ...malas.map((x, k) => ({ title: `Mala ${k + 1}`, start: x.start })), { title: 'Shanti path', start: 2060 }],
       pictures: ['a', 'b', 'c', 'd', 'e'], ...o,
     };
@@ -276,7 +277,6 @@ describe('title, description and validator rules', () => {
     bad({ youtube_title: 'ॐ नमो भगवते वासुदेवाय 108 बार | Shyam Sangeet Studio' }, /other channels/);
     bad({ youtube_title: 'ॐ नमो भगवते वासुदेवाय 108 बार | Jaap' }, /searched generic phrase/);
     bad({ youtube_title: 'ॐ नमो भगवते वासुदेवाय | Krishna Mantra Jaap' }, /108/);
-    bad({ synthetic: false }, /synthetic/);
     bad({ youtube_description: spec().youtube_description.replace(cat.disclosure, '') }, /disclosure/);
     bad({ youtube_description: spec().youtube_description.replace(cat.mantras.vasudev.source_hi, 'x') }, /source/);
     bad({ youtube_description: spec().youtube_description.replace(cat.mantras.vasudev.meaning_hi, 'x') }, /meaning/);
@@ -301,7 +301,10 @@ describe('title, description and validator rules', () => {
   test('upload: synthetic media declared, Bhakti Geet playlist, other channels\' names refused, chapters from the meta', () => {
     const s = spec();
     assert.ok(isBhajanVideo(s) && isBhajanVideo({ bhajan: { mode: 'mantra' } }));
+    // AI-sung mantra takes = AI music: both platforms' labels, decided by scripts/ai-disclosure.mjs (not a spec field).
     assert.equal(syntheticMedia(s), true);
+    assert.deepEqual([aiDisclosure(s).youtube, aiDisclosure(s).meta], [true, true]);
+    assert.equal(aiDisclosure({ ...s, bhajan: undefined }).youtube, true, 'kind "mantra" alone still labels');
     assert.equal(uploadStatus({ synthetic: true }, {}).containsSyntheticMedia, true);
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'mantra-u-'));
     const f = path.join(dir, 's.json'), meta = path.join(dir, 'm.json');
