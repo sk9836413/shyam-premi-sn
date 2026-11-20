@@ -175,3 +175,5 @@
 - 2026-11-20-statusday-khatu-shyam-birthday | youtube: https://youtube.com/shorts/oC3_9XMAEKw (public at 2026-11-20T03:00:00.000Z) | status variant, made 19 Nov 10:49 IST | social: fb: https://www.facebook.com/reel/1659894745920584 (scheduled 2026-11-20T03:00:00.000Z) | ig: pending 2026-11-20T03:00:00.000Z
 - 2026-11-19-eve-khatu-shyam-janmotsav | instagram: skipped (missed the 2026-11-19T14:30:00.000Z slot by 6 h)
 - 2026-11-20-status-dev-uthani-ekadashi | instagram: https://www.instagram.com/reel/Df7-IY4hbjQ/
+- 2026-11-20-movie-khatu-shyam-amar-katha-part-4 | instagram: https://www.instagram.com/reel/Df8t9wTqkSw/
+- 2026-11-20-statusday-khatu-shyam-birthday | instagram: https://www.instagram.com/reel/Df8uEvZiBDN/
