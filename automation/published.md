@@ -177,3 +177,4 @@
 - 2026-11-20-status-dev-uthani-ekadashi | instagram: https://www.instagram.com/reel/Df7-IY4hbjQ/
 - 2026-11-20-movie-khatu-shyam-amar-katha-part-4 | instagram: https://www.instagram.com/reel/Df8t9wTqkSw/
 - 2026-11-20-statusday-khatu-shyam-birthday | instagram: https://www.instagram.com/reel/Df8uEvZiBDN/
+- 2026-11-21-status-tulsi-vivah | claim: 2026-11-21 status by run 44679553027.1 at 2026-11-20T05:54:11.125Z
