@@ -1216,11 +1216,33 @@ jobs:
           META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          # Instagram Trial Reels of the festival 00:30 variants: off unless the repo variable IG_TRIAL is "on"
+          IG_TRIAL: ${{ vars.IG_TRIAL }}
         run: |
           node scripts/status-engine.mjs variants --base "$W/scenes.json" --due "$RUNNER_TEMP/status/due.json" > "$RUNNER_TEMP/variants.tsv"
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           j() { node -p "try{const j=JSON.parse(require('fs').readFileSync('$1','utf8'));$2}catch{''}"; }
+          trial_reel() {
+            local file="$1" day="$2" tfile tslug turl
+            tfile="$W/t-$(basename "$file" .json | sed 's/^v-//').json"
+            node scripts/status-engine.mjs trial --base "$W/scenes.json" --spec "$file" --out "$tfile" || return 1
+            tslug=$(j "$tfile" "j.slug")
+            node scripts/validate.mjs --soft-topics "$tfile" || return 1
+            node story/render-story.mjs "$tfile" > "$RUNNER_TEMP/render-trial.txt" 2>&1 || { tail -20 "$RUNNER_TEMP/render-trial.txt"; return 1; }
+            node scripts/publish.mjs --host-only --video "$W/out/$tslug.mp4" --scenes "$tfile" > "$RUNNER_TEMP/host-trial.json" || true
+            turl=$(j "$RUNNER_TEMP/host-trial.json" "j.video_url||''")
+            [ -n "$turl" ] || { echo "trial: hosting failed"; return 1; }
+            node scripts/meta.mjs short --video "$W/out/$tslug.mp4" --scenes "$tfile" --video-url "$turl" --publish-at "${day}T$(j "$tfile" "j.publish_at")" --no-fb > "$RUNNER_TEMP/meta-trial.json" || true
+            grep -q '"pending"' "$RUNNER_TEMP/meta-trial.json" || { echo "trial: not queued: $(head -c 300 "$RUNNER_TEMP/meta-trial.json")"; return 1; }
+            mkdir -p story/published
+            cp "$tfile" "story/published/$tslug.json"
+            echo "- $tslug | instagram trial reel ($(j "$tfile" "j.ig_trial")) of $(j "$tfile" "j.trial_of"), made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST | social: $(j "$RUNNER_TEMP/meta-trial.json" "j.summary")" >> automation/published.md
+            git add automation/published.md "story/published/$tslug.json"
+            git commit -qm "Trial reel $tslug"
+            for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
+            echo "  - Instagram trial reel queued: $tslug ($(j "$RUNNER_TEMP/meta-trial.json" "j.summary"))" >> "$GITHUB_STEP_SUMMARY"
+          }
           variant() {
             local file="$1" slug="$2" day="$3" slot="$4" at="$5"
             node scripts/validate.mjs --soft-topics "$file" || { echo "::error::$slug failed validation"; return 1; }
@@ -1272,6 +1294,12 @@ jobs:
             git commit -qm "Status $slug"
             for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && break; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
             echo "  - uploaded: $yt$social" >> "$GITHUB_STEP_SUMMARY"
+            # Instagram Trial Reel (vars.IG_TRIAL == 'on'; status-engine trialVariant, research 20 Nov 2026): the festival's
+            # 00:30 variant gets a second hook ("<festival> की शुभकामनाएं 🙏"), shown to non-followers first and queued for
+            # 07:30 IST. Instagram only (not YouTube / Facebook, no upload-guard slot); a failure never stops the job.
+            if [ "$IG_TRIAL" = on ] && [ "$slot" = status ] && [ -n "$url" ] && [ -n "$IG_USER_ID" ]; then
+              trial_reel "$file" "$day" || echo "::warning::$slug: Instagram trial reel not made (see the log)"
+            fi
           }
           failed=0
           while IFS=$'\t' read -r file slug day slot at; do
