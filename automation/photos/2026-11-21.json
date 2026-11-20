@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-21",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "festival",
+      "temple": null,
+      "ai": true,
+      "bank": null,
+      "photos": [],
+      "source": "claude",
+      "fbAt": "2026-11-21T01:00:00.000Z",
+      "igAt": "2026-11-21T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-21-1-1.jpg"
+      ],
+      "caption": "तुलसी विवाह की हार्दिक शुभकामनाएं 🙏\nआज तुलसी माता और शालिग्राम जी के विवाह का पावन पर्व है।\nघर के आंगन में दीपक जलें, तुलसी जी सजें और मन में शांति रहे।\nतुलसी माता और शालिग्राम जी की कृपा आप सब पर बनी रहे।\nAapke ghar mein tulsi vivah kaise manaya jaata hai?\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#TulsiVivah #TulsiVivah2026 #TulsiMata #Shaligram #Bhakti",
+      "fbCaption": "तुलसी विवाह की शुभकामनाएं 🙏 क्या आपके घर में आज तुलसी माता का विवाह धूमधाम से मनाया जाता है?\nआज तुलसी माता और शालिग्राम जी के विवाह का पावन पर्व है।\nउनकी कृपा आपके परिवार पर बनी रहे।\n\nChitra AI dwara banaya gaya hai (sanketik).\n\n#TulsiVivah #TulsiMata #Bhakti",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1613089657500665",
+        "scheduled": "2026-11-21T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-21T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

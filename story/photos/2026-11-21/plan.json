@@ -1,0 +1,34 @@
+{
+  "date": "2026-11-21",
+  "weekday": "Shanivar",
+  "festival": "तुलसी माता और शालिग्राम जी की कृपा बनी रहे",
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-21T01:00:00.000Z",
+      "igAt": "2026-11-21T03:43:00.000Z",
+      "kind": "festival",
+      "festival": {
+        "key": "tulsi-vivah",
+        "name": "Tulsi Vivah (Dwadashi); Tulsi Shaligram Vivah; Tulsi Vivah (status Shorts: eve 11-20 20:00 dropped by the 3-a-day cap, status 11-21 00:30).",
+        "big": "तुलसी विवाह",
+        "line": "की शुभकामनाएं 🙏",
+        "blessing": "तुलसी माता और शालिग्राम जी की कृपा बनी रहे",
+        "tags": [
+          "#TulsiVivah",
+          "#TulsiVivah2026"
+        ]
+      },
+      "flux": "A tulsi plant dressed as a bride with a red chunari and marigold garlands, a small Shaligram stone on a silver throne beside it, lit diyas, no people",
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    }
+  ]
+}
