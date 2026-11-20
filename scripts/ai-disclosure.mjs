@@ -30,7 +30,8 @@
 //   Meta    = YouTube's reasons OR any AI narration / dialogue voice (realistic-sounding audio) OR any AI-generated
 //             instrumental (realistic-sounding audio, also under a voice)
 // NOT AI for this purpose: the numpy-synthesized beds (voice/beds.py), the ffmpeg drone/bells, CC0 human recordings
-// (music/library cc-*), real temple photos and footage (footage/, real-photos.mjs). Stylized looks (3D animated / Pixar,
+// (music/library cc-*), real temple photos and footage (footage/, real-photos.mjs), and Shyam Baba's real darshan stills
+// (footage/shyam-baba-pandal-darshan, scripts/shyam-darshan.mjs: a scene with `real_image` is left out of the look). Stylized looks (3D animated / Pixar,
 // cute-3d, 2D illustrated, painting, miniature, clay, hand-drawn) are "not realistic" on YouTube and not photorealistic
 // on Meta. Photo posts (images) need no Meta label; the Veo kit Shorts are made by hand in YouTube's own app (YouTube
 // labels those itself).
@@ -81,7 +82,12 @@ export function aiLook(spec = {}) {
     const arts = (spec.compile || []).map((c) => c.art);
     return arts.length && arts.every((a) => a === 'illustrated') ? 'stylized' : 'realistic';
   }
-  const scenes = Array.isArray(spec.scenes) ? spec.scenes : [];
+  const all = Array.isArray(spec.scenes) ? spec.scenes : [];
+  // A scene that SHOWED a real picture (render-story / render-long write `real_image`: a licence-checked temple photo or
+  // Shyam Baba's real darshan still, scripts/shyam-darshan.mjs) is not an AI visual, whatever its prompt says.
+  const shownReal = (s) => Boolean(s?.real_image) || /^footage\//.test(String(s?.image || ''));
+  if (all.some(shownReal) && all.every((s) => s?.endcard || shownReal(s))) return 'none';
+  const scenes = all.filter((s) => !shownReal(s));
   const images = scenes.map((s) => String(s.image || ''));
   if (images.some((i) => /photo-bank/.test(i))) return 'realistic'; // bank pictures include "realistic photograph" prompts
   const text = [spec.style, spec.picture_style, FORMAT_LOOK[spec.format], ...scenes.map((s) => s.prompt)].filter(Boolean).join(' ');

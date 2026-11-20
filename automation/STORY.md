@@ -288,12 +288,23 @@ a temple darshan.
   comparisons that put down any deity or community.
 - **Khatu Shyam ji iconography (owner, 6 Nov 2026; every format: Shorts, long, status, dialogue, movie).** After the
   sheesh daan, Khatu Shyam ji is worshipped as the **SHEESH (head) only**. Every image of Khatu Shyam ji (darshan, murti,
-  shringar) uses this description and nothing that contradicts it: `the divine Sheesh (head only, no body, no flute) of
-  Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with
-  peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and
-  jewels, in a decorated sanctum`. Never a full body, hands or a flute (those belong to Shri Krishna). Barbarik as the
-  young warrior *before* the sheesh daan, and the temple building, are not affected. The validator checks every prompt
-  that shows Khatu Shyam ji; the movie cast entry `khatu-shyam` carries the same description.
+  shringar) uses this description (20 Nov 2026: rewritten from the owner's REAL darshan stills; the exact text is
+  `SHEESH_LOOK` in scripts/shyam-darshan.mjs) and nothing that contradicts it: `the divine Sheesh (head only, no body, no
+  neck, no arms, no hands, no flute) of Shri Khatu Shyam ji as a temple murti: a dark, almost black sheesh face with
+  large wide-open eyes, a curled black moustache and a red tilak on the forehead, golden ear ornaments on both sides of
+  the face, a tall golden jewelled mukut with a crest and peacock-feather motifs and a round golden halo set with red
+  and green stones behind it; the face is framed by heavy garlands of red roses, orange marigold and white flowers
+  flowing down in wide layered arcs, a pink silk patka and a gold necklace below the face; behind it a carved silver and
+  gold darbar backdrop with an arched canopy, small brass diyas and an akhand jyot glowing in front; front-facing,
+  symmetrical, not Shri Krishna, no blue skin, no modern objects`. Never a full body, hands or a
+  flute (those belong to Shri Krishna). Barbarik as the young warrior *before* the sheesh daan, and the temple building,
+  are not affected. The validator checks every prompt that shows Khatu Shyam ji; the movie cast entry `khatu-shyam`
+  carries the older description (its canonical portrait is already made).
+- **Shyam Baba's real darshan (owner, 20 Nov 2026).** A darshan scene of Khatu Shyam ji (the sheesh in a darbar) shows
+  the owner's REAL darshan still on its own (footage/shyam-baba-pandal-darshan, scripts/shyam-darshan.mjs) instead of the
+  AI picture, labelled "Asli darshan: Shyam Baba pandal, Shyam Premi SN" with a credit line in the description. They were
+  recorded at a Shyam Baba **pandal**, not the Khatu mandir: never narrate or caption those pictures as the Khatu mandir
+  / Khatu Dham. Katha scenes (Barbarik, the sheesh daan, temple buildings, crowds) stay AI pictures.
 - Mantras must be the standard, widely used text. Copy them exactly from a reliable source.
 
 ## 3. Write `story/today/scenes.json`

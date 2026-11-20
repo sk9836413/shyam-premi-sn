@@ -20,6 +20,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creditLine, photosFor } from '../scripts/real-photos.mjs';
+import { focusCrop, longImagesFor, relStill } from '../scripts/shyam-darshan.mjs';
 import { coverWords, longThumbs } from './cover.mjs';
 import { fallbackImage, iconography } from '../animate/frames.mjs';
 
@@ -90,6 +91,8 @@ let generated = 0;
 const photos = photosFor(spec.temple);
 const realImages = spec.images.map((im, i) => (im.real ? i : -1)).filter((i) => i >= 0);
 const photoOf = new Map(photos.length ? realImages.map((i, k) => [i, photos[k % photos.length]]) : []);
+// Shyam Baba darshan images: the owner's real landscape stills (scripts/shyam-darshan.mjs), before temple photos / FLUX.
+for (const [i, still] of longImagesFor(spec)) photoOf.set(i, still);
 const usedPhotos = new Set();
 const fbOf = new Map(); // image index -> stand-in { file, photo?, source }
 let workersAiDown = false;
@@ -258,10 +261,12 @@ async function clip(scene, i, img, voice) {
     const anyAspect = Boolean(photo || fbOf.has(scene.img));
     if (photo) {
       usedPhotos.add(photo);
-      label.push(draw(textFile(`photo-${i}.txt`, `Asli photo: ${photo.author}`.slice(0, 70)), 'fontsize=28:fontcolor=white@0.9:box=1:boxcolor=0x000000@0.45:boxborderw=8:x=w-text_w-30:y=30'));
+      if (spec.images[scene.img]) spec.images[scene.img].real_image = relStill(photo);
+      label.push(draw(textFile(`photo-${i}.txt`, (photo.label || `Asli photo: ${photo.author}`).slice(0, 70)), 'fontsize=28:fontcolor=white@0.9:box=1:boxcolor=0x000000@0.45:boxborderw=8:x=w-text_w-30:y=30'));
     }
     // A real photo (any aspect) is cover-cropped to 16:9; a FLUX image is square and cropped at its focus band.
-    const frame = anyAspect ? 'scale=2880:1620:force_original_aspect_ratio=increase:flags=lanczos,crop=2880:1620,setsar=1' : `scale=2880:2880:flags=lanczos,crop=2880:1620:0:${y}`;
+    const fc = photo?.focus && Array.isArray(photo.size) ? (() => { const k = Math.max(2880 / photo.size[0], 1620 / photo.size[1]); const c = focusCrop(photo, Math.round(photo.size[0] * k), Math.round(photo.size[1] * k), 2880, 1620); return `:${c.x}:${c.y}`; })() : '';
+    const frame = anyAspect ? `scale=2880:1620:force_original_aspect_ratio=increase:flags=lanczos,crop=2880:1620${fc},setsar=1` : `scale=2880:2880:flags=lanczos,crop=2880:1620:0:${y}`;
     await ff(['-i', img, '-i', LOGO, '-filter_complex', [
       `[0:v]${frame},zoompan=${motion(scene.motion, frames)}:d=${frames}:s=${W}x${H}:fps=${FPS}[bg]`,
       `[1:v]scale=96:96[lg]`,
@@ -487,7 +492,7 @@ if (bh) {
   fs.writeFileSync(path.join(base, 'out', `${spec.slug}.json`), JSON.stringify(meta, null, 2));
 }
 if (usedPhotos.size) {
-  const credit = [...usedPhotos].map(creditLine).join('\n');
+  const credit = [...new Set([...usedPhotos].map(creditLine))].join('\n');
   if (!spec.youtube_description.includes(credit)) spec.youtube_description = `${spec.youtube_description.trimEnd()}\n\n${credit}`;
 }
 if (usedPhotos.size || bh || music) fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);

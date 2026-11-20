@@ -82,3 +82,25 @@ licence_url, attribution, url) mein aati hai, `search.json` mein likha rehta hai
 - Description mein apne aap: `Photo: <author>, <licence>, via Wikimedia Commons (<file ka page>)`.
 - Galat photo dikhe: uska Commons title `footage/temples.json` mein us mandir ke `skip` mein daalein aur file hata dein.
 - Naya mandir: `node scripts/real-photos.mjs --find "<naam>"` se category dhoondhein, temples.json mein jodein.
+
+## 6. Shyam Baba ke asli darshan stills (owner, 20 Nov 2026)
+
+Owner ne ek **Shyam Baba pandal (sajavat)** mein khud darshan record kiye (5 video + 5 photo). Ye Khatu Shyam ji ka
+Sikar wala mandir **nahi** hai, isliye folder ka naam alag hai: `footage/shyam-baba-pandal-darshan/`
+(kabhi `khatu-shyam-mandir` mein mat daalna).
+
+- 23 JPEG (video frames 1080 px chaude, 1350 px photos, har ek 400 KB se kam): `safed-shringar-01..08` (safed phool
+  shringar), `gulab-shringar-01..08` (laal gulab shringar), `akhand-jyot-01..02`, `pandal-darbar-01..05` (owner ki
+  photos, decorator ka board aur zyada-tar log crop kiye). Frame sharpness (Laplacian) se chune, kisi bhakt ka chehra
+  nahi; sirf Lanczos upscale + halka levels, **koi AI badlav nahi**.
+- Har `<naam>.licence.json`: `source`/`licence` "own", `author`/`recorded_by` "Shyam Premi SN", `place` "Shyam Baba
+  pandal (sajavat), not the Khatu mandir", `date` "2026-11", `kind` (safed / gulab / jyot / pandal), `view`,
+  `deity_face`, `focus` (chehra kahan hai: crop isi ke aas-paas), `size`, `from` (kaun si video, kaunsa second).
+- Pipeline (`scripts/shyam-darshan.mjs`): Shorts aur status ke har Shyam Baba darshan scene par, photo post 4 (Sandhya
+  aarti) aur Khatu festival card (Janmotsav, Ekadashi) par, long video ke darshan image par yahi asli still aata hai,
+  AI chitra nahi. Label: "Asli darshan: Shyam Baba pandal, Shyam Premi SN". Credit line: "Asli darshan: Shyam Baba ka
+  pandal (sajavat), Shyam Premi SN ne khud record kiya; Khatu mandir nahi". Inpar "AI chitra" label nahi lagta
+  (`scripts/ai-disclosure.mjs`, scene ka `real_image`). Katha ke scene (Barbarik, sheesh daan, mandir ki imaarat, bheed)
+  AI chitra hi rehte hain. Band karna ho to `SPS_SHYAM_REAL=0`.
+- Naye still jodne hon: isi folder mein `<naam>.jpg` + `<naam>.licence.json` (upar jaise fields), sirf owner ki apni
+  recording. Kisi aur ki video/photo kabhi nahi.

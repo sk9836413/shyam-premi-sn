@@ -29,6 +29,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { creditLine, photosFor } from '../scripts/real-photos.mjs';
+import { focusCrop, realScenesFor, relStill } from '../scripts/shyam-darshan.mjs';
 import { framePrompt } from '../animate/kaggle.mjs';
 import { makeCover } from './cover.mjs';
 import { fallbackImage, iconography } from '../animate/frames.mjs';
@@ -59,9 +60,13 @@ const SUB_WRAP = Math.round((30 * 50) / SUB_SIZE);
 // Real photos for the `real: true` scenes, in turn (none: those scenes keep the AI image).
 const photos = photosFor(spec.temple);
 const realIdx = spec.scenes.map((s, i) => (s.real && !s.endcard ? i : -1)).filter((i) => i >= 0);
-const photoFor = (i) => (photos.length && realIdx.includes(i) ? photos[realIdx.indexOf(i) % photos.length] : null);
+// Shyam Baba's darshan scenes show the owner's REAL darshan stills (scripts/shyam-darshan.mjs; owner, 20 Nov 2026), before
+// any temple photo or AI picture: no FLUX image, no animation, label "Asli darshan: Shyam Baba pandal, Shyam Premi SN".
+const shyamReal = realScenesFor(spec);
+const photoFor = (i) => shyamReal.get(i) || (photos.length && realIdx.includes(i) ? photos[realIdx.indexOf(i) % photos.length] : null);
 const usedPhotos = [];
 if (spec.temple) console.log(`real photos for ${spec.temple}: ${photos.length}${photos.length ? `, used on scenes ${realIdx.map((i) => i + 1).join(', ')}` : ''}`);
+if (shyamReal.size) console.log(`Shyam Baba real darshan stills on scenes ${[...shyamReal.keys()].map((i) => i + 1).join(', ')}`);
 
 function cfToken() {
   if (process.env.CF_API_TOKEN) return process.env.CF_API_TOKEN;
@@ -435,12 +440,20 @@ for (const [i, scene] of spec.scenes.entries()) {
       const fb = photo ? null : fellBack.get(i);
       const shot = photo || fb?.photo || null;
       const anyAspect = Boolean(photo || fb);
-      const cover = (w, h) => (anyAspect ? `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h},setsar=1` : `scale=${h}:${h},crop=${w}:${h}`);
+      // A picture with a focus point (Shyam Baba's real stills: the face and mukut) is cropped around it, not the centre.
+      const at = (w, h) => {
+        if (!shot?.focus || !Array.isArray(shot.size)) return '';
+        const k = Math.max(w / shot.size[0], h / shot.size[1]);
+        const c = focusCrop(shot, Math.round(shot.size[0] * k), Math.round(shot.size[1] * k), w, h);
+        return `:${c.x}:${c.y}`;
+      };
+      const cover = (w, h) => (anyAspect ? `scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h}${at(w, h)},setsar=1` : `scale=${h}:${h},crop=${w}:${h}`);
       let credit = '';
       if (shot) {
         if (!usedPhotos.includes(shot)) usedPhotos.push(shot);
+        spec.scenes[i].real_image = relStill(shot); // scripts/ai-disclosure.mjs: a real picture is not an AI visual
         const cf = path.join(work, `photo-${i}.txt`);
-        fs.writeFileSync(cf, `Asli photo: ${shot.author}`.slice(0, 60));
+        fs.writeFileSync(cf, (shot.label || `Asli photo: ${shot.author}`).slice(0, 60));
         credit = `,drawtext=fontfile='${FONT}':textfile='${esc(cf)}':fontsize=26:fontcolor=white@0.9:box=1:boxcolor=0x000000@0.45:boxborderw=8:x=w-text_w-24:y=1290`;
       }
       run(['-i', img, ...(LOGO ? ['-i', LOGO] : []), ...ovIn, ...sendIn, ...coverIn, '-filter_complex', [
@@ -576,10 +589,15 @@ if (bhajan) {
 }
 if ((music || bhajan) && !usedPhotos.length) fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
 // Credit every real photo shown: "Photo: <author>, <licence>, via Wikimedia Commons (<file page>)".
+// Shyam Baba's real stills: "Asli darshan: Shyam Baba ka pandal (sajavat), Shyam Premi SN ne khud record kiya; Khatu
+// mandir nahi" (once). When EVERY picture of the video was real, the description's AI-picture sentence would be untrue:
+// it becomes "Chitra: asli darshan, koi AI chitra nahi." (the voice / music AI lines stay; ai-disclosure.mjs decides the flags).
 if (usedPhotos.length) {
-  const credit = usedPhotos.map(creditLine).join('\n');
+  const credit = [...new Set(usedPhotos.map(creditLine))].join('\n');
+  const allReal = spec.scenes.every((s) => s.endcard || s.real_image);
   for (const k of ['youtube_description', 'instagram_caption', 'facebook_caption']) {
     if (spec[k] && !spec[k].includes(credit)) spec[k] = `${spec[k].trimEnd()}\n\n${credit}`;
+    if (spec[k] && allReal) spec[k] = spec[k].replace(/Chitra AI (dwara|se) banaye gaye hain \(sanketik\)\.?/gi, 'Chitra: asli darshan, koi AI chitra nahi.');
   }
   fs.writeFileSync(specFile, `${JSON.stringify(spec, null, 2)}\n`);
 }

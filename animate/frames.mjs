@@ -24,6 +24,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { photosFor } from '../scripts/real-photos.mjs';
+import { KHATU_NEGATIVE, SHEESH_LOOK, longImagesFor, pickStill, realScenesFor, realShyamOn, shyamStills, showsShyamDarshan } from '../scripts/shyam-darshan.mjs';
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(DIR, '..');
@@ -31,7 +32,8 @@ const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
 export const NEURONS_PER_IMAGE = 326; // FLUX.1-schnell 1024 px, 4 steps (commit 9c1e186: 1 Nov used 13k for ~40 images)
 
 // STORY.md: Khatu Shyam ji is the SHEESH (head) only. A prompt that names him without the sheesh form gets it added.
-export const KHATU_SHEESH = 'the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum';
+// The look is written from the owner's real darshan stills (scripts/shyam-darshan.mjs SHEESH_LOOK, 20 Nov 2026).
+export const KHATU_SHEESH = SHEESH_LOOK;
 const KHATU = /khatu\s*shyam|shyam\s*baba|baba\s*shyam|shri\s*shyam\s*ji/i;
 export function iconography(prompt) {
   const p = String(prompt || '');
@@ -54,6 +56,12 @@ const festivalKey = (spec) => String(spec?.festival || spec?.slug || '').toLower
  */
 export function fallbackImage(spec, prompt, i = 0, workDir = path.join(ROOT, 'animate', 'out')) {
   const pick = (list) => list[i % list.length];
+  // Shyam Baba: the owner's real darshan stills first (scripts/shyam-darshan.mjs; credited and labelled like a real photo),
+  // then the AI bank. Only for a darshan picture (not the katha: Barbarik, the sheesh daan, temple buildings...).
+  if (KHATU.test(prompt || '') && realShyamOn(spec) && showsShyamDarshan(prompt)) {
+    const still = pickStill(shyamStills(), prompt, `${spec?.slug || ''}-fb-${i}`);
+    if (still) return { file: still.file, photo: still, source: 'real:shyam-baba-pandal-darshan' };
+  }
   if (KHATU.test(prompt || '') && bank('khatu').length) return { file: pick(bank('khatu')), source: 'bank:khatu' };
   const fk = festivalKey(spec);
   if (fk && bank(fk).length && !/murti|deity|darshan|krishna|shiva|hanuman|ganesh|lakshmi|devi|mata/i.test(prompt || '')) {
@@ -78,8 +86,9 @@ function wanted(specFile, mode, visualsDir) {
   const list = [];
   if (mode === 'long') {
     const real = (spec.images || []).map((im, i) => (im.real ? i : -1)).filter((i) => i >= 0);
+    const shyam = longImagesFor(spec); // Shyam Baba darshan images: the owner's real (landscape) stills, no FLUX
     (spec.images || []).forEach((im, i) => {
-      if (im.file || (photos.length && real.includes(i)) || !im.prompt) return;
+      if (im.file || (photos.length && real.includes(i)) || shyam.has(i) || !im.prompt) return;
       list.push({ id: `img${i}`, out: path.join(base, 'images', `${spec.slug}-img${i}.jpg`),
         prompt: `${iconography(im.prompt)}. Wide cinematic composition with the main subject in the middle band. ${spec.style || ''}`, seed: im.seed || 42 + i });
     });
@@ -90,10 +99,11 @@ function wanted(specFile, mode, visualsDir) {
     }
   } else {
     const realIdx = spec.scenes.map((s, i) => (s.real && !s.endcard ? i : -1)).filter((i) => i >= 0);
+    const shyam = realScenesFor(spec); // Shyam Baba darshan scenes show the real stills (render-story.mjs): no FLUX image
     // Same prompt as render-story.mjs image() (framePrompt adds lighting, lens and composition; SPS_FRAME_PROMPT=0 = old).
     return import(pathToFileURL(path.join(DIR, 'kaggle.mjs')).href).then(({ framePrompt }) => {
       spec.scenes.forEach((s, i) => {
-        if (s.endcard || s.image || !s.prompt || (photos.length && realIdx.includes(i))) return;
+        if (s.endcard || s.image || !s.prompt || shyam.has(i) || (photos.length && realIdx.includes(i))) return;
         const sc = { ...s, prompt: iconography(s.prompt) };
         list.push({ id: String(i), out: path.join(base, 'images', `${spec.slug}-${i}.jpg`),
           prompt: process.env.SPS_FRAME_PROMPT === '0' ? `${sc.prompt}. ${spec.style}` : framePrompt(sc, spec), seed: s.seed || 42 });
@@ -137,7 +147,17 @@ async function kaggleFrames(jobs, { waitMin, slot }) {
   fs.copyFileSync(path.join(DIR, 'kaggle', 'flux_frames.py'), path.join(ds, 'flux_frames.py'));
   const stamp = `frames-${slot}-${Date.now()}`;
   // 1024 px square (what Workers AI makes, and what the renderers expect); a job may ask for another size (multiples of 16).
-  const kj = jobs.map((j) => ({ id: j.id, flux_prompt: j.prompt, seed: j.seed || 42, ...(j.w ? { w: j.w, h: j.h } : {}) }));
+  // Shyam Baba prompts carry the negative prompt (used only with true CFG, settings.flux.true_cfg > 1) and, with
+  // SPS_SHYAM_REF=1, one of the owner's real darshan stills as the reference image (img2img in flux_frames.py; strength
+  // SPS_SHYAM_REF_STRENGTH, default 0.6). Off by default until a Kaggle test run of it has been checked by a person.
+  const refOn = process.env.SPS_SHYAM_REF === '1';
+  const kj = jobs.map((j) => {
+    const khatu = KHATU.test(j.prompt) && !/barbari/i.test(j.prompt);
+    const ref = refOn && khatu && showsShyamDarshan(j.prompt) ? pickStill(shyamStills(), j.prompt, j.id) : null;
+    if (ref) fs.copyFileSync(ref.file, path.join(ds, `ref-${j.id}.jpg`));
+    return { id: j.id, flux_prompt: j.prompt, seed: j.seed || 42, ...(j.w ? { w: j.w, h: j.h } : {}), ...(khatu ? { negative: KHATU_NEGATIVE } : {}),
+      ...(ref ? { init_image: `ref-${j.id}.jpg`, strength: Number(process.env.SPS_SHYAM_REF_STRENGTH || 0.6), ref_focus: [ref.focus?.x ?? 0.5, ref.focus?.y ?? 0.5] } : {}) };
+  });
   fs.writeFileSync(path.join(ds, 'jobs.json'), JSON.stringify({ stamp, settings: { flux: { size: 1024, steps: 8 } }, jobs: kj }, null, 2));
   if (!kaggleMjs(['upload'], env).ok) return { error: 'dataset upload failed' };
   // No `lock`: this session is short, and push already retries while the account runs its 2 GPU sessions.

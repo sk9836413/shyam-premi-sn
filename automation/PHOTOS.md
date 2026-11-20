@@ -62,6 +62,13 @@ Write only the posts listed in plan.json. Fields (all strings unless shown):
   pictures: the script adds "AI चित्र (सांकेतिक)" on the image and "Chitra AI dwara banaya gaya hai (sanketik)." in the
   caption. Never write "asli darshan", "live darshan", "real photo" or "aaj ki taaza tasveer" for an AI picture, and
   never say a real photo was taken today.
+- **Shyam Baba's REAL darshan (from 20 Nov 2026):** post 4 and the Khatu festival cards (Janmotsav, Ekadashi) now show
+  the owner's own darshan stills (footage/shyam-baba-pandal-darshan; plan.json `"pandal": true`). They were recorded at a
+  decorated Shyam Baba **pandal**, NOT the Khatu Shyam mandir: you may say "asli darshan" / "असली दर्शन" ("Shyam Baba
+  ke asli darshan, pandal ki sajavat"), but never "Khatu Dham se darshan", "Khatu mandir ke live darshan", "Sikar se"
+  or a `place` with Khatu / Sikar (validate rejects it). No "AI chitra" line for these pictures; the script adds the
+  credit "Asli darshan: Shyam Baba ka pandal (sajavat), Shyam Premi SN ne khud record kiya; Khatu mandir nahi". Don't
+  say the picture is from today.
 - **Khatu Shyam ji** is worshipped as the SHEESH (head) only: never describe him with a body, arms or a flute.
 - Festival dates come from automation/calendar.md only. The script adds the festival links (the card pages on the
   channel's own site, site/) and the photo credits itself: do not write URLs in captions.

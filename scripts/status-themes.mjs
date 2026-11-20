@@ -5,8 +5,11 @@
 // big (Hindi blessing, max 26), line (max 48), tts (Devanagari, max ~70 so the hook fits in front), sub (Roman).
 // Big themes have 6 scenes; each variant shows its own 3 (festivals.json `picks`, else DEFAULT_PICKS).
 // Khatu Shyam ji is always the SHEESH only (owner, 6 Nov 2026): every prompt says so.
+import { SHEESH_LOOK } from './shyam-darshan.mjs';
 
-const SHEESH = 'the divine Sheesh (head only, no body, no arms, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a curled moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels';
+// Written from the owner's real darshan stills (scripts/shyam-darshan.mjs SHEESH_LOOK, 20 Nov 2026). In the rendered video a
+// Shyam Baba darshan scene shows the real still itself (story/render-story.mjs); the prompt is the AI fallback.
+const SHEESH = SHEESH_LOOK;
 const VISHNU = 'Bhagwan Vishnu with four arms holding conch, chakra, mace and lotus, blue complexion, golden crown and yellow silk dhoti, serene face';
 const SHIV = 'Bhagwan Shiv in calm meditation, blue-grey complexion, crescent moon and the Ganga in his matted hair, rudraksha malas, a trident beside him, serene closed eyes';
 const GANESH = 'Shri Ganesh ji with an elephant head and one broken tusk, four arms, red and gold silk, a bowl of modak, his mouse vahan at his feet, gentle smiling eyes';

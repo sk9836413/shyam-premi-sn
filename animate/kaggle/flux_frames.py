@@ -35,6 +35,25 @@ def encode(inp, out):
     torch.save(emb, f"{out}/flux-emb.pt")
 
 
+def reference_latents(pipe, vae, file, w, h, focus=None):
+    """Packed FLUX latents (cuda:0, fp16) of a reference picture, cover-cropped to w x h around `focus` [x, y] (0-1)."""
+    import numpy as np
+    import torch
+    from PIL import Image
+    im = Image.open(file).convert("RGB")
+    k = max(w / im.width, h / im.height)
+    im = im.resize((max(w, round(im.width * k)), max(h, round(im.height * k))), Image.LANCZOS)
+    fx, fy = (focus or [0.5, 0.5])[:2]
+    x = min(max(0, round(fx * im.width - w / 2)), im.width - w)
+    y = min(max(0, round(fy * im.height - h / 2)), im.height - h)
+    im = im.crop((x, y, x + w, y + h))
+    t = torch.from_numpy(np.asarray(im).astype("float32") / 127.5 - 1.0).permute(2, 0, 1)[None].to("cuda:1")
+    with torch.no_grad():
+        lat = vae.encode(t).latent_dist.mode()
+    lat = ((lat - vae.config.shift_factor) * vae.config.scaling_factor).to("cuda:0", torch.float16)
+    return pipe._pack_latents(lat, 1, lat.shape[1], lat.shape[2], lat.shape[3])
+
+
 def main(inp, out, cfg):
     import torch
     from huggingface_hub import hf_hub_download, snapshot_download
@@ -74,8 +93,25 @@ def main(inp, out, cfg):
         # every other caller is unchanged (guidance 0, no negative).
         neg = emb.get(j["id"] + "__neg") if float(cfg.get("true_cfg", 1) or 1) > 1 else None
         extra = {"negative_prompt_embeds": neg[0], "negative_pooled_prompt_embeds": neg[1], "true_cfg_scale": float(cfg["true_cfg"])} if neg else {}
+        # Reference image (img2img; Shyam Baba's real darshan still, animate/frames.mjs with SPS_SHYAM_REF=1): the job's
+        # `init_image` is VAE-encoded and noised to `strength`, and FLUX.1-schnell (Apache-2.0) denoises only the last
+        # part of the schedule, so the picture keeps the real roop's layout and colours. Any failure = text-only, as before.
+        n_steps = steps
+        if j.get("init_image"):
+            try:
+                ref = reference_latents(pipe, vae, os.path.join(inp, j["init_image"]), w, h, j.get("ref_focus"))
+                sig = [1.0 - k * (1.0 - 1.0 / steps) / max(1, steps - 1) for k in range(steps)]  # = np.linspace(1, 1/steps, steps)
+                start = min(steps - 1, int(round(steps * (1.0 - float(j.get("strength", 0.6))))))
+                sig = sig[start:]
+                noise = torch.randn(ref.shape, generator=torch.Generator("cuda:0").manual_seed(int(j.get("seed", 42))), device="cuda:0", dtype=ref.dtype)
+                extra = {**extra, "latents": sig[0] * noise + (1.0 - sig[0]) * ref, "sigmas": sig}
+                n_steps = len(sig)
+                print(f"[flux] {j['id']}: reference {j['init_image']} strength {j.get('strength', 0.6)} ({n_steps} of {steps} steps)", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"[flux] {j['id']}: reference image failed ({e}); text-only", flush=True)
+                extra.pop("latents", None); extra.pop("sigmas", None); n_steps = steps
         with torch.no_grad():
-            lat = pipe(prompt_embeds=pe, pooled_prompt_embeds=pooled, width=w, height=h, num_inference_steps=steps, **extra,
+            lat = pipe(prompt_embeds=pe, pooled_prompt_embeds=pooled, width=w, height=h, num_inference_steps=n_steps, **extra,
                        guidance_scale=0.0, max_sequence_length=256, output_type="latent",
                        generator=torch.Generator("cuda:0").manual_seed(int(j.get("seed", 42)))).images
             lat = pipe._unpack_latents(lat, h, w, pipe.vae_scale_factor).to("cuda:1", torch.float32)

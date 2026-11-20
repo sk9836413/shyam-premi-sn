@@ -10,6 +10,7 @@ import { topicWarnings } from './topics.mjs';
 import { checkFbCaption } from './fb.mjs';
 import { thirdPartyNames } from './bhakti-seo.mjs';
 import { checkMantraSpec, loadMantras } from './mantra.mjs';
+import { SHEESH_LOOK } from './shyam-darshan.mjs';
 
 const longMode = process.argv.includes('--long');
 const file = process.argv.slice(2).find((a) => !a.startsWith('--')) || 'story/today/scenes.json';
@@ -190,7 +191,7 @@ for (const p of allPrompts) {
   if (!shows) continue;
   const bad = p.replace(/\bno (body|flute|hands|arms)\b/gi, '');
   need(/(sheesh|head only|divine head)/i.test(p) && /(mukut|crown)/i.test(p) && /garland/i.test(p) && !/\b(flute|bansuri|full[- ]body|full[- ]length|whole body|torso|his body|his hands|his arms)\b/i.test(bad),
-    `Khatu Shyam ji image: show only the SHEESH (head): "the divine Sheesh (head only, no body, no flute) of Shri Khatu Shyam ji: a big divine dark face with large wide eyes and a moustache, a tall ornate golden mukut with peacock-feather and sun-ray motifs, framed in an oval of layered white, pink, blue and orange flower garlands and jewels, in a decorated sanctum" (prompt: "${p.slice(0, 80)}...")`);
+    `Khatu Shyam ji image: show only the SHEESH (head), as the real darshan shows it: "${SHEESH_LOOK}" (prompt: "${p.slice(0, 80)}...")`);
 }
 
 // ---- Mantra-jaap long video (scripts/mantra-long.mjs, automation/mantras.json; owner 13 Nov 2026) --------------------

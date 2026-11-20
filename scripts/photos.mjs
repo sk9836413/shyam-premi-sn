@@ -6,8 +6,9 @@
 //     deity; on a festival day (automation/calendar.md) the festival greeting card instead   FB 06:30  IG 09:13 IST
 //   2 Aaj ka vichar: a quote card (automation/vichar.json, rotated; no picture)               IG 10:43 only
 //   3 Mandir carousel: real photos of one temple + 3 sourced fact slides (Claude)            IG 18:46 only
-//   4 Sandhya aarti: Khatu Shyam ji darshan (AI picture, labelled; the owner's own photos in
-//     footage/khatu-shyam-mandir/ win when they exist) + a genuine question                    IG 19:46 only
+//   4 Sandhya aarti: Shyam Baba darshan: the owner's REAL darshan stills (footage/shyam-baba-pandal-darshan, recorded
+//     at a Shyam Baba pandal, never called the Khatu mandir; scripts/shyam-darshan.mjs), else his Khatu mandir photos
+//     (footage/khatu-shyam-mandir), else an AI picture (labelled) + a genuine question         IG 19:46 only
 // Facebook (owner, 11 Nov 2026, monetization challenge): ONE photo a day, post 1 at 06:30 IST, in the Facebook caption
 // template of scripts/fb.mjs (Claude's `fb_caption`, else composed); Instagram is unchanged.
 // Facebook is SCHEDULED (scheduled_publish_time). Instagram has no scheduled publishing, so its times are the existing
@@ -34,6 +35,7 @@ import { linkLines } from './festival-links.mjs';
 import { IG_TAGS_MAX, checkFbCaption, fbPhotoCaption, fbSubject, igTagList, photoSubject } from './fb.mjs';
 import { cardHtml, imageSize, renderCards } from './photo-cards.mjs';
 import { photosFor, FOOTAGE } from './real-photos.mjs';
+import { KHATU_DARSHAN_PROMPT, KHATU_PLACE_CLAIM, SHYAM_REAL_SLUG, focusCss, shyamStills } from './shyam-darshan.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const STATE = path.join(ROOT, 'automation', 'photos');
@@ -123,7 +125,8 @@ export function festivalOn(date) {
 
 const STYLE = 'Respectful traditional Hindu devotional art, highly detailed, soft painterly finish, warm cinematic golden lighting, centred symmetrical composition, no text, no letters, no words, no watermark, no logo';
 // Owner, 6 Nov 2026: Baba Shyam is worshipped as the SHEESH (head) only: no body, no flute, no arms.
-export const KHATU_SHEESH = 'Front-facing darshan of Shri Khatu Shyam ji exactly as worshipped at Khatu Dham, Rajasthan: ONLY the sacred head (sheesh) of the deity, no body, no neck, no shoulders, no arms, no hands, no flute; a large divine face with big wide expressive eyes and a curled moustache, a tilak on the forehead, a tall ornate golden crown (mukut) with peacock feathers and golden sun-ray motifs; the head is set inside an oval frame of layered flower garlands in white, pink, blue and orange marigold, with gold jewellery; behind it a richly decorated temple sanctum with silver and gold carvings';
+// Written from the owner's real darshan stills (scripts/shyam-darshan.mjs KHATU_DARSHAN_PROMPT, 20 Nov 2026).
+export const KHATU_SHEESH = KHATU_DARSHAN_PROMPT;
 const AARTI_LIGHT = [
   'warm evening aarti light, brass diyas glowing in the foreground, soft incense haze',
   'evening sandhya aarti, a lit five-wick aarti diya in the foreground, glowing marigold and rose petals',
@@ -229,7 +232,8 @@ export async function topup({ max = 2, now = Date.now(), log = console.log } = {
     const f = festivalOn(addDays(today, d));
     if (f && f.flux && !f.temple && !bankFiles(f.key).length && !wants.some((w) => w.key === f.key)) wants.push({ key: f.key, prompt: f.flux });
   }
-  if (bankFiles('khatu').length < 24) wants.push({ key: 'khatu', prompt: `${KHATU_SHEESH}, ${AARTI_LIGHT[hash(today) % AARTI_LIGHT.length]}` });
+  // Khatu: only while there are no real darshan stills (they win everywhere a Khatu picture is needed; saves neurons).
+  if (bankFiles('khatu').length < 24 && !shyamStills().length) wants.push({ key: 'khatu', prompt: `${KHATU_SHEESH}, ${AARTI_LIGHT[hash(today) % AARTI_LIGHT.length]}` });
   for (const w of wants) {
     if (left <= 0) break;
     const dir = path.join(BANK, w.key);
@@ -248,7 +252,11 @@ export async function topup({ max = 2, now = Date.now(), log = console.log } = {
   return { status: 'ok', made, neurons: made.length * 170 };
 }
 
-const photoInfo = (p) => ({ file: rel(p.file), credit: p.attribution || `Photo: ${p.author}, ${p.licence}`, url: p.url || '', licence: p.licence, author: p.author, title: p.title || '' });
+const photoInfo = (p) => ({ file: rel(p.file), credit: p.attribution || `Photo: ${p.author}, ${p.licence}`, url: p.url || '', licence: p.licence, author: p.author, title: p.title || '',
+  ...(p.focus ? { focus: p.focus } : {}), ...(p.size ? { size: p.size } : {}) });
+// Shyam Baba's real darshan (owner's stills, a pandal): `pandal` marks the post for the honesty checks and the texts.
+const pandalPost = (h, date) => ({ temple: SHYAM_REAL_SLUG, templeName: 'Shyam Baba asli darshan (pandal)', pandal: true,
+  photos: pickPhotos({ photos: shyamStills() }, h, date, 1).map(photoInfo) });
 
 // Recent Shorts' temple (story/published/<date or the day before>-*.json `temple`), so the carousel follows the videos.
 function recentVideoTemple(date, list) {
@@ -309,9 +317,11 @@ export function plan(date, slots = [1, 2, 3, 4]) {
     }
     if (n === 1 && fest) {
       const t = fest.temple && list.find((x) => x.slug === fest.temple);
-      const bank = !t && (fest.key === 'chhath' ? (() => { const b = (ch?.p1img && bankFiles('chhath').find((f) => new RegExp(`-${ch.p1img}\\.jpe?g$`).test(f))) || pickBank([fest.key], h); if (b) takenBank.push(b); return b; })() : pickBank(fest.bank || [fest.key], h));
+      // Khatu festival cards (Janmotsav, Ekadashi: bank 'khatu'): the owner's real darshan stills before the AI bank.
+      const real = !t && (fest.bank || []).includes('khatu') && shyamStills().length ? pandalPost(h, `${date}-1`) : null;
+      const bank = !t && !real && (fest.key === 'chhath' ? (() => { const b = (ch?.p1img && bankFiles('chhath').find((f) => new RegExp(`-${ch.p1img}\\.jpe?g$`).test(f))) || pickBank([fest.key], h); if (b) takenBank.push(b); return b; })() : pickBank(fest.bank || [fest.key], h));
       posts.push({ ...base, kind: 'festival', festival: { key: fest.key, name: fest.calendar, big: fest.big, line: fest.line, blessing: fest.text, tags: fest.tags },
-        ...(t ? { temple: t.slug, templeName: t.name, photos: pickPhotos(t, h, date, 1).map(photoInfo) } : bank ? { bank } : { flux: fest.flux || `${KHATU_SHEESH}, festive diyas and flowers` }),
+        ...(t ? { temple: t.slug, templeName: t.name, photos: pickPhotos(t, h, date, 1).map(photoInfo) } : real || (bank ? { bank } : { flux: fest.flux || `${KHATU_SHEESH}, festive diyas and flowers` })),
         write: ['big', 'line', 'place', 'text', 'caption', 'hashtags', 'fb_caption'] });
       if (t) used.push(t.slug);
     } else if (n === 1) {
@@ -328,11 +338,13 @@ export function plan(date, slots = [1, 2, 3, 4]) {
       used.push(t.slug);
       posts.push({ ...base, kind: 'facts', temple: t.slug, templeName: t.name, category: t.category, photos: pickPhotos(t, h, date, 4).map(photoInfo), write: ['title', 'line', 'facts', 'sources', 'caption', 'hashtags'] });
     } else if (n === 4) {
-      // The owner's own Khatu photos win; else the AI picture bank (brand/photo-bank/khatu); live FLUX only if the bank is empty.
+      // The owner's own Khatu mandir photos win; then his REAL darshan stills from a Shyam Baba pandal (owner, 20 Nov 2026:
+      // the AI pictures do not look like Baba's roop); else the AI picture bank (brand/photo-bank/khatu); live FLUX last.
       const own = photosFor('khatu-shyam-mandir');
-      const bank = !own.length && pickBank(['khatu'], h);
+      const real = !own.length && shyamStills().length ? pandalPost(h, `${date}-4`) : null;
+      const bank = !own.length && !real && pickBank(['khatu'], h);
       posts.push({ ...base, kind: 'aarti', temple: 'khatu-shyam-mandir', templeName: 'Khatu Shyam ji Mandir, Sikar',
-        ...(own.length ? { photos: pickPhotos({ photos: own }, h, date, 1).map(photoInfo) } : bank ? { bank } : { flux: `${KHATU_SHEESH}, ${AARTI_LIGHT[hash(date) % AARTI_LIGHT.length]}` }),
+        ...(own.length ? { photos: pickPhotos({ photos: own }, h, date, 1).map(photoInfo) } : real || (bank ? { bank } : { flux: `${KHATU_SHEESH}, ${AARTI_LIGHT[hash(date) % AARTI_LIGHT.length]}` })),
         write: ['big', 'line', 'question', 'caption', 'hashtags'] });
     }
   }
@@ -370,6 +382,11 @@ export function checkPost(p, entry) {
     need(!BAIT.test(all) && !BAIT2.test(all), 'remove engagement bait (share/tag/like/comment-YES/type requests, threats, money/miracle promises)');
     need(!/(sati)/i.test(entry.temple || '') || !/(mela|yatra|juloos|procession|amavasya)|मेला|यात्रा|अमावस्या/i.test(all), 'sati temple: no mela/yatra/procession');
     if (entry.flux) need(!AI_FALSE.test(all), 'AI picture: never call it asli/live darshan or a real photo');
+    // The owner's real darshan stills are from a Shyam Baba PANDAL: never say they are the Khatu mandir / Khatu Dham / Sikar.
+    if (entry.pandal) {
+      need(!KHATU_PLACE_CLAIM.test(all), 'real pandal darshan: never say it is from the Khatu mandir / Khatu Dham / Sikar (say "asli darshan", a Shyam Baba pandal)');
+      need(!/khatu|sikar|खाटू|सीकर/i.test(s('place')), 'place: the pandal darshan is not the Khatu mandir (leave Khatu / Sikar out of place)');
+    }
     if (/khatu/.test(entry.temple || '') || entry.festival?.key === 'janmotsav') need(!/\b(flute|bansuri|murli)\b|बांसुरी|बाँसुरी|मुरली/i.test(all), 'Khatu Shyam ji is the sheesh only: no flute');
     const max = { big: 16, line: 32, place: 36, text: 72, question: 72, title: 26 };
     for (const k of entry.write.filter((x) => max[x])) need(s(k).trim().length > 0 && [...s(k)].length <= max[k], `${k}: 1-${max[k]} characters`);
@@ -438,6 +455,10 @@ export function fallback(entry, date) {
       caption: `${entry.templeName} ke darshan 🙏\nदर्शन कीजिए: ${short}.\nSwipe karke dekhiye mandir ki aur tasveerein.\n\nKya aap ${short} gaye hain? Aapka anubhav kaisa raha?` };
   }
   const [qr, qd] = AARTI_Q[i % AARTI_Q.length];
+  if (entry.pandal) {
+    return { big: 'शुभ संध्या', line: 'असली दर्शन 🪔 जय श्री श्याम', question: qd, hashtags: uniq([...BASE_TAGS, '#KhatuShyamJi', '#SandhyaAarti', '#HaareKaSahara', '#ShyamBabaDarshan']).slice(0, 8),
+      caption: `Shubh sandhya 🪔 Jai Shree Shyam\nAaj Shyam Baba ke asli darshan: ek pandal ki sajavat mein, Shyam Premi SN ne khud record kiye.\nहारे का सहारा, बाबा श्याम हमारा।\n\n${qr}\n${qd}` };
+  }
   return { big: 'शुभ संध्या', line: 'संध्या आरती 🪔 जय श्री श्याम', question: qd, hashtags: uniq([...BASE_TAGS, '#KhatuShyamJi', '#SandhyaAarti', '#HaareKaSahara', '#KhatuDham']).slice(0, 8),
     caption: `Shubh sandhya 🪔 Jai Shree Shyam\nBaba Shyam ki sandhya aarti ke darshan kijiye.\nहारे का सहारा, बाबा श्याम हमारा।\n\n${qr}\n${qd}` };
 }
@@ -524,7 +545,10 @@ export async function build(date, { noFlux = false, log = console.log } = {}) {
       cards.push({ kind: 'greeting', big: t.big, line: t.line, text: t.text || t.place });
     } else {
       const img = image || ph[0]?.abs;
-      cards.push({ kind: entry.kind, image: img, ai, size: ai ? imageSize(img) : null, credit: ai ? '' : ph[0]?.credit, big: t.big, line: t.line, place: t.place, text: t.text, question: t.question });
+      // A real darshan still (often 9:16) is shown whole like an AI picture (portrait: crown and face never under the text).
+      const whole = entry.pandal && !ai && img;
+      cards.push({ kind: entry.kind, image: img, ai, size: ai || whole ? imageSize(img) : null, credit: ai ? '' : ph[0]?.credit, big: t.big, line: t.line, place: t.place, text: t.text, question: t.question,
+        ...(whole ? { layout: 'portrait', focus: focusCss(ph[0]) } : {}) });
     }
     const files = cards.map((c, i) => path.join(out, `${entry.n}-${i + 1}.jpg`));
     let rendered = await renderCards(cards.map((c, i) => ({ html: cardHtml(c), file: files[i] })));
