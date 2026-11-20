@@ -92,3 +92,4 @@
 2026-11-20 | statusday | 2026-11-20-statusday-khatu-shyam-birthday | Khatu Shyam Janmotsav (Dev Uthani Ekadashi) | status Short variant 4 "Khatu Shyam Birthday Status 2026" (12-20 s loop, download link), public 08:30 IST
 2026-11-20 | morning | 2026-11-20-movie-khatu-shyam-amar-katha-part-4 | Khatu Shyam ji (Barbarik) | mini-movie part (scheduled 07:00, replaces the katha Short)
 2026-11-21 | status | 2026-11-21-status-tulsi-vivah | Tulsi Vivah (Dwadashi) | status Short variant 2 "Tulsi Vivah Status 2026" (12-20 s loop, download link), public 00:30 IST
+2026-11-20 | owner | 2026-11-20-owner-safed-shringar-darshan | Khatu Shyam ji (owner's own pandal darshan footage) | owner-footage Short, clip 01 "Khatu Shyam Baba Safed Shringar Darshan", real footage + music cc-temple-bells-tabla (YouTube synthetic false, Meta AI label false), public on upload IST
