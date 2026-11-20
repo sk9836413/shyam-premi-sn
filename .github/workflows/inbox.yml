@@ -67,9 +67,18 @@ jobs:
       - name: Tools (ffmpeg, OCR, OpenCV)
         if: steps.count.outputs.n != '0' && env.MODE != 'dry-run'
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg tesseract-ocr > /dev/null
+          # (the man-db trigger alone can take many minutes on the hosted runners)
+          echo 'man-db man-db/auto-update boolean false' | sudo debconf-set-selections; sudo rm -f /var/lib/man-db/auto-update
+          sudo apt-get update -qq && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends ffmpeg tesseract-ocr tesseract-ocr-eng > /dev/null
           python -m pip install --quiet opencv-python-headless numpy pillow pillow-heif
           echo "PYTHON=python" >> "$GITHUB_ENV"
+
+      - name: OCR self-test (other people's marks must be caught, else nothing is processed)
+        if: steps.count.outputs.n != '0' && env.MODE != 'dry-run'
+        run: |
+          ffmpeg -v error -y -f lavfi -i "testsrc2=size=720x1280:duration=4:rate=30" -vf "drawtext=text='@some_reel_maker99':fontcolor=white:fontsize=34:x=40:y=1050:shadowx=2:shadowy=2,drawtext=text='Instagram':fontcolor=white:fontsize=30:x=40:y=1100" "$RUNNER_TEMP/mark.mp4"
+          node -e "import('./scripts/inbox.mjs').then(m=>{const v=m.marksVerdict(m.py(['marks',process.argv[1]]));console.log('OCR self-test',JSON.stringify(v));if(!v.foreign)process.exit(1)})" "$RUNNER_TEMP/mark.mp4" | tee -a "$GITHUB_STEP_SUMMARY"
+          exit ${PIPESTATUS[0]}
 
       - name: Deep dry run (download + checks, nothing written)
         if: steps.count.outputs.n != '0' && env.MODE == 'deep'
