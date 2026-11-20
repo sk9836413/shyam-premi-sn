@@ -10,6 +10,46 @@ Which devotional Shorts are TRULY viral in India each week, and why (scripts/vir
 - Ideas go into the banks as "status": "idea" with a citation to verify (`node scripts/topic-banks.mjs promote`).
   Our own words only: titles and scripts of other channels are never copied.
 
+## Week of 2026-11-20
+
+Runs: 2026-11-15 sweep, 2026-11-16 sweep, 2026-11-17 daily, 2026-11-18 daily, 2026-11-19 daily, 2026-11-20 daily; quota used 2723 units (cap 900/day).
+
+### Top 10 truly viral references
+
+| # | Title | Channel | Views | x median | Age | Length | Hook | Format | Deity | Art / cover |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | [जटायु से भी 10 गुना शक्तिशाली था संपाति! 😱](https://youtube.com/shorts/icIBvvOfw-Y) | PS creation cartoon | 22.5 L | 3781.5 | 5.8 d | 176 s | रहस्य / secret | katha | ram | illustrated: giant AI eagle close-up, Hanuman group pointing |
+| 2 | [बूढ़ी माँ की पुकार सुनकर खुद प्रकट हुईं माँ दुर्गा 😭🙏 / माँ की असीम ](https://youtube.com/shorts/Is6wfUsW4js) | BhaktiVerse 3D | 32.4 L | 1855.5 | 6.8 d | 44 s | emotional-motivational line | katha | devi | cinematic: glowing Durga in red-gold sari, golden light burs |
+| 3 | [बागेश्वर महाराज के बयान पर मचा बवाल! राम जी के 5 पिता! शास्त्रों में म](https://youtube.com/shorts/Um4CHpY6rgA) | SARVESHWAR SHARAN  | 25.8 L | 978.4 | 6.5 d | 156 s | listicle | other | ram | text-card: two speakers' photos, red text band 'श्रीराम के 5 |
+| 4 | [श्री राम जन्मभूमि अयोध्या का नजारा🚩/अयोध्या #trandingshorts #shorts #](https://youtube.com/shorts/6h2vU8m5iQw) | Bhakti Soothingly | 31.3 L | 957.8 | 7 d | 17 s | name / plain | darshan | ram | real-photo: drone shot of the lit temple at dusk, two-line D |
+| 5 | [जल में समा गईं माँ दुर्गा, भक्तों की आँखें हुईं नम 😢🙏 / जय माता दी �](https://youtube.com/shorts/cmbAxtdk4a8) | Manish  | 9.0 L | 876.2 | 6.4 d | 11 s | emotional-motivational line | other | devi | cinematic: AI Durga statue half in river, marigold, text ban |
+| 6 | [🌺#माँ दुर्गा की अंतिम विदाई 🙏 / नम आँखों से भक्तों ने दी माँ को विदा](https://youtube.com/shorts/m-pAzJqfVS0) | Benny Bhalchanra | 10.6 L | 855.9 | 6.1 d | 11 s | emotional-motivational line | other | devi | cinematic: Durga idol on a float in the sea, crying devotees |
+| 7 | [जोड़ी हो तो ऐसी हो  / Jodi Ho To Aisi Ho / Radha Krishna Bhajan #short](https://youtube.com/shorts/8OKh9uSUeHg) | Aparna Dev Darshan  | 13.3 L | 796.7 | 4.7 d | 20 s | emotional-motivational line | loop | krishna | cartoon-3d: Radha and Krishna at a lotus pond with koi fish  |
+| 8 | [रामायण के अनसुने किस्से 🙏🚩 / जानिए ऐसी बातें जो बहुत कम लोग जानते है](https://youtube.com/shorts/kbykUAvmivY) | Simee Kaur | 8.4 L | 752.4 | 5.1 d | 122 s | रहस्य / secret | facts | ram | illustrated: dim palace hall, seated sage, red 'Jai Shri Ram |
+| 9 | [jay maa durga🙏😂#bhakti #jaimaadurga  #shorts 🌺 / mata rani bhajan 2](https://youtube.com/shorts/jDW2D-3RQqk) | Radha Rani Bhakti Dham | 6.9 L | 489.3 | 4.8 d | 11 s | name / plain | loop | devi | murti-darshan: underwater goddess murti with smoke and bubbl |
+| 10 | [रामायण रहस्य #spiritualawarness #spirituality #shortsfeed](https://youtube.com/shorts/v6Ygkxtn_BI) | अरुण कुमार शर्मा काशी | 7.7 L | 479.7 | 3.1 d | 80 s | रहस्य / secret | facts | ram | cinematic: Ram darbar: seated blue-skinned Ram under a Shesh |
+
+### What's working
+
+- 92 truly viral devotional Shorts in 7 days (>= 100k or 30k in 3 days, >= 5x their channel's median).
+- Hooks: name / plain 50, emotional-motivational line 14, रहस्य / secret 9, 😱 क्यों? 3.
+- Formats: other 42, katha 21, facts 16, loop 8; deities: ram 28, krishna 21, devi 20, shiv 7.
+- Art: cinematic 21, real-photo 10, illustrated 6, cartoon-3d 4; length: <=30 s 46, 31-60 s 20, 121-180 s 17, 61-120 s 9.
+- Best: "जटायु से भी 10 गुना शक्तिशाली था संपाति! 😱" 22.5 L (3781.5x, रहस्य / secret); "बूढ़ी माँ की पुकार सुनकर खुद प्रकट हुईं माँ दुर्गा 😭🙏 / मा" 32.4 L (1855.5x, emotional-motivational line); "बागेश्वर महाराज के बयान पर मचा बवाल! राम जी के 5 पिता! शास्त" 25.8 L (978.4x, listicle).
+- New ideas in the banks (status "idea", citation to verify): facts:radar-bharat-paduka, facts:radar-navratri-kanya-poojan, kailash:radar-namak-kam-pyaar-zyada, pov:radar-ghamand-vinamrata, facts:radar-durga-visarjan-kyun, facts:radar-chunari-kyun, facts:radar-ram-samudra-baan, kailash:radar-ganesh-vidai-mata-roi, pov:radar-kuch-chhoot-jaye, facts:radar-hanuman-sankatmochan, facts:radar-lakshman-14-saal-jaagran, facts:radar-ganesh-modak-kyun, kailash:radar-modak-thaali-khaali, pov:radar-ananya-bhakti-yog-kshem, facts:radar-murti-visarjan-jal, facts:radar-akshat-kyun-chadhate, facts:radar-aruna-bina-pair, kailash:radar-akshat-gayab, pov:radar-visarjan-main-kahin-nahi, facts:radar-samundra-shivling, facts:radar-ravan-shivling-baidyanath, facts:radar-garuda-garbh-vachan, kailash:radar-kamandal-jal-kam, pov:radar-sach-ki-gawahi, facts:radar-vibhishan-lanka-raaj, facts:radar-hanuman-poonch-aag, facts:radar-karn-kavach-kundal, kailash:radar-jhoola-toota, pov:radar-galti-kshama.
+
+### Consistently strong channels (median >= 40k: style to learn from, not outliers)
+
+- Factorial xyz: "श्री राम के क्रोध से कांप उठा समुद्र! 🌊🙏 | रामायण की अद्भु" 6.3 L (channel median 7.1 L)
+- Priyansh Shukla: "जब बाली ने खींची हनुमान जी की आधी शक्ति! 😱" 9.1 L (channel median 6.0 L)
+- Rahul Panwar: "मेरे तन में भी राम मेरे मन में भी राम, जय श्रीराम, श्रीराम, " 5.3 L (channel median 2.0 L)
+- Mister Virat Kumar Subhash Chandra Bose: "रावण, जो कैलाश उठा सकता था, उसे एक देवी ने पैर के अंगूठे से " 8.7 L (channel median 5.0 L)
+- Learn With Vishu: "मरने के बाद पहली रात आत्मा कहाँ होती है? 😳 गरुड़ पुराण का र" 4.1 L (channel median 2.6 L)
+- CG Hindi Fact: "देवरानी-जेठानी मंदिर का रहस्य! जीव-जंतुओं से बनी भगवान शिव क" 1.4 L (channel median 44k)
+- Dharmik Yatra vlog1M: "नीलकंठ महादेव का गुप्त रहस्य🚩 |समुद्र मंथन का वो विष महादेव" 38k (channel median 48k)
+-  Raw Talks With Anaya
+: "महाभारत के युद्ध में मारे गए थे 1 अरब 66 करोड़ योद्धा? 😱 | " 1.5 L (channel median 53k)
+
 ## Week of 2026-11-19
 
 Runs: 2026-11-15 sweep, 2026-11-16 sweep, 2026-11-17 daily, 2026-11-18 daily, 2026-11-19 daily; quota used 2469 units (cap 900/day).

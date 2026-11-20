@@ -4927,6 +4927,93 @@
     "added": "2026-11-19"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-vibhishan-lanka-raaj",
+   "p": 2,
+   "deity": "ram",
+   "name": "Shri Ram (Vibhishan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Vibhishan ko Lanka ka raaj kyun?",
+   "hook_hi": "विभीषण को लंका का राज क्यों मिला?",
+   "angle": "Ravan ka bhai Vibhishan Ram ki sharan mein aaya; Ram ne Ravan ke vadh ke baad Lanka ka raaj usey saunpa. Valmiki Ramayan Yuddha Kanda ke sharanagati aur raajyabhishek ke prasang check karke likhna.",
+   "cite": {
+    "work": "TODO: verify (likely Valmiki Ramayan, Yuddha Kanda, Vibhishan sharanagati prasang)",
+    "ref": "TODO: verify sarga"
+   },
+   "sources": [],
+   "keywords": [
+    "Vibhishan",
+    "Lanka ka raaj"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-20",
+    "refs": [
+     "https://youtube.com/shorts/kbykUAvmivY"
+    ],
+    "added": "2026-11-20"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-hanuman-poonch-aag",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman (poonch)",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Hanuman ki poonch mein aag kyun lagi?",
+   "hook_hi": "हनुमान की पूँछ में आग क्यों लगी?",
+   "angle": "Ravan ke sainik ne Hanuman ki poonch mein aag lagayi; Hanuman ne jalti poonch se Lanka ke ghar jalaye. Valmiki Ramayan Sundara Kanda ke Lanka-dahan prasang mein poonch ka kram check karke likhna.",
+   "cite": {
+    "work": "TODO: verify (likely Valmiki Ramayan, Sundara Kanda, Lanka-dahan sarga)",
+    "ref": "TODO: verify sarga"
+   },
+   "sources": [],
+   "keywords": [
+    "Hanuman poonch",
+    "Lanka dahan"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-20",
+    "refs": [
+     "https://youtube.com/shorts/kW97Vejt1Gk"
+    ],
+    "added": "2026-11-20"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-karn-kavach-kundal",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Karn (kavach-kundal daan)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Karn ne kavach-kundal kyun diye?",
+   "hook_hi": "कर्ण ने कवच-कुंडल क्यों दिए?",
+   "angle": "Indra brahman ka roop lekar Karn se kavach-kundal maangne aaye; Surya ne Karn ko chetaya, par Karn ne daan diya. Mahabharat Vana Parva ka kundal-kavach prasang check karke likhna.",
+   "cite": {
+    "work": "TODO: verify (likely Mahabharat, Vana Parva, Kundal-Kavach daan prasang)",
+    "ref": "TODO: verify adhyay"
+   },
+   "sources": [],
+   "keywords": [
+    "Karn daan",
+    "Kavach kundal"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-20",
+    "refs": [
+     "https://youtube.com/shorts/kgCjGW4mPEI"
+    ],
+    "added": "2026-11-20"
+   },
+   "status": "idea"
   }
  ]
 }
