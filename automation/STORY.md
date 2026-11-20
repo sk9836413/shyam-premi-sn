@@ -31,7 +31,7 @@ The workflow (`scripts/day-plan.mjs`) fills every day by priority, max 3 Shorts 
 | Priority | Upload | Made by |
 |---|---|---|
 | 0 | the mini-movie part, 07:00 (17-20 Nov) | `movie` job (section 7) |
-| 1 | festival status Shorts: `eve` 20:00 the evening before, `status` 00:30 on the day, `statusday` 08:30 (big festivals) | `status` job, `scripts/status-engine.mjs` (no action from you) |
+| 1 | festival status Shorts: `eve` 20:00 the evening before, `status` 00:30 on the day, `statusday` 07:30 (big festivals; 08:30 until 20 Nov 2026), season countdowns 8-14 days before (festivals.json `season`) | `status` job, `scripts/status-engine.mjs` (no action from you) |
 | 2 | `morning` on every non-festival day (movie days too): the weekday **day status** Short, public **06:00**, made the evening before (Somvar Mahadev, Mangalvar Hanuman/Salasar Balaji, Budhvar Ganesh, Guruvar Vishnu/Sai, Shukravar Lakshmi/Santoshi, Shanivar Shani dev, Ravivar Surya; Ekadashi: Gyaras Khatu Shyam) | the `status` job, status engine (no action from you) |
 | 2 | `morning` on other festival days (not movie / big-festival days): a **famous-temple darshan** Short tied to the festival's deity | you (sections 1-4) |
 | 3 | `evening` 19:00: a **famous-temple darshan** Short (Khatu Shyam ji, Salasar Balaji, Mehandipur Balaji, Shakambhari Mata, Jeen Mata, Rani Sati Dadi with the sati rules first) | you (sections 1-4) |
@@ -40,7 +40,7 @@ The workflow (`scripts/day-plan.mjs`) fills every day by priority, max 3 Shorts 
 | 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`), only if the cap has room | `kalyug` job (section 8) |
 | 5 | `noon` Dadi-Chhotu Wed 15:00, only if the cap has room | you (section 6) |
 | own cap | `long` (16:9, outside the 3 Shorts, max 1 a day): ONLY the weekly mantra jaap (Sundays, a Krishna week's Ekadashi) or a festival bhajan jukebox (>= 4 full-length QA-passed bhajans of that festival), at **05:30**; no plain katha | `mantra` / `jukebox` jobs |
-| own cap | `owner` (owner, 20 Nov 2026): the owner's own REAL pandal darshan reels, 1 a day at **09:30** (outside the 3 Shorts; order, titles, music in automation/owner-footage.json, skip list automation/owner-footage-skip.txt). Real footage is never called AI | `owner-footage.yml` (no action from you) |
+| own cap | `owner` (owner, 20 Nov 2026): the owner's own REAL pandal darshan reels, 1 a day at **07:15** (aarti time, from 21 Nov 2026; was 09:30; outside the 3 Shorts; order, titles, music in automation/owner-footage.json, skip list automation/owner-footage-skip.txt). Real footage is never called AI | `owner-footage.yml` (no action from you) |
 
 Any Short below the first three that day is left out (the prompt tells you your slot's plan). Movie days and big-festival
 days have no `morning` Short of yours.
@@ -69,7 +69,8 @@ Devotees play bhajans early in the morning, so bhajan and mantra content is publ
   (Facebook/Instagram at once); for a long video never later than 12:30 (the long job waits for the jukebox / mantra
   job and tells its 12:30 katha only when they did not make the day's long video).
 - **Facebook spacing:** Reels stay at least 90 min apart; 00:30 status -> 06:00 dawn bhajan is 5.5 h. No other Reel is
-  planned between 01:00 and 07:00 (movie 07:30, kalyug 08:00, statusday 08:30 move later, never earlier).
+  planned between 01:00 and 07:00 (statusday 07:30, movie 07:30 -> 09:00 on a statusday, kalyug 08:00, the owner-footage Reel from 07:15 move later, never
+  earlier).
 - 15 Nov 2026 05:45 Sandhya Arghya bhajan Short (song 26f-04), rendered 14 Nov evening; 16 Nov 05:45 Usha Arghya bhajan
   Short (26e-07), rendered 15 Nov evening; 22 Nov 05:30 the first weekly mantra jaap (Vasudevaya).
 
@@ -245,8 +246,9 @@ usually finds nothing, which is fine.
 
 **Festival status Shorts and day status Shorts (no action needed).** The status engine (`scripts/status-engine.mjs`,
 calendar `automation/festivals.json` to 31 Mar 2027, two panchang sources per date) makes every festival's 15-30 s
-loopable "<Festival> Status 2026 | <Hindi> स्टेटस वीडियो #Shorts" Shorts (20:00 the evening before, 00:30 on the day, 08:30
-on big festivals) and the weekday day status Shorts of the `morning` slot. Since 20 Nov 2026 (research of that day): frame
+loopable Shorts titled English first, "Happy <Festival> Status 2026 ✨ | <Hindi> स्टेटस वीडियो #Shorts" ("<Festival> Status
+2026 🙏 | ..." on a vrat or solemn tithi; competitor decode 20 Nov 2026) (20:00 the evening before, 00:30 on the day, 07:30
+on big festivals, countdowns 8-14 days before a season, small tithis only 00:30) and the weekday day status Shorts of the `morning` slot. Since 20 Nov 2026 (research of that day): frame
 0 is the deity's face with the festival name big, the last 3 s are a forwardable greeting ("आपको और आपके परिवार को /
 <festival> की शुभकामनाएं 🙏" + "इसे अपने परिवार को भेजें 🙏") that fades back into frame 0, the Instagram caption carries the
 same greeting with at most 5 hashtags, and Facebook gets the greeting without any ask. The Khatu Shyam Phalgun mela 2027

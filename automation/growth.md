@@ -12,6 +12,28 @@ Data API lifetime views: younger videos have had less time, so compare "views pe
 | 2026-11-09 | 43 | 4558 | 106 |
 | 2026-11-16 | 47 | 6055 | 134 |
 
+## Upload time test (A/B from 21 Nov 2026, compare after 2 weeks)
+
+Competitor decode of 20 Nov 2026 (automation/competitor-decode-2026-11.md, 1,307 Shorts of 15 devotional channels):
+05-07 h IST uploads 1.08x their channel's median, 14-16 h 1.09x, **08-10 h the weakest (0.89x)**; festival status on the
+festival day at 08-11 h 0.78x; real-darshan channels win at aarti time (05:00-07:30). Two of our slots sat in that hour:
+
+| Lane | Before (A) | From 21 Nov 2026 (B) | Where |
+|---|---|---|---|
+| Owner footage (the owner's own pandal darshan, 1 extra Short a day) | 09:30 IST (an owner Short already scheduled keeps it) | **07:15 IST** | automation/owner-footage.json `at` |
+| Big-festival `statusday` variant | 08:30 IST (Janmotsav 20 Nov 2026) | **07:30 IST** (Dev Deepawali 24 Nov, Makar Sankranti, Basant Panchami, Mahashivratri, Phalgun Ekadashi, Holi) | status-engine STATUSDAY_AT, festivals.json |
+
+Unchanged: bhajan / mantra 05:30-06:30, day status 06:00, status 00:30 and eve 20:00, movie 07:00. Facebook keeps its
+90-minute spacing (fb.mjs moves the owner Reel off 07:15 when a 06:00 / 07:30 Reel is planned; the statusday Reel is
+07:30 and a movie part moves 90 min away); the Instagram trial Reel moved 07:30 -> 09:00 (status-engine TRIAL_AT).
+
+How to compare (review on **Mon 7 Dec 2026**, the 2 weeks 21 Nov - 4 Dec): the weekly "By format" table now has
+`time test: owner HH:MM` and `time test: statusday HH:MM` rows (scripts/growth-compare.mjs timeTestKey, the IST publish
+time); judge on views per day of age and the first-24-h views against the 09:30 owner Shorts (the first one: 21 Nov if
+it was already scheduled) and the 08:30 Janmotsav statusday (20 Nov). Few data points (1 owner Short a day, ~2
+statusday Shorts in 2 weeks): keep the new times unless they are clearly worse; YouTube says Shorts are not ranked by
+upload hour, so this is a tie-breaker about when the audience is awake and searching.
+
 ## Week of 2026-11-16
 
 | Window | Dates | Uploads | Shorts | Avg views/Short | Avg views/Short/day of age | Shorts with <=15 views | Best Short |

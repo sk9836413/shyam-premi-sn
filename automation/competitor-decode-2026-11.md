@@ -362,6 +362,11 @@ late Feb if the owner has footage.
 
 ## 8. Proposed edits to `automation/viral-playbook.md` (NOT applied; for the owner to approve)
 
+**Applied on 20 Nov 2026** (owner delegated the growth decisions): all 5 edits are in viral-playbook.md (the title
+without the "| <Festival> WhatsApp Status" middle part, which is in the tags, to stay under 90 characters); owner
+footage 07:15 and statusday 07:30 run as a 2-week A/B (automation/growth.md "Upload time test"); season countdowns and
+one-variant small tithis are in automation/festivals.json.
+
 ```diff
 @@ ## Formats that win again and again (whole channels, not one lucky video)
  | 7 | Loop / veer / status with a song (lottery) | up to 1 Cr but driven by copyrighted songs | `loop`, `veer` with OUR bhajans |
