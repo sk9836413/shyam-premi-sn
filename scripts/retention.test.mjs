@@ -2,7 +2,7 @@
 // Run: node --test scripts/retention.test.mjs
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { curveStats, feedFormat, retentionSection, summarize, watchAt } from './retention.mjs';
+import { curveStats, feedFormat, retentionSection, summarize, watchAt, weekSection } from './retention.mjs';
 
 // A made-up 18 s status Short shaped like Chhath Sandhya Arghya Status 2026 (14 Nov): 107% at the start, ~67% at 3 s, 7% at the end.
 const rows = [[0.01, 1.071, 0.2], [0.05, 1.03, 0.2], [0.1, 0.9, 0.19], [0.2, 0.55, 0.17], [0.5, 0.3, 0.15], [1, 0.071, 0.1]];
@@ -60,5 +60,28 @@ describe('growth report section', () => {
     assert.match(md, /### Retention \(Shorts feed\)/);
     assert.match(md, /\| status \| 1 \(1\) \|/);
     assert.match(retentionSection({ shorts: [], note: 'Retention report failed: x' }).join('\n'), /failed: x/);
+  });
+});
+
+
+describe('weekly Shorts metrics (research 20 Nov 2026)', () => {
+  const v = (title, day, views, engaged, avp, sources) => ({ title, day, views, engaged, avp, sources, seconds: 18, format: 'status' });
+  const audit = { end: '2026-11-23', shorts: [
+    v('Dev Uthani Ekadashi Status 2026 | x #Shorts', '2026-11-20', 800, 640, 41.2, { SHORTS: 448, YT_SEARCH: 304, BROWSE: 48 }),
+    v('Tulsi Vivah Status 2026', '2026-11-21', 120, null, 30, { SHORTS: 12, YT_SEARCH: 100 }),
+    v('Somnath Darshan', '2026-11-22', 60, 50, 70, { SHORTS: 54, YT_SEARCH: 6 }),
+    v('Old Short', '2026-11-10', 900, 800, 50, { SHORTS: 900 }),
+  ] };
+  test('the last 7 days only: engaged views, % viewed, feed share, top 3 by feed share, owner asks', () => {
+    const md = weekSection(audit).join('\n');
+    assert.match(md, /### Shorts of the last 7 days \(2026-11-16 to 2026-11-22/);
+    assert.doesNotMatch(md, /Old Short/);
+    assert.match(md, /\| Dev Uthani Ekadashi Status 2026 \/ x \| status \| 18 s \| 800 \| 640 \| 41.2% \| 56% \| 38% \|/);
+    assert.match(md, /\| Tulsi Vivah Status 2026 \| status \| 18 s \| 120 \| - \|/);
+    assert.match(md, /Top 3 by Shorts feed share \(at least 10 views\): 1\. Somnath Darshan \(90% feed/);
+    assert.match(md, /Totals: 980 views, 690 engaged views/);
+    assert.match(md, /Viewed vs swiped away\*\* is not in the YouTube Analytics API/);
+    assert.match(md, /Instagram \/ Facebook insights\*\* are not available through the API/);
+    assert.match(weekSection({ shorts: [] }, '2026-11-23').join('\n'), /No public Short in these 7 days/);
   });
 });

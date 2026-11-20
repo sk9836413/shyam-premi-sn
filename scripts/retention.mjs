@@ -11,8 +11,13 @@
 // Credentials: the same as scripts/youtube.mjs (YT_* secrets or ~/.shyampremisk/youtube.env). The Analytics API accepts
 // the youtube.readonly scope for these (non-revenue) reports; yt-analytics.readonly is not needed. Analytics quota is
 // separate from the Data API's 10,000 units; ~4 report calls per Short.
-// "Viewed vs swiped away" (the Shorts feed's own metric) is NOT in the API: the owner reads it in Studio (Content ->
-// a Short -> Analytics -> Engagement / "Viewed vs swiped away").
+// "Viewed vs swiped away" (the Shorts feed's own metric) is NOT in the API (the Analytics API metrics list, checked again
+// 20 Nov 2026, has engagedViews but no swipe / "stayed to watch" metric): the owner reads it in Studio (Content -> a
+// Short -> Analytics -> Engagement / "Viewed vs swiped away").
+// Weekly Shorts metrics (weekSection, research 20 Nov 2026): the Shorts public in the last 7 days with views, ENGAGED
+// views (metric engagedViews: views past the first frame, what monetisation counts), average % viewed and the Shorts
+// feed / search share, plus the top 3 by feed share, and the owner's Studio / Instagram / Facebook screenshot asks
+// (Instagram and Facebook insights need a permission the token does not have).
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -117,6 +122,35 @@ export function retentionSection(audit) {
   ];
 }
 
+const addDays = (date, n) => new Date(Date.parse(`${date}T12:00:00Z`) + n * 864e5).toISOString().slice(0, 10);
+const share = (src = {}, key) => { const t = sum(Object.values(src)); return t ? r1((100 * (src[key] || 0)) / t) : null; };
+
+/** The "### Shorts of the last 7 days" block of the Monday growth report (Shorts public end-7 .. end-1). */
+export function weekSection(audit, end = audit?.end) {
+  const from = addDays(end, -7), to = addDays(end, -1);
+  const xs = (audit?.shorts || []).filter((s) => s.day >= from && s.day <= to);
+  const f = (x, u = '') => (x == null ? '-' : `${x}${u}`);
+  const t = (s) => s.title.replace(/\|/g, '/').replace(/#shorts/gi, '').trim().slice(0, 55);
+  const rows = xs.map((s) => ({ ...s, feed: share(s.sources, 'SHORTS'), search: share(s.sources, 'YT_SEARCH') }));
+  const top = rows.filter((s) => s.views >= 10 && s.feed != null).sort((a, b) => b.feed - a.feed || b.views - a.views).slice(0, 3);
+  const engagedTotal = rows.some((s) => s.engaged != null) ? sum(rows.map((s) => s.engaged)) : null;
+  return [
+    `### Shorts of the last 7 days (${from} to ${to}, YouTube Analytics to ${end})`,
+    '',
+    ...(rows.length ? [
+      '| Short | Format | Length | Views | Engaged views | Avg % viewed | Shorts feed % | Search % |',
+      '|---|---|---|---|---|---|---|---|',
+      ...rows.map((s) => `| ${t(s)} | ${s.format} | ${s.seconds} s | ${s.views} | ${f(s.engaged)} | ${f(s.avp, '%')} | ${f(s.feed, '%')} | ${f(s.search, '%')} |`),
+      '',
+      `- Totals: ${sum(rows.map((s) => s.views))} views, ${f(engagedTotal)} engaged views; average % viewed ${f(r1(mean(rows.map((s) => s.avp))), '%')} (mean of the Shorts).`,
+      `- Top 3 by Shorts feed share (at least 10 views): ${top.length ? top.map((s, i) => `${i + 1}. ${t(s)} (${s.feed}% feed, ${s.views} views, ${f(s.avp, '%')} viewed)`).join('; ') : 'none yet'}.`,
+    ] : ['_No public Short in these 7 days has Analytics data yet (2-3 days lag)._']),
+    '- **Viewed vs swiped away** is not in the YouTube Analytics API: owner, please send the Studio number (Content -> the Short -> Analytics -> Engagement) for the top 3 above.',
+    '- **Instagram / Facebook insights** are not available through the API (the token lacks the insights permission): owner, please send a screenshot of Instagram Insights (Reels: watch time, sends/reach, likes/reach of the top 3) and the Facebook Professional Dashboard (Reels plays, last 7 days).',
+    '',
+  ];
+}
+
 // ---------------------------------------------------------------- API
 
 function loadEnv() {
@@ -179,6 +213,11 @@ export async function audit({ token, n = 30, end, pub = read('automation/publish
   const ids = list.map((v) => v.id).join(',');
   const stats = new Map(rowsOf(await api(`${A}${range}&dimensions=video&metrics=views,averageViewPercentage,averageViewDuration,likes,comments,shares,subscribersGained&filters=video==${ids}&maxResults=200`, token))
     .map((r) => [r[0], { views: r[1], avp: r[2], avd: r[3], likes: r[4], comments: r[5], shares: r[6], subs: r[7] }]));
+  // Engaged views (a separate call: a metric the report cannot get must not cost the rest)
+  let engaged = new Map();
+  try {
+    engaged = new Map(rowsOf(await api(`${A}${range}&dimensions=video&metrics=engagedViews&filters=video==${ids}&maxResults=200`, token)).map((r) => [r[0], r[1]]));
+  } catch { engaged = new Map(); }
   const shorts = [];
   for (const v of list) {
     const slug = slugOf.get(v.id) || '';
@@ -192,7 +231,7 @@ export async function audit({ token, n = 30, end, pub = read('automation/publish
     try {
       sources = Object.fromEntries(rowsOf(await api(`${A}&startDate=${v.day}&endDate=${end}&dimensions=insightTrafficSourceType&metrics=views&filters=video==${v.id}`, token)));
     } catch { sources = {}; }
-    shorts.push({ ...v, slug, format: feedFormat(slug, slug ? readSpec(slug) : {}, v.title), views: s.views ?? 0, avp: s.avp ?? null, avd: s.avd ?? null,
+    shorts.push({ ...v, slug, format: feedFormat(slug, slug ? readSpec(slug) : {}, v.title), views: s.views ?? 0, engaged: engaged.has(v.id) ? engaged.get(v.id) : null, avp: s.avp ?? null, avd: s.avd ?? null,
       likes: s.likes ?? 0, comments: s.comments ?? 0, shares: s.shares ?? 0, subs: s.subs ?? 0, curve, sources });
   }
   // Returning viewers: views from subscribed vs unsubscribed viewers, per format (Analytics has no "returning viewer"
@@ -215,6 +254,7 @@ async function main() {
   const a = await audit({ n: Number(opt('--n')) || 30 });
   if (opt('--json')) fs.writeFileSync(opt('--json'), `${JSON.stringify(a, null, 2)}\n`);
   console.log(retentionSection(a).join('\n'));
+  console.log(weekSection(a).join('\n'));
   for (const s of a.shorts) {
     const c = s.curve;
     console.log(`${s.day} ${s.format.padEnd(8)} ${String(s.seconds).padStart(3)}s views ${String(s.views).padStart(4)} avp ${s.avp ?? '-'}% ${c ? `start ${c.start} @1s ${c.at1} @3s ${c.at3} end ${c.end} rel3 ${c.rel3}` : 'no curve'} | ${s.title.slice(0, 60)}`);

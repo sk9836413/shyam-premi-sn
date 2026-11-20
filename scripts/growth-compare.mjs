@@ -17,13 +17,15 @@
 //        "## Facts review" section in growth.md. Exit 1 without a verdict (no facts Short old enough yet).
 // growth.md keeps every "## " section this script does not write itself (e.g. "## Facts review", "## Character series").
 // Each week also gets "### Retention (Shorts feed)" (scripts/retention.mjs, YouTube Analytics audience retention): per
-// format the share of viewers kept at 0 s and 3 s, the drop in the first 3 s, the average % viewed and the traffic sources.
+// format the share of viewers kept at 0 s and 3 s, the drop in the first 3 s, the average % viewed and the traffic sources,
+// and "### Shorts of the last 7 days" (retention.mjs weekSection: engaged views, % viewed, feed share, top 3 by feed share,
+// the owner's Studio / Instagram / Facebook screenshot asks).
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { radarFiles, workingLines } from './viral-radar.mjs';
 import { FACTS_MEDIAN_MIN, FACTS_REVIEW_FILE } from './day-plan.mjs';
-import { audit as retentionAudit, retentionSection } from './retention.mjs';
+import { audit as retentionAudit, retentionSection, weekSection } from './retention.mjs';
 
 const FILE = 'automation/growth.md';
 const CHANGE = '2026-11-10';
@@ -221,8 +223,17 @@ async function main() {
   }
   // Retention per format (Shorts feed audit, 17 Nov 2026; scripts/retention.mjs): the first-3-second drop and the average %
   // viewed of the last 30 Shorts. A failure only leaves a note (the comparison above still goes out).
-  let retention;
-  try { retention = retentionSection(await retentionAudit({ token, n: 30, end: DATE })); } catch (e) { retention = retentionSection({ shorts: [], note: `Retention report failed: ${e.message}` }); }
+  // + the Shorts of the last 7 days (research 20 Nov 2026): engaged views, average % viewed, feed share, top 3 by feed
+  // share, and the owner's Studio (viewed vs swiped away) / Instagram / Facebook screenshot asks.
+  let retention, week;
+  try {
+    const a = await retentionAudit({ token, n: 30, end: DATE });
+    retention = retentionSection(a);
+    week = weekSection(a, DATE);
+  } catch (e) {
+    retention = retentionSection({ shorts: [], note: `Retention report failed: ${e.message}` });
+    week = weekSection({ shorts: [] }, DATE);
+  }
   const after = [AFTER[0], AFTER[1] < DATE ? AFTER[1] : addDays(DATE, -1)];
   const rows = [['Before (3-6 a day)', windowStats(videos, BEFORE)], ['After (max 3 a day)', windowStats(videos, after)]];
   const last = [addDays(DATE, -7), addDays(DATE, -1)];
@@ -251,6 +262,7 @@ async function main() {
       .map(([k, r]) => `| ${k} | ${r.n} | ${f1(r.views / r.n)} | ${f1(r.perDay / r.n)} | ${r.best ? `${r.best.views}: ${r.best.title.replace(/\|/g, '/').slice(0, 50)}` : '-'} |`),
     '',
     ...retention,
+    ...week,
     "### What's working outside (viral radar, last 7 days; automation/viral-radar.md)",
     '',
     ...workingLines(radarFiles('.'), addDays(DATE, -1)),
