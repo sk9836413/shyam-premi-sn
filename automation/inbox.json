@@ -1,0 +1,21 @@
+{
+  "note": "Darshan inbox (scripts/inbox.mjs, .github/workflows/inbox.yml): the owner mails his OWN darshan photos / videos with a subject that starts with the word 'Shyam' (any case); daily.yml's evening run picks them up, edits them and puts them into the owner-footage lane (automation/owner-footage.json) and the real-stills banks (footage/). Allowed senders are NOT listed here (public repo): they are the repo secret INBOX_ALLOWED_SENDERS (comma-separated) plus the inbox account itself. Mail from anyone else is labelled 'shyam-ignored' and never answered.",
+  "subject_word": "shyam",
+  "query": "in:inbox subject:shyam newer_than:30d -label:shyam-ingested -label:shyam-ignored",
+  "label_done": "shyam-ingested",
+  "label_ignored": "shyam-ignored",
+  "allowed_senders": [],
+  "max_mails_per_run": 6,
+  "max_files_per_mail": 12,
+  "max_attachment_mb": 25,
+  "max_drive_mb": 1500,
+  "waiting_days": 10,
+  "photo": { "types": ["jpg", "jpeg", "png", "heic", "heif"], "min_side": 600, "min_sharp": 40, "long_side": 1080 },
+  "video": {
+    "types": ["mp4", "mov", "3gp", "m4v"],
+    "min_cut": 12, "max_cut": 30, "max_cuts_per_video": 4, "max_reels_per_mail": 8,
+    "blur_rel": 0.1, "blur_abs": 20, "shake_px": 60, "bridge_s": 2, "face_share": 0.15
+  },
+  "music_prefix": "cc-",
+  "other_playlist": "Asli Darshan | असली दर्शन"
+}

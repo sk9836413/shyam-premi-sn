@@ -256,7 +256,8 @@ const photoInfo = (p) => ({ file: rel(p.file), credit: p.attribution || `Photo: 
   ...(p.focus ? { focus: p.focus } : {}), ...(p.size ? { size: p.size } : {}) });
 // Shyam Baba's real darshan (owner's stills, a pandal): `pandal` marks the post for the honesty checks and the texts.
 const pandalPost = (h, date) => ({ temple: SHYAM_REAL_SLUG, templeName: 'Shyam Baba asli darshan (pandal)', pandal: true,
-  photos: pickPhotos({ photos: shyamStills() }, h, date, 1).map(photoInfo) });
+  // (inbox photos from elsewhere, licence `pandal: false`, are not the pandal: scripts/inbox.mjs)
+  photos: pickPhotos({ photos: shyamStills().filter((p) => p.pandal !== false) }, h, date, 1).map(photoInfo) });
 
 // Recent Shorts' temple (story/published/<date or the day before>-*.json `temple`), so the carousel follows the videos.
 function recentVideoTemple(date, list) {

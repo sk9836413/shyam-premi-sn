@@ -1,0 +1,36 @@
+{
+ "id": "1a1fa3a19300rcpt",
+ "threadId": "1a1fa3a19300rcpt",
+ "labelIds": [
+  "SENT",
+  "INBOX"
+ ],
+ "internalDate": "1795199385000",
+ "payload": {
+  "mimeType": "multipart/alternative",
+  "headers": [
+   {
+    "name": "From",
+    "value": "Shyam Premi SN inbox <inbox@gmail.com>"
+   },
+   {
+    "name": "Subject",
+    "value": "Re: Shyam laddu gopal"
+   },
+   {
+    "name": "X-Shyam-Inbox",
+    "value": "receipt"
+   }
+  ],
+  "parts": [
+   {
+    "mimeType": "text/plain",
+    "filename": "",
+    "body": {
+     "size": 15,
+     "data": "SmFpIFNocmVlIFNoeWFt"
+    }
+   }
+  ]
+ }
+}

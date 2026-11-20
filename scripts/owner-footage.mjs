@@ -96,33 +96,37 @@ export function buildSpec(plan, clipId, day, { track = null } = {}) {
   if (!c) throw new Error(`clip ${clipId} is not in the plan`);
   const t = track || trackOf(c.music);
   const music = { id: t.id, title: t.title || t.id, licence: t.licence, licence_url: t.licence_url || null };
+  // Clips from the darshan inbox (scripts/inbox.mjs, `source: "inbox"`) carry their own deity, temple (null = none),
+  // playlist, hashtags and credit lines (the place only as the owner named it); the first ten are the Khatu pandal reels.
+  const tags = c.tags || TAGS;
+  const fbTags = c.fb_tags || TAGS.slice(0, 3);
   const spec = {
     slug: slugOf(c, day),
     format: 'owner-footage',
     real_footage: true,
     title: 'Shyam Premi SN',
-    temple: 'khatu-shyam-mandir',
-    deity: 'Khatu Shyam ji',
-    playlist: plan.playlist,
+    ...(c.temple === null ? {} : { temple: c.temple || 'khatu-shyam-mandir' }),
+    deity: c.deity || 'Khatu Shyam ji',
+    playlist: c.playlist === undefined ? plan.playlist : c.playlist,
     music,
-    hashtags: TAGS,
+    hashtags: tags,
     // the reel is the owner's own recording: one real scene, no AI picture, no voice (ai-disclosure.mjs aiLook = none)
     scenes: [{ real: true, image: `footage/owner/${c.file}`, source: 'own', licence: 'own' }],
     youtube_title: c.title,
     youtube_description: [
       c.line,
       c.roman,
-      'Ye asli darshan video hai: Shyam Premi SN ne khud Shyam Baba ke pandal mein record kiya.',
+      c.credit_yt || 'Ye asli darshan video hai: Shyam Premi SN ne khud Shyam Baba ke pandal mein record kiya.',
       SEND_LINE,
       c.question,
       '',
       `Sangeet: "${music.title}" (CC0 recordings ki original arrangement, Shyam Premi SN).`,
-      TAGS.join(' '),
+      tags.join(' '),
     ].join('\n'),
-    youtube_tags: ['Khatu Shyam darshan', 'खाटू श्याम दर्शन', 'Shyam Baba darshan', 'श्याम बाबा के दर्शन', 'Khatu Shyam shringar', 'Jai Shree Shyam', 'जय श्री श्याम', 'Khatu Shyam ji', 'Shyam Baba', 'Shyam Premi SN'].join(', '),
-    instagram_caption: [c.line, c.question, SEND_LINE, 'Darshan: Shyam Premi SN ne khud record kiya 🙏', TAGS.join(' ')].join('\n'),
+    youtube_tags: c.youtube_tags || ['Khatu Shyam darshan', 'खाटू श्याम दर्शन', 'Shyam Baba darshan', 'श्याम बाबा के दर्शन', 'Khatu Shyam shringar', 'Jai Shree Shyam', 'जय श्री श्याम', 'Khatu Shyam ji', 'Shyam Baba', 'Shyam Premi SN'].join(', '),
+    instagram_caption: [c.line, c.question, SEND_LINE, c.credit_ig || 'Darshan: Shyam Premi SN ne khud record kiya 🙏', tags.join(' ')].join('\n'),
     // Facebook: the fb.mjs template (no share/forward ask there: the Page's bait rule); fbVideoCaption adds no AI line
-    facebook_caption: [`${c.line} ${c.question}`, 'ये दर्शन Shyam Premi SN ने खुद श्याम बाबा के पंडाल में रिकॉर्ड किए हैं।', '', `${TAGS[0]} ${TAGS[1]} ${TAGS[2]}`].join('\n'),
+    facebook_caption: [`${c.line} ${c.question}`, c.credit_fb || 'ये दर्शन Shyam Premi SN ने खुद श्याम बाबा के पंडाल में रिकॉर्ड किए हैं।', '', fbTags.join(' ')].join('\n'),
   };
   const ai = aiDisclosure(spec);
   if (ai.youtube || ai.meta) {
@@ -141,7 +145,7 @@ export function checkSpec(spec) {
   const igTags = spec.instagram_caption.match(/#\S+/g) || [];
   if (igTags.length < 3 || igTags.length > 5) e.push(`instagram: 3-5 hashtags (${igTags.length})`);
   if (/\bAI\b/.test(`${spec.youtube_description}\n${spec.instagram_caption}`) && !aiDisclosure(spec).meta) e.push('real footage with non-AI music: no AI wording');
-  if (/darshan.{0,20}\bAI\b|AI.{0,20}(chitra|darshan|video)/i.test(`${spec.youtube_description}\n${spec.instagram_caption}\n${spec.facebook_caption}`)) e.push('never call the real darshan AI');
+  if (/darshan.{0,20}\bAI\b|\bAI\b.{0,20}(chitra|darshan|video)/i.test(`${spec.youtube_description}\n${spec.instagram_caption}\n${spec.facebook_caption}`)) e.push('never call the real darshan AI');
   const names = thirdPartyNames(`${spec.youtube_title} ${spec.youtube_description}`);
   if (names.length) e.push(`other channels / organisations named: ${names.join(', ')}`);
   e.push(...checkFbCaption(spec.facebook_caption, { subject: spec }).map((x) => `facebook: ${x}`));

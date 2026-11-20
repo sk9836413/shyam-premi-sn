@@ -127,7 +127,7 @@ jobs:
           yt=$(j "$RUNNER_TEMP/yt.json" "const y=j.youtube; y.url+(y.publishAt?' (public at '+y.publishAt+')':' (public now)')")
           social=$(j "$RUNNER_TEMP/meta.json" "' | social: '+j.summary")
           ai=$(j "$RUNNER_TEMP/spec.json" "'YouTube synthetic '+j.ai.youtube+', Meta AI label '+j.ai.meta")
-          echo "$DAY | owner | $SLUG | Khatu Shyam ji (owner's own pandal darshan footage) | owner-footage Short, clip $CLIP \"$(j "$file" "j.youtube_title.split(' | ')[0]")\", real footage + music $(j "$file" "j.music.id") ($ai), public ${AT:-on upload} IST" >> automation/log.md
+          echo "$DAY | owner | $SLUG | $(j "$file" "j.deity") (owner's own footage) | owner-footage Short, clip $CLIP \"$(j "$file" "j.youtube_title.split(' | ')[0]")\", real footage + music $(j "$file" "j.music.id") ($ai), public ${AT:-on upload} IST" >> automation/log.md
           echo "- $SLUG | youtube: $yt | owner-footage Short (clip $CLIP, real footage), made $(TZ=Asia/Kolkata date '+%d %b %H:%M') IST$social" >> automation/published.md
           git add automation/log.md automation/published.md "story/published/$SLUG.json"
           git commit -qm "Owner footage Short $SLUG"

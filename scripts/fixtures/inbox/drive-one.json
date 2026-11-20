@@ -1,0 +1,52 @@
+{
+ "id": "1a1fa38f0694b97e",
+ "threadId": "1a1fa38f0694b97e",
+ "labelIds": [
+  "UNREAD",
+  "INBOX"
+ ],
+ "internalDate": "1795199385000",
+ "payload": {
+  "mimeType": "multipart/alternative",
+  "headers": [
+   {
+    "name": "From",
+    "value": "Shyam Bhakt <owner@gmail.com>"
+   },
+   {
+    "name": "To",
+    "value": "inbox@gmail.com"
+   },
+   {
+    "name": "Subject",
+    "value": "Shyam Baidyanath dham deoghar"
+   },
+   {
+    "name": "Message-ID",
+    "value": "<a1@mail.gmail.com>"
+   },
+   {
+    "name": "Authentication-Results",
+    "value": "mx.google.com; dkim=pass header.i=@gmail.com header.s=20260707 header.b=abc; arc=pass (i=1); spf=pass (google.com: domain of owner@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=owner@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com"
+   }
+  ],
+  "parts": [
+   {
+    "mimeType": "text/plain",
+    "filename": "",
+    "body": {
+     "size": 173,
+     "data": "W2ltYWdlOiBWaWRlbyBmaWxlXQ0KPGh0dHBzOi8vZHJpdmUuZ29vZ2xlLmNvbS9maWxlL2QvMUFiQ2RFZkdoSWpLbE1uT3BRclN0VXZXeFl6MDEyMzQ1Pg0KSU1HXzIzMDUubW92DQo8aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xQWJDZEVmR2hJaktsTW5PcFFyU3RVdld4WXowMTIzNDU-DQo"
+    }
+   },
+   {
+    "mimeType": "text/html",
+    "filename": "",
+    "body": {
+     "size": 615,
+     "data": "PGRpdiBkaXI9Imx0ciI-PGRpdiBpZD0ibV8xIiByb2xlPSJncm91cCIgY2xhc3M9ImdtYWlsX2luYm9keW1lZGlhIGdtYWlsX2NoaXAgZ21haWxfZHJpdmVfY2hpcCIgc3R5bGU9ImRpc3BsYXk6YmxvY2siPjxkaXYgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrIj48YSBocmVmPSJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vZmlsZS9kLzFBYkNkRWZHaElqS2xNbk9wUXJTdFV2V3hZejAxMjM0NS92aWV3P3VzcD1kcml2ZV93ZWIiPjxpbWcgYWx0PSJWaWRlbyBmaWxlIiBzcmM9Imh0dHBzOi8vZHJpdmUtdGhpcmRwYXJ0eS5nb29nbGV1c2VyY29udGVudC5jb20vMzIvdHlwZS92aWRlby9xdWlja3RpbWUiPjwvYT48L2Rpdj48ZGl2IHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jayI-PGRpdiB0aXRsZT0iSU1HXzIzMDUubW92IiBzdHlsZT0iY29sb3I6IzFmMWYxZiI-PGEgaHJlZj0iaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xQWJDZEVmR2hJaktsTW5PcFFyU3RVdld4WXowMTIzNDUvdmlldz91c3A9ZHJpdmVfd2ViIiBzdHlsZT0idGV4dC1kZWNvcmF0aW9uOm5vbmUiPjxzcGFuPklNR18yMzA1Lm1vdjwvc3Bhbj48L2E-PC9kaXY-PC9kaXY-PC9kaXY-PC9kaXY-"
+    }
+   }
+  ]
+ }
+}

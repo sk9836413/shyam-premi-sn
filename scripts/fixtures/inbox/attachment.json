@@ -1,0 +1,89 @@
+{
+ "id": "1a1fa3a1936dea36",
+ "threadId": "1a1fa3a1936dea36",
+ "labelIds": [
+  "UNREAD",
+  "INBOX"
+ ],
+ "internalDate": "1795199462000",
+ "payload": {
+  "mimeType": "multipart/mixed",
+  "headers": [
+   {
+    "name": "From",
+    "value": "owner@gmail.com"
+   },
+   {
+    "name": "Subject",
+    "value": "Shyam laddu gopal"
+   },
+   {
+    "name": "Message-ID",
+    "value": "<a4@mail.gmail.com>"
+   },
+   {
+    "name": "Authentication-Results",
+    "value": "mx.google.com; dkim=pass header.i=@gmail.com header.s=20260707 header.b=abc; arc=pass (i=1); spf=pass (google.com: domain of owner@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=owner@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com"
+   }
+  ],
+  "parts": [
+   {
+    "mimeType": "multipart/alternative",
+    "filename": "",
+    "body": {
+     "size": 0
+    },
+    "parts": [
+     {
+      "mimeType": "text/plain",
+      "filename": "",
+      "body": {
+       "size": 2,
+       "data": "DQo"
+      }
+     },
+     {
+      "mimeType": "text/html",
+      "filename": "",
+      "body": {
+       "size": 25,
+       "data": "PGRpdiBkaXI9Imx0ciI-PGJyPjwvZGl2Pg"
+      }
+     }
+    ]
+   },
+   {
+    "mimeType": "video/mp4",
+    "filename": "5062b0bb-b7e7-412f-a97e-3ff49bcffa0d.mp4",
+    "body": {
+     "size": 3497569,
+     "attachmentId": "ANGjdJ_x"
+    }
+   },
+   {
+    "mimeType": "image/heic",
+    "filename": "IMG_0001.HEIC",
+    "body": {
+     "size": 2100000,
+     "attachmentId": "ANGjdJ_y"
+    }
+   },
+   {
+    "mimeType": "video/quicktime",
+    "filename": "IMG_0002.MOV",
+    "body": {
+     "size": 31000000,
+     "attachmentId": "ANGjdJ_z"
+    }
+   },
+   {
+    "mimeType": "application/pdf",
+    "filename": "bill.pdf",
+    "body": {
+     "size": 1000,
+     "attachmentId": "ANGjdJ_w"
+    }
+   }
+  ]
+ }
+}

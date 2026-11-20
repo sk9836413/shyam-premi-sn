@@ -1,0 +1,40 @@
+{
+ "id": "1a1fa3a19300spof",
+ "threadId": "1a1fa3a19300spof",
+ "labelIds": [
+  "UNREAD",
+  "INBOX"
+ ],
+ "internalDate": "1795199385000",
+ "payload": {
+  "mimeType": "multipart/alternative",
+  "headers": [
+   {
+    "name": "From",
+    "value": "owner@gmail.com"
+   },
+   {
+    "name": "Subject",
+    "value": "SHYAM darshan"
+   },
+   {
+    "name": "Message-ID",
+    "value": "<x@evil>"
+   },
+   {
+    "name": "Authentication-Results",
+    "value": "mx.google.com; dkim=fail header.i=@evil.example; spf=fail (google.com: domain of x@evil.example does not designate) smtp.mailfrom=x@evil.example; dmarc=fail (p=NONE) header.from=gmail.com"
+   }
+  ],
+  "parts": [
+   {
+    "mimeType": "text/plain",
+    "filename": "",
+    "body": {
+     "size": 5,
+     "data": "ZGVraG8"
+    }
+   }
+  ]
+ }
+}

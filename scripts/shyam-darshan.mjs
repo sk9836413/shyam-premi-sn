@@ -16,6 +16,7 @@
 // kiya; Khatu mandir nahi"; nothing calls these pictures the Khatu mandir. They carry no "AI chitra" label and do not
 // count as AI visuals (scripts/ai-disclosure.mjs `real_image`); AI music / an AI voice are still disclosed as before.
 // SPS_SHYAM_REAL=0 (or `ai_only: true` on a spec or scene) keeps the old AI-only behaviour.
+import fs from 'node:fs';
 import path from 'node:path';
 import { photosFor, FOOTAGE } from './real-photos.mjs';
 
@@ -63,9 +64,20 @@ export function showsShyamDarshan(prompt) {
 /**
  * The real stills: photosFor() rules (licence "own", author, source), plus `face` = only pictures with the deity's face
  * large (deity_face), `landscape` = only wider-than-tall pictures (the long video's 16:9 frame).
+ * Also the owner's later darshan photos from the mail inbox (scripts/inbox.mjs): footage/<slug>-own/ and
+ * footage/khatu-shyam-mandir/, only pictures whose licence.json says `bank: "shyam-darshan"` (each with its own place
+ * label and credit, never the pandal's).
  */
+const bankCache = new Map();
+export function inboxStills(root = FOOTAGE) {
+  if (bankCache.has(root)) return bankCache.get(root);
+  const dirs = fs.existsSync(root) ? fs.readdirSync(root).filter((d) => /-own$/.test(d) || d === 'khatu-shyam-mandir') : [];
+  const list = dirs.flatMap((d) => photosFor(d, root)).filter((p) => p.bank === 'shyam-darshan');
+  bankCache.set(root, list);
+  return list;
+}
 export function shyamStills({ root, face = true, landscape = false } = {}) {
-  const list = photosFor(SHYAM_REAL_SLUG, root || FOOTAGE).filter((p) => p.source === 'own' && p.ai !== true);
+  const list = [...photosFor(SHYAM_REAL_SLUG, root || FOOTAGE), ...inboxStills(root || FOOTAGE)].filter((p) => p.source === 'own' && p.ai !== true);
   return list.filter((p) => (!face || p.deity_face) && (!landscape || (Array.isArray(p.size) && p.size[0] > p.size[1])));
 }
 

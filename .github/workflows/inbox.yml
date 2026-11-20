@@ -1,0 +1,102 @@
+# Darshan inbox (owner, 20 Nov 2026: "email se automate kar do"; scripts/inbox.mjs, automation/inbox.json): the owner
+# mails his OWN darshan photos / videos (subject starting with the word "Shyam"; attachments up to 25 MB or Google
+# Drive links shared "Anyone with the link"). This job reads them, edits the videos into 12-30 s 1080x1920 reels with a
+# CC0 instrumental (assets of the owner-footage release, appended to automation/owner-footage.json: the owner-footage
+# lane posts one a day), puts the photos into footage/ (Shyam Baba darshan photos into the real-stills bank), commits,
+# and only after the push labels each mail "shyam-ingested" and sends one Hinglish receipt.
+# No cron of its own: daily.yml calls it on its evening triggers. A run without mails ends after the `count` step.
+# Secrets: INBOX_GMAIL_CLIENT_ID / INBOX_GMAIL_CLIENT_SECRET / INBOX_GMAIL_REFRESH_TOKEN (gmail.send + gmail.modify) and
+# INBOX_ALLOWED_SENDERS (comma-separated; the inbox account itself is always allowed). Without them the job skips.
+# Logs never print a mail address (they are public).
+name: Darshan inbox
+
+on:
+  workflow_call:
+    inputs:
+      mode: { type: string, default: run }
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: run = process + receipts; dry-run = only list mails / files / Drive access; deep = also download and check (watermark OCR, cut plan), nothing written or sent
+        type: choice
+        options: [run, dry-run, deep]
+        default: dry-run
+
+permissions:
+  contents: write
+
+jobs:
+  inbox:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    concurrency:
+      group: shyam-inbox
+      cancel-in-progress: false
+    env:
+      INBOX_GMAIL_CLIENT_ID: ${{ secrets.INBOX_GMAIL_CLIENT_ID }}
+      INBOX_GMAIL_CLIENT_SECRET: ${{ secrets.INBOX_GMAIL_CLIENT_SECRET }}
+      INBOX_GMAIL_REFRESH_TOKEN: ${{ secrets.INBOX_GMAIL_REFRESH_TOKEN }}
+      INBOX_ALLOWED_SENDERS: ${{ secrets.INBOX_ALLOWED_SENDERS }}
+      GH_TOKEN: ${{ github.token }}
+      MODE: ${{ inputs.mode || 'run' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Any mails?
+        id: count
+        run: |
+          if [ -z "$INBOX_GMAIL_REFRESH_TOKEN" ]; then echo "::notice::Darshan inbox: the INBOX_GMAIL_* secrets are not set, skipped"; echo "n=0" >> "$GITHUB_OUTPUT"; exit 0; fi
+          node scripts/inbox.mjs count | tee "$RUNNER_TEMP/count.json"
+          echo "n=$(node -p "require('$RUNNER_TEMP/count.json').count || 0")" >> "$GITHUB_OUTPUT"
+
+      - name: Dry run (list)
+        if: steps.count.outputs.n != '0' && env.MODE == 'dry-run'
+        run: node scripts/inbox.mjs run --dry-run | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/setup-python@v5
+        if: steps.count.outputs.n != '0' && env.MODE != 'dry-run'
+        with:
+          python-version: '3.12'
+
+      - name: Tools (ffmpeg, OCR, OpenCV)
+        if: steps.count.outputs.n != '0' && env.MODE != 'dry-run'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg tesseract-ocr > /dev/null
+          python -m pip install --quiet opencv-python-headless numpy pillow pillow-heif
+          echo "PYTHON=python" >> "$GITHUB_ENV"
+
+      - name: Deep dry run (download + checks, nothing written)
+        if: steps.count.outputs.n != '0' && env.MODE == 'deep'
+        run: node scripts/inbox.mjs run --deep --work "$RUNNER_TEMP/inbox" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Process
+        id: run
+        if: steps.count.outputs.n != '0' && env.MODE == 'run'
+        run: |
+          node scripts/inbox.mjs run --pending "$RUNNER_TEMP/pending.json" --work "$RUNNER_TEMP/inbox" > "$RUNNER_TEMP/run.json" || { cat "$RUNNER_TEMP/run.json"; exit 1; }
+          node -e "const r=require('$RUNNER_TEMP/run.json');console.log(JSON.stringify(r,null,1));for(const m of r.mails||[])console.log('- '+m.subject+': '+m.action+(m.status?' '+m.status:'')+(m.items?' | '+m.items.map(i=>i.name+' '+i.status+(i.reels?' '+i.reels.join(','):'')).join('; '):'')+(m.why?' ('+m.why+')':''))" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ -f "$RUNNER_TEMP/pending.json" ] && echo "pending=true" >> "$GITHUB_OUTPUT" || true
+
+      - name: Commit and push (queue, stills, state)
+        id: push
+        if: steps.run.outputs.pending == 'true'
+        run: |
+          git config user.name "shyam-premi-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/owner-footage.json automation/inbox-log.json automation/owner-footage-skip.txt footage
+          if git diff --cached --quiet; then echo "nothing to commit"; else
+            git commit -qm "Darshan inbox: $(node -p "const r=require('$RUNNER_TEMP/run.json');(r.assets||[]).length+' reels, '+(r.mails||[]).filter(m=>m.action==='process').length+' mails'")"
+            ok=false
+            for i in 1 2 3 4 5; do git pull -q --rebase && git push -q && { ok=true; break; }; git rebase --abort 2>/dev/null; sleep $((i * 10)); done
+            [ "$ok" = true ] || { echo "::error::push failed: no labels / receipts, the mails are read again next run"; exit 1; }
+          fi
+
+      - name: Labels and receipts
+        if: steps.run.outputs.pending == 'true' && steps.push.outcome == 'success'
+        run: node scripts/inbox.mjs notify --pending "$RUNNER_TEMP/pending.json"

@@ -1,0 +1,40 @@
+{
+ "id": "1a1fa3a19300retr",
+ "threadId": "1a1fa3a1936dea36",
+ "labelIds": [
+  "UNREAD",
+  "INBOX"
+ ],
+ "internalDate": "1795199385000",
+ "payload": {
+  "mimeType": "multipart/alternative",
+  "headers": [
+   {
+    "name": "From",
+    "value": "owner@gmail.com"
+   },
+   {
+    "name": "Subject",
+    "value": "Re: Shyam laddu gopal"
+   },
+   {
+    "name": "Message-ID",
+    "value": "<a6@mail.gmail.com>"
+   },
+   {
+    "name": "Authentication-Results",
+    "value": "mx.google.com; dkim=pass header.i=@gmail.com header.s=20260707 header.b=abc; arc=pass (i=1); spf=pass (google.com: domain of owner@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=owner@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com"
+   }
+  ],
+  "parts": [
+   {
+    "mimeType": "text/plain",
+    "filename": "",
+    "body": {
+     "size": 100,
+     "data": "Tk9UIE1JTkUNCg0KT24gU2F0LCAyMSBOb3YgMjAyNiBhdCAxODowMCwgU2h5YW0gUHJlbWkgU04gaW5ib3ggd3JvdGU6DQo-IEphaSBTaHJlZSBTaHlhbQ0KPiByZW1vdmUNCg"
+    }
+   }
+  ]
+ }
+}

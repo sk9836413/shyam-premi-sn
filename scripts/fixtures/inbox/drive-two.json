@@ -1,0 +1,48 @@
+{
+ "id": "1a1fa3884f94d396",
+ "threadId": "1a1fa3884f94d396",
+ "labelIds": [
+  "UNREAD",
+  "INBOX"
+ ],
+ "internalDate": "1795199385000",
+ "payload": {
+  "mimeType": "multipart/alternative",
+  "headers": [
+   {
+    "name": "From",
+    "value": "owner@gmail.com"
+   },
+   {
+    "name": "Subject",
+    "value": "Shyam chath puja"
+   },
+   {
+    "name": "Message-ID",
+    "value": "<a2@mail.gmail.com>"
+   },
+   {
+    "name": "Authentication-Results",
+    "value": "mx.google.com; dkim=pass header.i=@gmail.com header.s=20260707 header.b=abc; arc=pass (i=1); spf=pass (google.com: domain of owner@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=owner@gmail.com; dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com"
+   }
+  ],
+  "parts": [
+   {
+    "mimeType": "text/plain",
+    "filename": "",
+    "body": {
+     "size": 350,
+     "data": "W2ltYWdlOiBWaWRlbyBmaWxlXQ0KPGh0dHBzOi8vZHJpdmUuZ29vZ2xlLmNvbS9maWxlL2QvMVp5WHdWdVRzUnFQb05tTGtKaUhnRmVEY0JhOTg3NjU0Pg0KSU1HXzIzMTUubW92DQo8aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xWnlYd1Z1VHNScVBvTm1Ma0ppSGdGZURjQmE5ODc2NTQ-DQoNCltpbWFnZTogVmlkZW8gZmlsZV0NCjxodHRwczovL2RyaXZlLmdvb2dsZS5jb20vb3Blbj9pZD0xUXdFclR5VWlPcEFzRGZHaEprTHpYY1ZiTm0xMTEyMjI-DQpJTUdfMjMxNC5tb3YNCjxodHRwczovL2RyaXZlLmdvb2dsZS5jb20vb3Blbj9pZD0xUXdFclR5VWlPcEFzRGZHaEprTHpYY1ZiTm0xMTEyMjI-DQo"
+    }
+   },
+   {
+    "mimeType": "text/html",
+    "filename": "",
+    "body": {
+     "size": 1252,
+     "data": "PGRpdiBpZD0ibV8xIiByb2xlPSJncm91cCIgY2xhc3M9ImdtYWlsX2luYm9keW1lZGlhIGdtYWlsX2NoaXAgZ21haWxfZHJpdmVfY2hpcCIgc3R5bGU9ImRpc3BsYXk6YmxvY2siPjxkaXYgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrIj48YSBocmVmPSJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vZmlsZS9kLzFaeVh3VnVUc1JxUG9ObUxrSmlIZ0ZlRGNCYTk4NzY1NC92aWV3P3VzcD1kcml2ZV93ZWIiPjxpbWcgYWx0PSJWaWRlbyBmaWxlIiBzcmM9Imh0dHBzOi8vZHJpdmUtdGhpcmRwYXJ0eS5nb29nbGV1c2VyY29udGVudC5jb20vMzIvdHlwZS92aWRlby9xdWlja3RpbWUiPjwvYT48L2Rpdj48ZGl2IHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jayI-PGRpdiB0aXRsZT0iSU1HXzIzMTUubW92IiBzdHlsZT0iY29sb3I6IzFmMWYxZiI-PGEgaHJlZj0iaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xWnlYd1Z1VHNScVBvTm1Ma0ppSGdGZURjQmE5ODc2NTQvdmlldz91c3A9ZHJpdmVfd2ViIiBzdHlsZT0idGV4dC1kZWNvcmF0aW9uOm5vbmUiPjxzcGFuPklNR18yMzE1Lm1vdjwvc3Bhbj48L2E-PC9kaXY-PC9kaXY-PC9kaXY-PGRpdiBpZD0ibV8xIiByb2xlPSJncm91cCIgY2xhc3M9ImdtYWlsX2luYm9keW1lZGlhIGdtYWlsX2NoaXAgZ21haWxfZHJpdmVfY2hpcCIgc3R5bGU9ImRpc3BsYXk6YmxvY2siPjxkaXYgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrIj48YSBocmVmPSJodHRwczovL3d3dy5nb29nbGUuY29tL3VybD9xPWh0dHBzJTNBJTJGJTJGZHJpdmUuZ29vZ2xlLmNvbSUyRm9wZW4lM0ZpZCUzRDFRd0VyVHlVaU9wQXNEZkdoSmtMelhjVmJObTExMTIyMiZhbXA7c2E9RCI-PGltZyBhbHQ9IlZpZGVvIGZpbGUiIHNyYz0iaHR0cHM6Ly9kcml2ZS10aGlyZHBhcnR5Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8zMi90eXBlL3ZpZGVvL3F1aWNrdGltZSI-PC9hPjwvZGl2PjxkaXYgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrIj48ZGl2IHRpdGxlPSJJTUdfMjMxNC5tb3YiIHN0eWxlPSJjb2xvcjojMWYxZjFmIj48YSBocmVmPSJodHRwczovL3d3dy5nb29nbGUuY29tL3VybD9xPWh0dHBzJTNBJTJGJTJGZHJpdmUuZ29vZ2xlLmNvbSUyRm9wZW4lM0ZpZCUzRDFRd0VyVHlVaU9wQXNEZkdoSmtMelhjVmJObTExMTIyMiZhbXA7c2E9RCIgc3R5bGU9InRleHQtZGVjb3JhdGlvbjpub25lIj48c3Bhbj5JTUdfMjMxNC5tb3Y8L3NwYW4-PC9hPjwvZGl2PjwvZGl2PjwvZGl2Pg"
+    }
+   }
+  ]
+ }
+}

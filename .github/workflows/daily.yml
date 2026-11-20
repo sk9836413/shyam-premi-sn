@@ -2818,6 +2818,14 @@ jobs:
     uses: ./.github/workflows/owner-footage.yml
     secrets: inherit
 
+  # Darshan inbox (owner, 20 Nov 2026: "email se automate kar do"; .github/workflows/inbox.yml, scripts/inbox.mjs): the
+  # owner's own darshan photos / videos sent by mail become owner-footage reels and real stills; one receipt per mail.
+  # Evening triggers only (the evening schedule polls and slot=evening dispatches); a run without mails ends in seconds.
+  inbox:
+    if: ${{ !inputs.dry_run && (github.event.schedule == '17,47 12-17 * * *' || inputs.slot == 'evening') }}
+    uses: ./.github/workflows/inbox.yml
+    secrets: inherit
+
   # Character series (scripts/series-plan.mjs): after every evening-slot run (and slot=kalyug) tomorrow's episode, only once
   # the owner approved the pilot (the bank's "approved": true) and the repo variable is not off.
   # "Kailash Parivar" (STORY.md section 9, .github/workflows/kailash.yml), Mon/Thu/Sat.

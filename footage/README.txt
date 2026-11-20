@@ -4,3 +4,4 @@
 #   footage/<slug>/openverse-<name>.jpg + .licence.json (source "Openverse/Flickr", attribution "... via Flickr", url = Flickr page).
 # Top up temples with fewer than 4 photos: node scripts/real-photos.mjs --all --min 4 --max 6
 # Own phone photos (e.g. Khatu Shyam ji, Salasar): footage/<slug>/<name>.jpg + <name>.licence.json with "source": "own", "licence": "own".
+# Owner's mailed photos (scripts/inbox.mjs, the darshan inbox): footage/<subject-slug>-own/ or, when the subject names a known temple, footage/<temple>/own-*.jpg; licence.json source "own", place only as the owner named it; Shyam Baba darshan photos carry bank "shyam-darshan" (scripts/shyam-darshan.mjs real-stills bank).
