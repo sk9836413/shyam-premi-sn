@@ -45,6 +45,8 @@ const NAMES = new RegExp('\\b(' + [
   'gopashtami', 'akshaya', 'amla', 'vaikuntha', 'baikunth', 'santoshi', 'gyaras', 'somvar', 'mangalvar', 'budhvar', 'guruvar', 'shukravar', 'shanivar', 'ravivar',
   // Feb-Mar 2027 rows (festivals.json, 20 Nov 2026)
   'basant', 'vasant', 'mahashivratri', 'holika', 'sheetala', 'basoda', 'mauni', 'somvati', 'phalgun',
+  // season countdown names (festivals.json `season`, 20 Nov 2026): other searched spellings
+  'mahashivaratri', 'shivaratri', 'falgun', 'phagun', 'dhulandi', 'khichdi',
 ].join('|') + ')', 'i');
 const GENERIC = new Set(['ki', 'ka', 'ke', 'aur', 'mein', 'me', 'se', 'ko', 'hai', 'ji', 'jai', 'shree', 'shri', 'katha', 'kahani',
   'darshan', 'status', 'video', 'shorts', 'sampoorn', 'mandir', 'dham', 'temple', 'kyun', 'kya', 'kaise', 'baba', 'part', 'the']);
@@ -410,7 +412,8 @@ if (s.bhajan_short === true) {
 // then the end card with the fixed share/subscribe line. Written in advance, so this check is strict.
 // Loop specs (`loop: true`, status engine, 11 Nov 2026): festival variants (slots eve / status / statusday) and the
 // morning day status Short: 3 scenes and NO end card (the video ends on its own first frame), 15-30 s, a bold Hindi hook
-// on the first frame, "स्टेटस पर लगाएं" on screen, title "<Festival> Status <year> | <Hindi> स्टेटस वीडियो #Shorts".
+// on the first frame, "स्टेटस पर लगाएं" on screen, title English first: "[Happy ]<Festival> Status <year> ✨|🙏 | <Hindi>
+// स्टेटस वीडियो #Shorts" (competitor decode 20 Nov 2026; the day status "<Day> <Deity> Status | ..."), never "सुप्रभात".
 if (s.format === 'status') {
   const loop = s.loop === true;
   need(/^\d{4}-\d{2}-\d{2}-(status|eve|statusday|morning)-[a-z0-9-]+$/.test(s.slug || ''), 'slug must be <yyyy-mm-dd>-<status|eve|statusday|morning>-<lowercase-english-slug>');
@@ -477,7 +480,11 @@ if (s.format === 'status') {
   if (scenes.some((sc) => sc.mantra)) need(s.mantra_source && (s.youtube_description || '').includes(s.mantra_source), 'mantra_source: name the mantra\'s tradition, and put the same text in youtube_description');
   const yt = s.youtube_title || '';
   need(yt.length > 0 && yt.length <= 90 && yt.endsWith(' #Shorts') && DEVANAGARI.test(yt), 'youtube_title: max 90 characters, "Roman | देवनागरी #Shorts"');
-  if (loop) need(/^.+ Status( 20\d\d)? \| .+ स्टेटस वीडियो #Shorts$/.test(yt), 'youtube_title: the winning pattern "<Festival> Status <year> | <Hindi> स्टेटस वीडियो #Shorts"');
+  if (loop) need(/^[A-Za-z].* Status( 20\d\d)?( (✨|🙏))? \| .+ स्टेटस वीडियो #Shorts$/u.test(yt), 'youtube_title: the winning pattern, English first: "[Happy ]<Festival> Status <year> ✨ | <Hindi> स्टेटस वीडियो #Shorts" (🙏 instead of ✨ on a vrat / solemn tithi)');
+  // weekday greeting titles ("शुभ सोमवार सुप्रभात", "Good Morning") did 0.72x in the competitor decode: never on a status Short
+  need(!/सुप्रभात|good\s*morning/i.test(yt), 'youtube_title: no "सुप्रभात" / "Good Morning" title (0.72x in the competitor decode); name the festival, or the deity of the weekday');
+  // "Happy" only on celebrations: never on a vrat, Ekadashi, Pradosh, Sankashti, Amavasya, Pitru Paksha / Shraddh
+  need(!/^happy\b/i.test(yt) || !/amavas|pitru|pitr|shraddh|shradh|ekadashi|pradosh|\bvrat\b|sankashti|bhairav|sheetala/i.test(romanTitle(yt)), 'youtube_title: no "Happy" on a vrat or solemn tithi (Amavasya, Pitru Paksha, Ekadashi, Pradosh, Sankashti, ...)');
   checkTitle(48);
   const desc = s.youtube_description || '';
   need(desc.length <= 4200 && /subscribe/i.test(desc) && /sanketik/i.test(desc), 'youtube_description: max 4200 characters (the download link is added on upload), a subscribe line and "Chitra AI dwara banaye gaye hain (sanketik)"');

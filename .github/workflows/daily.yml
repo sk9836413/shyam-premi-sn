@@ -6,7 +6,7 @@
 # Re-planned 11 Nov 2026 around the festival "status" Short, the only format that went viral (Choti Diwali Status 798
 # views, Dhanteras Status 456; katha Shorts avg 18): day-plan fills each day by priority, max 3:
 #   movie part 07:00 > festival status Shorts (job `status`, scripts/status-engine.mjs: `eve` 20:00 the evening before,
-#   `status` 00:30 on the day, `statusday` 08:30 on big festivals) > morning (weekday "day status" Short made by the
+#   `status` 00:30 on the day, `statusday` 07:30 on big festivals) > morning (weekday "day status" Short made by the
 #   status engine, or a famous-temple darshan on festival days) > evening famous-temple darshan 19:00 > Kalyug ke
 #   Bhagwan (Tue/Thu/Sat, KALYUG=on) > Dadi-Chhotu (Wed). Katha Shorts are cut. The long katha is not in this cap.
 # A slot that is not planned for the day skips at once (no render). Photo posts and the Veo kit are not uploads.
@@ -36,7 +36,7 @@
 # still two-shot with a speaker highlight. dry_run=true renders everything and keeps the video as an artifact only.
 # Festival "WhatsApp status" Shorts (job `status`, scripts/status-engine.mjs + automation/festivals.json): after every
 # evening-slot run (10:43 IST dispatch, the evening schedule, the 18:46 IST retry) the engine picks what is due: today's
-# `eve` variant (public 20:00) and tomorrow's 00:30 `status` / 08:30 `statusday` variants of ONE festival. Its base spec
+# `eve` variant (public 20:00) and tomorrow's 00:30 `status` / 07:30 `statusday` variants of ONE festival. Its base spec
 # (story/status/<date>.json or the theme) is animated once on Kaggle; every variant reuses those pictures/clips with its
 # own hook, picture order and title, is rendered as a 12-20 s loop, hosted on the media Worker (download link), uploaded
 # private with publishAt, scheduled on Facebook and queued for Instagram. slot=status (+ status_date = the festival day)
@@ -313,7 +313,7 @@ jobs:
           echo "slot=$slot" >> "$GITHUB_OUTPUT"
           if [ "$slot" = morning ]; then echo "long=true" >> "$GITHUB_OUTPUT"; fi
           # Festival status Shorts (status engine): every evening-slot run checks what is due (today's 20:00 `eve` variant,
-          # tomorrow's 00:30 / 08:30 variants); the job runs after this one, so it never competes with the evening Short
+          # tomorrow's 00:30 / 07:30 variants); the job runs after this one, so it never competes with the evening Short
           # of the same run for the Kaggle GPU, and the 10:43 IST dispatch makes the 20:00 variant in good time.
           if [ "$slot" = evening ]; then echo "status=true" >> "$GITHUB_OUTPUT"; fi
           # Mini-movies (STORY.md section 7) are made a day or more ahead by the `movie` job, which runs after evening runs.
@@ -1042,7 +1042,7 @@ jobs:
   # Festival status Shorts (scripts/status-engine.mjs, automation/festivals.json; owner, 11 Nov 2026): the one format that
   # went viral (Choti Diwali Status 2026: 798 views; Dhanteras Status 456). After every evening-slot run (and alone with
   # slot=status) the engine picks ONE festival with variants due: today's `eve` (public 20:00 IST, when people pick
-  # tomorrow's WhatsApp status), tomorrow's `status` (00:30 IST) and, for big festivals, `statusday` (08:30 IST). The
+  # tomorrow's WhatsApp status), tomorrow's `status` (00:30 IST) and, for big festivals, `statusday` (07:30 IST). The
   # festival's base spec (story/status/<date>.json, else its theme in scripts/status-themes.mjs) gets its pictures and
   # Kaggle clips ONCE; each variant reuses them with its own bold Hindi hook, picture order and title ("<Festival> Status
   # 2026 | <Hindi> स्टेटस वीडियो #Shorts"), is rendered as a 12-20 s loop (story/render-story.mjs `loop`), hosted on the
@@ -2811,7 +2811,7 @@ jobs:
 
   # Owner footage (owner, 20 Nov 2026: "daily upload me daal do"; .github/workflows/owner-footage.yml): the owner's own real
   # darshan reels, one a day as an EXTRA Short (upload-guard slot `owner`, own cap of 1). Runs on every trigger, like the
-  # instagram job (no wait for a long render): from 17:00 IST tomorrow's reel (public 09:30 IST), before that today's,
+  # instagram job (no wait for a long render): from 17:00 IST tomorrow's reel (public 07:15 IST), before that today's,
   # only when last evening's is missing; a day that has its reel skips in seconds. No cron of its own.
   owner-footage:
     if: ${{ !inputs.dry_run }}

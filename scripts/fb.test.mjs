@@ -32,9 +32,9 @@ describe('the Facebook day plan: every Short is a Facebook Reel, 90 min apart (o
     const d = fbDay('2026-12-03', synth([fest('2026-12-04', 'x')]));
     assert.deepEqual(vids(d), ['morning 06:00', 'evening 18:30', 'eve 20:00']);
   });
-  test('big festival day: 00:30 status + 08:30 statusday + evening darshan, all three', () => {
+  test('big festival day: 00:30 status + 07:30 statusday (08:30 until 20 Nov 2026) + evening darshan, all three', () => {
     const d = fbDay('2026-12-04', synth([fest('2026-12-04', 'x', 'big')]));
-    assert.deepEqual(vids(d), ['status 00:30', 'statusday 08:30', 'evening 20:30']);
+    assert.deepEqual(vids(d), ['status 00:30', 'statusday 07:30', 'evening 20:30']);
   });
   test('Kalyug and the Dadi-Chhotu noon Short (a Page video, over 90 s) are on Facebook now', () => {
     const tue = fbDay('2026-12-08', synth([]));
@@ -47,9 +47,9 @@ describe('the Facebook day plan: every Short is a Facebook Reel, 90 min apart (o
     assert.deepEqual(vids(d), ['morning 06:00', 'movie 07:30', 'evening 20:30']);
     assert.equal(d.videos.find((v) => v.slot === 'movie').type, 'video');
   });
-  test('a crowded morning: statusday 08:30 keeps its time, the movie part moves 90 min away (07:00)', () => {
+  test('a crowded morning: statusday 07:30 keeps its time, the movie part moves 90 min away (09:00)', () => {
     const d = fbDay('2026-12-04', synth([fest('2026-12-04', 'x', 'big')], { movies: new Map([['2026-12-04', 's part 1']]) }));
-    assert.deepEqual(vids(d), ['status 00:30', 'movie 07:00', 'statusday 08:30']);
+    assert.deepEqual(vids(d), ['status 00:30', 'statusday 07:30', 'movie 09:00']);
   });
   test('the real calendar (11 Nov 2026 - 31 Jan 2027): every YouTube Short is on Facebook, 90 min apart, the long one as a feed video (12:30; bhajan / mantra long 05:30)', () => {
     const inputs = loadInputs('.');
@@ -110,9 +110,18 @@ describe('fbDecision: the flag each workflow step passes', () => {
     assert.equal(fbDecision({ date: '2026-12-04', slot: 'status', festivalDate: '2026-12-04', now: at('2026-12-03', '19:00'), inputs: i }).at, '2026-12-04T00:30');
     assert.equal(fbDecision({ date: '2026-12-03', slot: 'eve', festivalDate: '2026-12-04', now: at('2026-12-03', '12:30'), inputs: i }).at, '2026-12-03T20:00');
     const big = synth([fest('2026-12-04', 'x', 'big')]);
-    assert.equal(fbDecision({ date: '2026-12-04', slot: 'statusday', now: at('2026-12-03', '19:00'), inputs: big }).at, '2026-12-04T08:30');
+    assert.equal(fbDecision({ date: '2026-12-04', slot: 'statusday', now: at('2026-12-03', '19:00'), inputs: big }).at, '2026-12-04T07:30');
     assert.equal(fbDecision({ date: '2026-12-09', slot: 'noon', now: at('2026-12-09', '13:00'), inputs: synth([]) }).at, '2026-12-09T15:00');
     assert.equal(fbDecision({ date: '2026-12-08', slot: 'kalyug', now: at('2026-12-07', '21:00'), inputs: synth([]) }).at, '2026-12-08T08:00');
+  });
+  test('the owner-footage Reel wants 07:15 (owner-footage.json, 20 Nov 2026) and stays 90 min from the planned Reels', () => {
+    const now = at('2026-12-03', '19:00');
+    // a normal day: the 06:00 dawn day status -> 07:30 (07:15 is only 75 min after it)
+    assert.equal(fbDecision({ date: '2026-12-11', slot: 'owner', at: '07:15', now, inputs: synth([]) }).at, '2026-12-11T07:30');
+    // a big festival day: the 07:30 statusday Reel -> 09:00
+    assert.equal(fbDecision({ date: '2026-12-04', slot: 'owner', at: '07:15', now, inputs: synth([fest('2026-12-04', 'x', 'big')]) }).at, '2026-12-04T09:00');
+    // a 00:30 festival day without a dawn Reel: 07:15 itself
+    assert.equal(fbDecision({ date: '2026-12-04', slot: 'owner', at: '07:15', now, inputs: synth([fest('2026-12-04', 'x', 'status', 'pradosh')]) }).at, '2026-12-04T07:15');
   });
   test('a Short not in the plan (a replacement) still goes to Facebook, at a free time', () => {
     const d = fbDecision({ date: '2026-12-10', slot: 'bhajan', now: at('2026-12-10', '12:00'), inputs: i });

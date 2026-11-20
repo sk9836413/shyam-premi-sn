@@ -38,11 +38,12 @@ describe('nextClip', () => {
     assert.equal(r.clip, '01');
     assert.equal(r.publish_at, null);
   });
-  test('21 Nov after 01 went out: clip 08 at 09:30', () => {
+  test('21 Nov after 01 went out: clip 08 at 07:15 (aarti time; 09:30 until 20 Nov 2026, competitor decode)', () => {
     const log = '2026-11-20 | owner | 2026-11-20-owner-safed-shringar-darshan | x | y\n';
     const r = nextClip(plan, { day: '2026-11-21', log, now: NOW });
     assert.equal(r.clip, '08');
-    assert.equal(r.publish_at, '2026-11-21T09:30');
+    assert.equal(r.publish_at, '2026-11-21T07:15');
+    assert.equal(plan.at, '07:15');
     assert.equal(r.slug, '2026-11-21-owner-darshan');
   });
   test('one a day: a day with its owner Short gets nothing more', () => {

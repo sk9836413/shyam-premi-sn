@@ -9,7 +9,8 @@
 //                      (vichar, temple carousel, Khatu sandhya aarti) stay on Instagram only.
 //   Reels   every Short of the day (day-plan.mjs uploads: status / eve / statusday, morning, evening, bhajan, movie,
 //           kalyug, noon), each at its own Facebook time (REEL_AT) and at least GAP_MIN = 90 minutes from every other
-//           Facebook Reel: status 00:30, movie 07:30, kalyug 08:00, statusday 08:30, morning 10:30 (on render), noon
+//           Facebook Reel: status 00:30, movie 07:30, statusday 07:30 (08:30 until 20 Nov 2026; placed before the
+//           movie, which then moves 90 min away), kalyug 08:00, morning 10:30 (on render), noon
 //           15:00, bhajan 19:45, eve 20:00, evening 20:30 (18:30 / 21:30 when a 20:00 eve status takes 20:30). Festival
 //           status Reels are placed first; when a wanted time is taken the nearest free 15-minute step is used.
 //           At upload time (`flags`) the Facebook Reels already posted or scheduled (automation/published.md) and the
@@ -58,7 +59,10 @@ import { BHAJAN_LINE } from '../music/bhajan.mjs';
 import { aiDisclosure } from './ai-disclosure.mjs';
 
 /** Facebook times (IST) of each Short slot. */
-export const REEL_AT = { owner: '09:30', status: '00:30', movie: '07:30', kalyug: '08:00', kailash: '08:00', pov: '08:00', statusday: '08:30', morning: '10:30', noon: '15:00', facts: '17:00', bhajan: '19:45', eve: '20:00', evening: '20:30' };
+// owner: the owner-footage Reel wants its YouTube time (automation/owner-footage.json `at`, 07:15 from 21 Nov 2026; was
+// 09:30); it is not in the day plan, so fbDecision moves it 90 min clear of the planned Reels (the 06:00 dawn day status,
+// a 07:30 statusday, an 08:00 series Reel) and the later Reels keep clear of it once it is in published.md.
+export const REEL_AT = { owner: '07:15', status: '00:30', movie: '07:30', kalyug: '08:00', kailash: '08:00', pov: '08:00', statusday: '07:30', morning: '10:30', noon: '15:00', facts: '17:00', bhajan: '19:45', eve: '20:00', evening: '20:30' };
 export const FB_TIMES = { photo: '06:30', long: '12:30', ...REEL_AT };
 export const GAP_MIN = 90; // minutes between two Facebook Reels (owner, 13 Nov 2026: "at least about 90 minutes")
 // Placed in this order (festival status first: the format that can go viral keeps its exact time).

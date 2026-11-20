@@ -31,6 +31,12 @@ export const DEFAULT_WISH = ['आपको और आपके परिवा�
 
 const T = (o) => ({ playlist: 'Tyohar aur Vrat Kathayein', voice: 'hf_alpha', ...o });
 
+/** Celebratory festival themes: their status titles start with "Happy" (status-engine happyOf; competitor decode
+ *  20 Nov 2026: "Happy ..." 1.11x, BhaktiTube 3.75x inside the channel). Vrat days, Ekadashi, Pradosh, Sankashti,
+ *  Amavasya, Purnima vrat, Kaal Bhairav, Sheetala, Pitru Paksha / Shraddh and the Khatu mela days never get "Happy";
+ *  a festivals.json `happy` (true / false) overrides the theme. */
+export const HAPPY_THEMES = ['gita', 'ramsita', 'tulsi', 'lohri', 'vaikuntha', 'ganeshjayanti', 'holika', 'basant', 'mahashivratri', 'holi', 'devdeepawali', 'sankranti', 'janmotsav'];
+
 /** Festival themes (status-engine buildFamily). */
 export const THEMES = {
   ekadashi: T({

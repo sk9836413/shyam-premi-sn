@@ -11,7 +11,7 @@
 // - 17-20 Nov 2026 (Khatu Shyam Janmotsav = Dev Uthani Ekadashi, Fri 20 Nov 2026; Drik Panchang + Prokerala): the
 //   Khatu Shyam Janmotsav card on every upload (all slots, long video, movie and Kalyug parts) and on the
 //   festival and Khatu sandhya photo posts, with utm_source per platform (youtube / instagram / facebook). The status
-//   engine's Janmotsav variants (eve 18 + 19 Nov 20:00, status 20 Nov 00:30, statusday 20 Nov 08:30) carry it too.
+//   engine's Janmotsav variants (eve 18 + 19 Nov 20:00, status 20 Nov 00:30, statusday 20 Nov 08:30; statusday is 07:30 from 21 Nov 2026) carry it too.
 // The cards live on the channel's own site (site/ in this repo, GitHub Pages, .github/workflows/pages.yml). Shyam Premi
 // SN is a separate entity from any other brand: never link or co-brand another site here.
 import fs from 'node:fs';

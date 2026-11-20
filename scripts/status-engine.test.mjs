@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { addDays, loadInputs, planDay } from './day-plan.mjs';
-import { FACE_FIRST, IG_TAGS_MAX, SEND_PILL, SHARE_LINE, STATUS_HOLD, TRIAL_AT, buildFamily, buildVariant, dayStatus, dayStatusDue, due, hookFor, loadFestivals, placements, slugOf, titleOf, trialVariant, wishFor } from './status-engine.mjs';
+import { COUNTDOWN_DAYS, FACE_FIRST, IG_TAGS_MAX, SEND_PILL, SHARE_LINE, STATUSDAY_AT, STATUS_HOLD, TRIAL_AT, buildFamily, buildVariant, dayStatus, dayStatusDue, due, happyOf, hookFor, loadFestivals, placements, slugOf, statusTitle, titleOf, trialVariant, wishFor } from './status-engine.mjs';
 import { withShareLine } from './youtube.mjs';
 import { capHashtags, checkFbCaption, fbVideoCaption } from './fb.mjs';
 import { igReelParams } from './meta.mjs';
@@ -15,7 +15,8 @@ import { igReelParams } from './meta.mjs';
 const festivals = loadFestivals('.');
 const inputs = loadInputs('.');
 const planned = placements(festivals).filter((p) => planDay(p.date, inputs).uploads.some((u) => u.slot === p.slot && u.festival === p.festival.key && u.k === p.k));
-const PATTERN = /^.+ Status 20(26|27) \| .+ स्टेटस वीडियो #Shorts$/;
+// English first (competitor decode 20 Nov 2026): "[Happy ]<Festival> Status <year> ✨|🙏 | <Hindi> स्टेटस वीडियो #Shorts"
+const PATTERN = /^(Happy )?[A-Z].* Status 20(26|27) (✨|🙏) \| .+ स्टेटस वीडियो #Shorts$/u;
 
 describe('calendar', () => {
   test('every festival has a date, a tier, two sources and enough names for its variants', () => {
@@ -24,7 +25,8 @@ describe('calendar', () => {
       assert.ok(['big', 'status', 'info'].includes(f.tier), f.key);
       assert.ok(f.sources.length >= 2, `${f.key}: two sources`);
       if (f.tier !== 'info') {
-        const n = (f.variants || []).length || (f.tier === 'big' ? 3 : 2);
+        // a variant with its own `name` (season countdowns) needs no festival name
+        const n = (f.variants || []).filter((v) => !v.name).length || (f.tier === 'big' ? 3 : 2);
         assert.ok(f.names.length >= n, `${f.key}: ${n} names`);
         assert.ok(f.spec || f.theme, `${f.key}: spec or theme`);
       }
@@ -40,18 +42,83 @@ describe('calendar', () => {
       assert.ok(festivals.some((f) => f.date === d && f.tier !== 'info'), d);
     }
   });
-  test('Khatu Shyam Phalgun mela: a series from 17 days before to Dwadashi, every Short planned within the cap', () => {
+  test('Khatu Shyam Phalgun mela: a series from 3 weeks before to Dwadashi, every Short planned within the cap', () => {
     const mela = placements(festivals.filter((f) => f.theme === 'phalgunmela'));
-    assert.deepEqual(mela.map((p) => `${p.date} ${p.slot}`), ['2027-03-01 status', '2027-03-12 status', '2027-03-14 status', '2027-03-16 eve', '2027-03-17 eve',
-      '2027-03-18 status', '2027-03-18 statusday', '2027-03-19 status']);
+    // 25 Feb and 9 Mar: countdowns added 20 Nov 2026 (competitor decode: the biggest Phalgun status, 22 L, came ~3 weeks early)
+    assert.deepEqual(mela.map((p) => `${p.date} ${p.slot}`), ['2027-02-25 status', '2027-03-01 status', '2027-03-09 status', '2027-03-12 status', '2027-03-14 status',
+      '2027-03-16 eve', '2027-03-17 eve', '2027-03-18 status', '2027-03-18 statusday', '2027-03-19 status']);
+    assert.equal(mela.find((p) => p.slot === 'statusday').at, '07:30');
     for (const p of mela) assert.ok(planDay(p.date, inputs).uploads.some((u) => u.slot === p.slot && u.festival === p.festival.key && u.k === p.k), `${p.date} ${p.slot}`);
     for (const f of festivals.filter((x) => x.theme === 'phalgunmela')) assert.ok(f.sources.some((x) => /khatu\.org/.test(x)), f.key);
+  });
+  // competitor decode 20 Nov 2026, section 5: 8-14 days ahead 1.28x; Khatu Janmotsav 2026 competitors 12, 7, 6, 4 days ahead
+  test('seasons (Phalgun mela, Mahashivratri, Holi) start their countdown 8-14 days ahead; each countdown is planned', () => {
+    const seasons = festivals.filter((f) => f.season);
+    assert.deepEqual(seasons.map((f) => f.key).sort(), ['holi', 'khatu-phalgun-ekadashi', 'mahashivratri']);
+    for (const f of seasons) {
+      const cd = placements([f]).filter((p) => p.countdown);
+      assert.ok(cd.some((p) => -p.offset >= COUNTDOWN_DAYS[0] && -p.offset <= COUNTDOWN_DAYS[1]), `${f.key}: a countdown 8-14 days before`);
+      for (const p of cd) {
+        assert.ok(p.hook?.hi && p.name, `${f.key} ${p.date}: own name and hook`);
+        assert.ok(!festivals.some((g) => g.date === p.date && g.tier !== 'info'), `${p.date}: a countdown never lands on another festival's day`);
+        const day = planDay(p.date, inputs);
+        assert.ok(day.uploads.some((u) => u.slot === 'status' && u.festival === f.key && u.k === p.k), `${p.date}: planned`);
+        assert.ok(!day.uploads.some((u) => u.kind === 'daystatus'), `${p.date}: the countdown replaces the day status`);
+      }
+    }
+    const dates = placements(seasons).filter((p) => p.countdown).map((p) => `${p.date} ${p.festival.key}`).sort();
+    assert.deepEqual(dates, ['2027-02-23 mahashivratri', '2027-02-25 khatu-phalgun-ekadashi', '2027-02-27 mahashivratri', '2027-03-09 khatu-phalgun-ekadashi',
+      '2027-03-10 holi', '2027-03-15 holi']);
+    assert.equal(hookFor(placements([festivals.find((f) => f.key === 'holi')]).find((p) => p.date === '2027-03-10')).hi, 'होली आ रही है 🎨');
+  });
+  test('a countdown without its own hook never says "आज है"', () => {
+    const f = { date: '2027-03-22', key: 'x', tier: 'big', theme: 'holi', names: [{ en: 'Holi', hi: 'होली' }], variants: [{ slot: 'status', offset: -10, at: '00:30' }] };
+    assert.equal(hookFor(placements([f])[0]).hi, 'होली की तैयारी 🙏');
+  });
+  test('small tithis (Pradosh, Masik Shivratri, Sankashti, plain Amavasya / Purnima vrat) get only the 00:30 variant', () => {
+    const small = festivals.filter((f) => f.small);
+    assert.ok(small.length >= 15);
+    for (const f of small) {
+      assert.match(f.key, /pradosh|shivratri|sankashti|amavasya|purnima/, f.key);
+      assert.deepEqual(placements([f]).map((p) => `${p.slot} ${p.offset} ${p.at}`), ['status 0 00:30'], f.key);
+    }
+    assert.ok(!festivals.find((f) => f.key === 'sakat-chauth').small && !festivals.find((f) => f.key === 'mauni-amavasya').small, 'the big named tithis keep two variants');
   });
 });
 
 describe('titles', () => {
   test('every status title follows the winning pattern', () => {
     for (const p of placements(festivals)) assert.match(titleOf(p), PATTERN, titleOf(p));
+  });
+  test('English first, "Happy" only for celebrations (competitor decode 20 Nov 2026)', () => {
+    const t = (key, date) => titleOf(placements(festivals).find((p) => p.festival.key === key && p.date === date));
+    assert.equal(t('dev-deepawali', '2026-11-24'), 'Happy Kartik Purnima Status 2026 ✨ | कार्तिक पूर्णिमा स्टेटस वीडियो #Shorts');
+    assert.equal(t('vaikuntha-chaturdashi', '2026-11-22'), 'Happy Vaikuntha Chaturdashi Status 2026 ✨ | वैकुंठ चतुर्दशी स्टेटस वीडियो #Shorts');
+    assert.equal(t('margashirsha-amavasya', '2026-12-08'), 'Margashirsha Amavasya Status 2026 🙏 | मार्गशीर्ष अमावस्या स्टेटस वीडियो #Shorts');
+    assert.equal(t('utpanna-ekadashi', '2026-12-04'), 'Utpanna Ekadashi Vrat Status 2026 🙏 | उत्पन्ना एकादशी व्रत स्टेटस वीडियो #Shorts');
+    // the Gita Jayanti family is festive, its Mokshada Ekadashi name is a vrat
+    assert.match(t('gita-jayanti', '2026-12-19'), /^Happy Gita Jayanti Status 2026 ✨/);
+    assert.match(t('gita-jayanti', '2026-12-20'), /^Mokshada Ekadashi Status 2026 🙏/);
+    for (const p of placements(festivals)) {
+      const title = titleOf(p);
+      if (/amavas|pitru|shraddh|ekadashi|pradosh|\bvrat\b|sankashti|chauth|bhairav|sheetala|basoda/i.test(p.name.en)) assert.ok(!happyOf(p) && !/^Happy/.test(title), title);
+      assert.doesNotMatch(title, /^Happy Happy|सुप्रभात|good morning/i);
+      assert.ok(title.length <= 90 && title.split(' | ')[0].length <= 48, title);
+    }
+    // a festivals.json `happy` overrides the theme (Pitru Paksha is never "Happy", even with a festive theme)
+    const fake = (o) => ({ name: { en: 'Pitru Paksha', hi: 'पितृ पक्ष' }, festival: { date: '2027-09-20', theme: 'holi', ...o } });
+    assert.equal(happyOf(fake({})), false);
+    assert.equal(happyOf({ ...fake({ happy: false }), name: { en: 'Holi', hi: 'होली' } }), false);
+    assert.equal(statusTitle({ en: 'Holi', hi: 'होली' }, 2027, { happy: true }), 'Happy Holi Status 2027 ✨ | होली स्टेटस वीडियो #Shorts');
+  });
+  test('day status titles name the weekday deity, never "सुप्रभात"', () => {
+    for (let i = 0; i < 7; i++) assert.doesNotMatch(dayStatus(addDays('2026-11-23', i)).youtube_title, /सुप्रभात|good morning/i);
+    assert.equal(dayStatus('2026-11-23').youtube_title.split(' | ')[0].endsWith(' Status'), true);
+  });
+  test('statusday (big festivals) is 07:30 from 21 Nov 2026 (A/B against 08:30, automation/growth.md)', () => {
+    assert.equal(STATUSDAY_AT, '07:30');
+    for (const p of placements(festivals).filter((x) => x.slot === 'statusday' && x.date >= '2026-11-21')) assert.equal(p.at, '07:30', p.festival.key);
+    assert.notEqual(TRIAL_AT, STATUSDAY_AT, 'the Instagram trial Reel keeps its own time');
   });
   test('the variants of one festival never share a title', () => {
     for (const f of festivals) {
@@ -85,7 +152,7 @@ describe('titles', () => {
     const g = placements(festivals.filter((f) => f.key === 'gopashtami'));
     assert.deepEqual(g.map((p) => `${p.date} ${p.slot} ${p.at}`), ['2026-11-17 status 00:30']);
     assert.deepEqual(hookFor(g[0]), { hi: 'गोपाष्टमी की शुभकामनाएं 🐄', say: 'गोपाष्टमी की शुभकामनाएं!', roman: 'Gopashtami ki shubhkamnayein 🐄' });
-    assert.equal(titleOf(g[0]), 'Gopashtami Status 2026 | गोपाष्टमी स्टेटस वीडियो #Shorts');
+    assert.equal(titleOf(g[0]), 'Gopashtami Status 2026 🙏 | गोपाष्टमी स्टेटस वीडियो #Shorts');
     const v = buildVariant(buildFamily(g[0].festival, '.'), g[0]);
     assert.equal(v.scenes[0].big, 'गोपाष्टमी की शुभकामनाएं 🐄');
     assert.equal(v.playlist, 'Vishnu ji aur Krishna ki Kathayein');

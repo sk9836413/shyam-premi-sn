@@ -12,13 +12,16 @@
 // So every day is filled by priority, at most CAP = 3 Shorts (scripts/upload-guard.mjs enforces the same cap):
 //   0   movie      the approved mini-movie part, 07:00 (17-20 Nov: Khatu Shyam ji ki Amar Katha)
 //   1   status     festival status Shorts (scripts/status-engine.mjs, automation/festivals.json): `eve` 20:00 the evening
-//                  before, `status` 00:30 on the day, `statusday` 08:30 on big festivals (Janmotsav also 2 days before)
+//                  before, `status` 00:30 on the day, `statusday` 07:30 on big festivals (08:30 until 20 Nov 2026; A/B in
+//                  automation/growth.md "Upload time test"), Janmotsav also 2 days before; a SEASON's countdown status
+//                  (festivals.json `season`, 8-14 days before) at 00:30 replaces that day's weekday day status
 //   2   morning    EVERY non-festival day (movie days too): the weekday "day status" Short (Somvar Mahadev, Mangalvar
 //                  Salasar Balaji, Budhvar Ganesh, Guruvar Vishnu, Shukravar Lakshmi, Shanivar Shani dev, Ravivar Surya;
 //                  Ekadashi: Gyaras Khatu Shyam), public 06:00 IST (DAWN.daystatus) for the morning WhatsApp status, with
 //                  the "स्टेटस पर लगाएं 📲" pill; RENDERED THE EVENING BEFORE by the `status` job (status-engine `due`).
 //                  Other festival days (their status Short is the share format): a famous-temple darshan of the deity.
-//                  Not on big-festival days (`statusday` is the morning upload).
+//                  Not on big-festival days (`statusday` is the morning upload), nor on a countdown day (the season's
+//                  countdown status is that day's status Short, so the day keeps its usual number of Shorts).
 //   3   evening    famous-temple darshan Short, 19:00 (Claude, STORY.md): the searched, high-retention temples first
 //                  (Khatu Shyam ji, Salasar Balaji, Mehandipur Balaji, Shakambhari Mata, Jeen Mata, Rani Sati Dadi with
 //                  the sati rules)
@@ -57,7 +60,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { loadFestivals, placements } from './status-engine.mjs';
+import { STATUSDAY_AT, loadFestivals, placements } from './status-engine.mjs';
 import { DAY_THEMES } from './status-themes.mjs';
 import { loadMantras, mantraFor } from './mantra.mjs';
 import { addSeries, allSeriesInputs, morningFallback, seriesTables } from './series-plan.mjs';
@@ -83,7 +86,7 @@ export const FACTS_MEDIAN_MIN = 20;
 export const JUKEBOXES = { chhath: { festival: 'chhath', bank: 'chhath' } };
 export const JUKEBOX_MIN_SONGS = 4;
 export const JUKEBOX_MIN_SECONDS = 100;
-export const AT = { status: '00:30', movie: '07:00', kalyug: '08:00', statusday: '08:30', morning: 'on render, ~10:30', long: '12:30', noon: '15:00', facts: '17:00', evening: '19:00', bhajan: '19:45', eve: '20:00' };
+export const AT = { status: '00:30', movie: '07:00', kalyug: '08:00', statusday: STATUSDAY_AT, morning: 'on render, ~10:30', long: '12:30', noon: '15:00', facts: '17:00', evening: '19:00', bhajan: '19:45', eve: '20:00' };
 // owner, 16 Nov 2026: movie > festival status > day status > darshan > Kailash / POV (series-plan.mjs 3.6 / 3.7) > facts
 export const PRIORITY = { movie: 0, status: 1, eve: 1, statusday: 1, morning: 2, evening: 3, facts: 3.8, kalyug: 4, noon: 5, bhajan: 6 };
 // Dawn uploads (see the header): times and the long-video kinds that go out at dawn instead of 12:30. The day status
@@ -258,19 +261,22 @@ export function planDay(date, inputs = {}) {
   const cands = [];
   if (movie) cands.push({ slot: 'movie', what: `movie ${movie} (the morning upload)` });
   // Status Shorts that go public today (one per slot: the bigger festival, then the nearer one).
+  // (a festival's own day before another festival's countdown: a countdown never takes a tithi's own status slot)
   const mine = pl.filter((p) => p.date === date)
-    .sort((a, b) => (TIER[a.tier] ?? 9) - (TIER[b.tier] ?? 9) || a.festival.date.localeCompare(b.festival.date));
+    .sort((a, b) => Number(Boolean(a.countdown)) - Number(Boolean(b.countdown)) || (TIER[a.tier] ?? 9) - (TIER[b.tier] ?? 9) || a.festival.date.localeCompare(b.festival.date));
   for (const p of mine) {
     if (cands.some((c) => c.slot === p.slot)) continue;
     const when = p.slot === 'eve' ? `the evening before ${p.festival.date}` : p.slot === 'status' ? 'just after midnight on the day' : 'the festival morning';
-    cands.push({ slot: p.slot, at: p.at, festival: p.festival.key, k: p.k, kind: 'status',
-      what: `"${p.name.en} Status" Short, variant ${p.k + 1} (${when}; scripts/status-engine.mjs)` });
+    cands.push({ slot: p.slot, at: p.at, festival: p.festival.key, k: p.k, kind: 'status', ...(p.countdown ? { countdown: true } : {}),
+      what: `"${p.name.en} Status" Short, variant ${p.k + 1} (${p.countdown ? `countdown, ${-p.offset} days before ${p.festival.date}` : when}; scripts/status-engine.mjs)` });
   }
   const bigToday = cands.some((c) => c.slot === 'statusday');
+  // a season's countdown status on a day without a festival of its own is that day's status Short (no day status too)
+  const countdownToday = !fest && cands.some((c) => c.countdown);
   // Morning (owner, 16 Nov 2026): a status Short every day. Non-festival days (movie days too) and Ekadashi: the day
   // status Short at 06:00, rendered the evening before by the status job; other festival days (they have their festival
   // status Short): a famous-temple darshan of the deity (not on movie days: the movie part is the morning upload).
-  if (!bigToday) {
+  if (!bigToday && !countdownToday) {
     if (fest && !GYARAS_THEMES.includes(fest.theme)) {
       // Upload timing (feed audit 17 Nov 2026): a darshan goes out when the Indian audience is active (19:00-20:00), not in
       // the 11:00-16:00 dead hours, so when the cap leaves room for only one darshan it is the 19:00 evening one (this

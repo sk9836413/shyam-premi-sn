@@ -116,8 +116,16 @@ export function formatOf(slug, spec = {}) {
   if (slot === 'evening') return spec.bhajan_short ? 'bhajan Short' : spec.hook_style === 'emotional' ? 'evening darshan (emotional hook)' : 'evening darshan (name hook)';
   return slot || 'other';
 }
+/** "time test: owner 07:15" for an owner-footage / statusday Short (its IST publish time), else null. Upload time test
+ *  from 21 Nov 2026 (automation/growth.md): owner footage 09:30 -> 07:15, the big festival `statusday` 08:30 -> 07:30. */
+export function timeTestKey(slug, at) {
+  const slot = String(slug || '').replace(/^\d{4}-\d{2}-\d{2}-/, '').split('-')[0];
+  if (!['owner', 'statusday'].includes(slot) || !at) return null;
+  return `time test: ${slot} ${new Date(Date.parse(at) + 5.5 * 3600e3).toISOString().slice(11, 16)}`;
+}
 export function formatTable(videos, pub, { from, to, readSpec = () => ({}) }) {
-  const slugOf = new Map([...String(pub || '').matchAll(/^- (\S+) \| youtube: https?:\/\/(?:youtu\.be\/|www\.youtube\.com\/(?:shorts\/|watch\?v=))([\w-]{6,})/gm)].map((m) => [m[2], m[1]]));
+  // published.md writes "https://youtube.com/shorts/<id>" (no www) since Nov 2026: both forms count
+  const slugOf = new Map([...String(pub || '').matchAll(/^- (\S+) \| youtube: https?:\/\/(?:youtu\.be\/|(?:www\.)?youtube\.com\/(?:shorts\/|watch\?v=))([\w-]{6,})/gm)].map((m) => [m[2], m[1]]));
   const rows = new Map();
   const now = Date.now();
   for (const v of videos) {
@@ -126,6 +134,8 @@ export function formatTable(videos, pub, { from, to, readSpec = () => ({}) }) {
     const spec = slug ? readSpec(slug) : {};
     const keys = [formatOf(slug, spec)];
     if (String(slug).includes('-facts-')) keys.push(`facts art ${spec.art || '?'}`, `facts ${v.seconds <= 65 ? '45-65 s' : '100-180 s'}`);
+    const tt = timeTestKey(slug, v.at);
+    if (tt) keys.push(tt);
     for (const k of keys) {
       const r = rows.get(k) || { n: 0, views: 0, perDay: 0, best: null };
       r.n++; r.views += v.views; r.perDay += v.views / Math.max(1, (now - Date.parse(v.at)) / 864e5);

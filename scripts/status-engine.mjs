@@ -4,12 +4,19 @@
 // the night before or early on the day, when people pick tomorrow's WhatsApp status. So every festival in
 // automation/festivals.json (two panchang sources each) gets 15-25 s loopable status Shorts:
 //   status tier: the evening before at 20:00 IST (slot `eve`) and 00:30 IST on the day (slot `status`)
-//   big tier:    + 08:30 IST on the day (slot `statusday`), each variant with its own 3 pictures; Janmotsav also 2 days
-//                before (festivals.json `variants`)
+//   big tier:    + 07:30 IST on the day (slot `statusday`; 08:30 until 20 Nov 2026, moved out of the weakest upload
+//                hour 08-10 h, competitor decode automation/competitor-decode-2026-11.md, A/B in automation/growth.md),
+//                each variant with its own 3 pictures; Janmotsav also 2 days before (festivals.json `variants`)
+//   small tithis (monthly Pradosh, Masik Shivratri, Sankashti, plain Amavasya / Purnima vrat): only the 00:30 variant
+//   SEASONS (festivals.json `season: true`: Khatu Phalgun mela, Mahashivratri, Holi; later Khatu Janmotsav, Diwali,
+//                Hanuman Janmotsav): COUNTDOWN status Shorts from 8-14 days before (a `status` variant with a negative
+//                offset; day-plan.mjs lets it replace that day's weekday day status)
 // and the morning slot of normal days is a weekday "day status" Short (Somvar Mahadev, Mangalvar Salasar Balaji, ...;
 // Ekadashi: Gyaras Khatu Shyam). scripts/day-plan.mjs decides which of them fit the 3-uploads-a-day cap.
-// Titles: "<Festival> Status <year> | <Hindi> स्टेटस वीडियो #Shorts", one festivals.json name per variant, so no two
-// uploads share a title. The first frame is a bold Hindi hook ("कल है खाटू श्याम जन्मोत्सव 🙏"), every scene asks
+// Titles, English first (competitor decode 20 Nov 2026: festival name 1.20x, "Happy" 1.11x, titles starting in
+// Devanagari 0.4-0.7x inside 7 of 10 channels): "Happy <Festival> Status <year> ✨ | <Hindi> स्टेटस वीडियो #Shorts" for a
+// celebratory festival (status-themes HAPPY_THEMES), "<Festival> Status <year> 🙏 | <Hindi> स्टेटस वीडियो #Shorts" for a
+// vrat / solemn tithi; one festivals.json name per variant (or the variant's own `name`), so no two uploads share a title. The first frame is a bold Hindi hook ("कल है खाटू श्याम जन्मोत्सव 🙏"), every scene asks
 // "स्टेटस पर लगाएं", and the video ends on its own first frame (render-story.mjs `loop`), so it replays seamlessly.
 //
 //   node scripts/status-engine.mjs due [--today D] [--family D] [--dry] --out <dir>   what the `status` job makes now:
@@ -27,7 +34,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { DAY_THEMES, DEFAULT_PICKS, DEFAULT_WISH, MANTRA, THEMES } from './status-themes.mjs';
+import { DAY_THEMES, DEFAULT_PICKS, DEFAULT_WISH, HAPPY_THEMES, MANTRA, THEMES } from './status-themes.mjs';
 
 export const STYLE = '3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing';
 export const CTA = 'स्टेटस पर लगाएं 📲';
@@ -57,8 +64,10 @@ export const IG_TAGS_MAX = 5;
 // SS_PERFORMANCE}, media_type REELS, standard upload by video_url; developers.facebook.com reference, checked 20 Nov
 // 2026): a second hook of a festival's 00:30 variant is shown to non-followers first (`trial` below; daily.yml runs it
 // only when the repo variable IG_TRIAL is "on"). SS_PERFORMANCE = Instagram shares it to followers if it performs well.
+// Queued at 09:00 (07:30 until 20 Nov 2026): the owner-footage Reel (07:15) and the big-festival `statusday` variant
+// (07:30) now go out on Instagram at 07:15-07:30, so the trial Reel keeps its own time.
 export const TRIAL_GRADUATION = 'SS_PERFORMANCE';
-export const TRIAL_AT = '07:30';
+export const TRIAL_AT = '09:00';
 export const FACE_FIRST = "the deity's face large, sharp and clearly visible in the upper half of the picture";
 /** A deity scene's prompt asks for the face large and clear (frame 0 is a deity picture); a Shivling has no face. */
 export function faceFirst(scene) {
@@ -70,9 +79,16 @@ export function wishFor(wish, nameHi) {
   const [pre, big] = (Array.isArray(wish) && wish.length === 2 ? wish : DEFAULT_WISH).map((x) => x.replace('{name}', nameHi));
   return { pre, big, line: `${pre}${/(को|पर)$/.test(pre) ? "" : ","} ${big}` };
 }
+// The big festival's day variant: 07:30 IST (A/B from 21 Nov 2026 against the old 08:30; automation/growth.md "Upload
+// time test"). Festival status on the day: 00-04 h 1.46x, 05-07 h 1.19x, 08-11 h 0.78x (competitor decode, section 4).
+export const STATUSDAY_AT = '07:30';
+// Countdown statuses of a SEASON (festivals.json `season: true`): at least one `status` variant 8-14 days before the day
+// (competitor decode section 5: 8-14 days ahead 1.28x; Khatu Janmotsav 2026 competitors 12, 7, 6 and 4 days ahead at
+// 9-69x their median, Phalgun mela ~3 weeks ahead 22 L).
+export const COUNTDOWN_DAYS = [8, 14];
 export const DEFAULT_VARIANTS = {
   status: [{ slot: 'eve', offset: -1, at: '20:00' }, { slot: 'status', offset: 0, at: '00:30' }],
-  big: [{ slot: 'eve', offset: -1, at: '20:00' }, { slot: 'status', offset: 0, at: '00:30' }, { slot: 'statusday', offset: 0, at: '08:30' }],
+  big: [{ slot: 'eve', offset: -1, at: '20:00' }, { slot: 'status', offset: 0, at: '00:30' }, { slot: 'statusday', offset: 0, at: STATUSDAY_AT }],
 };
 export const STATUS_SLOTS = ['eve', 'status', 'statusday'];
 // How late a variant may still be made (after its publish time): later, it is skipped (the next variant covers it).
@@ -95,13 +111,18 @@ export function loadFestivals(root = '.') {
 
 export const variantsOf = (f) => f.variants || DEFAULT_VARIANTS[f.tier] || [];
 
-/** Every status upload the calendar asks for: [{ date (public day), slot, at, k, festival, name, picks, tier }]. */
+/** A countdown variant: a `status` / `statusday` variant before the festival day (a season's 8-14-day lead status). */
+export const isCountdown = (v) => v.slot !== 'eve' && v.offset < 0;
+
+/** Every status upload the calendar asks for: [{ date (public day), slot, at, k, festival, name, picks, tier, countdown }].
+ *  A variant's own `name` ({ en, hi }) replaces names[k] (countdown variants: another searched form of the name). */
 export function placements(festivals) {
   const out = [];
   for (const f of festivals) {
     variantsOf(f).forEach((v, k) => {
       const names = f.names || [{ en: f.label, hi: f.label }];
-      out.push({ date: addDays(f.date, v.offset), slot: v.slot, at: v.at, offset: v.offset, k, festival: f, name: names[k % names.length], picks: v.picks, hook: v.hook, tier: f.tier });
+      out.push({ date: addDays(f.date, v.offset), slot: v.slot, at: v.at, offset: v.offset, k, festival: f, name: v.name || names[k % names.length], picks: v.picks, hook: v.hook, tier: f.tier,
+        ...(isCountdown(v) ? { countdown: true } : {}) });
     });
   }
   return out.sort((a, b) => `${a.date}T${a.at}`.localeCompare(`${b.date}T${b.at}`));
@@ -116,14 +137,33 @@ export function hookFor(p) {
     const [h, r] = p.offset <= -2 ? ['परसों है', 'Parson hai'] : ['कल है', 'Kal hai'];
     return { hi: `${h} ${hi} 🙏`, say: `${h} ${hi}!`, roman: `${r} ${en} 🙏` };
   }
+  // a countdown (season status days before the festival) never says "आज है"; festivals.json usually sets its own hook
+  if (p.countdown || p.offset < 0) return { hi: `${hi} की तैयारी 🙏`, say: `${hi} की तैयारी!`, roman: `${en} ki taiyari 🙏` };
   if (p.slot === 'statusday') return { hi: `${hi} की बधाई 🙏`, say: `${hi} की बधाई!`, roman: `${en} ki badhai 🙏` };
   return { hi: `आज है ${hi} 🙏`, say: `आज है ${hi}!`, roman: `Aaj hai ${en} 🙏` };
 }
 
-export const statusTitle = (name, year) => `${name.en} Status ${year} | ${name.hi} स्टेटस वीडियो #Shorts`;
+// Never "Happy" before these, whatever the theme: vrat / fasting days, mourning and austerity tithis (Amavasya, Pitru
+// Paksha, Shraddh), the fierce Kaal Bhairav, and names that already greet ("Happy Holi", "Advance ...").
+const SOLEMN = /amavasya|amavas|pitru|pitr|shraddh|shradh|ekadashi|gyaras|pradosh|\bvrat\b|sankashti|chauth|bhairav|grahan|sutak|sheetala|basoda/i;
+/** Is placement p a celebration (festivals.json `happy`, else HAPPY_THEMES) under a name that is not a vrat / solemn
+ *  tithi? (Dev Uthani Ekadashi is a name of the Janmotsav family but a vrat: no.) */
+export function festiveOf(p) {
+  const f = p.festival || {};
+  const celebratory = typeof f.happy === 'boolean' ? f.happy : HAPPY_THEMES.includes(f.theme);
+  return celebratory && !SOLEMN.test(p.name.en);
+}
+/** Does placement p's title start with "Happy"? A festive one whose name does not greet already ("Happy Holi"). */
+export const happyOf = (p) => festiveOf(p) && !/\b(happy|advance|shubh)\b/i.test(p.name.en);
+/** The YouTube title of a festival status Short, English first (competitor decode 20 Nov 2026): the searched words
+ *  "<Festival> Status <year>" stay together; "Happy" + ✨ for a celebratory festival, 🙏 for a vrat / solemn tithi. */
+export const statusTitle = (name, year, { happy = false, festive = happy } = {}) =>
+  `${happy ? 'Happy ' : ''}${name.en} Status ${year} ${festive ? '✨' : '🙏'} | ${name.hi} स्टेटस वीडियो #Shorts`;
+// Day status Shorts: the deity's own weekday ("Somvar Mahadev Status"), never a "सुप्रभात / Good Morning" title (weekday
+// greeting titles: 0.72x in the competitor decode; validate.mjs refuses them on status Shorts).
 export const dayTitle = (name) => `${name.en} Status | ${name.hi} स्टेटस वीडियो #Shorts`;
 export const slugOf = (p) => `${p.date}-${p.slot}-${slugify(p.name.en)}`;
-export const titleOf = (p) => statusTitle(p.name, p.festival.date.slice(0, 4));
+export const titleOf = (p) => statusTitle(p.name, p.festival.date.slice(0, 4), { happy: happyOf(p), festive: festiveOf(p) });
 
 // ---------------------------------------------------------------- specs
 
@@ -329,8 +369,8 @@ export function calendarMarkdown(festivals, isPlanned = () => true) {
   const plan = placements(festivals);
   const rows = festivals.map((f) => {
     const ps = plan.filter((p) => p.festival.key === f.key);
-    const when = ps.map((p) => `${p.slot} ${p.date.slice(5)} ${p.at}${isPlanned(p) ? '' : ' dropped by the 3-a-day cap'}`).join(', ');
-    const status = f.tier === 'info' ? 'no status Short' : `${f.tier === 'big' ? 'BIG, ' : ''}status Shorts: ${when}`;
+    const when = ps.map((p) => `${p.countdown ? 'countdown ' : ''}${p.slot} ${p.date.slice(5)} ${p.at}${isPlanned(p) ? '' : ' dropped by the 3-a-day cap'}`).join(', ');
+    const status = f.tier === 'info' ? 'no status Short' : `${f.tier === 'big' ? 'BIG, ' : ''}${f.season ? 'SEASON, ' : ''}status Shorts: ${when}`;
     const names = (f.names || []).map((n) => n.en).filter((n) => n !== f.label).join('; ');
     return `| ${f.date} | ${f.label}${names ? `; ${names}` : ''} (${status}). Sources: ${f.sources.join('; ')} |`;
   });
