@@ -1,0 +1,34 @@
+{
+  "source": "own",
+  "author": "Shyam Premi SN",
+  "licence": "own",
+  "attribution": "Asli darshan: Shyam Baba ka pandal (sajavat), Shyam Premi SN ne khud record kiya; Khatu mandir nahi",
+  "label": "Asli darshan: Shyam Baba pandal, Shyam Premi SN",
+  "url": "",
+  "recorded_by": "Shyam Premi SN",
+  "place": "Shyam Baba pandal (sajavat), not the Khatu mandir",
+  "date": "2026-11",
+  "deity": "akhand jyot in Shyam Baba's pandal darbar",
+  "kind": "jyot",
+  "shringar": "akhand jyot / havan before the darbar",
+  "view": "close",
+  "deity_face": false,
+  "focus": {
+    "x": 0.5,
+    "y": 0.5
+  },
+  "size": [
+    1080,
+    1080
+  ],
+  "from": "owner video MicrosoftTeams-video (1).mp4 at 9.5 s",
+  "processing": "frame grab, Lanczos 2x upscale to 1080 px wide, light levels + mild unsharp; no AI, deity unaltered",
+  "faces": "no visitor faces",
+  "ai": false,
+  "crop": [
+    90,
+    270,
+    450,
+    450
+  ]
+}

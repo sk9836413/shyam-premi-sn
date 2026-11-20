@@ -1,0 +1,28 @@
+{
+  "source": "own",
+  "author": "Shyam Premi SN",
+  "licence": "own",
+  "attribution": "Asli darshan: Shyam Baba ka pandal (sajavat), Shyam Premi SN ne khud record kiya; Khatu mandir nahi",
+  "label": "Asli darshan: Shyam Baba pandal, Shyam Premi SN",
+  "url": "",
+  "recorded_by": "Shyam Premi SN",
+  "place": "Shyam Baba pandal (sajavat), not the Khatu mandir",
+  "date": "2026-11",
+  "deity": "Khatu Shyam ji (Shyam Baba), sheesh roop",
+  "kind": "gulab",
+  "shringar": "red-rose (gulab) shringar",
+  "view": "close",
+  "deity_face": true,
+  "focus": {
+    "x": 0.5,
+    "y": 0.3
+  },
+  "size": [
+    1080,
+    1920
+  ],
+  "from": "owner video MicrosoftTeams-video (4).mp4 at 48.0 s",
+  "processing": "frame grab, Lanczos 2x upscale to 1080 px wide, light levels + mild unsharp; no AI, deity unaltered",
+  "faces": "no visitor faces",
+  "ai": false
+}
