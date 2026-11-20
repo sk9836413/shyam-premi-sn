@@ -24,7 +24,13 @@ import numpy as np
 SAMPLE_FPS = 4
 WORK_W = 320  # analysis width for sharpness / motion / scene
 FACE_W = 640  # analysis width for faces
-CASCADE = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+_CASCADE = []  # loaded on first use (OpenCV 4.x; .github/workflows/inbox.yml pins opencv-python-headless<5)
+
+
+def cascade():
+    if not _CASCADE:
+        _CASCADE.append(cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml"))
+    return _CASCADE[0]
 
 
 def visitor_faces(bgr):
@@ -36,7 +42,7 @@ def visitor_faces(bgr):
     ih = img.shape[0]
     gray = cv2.equalizeHist(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
     min_side = max(24, int(0.10 * ih))
-    found = CASCADE.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=6, minSize=(min_side, min_side))
+    found = cascade().detectMultiScale(gray, scaleFactor=1.1, minNeighbors=6, minSize=(min_side, min_side))
     n = 0
     ycc = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
     hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)

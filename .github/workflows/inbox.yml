@@ -69,8 +69,10 @@ jobs:
         run: |
           # (the man-db trigger alone can take many minutes on the hosted runners)
           echo 'man-db man-db/auto-update boolean false' | sudo debconf-set-selections; sudo rm -f /var/lib/man-db/auto-update
-          sudo apt-get update -qq && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends ffmpeg tesseract-ocr tesseract-ocr-eng > /dev/null
-          python -m pip install --quiet opencv-python-headless numpy pillow pillow-heif
+          timeout 900 sudo apt-get -o DPkg::Lock::Timeout=300 update -qq
+          timeout 1200 sudo DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::Lock::Timeout=300 install -y -q --no-install-recommends ffmpeg tesseract-ocr tesseract-ocr-eng | grep -E "^(Setting up (ffmpeg|tesseract)|E:)" || true
+          ffmpeg -version | head -1; tesseract --version | head -1
+          python -m pip install --quiet 'opencv-python-headless>=4.8,<5' numpy pillow pillow-heif
           echo "PYTHON=python" >> "$GITHUB_ENV"
 
       - name: OCR self-test (other people's marks must be caught, else nothing is processed)
