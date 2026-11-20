@@ -1,0 +1,88 @@
+{
+  "note": "Owner footage lane (owner, 20 Nov 2026: 'tum upload kardo, daily upload me daal do'; scripts/owner-footage.mjs). REAL darshan videos the owner recorded himself at a Khatu Shyam ji pandal, edited into muted 1080x1920 reels with the channel logo. Each reel gets one licence-checked library track (music/library, cc-* = original arrangements of CC0 human recordings: no AI, no third-party song) at -14 LUFS with fades, and is hosted as a GitHub release asset (not in git history). One reel a day as an EXTRA Short (upload-guard slot 'owner', its own cap of 1, outside the 3 Shorts), public at `at` IST on YouTube, Facebook (fb.mjs spacing) and Instagram (queued, flushed by the next trigger). Order = the clips array; skipped clips: automation/owner-footage-skip.txt. The muted originals stay in the owner's Downloads folder.",
+  "release": "owner-footage-2026-11",
+  "source_dir": "C:/Users/Knack/Downloads/Shyam-edited",
+  "start": "2026-11-21",
+  "at": "09:30",
+  "first": { "clip": "01", "day": "2026-11-20", "why": "owner, 20 Nov 2026 ~21:30 IST: 'abhi 1 post kardo' (published at once that evening)" },
+  "playlist": "Shyam Baba ke Darshan",
+  "clips": [
+    {
+      "id": "01", "file": "01-safed-shringar-darshan.mp4", "name": "safed-shringar-darshan", "music": "cc-temple-bells-tabla",
+      "title": "Khatu Shyam Baba Safed Shringar Darshan | खाटू श्याम बाबा के दर्शन | Jai Shree Shyam #Shorts",
+      "line": "श्याम बाबा का सफ़ेद फूलों वाला श्रृंगार 🙏",
+      "roman": "Shyam Baba ke safed phoolon wale shringar ke darshan.",
+      "question": "आपको बाबा का कौन सा श्रृंगार सबसे प्यारा लगता है?"
+    },
+    {
+      "id": "08", "file": "08-darshan-montage.mp4", "name": "darshan", "music": "cc-dhol-temple-bells",
+      "title": "Khatu Shyam Baba Darshan | खाटू श्याम बाबा के दर्शन | Jai Shree Shyam #Shorts",
+      "line": "हारे का सहारा, बाबा श्याम हमारा 🙏",
+      "roman": "Shyam Baba ke pandal se darshan: shringar, jyot aur darbar.",
+      "question": "आपने आख़िरी बार बाबा के दर्शन कब किए थे?"
+    },
+    {
+      "id": "10", "file": "10-safed-shringar-close.mp4", "name": "shringar-close-darshan", "music": "cc-tambura-eb-temple-bells",
+      "title": "Shyam Baba Ke Shringar Darshan | श्याम बाबा का श्रृंगार | Jai Shree Shyam #Shorts",
+      "line": "बाबा श्याम के मुखारविंद के पास से दर्शन 🙏",
+      "roman": "Shyam Baba ke shringar ke paas se darshan.",
+      "question": "बाबा के दर्शन करते समय आप मन में क्या माँगते हैं?"
+    },
+    {
+      "id": "03", "file": "03-akhand-jyot.mp4", "name": "akhand-jyot-darshan", "music": "cc-sitar-tune-tambura",
+      "title": "Shyam Baba Ki Akhand Jyot | अखंड ज्योत दर्शन | Jai Shree Shyam #Shorts",
+      "line": "बाबा श्याम की अखंड ज्योत 🪔",
+      "roman": "Shyam Baba ke pandal mein jalti akhand jyot.",
+      "question": "क्या आपके घर में भी बाबा की ज्योत जलती है?"
+    },
+    {
+      "id": "02", "file": "02-gulab-shringar-darshan.mp4", "name": "gulab-shringar-darshan", "music": "cc-tabla-loop-harmonium",
+      "title": "Khatu Shyam Gulab Shringar Darshan | गुलाब श्रृंगार दर्शन | Jai Shree Shyam #Shorts",
+      "line": "गुलाब के फूलों से सजे श्याम बाबा 🌹",
+      "roman": "Shyam Baba ka gulab ke phoolon wala shringar.",
+      "question": "आप बाबा को कौन से फूल चढ़ाना पसंद करते हैं?"
+    },
+    {
+      "id": "05", "file": "05-laal-shringar-darshan.mp4", "name": "laal-shringar-darshan", "music": "cc-mridangam-tambura",
+      "title": "Shyam Baba Laal Shringar Darshan | लाल श्रृंगार दर्शन | Jai Shree Shyam #Shorts",
+      "line": "लाल गुलाबों में सजे बाबा श्याम 🙏",
+      "roman": "Shyam Baba ke laal shringar ke darshan.",
+      "question": "बाबा श्याम से आपका रिश्ता कितने साल पुराना है?"
+    },
+    {
+      "id": "06", "file": "06-baba-ka-darbar.mp4", "name": "baba-ka-darbar", "music": "cc-eastern-loop-shruti",
+      "title": "Baba Shyam Ka Darbar | बाबा श्याम का दरबार | Jai Shree Shyam #Shorts",
+      "line": "बाबा श्याम का सजा हुआ दरबार 🙏",
+      "roman": "Shyam Baba ke darbar ke darshan.",
+      "question": "बाबा के दरबार में आकर आपको कैसा लगता है?"
+    },
+    {
+      "id": "07", "file": "07-jyot-aur-darshan.mp4", "name": "jyot-aur-darshan", "music": "cc-sitar-room-harmonium",
+      "title": "Shyam Baba Jyot Aur Darshan | ज्योत और दर्शन | Jai Shree Shyam #Shorts",
+      "line": "ज्योत की रोशनी और बाबा श्याम के दर्शन 🪔",
+      "roman": "Akhand jyot aur Shyam Baba ke darshan.",
+      "question": "आप बाबा की ज्योत कब से ले रहे हैं?"
+    },
+    {
+      "id": "09", "file": "09-pandal-darshan-photos.mp4", "name": "pandal-darshan", "music": "cc-dhol-tasha-shruti",
+      "title": "Shyam Baba Pandal Darshan | श्याम बाबा पंडाल दर्शन | Jai Shree Shyam #Shorts",
+      "line": "श्याम बाबा के पंडाल की झलकियाँ 🙏",
+      "roman": "Shyam Baba ke pandal ki jhalkiyan.",
+      "question": "आपके शहर में बाबा श्याम का पंडाल कहाँ लगता है?"
+    },
+    {
+      "id": "04", "file": "04-pandal-se-darshan-tak.mp4", "name": "pandal-se-darshan-tak", "music": "cc-dhol-tasha-1",
+      "title": "Pandal Se Darshan Tak | खाटू श्याम बाबा के दर्शन | Jai Shree Shyam #Shorts",
+      "line": "पंडाल से बाबा के दर्शन तक 🙏",
+      "roman": "Pandal ke dwar se Shyam Baba ke darshan tak.",
+      "question": "बाबा के दर्शन की लाइन में आपका सबसे यादगार पल कौन सा है?"
+    }
+  ],
+  "photos": {
+    "note": "The owner's 5 pandal photos (4:5) as ONE Instagram carousel (PHOTO_SLOTS=1 keeps one photo post a day; Facebook keeps its one 06:30 photo a day, scripts/fb.mjs). IG time 18:46 IST = the free post-3 slot (a reliable scheduler trigger).",
+    "files": ["post-01.jpg", "post-02.jpg", "post-03.jpg", "post-04.jpg", "post-05.jpg"],
+    "day": "2026-11-22",
+    "at": "18:46",
+    "caption": "श्याम बाबा के पंडाल से दर्शन 🙏\nYe tasveerein humne khud Shyam Baba ke pandal mein li hain: shringar, jyot aur darbar.\nइसे अपने परिवार को भेजें 🙏\nआपको कौन सी तस्वीर सबसे प्यारी लगी?\n#KhatuShyam #JaiShreeShyam #ShyamBaba #KhatuShyamDarshan"
+  }
+}

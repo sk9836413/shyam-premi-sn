@@ -575,7 +575,7 @@ async function graph(method, endpoint, params = {}) {
   return json;
 }
 
-async function host(file, name) {
+export async function host(file, name) {
   if (!env.MEDIA_TOKEN) throw new Error('no MEDIA_TOKEN for the media Worker');
   const r = await fetch(`${env.MEDIA_URL}/m/${name}`, { method: 'PUT', headers: { Authorization: `Bearer ${env.MEDIA_TOKEN}`, 'Content-Type': 'image/jpeg' }, body: fs.readFileSync(file), signal: AbortSignal.timeout(60e3) });
   if (!r.ok) throw new Error(`upload ${name}: HTTP ${r.status}`);
@@ -608,7 +608,7 @@ async function igWait(id) {
 }
 
 /** Instagram: one image or a carousel (2-10), published now. */
-async function instagram(urls, captionText) {
+export async function instagram(urls, captionText) {
   if (!env.IG_USER_ID) throw new Error('IG_USER_ID not set');
   let container;
   if (urls.length === 1) container = (await graph('POST', `${env.IG_USER_ID}/media`, { image_url: urls[0], caption: captionText })).id;

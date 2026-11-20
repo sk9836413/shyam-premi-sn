@@ -2809,6 +2809,15 @@ jobs:
     uses: ./.github/workflows/stories.yml
     secrets: inherit
 
+  # Owner footage (owner, 20 Nov 2026: "daily upload me daal do"; .github/workflows/owner-footage.yml): the owner's own real
+  # darshan reels, one a day as an EXTRA Short (upload-guard slot `owner`, own cap of 1). After every evening-slot run:
+  # tomorrow's reel (public 09:30 IST); after every morning-slot run: today's, only when last evening's is missing. No cron.
+  owner-footage:
+    needs: story
+    if: always() && (needs.story.outputs.kalyug == 'true' || needs.story.outputs.long == 'true') && !inputs.dry_run
+    uses: ./.github/workflows/owner-footage.yml
+    secrets: inherit
+
   # Character series (scripts/series-plan.mjs): after every evening-slot run (and slot=kalyug) tomorrow's episode, only once
   # the owner approved the pilot (the bank's "approved": true) and the repo variable is not off.
   # "Kailash Parivar" (STORY.md section 9, .github/workflows/kailash.yml), Mon/Thu/Sat.

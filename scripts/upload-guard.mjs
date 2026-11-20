@@ -15,7 +15,8 @@
 //        - the DAILY CAP, counted per kind (owner, 13 Nov 2026): at most 3 Shorts (every slot but `long`: status, eve,
 //          statusday, morning, evening, noon, kalyug, movie parts) and, separately, 1 long video per IST date
 //          (log.md / published.md lines of that date, plus live claims of other slots of the same kind). The long
-//          video never counts against the Shorts cap. The skip is logged as "- <slug> | skipped: daily cap ..." in
+//          video never counts against the Shorts cap; neither does slot `owner` (the owner's own darshan footage, 1 a day,
+//          OWNER_CAP, scripts/owner-footage.mjs). The skip is logged as "- <slug> | skipped: daily cap ..." in
 //          published.md. EXTRA_UPLOAD_DAY=<date> (repo variable, the owner's one-day exception) adds 1 to that date's
 //          Shorts cap; EXTRA_UPLOADS="<date>:<n>,..." (one-off, guard only; see extraUploads) adds n more.
 //        Otherwise it appends "- <slug> | claim: <day> <slot> by run <id> at <ISO>" to published.md on top of
@@ -35,14 +36,18 @@ import { pathToFileURL } from 'node:url';
 export const CLAIM_TTL_MS = 2 * 3600e3;
 export const DAILY_CAP = 3; // YouTube Shorts per IST date (owner, 9 Nov 2026; scripts/day-plan.mjs CAP)
 export const LONG_CAP = 1; // long videos per IST date, on top of the Shorts (owner, 13 Nov 2026; day-plan LONG_CAP)
+// The owner's own darshan footage (owner, 20 Nov 2026: "daily upload me daal do"; scripts/owner-footage.mjs): ONE extra
+// Short a day in slot `owner`, with its own cap, so it never takes one of the 3 planned Shorts' places and they never
+// take its place.
+export const OWNER_CAP = 1;
 
-/** Which cap a slot counts against: the 16:9 long video, or a Short (every vertical upload). */
-export const kindOf = (slot) => (slot === 'long' ? 'long' : 'short');
+/** Which cap a slot counts against: the 16:9 long video, the owner-footage Short, or a Short (every other vertical upload). */
+export const kindOf = (slot) => (slot === 'long' ? 'long' : slot === 'owner' ? 'owner' : 'short');
 
 const esc = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 /** Pure decision from the two files' text (unit-tested). */
-export function decide({ log = '', pub = '', day, slot, slug, run, now = Date.now(), ttl = CLAIM_TTL_MS, cap = DAILY_CAP, longCap = LONG_CAP }) {
+export function decide({ log = '', pub = '', day, slot, slug, run, now = Date.now(), ttl = CLAIM_TTL_MS, cap = DAILY_CAP, longCap = LONG_CAP, ownerCap = OWNER_CAP }) {
   if (new RegExp(`^${esc(day)} \\| ${esc(slot)} \\|`, 'm').test(log)) return { go: false, reason: `log.md already has ${day} | ${slot}` };
   if (new RegExp(`^- ${esc(slug)} \\| youtube: https?://`, 'm').test(pub)) return { go: false, reason: `published.md already has ${slug} on YouTube` };
   const claims = new Map(); // "<run>|<day> <slot>|<slug>" -> at
@@ -62,11 +67,11 @@ export function decide({ log = '', pub = '', day, slot, slug, run, now = Date.no
   }
   // Daily cap per kind (scripts/day-plan.mjs): at most `cap` Shorts and `longCap` long videos go public per IST date.
   const kind = kindOf(slot);
-  const max = kind === 'long' ? longCap : cap;
-  // (a Short's own slot never counts against it; a long video already on YouTube under another slug does: 1 a day)
-  for (const [s, sl] of done) if (s === slug || kindOf(sl) !== kind || (sl === slot && kind !== 'long')) done.delete(s);
+  const max = kind === 'long' ? longCap : kind === 'owner' ? ownerCap : cap;
+  // (a Short's own slot never counts against it; a long video or owner Short already on YouTube under another slug does: 1 a day)
+  for (const [s, sl] of done) if (s === slug || kindOf(sl) !== kind || (sl === slot && kind === 'short')) done.delete(s);
   if (done.size >= max) {
-    const what = kind === 'long' ? 'long video' : 'Short';
+    const what = kind === 'long' ? 'long video' : kind === 'owner' ? 'owner-footage Short' : 'Short';
     return { go: false, cap: true, kind, max, reason: `daily cap: ${day} already has ${done.size} YouTube ${what}${done.size === 1 ? '' : 's'} (${[...done.values()].sort().join(', ')}); max ${max} ${what}${max === 1 ? '' : 's'} a day` };
   }
   return { go: true };
@@ -174,7 +179,7 @@ function main() {
     if (r.go) return { go: true, claimed: `${day} ${slot}`, slug, run };
     // Over the daily cap: skip this upload and say so in published.md (once per slug and day).
     if (r.cap && !show('automation/published.md').includes(`- ${slug} | skipped: daily cap`)) {
-      try { pushLine(`- ${slug} | skipped: daily cap ${r.max} ${r.kind === 'long' ? 'long' : 'Shorts'} (${day} ${slot}; ${r.reason.replace(/^daily cap: /, '')}) by run ${run}`, `Skip ${day} ${slot}: daily cap`); } catch (e) { r.warning = `could not log the skip: ${e.message}`; }
+      try { pushLine(`- ${slug} | skipped: daily cap ${r.max} ${r.kind === 'long' ? 'long' : r.kind === 'owner' ? 'owner-footage' : 'Shorts'} (${day} ${slot}; ${r.reason.replace(/^daily cap: /, '')}) by run ${run}`, `Skip ${day} ${slot}: daily cap`); } catch (e) { r.warning = `could not log the skip: ${e.message}`; }
     }
     return { ...r, slug };
   } catch (e) {

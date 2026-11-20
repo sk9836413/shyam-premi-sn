@@ -40,6 +40,7 @@ The workflow (`scripts/day-plan.mjs`) fills every day by priority, max 3 Shorts 
 | 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`), only if the cap has room | `kalyug` job (section 8) |
 | 5 | `noon` Dadi-Chhotu Wed 15:00, only if the cap has room | you (section 6) |
 | own cap | `long` (16:9, outside the 3 Shorts, max 1 a day): ONLY the weekly mantra jaap (Sundays, a Krishna week's Ekadashi) or a festival bhajan jukebox (>= 4 full-length QA-passed bhajans of that festival), at **05:30**; no plain katha | `mantra` / `jukebox` jobs |
+| own cap | `owner` (owner, 20 Nov 2026): the owner's own REAL pandal darshan reels, 1 a day at **09:30** (outside the 3 Shorts; order, titles, music in automation/owner-footage.json, skip list automation/owner-footage-skip.txt). Real footage is never called AI | `owner-footage.yml` (no action from you) |
 
 Any Short below the first three that day is left out (the prompt tells you your slot's plan). Movie days and big-festival
 days have no `morning` Short of yours.

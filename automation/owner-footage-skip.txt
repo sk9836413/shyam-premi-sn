@@ -1,0 +1,5 @@
+# Owner-footage clips the automation must NOT post (scripts/owner-footage.mjs, automation/owner-footage.json).
+# If you post one of the reels yourself (e.g. with a song from the Instagram / YouTube app), add its number here,
+# one per line, e.g.:
+# 04
+# The daily lane then moves on to the next clip. Lines starting with # are ignored.

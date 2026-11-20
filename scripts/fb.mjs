@@ -55,9 +55,10 @@ import { pathToFileURL } from 'node:url';
 import { LINKS } from './festival-links.mjs';
 import { loadInputs, planDay, addDays, istToday, DAWN_FB } from './day-plan.mjs';
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
+import { aiDisclosure } from './ai-disclosure.mjs';
 
 /** Facebook times (IST) of each Short slot. */
-export const REEL_AT = { status: '00:30', movie: '07:30', kalyug: '08:00', kailash: '08:00', pov: '08:00', statusday: '08:30', morning: '10:30', noon: '15:00', facts: '17:00', bhajan: '19:45', eve: '20:00', evening: '20:30' };
+export const REEL_AT = { owner: '09:30', status: '00:30', movie: '07:30', kalyug: '08:00', kailash: '08:00', pov: '08:00', statusday: '08:30', morning: '10:30', noon: '15:00', facts: '17:00', bhajan: '19:45', eve: '20:00', evening: '20:30' };
 export const FB_TIMES = { photo: '06:30', long: '12:30', ...REEL_AT };
 export const GAP_MIN = 90; // minutes between two Facebook Reels (owner, 13 Nov 2026: "at least about 90 minutes")
 // Placed in this order (festival status first: the format that can go viral keeps its exact time).
@@ -568,10 +569,15 @@ export function fbVideoCaption(spec, { kind } = {}) {
   const bhajan = Boolean(spec.bhajan?.id);
   const subj = fbSubject(spec);
   const tags = own.tags.length === 3 && new Set(own.tags.map((t) => t.toLowerCase())).size === 3 && !tagProblems(own.tags, subj).length ? own.tags : subj.tags;
-  const mine = assemble({ lines: own.body, tags, links: own.links, credits, ai: true, bhajan });
+  // The owner's REAL darshan footage (scripts/owner-footage.mjs, real_footage) is never called AI: no AI line unless
+  // ai-disclosure.mjs finds AI audio, and then the line names only the music.
+  const real = spec.real_footage === true;
+  const ai = real ? aiDisclosure(spec).meta : true;
+  const aiLine = real ? 'Sangeet AI se banaya gaya hai; darshan asli hain.' : undefined;
+  const mine = assemble({ lines: own.body, tags, links: own.links, credits, ai, aiLine, bhajan });
   if (own.tags.length && !checkFbCaption(mine, { subject: spec }).length) return { text: mine, source: 'spec' };
   const c = composeVideoBody(spec, k);
-  const text = assemble({ ...c, links: own.links, credits, ai: true, bhajan });
+  const text = assemble({ ...c, links: own.links, credits, ai, aiLine, bhajan });
   return { text, source: 'composed', problems: checkFbCaption(mine, { subject: spec }) };
 }
 
