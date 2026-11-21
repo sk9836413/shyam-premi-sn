@@ -5014,6 +5014,62 @@
     "added": "2026-11-20"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-sheesh-yudh-dekha",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Barbarik ka sheesh",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "hook": "Sheesh ne poora yudh kaise dekha?",
+   "hook_hi": "कटे शीश ने पूरा युद्ध कैसे देखा?",
+   "angle": "After the sheesh daan, Krishna placed Barbarik's head on a hill near the battlefield, and the lok katha says the head watched the whole Mahabharat war; this is the Khatu parampara's answer, said as 'मान्यता है' / 'लोककथा के अनुसार', not as a text quote. Show the hill, the head and the battlefield far below; do not add who wrote it or any date.",
+   "cite": {
+    "work": "TODO: verify (likely Skanda Purana, Barbarika upakhyan; lok katha)",
+    "ref": "TODO: verify (likely Kaumarika Khand, Barbarika sheesh daan and the hill of the head)"
+   },
+   "sources": [],
+   "keywords": [
+    "barbarik sheesh",
+    "khatu yudh"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-21",
+    "refs": [],
+    "added": "2026-11-21"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-shiv-tulsi-nahi",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Shiv ji aur Tulsi",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "hook": "Shiv ji ko Tulsi kyun nahi chadhti?",
+   "hook_hi": "शिव जी को तुलसी क्यों नहीं चढ़ती?",
+   "angle": "The belief that Tulsi is not offered in Shiv puja: the Vrinda-Jalandhar story (Shiv destroyed Jalandhar, Vrinda's husband) is told as the reason; say 'मान्यता है' and that the bel patra is the offering that the tradition names for Shiv. Keep the story to what the cited Purana says; do not claim Tulsi is harmful or forbidden in other pujas.",
+   "cite": {
+    "work": "TODO: verify (likely Padma Purana, Jalandhar and Vrinda katha)",
+    "ref": "TODO: verify (likely Shiva Purana, Vrinda-Jalandhar prasang)"
+   },
+   "sources": [],
+   "keywords": [
+    "shiv tulsi",
+    "shiv puja niyam"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-21",
+    "refs": [
+     "https://youtube.com/shorts/KdS_OcxG1OM"
+    ],
+    "added": "2026-11-21"
+   },
+   "status": "idea"
   }
  ]
 }

@@ -1,0 +1,1454 @@
+{
+ "date": "2026-11-21",
+ "mode": "daily",
+ "queries": [
+  "खाटू श्याम",
+  "महादेव"
+ ],
+ "thresholds": {
+  "views": 100000,
+  "fastViews": 30000,
+  "fastDays": 3,
+  "multiple": 5,
+  "minShorts": 3,
+  "strongMedian": 40000,
+  "maxSeconds": 180
+ },
+ "quota": {
+  "searches": 2,
+  "list_calls": 54,
+  "units": 254,
+  "cap": 900
+ },
+ "counts": {
+  "found": 100,
+  "shorts": 98,
+  "over_threshold": 89,
+  "viral": 21,
+  "strong": 5,
+  "likely_reuploads": 7
+ },
+ "viral": [
+  {
+   "id": "fjwraQhby3Y",
+   "url": "https://youtube.com/shorts/fjwraQhby3Y",
+   "title": "कौन है असली पार्वती? 😱 महादेव भी हुए हैरान! 🔱🕉️#mahadev #mataparvati #viral #youtubeshorts",
+   "channel": "priyanshi ",
+   "channelId": "UCDh5miWoOP3xqg9Y2Y0UpKA",
+   "published": "2026-11-16T14:47:55Z",
+   "ageDays": 4.5,
+   "seconds": 33,
+   "views": 1044926,
+   "likes": 15014,
+   "thumb": "https://i.ytimg.com/vi/fjwraQhby3Y/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 9350,
+   "median": 2445,
+   "n_shorts": 29,
+   "multiple": 427.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "topic": "असली पार्वती का सवाल",
+    "cover_style": "Parvati close-up, folded hands in red bridal dress, Shiv's face at the edge, snow sky",
+    "art_style": "cinematic",
+    "why": "'कौन है असली पार्वती?' question with a clear bridal face; no watermark, reads as own render",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "7Ct4NJCXeAg",
+   "url": "https://youtube.com/shorts/7Ct4NJCXeAg",
+   "title": "कैलाश में छिपा था महादेव का सबसे बड़ा रहस्य! 😱 आखिर कौन था गद्दार?",
+   "channel": "दिव्य कथा स्टूडियो",
+   "channelId": "UCTxhMq8xYWmCCQIZNSyPbYw",
+   "published": "2026-11-18T05:00:58Z",
+   "ageDays": 2.9,
+   "seconds": 65,
+   "views": 666536,
+   "likes": 11201,
+   "thumb": "https://i.ytimg.com/vi/7Ct4NJCXeAg/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 4440,
+   "median": 1686,
+   "n_shorts": 29,
+   "multiple": 395.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya",
+     "question"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya",
+     "question"
+    ],
+    "format": "katha",
+    "deity": "shiv",
+    "topic": "कैलाश का रहस्य, गद्दार कौन",
+    "cover_style": "3-panel split, Shiv, Ganesh and Parvati in a cave, glowing blue orb, dark figure behind",
+    "art_style": "cinematic",
+    "why": "'रहस्य' plus 'गद्दार कौन' gives a mystery story; the dark figure in the cover is the hook",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "866ruAlDo70",
+   "url": "https://youtube.com/shorts/866ruAlDo70",
+   "title": "har har Mahadev 🙏🌿🌹🧿 #bhakti #song #shorts #viralshorts #Mahadev#parvatishiv",
+   "channel": "Sushma Beniwal",
+   "channelId": "UChbHFXX3VojP3aUogBFrcDA",
+   "published": "2026-11-14T08:45:36Z",
+   "ageDays": 6.8,
+   "seconds": 10,
+   "views": 652019,
+   "likes": 4158,
+   "thumb": "https://i.ytimg.com/vi/866ruAlDo70/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 51600,
+   "median": 1952,
+   "n_shorts": 29,
+   "multiple": 334,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "shiv",
+    "topic": "har har Mahadev bhajan",
+    "cover_style": "3-panel: Shiv seated with Nandi, Parvati in red at the side, warm room",
+    "art_style": "cinematic",
+    "why": "Bhajan loop with a plain name hook; the cover is a family scene with no question or text",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "c0mwg69Cwwc",
+   "url": "https://youtube.com/shorts/c0mwg69Cwwc",
+   "title": "हर हर महादेव 😱 जय बजरंगबली ❤️ जय श्री राम 🙏#viral 😄#viral",
+   "channel": "Bhakti _sagar5x",
+   "channelId": "UCQ88Zsd2qKQ45NoOLHFB_Bg",
+   "published": "2026-11-14T02:28:09Z",
+   "ageDays": 7.1,
+   "seconds": 21,
+   "views": 772450,
+   "likes": 7081,
+   "thumb": "https://i.ytimg.com/vi/c0mwg69Cwwc/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 102000,
+   "median": 2478,
+   "n_shorts": 29,
+   "multiple": 311.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "veer",
+    "deity": "shiv",
+    "topic": "jaikara: Mahadev, Bajrangbali, Shri Ram",
+    "cover_style": "Ram with a glowing bow beside Shiv with trident in lightning, 3-panel",
+    "art_style": "cinematic",
+    "why": "Jaikara stack in the title; the cover is a two-god clash with lightning and no question",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "ovk74FHKgaM",
+   "url": "https://youtube.com/shorts/ovk74FHKgaM",
+   "title": "जहाँ महादेव, माँ पार्वती और गणेश का वास, वहाँ खुशियाँ रहती हैं हर पल साथ 🙏#shorts #trending #mahadev",
+   "channel": "siya",
+   "channelId": "UCLCUzjZZs_670q6RZlu8EqQ",
+   "published": "2026-11-15T12:29:23Z",
+   "ageDays": 5.6,
+   "seconds": 11,
+   "views": 909752,
+   "likes": 5968,
+   "thumb": "https://i.ytimg.com/vi/ovk74FHKgaM/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 32000,
+   "median": 5518.5,
+   "n_shorts": 30,
+   "multiple": 164.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional",
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "shiv",
+    "topic": "Shiv-Parvati-Ganesh ka vaas",
+    "cover_style": "3 colored idols in a row (blue Shiv, pink Parvati, orange Ganesh) on a wooden table",
+    "art_style": "murti-darshan",
+    "why": "Blessing line over a calm family-idol cover; the emotional promise carries it, not a question",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "MhSsGRJoSxc",
+   "url": "https://youtube.com/shorts/MhSsGRJoSxc",
+   "title": "🔥 महादेव क्यों भागे? 😱 | Shiv Parvati Story #shorts",
+   "channel": "Lavlishorts ",
+   "channelId": "UCnTbmLmkpPezI6NJ-SU86Qw",
+   "published": "2026-11-15T03:25:28Z",
+   "ageDays": 6,
+   "seconds": 27,
+   "views": 887907,
+   "likes": 8595,
+   "thumb": "https://i.ytimg.com/vi/MhSsGRJoSxc/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 5940,
+   "median": 6972,
+   "n_shorts": 29,
+   "multiple": 127.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "hook": "kyon",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "format": "katha",
+    "deity": "shiv",
+    "topic": "Shiv ka gussa, pahadi gaon",
+    "cover_style": "Shiv pointing angrily, wooden village house behind, mountain fog, no text",
+    "art_style": "cinematic",
+    "why": "Same 'क्यों' hook as its sibling; the cover is a dramatic pose with no subtitle",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "9DaNMAAq7Ug",
+   "url": "https://youtube.com/shorts/9DaNMAAq7Ug",
+   "title": "Mahadev vs Andhak–The Epic Battle of Divine Power 🔱 #mahadev #harharmahadev #shivshakti #shiv #facts",
+   "channel": "NiT's Epic Tales",
+   "channelId": "UCqmT9kg0NwqhGMrTCa0-GPA",
+   "published": "2026-11-16T07:04:05Z",
+   "ageDays": 4.9,
+   "seconds": 159,
+   "views": 611757,
+   "likes": 24543,
+   "thumb": "https://i.ytimg.com/vi/9DaNMAAq7Ug/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 188000,
+   "median": 7518,
+   "n_shorts": 29,
+   "multiple": 81.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "shiv",
+    "topic": "Mahadev vs Andhakasur",
+    "cover_style": "Shiv vs Andhak split with a text band (title, 'एक बार अवश्य देखें'), snow background",
+    "art_style": "text-card",
+    "why": "Text-band battle cover for a 2.5-min legend; the channel's own name is on the cover, not another's",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "1apWXSTP0I0",
+   "url": "https://youtube.com/shorts/1apWXSTP0I0",
+   "title": "महादेव का डमरू फिर खो गया🤔🤔🙏🙏🕉️🕉️#shorts #viral #mahadev #bhakti",
+   "channel": "Naina Ki Duniya   ",
+   "channelId": "UCFGXWuPykFIRceO_y91luwA",
+   "published": "2026-11-20T03:44:09Z",
+   "ageDays": 1,
+   "seconds": 21,
+   "views": 635076,
+   "likes": 5828,
+   "thumb": "https://i.ytimg.com/vi/1apWXSTP0I0/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 27500,
+   "median": 11091,
+   "n_shorts": 29,
+   "multiple": 57.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "topic": "Shiv ka damru kho gaya",
+    "cover_style": "Shiv in a mud-walled kitchen with a shelf of pots, looking at a clay pot, no text",
+    "art_style": "cinematic",
+    "why": "🤔 question title; the cover is a plain village-kitchen scene with a weak curiosity cue",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "ebfy3fZopAM",
+   "url": "https://youtube.com/shorts/ebfy3fZopAM",
+   "title": "टूटी झोपड़ी में मिले महादेव जी, फिर बनाया विशाल मंदिर 🙏❤️ #shorts #bhakti #mahadev",
+   "channel": "Ghanshyam Bhakti World",
+   "channelId": "UCEuvGyjmf2tqbWaX4b68mHA",
+   "published": "2026-11-18T03:09:42Z",
+   "ageDays": 3,
+   "seconds": 30,
+   "views": 1051038,
+   "likes": 20894,
+   "thumb": "https://i.ytimg.com/vi/ebfy3fZopAM/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 8310,
+   "median": 28829.5,
+   "n_shorts": 14,
+   "multiple": 36.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "phir-jo-kiya",
+    "hooks": [
+     "phir-jo-kiya",
+     "chamatkar"
+    ],
+    "format": "katha",
+    "deity": "shiv",
+    "topic": "Shiv murti in a ruined hut, then a temple",
+    "cover_style": "Man in white walks toward a Shiv idol in a broken hut, wide shot, channel logo bottom-right",
+    "art_style": "real-photo",
+    "why": "Miracle story with a 'फिर बनाया मंदिर' payoff; real-photo cover, logo is the channel's own",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "NmyieVAt8xQ",
+   "url": "https://youtube.com/shorts/NmyieVAt8xQ",
+   "title": "जब माता का रौद्र रूप देख महादेव भी चौंक गए! 🔱⚡ माता ने मांगा अपना त्रिशूल #parvati #shiva",
+   "channel": "Sanatan Astha TV",
+   "channelId": "UCP2cPzHCXyEKsZJIm5rl6Yw",
+   "published": "2026-11-15T07:14:15Z",
+   "ageDays": 5.9,
+   "seconds": 11,
+   "views": 635268,
+   "likes": 3311,
+   "thumb": "https://i.ytimg.com/vi/NmyieVAt8xQ/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 4640,
+   "median": 19051,
+   "n_shorts": 29,
+   "multiple": 33.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "katha",
+    "deity": "devi",
+    "topic": "Parvati ka raudra roop, trishul",
+    "cover_style": "Shiv and Parvati with a glowing trident, a horned guard beside, golden temple",
+    "art_style": "cinematic",
+    "why": "'जब माता का रौद्र रूप' with a shocked Shiv; the glowing trident is a single strong visual",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "Xw334KiSE6U",
+   "url": "https://youtube.com/shorts/Xw334KiSE6U",
+   "title": "माता पार्वती का भोलेनाथ के प्रति निश्छल प्रेम ! 💗 #shorts",
+   "channel": "Kuchh Bhoole Bisre Pal",
+   "channelId": "UCNsEfV1btB0rSkAH_QlU4Tw",
+   "published": "2026-11-19T02:06:10Z",
+   "ageDays": 2.1,
+   "seconds": 11,
+   "views": 784283,
+   "likes": 6527,
+   "thumb": "https://i.ytimg.com/vi/Xw334KiSE6U/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 36800,
+   "median": 25007,
+   "n_shorts": 29,
+   "multiple": 31.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "topic": "Parvati ka nishchhal prem",
+    "cover_style": "Shiv in snowy meditation, Parvati's hand offers a cup, pale sky, no text",
+    "art_style": "cinematic",
+    "why": "Pure-love line over a calm snow cover; the emotional promise is the click",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "ou-k3eNACxE",
+   "url": "https://youtube.com/shorts/ou-k3eNACxE",
+   "title": "महादेव 🔱 का विशाल ! अजगर 🐍🌺 #trend  #harharmahadev #trending #top #viralvideo #viralshorts",
+   "channel": "BAIJNATH GOUTAM",
+   "channelId": "UCeDRsxD_AzEVI1THgeGfv6w",
+   "published": "2026-11-14T02:22:28Z",
+   "ageDays": 7.1,
+   "seconds": 10,
+   "views": 1053036,
+   "likes": 12614,
+   "thumb": "https://i.ytimg.com/vi/ou-k3eNACxE/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 9460,
+   "median": 36207,
+   "n_shorts": 29,
+   "multiple": 29.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "strange-visual",
+    "hooks": [
+     "strange-visual"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "topic": "Shiv with a giant python",
+    "cover_style": "Shiv in a close shot, shocked face, a python around the neck, a second Shiv behind",
+    "art_style": "cinematic",
+    "why": "One oddly-scaled scene (a python around Shiv) raises the question by itself; no text needed",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "tU_PeTeYLa8",
+   "url": "https://youtube.com/shorts/tU_PeTeYLa8",
+   "title": "शिव जी ने पता लगाया असली पार्वती की😱🙏 #mahadev #ytshorts#shortvideo #youtubeshorts #love #comedy#fyp",
+   "channel": "KajalBhaktiStudio",
+   "channelId": "UCBa6qg55xWsQbO6CEzlX05A",
+   "published": "2026-11-18T12:30:39Z",
+   "ageDays": 2.6,
+   "seconds": 17,
+   "views": 818897,
+   "likes": 7393,
+   "thumb": "https://i.ytimg.com/vi/tU_PeTeYLa8/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 14300,
+   "median": 28754,
+   "n_shorts": 29,
+   "multiple": 28.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "topic": "असली पार्वती का पता",
+    "cover_style": "Shiv stirring a brass pot with two women in a golden kitchen, warm glow",
+    "art_style": "cinematic",
+    "why": "'असली पार्वती' question with a family kitchen scene, a kailash frame",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "CRFwxYZ5bcQ",
+   "url": "https://youtube.com/shorts/CRFwxYZ5bcQ",
+   "title": "🥰Jab Zid Pe Aa Gayi Parvati 🔱❤️ | Parvati Full Song 🎶 | Hanuman Ansh 🙏 | Shiv Parvati #hanumanansh",
+   "channel": "Bhakti & Sur",
+   "channelId": "UCohFm3sar9czcDRy03b7-zA",
+   "published": "2026-11-16T05:40:58Z",
+   "ageDays": 4.9,
+   "seconds": 25,
+   "views": 729120,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/CRFwxYZ5bcQ/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 10600,
+   "median": 26694,
+   "n_shorts": 29,
+   "multiple": 27.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "loop",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "loop",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "BiAdZPeJ1as",
+   "url": "https://youtube.com/shorts/BiAdZPeJ1as",
+   "title": "हे महादेव, हमें क्षमा करना.. 🙏😭 #HarHarMahadev #Bholenath #MandirSeva #Shorts",
+   "channel": "Bhakti Sagar YT",
+   "channelId": "UCmzarqWGsbRET-KV2334SDg",
+   "published": "2026-11-17T10:00:03Z",
+   "ageDays": 3.7,
+   "seconds": 61,
+   "views": 795964,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/BiAdZPeJ1as/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 9310,
+   "median": 45790.5,
+   "n_shorts": 6,
+   "multiple": 17.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "Fj-WNNSfhB0",
+   "url": "https://youtube.com/shorts/Fj-WNNSfhB0",
+   "title": "NARAYAN'S ANGER🗿 | DEVO KE DEV MAHADEV | KRISHAN | BANASURA",
+   "channel": "54M4N",
+   "channelId": "UCdOYHxTX1GAMH6O1E0T5M0w",
+   "published": "2026-11-14T06:47:18Z",
+   "ageDays": 6.9,
+   "seconds": 46,
+   "views": 1401752,
+   "likes": 42358,
+   "thumb": "https://i.ytimg.com/vi/Fj-WNNSfhB0/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 34000,
+   "median": 81191,
+   "n_shorts": 29,
+   "multiple": 17.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "WWWPEyQx7E4",
+   "url": "https://youtube.com/shorts/WWWPEyQx7E4",
+   "title": "Mahadev🕉🙏har har mahadev #shorts #youtubeshorts #trending #bhakti #youtube #mahadev #viral #song",
+   "channel": "mr alone 900",
+   "channelId": "UCxi3I-s1hODevJfBR6VDeYw",
+   "published": "2026-11-14T03:30:02Z",
+   "ageDays": 7,
+   "seconds": 46,
+   "views": 892590,
+   "likes": 9814,
+   "thumb": "https://i.ytimg.com/vi/WWWPEyQx7E4/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 8530000,
+   "median": 55660,
+   "n_shorts": 29,
+   "multiple": 16,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "loop",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "m5TRtWJV0y4",
+   "url": "https://youtube.com/shorts/m5TRtWJV0y4",
+   "title": "\"नंदी, जल्दी आओ!\" महादेव ने क्या देखा? 😨⚡#mahadev #shorts",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-14T13:13:37Z",
+   "ageDays": 6.6,
+   "seconds": 11,
+   "views": 828574,
+   "likes": 7325,
+   "thumb": "https://i.ytimg.com/vi/m5TRtWJV0y4/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 58457,
+   "n_shorts": 29,
+   "multiple": 14.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "facts",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "gzOOUbuI9Lk",
+   "url": "https://youtube.com/shorts/gzOOUbuI9Lk",
+   "title": "Har har mahadev #mahadev 🙏🌺🙏🌼🙏🌼🙏🌺🙏",
+   "channel": "🙏 भक्ति चैनल🌹",
+   "channelId": "UCFV06f9po2Ox8lk_mWc8ZRQ",
+   "published": "2026-11-16T08:17:38Z",
+   "ageDays": 4.8,
+   "seconds": 11,
+   "views": 1432854,
+   "likes": 14126,
+   "thumb": "https://i.ytimg.com/vi/gzOOUbuI9Lk/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 25600,
+   "median": 102164.5,
+   "n_shorts": 30,
+   "multiple": 14,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "veer",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "veer",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "WMoqHFCi_Fg",
+   "url": "https://youtube.com/shorts/WMoqHFCi_Fg",
+   "title": "माता सती ने हलाहल विष को महादेव के कंठ में रोक दी 🙏🔱#neelkanth #bholenath 🌺 हर हर महादेव 🕉️ #mahadev",
+   "channel": "Sanatani ॐ",
+   "channelId": "UC64_FkzZTwFIEtaccBT0p4A",
+   "published": "2026-11-16T12:47:30Z",
+   "ageDays": 4.6,
+   "seconds": 57,
+   "views": 1119255,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/WMoqHFCi_Fg/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 472000,
+   "median": 153813,
+   "n_shorts": 29,
+   "multiple": 7.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "NF8j1_LRgQY",
+   "url": "https://youtube.com/shorts/NF8j1_LRgQY",
+   "title": "Mahadev 😱😱😔 | mahadev bhakti status | #trending #shorts #shortvideo #virelshorts #bhaktistatus",
+   "channel": "DHANUSH 0111",
+   "channelId": "UCYLERxNSbo0PQckQmHlb1pA",
+   "published": "2026-11-14T16:10:52Z",
+   "ageDays": 6.5,
+   "seconds": 56,
+   "views": 1730350,
+   "likes": 14452,
+   "thumb": "https://i.ytimg.com/vi/NF8j1_LRgQY/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 1520000,
+   "median": 321836,
+   "n_shorts": 29,
+   "multiple": 5.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  }
+ ],
+ "strong": [
+  {
+   "id": "tMYW7kUTXmI",
+   "url": "https://youtube.com/shorts/tMYW7kUTXmI",
+   "title": "महादेव ने क्यों कहा, सोना-चांदी नहीं, बांस ही सबसे पवित्र है? महादेव का छुपा हुआ सत्य",
+   "channel": "Mister Virat Kumar Subhash Chandra Bose",
+   "channelId": "UCsAEZ4ts5J3zFi9MDGiFYCg",
+   "published": "2026-11-14T14:56:55Z",
+   "ageDays": 6.5,
+   "seconds": 163,
+   "views": 1367759,
+   "likes": 65472,
+   "thumb": "https://i.ytimg.com/vi/tMYW7kUTXmI/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 918000,
+   "median": 605137,
+   "n_shorts": 29,
+   "multiple": 2.3,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "2.3x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "hook": "kyon",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon",
+     "rahasya"
+    ],
+    "format": "katha",
+    "deity": "shiv",
+    "topic": "बांस सबसे पवित्र क्यों",
+    "cover_style": "Shiv and Parvati by a river with bamboo, Surya above, warm glow, no text",
+    "art_style": "illustrated",
+    "why": "'क्यों' question with a 'सत्य' promise; painterly cover for a 2.7-min teaching story",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "Ya2W2rWYwHw",
+   "url": "https://youtube.com/shorts/Ya2W2rWYwHw",
+   "title": "महादेव का सबसे खतरनाक 8 पैरों वाला अवतार! 😱 Sharabha Avatar #facts",
+   "channel": "Priyansh Shukla",
+   "channelId": "UCdefYfRohqSQt6EI4DVC_9w",
+   "published": "2026-11-19T13:00:53Z",
+   "ageDays": 1.6,
+   "seconds": 161,
+   "views": 1181481,
+   "likes": 47711,
+   "thumb": "https://i.ytimg.com/vi/Ya2W2rWYwHw/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 2670000,
+   "median": 662724.5,
+   "n_shorts": 30,
+   "multiple": 1.8,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "1.8x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle"
+    ],
+    "hook": "listicle",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "listicle",
+    "hooks": [
+     "listicle"
+    ],
+    "format": "facts",
+    "deity": "shiv",
+    "topic": "Sharabha avatar, 8 paon",
+    "cover_style": "Blue-faced Shiv close-up, snake on shoulder, tiger skin, small text",
+    "art_style": "cinematic",
+    "why": "'सबसे खतरनाक 8 पैरों वाला' listicle; strong channel, a single dramatic bust cover",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "3ekBG7SfBpc",
+   "url": "https://youtube.com/shorts/3ekBG7SfBpc",
+   "title": "आखिर महादेव का सारा खाना किसने खाया😡😂 #mahadev #shivparvati #shorts",
+   "channel": "Priti Verma",
+   "channelId": "UCsRei3K6S5J0Q4i75PohQ9Q",
+   "published": "2026-11-14T05:00:56Z",
+   "ageDays": 6.9,
+   "seconds": 11,
+   "views": 731402,
+   "likes": 7076,
+   "thumb": "https://i.ytimg.com/vi/3ekBG7SfBpc/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 60000,
+   "median": 171996,
+   "n_shorts": 29,
+   "multiple": 4.3,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "4.3x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "topic": "Mahadev ka saara khana kisne khaya",
+    "cover_style": "Parvati in red with a roti thali, Shiv seated by the fire; the 'Priti Verma 9202' mark is its own channel's",
+    "art_style": "cinematic",
+    "why": "Kitchen question with a family scene; the watermark belongs to the uploader, so not a reupload",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "B0lmbI8dCjg",
+   "url": "https://youtube.com/shorts/B0lmbI8dCjg",
+   "title": "महादेव और विष्णु का पुत्र? 😳 भगवान अयप्पा की अनसुनी कहानी",
+   "channel": "Learn With Vishu",
+   "channelId": "UCT3WpjJnuYNOYnjBTZ-UZfg",
+   "published": "2026-11-16T03:30:27Z",
+   "ageDays": 5,
+   "seconds": 98,
+   "views": 500578,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/B0lmbI8dCjg/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 9790,
+   "median": 326235.5,
+   "n_shorts": 8,
+   "multiple": 1.5,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "1.5x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "katha",
+    "deity": "other",
+    "topic": "Ayyappa: Shiv-Vishnu ka putra",
+    "cover_style": "Dark horned silhouette with red eyes on a red-black field, no text",
+    "art_style": "illustrated",
+    "why": "'?' question title over a lone silhouette; reads as mystery, but the cover shows no face",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "Ktg8oO-vclA",
+   "url": "https://youtube.com/shorts/Ktg8oO-vclA",
+   "title": "🙏 तीनो नयन से सुतल महादेव, भोलेनाथ की महिमा अपरंपार बा।",
+   "channel": "Bhakti Zon ",
+   "channelId": "UCDZVCVmLW2zNnkFbexQvbAw",
+   "published": "2026-11-20T01:00:32Z",
+   "ageDays": 1.1,
+   "seconds": 21,
+   "views": 463766,
+   "likes": 3389,
+   "thumb": "https://i.ytimg.com/vi/Ktg8oO-vclA/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 3440,
+   "median": 127401.5,
+   "n_shorts": 12,
+   "multiple": 3.6,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "3.6x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name",
+     "emotional"
+    ],
+    "format": "loop",
+    "deity": "shiv",
+    "topic": "Bholenath ki mahima (bhajan)",
+    "cover_style": "Village woman in red saree with a ladle at a clay stove; no deity shown",
+    "art_style": "real-photo",
+    "why": "Bhajan title with a strong channel (3.6x), but the cover shows no deity, so the click is weak",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  }
+ ],
+ "near": [
+  {
+   "id": "xz94lbErCu8",
+   "url": "https://youtube.com/shorts/xz94lbErCu8",
+   "title": "हवाई जहाज में महादेव मिलने आए 🚩 || #shorts",
+   "channel": "NIKHIL TRIPATHI ",
+   "views": 844910,
+   "multiple": 29.3,
+   "why_not": []
+  },
+  {
+   "id": "I77852LKGW0",
+   "url": "https://youtube.com/shorts/I77852LKGW0",
+   "title": "💧Water Tank Art Of Khatu shyam ji😱🙏🏻🙇🏻 #khatushyam #khatushyamji #khatudham #shorts",
+   "channel": "Artist Shintu Mourya",
+   "views": 600364,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "n7qAwnG2TJY",
+   "url": "https://youtube.com/shorts/n7qAwnG2TJY",
+   "title": "यह कैसा पान खिला दिया पार्वती ने महादेव को? 🍃😂",
+   "channel": "AI King Mahadev",
+   "views": 594941,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "84MSKAgaGps",
+   "url": "https://youtube.com/shorts/84MSKAgaGps",
+   "title": "महादेव जी के पिछे काल परा है #mahadevji #nandiji #gauriji # shivji #kailash #kaal #parvatiji",
+   "channel": "Avinash Kumar",
+   "views": 591299,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "oF45fBMUY8M",
+   "url": "https://youtube.com/shorts/oF45fBMUY8M",
+   "title": "महादेव क्यों बने इस बच्चे के मामा? 🔱 | Mahadev Story #shorts  #shortvideo #facts #motivation #bhakti",
+   "channel": "bhakti Katha Sangam",
+   "views": 549497,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "a00Qjh6oECM",
+   "url": "https://youtube.com/shorts/a00Qjh6oECM",
+   "title": "हर हर महादेव",
+   "channel": "RF arush raj ",
+   "views": 545019,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "C6gEpd_4D-4",
+   "url": "https://youtube.com/shorts/C6gEpd_4D-4",
+   "title": "भिखारी बनकर आए भगवान शिव! गरीब भक्त की परीक्षा देखकर रो पड़े महादेव 😭🔱 | Shiv Bhakti Katha #shorts",
+   "channel": "Athrav Ashiwarya भक्ति धारा (Bhakti Dhara)",
+   "views": 522929,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "rc3I4EC2Wus",
+   "url": "https://youtube.com/shorts/rc3I4EC2Wus",
+   "title": "🌹 बाबा श्याम का ऐसा सुंदर दरबार 😍🙏 देखकर मन प्रसन्न हो जाएगा ❤️✨ #JaiShreeShyam",
+   "channel": "Shyam aarti - today live",
+   "views": 522903,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  }
+ ],
+ "reuploads": [
+  {
+   "id": "smd4QMDssco",
+   "url": "https://youtube.com/shorts/smd4QMDssco",
+   "title": "🔱🙏 महादेव और माता पार्वती का दिव्य मिलन ❤️ #महादेव #पार्वती #हरहरमहादेव #भक्ति",
+   "channel": "Rupesh Yadav",
+   "views": 898022,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "D_QKOMbjHnE",
+   "url": "https://youtube.com/shorts/D_QKOMbjHnE",
+   "title": "🙏 महादेव और माता पार्वती का दिव्य मिलन | प्रकृति और सिद्धि का पवित्र संगम 🔱🌺#",
+   "channel": "Abhishek Kumar",
+   "views": 806896,
+   "signals": [
+    "views far beyond subscribers",
+    "new channel"
+   ]
+  },
+  {
+   "id": "g-qZXbdFo-M",
+   "url": "https://youtube.com/shorts/g-qZXbdFo-M",
+   "title": "सबसे भारी बोझ उम्मीदों का होता है! 💔 | महादेव की सीख जो जिंदगी बदल देगी 🙏",
+   "channel": "Kissa Decode ",
+   "views": 762740,
+   "signals": [
+    "new channel",
+    "random topics"
+   ]
+  },
+  {
+   "id": "BrUHcYQu9rE",
+   "url": "https://youtube.com/shorts/BrUHcYQu9rE",
+   "title": "किस्मत से नहीं, महादेव की कृपा से चलते हैं!  #shorts #bholenath #viral #bhakti",
+   "channel": "Shivlok Darshan",
+   "views": 671225,
+   "signals": [
+    "tiny channel",
+    "new channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "fqoe3d9N0qc",
+   "url": "https://youtube.com/shorts/fqoe3d9N0qc",
+   "title": "महादेव का चाँद अचानक कैसे टूट गया? 😱😂 | shiv parvati | #shiv #shorts #viral #bhakti #bhajan",
+   "channel": "Spiritual For You • 5M views ",
+   "views": 643598,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "dP91ff1iExk",
+   "url": "https://youtube.com/shorts/dP91ff1iExk",
+   "title": "महादेव का घर किसने गायब कर दिया? 🤣🔱 | shiv parvati | #shiv #shorts #viral #bhakti #bhajan",
+   "channel": "Spiritual For You • 5M views ",
+   "views": 501699,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "PPD3yj7tiGU",
+   "url": "https://youtube.com/shorts/PPD3yj7tiGU",
+   "title": "शीश के दानी श्री खाटू श्याम 🚩#shortvideo #viralshorta #shorts #youtubeshorts #jaikhatushyam",
+   "channel": "Aman fact zone",
+   "views": 111641,
+   "signals": [
+    "tiny channel",
+    "new channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "NmoLbT6YUBc",
+   "url": "https://youtube.com/shorts/NmoLbT6YUBc",
+   "title": "महादेव की सबसे प्यारी चीज आखिर किसने चुराई? पार्वती ने बताया नंदी का नाम, फिर जो हुआ... 🔱",
+   "channel": "Roshan Raj",
+   "views": 632679,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "KdS_OcxG1OM",
+   "url": "https://youtube.com/shorts/KdS_OcxG1OM",
+   "title": "महादेव को क्यों कैलाश छोड़ कर भागना पढ़ा।mahadev status #shorts",
+   "channel": "Lavlishorts ",
+   "views": 1023938,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  }
+ ],
+ "ideas_added": [
+  "facts:radar-sheesh-yudh-dekha",
+  "facts:radar-shiv-tulsi-nahi",
+  "kailash:radar-darpan-kho-gaya",
+  "pov:radar-dhokha-dhairya"
+ ],
+ "analysis_problems": []
+}
