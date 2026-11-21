@@ -184,3 +184,4 @@
 - 2026-11-21-owner-darshan | claim: 2026-11-21 owner by run 44811677046.1 at 2026-11-20T20:28:58.669Z
 - 2026-11-21-owner-darshan | youtube: https://youtube.com/shorts/cfWOaqLV2_A (public at 2026-11-21T01:45:00.000Z) | owner-footage Short (clip 08, real footage), made 21 Nov 01:59 IST | social: fb: https://www.facebook.com/reel/1658749189282010 (scheduled 2026-11-21T01:45:00.000Z) | ig: pending 2026-11-21T01:45:00.000Z
 - 2026-11-21-status-tulsi-vivah | instagram: https://www.instagram.com/reel/Df-hBKNsZm9/
+- 2026-11-21-owner-darshan | instagram: https://www.instagram.com/reel/Df_SyX5xPJf/
