@@ -96,3 +96,4 @@
 2026-11-21 | owner | 2026-11-21-owner-darshan | Khatu Shyam ji (owner's own footage) | owner-footage Short, clip 08 "Khatu Shyam Baba Darshan", real footage + music cc-dhol-temple-bells (YouTube synthetic false, Meta AI label false), public 2026-11-21T07:15 IST
 2026-11-21 | morning | 2026-11-21-morning-dwarkadhish-tulsi-vivah-darshan | Dwarkadhish Mandir, Dwarka (Tulsi Vivah, Krishna/Vishnu) | Dwarkadhish ji darshan, Jagat Mandir on the Gomti at Dwarka, Char Dham and Sapta Puri, Tulsi-Shaligram vivah (manyata)
 2026-11-21 | evening | 2026-11-21-evening-khatu-shyam-haare-ka-sahara-emotional | Khatu Shyam ji (Haare ka Sahara) | Emotional-hook darshan Short: jab koi saath na de, Baba Shyam; diya-lit sanctum, sheesh darshan, ek diya jalao (hook_style emotional, 4 scenes)
+2026-11-22 | status | 2026-11-22-status-ravi-pradosh-vrat | Ravi Pradosh Vrat | status Short variant 1 "Ravi Pradosh Vrat Status 2026 🙏" (12-20 s loop, download link), public 00:30 IST
