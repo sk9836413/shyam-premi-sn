@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-22",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "badrinath",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/badrinath/commons-badrinath-temple-tapt-kund-hot-springs-42e2ee.jpg"
+      ],
+      "source": "fallback",
+      "fbAt": "2026-11-22T01:00:00.000Z",
+      "igAt": "2026-11-22T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-22-1-1.jpg"
+      ],
+      "caption": "Suprabhat 🙏 Jai Shree Shyam\nAaj subah ke darshan: Badrinath Dham, Uttarakhand.\nसुप्रभात! प्रभु की कृपा आप पर सदा बनी रहे।\n\nKya aap kabhi Badrinath Dham gaye hain?\n\n📷 Photo: Shobhit Gosain, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Badrinath_Temple_Tapt_Kund_hot_springs.jpg\n\n#JaiShreeShyam #KhatuShyam #ShyamBaba #JaiShreeKrishna #Vishnu",
+      "fbCaption": "सुप्रभात 🙏 जय श्री श्याम। आज सुबह आपके घर कौन सी आरती हुई?\nप्रभु की कृपा आप पर सदा बनी रहे।\nAaj subah ke darshan: Badrinath Dham.\n\n📷 Photo: Shobhit Gosain, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Badrinath_Temple_Tapt_Kund_hot_springs.jpg\n\n#KhatuShyam #JaiShreeShyam #Bhakti",
+      "fbSource": "composed",
+      "fb": {
+        "id": "1614242580718706",
+        "scheduled": "2026-11-22T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-22T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}
