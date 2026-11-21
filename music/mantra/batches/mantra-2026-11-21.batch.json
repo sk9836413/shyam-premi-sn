@@ -1,0 +1,138 @@
+{
+ "batch": "mantra-2026-11-21",
+ "kind": "mantra",
+ "note": "Mantra-jaap takes (music/mantra-takes.mjs): public-domain mantras, original arrangements, ACE-Step 1.5 (MIT), one take per mala.",
+ "videos": [
+  {
+   "date": "2026-11-22",
+   "mantra": "vasudev",
+   "have": 0,
+   "make": 5,
+   "tight": false
+  }
+ ],
+ "jobs": [
+  {
+   "id": "m-2026-11-22-vasudev-1",
+   "kind": "vocal",
+   "mantra": "vasudev",
+   "video": "2026-11-22",
+   "mala": 1,
+   "style": "bhupali-santoor",
+   "tempo": "slow",
+   "raag": "Bhupali",
+   "title_roman": "Om Namo Bhagavate Vasudevaya (Bhupali)",
+   "title_hi": "ॐ नमो भगवते वासुदेवाय",
+   "deity": "vasudev",
+   "public_domain_text": "Dvadashakshara (12-syllable) mantra, Shrimad Bhagavatam canto 4 (Narada gives it to Dhruva)",
+   "lyrics": "[verse]\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "lyrics_devanagari": "ओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "language": "hi",
+   "singer": "male",
+   "caption": "slow peaceful Hindu mantra chanting in raag Bhupali, tanpura drone, soft santoor, light temple bells, repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, no drops or breaks, peaceful, solo male vocalist, deep warm voice, clear Sanskrit pronunciation",
+   "bpm": 66,
+   "duration": 119,
+   "seeds": [
+    830253
+   ],
+   "gen_deadline": 30,
+   "qa_deadline": 46
+  },
+  {
+   "id": "m-2026-11-22-vasudev-2",
+   "kind": "vocal",
+   "mantra": "vasudev",
+   "video": "2026-11-22",
+   "mala": 2,
+   "style": "ahir-bhairav-tabla",
+   "tempo": "medium",
+   "raag": "Ahir Bhairav",
+   "title_roman": "Om Namo Bhagavate Vasudevaya (Ahir Bhairav)",
+   "title_hi": "ॐ नमो भगवते वासुदेवाय",
+   "deity": "vasudev",
+   "public_domain_text": "Dvadashakshara (12-syllable) mantra, Shrimad Bhagavatam canto 4 (Narada gives it to Dhruva)",
+   "lyrics": "[verse]\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "lyrics_devanagari": "ओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "language": "hi",
+   "singer": "male",
+   "caption": "soothing Hindu mantra chanting in raag Ahir Bhairav, santoor, soft tabla, tanpura, temple morning, repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, no drops or breaks, peaceful, solo male vocalist, deep warm voice, clear Sanskrit pronunciation",
+   "bpm": 80,
+   "duration": 119,
+   "seeds": [
+    830254
+   ]
+  },
+  {
+   "id": "m-2026-11-22-vasudev-3",
+   "kind": "vocal",
+   "mantra": "vasudev",
+   "video": "2026-11-22",
+   "mala": 3,
+   "style": "desh-sitar",
+   "tempo": "slow",
+   "raag": "Desh",
+   "title_roman": "Om Namo Bhagavate Vasudevaya (Desh)",
+   "title_hi": "ॐ नमो भगवते वासुदेवाय",
+   "deity": "vasudev",
+   "public_domain_text": "Dvadashakshara (12-syllable) mantra, Shrimad Bhagavatam canto 4 (Narada gives it to Dhruva)",
+   "lyrics": "[verse]\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "lyrics_devanagari": "ओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "language": "hi",
+   "singer": "male",
+   "caption": "gentle slow Hindu mantra chanting in raag Desh, tanpura drone, soft sitar phrases, light manjira, repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, no drops or breaks, peaceful, solo male vocalist, deep warm voice, clear Sanskrit pronunciation",
+   "bpm": 68,
+   "duration": 119,
+   "seeds": [
+    830255
+   ]
+  },
+  {
+   "id": "m-2026-11-22-vasudev-4",
+   "kind": "vocal",
+   "mantra": "vasudev",
+   "video": "2026-11-22",
+   "mala": 4,
+   "style": "kafi-dholak",
+   "tempo": "medium",
+   "raag": "Kafi",
+   "title_roman": "Om Namo Bhagavate Vasudevaya (Kafi)",
+   "title_hi": "ॐ नमो भगवते वासुदेवाय",
+   "deity": "vasudev",
+   "public_domain_text": "Dvadashakshara (12-syllable) mantra, Shrimad Bhagavatam canto 4 (Narada gives it to Dhruva)",
+   "lyrics": "[verse]\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "lyrics_devanagari": "ओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "language": "hi",
+   "singer": "male",
+   "caption": "devotional Hindu mantra chanting in raag Kafi, harmonium, gentle dholak, manjira, flowing and calm, repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, no drops or breaks, peaceful, solo male vocalist, deep warm voice, clear Sanskrit pronunciation",
+   "bpm": 82,
+   "duration": 119,
+   "seeds": [
+    830256
+   ]
+  },
+  {
+   "id": "m-2026-11-22-vasudev-5",
+   "kind": "vocal",
+   "mantra": "vasudev",
+   "video": "2026-11-22",
+   "mala": 5,
+   "style": "malkauns-drone",
+   "tempo": "slow",
+   "raag": "Malkauns",
+   "title_roman": "Om Namo Bhagavate Vasudevaya (Malkauns)",
+   "title_hi": "ॐ नमो भगवते वासुदेवाय",
+   "deity": "vasudev",
+   "public_domain_text": "Dvadashakshara (12-syllable) mantra, Shrimad Bhagavatam canto 4 (Narada gives it to Dhruva)",
+   "lyrics": "[verse]\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "lyrics_devanagari": "ओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय\nओम नमो भगवते वासुदेवाय",
+   "language": "hi",
+   "singer": "male",
+   "caption": "very calm slow Hindu mantra chanting in raag Malkauns, deep tanpura and shruti box drone, soft bells, meditative, repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, no drops or breaks, peaceful, solo male vocalist, deep warm voice, clear Sanskrit pronunciation",
+   "bpm": 58,
+   "duration": 119,
+   "seeds": [
+    830257
+   ]
+  }
+ ]
+}

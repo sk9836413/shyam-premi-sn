@@ -1,0 +1,128 @@
+{
+ "batch": "mantra-2026-11-21",
+ "run": null,
+ "minutes": 12.9,
+ "takes": [
+  {
+   "id": "m-2026-11-22-vasudev-1-s830253",
+   "mantra": "vasudev",
+   "for": "2026-11-22",
+   "style": "bhupali-santoor",
+   "ok": false,
+   "why": [
+    "deity name right in 8/15 checked positions (needs >= 80 % and 2): वासुदेव->\"वासुदिव\", वासुदेव->\"वारसुधिव\", वासुदेव->\"वारसुधिव\"",
+    "CLAP hears little Indian devotional music (0.294)",
+    "CLAP hears western rock/pop (0.533)"
+   ],
+   "names": {
+    "checked": 15,
+    "right": 8,
+    "cer": 0.253
+   },
+   "clap": {
+    "indian": 0.294,
+    "rock": 0.105,
+    "western": 0.533
+   },
+   "loop": null,
+   "whisper": "ओन्नमू भगवते वासु दिवाएं ओम्नमो भगवतिवार सुधिवाये ओम्नमो भगवतिवार सुधिवाये ओम्नमो भगवतिवार सुधिवाये ओम्नमो भगवतिवार सुधिवाये ओम नमो भगवते वासु देवाए ओम नमो भगवते वासु देवाए ओम नमो भगवते वासु देवाए ओम "
+  },
+  {
+   "id": "m-2026-11-22-vasudev-2-s830254",
+   "mantra": "vasudev",
+   "for": "2026-11-22",
+   "style": "ahir-bhairav-tabla",
+   "ok": false,
+   "why": [
+    "deity name right in 6/20 checked positions (needs >= 80 % and 2): वासुदेव->\"वहदेव\", वासुदेव->\"वासुधेव\", वासुदेव->\"वासुधेव\"",
+    "CER 0.566 > 0.5"
+   ],
+   "names": {
+    "checked": 20,
+    "right": 6,
+    "cer": 0.566
+   },
+   "clap": {
+    "indian": 0.712,
+    "rock": 0.033,
+    "western": 0.246
+   },
+   "loop": null,
+   "whisper": "ओम्नमु भगवत्ते वासुदेवाई अम्मो भगवत्ते वासु देवाई अम्मो भगवत्ते वासु देवाई अम्मो भगवत्ते वासु देवाई अम्मो भगवत्ते वासु देवाई अम्मो भगवत्ते वासु देवाई कि अजय को अगर वह देवा सुधेवा सुधेवा आज अगर वह देवा"
+  },
+  {
+   "id": "m-2026-11-22-vasudev-3-s830255",
+   "mantra": "vasudev",
+   "for": "2026-11-22",
+   "style": "desh-sitar",
+   "ok": false,
+   "why": [
+    "deity name right in 10/13 checked positions (needs >= 80 % and 2): वासुदेव->\"वासुधीव\", वासुदेव->\"वायाअधिव\", वासुदेव->\"वासुधीव\"",
+    "CER 0.534 > 0.5",
+    "CLAP hears little Indian devotional music (0.298)",
+    "CLAP hears western rock/pop (0.579)"
+   ],
+   "names": {
+    "checked": 13,
+    "right": 10,
+    "cer": 0.534
+   },
+   "clap": {
+    "indian": 0.298,
+    "rock": 0.069,
+    "western": 0.579
+   },
+   "loop": null,
+   "whisper": "उन्दम भर्ती वासू देवाई उन्दम भर्ती वासू देवाई उन्दम भर्ती वासू देवाई उन्दभक्ति वासु देवाई उन्दभक्ति वासु देवाई उन्दभक्ति वासु देवाई उन्दभक्ति वासु देवाई उन्हों भते वासु देवाई अधिवा सुधी वाया अधिवा सुध"
+  },
+  {
+   "id": "m-2026-11-22-vasudev-4-s830256",
+   "mantra": "vasudev",
+   "for": "2026-11-22",
+   "style": "kafi-dholak",
+   "ok": false,
+   "why": [
+    "deity name right in 8/15 checked positions (needs >= 80 % and 2): वासुदेव->\"वाईव\", वासुदेव->\"वाईव\", वासुदेव->\"वाईव\"",
+    "CER 0.523 > 0.5",
+    "CLAP hears little Indian devotional music (0.226)",
+    "CLAP hears western rock/pop (0.48)"
+   ],
+   "names": {
+    "checked": 15,
+    "right": 8,
+    "cer": 0.523
+   },
+   "clap": {
+    "indian": 0.226,
+    "rock": 0.07,
+    "western": 0.48
+   },
+   "loop": null,
+   "whisper": "वासु देवाई वाई ओ मन्नमु भगवते वासु देवाई वासु देवाई वाई ओ मन्नमु भगवते वासु देवाई वासु देवाई वाई ओ मन्नमु भगवते वासु देवाई वासु देवाई वाई ओमनमु भगवते वासु देवाई वासु देवाई वाई ओमनमु भगवते वासु देवाई व"
+  },
+  {
+   "id": "m-2026-11-22-vasudev-5-s830257",
+   "mantra": "vasudev",
+   "for": "2026-11-22",
+   "style": "malkauns-drone",
+   "ok": false,
+   "why": [
+    "deity name right in 11/18 checked positions (needs >= 80 % and 2): वासुदेव->\"वासुतेव\", वासुदेव->\"वासुतेव\", वासुदेव->\"वासुतेव\"",
+    "CLAP hears little Indian devotional music (0.27)",
+    "CLAP hears western rock/pop (0.493)"
+   ],
+   "names": {
+    "checked": 18,
+    "right": 11,
+    "cer": 0.494
+   },
+   "clap": {
+    "indian": 0.27,
+    "rock": 0.048,
+    "western": 0.493
+   },
+   "loop": null,
+   "whisper": "उम्नमू भगवते वासु देवाये उम्नमू भगवते वासु देवाये उम्नमू भगवते वासु देवाये उम्मनन मुप्रक गवते वासु देवाई उम्मनन मुप्रक गवते वासु देवाई उम्मनन मुप्रक गवते वासु देवाई उम्ननमु फगत वासुते वासुते वाल उम्नन"
+  }
+ ]
+}

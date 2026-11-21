@@ -1,0 +1,5 @@
+{
+ "about": "Mantra-jaap ACE-Step takes (music/mantra-takes.mjs import) and the videos that used them (scripts/mantra-long.mjs record). A take is used by ONE video only, ever: used_in is set and its audio file deleted after upload.",
+ "takes": [],
+ "videos": []
+}
