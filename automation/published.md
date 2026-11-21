@@ -188,3 +188,4 @@
 - 2026-11-21-morning-dwarkadhish-tulsi-vivah-darshan | claim: 2026-11-21 morning by run 44862581571.1 at 2026-11-21T04:39:00.155Z
 - 2026-11-21-morning-dwarkadhish-tulsi-vivah-darshan | youtube: https://youtube.com/shorts/RSWGFwRFYBI | social: fb: https://www.facebook.com/reel/1163812412809866 (scheduled 2026-11-21T05:00:00.000Z) | ig: https://www.instagram.com/reel/Df_ZGjrhzUC/ | animated 3/4
 - 2026-11-21-evening-khatu-shyam-haare-ka-sahara-emotional | claim: 2026-11-21 evening by run 44869833748.1 at 2026-11-21T05:51:38.321Z
+- 2026-11-21-evening-khatu-shyam-haare-ka-sahara-emotional | youtube: https://youtube.com/shorts/FJk_8WCigZU (public at 2026-11-21T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1005556388639399 (scheduled 2026-11-21T15:00:00.000Z) | ig: pending 2026-11-21T13:30:00.000Z
