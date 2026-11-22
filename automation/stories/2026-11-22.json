@@ -14,6 +14,23 @@
         "at": "2026-11-22T03:44:34.413Z"
       },
       "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-22-morning.jpg"
+    },
+    {
+      "key": "video",
+      "type": "video",
+      "source": "2026-11-22-status-ravi-pradosh-vrat",
+      "fb": {
+        "claim": {
+          "run": "44986312310.1",
+          "at": "2026-11-22T04:44:08.665Z"
+        }
+      },
+      "ig": {
+        "claim": {
+          "run": "44986312310.1",
+          "at": "2026-11-22T04:44:08.665Z"
+        }
+      }
     }
   ]
 }
