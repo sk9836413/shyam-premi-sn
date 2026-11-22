@@ -201,3 +201,4 @@
 - 2026-11-22-evening-rani-sati-dadi-jhunjhunu-darshan | claim: 2026-11-22 evening by run 44988442659.1 at 2026-11-22T06:23:44.865Z
 - 2026-11-22-evening-rani-sati-dadi-jhunjhunu-darshan | youtube: https://youtube.com/shorts/JCFo1GfZWa4 (public at 2026-11-22T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/2026205374717990 (scheduled 2026-11-22T13:00:00.000Z) | ig: pending 2026-11-22T13:30:00.000Z | animated 4/4
 - 2026-11-22-eve-vaikuntha-chaturdashi | claim: 2026-11-22 eve by run 44988442659.1 at 2026-11-22T06:28:02.729Z
+- 2026-11-22-eve-vaikuntha-chaturdashi | youtube: https://youtube.com/shorts/WXdGuw6h9Fc (public at 2026-11-22T14:30:00.000Z) | status variant, made 22 Nov 11:58 IST | social: fb: https://www.facebook.com/reel/1726937922339032 (scheduled 2026-11-22T14:30:00.000Z) | ig: pending 2026-11-22T14:30:00.000Z
