@@ -198,3 +198,4 @@
 - 2026-11-22-status-ravi-pradosh-vrat | instagram: https://www.instagram.com/reel/DgA-VYOxq0G/
 - 2026-11-22-status-ravi-pradosh-vrat-trial | instagram: https://www.instagram.com/reel/DgB3kBGA8k2/ (trial reel, SS_PERFORMANCE)
 - 2026-11-22-owner-shringar-close-darshan | instagram: https://www.instagram.com/reel/DgB3pIgt9En/
+- 2026-11-22-evening-rani-sati-dadi-jhunjhunu-darshan | claim: 2026-11-22 evening by run 44988442659.1 at 2026-11-22T06:23:44.865Z
