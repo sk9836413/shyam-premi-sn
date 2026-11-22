@@ -196,3 +196,5 @@
 - 2026-11-22-owner-shringar-close-darshan | youtube: https://youtube.com/shorts/jNGVyX_weus (public at 2026-11-22T01:45:00.000Z) | owner-footage Short (clip 10, real footage), made 21 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/1477552064566784 (scheduled 2026-11-22T01:45:00.000Z) | ig: pending 2026-11-22T01:45:00.000Z
 - 2026-11-21-evening-khatu-shyam-haare-ka-sahara-emotional | instagram: https://www.instagram.com/reel/DgAV3mVI_DI/
 - 2026-11-22-status-ravi-pradosh-vrat | instagram: https://www.instagram.com/reel/DgA-VYOxq0G/
+- 2026-11-22-status-ravi-pradosh-vrat-trial | instagram: https://www.instagram.com/reel/DgB3kBGA8k2/ (trial reel, SS_PERFORMANCE)
+- 2026-11-22-owner-shringar-close-darshan | instagram: https://www.instagram.com/reel/DgB3pIgt9En/
