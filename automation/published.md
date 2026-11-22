@@ -203,3 +203,4 @@
 - 2026-11-22-eve-vaikuntha-chaturdashi | claim: 2026-11-22 eve by run 44988442659.1 at 2026-11-22T06:28:02.729Z
 - 2026-11-22-eve-vaikuntha-chaturdashi | youtube: https://youtube.com/shorts/WXdGuw6h9Fc (public at 2026-11-22T14:30:00.000Z) | status variant, made 22 Nov 11:58 IST | social: fb: https://www.facebook.com/reel/1726937922339032 (scheduled 2026-11-22T14:30:00.000Z) | ig: pending 2026-11-22T14:30:00.000Z
 - 2026-11-23-status-baikunth-chaturdashi | claim: 2026-11-23 status by run 44988442659.1 at 2026-11-22T06:29:43.454Z
+- 2026-11-23-status-baikunth-chaturdashi | youtube: https://youtube.com/shorts/haQWoq1ntiQ (public at 2026-11-22T19:00:00.000Z) | status variant, made 22 Nov 11:59 IST | social: fb: https://www.facebook.com/reel/1186031637081159 (scheduled 2026-11-22T19:00:00.000Z) | ig: pending 2026-11-22T19:00:00.000Z
