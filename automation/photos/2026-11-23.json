@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-23",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "rameshwaram",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/rameshwaram/commons-ramanathaswamy-temple-rameshwaram-e5581c.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-23T01:00:00.000Z",
+      "igAt": "2026-11-23T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-23-1-1.jpg"
+      ],
+      "caption": "सुप्रभात 🙏 हर हर महादेव।\nSomvar ki shuruaat Mahadev ke darshan se, Rameshwaram ke Ramanathaswamy Jyotirlinga, Tamil Nadu.\nManyata hai ki yahan Shri Ram ne Shivling ki pooja ki thi.\nमहादेव आपका दिन मंगलमय करें।\nAapne Rameshwaram ke darshan kab kiye the, ya kabhi jaane ka mann hai?\n\n📷 Photo: Earth-Bound Misfit, I, CC BY 2.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Ramanathaswamy_Temple_-_Rameshwaram.jpg\n\n#Rameshwaram #Ramanathaswamy #Jyotirlinga #HarHarMahadev #Mahadev",
+      "fbCaption": "सुप्रभात 🙏 हर हर महादेव। क्या आपने कभी रामेश्वरम ज्योतिर्लिंग के दर्शन किए हैं?\nसोमवार की सुबह तमिलनाडु के रामनाथस्वामी ज्योतिर्लिंग के दर्शन।\nमान्यता है कि यहाँ श्रीराम ने शिवलिंग की पूजा की थी।\n\n📷 Photo: Earth-Bound Misfit, I, CC BY 2.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Ramanathaswamy_Temple_-_Rameshwaram.jpg\n\n#Mahadev #HarHarMahadev #Rameshwaram",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1615329627276668",
+        "scheduled": "2026-11-23T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-23T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

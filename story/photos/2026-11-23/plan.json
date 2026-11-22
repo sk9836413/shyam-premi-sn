@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-23",
+  "weekday": "Somvar",
+  "festival": null,
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-23T01:00:00.000Z",
+      "igAt": "2026-11-23T03:43:00.000Z",
+      "kind": "darshan",
+      "temple": "rameshwaram",
+      "templeName": "Ramanathaswamy Jyotirlinga, Rameswaram",
+      "category": "shiv",
+      "photos": [
+        {
+          "file": "footage/rameshwaram/commons-ramanathaswamy-temple-rameshwaram-e5581c.jpg",
+          "credit": "Photo: Earth-Bound Misfit, I, CC BY 2.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Ramanathaswamy_Temple_-_Rameshwaram.jpg",
+          "licence": "CC BY 2.0",
+          "author": "Earth-Bound Misfit, I",
+          "title": "File:Ramanathaswamy Temple - Rameshwaram.jpg"
+        }
+      ],
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    }
+  ]
+}
