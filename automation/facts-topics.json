@@ -5070,6 +5070,94 @@
     "added": "2026-11-21"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-hanuman-musthi-ravan",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji aur Ravan ka yuddh",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Hanuman ji ka ek mukka, Ravan ki haar",
+   "hook_hi": "रावण का घमंड एक घूँसे से टूटा",
+   "angle": "Valmiki Ramayan, Yuddha Kand: Hanuman ji and Ravan meet in the battle and Hanuman ji strikes Ravan with his fist; say only what the sarga says about Ravan's reaction and strength, and do not add a result the text does not give.",
+   "cite": {
+    "work": "TODO: verify (likely Valmiki Ramayan)",
+    "ref": "TODO: verify (likely Yuddha Kand, Hanuman-Ravan yuddh sarga)"
+   },
+   "sources": [],
+   "keywords": [
+    "hanuman ravan",
+    "hanuman mukka"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-22",
+    "refs": [
+     "https://youtube.com/shorts/kW97Vejt1Gk"
+    ],
+    "added": "2026-11-22"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-krishna-makhan-chor",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Bal Krishna aur makhan",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Makhan chor ka asli kaaran?",
+   "hook_hi": "माखन चोर कहलाने का असली कारण?",
+   "angle": "Shrimad Bhagavata Purana, Dashama Skandha: the child Krishna and the butter of the Gokul houses, and what Yashoda and the gopis say in the text; tell the lila as the text gives it, and the bhaav (love) as the answer.",
+   "cite": {
+    "work": "TODO: verify (likely Shrimad Bhagavata Purana, Dashama Skandha)",
+    "ref": "TODO: verify (likely Makhan-chori lila, adhyay 8-9)"
+   },
+   "sources": [],
+   "keywords": [
+    "makhan chor",
+    "bal krishna"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-22",
+    "refs": [
+     "https://youtube.com/shorts/wbFdwjUqx-0"
+    ],
+    "added": "2026-11-22"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-krishna-bansuri-bans",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Krishna ki bansuri",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "tradition",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Krishna ki bansuri kis ped se bani?",
+   "hook_hi": "कृष्ण की बाँसुरी किस पेड़ से बनी?",
+   "angle": "Folk belief of Braj and Vrindavan (kehte hain): the flute is made from a bamboo stem; name the text that mentions the bamboo or Venu (Bhagavata Purana, Dashama Skandha) and say which part is tradition and which is text.",
+   "cite": {
+    "work": "TODO: verify (likely Braj parampara; Shrimad Bhagavata Purana for Venu)",
+    "ref": "TODO: verify (likely Dashama Skandha, Venu-geet)"
+   },
+   "sources": [],
+   "keywords": [
+    "krishna bansuri",
+    "bal krishna"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-22",
+    "refs": [
+     "https://youtube.com/shorts/p4JIB8XS4kU"
+    ],
+    "added": "2026-11-22"
+   },
+   "status": "idea"
   }
  ]
 }

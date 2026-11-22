@@ -1,0 +1,1984 @@
+{
+ "date": "2026-11-22",
+ "mode": "daily",
+ "queries": [
+  "हनुमान",
+  "श्री कृष्ण"
+ ],
+ "thresholds": {
+  "views": 100000,
+  "fastViews": 30000,
+  "fastDays": 3,
+  "multiple": 5,
+  "minShorts": 3,
+  "strongMedian": 40000,
+  "maxSeconds": 180
+ },
+ "quota": {
+  "searches": 2,
+  "list_calls": 54,
+  "units": 254,
+  "cap": 900
+ },
+ "counts": {
+  "found": 100,
+  "shorts": 96,
+  "over_threshold": 95,
+  "viral": 36,
+  "strong": 2,
+  "likely_reuploads": 7
+ },
+ "viral": [
+  {
+   "id": "Vss7DIJ35QI",
+   "url": "https://youtube.com/shorts/Vss7DIJ35QI",
+   "title": "माता सीता का सिंदूर देखकर हनुमान जी ने किया ऐसा काम 😍🚩 | Jai Shree Ram #shorts",
+   "channel": "kattarhindusanatandharm-ram",
+   "channelId": "UC4sepbNwTKHTZ6vXReNiKvA",
+   "published": "2026-11-19T14:31:03Z",
+   "ageDays": 2.6,
+   "seconds": 25,
+   "views": 1165848,
+   "likes": 11121,
+   "thumb": "https://i.ytimg.com/vi/Vss7DIJ35QI/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 23700,
+   "median": 1934,
+   "n_shorts": 29,
+   "multiple": 602.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "veer",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "phir-jo-kiya",
+    "hooks": [
+     "phir-jo-kiya"
+    ],
+    "format": "katha",
+    "deity": "hanuman",
+    "topic": "Hanuman aur Sita ka sindoor",
+    "cover_style": "close-up Hanuman, sindoor pouring down his chest from a bowl, desert lake behind",
+    "art_style": "cinematic",
+    "why": "'X dekhkar Y ne aisa kaam kiya' reaction hook at 603x median; the cover shows the action itself, no question needed",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "5nCGy7sKjYw",
+   "url": "https://youtube.com/shorts/5nCGy7sKjYw",
+   "title": "हनुमान चालीसा🙏#hanuman #shorts #bhakti #shreeram",
+   "channel": "Aarohi",
+   "channelId": "UCbEsWapPC1uFmunl8FCH-7w",
+   "published": "2026-11-21T02:32:28Z",
+   "ageDays": 1,
+   "seconds": 10,
+   "views": 1076576,
+   "likes": 5316,
+   "thumb": "https://i.ytimg.com/vi/5nCGy7sKjYw/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 4810,
+   "median": 1978,
+   "n_shorts": 29,
+   "multiple": 544.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "views far beyond subscribers"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "hanuman",
+    "topic": "Hanuman Chalisa, 10 second loop",
+    "cover_style": "Ram with bow and child Hanuman on a motorbike, storm sky, no text",
+    "art_style": "cinematic",
+    "why": "10-second chalisa loop at 544x median; the cover is an action scene that does not match the chalisa title",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "kW97Vejt1Gk",
+   "url": "https://youtube.com/shorts/kW97Vejt1Gk",
+   "title": "जब रावण और हनुमान जी के बीच हुआ एक मुक्के का युद्ध! जानिए किसमें था सबसे ज्यादा बल? 🔥#Shorts",
+   "channel": "Mr India& Bharat ",
+   "channelId": "UCOAu6CFYtuUIvXbyCUs_Zxg",
+   "published": "2026-11-16T10:46:10Z",
+   "ageDays": 5.7,
+   "seconds": 171,
+   "views": 1069853,
+   "likes": 65568,
+   "thumb": "https://i.ytimg.com/vi/kW97Vejt1Gk/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 11400,
+   "median": 2002,
+   "n_shorts": 29,
+   "multiple": 534.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab",
+     "question"
+    ],
+    "hook": "jab",
+    "format": "facts",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab",
+     "question"
+    ],
+    "format": "facts",
+    "deity": "hanuman",
+    "topic": "Hanuman vs Ravan: kiska bal zyada",
+    "cover_style": "calm seated Hanuman before a temple lamp, no fight shown",
+    "art_style": "cinematic",
+    "why": "jab + 'kisme zyada bal' question at 534x median; the cover shows a calm meditating Hanuman and does not sell the fight",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "dC8BqrPHTSE",
+   "url": "https://youtube.com/shorts/dC8BqrPHTSE",
+   "title": "हनुमान चालीसा संपूर्ण ❤️🙏#viral #sanatandharma #shorts #trending #bajrangbali #ram",
+   "channel": "Radhe Radhe ji@459",
+   "channelId": "UCcV1Okd_bJckBSeSK6yuLQw",
+   "published": "2026-11-15T14:38:16Z",
+   "ageDays": 6.5,
+   "seconds": 21,
+   "views": 1025428,
+   "likes": 10324,
+   "thumb": "https://i.ytimg.com/vi/dC8BqrPHTSE/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 29200,
+   "median": 1972.5,
+   "n_shorts": 30,
+   "multiple": 519.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "hanuman",
+    "topic": "Hanuman Chalisa sampoorn",
+    "cover_style": "Hanuman underwater facing a snapping sea creature, bubbles, blue water",
+    "art_style": "cinematic",
+    "why": "Full chalisa loop at 520x median; the strange underwater cover (Hanuman in a sea, not a temple) is what catches the eye",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "1BgwRyMrByU",
+   "url": "https://youtube.com/shorts/1BgwRyMrByU",
+   "title": "हनुमान जी की गदा का असली राज़ 😱🔱 #facts",
+   "channel": "TRIKAAL  Kahaaniyan",
+   "channelId": "UC9YvKAcOqBo06iB3TSSeQog",
+   "published": "2026-11-16T12:52:36Z",
+   "ageDays": 5.6,
+   "seconds": 164,
+   "views": 777222,
+   "likes": 36421,
+   "thumb": "https://i.ytimg.com/vi/1BgwRyMrByU/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 25600,
+   "median": 4170,
+   "n_shorts": 29,
+   "multiple": 186.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "facts",
+    "deity": "hanuman",
+    "topic": "Hanuman ki gada ka raaz",
+    "cover_style": "Hanuman swinging a glowing gada under lightning, rubble at his feet",
+    "art_style": "cinematic",
+    "why": "'असली राज़' + #facts at 186x median; the lightning cover sells the secret without a question",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "eZQkBG-TE84",
+   "url": "https://youtube.com/shorts/eZQkBG-TE84",
+   "title": "😱 हनुमान जी ने सत्यभामा को क्यों नहीं किया प्रणाम? #viral #shorts #krishna #hanuman #ram #ytshorts",
+   "channel": "Krishna Leela",
+   "channelId": "UCqNnB26MInac5foEy69mtIQ",
+   "published": "2026-11-16T06:29:02Z",
+   "ageDays": 5.9,
+   "seconds": 158,
+   "views": 579653,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/eZQkBG-TE84/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 43900,
+   "median": 3115,
+   "n_shorts": 29,
+   "multiple": 186.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "varjit",
+     "kyon",
+     "question"
+    ],
+    "hook": "varjit",
+    "format": "facts",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "format": "katha",
+    "deity": "krishna",
+    "topic": "Hanuman ne Satyabhama ko pranam kyon nahi kiya",
+    "cover_style": "3 image panels with Hindi text bands, red arrow, Satyabhama close-up",
+    "art_style": "text-card",
+    "why": "'क्यों नहीं' story question at 186x median; the title names Hanuman but the cover is Krishna's court, so the deity is Krishna",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "5Ygqv94eXTY",
+   "url": "https://youtube.com/shorts/5Ygqv94eXTY",
+   "title": "Kaag re kaag tu mang re mang🐦‍⬛। Shri Krishna status।#krishna #bhajan #shorts",
+   "channel": "Radha Krishna ki bhakt 108 ",
+   "channelId": "UCdCMaYZu8AP88cvRz1_hVvA",
+   "published": "2026-11-18T14:00:26Z",
+   "ageDays": 3.6,
+   "seconds": 29,
+   "views": 783612,
+   "likes": 19856,
+   "thumb": "https://i.ytimg.com/vi/5Ygqv94eXTY/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 84200,
+   "median": 4754,
+   "n_shorts": 29,
+   "multiple": 164.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "loop",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "krishna",
+    "topic": "Kaag re kaag bhajan",
+    "cover_style": "Krishna face close-up beside a black crow, Hindi text, subscribe button",
+    "art_style": "cinematic",
+    "why": "Bhajan loop with a playful 'kaag' title at 165x median; the warm close-up of Krishna and a crow is a soft, friendly cover",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "jjoOLWUTrwo",
+   "url": "https://youtube.com/shorts/jjoOLWUTrwo",
+   "title": "Hindu Hai Hum🔥Jai Hanuman Gyan Gun Sagar🙏Powerful Hanuman Status🙏Jai Shri Ram #hanuman #short #viral",
+   "channel": "BHAVNA RATHOD",
+   "channelId": "UCE3npoAgHu4lmNTyjw6suZw",
+   "published": "2026-11-15T11:30:36Z",
+   "ageDays": 6.7,
+   "seconds": 33,
+   "views": 856991,
+   "likes": 12007,
+   "thumb": "https://i.ytimg.com/vi/jjoOLWUTrwo/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 6610,
+   "median": 5669,
+   "n_shorts": 29,
+   "multiple": 151.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "veer",
+    "deity": "hanuman",
+    "topic": "Hanuman status: gyan ke sagar",
+    "cover_style": "Hanuman with a glowing mace facing a cobra-man in a dark temple",
+    "art_style": "cinematic",
+    "why": "Jaikara status at 151x median; the battle cover is strong, but the title is a row of tags with no hook",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "9ZIurhAS-xs",
+   "url": "https://youtube.com/shorts/9ZIurhAS-xs",
+   "title": "😍 जब ज़िद पर आ गई पार्वती 🔱 | Parvati Full Song | Hanuman Ansh | Shiv Parvati Bhajan #hanumanansh",
+   "channel": "bhakti Vani 243",
+   "channelId": "UCnQi-SXzandKHLTRiKYj3KA",
+   "published": "2026-11-15T12:27:16Z",
+   "ageDays": 6.6,
+   "seconds": 31,
+   "views": 1498516,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/9ZIurhAS-xs/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 28500,
+   "median": 12050,
+   "n_shorts": 29,
+   "multiple": 124.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "loop",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "loop",
+    "deity": "shiv",
+    "topic": "Jab zid pe aayi Parvati (song)",
+    "cover_style": "Parvati seated in a stone hut in red sari beside reclining Shiv, crescent moon glow, snow mountains",
+    "art_style": "cinematic",
+    "why": "'जब … पार्वती' song hook at 124x median; the same song at 2.1M views on another channel shows the title works; we do not copy its sulking plot",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "QnvSdJtODQ4",
+   "url": "https://youtube.com/shorts/QnvSdJtODQ4",
+   "title": "हनुमान जी की मूर्ति को मिला नया मंदिर 🙏 #shorts #hanuman",
+   "channel": "HorrorTV_100k",
+   "channelId": "UCuxy4S9jnnVp6jZQRBxbuMQ",
+   "published": "2026-11-17T00:34:47Z",
+   "ageDays": 5.1,
+   "seconds": 48,
+   "views": 5720628,
+   "likes": 114627,
+   "thumb": "https://i.ytimg.com/vi/QnvSdJtODQ4/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 71700,
+   "median": 46638,
+   "n_shorts": 29,
+   "multiple": 122.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "topic": "Murti banana: Hanuman ka naya mandir",
+    "cover_style": "real man kneeling in mud beside a clay Hanuman idol, motorbike at left",
+    "art_style": "real-photo",
+    "why": "Real-life clay murti clip at 5.7M views and 123x median; the channel name (HorrorTV_100k) is off-topic, check it before any use",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "p4JIB8XS4kU",
+   "url": "https://youtube.com/shorts/p4JIB8XS4kU",
+   "title": "जय श्री कृष्णा 💕🦚 #krishna #shorts #viral  #bhakti #video",
+   "channel": "Bhajan Shorts",
+   "channelId": "UCQE8-SiUkBWFIYPbjtAJ6EA",
+   "published": "2026-11-17T03:04:07Z",
+   "ageDays": 5,
+   "seconds": 11,
+   "views": 971955,
+   "likes": 4382,
+   "thumb": "https://i.ytimg.com/vi/p4JIB8XS4kU/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 10400,
+   "median": 8460,
+   "n_shorts": 29,
+   "multiple": 114.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "topic": "Bal Krishna ka gaadi-khel",
+    "cover_style": "baby Krishna in yellow dhoti playing with a toy cow cart, plants behind",
+    "art_style": "cartoon-3d",
+    "why": "11-second Bal Krishna greeting at 115x median; the cute 3D baby cover is the draw",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "wbFdwjUqx-0",
+   "url": "https://youtube.com/shorts/wbFdwjUqx-0",
+   "title": "जय श्री कृष्णा 💕🦚#krishna #bhakti #viral #shorts #video",
+   "channel": "Bhajan Shorts",
+   "channelId": "UCQE8-SiUkBWFIYPbjtAJ6EA",
+   "published": "2026-11-16T06:23:55Z",
+   "ageDays": 5.9,
+   "seconds": 11,
+   "views": 770796,
+   "likes": 3348,
+   "thumb": "https://i.ytimg.com/vi/wbFdwjUqx-0/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 10400,
+   "median": 8460,
+   "n_shorts": 29,
+   "multiple": 91.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "topic": "Bal Krishna, mor-pankh",
+    "cover_style": "baby Krishna with peacock feather sucking a finger, sitting on a stool",
+    "art_style": "cartoon-3d",
+    "why": "Same greeting as p4JI at 91x median; the baby close-up is the strongest part of the cover",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "4rrG6UohPlE",
+   "url": "https://youtube.com/shorts/4rrG6UohPlE",
+   "title": "Jab Zid Pe Aa Gayi Parvati 🔱| Parvati Full Song | Hanuman Ansh | Shiv Parvati Bhajan #hanumanansh",
+   "channel": "Krishna Marg",
+   "channelId": "UCqg9_pXnLbu6_rMmS4iL1dA",
+   "published": "2026-11-16T11:30:03Z",
+   "ageDays": 5.7,
+   "seconds": 32,
+   "views": 2096314,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/4rrG6UohPlE/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 69800,
+   "median": 32036,
+   "n_shorts": 29,
+   "multiple": 65.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "loop",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "loop",
+    "deity": "shiv",
+    "topic": "Jab zid pe aayi Parvati (song, second copy)",
+    "cover_style": "3D Parvati in red sari seated on a snow rock among bearded sages, mountain behind",
+    "art_style": "cartoon-3d",
+    "why": "Same Parvati song on another channel at 2.1M views and 65x median; the 3D group cover is what sells",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "I9e724N-8H0",
+   "url": "https://youtube.com/shorts/I9e724N-8H0",
+   "title": "Shani Dev Ki Drishti | Episode 02 |  Mahaveer Hanuman Ki Taakat |  Lanka Dahan | Shani Dev Series",
+   "channel": "InstaBhakti TV",
+   "channelId": "UCfkocbQ68Lm-OeydfHURbIg",
+   "published": "2026-11-17T04:24:16Z",
+   "ageDays": 5,
+   "seconds": 158,
+   "views": 1685682,
+   "likes": 95297,
+   "thumb": "https://i.ytimg.com/vi/I9e724N-8H0/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 36900,
+   "median": 30980,
+   "n_shorts": 14,
+   "multiple": 54.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "series"
+    ],
+    "hook": "series",
+    "format": "series",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "series",
+    "hooks": [
+     "series"
+    ],
+    "format": "series",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "dmloNsJYn00",
+   "url": "https://youtube.com/shorts/dmloNsJYn00",
+   "title": "जय श्री कृष्णा 💕🦚#krishna #bhakti #viral #shorts #video",
+   "channel": "Bhajan Shorts",
+   "channelId": "UCQE8-SiUkBWFIYPbjtAJ6EA",
+   "published": "2026-11-17T07:22:29Z",
+   "ageDays": 4.8,
+   "seconds": 21,
+   "views": 439563,
+   "likes": 2909,
+   "thumb": "https://i.ytimg.com/vi/dmloNsJYn00/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 10400,
+   "median": 8460,
+   "n_shorts": 29,
+   "multiple": 52,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "wT2AA8QQKi4",
+   "url": "https://youtube.com/shorts/wT2AA8QQKi4",
+   "title": "जय श्री कृष्णा 💕🦚#krishna #shorts #viral #bhakti #video",
+   "channel": "Bhajan Shorts",
+   "channelId": "UCQE8-SiUkBWFIYPbjtAJ6EA",
+   "published": "2026-11-21T09:17:43Z",
+   "ageDays": 0.8,
+   "seconds": 21,
+   "views": 315498,
+   "likes": 4023,
+   "thumb": "https://i.ytimg.com/vi/wT2AA8QQKi4/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 10400,
+   "median": 8460,
+   "n_shorts": 29,
+   "multiple": 37.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "Uy18YH-TzV0",
+   "url": "https://youtube.com/shorts/Uy18YH-TzV0",
+   "title": "Jab Zid Pe Aa Gayi Parvati 🔱| Parvati Full Song | Hanuman Ansh | Shiv Parvati Bhajan #hanumanansh",
+   "channel": "Krishna Marg",
+   "channelId": "UCqg9_pXnLbu6_rMmS4iL1dA",
+   "published": "2026-11-18T11:33:49Z",
+   "ageDays": 3.7,
+   "seconds": 30,
+   "views": 890605,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/Uy18YH-TzV0/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 69800,
+   "median": 32036,
+   "n_shorts": 29,
+   "multiple": 27.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "loop",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "loop",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "jWUMx_MJBr0",
+   "url": "https://youtube.com/shorts/jWUMx_MJBr0",
+   "title": "🙏 सीने में राम! #hanuman #ramleela #viralvideo #shorts",
+   "channel": "Divine_Savi",
+   "channelId": "UCIuaKOn35uyM7mB0tbpWa6Q",
+   "published": "2026-11-17T06:17:05Z",
+   "ageDays": 4.9,
+   "seconds": 10,
+   "views": 1297751,
+   "likes": 6989,
+   "thumb": "https://i.ytimg.com/vi/jWUMx_MJBr0/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 31500,
+   "median": 50662,
+   "n_shorts": 29,
+   "multiple": 25.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "k5ppwurG5Qs",
+   "url": "https://youtube.com/shorts/k5ppwurG5Qs",
+   "title": "टूटे हुए हनुमान जी के मंदिर को इस आदमी ने बना दिया सुंदर 😍🚩 | जय बजरंगबली 🙏 #shorts",
+   "channel": "HorrorTV_100k",
+   "channelId": "UCuxy4S9jnnVp6jZQRBxbuMQ",
+   "published": "2026-11-16T00:39:41Z",
+   "ageDays": 6.1,
+   "seconds": 44,
+   "views": 1104438,
+   "likes": 29473,
+   "thumb": "https://i.ytimg.com/vi/k5ppwurG5Qs/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 71700,
+   "median": 46638,
+   "n_shorts": 29,
+   "multiple": 23.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "P1UUgVC4qTY",
+   "url": "https://youtube.com/shorts/P1UUgVC4qTY",
+   "title": "इस इंसान ने बचाई हनुमान जी की मूर्ति 🙏🚩 #shorts #hanuman",
+   "channel": "Ai-vision-2a",
+   "channelId": "UCXsqk3DWUE0XP7mZ8NQDwcw",
+   "published": "2026-11-17T00:42:09Z",
+   "ageDays": 5.1,
+   "seconds": 49,
+   "views": 1379511,
+   "likes": 25440,
+   "thumb": "https://i.ytimg.com/vi/P1UUgVC4qTY/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 17800,
+   "median": 59128,
+   "n_shorts": 21,
+   "multiple": 23.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "7Q_PhNofsg4",
+   "url": "https://youtube.com/shorts/7Q_PhNofsg4",
+   "title": "नर्मदा की खौफनाक जल-कन्या ने पकड़ा हनुमान जी का पैर, फिर जो हुआ… 😱 #facts",
+   "channel": "Real Yash",
+   "channelId": "UCXjnoHkE4EYXp0OtlSW7m9A",
+   "published": "2026-11-19T15:03:13Z",
+   "ageDays": 2.5,
+   "seconds": 122,
+   "views": 1042329,
+   "likes": 41514,
+   "thumb": "https://i.ytimg.com/vi/7Q_PhNofsg4/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 571000,
+   "median": 48139,
+   "n_shorts": 29,
+   "multiple": 21.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "phir-jo-kiya"
+    ],
+    "hook": "phir-jo-kiya",
+    "format": "facts",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "phir-jo-kiya",
+    "hooks": [
+     "phir-jo-kiya"
+    ],
+    "format": "facts",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "3nMUBQ8kvaQ",
+   "url": "https://youtube.com/shorts/3nMUBQ8kvaQ",
+   "title": "Jab Zid Pe Aa Gayi Parvati 🔱| Parvati Full Song | Hanuman Ansh | Shiv Parvati Bhajan #hanumanansh",
+   "channel": "Krishna Marg",
+   "channelId": "UCqg9_pXnLbu6_rMmS4iL1dA",
+   "published": "2026-11-15T11:30:07Z",
+   "ageDays": 6.7,
+   "seconds": 26,
+   "views": 598049,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/3nMUBQ8kvaQ/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 69800,
+   "median": 32036,
+   "n_shorts": 29,
+   "multiple": 18.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "loop",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "loop",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "VLhWAAJxB7E",
+   "url": "https://youtube.com/shorts/VLhWAAJxB7E",
+   "title": "देखिए श्री कृष्ण पूतना बध झांकी 🙏😮😱",
+   "channel": "Yogendra Vrindavan 🦚",
+   "channelId": "UCHoo-JrmpFHkQyGwMdyLwEg",
+   "published": "2026-11-17T13:00:26Z",
+   "ageDays": 4.6,
+   "seconds": 10,
+   "views": 1260453,
+   "likes": 5481,
+   "thumb": "https://i.ytimg.com/vi/VLhWAAJxB7E/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 65600,
+   "median": 74086.5,
+   "n_shorts": 30,
+   "multiple": 17,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "6LlgeG-4i9A",
+   "url": "https://youtube.com/shorts/6LlgeG-4i9A",
+   "title": "सड़क किनारे गिरी मिली हनुमान जी की मूर्ति, इस इंसान ने किया ऐसा नेक काम ❤️🙏 | #shorts #hanuman",
+   "channel": "HorrorTV_100k",
+   "channelId": "UCuxy4S9jnnVp6jZQRBxbuMQ",
+   "published": "2026-11-19T00:33:11Z",
+   "ageDays": 3.1,
+   "seconds": 53,
+   "views": 598837,
+   "likes": 12265,
+   "thumb": "https://i.ytimg.com/vi/6LlgeG-4i9A/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 71700,
+   "median": 46638,
+   "n_shorts": 29,
+   "multiple": 12.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "UxnKyAfC8oE",
+   "url": "https://youtube.com/shorts/UxnKyAfC8oE",
+   "title": "🙏 सीने मे राम जी! #hanuman #ramleela  #viralvideo #shorts",
+   "channel": "Divine_Savi",
+   "channelId": "UCIuaKOn35uyM7mB0tbpWa6Q",
+   "published": "2026-11-16T06:17:02Z",
+   "ageDays": 5.9,
+   "seconds": 11,
+   "views": 633285,
+   "likes": 3988,
+   "thumb": "https://i.ytimg.com/vi/UxnKyAfC8oE/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 31500,
+   "median": 50662,
+   "n_shorts": 29,
+   "multiple": 12.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "W3Sw_PgaITk",
+   "url": "https://youtube.com/shorts/W3Sw_PgaITk",
+   "title": "🙏 सीने मे राम! #hanuman #ramleela #viralvideo #shorts",
+   "channel": "Divine_Savi",
+   "channelId": "UCIuaKOn35uyM7mB0tbpWa6Q",
+   "published": "2026-11-16T04:54:04Z",
+   "ageDays": 6,
+   "seconds": 10,
+   "views": 614219,
+   "likes": 3117,
+   "thumb": "https://i.ytimg.com/vi/W3Sw_PgaITk/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 31500,
+   "median": 50662,
+   "n_shorts": 29,
+   "multiple": 12.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "YqAuZ4taH-g",
+   "url": "https://youtube.com/shorts/YqAuZ4taH-g",
+   "title": "Adipurush vs Ramayan | Who has better Hanuman ji #ramayan",
+   "channel": "Harsh Bajpai",
+   "channelId": "UCbo7lGFiZ7e_MlsDu6MZAWA",
+   "published": "2026-11-15T12:02:03Z",
+   "ageDays": 6.7,
+   "seconds": 40,
+   "views": 378639,
+   "likes": 7676,
+   "thumb": "https://i.ytimg.com/vi/YqAuZ4taH-g/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 8900,
+   "median": 35707,
+   "n_shorts": 29,
+   "multiple": 10.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "viyoHqsykwk",
+   "url": "https://youtube.com/shorts/viyoHqsykwk",
+   "title": "देखिए भगवान् श्री कृष्ण ने अपनी बंशी से बनाया था ये कुहा 🦚💗🖇️",
+   "channel": "Yogendra Vrindavan 🦚",
+   "channelId": "UCHoo-JrmpFHkQyGwMdyLwEg",
+   "published": "2026-11-19T12:41:49Z",
+   "ageDays": 2.6,
+   "seconds": 7,
+   "views": 746334,
+   "likes": 3502,
+   "thumb": "https://i.ytimg.com/vi/viyoHqsykwk/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 65600,
+   "median": 71618,
+   "n_shorts": 29,
+   "multiple": 10.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "weR2wof6Ka0",
+   "url": "https://youtube.com/shorts/weR2wof6Ka0",
+   "title": "हनुमान जी के मंदिर का बदल दिया पूरा रूप 😍🚩#shorts #hanuman",
+   "channel": "Ai-vision-2a",
+   "channelId": "UCXsqk3DWUE0XP7mZ8NQDwcw",
+   "published": "2026-11-16T00:39:58Z",
+   "ageDays": 6.1,
+   "seconds": 48,
+   "views": 605119,
+   "likes": 14132,
+   "thumb": "https://i.ytimg.com/vi/weR2wof6Ka0/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 17800,
+   "median": 59128,
+   "n_shorts": 21,
+   "multiple": 10.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "iQnLjw9fCco",
+   "url": "https://youtube.com/shorts/iQnLjw9fCco",
+   "title": "Hanuman Ji vs Rakshas 😱🔥 | Clay Art | Amazing Handmade Sculpture",
+   "channel": "Shruti art",
+   "channelId": "UCl6CkgOUH0MBpmUZhGw8RSQ",
+   "published": "2026-11-15T14:16:23Z",
+   "ageDays": 6.6,
+   "seconds": 43,
+   "views": 813521,
+   "likes": 8090,
+   "thumb": "https://i.ytimg.com/vi/iQnLjw9fCco/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 511000,
+   "median": 80180,
+   "n_shorts": 29,
+   "multiple": 10.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "tDMg3f_x9ks",
+   "url": "https://youtube.com/shorts/tDMg3f_x9ks",
+   "title": "श्री कृष्ण ने अपने माता-पिता को 14 साल जेल में क्यों रहने दिया? 😱 कर्मो का रहस्य।",
+   "channel": " Raw Talks With Anaya\n",
+   "channelId": "UCypM0aiIUC17DzPpB4o6K-Q",
+   "published": "2026-11-15T12:43:30Z",
+   "ageDays": 6.6,
+   "seconds": 116,
+   "views": 465117,
+   "likes": 9439,
+   "thumb": "https://i.ytimg.com/vi/tDMg3f_x9ks/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 46800,
+   "median": 53329,
+   "n_shorts": 29,
+   "multiple": 8.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle",
+     "kyon",
+     "rahasya",
+     "question"
+    ],
+    "hook": "listicle",
+    "format": "facts",
+    "deity": "krishna",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "listicle",
+    "hooks": [
+     "listicle",
+     "kyon",
+     "rahasya",
+     "question"
+    ],
+    "format": "facts",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "wIef3stHD0U",
+   "url": "https://youtube.com/shorts/wIef3stHD0U",
+   "title": "देखिए भगवान् श्री कृष्ण जी ने अपनी बंशी से बनाया था ये कुहा 🦚🖇️💗",
+   "channel": "Yogendra Vrindavan 🦚",
+   "channelId": "UCHoo-JrmpFHkQyGwMdyLwEg",
+   "published": "2026-11-20T04:16:17Z",
+   "ageDays": 2,
+   "seconds": 7,
+   "views": 586416,
+   "likes": 2522,
+   "thumb": "https://i.ytimg.com/vi/wIef3stHD0U/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 65600,
+   "median": 71618,
+   "n_shorts": 29,
+   "multiple": 8.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "AJAz27Rjh0k",
+   "url": "https://youtube.com/shorts/AJAz27Rjh0k",
+   "title": "श्रीराम से हनुमान ने ज़िद करके क्यों माँगा ऐसा वरदान! #ram #sitaram #mahadev #hanuman #radhakrishna",
+   "channel": "KaliYug",
+   "channelId": "UCzOpQQi-jRnqkGGslNWxCgw",
+   "published": "2026-11-19T11:30:04Z",
+   "ageDays": 2.7,
+   "seconds": 140,
+   "views": 506384,
+   "likes": 16487,
+   "thumb": "https://i.ytimg.com/vi/AJAz27Rjh0k/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 562000,
+   "median": 69661.5,
+   "n_shorts": 30,
+   "multiple": 7.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kyon"
+    ],
+    "hook": "kyon",
+    "format": "facts",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon"
+    ],
+    "format": "facts",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "FVRYFRdWPvw",
+   "url": "https://youtube.com/shorts/FVRYFRdWPvw",
+   "title": "hanuman murti making | bajrangbali ki murti kaise banate hain | bajrangbali idol making #Shorts",
+   "channel": "Amit Sculpture Create",
+   "channelId": "UCUPi3R91u1jVdMLVQSqoPxA",
+   "published": "2026-11-18T12:39:54Z",
+   "ageDays": 3.6,
+   "seconds": 127,
+   "views": 1033983,
+   "likes": 18769,
+   "thumb": "https://i.ytimg.com/vi/FVRYFRdWPvw/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 1420000,
+   "median": 143281,
+   "n_shorts": 29,
+   "multiple": 7.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "64HwZXmJFm0",
+   "url": "https://youtube.com/shorts/64HwZXmJFm0",
+   "title": "हनुमान जी 🚩🔱 ने रावण और भूत 😨 को घुमा-घुमा कर निपटाया 🤩#hanumanchalisa #youtubeshorts #comedyshorts",
+   "channel": "DARING_SANOJ91",
+   "channelId": "UC8rUO9F2S12LrpDb6qx3yBg",
+   "published": "2026-11-18T00:30:22Z",
+   "ageDays": 4.1,
+   "seconds": 169,
+   "views": 6586822,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/64HwZXmJFm0/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 1010000,
+   "median": 949567,
+   "n_shorts": 29,
+   "multiple": 6.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "4JGKQjJTLR0",
+   "url": "https://youtube.com/shorts/4JGKQjJTLR0",
+   "title": "jai shri krishna🙏 and sokhi @KartikBind88  #new #shorts #viral #youtubeshorts #trending #viralvideo",
+   "channel": "Kartik Bind",
+   "channelId": "UC1d7OpFZWX2JYXh6cUuk1KQ",
+   "published": "2026-11-16T12:59:30Z",
+   "ageDays": 5.6,
+   "seconds": 23,
+   "views": 966202,
+   "likes": 7175,
+   "thumb": "https://i.ytimg.com/vi/4JGKQjJTLR0/hqdefault.jpg",
+   "query": "श्री कृष्ण",
+   "subs": 42400,
+   "median": 158978,
+   "n_shorts": 30,
+   "multiple": 6.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "veer",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "veer",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  }
+ ],
+ "strong": [
+  {
+   "id": "sl2yVtywxdA",
+   "url": "https://youtube.com/shorts/sl2yVtywxdA",
+   "title": "Clay Se Banaya Ram Bhakt Hanuman #hanuman #hanumanji #shorts #short",
+   "channel": "Bengali Bhomra By Sanchita",
+   "channelId": "UC3_-Q23HTRnx5Od03tj8Vjw",
+   "published": "2026-11-15T14:32:02Z",
+   "ageDays": 6.5,
+   "seconds": 59,
+   "views": 1328602,
+   "likes": 15407,
+   "thumb": "https://i.ytimg.com/vi/sl2yVtywxdA/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 304000,
+   "median": 734259,
+   "n_shorts": 29,
+   "multiple": 1.8,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "1.8x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "topic": "Clay Hanuman ji, lotus par",
+    "cover_style": "handmade clay Hanuman holding a book on a pink lotus, sea behind",
+    "art_style": "real-photo",
+    "why": "Not truly viral: 1.8x its channel median (strong-channel pick only); a craft video where the clay figure is the whole hook",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "iQGGYWCyePE",
+   "url": "https://youtube.com/shorts/iQGGYWCyePE",
+   "title": "जब गोवर्धन उठाते ही पत्थर बनने लगा हनुमान जी का शरीर! 😱  #facts",
+   "channel": "Priyansh Shukla",
+   "channelId": "UCdefYfRohqSQt6EI4DVC_9w",
+   "published": "2026-11-17T13:05:25Z",
+   "ageDays": 4.6,
+   "seconds": 159,
+   "views": 1004562,
+   "likes": 45425,
+   "thumb": "https://i.ytimg.com/vi/iQGGYWCyePE/hqdefault.jpg",
+   "query": "हनुमान",
+   "subs": 2670000,
+   "median": 662724.5,
+   "n_shorts": 30,
+   "multiple": 1.5,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "1.5x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "facts",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "facts",
+    "deity": "hanuman",
+    "topic": "Hanuman ka sharir patthar hona",
+    "cover_style": "Hanuman with one arm turned to grey stone, a giant stone face on a mountain behind",
+    "art_style": "cinematic",
+    "why": "Not truly viral: 1.5x its median (strong-channel pick only); the half-stone arm is a strange-visual cover, but the title is not a question",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  }
+ ],
+ "near": [
+  {
+   "id": "WbxlgoOKKe8",
+   "url": "https://youtube.com/shorts/WbxlgoOKKe8",
+   "title": "बागेश्वर धाम ने बताया हनुमान जी कब तक भोजन नही करेंगे #bageshwardhamsarkar",
+   "channel": "mr amit kumar 123",
+   "views": 1000558,
+   "multiple": 787.2,
+   "why_not": []
+  },
+  {
+   "id": "PH0qz98hivY",
+   "url": "https://youtube.com/shorts/PH0qz98hivY",
+   "title": "Bhoot 👻 Ke Bhai Ne Hanuman Bhakt 🚩 Ko Apna Nishana Banaya 😱 #hanumanchalisa #hanumanji #bajrangbali",
+   "channel": "Vk Creation ",
+   "views": 738653,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "pjB1eUG9oUA",
+   "url": "https://youtube.com/shorts/pjB1eUG9oUA",
+   "title": "🚩हनुमान चालीसा सम्पूर्ण🚩 |Hanuman chalisa Lyrics Complete #hanuman #aarti #hanumanchalisa#rambhakt🚩🙏",
+   "channel": "Suraj Panwar",
+   "views": 634346,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "iyLVCcmT1Fk",
+   "url": "https://youtube.com/shorts/iyLVCcmT1Fk",
+   "title": "JAI SHREE RAM JAI HANUMAN JI #ram #ramadan #hanuman #hanumanji #lordrama #lordhanuman",
+   "channel": "Mr. aakash vlog 2",
+   "views": 619943,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "K_Rso8mDfeE",
+   "url": "https://youtube.com/shorts/K_Rso8mDfeE",
+   "title": "Hanuman Chalisa Ka Asli Rahasya Kya Hai? 🙏🔥 | Osho Deep Wisdom",
+   "channel": "Sagar.Osho_Lens",
+   "views": 584867,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "vFcWODfscwY",
+   "url": "https://youtube.com/shorts/vFcWODfscwY",
+   "title": "श्री कृष्ण के ऊपर चोरी का इल्जाम कैसे लगा 🚩 || #shorts",
+   "channel": "NIKHIL TRIPATHI ",
+   "views": 583663,
+   "multiple": 20.2,
+   "why_not": []
+  },
+  {
+   "id": "sLEzg2D4uYM",
+   "url": "https://youtube.com/shorts/sLEzg2D4uYM",
+   "title": "Aakhir Jambavant Ji Ko Hanuman Ji Par Itna Vishwas Kyun Tha? | Ramayan Katha #ram #hanuman",
+   "channel": "Katha Kathan with Piyush",
+   "views": 573993,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "y8dIJY9f6ak",
+   "url": "https://youtube.com/shorts/y8dIJY9f6ak",
+   "title": "लोगों ने आसमान में हनुमान जी को उड़ते हुए देखा #shorts",
+   "channel": "PRITHVI PuRAm",
+   "views": 563402,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  }
+ ],
+ "reuploads": [
+  {
+   "id": "5JlMbDqEDXE",
+   "url": "https://youtube.com/shorts/5JlMbDqEDXE",
+   "title": "जय हनुमान ज्ञान गुण सागर 🙏🚩 संकटमोचन हनुमान जी के दर्शन ❤️ #HanumanJi #Shorts",
+   "channel": "Mayank Pahadi Vlog ",
+   "views": 2939426,
+   "signals": [
+    "views far beyond subscribers",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "i3LmwUi7kz0",
+   "url": "https://youtube.com/shorts/i3LmwUi7kz0",
+   "title": "🚩 वीर हनुमान जी का महा आल्हा 🔥 bajarangbali bhajan |Hanuman chalisa 2026",
+   "channel": "JAISHRIRAM JAIHANUMAN ",
+   "views": 2390374,
+   "signals": [
+    "views far beyond subscribers",
+    "new channel"
+   ]
+  },
+  {
+   "id": "FA4g3F4XNgQ",
+   "url": "https://youtube.com/shorts/FA4g3F4XNgQ",
+   "title": "🚩हनुमान चालीसा सम्पूर्ण |Hanuman Chalisa Lyrics Complete| #explore #hanuman #hanumanchalisa #ram",
+   "channel": "Nityanand vlogs",
+   "views": 1116973,
+   "signals": [
+    "spammy title",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "EvLteavs9cU",
+   "url": "https://youtube.com/shorts/EvLteavs9cU",
+   "title": "🔥 Sunny Devil Hanuman | रामायण का सबसे शक्तिशाली योद्धा हनुमान जी 🚩 | Full Movie Scene#ramayan#movie",
+   "channel": "GyanWalePbh",
+   "views": 890574,
+   "signals": [
+    "tiny channel",
+    "random topics"
+   ]
+  },
+  {
+   "id": "qFUJ_0p4YEI",
+   "url": "https://youtube.com/shorts/qFUJ_0p4YEI",
+   "title": "श्री कृष्णा जी माखन चुरा के भागते हुए#premmandir #vrindavan #radhakrishna #shorts",
+   "channel": "vrindavanbhaktidham9861",
+   "views": 656267,
+   "signals": [
+    "views far beyond subscribers",
+    "new channel"
+   ]
+  },
+  {
+   "id": "sLEwZTxClYQ",
+   "url": "https://youtube.com/shorts/sLEwZTxClYQ",
+   "title": "श्री कृष्ण जी और कलिया नाग 🐍 #viral #trending #shorts",
+   "channel": "Braj_rashik_51",
+   "views": 222549,
+   "signals": [
+    "new channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "Mp2Wb02S-eE",
+   "url": "https://youtube.com/shorts/Mp2Wb02S-eE",
+   "title": "श्री कृष्ण जन्माष्टमी पदकों पदकों 🦚 कन्हैया हमारा माखन 🦚 चोरा 🌸 भाग रहे हैं 😁😁#trending #yt #viral 🦚",
+   "channel": "Suraj vlogs",
+   "views": 177392,
+   "signals": [
+    "spammy title",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "LDRtFdNRUx8",
+   "url": "https://youtube.com/shorts/LDRtFdNRUx8",
+   "title": "🌺🌺भगवान श्री कृष्णा जी का विराट रूप का दिव्य दर्शन 🌺🌺 #bhagwadgeeta #krishna #krishnabhajan #status",
+   "channel": "Joy Junction - CB",
+   "views": 1395318,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "5vRjjk1bZdY",
+   "url": "https://youtube.com/shorts/5vRjjk1bZdY",
+   "title": "🌺🌺भगवान श्री कृष्णा जी का विराट रूप का दिव्य दर्शन 🌺🌺 #bhagwadgeeta #krishna #krishnabhajan #status",
+   "channel": "Joy Junction - CB",
+   "views": 181866,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "_trx7VMNm2A",
+   "url": "https://youtube.com/shorts/_trx7VMNm2A",
+   "title": "दानवीर कर्ण की महानता देखकर श्री कृष्ण भी हुए प्रसन्न 🙏 #shrikrishna",
+   "channel": "Factorial xyz",
+   "views": 1091057,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "OpW00I_QfBw",
+   "url": "https://youtube.com/shorts/OpW00I_QfBw",
+   "title": "श्री कृष्ण की 16,108 पत्नियां थीं? 😱 आखिर क्या है इसके पीछे का रहस्य?",
+   "channel": " Raw Talks With Anaya\n",
+   "views": 258175,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  }
+ ],
+ "ideas_added": [
+  "facts:radar-hanuman-musthi-ravan",
+  "facts:radar-krishna-makhan-chor",
+  "facts:radar-krishna-bansuri-bans",
+  "kailash:radar-mehndi-rang-halka",
+  "pov:radar-pehli-roti-gau"
+ ],
+ "analysis_problems": []
+}
