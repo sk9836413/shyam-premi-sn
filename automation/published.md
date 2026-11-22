@@ -207,3 +207,4 @@
 - 2026-11-23-status-baikunth-chaturdashi-trial | instagram trial reel (SS_PERFORMANCE) of 2026-11-23-status-baikunth-chaturdashi, made 22 Nov 12:01 IST | social: fb: skipped (not in the Facebook plan) | ig: pending 2026-11-23T03:30:00.000Z
 - 2026-11-23-owner-akhand-jyot-darshan | claim: 2026-11-23 owner by run 45026629860.1 at 2026-11-22T13:17:43.433Z
 - 2026-11-23-owner-akhand-jyot-darshan | youtube: https://youtube.com/shorts/5Iwqb8-OP-c (public at 2026-11-23T01:45:00.000Z) | owner-footage Short (clip 03, real footage), made 22 Nov 18:48 IST | social: fb: https://www.facebook.com/reel/28873688298997996 (scheduled 2026-11-23T01:45:00.000Z) | ig: pending 2026-11-23T01:45:00.000Z
+- 2026-11-22-evening-rani-sati-dadi-jhunjhunu-darshan | instagram: https://www.instagram.com/reel/DgC6uvelyU1/
