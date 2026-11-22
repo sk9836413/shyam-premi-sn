@@ -1,0 +1,69 @@
+{
+  "slug": "2026-11-22-evening-rani-sati-dadi-jhunjhunu-darshan",
+  "title": "Rani Sati Dadi Mandir Darshan",
+  "kicker": "Jhunjhunu, Rajasthan",
+  "playlist": "Maa Durga aur Devi ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Dadi Maa",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Rani Sati Dadi mandir mein kya khaas?",
+  "cover": "रानी सती दादी दर्शन",
+  "temple": "rani-sati-dadi",
+  "scenes": [
+    {
+      "prompt": "Close-up devotional darshan of a calm Dadi Maa goddess murti in a Rajasthani temple sanctum, serene face in the middle of the frame, red chunari, gold jewellery and a silver crown, marigold garlands, lit brass diyas, soft golden glow, no fire besides the small diyas",
+      "tts": "रानी सती दादी मंदिर में क्या है ख़ास?",
+      "sub": "Rani Sati Dadi mandir mein kya hai khaas?",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the soft golden glow gently pulses, a few petals drift in the foreground",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A large white marble Rajasthani temple with tall shikharas and saffron flags in a Shekhawati town, clear evening sky, golden light, calm courtyard, no people",
+      "tts": "ये मंदिर राजस्थान के झुंझुनूं शहर में है।",
+      "sub": "Ye mandir Rajasthan ke Jhunjhunu shehar mein hai.",
+      "motion": "pan",
+      "real": true,
+      "animate": "the saffron flags flutter gently in the evening breeze",
+      "video": "clips/1.mp4"
+    },
+    {
+      "prompt": "Devotees' hands offering red chunari and marigold flowers at a temple sanctum, brass diyas glowing, warm light, no faces, devotional illustration",
+      "tts": "मान्यता है, यहाँ दादी जी को नारायणी देवी भी कहते हैं।",
+      "sub": "Manyata hai, yahan Dadi ji ko Narayani Devi bhi kehte hain.",
+      "motion": "out",
+      "animate": "the diya flames flicker softly and a few marigold petals drift down",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "Close-up of the Dadi Maa goddess murti, calm serene face in the middle of the frame, red chunari, gold crown, marigold garlands and glowing diyas in the foreground, sacred sanctum",
+      "tts": "श्रद्धा से बोलिए, जय दादी माँ!",
+      "sub": "Shraddha se boliye, Jai Dadi Maa!",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still, the diya flames glow and flicker softly",
+      "video": "clips/3.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "कल फिर नया दर्शन। लाइक, शेयर, सब्सक्राइब करें। जय रानी सती दादी!",
+      "sub": "Kal phir naya darshan. Like, Share, Subscribe karein. Jai Rani Sati Dadi!"
+    }
+  ],
+  "youtube_title": "Rani Sati Dadi Mandir Darshan | रानी सती दादी मंदिर दर्शन #Shorts",
+  "youtube_description": "Rani Sati Dadi Mandir darshan, Jhunjhunu (Rajasthan). Manyata hai ki yahan Dadi ji ko Narayani Devi roop mein pooja jata hai.\nरानी सती दादी मंदिर, झुंझुनूं के दर्शन।\nSati pratha Bharat mein kanoon (Sati Nivaran Adhiniyam 1987) dwara pratibandhit hai; yeh video sirf itihas aur aastha ki jaankari ke liye hai, is pratha ko badhava nahi deta.\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Ye asli darshan nahi hain.\nAchha laga to Like, Share aur Subscribe karein.\n#RaniSatiDadi #Jhunjhunu #DadiMaa #Shorts",
+  "youtube_tags": "Rani Sati Dadi, रानी सती दादी, Rani Sati Dadi mandir darshan, रानी सती दादी मंदिर दर्शन, Jhunjhunu temple, झुंझुनूं मंदिर, Rani Sati mandir Jhunjhunu, Narayani Devi, नारायणी देवी, Dadi Maa darshan, दादी माँ दर्शन, Rajasthan temple",
+  "instagram_caption": "Rani Sati Dadi mandir, Jhunjhunu ke darshan 🙏\nRajasthan ke Jhunjhunu shehar mein Dadi ji ka mandir (manyata).\nChitra AI dwara banaye gaye hain (sanketik).\nLike, Share aur Follow karein.\n#RaniSatiDadi #Jhunjhunu #DadiMaa #Rajasthan #Bhakti",
+  "facebook_caption": "जय दादी माँ 🙏 क्या आपने कभी झुंझुनूं में रानी सती दादी मंदिर के दर्शन किए हैं?\nराजस्थान के झुंझुनूं शहर में दादी जी का मंदिर (मान्यता)।\nRani Sati Dadi Mandir ke darshan. Chitra AI dwara banaye gaye hain (sanketik).\n#RaniSatiDadi #Jhunjhunu #DadiMaa",
+  "music": {
+    "id": "cc-sitar-tune-tambura",
+    "mood": "calm",
+    "title": "Sitar tune with tambura",
+    "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}
