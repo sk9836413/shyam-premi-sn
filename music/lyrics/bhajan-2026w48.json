@@ -1,0 +1,83 @@
+{
+ "batch": "bhajan-2026w48",
+ "songs": [
+  {
+   "slot": 1, "deity": "shiv", "mood": "thaath", "festival": "devdeepawali",
+   "title_hi": "दीप जले महादेव के द्वार", "title_roman": "Deep Jale Mahadev Ke Dwar",
+   "lyrics": "[chorus]\nदीप जले महादेव के द्वार\nकाशी में आज है उजियार\nहर हर महादेव बोलो यार\n\n[verse]\nगंगा किनारे दीये सजे हैं\nघाट घाट पर भोले बसे हैं\nडमरू बजे और जयकार गूंजे\nनाचे हर भक्त मगन होके\n\n[chorus]\nदीप जले महादेव के द्वार\nकाशी में आज है उजियार\nहर हर महादेव बोलो यार",
+   "public_domain_text": null
+  },
+  {
+   "slot": 2, "deity": "shiv", "mood": "bhaavuk", "festival": "devdeepawali",
+   "title_hi": "एक दीया भोले के नाम", "title_roman": "Ek Diya Bhole Ke Naam",
+   "lyrics": "[chorus]\nएक दीया रख दूं भोले के नाम\nमन का अंधेरा हर लो महादेव\nतेरे चरणों में मेरा विश्राम\n\n[verse]\nथक गया हूं मैं दुनिया से हारा\nबस तेरा ही है मुझको सहारा\nगंगा की लहरों में दीप बहाऊं\nशिव शिव कहकर मन समझाऊं\n\n[chorus]\nएक दीया रख दूं भोले के नाम\nमन का अंधेरा हर लो महादेव\nतेरे चरणों में मेरा विश्राम",
+   "public_domain_text": null
+  },
+  {
+   "slot": 3, "deity": "ganesh", "mood": "thaath", "festival": "sankashti",
+   "title_hi": "संकट हरो गणराज", "title_roman": "Sankat Haro Ganraj",
+   "lyrics": "[chorus]\nसंकट हरो गणराज हमारे\nगणपति देवा तुम हो प्यारे\nबोलो गणपति बप्पा मोरिया\n\n[verse]\nचौथ का व्रत हम आज करेंगे\nचंद्र उदय पर दीप धरेंगे\nमोदक लड्डू भोग लगाएंगे\nढोल बजाकर नाचेंगे गाएंगे\n\n[chorus]\nसंकट हरो गणराज हमारे\nगणपति देवा तुम हो प्यारे\nबोलो गणपति बप्पा मोरिया",
+   "public_domain_text": null
+  },
+  {
+   "slot": 4, "deity": "khatu", "mood": "thaath", "festival": null,
+   "title_hi": "खाटू वाले का दरबार", "title_roman": "Khatu Wale Ka Darbar",
+   "lyrics": "[chorus]\nसज गया खाटू वाले का दरबार\nआ गए श्याम धणी के भक्त हजार\nबोलो लखदातार की जय जयकार\n\n[verse]\nफागुन वाली धूम मची है\nनिशान लिए सब भक्त चले हैं\nशीश के दानी तेरी महिमा न्यारी\nहारे के सहारे तू है हितकारी\n\n[chorus]\nसज गया खाटू वाले का दरबार\nआ गए श्याम धणी के भक्त हजार\nबोलो लखदातार की जय जयकार",
+   "public_domain_text": null
+  },
+  {
+   "slot": 5, "deity": "khatu", "mood": "bhaavuk", "festival": null,
+   "title_hi": "हारा हूं तेरे द्वार", "title_roman": "Hara Hun Tere Dwar",
+   "lyrics": "[chorus]\nहारा हूं आया तेरे द्वार\nथाम ले मुझको मेरे श्याम\nतू ही है अब मेरा आधार\n\n[verse]\nसब ने छोड़ा साथ मेरा\nतूने ही दिया है सहारा\nआंखों में आंसू लेकर आया\nसांवरे तूने गले लगाया\n\n[chorus]\nहारा हूं आया तेरे द्वार\nथाम ले मुझको मेरे श्याम\nतू ही है अब मेरा आधार",
+   "public_domain_text": null
+  },
+  {
+   "slot": 6, "deity": "shiv", "mood": "thaath", "festival": null,
+   "title_hi": "डमरू वाला आया", "title_roman": "Damru Wala Aaya",
+   "lyrics": "[chorus]\nडमरू वाला आया झूमो नाचो\nभोले की बारात सजी है\nहर हर शंकर गाओ नाचो\n\n[verse]\nजटा में गंगा चंदा माथे\nनंदी पर सवार हैं भोले\nभस्म रमाए मस्ती में डोले\nबम बम भोले सब मिल बोले\n\n[chorus]\nडमरू वाला आया झूमो नाचो\nभोले की बारात सजी है\nहर हर शंकर गाओ नाचो",
+   "public_domain_text": null
+  },
+  {
+   "slot": 7, "deity": "hanuman", "mood": "thaath", "festival": null,
+   "title_hi": "बजरंगी की धूम", "title_roman": "Bajrangi Ki Dhoom",
+   "lyrics": "[chorus]\nधूम मची है बजरंगी की\nबालाजी का डंका बजा है\nजय हनुमान बोलो सब मिलके\n\n[verse]\nलाल लंगोटा गदा उठाए\nसीने में प्रभु राम बसाए\nसालासर के बालाजी प्यारे\nसंकट काटे भक्तों के सारे\n\n[chorus]\nधूम मची है बजरंगी की\nबालाजी का डंका बजा है\nजय हनुमान बोलो सब मिलके",
+   "public_domain_text": null
+  },
+  {
+   "slot": 8, "deity": "khatu", "mood": "thaath", "festival": null,
+   "title_hi": "नीले का सवार", "title_roman": "Neele Ka Sawar",
+   "lyrics": "[chorus]\nनीले का सवार मेरा श्याम है\nखाटू नगरी में उसका धाम है\nबोलो जय जय श्याम धणी की\n\n[verse]\nबाबा के दर पे मेला लगा है\nढोल नगाड़ों का रेला लगा है\nसांवरे के रंग में रंग जाओ\nझूमो नाचो और जयकार लगाओ\n\n[chorus]\nनीले का सवार मेरा श्याम है\nखाटू नगरी में उसका धाम है\nबोलो जय जय श्याम धणी की",
+   "public_domain_text": null
+  },
+  {
+   "slot": 9, "deity": "krishna", "mood": "bhaavuk", "festival": null,
+   "title_hi": "ॐ नमो भगवते वासुदेवाय", "title_roman": "Om Namo Bhagavate Vasudevaya",
+   "lyrics": "[chorus]\nॐ नमो भगवते वासुदेवाय\nमेरे कान्हा मेरे कृष्ण मुरारी\nॐ नमो भगवते वासुदेवाय\n\n[verse]\nबांसुरी की धुन मन में बजती है\nतेरी याद में रातें कटती हैं\nगोविंद तेरा नाम जपते जपते\nशांत हुआ मन चलते चलते\n\n[chorus]\nॐ नमो भगवते वासुदेवाय\nमेरे कान्हा मेरे कृष्ण मुरारी\nॐ नमो भगवते वासुदेवाय",
+   "public_domain_text": "Vedic/Puranic mantra: Om Namo Bhagavate Vasudevaya"
+  },
+  {
+   "slot": 10, "deity": "ganesh", "mood": "thaath", "festival": null,
+   "title_hi": "गणपति आए द्वार", "title_roman": "Ganpati Aaye Dwar",
+   "lyrics": "[chorus]\nघर घर गूंजे गणेश का नाम\nगणपति देवा सबके काम बनाएं\nजय जय विघ्नहर्ता महाराज\n\n[verse]\nसिंदूरी रंग में सजे हैं देवा\nचूहे पर चढ़कर आए देवा\nबुद्धि के दाता सुख के दाता\nभक्तों के तुम भाग्य विधाता\n\n[chorus]\nघर घर गूंजे गणेश का नाम\nगणपति देवा सबके काम बनाएं\nजय जय विघ्नहर्ता महाराज",
+   "public_domain_text": null
+  },
+  {
+   "slot": 11, "deity": "khatu", "mood": "bhaavuk", "festival": null,
+   "title_hi": "श्याम तेरे भरोसे", "title_roman": "Shyam Tere Bharose",
+   "lyrics": "[chorus]\nतेरे भरोसे जी रहा हूं श्याम\nहार के भी मैं हार न मानूं\nबस तेरा नाम है मेरा सहारा\n\n[verse]\nजब अंधेरा छा जाता है\nतेरा नाम ही राह दिखाता है\nखाटू वाले लखदातार\nसुन ले मेरी एक पुकार\n\n[chorus]\nतेरे भरोसे जी रहा हूं श्याम\nहार के भी मैं हार न मानूं\nबस तेरा नाम है मेरा सहारा",
+   "public_domain_text": null
+  },
+  {
+   "slot": 12, "deity": "shiv", "mood": "bhaavuk", "festival": null,
+   "title_hi": "शिव तेरे चरणों में", "title_roman": "Shiv Tere Charnon Mein",
+   "lyrics": "[chorus]\nशिव तेरे चरणों में सुकून मिला\nभोले तेरी शरण में आ गया\nमहादेव मेरा मन तुझमें रमा\n\n[verse]\nदुनिया की भीड़ में खो गया था\nदुख के बोझ से थक गया था\nतूने हाथ थामा मेरे भोले\nअब न कोई डर मन को छू ले\n\n[chorus]\nशिव तेरे चरणों में सुकून मिला\nभोले तेरी शरण में आ गया\nमहादेव मेरा मन तुझमें रमा",
+   "public_domain_text": null
+  },
+  {
+   "slot": 13, "deity": "hanuman", "mood": "bhaavuk", "festival": null,
+   "title_hi": "बालाजी मेरे सहारे", "title_roman": "Balaji Mere Sahare",
+   "lyrics": "[chorus]\nबालाजी तुम ही मेरे सहारे\nहनुमान मेरी लाज बचाना\nराम के दुलारे मुझे अपनाना\n\n[verse]\nजब राहें मुश्किल लगती हैं\nआंखें आंसू से भरती हैं\nतेरा नाम लेता हूं बजरंग\nमिलता है मन को नया रंग\n\n[chorus]\nबालाजी तुम ही मेरे सहारे\nहनुमान मेरी लाज बचाना\nराम के दुलारे मुझे अपनाना",
+   "public_domain_text": null
+  }
+ ]
+}
