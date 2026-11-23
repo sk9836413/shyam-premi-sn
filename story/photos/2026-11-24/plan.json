@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-24",
+  "weekday": "Mangalvar",
+  "festival": null,
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-24T01:00:00.000Z",
+      "igAt": "2026-11-24T03:43:00.000Z",
+      "kind": "darshan",
+      "temple": "sankat-mochan-varanasi",
+      "templeName": "Sankat Mochan Hanuman, Varanasi",
+      "category": "hanuman",
+      "photos": [
+        {
+          "file": "footage/sankat-mochan-varanasi/commons-sankat-mochan-temple-in-varanasi-8527226-6afed2.jpg",
+          "credit": "Photo: Matt Zimmerman, CC BY 2.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Sankat_Mochan_Temple_in_Varanasi_(8527226316).jpg",
+          "licence": "CC BY 2.0",
+          "author": "Matt Zimmerman",
+          "title": "File:Sankat Mochan Temple in Varanasi (8527226316).jpg"
+        }
+      ],
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-24",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "sankat-mochan-varanasi",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/sankat-mochan-varanasi/commons-sankat-mochan-temple-in-varanasi-8527226-6afed2.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-24T01:00:00.000Z",
+      "igAt": "2026-11-24T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-24-1-1.jpg"
+      ],
+      "caption": "Suprabhat 🙏 Mangalvar ki subah Sankat Mochan Hanuman ji ke darshan.\nवाराणसी के संकट मोचन मंदिर में हनुमान जी के चरणों में प्रणाम।\nMangalvar Hanuman ji ka din mana jata hai, aur is din bahut se bhakt unke darshan karte hain.\nAapka din shant aur mangalmay rahe.\nAapne Sankat Mochan mandir ke darshan kab kiye the?\n\n📷 Photo: Matt Zimmerman, CC BY 2.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Sankat_Mochan_Temple_in_Varanasi_(8527226316).jpg\n\n#SankatMochan #Hanuman #JaiHanuman #Varanasi #Kashi",
+      "fbCaption": "सुप्रभात 🙏 जय हनुमान। क्या आपने कभी वाराणसी के संकट मोचन मंदिर के दर्शन किए हैं?\nमंगलवार का दिन हनुमान जी को समर्पित माना जाता है।\nसंकट मोचन हनुमान जी के चरणों में प्रणाम।\n\n📷 Photo: Matt Zimmerman, CC BY 2.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Sankat_Mochan_Temple_in_Varanasi_(8527226316).jpg\n\n#Hanuman #JaiHanuman #SankatMochan",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1616433290499635",
+        "scheduled": "2026-11-24T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-24T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}
