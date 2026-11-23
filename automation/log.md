@@ -106,3 +106,4 @@
 2026-11-23 | eve | 2026-11-23-eve-dev-deepawali | Kartik Purnima; Dev Deepawali | status Short variant 1 "Happy Dev Deepawali Status 2026 ✨" (12-20 s loop, download link), public 20:00 IST
 2026-11-24 | status | 2026-11-24-status-kartik-purnima | Kartik Purnima; Dev Deepawali | status Short variant 2 "Happy Kartik Purnima Status 2026 ✨" (12-20 s loop, download link), public 00:30 IST
 2026-11-24 | statusday | 2026-11-24-statusday-dev-deepawali-kashi | Kartik Purnima; Dev Deepawali | status Short variant 3 "Happy Dev Deepawali Kashi Status 2026 ✨" (12-20 s loop, download link), public 07:30 IST
+2026-11-24 | owner | 2026-11-24-owner-gulab-shringar-darshan | Khatu Shyam ji (owner's own footage) | owner-footage Short, clip 02 "Khatu Shyam Gulab Shringar Darshan", real footage + music cc-tabla-loop-harmonium (YouTube synthetic false, Meta AI label false), public 2026-11-24T07:15 IST
