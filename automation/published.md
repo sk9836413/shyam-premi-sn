@@ -221,3 +221,4 @@
 - 2026-11-24-status-kartik-purnima-trial | instagram trial reel (SS_PERFORMANCE) of 2026-11-24-status-kartik-purnima, made 23 Nov 12:11 IST | social: fb: skipped (not in the Facebook plan) | ig: pending 2026-11-24T03:30:00.000Z
 - 2026-11-24-statusday-dev-deepawali-kashi | claim: 2026-11-24 statusday by run 45116386873.1 at 2026-11-23T06:42:44.943Z
 - 2026-11-24-statusday-dev-deepawali-kashi | youtube: https://youtube.com/shorts/7kVR7fV9vGw (public at 2026-11-24T02:00:00.000Z) | status variant, made 23 Nov 12:13 IST | social: fb: https://www.facebook.com/reel/1798861391695935 (scheduled 2026-11-24T02:00:00.000Z) | ig: pending 2026-11-24T02:00:00.000Z
+- 2026-11-24-owner-gulab-shringar-darshan | claim: 2026-11-24 owner by run 45182342117.1 at 2026-11-23T13:27:33.453Z
