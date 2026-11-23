@@ -5158,6 +5158,91 @@
     "added": "2026-11-22"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-andhak-janm",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Andhak asur ka janm",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "hook": "Andhak janma: Parvati ki shararat",
+   "hook_hi": "अंधक का जन्म: पार्वती जी की शरारत",
+   "angle": "Mahadev vs Andhak story: in the Shiv/Linga Purana version Parvati covers Shiva's eyes in play, the world goes dark, and Shiva's sweat becomes the demon Andhaka; Shiva fights him, lifts him on the trishul and later grants him a gan-pad. Check the sweat/eyes detail and the trishul moment in the text; versions differ, say so in the script.",
+   "cite": {
+    "work": "TODO: verify (likely Shiv Mahapuran, Rudra Samhita / Linga Purana, Andhak janm prasang)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "andhak asur",
+    "shiv andhak"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-23",
+    "refs": [
+     "https://youtube.com/shorts/9DaNMAAq7Ug"
+    ],
+    "added": "2026-11-23"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-kali-krodh-shiv",
+   "p": 2,
+   "deity": "devi",
+   "name": "Kali ka krodh, Shiv ka lait jaana",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "tradition",
+   "variant_only": "kyun",
+   "hook": "Kali ka krodh, Shiv kyon let gaye?",
+   "hook_hi": "काली का क्रोध, शिव क्यों लेट गए?",
+   "angle": "After the Raktabeej vadh Kali's rage grows wild: Devi Mahatmya (Markandeya Purana) tells the battle, and the widely told parampara says Shiv lies down at her feet to calm her. Tell the battle from the text, then the Shiv gesture as a tradition, not as sastra; check both parts before scripting.",
+   "cite": {
+    "work": "Devi Mahatmya (Markandeya Purana) for the Raktabeej vadh; Shiv-under-Kali is a later parampara: TODO verify",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "kali shiv",
+    "raktabeej kali"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-23",
+    "refs": [
+     "https://youtube.com/shorts/dUYEugg2TDM"
+    ],
+    "added": "2026-11-23"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-vidur-neeti",
+   "p": 2,
+   "deity": "mahabharat",
+   "name": "Vidur Niti: ek shlok, sau sabak",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Vidur ki neeti: ek shlok, gehra sabak",
+   "hook_hi": "विदुर नीति: एक श्लोक, गहरा सबक",
+   "angle": "Vidur Niti in the Mahabharat Udyog Parva: Vidur advises the blind king Dhritarashtra on greed, anger and pride, and why a wise person's word is worth hearing. Pick one shloka, give its meaning in two translations, and tie it to everyday life; verify the exact adhyay and shloka in the critical edition before scripting.",
+   "cite": {
+    "work": "Mahabharat, Udyog Parva (Vidur Niti): TODO verify adhyay and shloka",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "vidur niti",
+    "mahabharat neeti"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-23",
+    "refs": [
+     "https://youtube.com/shorts/KQTxMxkvnio"
+    ],
+    "added": "2026-11-23"
+   },
+   "status": "idea"
   }
  ]
 }
