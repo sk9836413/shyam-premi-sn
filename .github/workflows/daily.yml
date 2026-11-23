@@ -144,6 +144,11 @@ env:
   # One-off extra Shorts for the upload guard only ("YYYY-MM-DD:n,..."; owner, 15 Nov 2026: 4-5 Chhath facts Shorts on
   # 15-16 Nov). day-plan.mjs ignores it, so only the uploads dispatched for it use the room. Clear it afterwards.
   EXTRA_UPLOADS: ${{ vars.EXTRA_UPLOADS }}
+  # Amazon.in Associates links (scripts/amazon.mjs, automation/amazon-products.json; owner 23 Nov 2026): a short section
+  # of 2-3 search links (tag shyam0414-21) + the Associates disclosure line in LONG videos only (YouTube description,
+  # Facebook Page video). Never Shorts, status Shorts, owner footage, Rani Sati / sati themes or Instagram.
+  # Unset = on; repo variable AMAZON_LINKS=off turns it off.
+  AMAZON_LINKS: ${{ vars.AMAZON_LINKS }}
 
 # Evening runs have their own queue, so the long animated evening job can run beside the morning one; within a
 # slot, runs queue and the later one skips once the slot is in log.md. log.md and published.md merge as unions.

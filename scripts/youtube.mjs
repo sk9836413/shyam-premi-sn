@@ -35,6 +35,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { aiDisclosure } from './ai-disclosure.mjs';
+import { YT_MAX as YT_DESCRIPTION_MAX, withAmazon } from './amazon.mjs';
 import { BHAKTI_PLAYLIST, BHAKTI_PLAYLIST_DESCRIPTION, isBhajanVideo, thirdPartyNames } from './bhakti-seo.mjs';
 
 const ENV_FILE = path.join(os.homedir(), '.shyampremisk', 'youtube.env');
@@ -122,11 +123,12 @@ export function metaFromScenes(file, metaFile) {
   const s = JSON.parse(fs.readFileSync(file, 'utf8'));
   const title = String(s.youtube_title || '').replace(/[<>]/g, '').trim();
   let description = String(s.youtube_description || '').replace(/[<>]/g, '').trim();
+  // Long videos only (upload --long): the Amazon.in section before the hashtags (scripts/amazon.mjs; Shorts, status,
+  // owner footage and Rani Sati / sati themes never; repo variable AMAZON_LINKS=off turns it off). Chapters follow.
   if (metaFile) {
     const { chapters = [] } = JSON.parse(fs.readFileSync(metaFile, 'utf8'));
-    if (chapters.length >= 3) {
-      description += `\n\nAdhyay (Chapters):\n${chapters.map((c, i) => `${stamp(i === 0 ? 0 : c.start)} ${c.title}`).join('\n')}`;
-    }
+    const chap = chapters.length >= 3 ? `\n\nAdhyay (Chapters):\n${chapters.map((c, i) => `${stamp(i === 0 ? 0 : c.start)} ${c.title}`).join('\n')}` : '';
+    description = withAmazon(description, s, { max: YT_DESCRIPTION_MAX - chap.length }) + chap;
   }
   description = withShareLine(description, s);
   // Other channels' / organisations' names never go up (YouTube spam & deceptive-practices policy; scripts/bhakti-seo.mjs):

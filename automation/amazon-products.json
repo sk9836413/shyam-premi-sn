@@ -1,0 +1,87 @@
+{
+ "about": "Amazon.in Associates links for Shyam Premi SN LONG videos only (owner, 23 Nov 2026: 'use Amazon.in with relevant products in Shyam Premi'). Read by scripts/amazon.mjs: youtube.mjs (upload --long) and meta.mjs long (Facebook Page video) add a short section before the hashtags with 2-3 search links of the video's group and the Associates disclosure line. Search links only (never a product page, so a link never dies), tag shyam0414-21 only (Shyam's own tracking ID). Never on Shorts, festival status Shorts, the owner's own darshan footage or anything about Rani Sati Dadi / the sati temples. No prices, no 'abhimantrit / siddh / blessed / guaranteed / manokamna' claims, no murti / idol as merchandise (photo frames and books are fine). Repo variable AMAZON_LINKS=off turns it all off. Groups are tried in `order`; a mantra id maps straight to its group (`mantras`); no match = `general`.",
+ "tag": "shyam0414-21",
+ "disclosure": "As an Amazon Associate, I earn from qualifying purchases.",
+ "headings": {
+  "mantra": "🛕 Is jaap ke liye (Amazon):",
+  "jukebox": "🛕 Puja aur bhajan ke liye (Amazon):",
+  "default": "🛕 Puja ke liye (Amazon):"
+ },
+ "mantras": { "vasudev": "krishna", "hare-krishna": "krishna", "shiv": "shiv", "ganesh": "ganesh", "ram": "ram" },
+ "order": ["chhath", "khatu-shyam", "shiv", "hanuman", "ganesh", "ram", "krishna", "devi"],
+ "groups": {
+  "chhath": {
+   "match": "chhath|छठ|surya|सूर्य",
+   "products": [
+    { "label": "Chhath puja ka soop (bans ka)", "q": "chhath puja soop bamboo", "url": "https://www.amazon.in/s?k=chhath+puja+soop+bamboo&tag=shyam0414-21" },
+    { "label": "Chhath puja daura / tokri", "q": "chhath puja daura bamboo basket", "url": "https://www.amazon.in/s?k=chhath+puja+daura+bamboo+basket&tag=shyam0414-21" },
+    { "label": "Pital ka diya (brass diya)", "q": "brass diya for puja", "url": "https://www.amazon.in/s?k=brass+diya+for+puja&tag=shyam0414-21" }
+   ]
+  },
+  "khatu-shyam": {
+   "match": "khatu|खाटू|shyam baba|श्याम बाबा|barbarik|बर्बरीक|sheesh ke daani|janmotsav",
+   "products": [
+    { "label": "Khatu Shyam ji ki photo frame", "q": "khatu shyam ji photo frame", "url": "https://www.amazon.in/s?k=khatu+shyam+ji+photo+frame&tag=shyam0414-21" },
+    { "label": "Khatu Shyam ji bhajan pustak", "q": "khatu shyam ji bhajan book", "url": "https://www.amazon.in/s?k=khatu+shyam+ji+bhajan+book&tag=shyam0414-21" },
+    { "label": "Pital ka diya (brass diya)", "q": "brass diya for puja", "url": "https://www.amazon.in/s?k=brass+diya+for+puja&tag=shyam0414-21" }
+   ]
+  },
+  "shiv": {
+   "match": "shiv|शिव|mahadev|महादेव|bholenath|भोलेनाथ|shankar|शंकर|pradosh|प्रदोष|shivratri|शिवरात्रि|kailash|कैलाश|rudra",
+   "products": [
+    { "label": "Rudraksha jaap mala (108 manke)", "q": "rudraksha jaap mala 108 beads", "url": "https://www.amazon.in/s?k=rudraksha+jaap+mala+108+beads&tag=shyam0414-21" },
+    { "label": "Shiv Puran pustak (Gita Press)", "q": "shiv puran gita press hindi", "url": "https://www.amazon.in/s?k=shiv+puran+gita+press+hindi&tag=shyam0414-21" },
+    { "label": "Tambe ka lota (jal arpan ke liye)", "q": "copper lota for puja", "url": "https://www.amazon.in/s?k=copper+lota+for+puja&tag=shyam0414-21" }
+   ]
+  },
+  "hanuman": {
+   "match": "hanuman|हनुमान|balaji|बालाजी|salasar|सालासर|mehandipur|मेहंदीपुर|bajrang|बजरंग",
+   "products": [
+    { "label": "Hanuman Chalisa pustak (Gita Press)", "q": "hanuman chalisa gita press", "url": "https://www.amazon.in/s?k=hanuman+chalisa+gita+press&tag=shyam0414-21" },
+    { "label": "Pital ka diya (brass diya)", "q": "brass diya for puja", "url": "https://www.amazon.in/s?k=brass+diya+for+puja&tag=shyam0414-21" },
+    { "label": "Dhoop batti / agarbatti", "q": "dhoop batti for puja", "url": "https://www.amazon.in/s?k=dhoop+batti+for+puja&tag=shyam0414-21" }
+   ]
+  },
+  "ganesh": {
+   "match": "ganesh|गणेश|ganpati|गणपति|vinayak|विनायक|sankashti|संकष्टी|sakat|सकट",
+   "products": [
+    { "label": "Chandan jaap mala (108 manke)", "q": "chandan jaap mala 108 beads", "url": "https://www.amazon.in/s?k=chandan+jaap+mala+108+beads&tag=shyam0414-21" },
+    { "label": "Shri Ganesh Puran pustak (Gita Press)", "q": "ganesh puran gita press", "url": "https://www.amazon.in/s?k=ganesh+puran+gita+press&tag=shyam0414-21" },
+    { "label": "Pital ka diya (brass diya)", "q": "brass diya for puja", "url": "https://www.amazon.in/s?k=brass+diya+for+puja&tag=shyam0414-21" }
+   ]
+  },
+  "ram": {
+   "match": "\\bram\\b|\\brama\\b|राम|ramcharitmanas|रामचरितमानस|sita|सीता|ramsita",
+   "products": [
+    { "label": "Tulsi ki jaap mala (108 manke)", "q": "tulsi jaap mala 108 beads", "url": "https://www.amazon.in/s?k=tulsi+jaap+mala+108+beads&tag=shyam0414-21" },
+    { "label": "Shri Ramcharitmanas (Gita Press)", "q": "ramcharitmanas gita press", "url": "https://www.amazon.in/s?k=ramcharitmanas+gita+press&tag=shyam0414-21" },
+    { "label": "Jaap mala ki gomukhi (thaili)", "q": "gomukhi jaap mala bag", "url": "https://www.amazon.in/s?k=gomukhi+jaap+mala+bag&tag=shyam0414-21" }
+   ]
+  },
+  "krishna": {
+   "match": "krishna|कृष्ण|vishnu|विष्णु|vasudev|वासुदेव|radha|राधा|govind|गोविंद|ekadashi|एकादशी|gyaras|ग्यारस|gita|गीता|tulsi|तुलसी|vaikuntha|वैकुंठ|gopashtami|गोपाष्टमी|narayan|नारायण",
+   "products": [
+    { "label": "Tulsi ki jaap mala (108 manke)", "q": "tulsi jaap mala 108 beads", "url": "https://www.amazon.in/s?k=tulsi+jaap+mala+108+beads&tag=shyam0414-21" },
+    { "label": "Shrimad Bhagavad Gita (Gita Press)", "q": "shrimad bhagavad gita gita press hindi", "url": "https://www.amazon.in/s?k=shrimad+bhagavad+gita+gita+press+hindi&tag=shyam0414-21" },
+    { "label": "Jaap mala ki gomukhi (thaili)", "q": "gomukhi jaap mala bag", "url": "https://www.amazon.in/s?k=gomukhi+jaap+mala+bag&tag=shyam0414-21" }
+   ]
+  },
+  "devi": {
+   "match": "durga|दुर्गा|devi|देवी|mata|माता|maiya|मइया|मैया|shakambhari|शाकंभरी|jeen|जीण|navratri|नवरात्रि|lakshmi|लक्ष्मी",
+   "products": [
+    { "label": "Durga Saptashati pustak (Gita Press)", "q": "durga saptashati gita press", "url": "https://www.amazon.in/s?k=durga+saptashati+gita+press&tag=shyam0414-21" },
+    { "label": "Pital ka diya (brass diya)", "q": "brass diya for puja", "url": "https://www.amazon.in/s?k=brass+diya+for+puja&tag=shyam0414-21" },
+    { "label": "Puja thali set", "q": "puja thali set brass", "url": "https://www.amazon.in/s?k=puja+thali+set+brass&tag=shyam0414-21" }
+   ]
+  },
+  "general": {
+   "match": "",
+   "products": [
+    { "label": "Puja thali set", "q": "puja thali set brass", "url": "https://www.amazon.in/s?k=puja+thali+set+brass&tag=shyam0414-21" },
+    { "label": "Pital ka diya (brass diya)", "q": "brass diya for puja", "url": "https://www.amazon.in/s?k=brass+diya+for+puja&tag=shyam0414-21" },
+    { "label": "Dhoop batti / agarbatti", "q": "dhoop batti for puja", "url": "https://www.amazon.in/s?k=dhoop+batti+for+puja&tag=shyam0414-21" }
+   ]
+  }
+ },
+ "site": "site/index.html has a hand-written 'पूजा सामग्री' list of the same search links (general, khatu-shyam, krishna, shiv) with the disclosure under it and in the footer; scripts/amazon.test.mjs checks its tag and disclosure."
+}

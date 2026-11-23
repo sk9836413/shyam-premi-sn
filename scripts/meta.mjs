@@ -17,7 +17,8 @@
 //        time ("now" = straight away) and --no-fb leaves Facebook out; Instagram keeps following --publish-at. Without
 //        either flag Facebook follows --publish-at as before. The Facebook text is fbVideoCaption() (fb.mjs template).
 // long   The long katha video as a normal Facebook Page video (in-stream ads later), scheduled like YouTube:
-//        youtube_title, the description with chapters, the Devanagari keywords and the AI disclaimer. No Instagram.
+//        youtube_title, the description with chapters, the Devanagari keywords and the AI disclaimer, and the same
+//        Amazon.in section as YouTube (scripts/amazon.mjs; AMAZON_LINKS=off turns it off). No Instagram.
 //        Page videos (long, movie parts, anything over 90 s) go up with the RESUMABLE chunked upload (fbVideoResumable;
 //        one single POST of a 5-8 min video failed with 413 Request Entity Too Large). --dry-run shows the upload plan.
 // flush  Publishes every queued Instagram Reel whose time is within 20 minutes (waits for it) and no more than
@@ -40,6 +41,7 @@ import { pathToFileURL } from 'node:url';
 import { capHashtags, fbLongText, fbVideoCaption, igHashtags } from './fb.mjs';
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
 import { aiDisclosure, metaAiParam } from './ai-disclosure.mjs';
+import { withAmazon } from './amazon.mjs';
 
 export const FB_REEL_MAX = 90;
 export const IG_REEL_MAX = 15 * 60;
@@ -126,6 +128,14 @@ export function longPost(spec, meta = {}) {
   if (hindi.length) extra.push('', hindi.join(' | '));
   if (!/\bAI\b/.test(body.replace(BHAJAN_LINE, ''))) extra.push('', AI_LINE); // the bhajan line alone does not cover the pictures/voice
   return { title, description: [body, ...extra, ...(tags ? ['', tags] : [])].join('\n') };
+}
+
+/** The Facebook Page copy of a long video as posted: longPost, then fb.mjs fbLongText (no like/share/subscribe lines,
+ *  the subject's 3 hashtags), then the same Amazon.in section as YouTube (scripts/amazon.mjs; never on Instagram). */
+export function fbLongPost(spec, meta = {}, { env: e = process.env } = {}) {
+  const post = longPost(spec, meta);
+  post.description = withAmazon(fbLongText(post.description, spec), spec, { env: e });
+  return post;
 }
 
 export function captions(spec) {
@@ -415,8 +425,7 @@ async function shortUnsafe({ video, spec, videoUrl, publishAt, fbAt, igAt, noFb 
 async function postLong({ video, spec, meta, thumbnail, publishAt, noFb, dryRun }) {
   if (!configured()) return { status: 'not-configured' };
   if (noFb) return { status: 'ok', slug: spec.slug, facebook: { skipped: 'not in the Facebook plan' } };
-  const post = longPost(spec, meta);
-  post.description = fbLongText(post.description, spec); // fb.mjs: no like/share/subscribe lines, the subject's 3 hashtags
+  const post = fbLongPost(spec, meta);
   const at = istAt(publishAt);
   const schedule = at ? { published: 'false', scheduled_publish_time: String(Math.floor(at / 1000)) } : {};
   if (dryRun) {
