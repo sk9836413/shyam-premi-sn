@@ -11,7 +11,9 @@
 // about Rani Sati Dadi or the other sati temples (sati rule: darshan and bhakti only, no commerce), Instagram (captions
 // are not clickable). No prices, no "abhimantrit / siddh / blessed / guaranteed / manokamna" claims, no murti / idol as
 // merchandise. Search links only (/s?k=...&tag=...), so a link never points to a dead product page.
-// Switch: repo variable AMAZON_LINKS (daily.yml env); unset or "on" = on, "off" (or 0 / false / no) = off.
+// Shorts (owner, 23 Nov 2026): no link at all, only SAMAGRI_LINE (text) before the hashtags of regular YouTube Shorts
+// (youtube.mjs metaFromScenes) and their Facebook copy (meta.mjs fbShortText); the same exclusions, never Instagram.
+// Switch: repo variable AMAZON_LINKS (daily.yml env); unset or "on" = on, "off" (or 0 / false / no) = off. Both.
 // The AI disclosure (scripts/ai-disclosure.mjs) is not touched by any of this.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -41,13 +43,21 @@ export const amazonUrl = (q) => `https://www.amazon.in/s?k=${encodeURIComponent(
 /** Is the switch on? Unset / "on" = on; "off", "0", "false", "no" = off. */
 export const amazonOn = (env = process.env) => !/^(off|0|false|no)$/i.test(String(env.AMAZON_LINKS ?? '').trim());
 
+/** Why a spec may never point to Amazon at all (status, owner footage, sati), or '' when it may. Shared by the long
+ *  section and the Shorts line. */
+export function amazonExcluded(spec = {}) {
+  if (spec.share_line || spec.day_status || /status/i.test(`${spec.kind || ''} ${spec.format || ''}`) || /-status-/.test(spec.slug || '')) return 'status video';
+  if (/-owner-/.test(spec.slug || '') || spec.owner_footage || spec.real_footage === true || /owner/i.test(`${spec.kind || ''} ${spec.format || ''}`)) return "the owner's own darshan footage";
+  if (SATI.test(JSON.stringify(spec))) return 'Rani Sati Dadi / sati theme: darshan and bhakti only, no commerce';
+  return '';
+}
+
 /** May this spec carry Amazon links? { ok, why }. */
 export function amazonEligible(spec = {}, { env = process.env } = {}) {
   if (!amazonOn(env)) return { ok: false, why: 'AMAZON_LINKS=off' };
   if (spec.format !== 'long') return { ok: false, why: `not a long video (format ${spec.format || 'short'})` };
-  if (spec.share_line || /status/i.test(`${spec.kind || ''} ${spec.format || ''}`) || /-status-/.test(spec.slug || '')) return { ok: false, why: 'status video' };
-  if (/-owner-/.test(spec.slug || '') || spec.owner_footage || /owner/i.test(spec.kind || '')) return { ok: false, why: "the owner's own darshan footage" };
-  if (SATI.test(JSON.stringify(spec))) return { ok: false, why: 'Rani Sati Dadi / sati theme: darshan and bhakti only, no commerce' };
+  const no = amazonExcluded(spec);
+  if (no) return { ok: false, why: no };
   return { ok: true, why: 'long video' };
 }
 
@@ -102,6 +112,39 @@ export function withAmazon(description, spec = {}, { env = process.env, map = lo
   const tail = lines.slice(i);
   const out = [...head, '', section, ...(tail.length ? ['', ...tail] : [])].join('\n');
   if (out.length > max) { console.error(`::warning::Amazon section left out: the description would be ${out.length} > ${max} characters`); return text; }
+  return out;
+}
+
+// ---- Shorts (owner, 23 Nov 2026): a Short's description can't carry a clickable link, so regular YouTube Shorts and
+// their Facebook Reel copy get ONE text line (no URL) pointing to the puja samagri links on the channel (the channel's
+// links / the card site's #puja-samagri list), just before the hashtags. Never: long videos (they carry the section
+// itself), status / day status / bhajan status Shorts, the owner's own footage, Rani Sati / sati themes, Instagram.
+// The same switch AMAZON_LINKS=off turns it off. The AI disclosure is not touched (it reads the spec, not this text).
+export const SAMAGRI_LINE = '🛕 Jaap mala aur puja samagri ke links channel par dekhein.';
+export const FB_MAX = 1500; // scripts/fb.mjs checkFbCaption's limit for a Facebook caption
+
+/** May this Short carry the samagri line? { ok, why }. */
+export function samagriEligible(spec = {}, { env = process.env } = {}) {
+  if (!amazonOn(env)) return { ok: false, why: 'AMAZON_LINKS=off' };
+  if (spec.format === 'long') return { ok: false, why: 'long video (carries the Amazon section itself)' };
+  const no = amazonExcluded(spec);
+  if (no) return { ok: false, why: no };
+  return { ok: true, why: 'regular Short' };
+}
+
+/** The Short's YouTube description or Facebook text with SAMAGRI_LINE just before its trailing hashtag line (at the
+ *  end when it has none). Idempotent; unchanged when the spec may not carry it or the result would pass `max`. */
+export function withSamagri(description, spec = {}, { env = process.env, max = YT_MAX } = {}) {
+  const text = String(description || '');
+  if (!samagriEligible(spec, { env }).ok || text.includes(SAMAGRI_LINE) || /puja samagri ke links/i.test(text) || text.includes(`tag=${TAG}`)) return text;
+  const lines = text.replace(/\s+$/, '').split('\n');
+  let i = lines.length;
+  while (i > 0 && TAG_LINE.test(lines[i - 1].trim())) i--;
+  const head = lines.slice(0, i);
+  while (head.length && !head.at(-1).trim()) head.pop();
+  const tail = lines.slice(i);
+  const out = [...head, ...(head.length ? [''] : []), SAMAGRI_LINE, ...(tail.length ? ['', ...tail] : [])].join('\n');
+  if (out.length > max) { console.error(`::warning::samagri line left out: the text would be ${out.length} > ${max} characters`); return text; }
   return out;
 }
 

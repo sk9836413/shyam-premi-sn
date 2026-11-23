@@ -4,9 +4,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { DISCLOSURE, FORBIDDEN, TAG, amazonEligible, amazonGroup, amazonOn, amazonProducts, amazonSection, amazonUrl, checkAmazonText, loadProducts, withAmazon } from './amazon.mjs';
+import { DISCLOSURE, FORBIDDEN, SAMAGRI_LINE, TAG, amazonEligible, amazonGroup, amazonOn, amazonProducts, amazonSection, amazonUrl, checkAmazonText, loadProducts, samagriEligible, withAmazon, withSamagri } from './amazon.mjs';
 import { metaFromScenes } from './youtube.mjs';
-import { fbLongPost } from './meta.mjs';
+import { captions, fbLongPost, fbShortText } from './meta.mjs';
+import { checkFbCaption } from './fb.mjs';
 import { aiDisclosure } from './ai-disclosure.mjs';
 
 const ON = {};
@@ -191,7 +192,128 @@ describe('uploads', () => {
   });
 });
 
+describe('Shorts: the samagri line (text only, no URL)', () => {
+  const darshan = (extra = {}) => ({
+    slug: '2026-11-24-morning-salasar-balaji', temple: 'salasar-balaji', deity: 'Hanuman ji',
+    youtube_title: 'Salasar Balaji ke Darshan | सालासर बालाजी दर्शन #Shorts',
+    youtube_description: 'Salasar Balaji ke aaj ke darshan.\nसालासर बालाजी के दर्शन, जय बजरंगबली।\nJai Shree Shyam 🙏\nDarshan achhe lage hon to Like, Share aur Subscribe karein.\n#SalasarBalaji #JaiHanuman #Shorts',
+    instagram_caption: 'Salasar Balaji ke darshan 🙏\n#SalasarBalaji #JaiHanuman',
+    facebook_caption: 'जय बजरंगबली 🙏 आज सालासर बालाजी के दर्शन किए क्या?\nसालासर बालाजी के आज के दर्शन।\n\n#SalasarBalaji #JaiHanuman #HanumanJi', ...extra,
+  });
+  const katha = (extra = {}) => ({ ...darshan(), slug: '2026-11-24-evening-barbarik-katha', format: 'katha', temple: undefined, deity: 'Khatu Shyam ji',
+    youtube_title: 'Barbarik ki Katha | बर्बरीक की कथा #Shorts', youtube_description: 'Barbarik ki katha.\nबर्बरीक की कथा।\nJai Shree Shyam 🙏\n#KhatuShyam #Barbarik #Shorts',
+    facebook_caption: 'हारे का सहारा, बाबा श्याम हमारा 🙏 बर्बरीक की कथा आपने सुनी है क्या?\nबर्बरीक ने अपना शीश दान किया।\n\n#KhatuShyam #JaiShreeShyam #Barbarik', ...extra });
+  const write = (spec) => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'samagri-'));
+    const f = path.join(dir, 's.json');
+    fs.writeFileSync(f, JSON.stringify(spec));
+    return { f, dir };
+  };
+  const ytShort = (spec, env = {}) => {
+    const prev = process.env.AMAZON_LINKS;
+    if (env.AMAZON_LINKS === undefined) delete process.env.AMAZON_LINKS; else process.env.AMAZON_LINKS = env.AMAZON_LINKS;
+    const { f, dir } = write(spec);
+    try { return metaFromScenes(f).description; } finally {
+      fs.rmSync(dir, { recursive: true, force: true });
+      if (prev === undefined) delete process.env.AMAZON_LINKS; else process.env.AMAZON_LINKS = prev;
+    }
+  };
+  const count = (t) => String(t).split(SAMAGRI_LINE).length - 1;
+  const esc = (t) => t.replace(/[.?*+^$()[\]{}|\\]/g, '\\$&');
+
+  test('the line has no URL and names the samagri links on the channel', () => {
+    assert.doesNotMatch(SAMAGRI_LINE, /https?:|www\.|amazon/i);
+    assert.match(SAMAGRI_LINE, /puja samagri ke links channel par/);
+  });
+  test('a normal darshan / katha Short: once, just before the hashtags, on YouTube and Facebook', () => {
+    for (const s of [darshan(), katha(), darshan({ format: 'loop', kind: 'loop' }), katha({ format: 'facts' })]) {
+      assert.equal(samagriEligible(s, { env: ON }).ok, true, s.slug);
+      const yt = ytShort(s).split('\n');
+      assert.equal(count(yt.join('\n')), 1, s.slug);
+      assert.match(yt.at(-1), /^#/);
+      assert.equal(yt.at(-3), SAMAGRI_LINE);
+      assert.equal(yt.at(-2), '');
+      assert.equal(urls(yt.join('\n')).length, 0, 'no Amazon URL in a Short');
+      const fb = fbShortText(s, { env: ON }).text;
+      assert.equal(count(fb), 1, s.slug);
+      assert.match(fb, new RegExp(`${esc(SAMAGRI_LINE)}\\n\\n#\\S+ #\\S+ #\\S+$`));
+      assert.ok(fb.length <= 1500);
+      assert.equal(urls(fb).length, 0);
+      assert.deepEqual(checkFbCaption(fb, { subject: s }), [], 'the final Facebook text still passes the template');
+    }
+  });
+  test('never duplicated (idempotent, also on a text that already carries it)', () => {
+    const s = darshan();
+    const once = withSamagri(s.youtube_description, s, { env: ON });
+    assert.equal(count(once), 1);
+    assert.equal(withSamagri(once, s, { env: ON }), once);
+    assert.equal(count(ytShort({ ...s, youtube_description: once })), 1);
+    const fb = fbShortText(s, { env: ON }).text;
+    assert.equal(withSamagri(fb, s, { env: ON }), fb);
+    assert.equal(count(fbShortText({ ...s, facebook_caption: fb }, { env: ON }).text), 1);
+  });
+  test('absent on status Shorts, owner footage, Rani Sati / sati themes and long videos', () => {
+    const no = [
+      { ...darshan(), slug: '2026-11-30-status-gita', format: 'status', share_line: 'स्टेटस पर लगाएं 🙏' },
+      { ...darshan(), format: 'status', day_status: 'ekadashi' },
+      { ...darshan(), format: 'status', bhajan_short: true, slug: '2026-11-24-dawn-bhajan' },
+      { ...darshan(), slug: '2026-11-24-owner-pandal-darshan', format: 'owner-footage', real_footage: true },
+      { ...darshan(), real_footage: true },
+      { ...darshan(), deity: 'Rani Sati Dadi', temple: 'rani-sati-dadi' },
+      { ...darshan(), youtube_title: 'रानी सती दादी दर्शन #Shorts' },
+      { ...darshan(), summary: 'Jhunjhunu mandir' },
+      { ...darshan(), series: 'teda-gela' },
+      mantra(),
+    ];
+    for (const s of no) {
+      assert.equal(samagriEligible(s, { env: ON }).ok, false, s.slug);
+      assert.equal(withSamagri(s.youtube_description, s, { env: ON }), s.youtube_description, s.slug);
+      assert.equal(count(fbShortText(s, { env: ON }).text), 0, s.slug);
+      if (s.format !== 'long') assert.equal(count(ytShort(s)), 0, s.slug);
+    }
+  });
+  test('absent when AMAZON_LINKS is off', () => {
+    for (const v of ['off', '0', 'false', 'no']) {
+      assert.equal(count(ytShort(darshan(), { AMAZON_LINKS: v })), 0, v);
+      assert.equal(count(fbShortText(darshan(), { env: { AMAZON_LINKS: v } }).text), 0, v);
+    }
+    assert.equal(count(ytShort(darshan(), { AMAZON_LINKS: 'on' })), 1);
+  });
+  test('never on Instagram; long videos keep their section without the line', () => {
+    const s = darshan();
+    assert.equal(count(captions(s).instagram), 0);
+    assert.equal(count(captions({ ...s, instagram_caption: undefined }).instagram), 0);
+    assert.equal(count(fbLongPost(mantra(), {}, { env: ON }).description), 0);
+  });
+  test('platform limits: left out when it would not fit', () => {
+    const s = darshan();
+    const full = 'x'.repeat(4990);
+    assert.equal(withSamagri(full, s, { env: ON }), full);
+    const fb = 'y'.repeat(1490);
+    assert.equal(withSamagri(fb, s, { env: ON, max: 1500 }), fb);
+    assert.ok(ytShort({ ...s, youtube_description: 'z'.repeat(4990) }).length <= 5000);
+  });
+  test('the AI disclosure is unchanged (YouTube flag, Meta label, Facebook AI line)', () => {
+    for (const s of [darshan(), katha({ bhajan: { id: 'x', mode: 'bhajan' } })]) {
+      const withLine = { ...s, youtube_description: withSamagri(s.youtube_description, s, { env: ON }) };
+      assert.deepEqual(aiDisclosure(withLine), aiDisclosure(s));
+      const { f, dir } = write(s);
+      const m = metaFromScenes(f);
+      fs.rmSync(dir, { recursive: true, force: true });
+      assert.equal(m.synthetic, aiDisclosure(s).youtube);
+      const before = fbShortText(s, { env: OFF }).text, after = fbShortText(s, { env: ON }).text;
+      assert.equal(after.replace(`${SAMAGRI_LINE}\n\n`, ''), before);
+    }
+  });
+});
+
 describe('card site', () => {
+  test('the puja samagri section has the #puja-samagri anchor', () => {
+    const html = fs.readFileSync(new URL('../site/index.html', import.meta.url), 'utf8');
+    assert.match(html, /<h2 id="puja-samagri">पूजा सामग्री<\/h2>/);
+    assert.equal(html.split('id="puja-samagri"').length - 1, 1);
+  });
+
   test('site/index.html: every Amazon link is a search link with tag shyam0414-21, sponsored, and the disclosure is shown', () => {
     const html = fs.readFileSync(new URL('../site/index.html', import.meta.url), 'utf8');
     const links = [...html.matchAll(/<a href="(https:\/\/www\.amazon\.in[^"]+)"([^>]*)>/g)];

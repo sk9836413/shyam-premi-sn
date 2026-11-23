@@ -15,7 +15,8 @@
 //        "ig: pending <ISO>" goes into automation/published.md and `flush` publishes it from --video-url.
 //        Facebook plan (scripts/fb.mjs; since 13 Nov 2026 every Short, 90 min apart): --fb-at gives Facebook its own
 //        time ("now" = straight away) and --no-fb leaves Facebook out; Instagram keeps following --publish-at. Without
-//        either flag Facebook follows --publish-at as before. The Facebook text is fbVideoCaption() (fb.mjs template).
+//        either flag Facebook follows --publish-at as before. The Facebook text is fbVideoCaption() (fb.mjs template)
+//        plus, on regular Shorts, the samagri line (fbShortText; scripts/amazon.mjs withSamagri, no URL, not Instagram).
 // long   The long katha video as a normal Facebook Page video (in-stream ads later), scheduled like YouTube:
 //        youtube_title, the description with chapters, the Devanagari keywords and the AI disclaimer, and the same
 //        Amazon.in section as YouTube (scripts/amazon.mjs; AMAZON_LINKS=off turns it off). No Instagram.
@@ -41,7 +42,7 @@ import { pathToFileURL } from 'node:url';
 import { capHashtags, fbLongText, fbVideoCaption, igHashtags } from './fb.mjs';
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
 import { aiDisclosure, metaAiParam } from './ai-disclosure.mjs';
-import { withAmazon } from './amazon.mjs';
+import { FB_MAX, withAmazon, withSamagri } from './amazon.mjs';
 
 export const FB_REEL_MAX = 90;
 export const IG_REEL_MAX = 15 * 60;
@@ -136,6 +137,14 @@ export function fbLongPost(spec, meta = {}, { env: e = process.env } = {}) {
   const post = longPost(spec, meta);
   post.description = withAmazon(fbLongText(post.description, spec), spec, { env: e });
   return post;
+}
+
+/** The Facebook text of a Short (Reel, or the Page video of a longer Short) as posted: fb.mjs fbVideoCaption, then the
+ *  samagri line before its 3 hashtags (scripts/amazon.mjs withSamagri: no URL; regular Shorts only, never status, owner
+ *  footage or sati; AMAZON_LINKS=off turns it off). Instagram (captions) never gets it. */
+export function fbShortText(spec, { env: e = process.env } = {}) {
+  const c = fbVideoCaption(spec);
+  return { ...c, text: withSamagri(c.text, spec, { env: e, max: FB_MAX }) };
 }
 
 export function captions(spec) {
@@ -391,7 +400,7 @@ async function shortUnsafe({ video, spec, videoUrl, publishAt, fbAt, igAt, noFb 
   const info = probe(video);
   const plan = planShort({ ...info, publishAt: istAt(publishAt), fbAt: fbAtOption(fbAt, noFb), ...(igAt ? { igAt: istAt(igAt) } : {}) });
   const text = captions(spec);
-  const fbText = fbVideoCaption(spec);
+  const fbText = fbShortText(spec);
   text.facebook = fbText.text;
   const ai = metaAiParam(spec);
   if (dryRun) return { status: 'dry-run', version: VERSION, video: info, plan, facebook_caption: fbText, chars: { facebook: text.facebook.length, instagram: text.instagram.length }, aiLabel: aiDisclosure(spec).why.meta };

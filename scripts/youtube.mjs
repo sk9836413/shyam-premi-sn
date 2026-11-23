@@ -35,7 +35,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { aiDisclosure } from './ai-disclosure.mjs';
-import { YT_MAX as YT_DESCRIPTION_MAX, withAmazon } from './amazon.mjs';
+import { YT_MAX as YT_DESCRIPTION_MAX, withAmazon, withSamagri } from './amazon.mjs';
 import { BHAKTI_PLAYLIST, BHAKTI_PLAYLIST_DESCRIPTION, isBhajanVideo, thirdPartyNames } from './bhakti-seo.mjs';
 
 const ENV_FILE = path.join(os.homedir(), '.shyampremisk', 'youtube.env');
@@ -129,6 +129,10 @@ export function metaFromScenes(file, metaFile) {
     const { chapters = [] } = JSON.parse(fs.readFileSync(metaFile, 'utf8'));
     const chap = chapters.length >= 3 ? `\n\nAdhyay (Chapters):\n${chapters.map((c, i) => `${stamp(i === 0 ? 0 : c.start)} ${c.title}`).join('\n')}` : '';
     description = withAmazon(description, s, { max: YT_DESCRIPTION_MAX - chap.length }) + chap;
+  } else {
+    // Shorts: no link possible, so one text line (no URL) before the hashtags pointing to the samagri links on the
+    // channel (scripts/amazon.mjs withSamagri; regular Shorts only, never status / owner footage / sati; same switch).
+    description = withSamagri(description, s, { max: YT_DESCRIPTION_MAX });
   }
   description = withShareLine(description, s);
   // Other channels' / organisations' names never go up (YouTube spam & deceptive-practices policy; scripts/bhakti-seo.mjs):

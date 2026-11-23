@@ -57,6 +57,7 @@ import { LINKS } from './festival-links.mjs';
 import { loadInputs, planDay, addDays, istToday, DAWN_FB } from './day-plan.mjs';
 import { BHAJAN_LINE } from '../music/bhajan.mjs';
 import { aiDisclosure } from './ai-disclosure.mjs';
+import { SAMAGRI_LINE } from './amazon.mjs';
 
 /** Facebook times (IST) of each Short slot. */
 // owner: the owner-footage Reel wants its YouTube time (automation/owner-footage.json `at`, 07:15 from 21 Nov 2026; was
@@ -274,7 +275,8 @@ export function checkFbCaption(text, { draft = false, subject = null } = {}) {
     e.push(...tagProblems(tags, subj));
   }
   if (rest.some((l) => /#[\p{L}\p{N}_]/u.test(l))) e.push('hashtags: only on the last line');
-  const meta = (l) => isLink(l) || isCredit(l) || isAi(l);
+  // the samagri line (scripts/amazon.mjs SAMAGRI_LINE, added to Shorts after this template) sits with the link/AI lines
+  const meta = (l) => isLink(l) || isCredit(l) || isAi(l) || l === SAMAGRI_LINE;
   if (draft && rest.some(isLink)) e.push('no URLs: the script adds the festival link and photo credits');
   const firstMeta = rest.findIndex(meta);
   const body = firstMeta < 0 ? rest : rest.slice(0, firstMeta);
