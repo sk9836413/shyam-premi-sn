@@ -217,3 +217,4 @@
 - 2026-11-23-eve-dev-deepawali | claim: 2026-11-23 eve by run 45116386873.1 at 2026-11-23T06:39:29.956Z
 - 2026-11-23-eve-dev-deepawali | youtube: https://youtube.com/shorts/qNWYAjHyEcQ (public at 2026-11-23T14:30:00.000Z) | status variant, made 23 Nov 12:09 IST | social: fb: https://www.facebook.com/reel/30117566231177458 (scheduled 2026-11-23T14:30:00.000Z) | ig: pending 2026-11-23T14:30:00.000Z
 - 2026-11-24-status-kartik-purnima | claim: 2026-11-24 status by run 45116386873.1 at 2026-11-23T06:40:42.710Z
+- 2026-11-24-status-kartik-purnima | youtube: https://youtube.com/shorts/MTUhxvwkb5Y (public at 2026-11-23T19:00:00.000Z) | status variant, made 23 Nov 12:10 IST | social: fb: https://www.facebook.com/reel/1161936590025709 (scheduled 2026-11-23T19:00:00.000Z) | ig: pending 2026-11-23T19:00:00.000Z
