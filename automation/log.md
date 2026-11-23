@@ -105,3 +105,4 @@
 2026-11-23 | evening | 2026-11-23-evening-salasar-balaji-emotional | Salasar Balaji Dham, Churu (Mandir series, Hanuman ji) | Emotional-hook darshan Short: jab himmat tute, Salasar Balaji; diya-lit sanctum, daadhi-moochh wale Balaji darshan, ek diya jalao (hook_style emotional, 4 scenes)
 2026-11-23 | eve | 2026-11-23-eve-dev-deepawali | Kartik Purnima; Dev Deepawali | status Short variant 1 "Happy Dev Deepawali Status 2026 ✨" (12-20 s loop, download link), public 20:00 IST
 2026-11-24 | status | 2026-11-24-status-kartik-purnima | Kartik Purnima; Dev Deepawali | status Short variant 2 "Happy Kartik Purnima Status 2026 ✨" (12-20 s loop, download link), public 00:30 IST
+2026-11-24 | statusday | 2026-11-24-statusday-dev-deepawali-kashi | Kartik Purnima; Dev Deepawali | status Short variant 3 "Happy Dev Deepawali Kashi Status 2026 ✨" (12-20 s loop, download link), public 07:30 IST
