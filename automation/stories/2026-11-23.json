@@ -15,6 +15,23 @@
         "recovered": true,
         "at": "2026-11-23T03:43:52.260Z"
       }
+    },
+    {
+      "key": "video",
+      "type": "video",
+      "source": "2026-11-23-status-baikunth-chaturdashi",
+      "fb": {
+        "claim": {
+          "run": "45113560933.1",
+          "at": "2026-11-23T04:44:41.025Z"
+        }
+      },
+      "ig": {
+        "claim": {
+          "run": "45113560933.1",
+          "at": "2026-11-23T04:44:41.025Z"
+        }
+      }
     }
   ]
 }
