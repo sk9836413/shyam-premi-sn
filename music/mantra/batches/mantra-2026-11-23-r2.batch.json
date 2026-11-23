@@ -1,0 +1,96 @@
+{
+ "batch": "mantra-2026-11-23-r2",
+ "kind": "mantra",
+ "note": "Mantra-jaap takes (music/mantra-takes.mjs): public-domain mantras, original arrangements, ACE-Step 1.5 (MIT), one take per mala (several seeds per arrangement, the QA gate keeps the right ones).",
+ "videos": [
+  {
+   "date": "2026-11-29",
+   "mantra": "hare-krishna",
+   "have": 1,
+   "make": 3,
+   "tight": false
+  }
+ ],
+ "jobs": [
+  {
+   "id": "m-2026-11-29-hare-krishna-2",
+   "kind": "vocal",
+   "mantra": "hare-krishna",
+   "video": "2026-11-29",
+   "mala": 2,
+   "style": "darbari-sarangi",
+   "tempo": "slow",
+   "raag": "Darbari Kanada",
+   "title_roman": "Hare Krishna Hare Krishna Krishna Krishna Hare Hare, Hare Rama Hare Rama Rama Rama Hare Hare (Darbari Kanada)",
+   "title_hi": "हरे कृष्ण हरे राम महामंत्र",
+   "deity": "hare-krishna",
+   "public_domain_text": "Maha-mantra of the Kali-Santarana Upanishad (Krishna Yajurveda); the Upanishad puts Hare Rama first, the Gaudiya Vaishnava tradition sings Hare Krishna first",
+   "lyrics": "[verse]\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे",
+   "lyrics_devanagari": "हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे",
+   "language": "hi",
+   "singer": "male",
+   "caption": "deep slow Indian devotional mantra chanting in raag Darbari Kanada, low tanpura drone, harmonium, soft sarangi, gentle pakhawaj, conch at the start, Indian devotional bhajan, traditional acoustic Indian instruments, repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, peaceful, solo male Indian vocalist, deep warm voice, clear Sanskrit pronunciation",
+   "bpm": 60,
+   "duration": 128,
+   "seeds": [
+    118569,
+    126488,
+    134407
+   ],
+   "gen_deadline": 30,
+   "qa_deadline": 46
+  },
+  {
+   "id": "m-2026-11-29-hare-krishna-3",
+   "kind": "vocal",
+   "mantra": "hare-krishna",
+   "video": "2026-11-29",
+   "mala": 3,
+   "style": "kafi-dholak",
+   "tempo": "medium",
+   "raag": "Kafi",
+   "title_roman": "Hare Krishna Hare Krishna Krishna Krishna Hare Hare, Hare Rama Hare Rama Rama Rama Hare Hare (Kafi)",
+   "title_hi": "हरे कृष्ण हरे राम महामंत्र",
+   "deity": "hare-krishna",
+   "public_domain_text": "Maha-mantra of the Kali-Santarana Upanishad (Krishna Yajurveda); the Upanishad puts Hare Rama first, the Gaudiya Vaishnava tradition sings Hare Krishna first",
+   "lyrics": "[verse]\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे",
+   "lyrics_devanagari": "हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे",
+   "language": "hi",
+   "singer": "male",
+   "caption": "devotional Indian mantra chanting in raag Kafi, harmonium, soft tabla, gentle dholak, manjira, flowing and calm, Indian devotional bhajan, traditional acoustic Indian instruments, repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, peaceful, solo male Indian vocalist, deep warm voice, clear Sanskrit pronunciation",
+   "bpm": 82,
+   "duration": 128,
+   "seeds": [
+    292776,
+    300695,
+    308614
+   ]
+  },
+  {
+   "id": "m-2026-11-29-hare-krishna-4",
+   "kind": "vocal",
+   "mantra": "hare-krishna",
+   "video": "2026-11-29",
+   "mala": 4,
+   "style": "bageshree-veena",
+   "tempo": "slow",
+   "raag": "Bageshree",
+   "title_roman": "Hare Krishna Hare Krishna Krishna Krishna Hare Hare, Hare Rama Hare Rama Rama Rama Hare Hare (Bageshree)",
+   "title_hi": "हरे कृष्ण हरे राम महामंत्र",
+   "deity": "hare-krishna",
+   "public_domain_text": "Maha-mantra of the Kali-Santarana Upanishad (Krishna Yajurveda); the Upanishad puts Hare Rama first, the Gaudiya Vaishnava tradition sings Hare Krishna first",
+   "lyrics": "[verse]\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे",
+   "lyrics_devanagari": "हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे\nहरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे हरे राम हरे राम राम राम हरे हरे",
+   "language": "hi",
+   "singer": "male",
+   "caption": "serene slow Indian devotional mantra chanting in raag Bageshree, tanpura drone, harmonium, soft veena plucks, gentle tabla, distant temple bells, Indian devotional bhajan, traditional acoustic Indian instruments, repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, peaceful, solo male Indian vocalist, deep warm voice, clear Sanskrit pronunciation",
+   "bpm": 62,
+   "duration": 128,
+   "seeds": [
+    466983,
+    474902,
+    482821
+   ]
+  }
+ ]
+}
