@@ -102,3 +102,4 @@
 2026-11-22 | eve | 2026-11-22-eve-vaikuntha-chaturdashi | Vaikuntha Chaturdashi | status Short variant 1 "Happy Vaikuntha Chaturdashi Status 2026 ✨" (12-20 s loop, download link), public 20:00 IST
 2026-11-23 | status | 2026-11-23-status-baikunth-chaturdashi | Vaikuntha Chaturdashi | status Short variant 2 "Happy Baikunth Chaturdashi Status 2026 ✨" (12-20 s loop, download link), public 00:30 IST
 2026-11-23 | owner | 2026-11-23-owner-akhand-jyot-darshan | Khatu Shyam ji (owner's own footage) | owner-footage Short, clip 03 "Shyam Baba Ki Akhand Jyot", real footage + music cc-sitar-tune-tambura (YouTube synthetic false, Meta AI label false), public 2026-11-23T07:15 IST
+2026-11-23 | evening | 2026-11-23-evening-salasar-balaji-emotional | Salasar Balaji Dham, Churu (Mandir series, Hanuman ji) | Emotional-hook darshan Short: jab himmat tute, Salasar Balaji; diya-lit sanctum, daadhi-moochh wale Balaji darshan, ek diya jalao (hook_style emotional, 4 scenes)

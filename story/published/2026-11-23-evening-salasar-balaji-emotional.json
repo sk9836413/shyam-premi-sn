@@ -1,0 +1,59 @@
+{
+  "slug": "2026-11-23-evening-salasar-balaji-emotional",
+  "title": "Jab himmat tute, Salasar Balaji",
+  "kicker": "Salasar Balaji Dham",
+  "playlist": "Hanuman ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook_style": "emotional",
+  "temple": "salasar-balaji",
+  "hook": "Himmat tute, Salasar Balaji hain na",
+  "cover": "सालासर बालाजी साथ हैं",
+  "scenes": [
+    {
+      "prompt": "Close-up darshan of the Salasar Balaji Hanuman murti: orange-vermilion Hanuman ji with a round gentle face, a long beard and moustache, a silver crown, heavy marigold garlands, in a dark quiet sanctum lit only by small brass diyas, deep shadows, warm golden glow, face in the middle of the frame",
+      "tts": "जब हिम्मत टूटे, सालासर बालाजी का नाम लो।",
+      "sub": "Jab himmat tute, Salasar Balaji ka naam lo.",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly, the golden glow gently pulses"
+    },
+    {
+      "prompt": "Darshan of the Salasar Balaji Hanuman murti, orange-vermilion Hanuman ji with a beard and moustache, silver crown and marigold garlands, slightly wider view in a dark sanctum with many glowing brass diyas in front, warm golden light",
+      "tts": "चूरू, राजस्थान के सालासर में दाढ़ी-मूँछ वाले बालाजी।",
+      "sub": "Churu, Rajasthan ke Salasar mein daadhi-moochh wale Balaji.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, many diya flames flicker softly, a few marigold petals drift in the background"
+    },
+    {
+      "prompt": "A single brass diya flame glowing in a dark quiet temple sanctum, soft golden light on old stone, red vermilion and marigold petals beside it, warm shadows, calm and hopeful mood, no people",
+      "tts": "मन भारी हो… तो एक दीया जलाओ, और बालाजी को याद करो।",
+      "sub": "Man bhaari ho… to ek diya jalao, aur Balaji ko yaad karo.",
+      "motion": "out",
+      "mood": "emotional",
+      "animate": "the diya flame flickers softly, a thin wisp of incense smoke rises slowly, marigold petals rest still"
+    },
+    {
+      "endcard": true,
+      "tts": "जय श्री राम! अच्छा लगे तो लाइक, शेयर और सब्सक्राइब करें। जय सालासर बालाजी!",
+      "sub": "Jai Shree Ram! Achha lage to Like, Share aur Subscribe karein. Jai Salasar Balaji!"
+    }
+  ],
+  "youtube_title": "Jab Himmat Tute, Salasar Balaji Darshan | जब हिम्मत टूटे, सालासर बालाजी 🙏 #Shorts",
+  "youtube_description": "Salasar Balaji Dham (Churu, Rajasthan) ke darshan. Jab himmat tute, bhakt Hanuman ji ko, Salasar ke Balaji ko yaad karte hain.\nसालासर बालाजी धाम, चूरू: दाढ़ी-मूँछ वाले हनुमान जी के दर्शन 🙏\nॐ श्री हनुमते नमः\nChitra AI dwara banaye gaye hain (sanketik).\nJai Shree Shyam 🙏\nVideo achha lage to Like, Share aur Subscribe karein.\n#SalasarBalaji #Hanuman #JaiBalaji #Rajasthan",
+  "youtube_tags": "Salasar Balaji, सालासर बालाजी, Salasar Balaji Dham, सालासर बालाजी धाम, Salasar Balaji darshan, सालासर बालाजी दर्शन, Hanuman ji, हनुमान जी, Churu Rajasthan, चूरू राजस्थान, Jai Balaji, जय बालाजी, Jai Shree Shyam",
+  "instagram_caption": "Jab himmat tute, Salasar Balaji 🙏\nChuru (Rajasthan) ke Salasar Dham mein daadhi-moochh wale Balaji ke darshan.\nOm Shri Hanumate Namah\nChitra AI dwara banaye gaye hain (sanketik).\nVideo achha lage to Like, Share aur Follow karein.\n#SalasarBalaji #Hanuman #JaiBalaji #Rajasthan #Churu",
+  "facebook_caption": "जय बालाजी 🙏 जब मन भारी हो, तब आप किसे याद करते हैं?\nचूरू, राजस्थान के सालासर बालाजी धाम में दाढ़ी-मूँछ वाले हनुमान जी के दर्शन।\nChitra AI dwara banaye gaye hain (sanketik).\n#SalasarBalaji #Hanuman #JaiBalaji",
+  "music": {
+    "id": "cc-eastern-loop-shruti",
+    "mood": "calm",
+    "title": "Eastern instrumental loop with shruti",
+    "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}
