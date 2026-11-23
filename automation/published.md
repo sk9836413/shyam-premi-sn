@@ -210,3 +210,5 @@
 - 2026-11-22-evening-rani-sati-dadi-jhunjhunu-darshan | instagram: https://www.instagram.com/reel/DgC6uvelyU1/
 - 2026-11-22-eve-vaikuntha-chaturdashi | instagram: https://www.instagram.com/reel/DgDl0pPhQT0/
 - 2026-11-23-status-baikunth-chaturdashi | instagram: https://www.instagram.com/reel/DgDl5Znv00x/
+- 2026-11-23-status-baikunth-chaturdashi-trial | instagram: https://www.instagram.com/reel/DgEcanAuSeQ/ (trial reel, SS_PERFORMANCE)
+- 2026-11-23-owner-akhand-jyot-darshan | instagram: https://www.instagram.com/reel/DgEchJuIzTe/
