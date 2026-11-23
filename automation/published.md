@@ -219,3 +219,4 @@
 - 2026-11-24-status-kartik-purnima | claim: 2026-11-24 status by run 45116386873.1 at 2026-11-23T06:40:42.710Z
 - 2026-11-24-status-kartik-purnima | youtube: https://youtube.com/shorts/MTUhxvwkb5Y (public at 2026-11-23T19:00:00.000Z) | status variant, made 23 Nov 12:10 IST | social: fb: https://www.facebook.com/reel/1161936590025709 (scheduled 2026-11-23T19:00:00.000Z) | ig: pending 2026-11-23T19:00:00.000Z
 - 2026-11-24-status-kartik-purnima-trial | instagram trial reel (SS_PERFORMANCE) of 2026-11-24-status-kartik-purnima, made 23 Nov 12:11 IST | social: fb: skipped (not in the Facebook plan) | ig: pending 2026-11-24T03:30:00.000Z
+- 2026-11-24-statusday-dev-deepawali-kashi | claim: 2026-11-24 statusday by run 45116386873.1 at 2026-11-23T06:42:44.943Z
