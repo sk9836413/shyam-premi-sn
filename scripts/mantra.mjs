@@ -334,7 +334,9 @@ export function pickTakes(ledger, { mantra, date, exists = (t) => !!t.file }) {
   const used = usedIds(ledger);
   const ok = (ledger.takes || []).filter((t) => t.mantra === mantra && t.status === 'ok' && !t.used_in && !used.has(t.id) && t.loop && !t.loop.error && exists(t));
   ok.sort((a, b) => (a.for === date ? 0 : 1) - (b.for === date ? 0 : 1) || String(a.for).localeCompare(String(b.for)) || a.id.localeCompare(b.id));
-  return arrange(ok);
+  // Several seeds of one arrangement can pass (music/mantra-takes.mjs SEEDS): a take that would sit right after one of
+  // the same arrangement stays unused (for a later video of this mantra), so neighbouring malas always differ.
+  return arrange(ok).reduce((out, t) => (out.length && out[out.length - 1].style === t.style ? out : [...out, t]), []);
 }
 
 /** How many malas: as many takes as fit under max_minutes (and max_malas); null when even all of them stay under min_minutes. */

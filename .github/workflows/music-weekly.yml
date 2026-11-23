@@ -260,8 +260,11 @@ jobs:
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
   # Weekly mantra-jaap takes (owner, 13 Nov 2026; music/mantra-takes.mjs, automation/mantras.json): the ACE-Step takes of
-  # the mantra video(s) of the next 7 days (one take per mala + 2 spares, a different raag / tempo / instruments each;
-  # 3 malas + 1 spare when under 12 GPU hours are left), in the same sps-music kernel after the bhajans (~25-40 GPU min).
+  # the mantra video(s) of the next 7 days (one arrangement per mala + 2 spares, a different raag / tempo / instruments
+  # each, x 3 seeds; 3 malas + 1 spare x 2 seeds when under 12 GPU hours are left), in the same sps-music kernel after
+  # the bhajans (~35-55 GPU min). 23 Nov 2026: one seed per arrangement kept 0/5 and 1/4 takes, so 3 seeds now, and when
+  # a video is still short after the import a SECOND session runs (batch mantra-<date>-r2, new seeds) if it fits before
+  # the next blocked window; the QA gate is the same for both.
   # Whisper deity-name gate + CLAP + a steady 108-divisor loop per take; passing takes -> music/mantra/takes/ + the
   # ledger music/mantra/takes.json (never reused). Mondays 02:10 IST (repo variable MANTRA_JAAP=off stops it), and once on
   # Sat 21 Nov 2026 05:45 IST for the first video (Sun 22 Nov): after the movie series' GPU days (17-20 Nov), right after
@@ -275,7 +278,7 @@ jobs:
       (github.event_name == 'schedule' && github.event.schedule == '15 0 21 11 *') ||
       (github.event_name == 'schedule' && github.event.schedule == '40 20 * * 0' && vars.MANTRA_JAAP != 'off'))
     runs-on: ubuntu-latest
-    timeout-minutes: 160
+    timeout-minutes: 330
     env:
       KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
     steps:
@@ -303,10 +306,10 @@ jobs:
           B=${{ steps.plan.outputs.batch }}
           mkdir -p music/mantra/batches
           cp "$RUNNER_TEMP/mantra-batch.json" "music/mantra/batches/$B.batch.json"
-          node music/gen.mjs push --batch "music/mantra/batches/$B.batch.json" --code music/kaggle/bhajan_batch.py --push-dir "$RUNNER_TEMP/push" --lock-minutes 60 --needs-minutes 50 --min-hours 3 | tee -a "$GITHUB_STEP_SUMMARY"
+          node music/gen.mjs push --batch "music/mantra/batches/$B.batch.json" --code music/kaggle/bhajan_batch.py --push-dir "$RUNNER_TEMP/push" --lock-minutes 60 --needs-minutes 65 --min-hours 3 | tee -a "$GITHUB_STEP_SUMMARY"
       - name: Wait
         if: steps.plan.outputs.need == 'true'
-        run: node music/gen.mjs wait --minutes 65
+        run: node music/gen.mjs wait --minutes 70
       - name: Fetch, Whisper gate, loops and import
         if: steps.plan.outputs.need == 'true'
         run: |
@@ -314,6 +317,25 @@ jobs:
           node music/gen.mjs fetch --to "$RUNNER_TEMP/out"
           node music/mantra-takes.mjs import --from "$RUNNER_TEMP/out" --batch "music/mantra/batches/$B.batch.json" --report "music/mantra/batches/$B.qa.json" | tee -a "$GITHUB_STEP_SUMMARY"
           rm -rf "$RUNNER_TEMP/out"
+      # Retry round: a video still short of QA-passed takes gets one more session with new seeds (plan names it
+      # mantra-<date>-r2), only when it fits before the next blocked window (gen.mjs push refuses otherwise: exit 3 = skip).
+      - name: Second session for a video still short of takes
+        if: steps.plan.outputs.need == 'true'
+        shell: bash
+        run: |
+          today="${{ inputs.from }}"; [ -n "$today" ] || today=$(TZ=Asia/Kolkata date +%F)
+          left=$(node animate/kaggle.mjs quota 2>/dev/null | tail -1 | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>{try{console.log(JSON.parse(s).left??'')}catch{console.log('')}})")
+          echo "### Retry round" >> "$GITHUB_STEP_SUMMARY"
+          node music/mantra-takes.mjs plan --today "$today" ${left:+--hours-left "$left"} --out "$RUNNER_TEMP/mantra-r2.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ -f "$RUNNER_TEMP/mantra-r2.json" ] || exit 0
+          B2=$(node -p "require('$RUNNER_TEMP/mantra-r2.json').batch")
+          cp "$RUNNER_TEMP/mantra-r2.json" "music/mantra/batches/$B2.batch.json"
+          rc=0; node music/gen.mjs push --batch "music/mantra/batches/$B2.batch.json" --code music/kaggle/bhajan_batch.py --push-dir "$RUNNER_TEMP/push2" --lock-minutes 30 --needs-minutes 65 --min-hours 3 | tee -a "$GITHUB_STEP_SUMMARY" || rc=$?
+          if [ "$rc" != 0 ]; then echo "::notice::no second session ($B2, push exit $rc)"; rm -f "music/mantra/batches/$B2.batch.json"; exit 0; fi
+          node music/gen.mjs wait --minutes 70
+          node music/gen.mjs fetch --to "$RUNNER_TEMP/out2"
+          node music/mantra-takes.mjs import --from "$RUNNER_TEMP/out2" --batch "music/mantra/batches/$B2.batch.json" --report "music/mantra/batches/$B2.qa.json" | tee -a "$GITHUB_STEP_SUMMARY"
+          rm -rf "$RUNNER_TEMP/out2"
       - name: Tests
         if: steps.plan.outputs.need == 'true'
         run: node --test scripts/mantra.test.mjs

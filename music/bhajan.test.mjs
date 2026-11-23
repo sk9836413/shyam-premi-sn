@@ -136,7 +136,9 @@ test('lyrics rules: plan slots must match and chorus first lines must be new', (
   assert.match(again.bad[0].problems.join(' '), /repeats/);
 });
 
-test('plan: the week of 14 Nov 2026 = Janmotsav, Chhath, Tulsi Vivah + Khatu-heavy base, 13 songs', () => {
+// festivals.json since 17 Nov 2026 also has Gopashtami (17 Nov, tier status), which takes the week's third festival
+// slot from Tulsi Vivah (21 Nov): the planner gives festivals in date order.
+test('plan: the week of 14 Nov 2026 = Janmotsav, Chhath, Gopashtami + Khatu-heavy base, 13 songs', () => {
   const festivals = JSON.parse(fs.readFileSync(path.join(DIR, '..', 'automation', 'festivals.json'), 'utf8')).festivals;
   const p = planWeek({ from: '2026-11-14', festivals });
   assert.equal(p.count, 13);
@@ -144,7 +146,7 @@ test('plan: the week of 14 Nov 2026 = Janmotsav, Chhath, Tulsi Vivah + Khatu-hea
   const by = (d) => p.songs.filter((s) => s.deity === d).length;
   assert.ok(by('khatu') >= 5 && by('khatu') === Math.max(...['khatu', 'shiv', 'hanuman', 'krishna', 'ganesh', 'devi', 'vishnu'].map(by)));
   for (const d of ['shiv', 'hanuman', 'krishna', 'ganesh']) assert.ok(by(d) >= 1, d);
-  assert.deepEqual([...new Set(p.songs.filter((s) => s.festival).map((s) => s.festival))].sort(), ['chhath', 'janmotsav', 'tulsi']);
+  assert.deepEqual([...new Set(p.songs.filter((s) => s.festival).map((s) => s.festival))].sort(), ['chhath', 'gopashtami', 'janmotsav']);
   assert.ok(p.songs.every((s) => (s.mood === 'thaath' ? s.bpm >= 120 && s.bpm <= 135 : s.bpm < 90)));
   assert.ok(!p.songs.some((s) => /sati/i.test(JSON.stringify(s))));
 });

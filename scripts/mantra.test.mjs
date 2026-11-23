@@ -12,7 +12,7 @@ import {
   mantraFor, mantraSchedule, mantraSlug, mantraTitle, mondayOf, pickPictures, pickTakes, usedIds, weekday,
 } from './mantra.mjs';
 import { recordUse, timeline } from './mantra-long.mjs';
-import { buildBatch, gateTake, mantraNameCheck, needs, stylesFor, sungUnit, takeJob } from '../music/mantra-takes.mjs';
+import { SEEDS, TIGHT_SEEDS, batchName, buildBatch, gateTake, mantraNameCheck, needs, stylesFor, sungUnit, takeJob } from '../music/mantra-takes.mjs';
 import { hasSearchedPhrase, isBhajanVideo } from './bhakti-seo.mjs';
 import { aiDisclosure } from './ai-disclosure.mjs';
 import { metaFromScenes, syntheticMedia, uploadStatus } from './youtube.mjs';
@@ -156,6 +156,14 @@ describe('takes: never reused, arranged slow - medium - slow', () => {
     assert.deepEqual(pickTakes(ledger, { mantra: 'vasudev', date: '2026-11-22' }).map((t) => t.id).sort(), ['a', 'g']);
     assert.deepEqual([...usedIds(ledger)].sort(), ['b', 'c']);
   });
+  test('pickTakes never puts two takes of one arrangement side by side (several seeds of a style can pass)', () => {
+    const ledger = { takes: [take('a1', { style: 'ahir', tempo: 'medium' }), take('a2', { style: 'ahir', tempo: 'medium' })], videos: [] };
+    assert.deepEqual(pickTakes(ledger, { mantra: 'vasudev', date: '2026-11-22' }).map((t) => t.id), ['a1']);
+    ledger.takes.push(take('s1', { style: 'bhupali' }), take('s2', { style: 'bhupali' }));
+    const p = pickTakes(ledger, { mantra: 'vasudev', date: '2026-11-22' });
+    assert.deepEqual(p.map((t) => t.style), ['bhupali', 'ahir', 'bhupali', 'ahir']);
+    for (let i = 1; i < p.length; i++) assert.notEqual(p[i].style, p[i - 1].style);
+  });
   test('recordUse marks the takes used, logs the video, deletes the audio and refuses a second use', () => {
     const root = fs.mkdtempSync(path.join(os.tmpdir(), 'mantra-'));
     fs.mkdirSync(path.join(root, 'music/mantra/takes'), { recursive: true });
@@ -192,7 +200,20 @@ describe('takes: never reused, arranged slow - medium - slow', () => {
     const b = buildBatch(cat, ledger, plan, '2026-11-21');
     assert.equal(new Set(b.jobs.map((j) => j.style)).size, b.jobs.length);
     assert.deepEqual(b.jobs.map((j) => j.tempo), ['slow', 'medium', 'slow', 'medium', 'slow']);
-    assert.equal(new Set(b.jobs.map((j) => j.seeds[0])).size, b.jobs.length);
+    assert.ok(b.jobs.every((j) => j.seeds.length === SEEDS), `${SEEDS} seeds per arrangement`);
+    const ids = b.jobs.flatMap((j) => j.seeds.map((sd) => `${j.id}-s${sd}`));
+    assert.equal(new Set(ids).size, ids.length, 'unique take ids');
+    assert.ok(b.jobs[0].gen_deadline >= 30 && b.jobs[0].gen_deadline <= 40 && b.jobs[0].qa_deadline > b.jobs[0].gen_deadline && b.jobs[0].qa_deadline <= 56);
+    const gen = b.jobs.reduce((t, j) => t + (j.seeds.length * j.duration) / 60 * 0.75, 0);
+    assert.ok(gen + 4 <= b.jobs[0].gen_deadline, 'every take fits in the generation budget');
+    // a second session the same day: a new batch name and new seeds, never a take id the ledger already has
+    assert.equal(batchName('2026-11-21'), 'mantra-2026-11-21');
+    assert.equal(batchName('2026-11-21', (n) => ['mantra-2026-11-21', 'mantra-2026-11-21-r2'].includes(n)), 'mantra-2026-11-21-r3');
+    const r2 = buildBatch(cat, ledger, plan, '2026-11-21', { batch: 'mantra-2026-11-21-r2' });
+    const ids2 = r2.jobs.flatMap((j) => j.seeds.map((sd) => `${j.id}-s${sd}`));
+    assert.equal(ids2.filter((x) => ids.includes(x)).length, 0, 'the retry session repeats no take');
+    const had = { takes: [{ id: ids[0], mantra: 'vasudev', status: 'rejected' }], videos: [] };
+    assert.ok(!buildBatch(cat, had, plan, '2026-11-21').jobs.flatMap((j) => j.seeds.map((sd) => `${j.id}-s${sd}`)).includes(ids[0]), 'a known take id is never made again');
     for (const j of b.jobs) {
       assert.match(j.lyrics, /^\[verse\]\n/);
       assert.ok(j.lyrics.includes(sungUnit(M('vasudev'))));
@@ -202,6 +223,7 @@ describe('takes: never reused, arranged slow - medium - slow', () => {
     assert.deepEqual(needs({ cat, inputs: real(), ledger, today: '2026-11-16', mantraFor }), [], 'nothing before generate_from (after the movie GPU days)');
     const tight = needs({ cat, inputs: real(), ledger, today: '2026-11-23', hoursLeft: 8, mantraFor });
     assert.equal(tight[0].make, Math.min(cat.mantras[tight[0].mantra].malas, 3) + 1);
+    assert.ok(buildBatch(cat, ledger, tight, '2026-11-23').jobs.every((j) => j.seeds.length === TIGHT_SEEDS), 'quota tight: fewer seeds');
     const used = stylesFor(cat, { takes: b.jobs.map((j) => ({ mantra: 'vasudev', style: j.style })) }, 'vasudev', 3, 'x');
     assert.ok(used.every((s) => !b.jobs.slice(0, 3).some((j) => j.style === s.id) || cat.styles.length < 8), 'next week prefers unused arrangements');
     assert.equal(takeJob(cat, M('shiv'), { date: '2026-12-06', n: 1, style: cat.styles[0] }).id, 'm-2026-12-06-shiv-1');

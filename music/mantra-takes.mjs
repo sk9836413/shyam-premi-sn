@@ -6,8 +6,11 @@
 //
 //   node music/mantra-takes.mjs plan --today YYYY-MM-DD [--days 7] [--hours-left H] --out batch.json
 //        the mantra videos of today+1 .. today+days (day-plan rules) that lack unused QA-passed takes; per video
-//        malas + 2 spare takes (with under 12 GPU hours left: 3 malas + 1 spare); nothing before mantras.json
-//        generate_from. Writes the Kaggle batch (no file when nothing is needed); GITHUB_OUTPUT need=true|false.
+//        malas + 2 spare arrangements x 3 seeds (with under 12 GPU hours left: 3 malas + 1 spare, x 2 seeds); nothing
+//        before mantras.json generate_from. The batch is mantra-<today>, or mantra-<today>-r2, -r3 ... when that name is
+//        already in music/mantra/batches/ (a second session the same day: the retry round of music-weekly.yml, or a
+//        manual run); the seeds come from the batch name, so a new batch never repeats a take. Writes the Kaggle batch
+//        (no file when nothing is needed); GITHUB_OUTPUT need=true|false, batch.
 //   node music/mantra-takes.mjs import --from <kaggle out dir> --batch batch.json [--report qa.json]
 //        Whisper/CLAP gate (gateTake) per take, then the loop (scripts/mantra.mjs findLoop) on the loudness-normalised
 //        take; passing takes -> music/mantra/takes/<take>.ogg + music/mantra/takes.json (status ok, loop, style).
@@ -16,6 +19,10 @@
 // the deity name (वासुदेव / कृष्ण + राम / शिव / गणपत(ये) / राम) heard right in >= 80 % of the checked positions (never the
 // one right after "श्री") and in at least 2; whole-text CER <= 0.5 against the chant repeated as often as Whisper heard
 // it; CLAP Indian devotional >= 0.30 and western rock/pop <= 0.30; then a steady loop of a divisor of 108 chants.
+//
+// Seeds (23 Nov 2026): the first two sessions kept 0/5 (vasudev, 21 Nov) and 1/4 (hare-krishna, 23 Nov) takes with ONE
+// seed per arrangement: a take passes only when the name, the CER and CLAP all hold, so every arrangement now gets
+// SEEDS seeds (like the bhajans' 3) and a run may push a second session (music-weekly.yml retry round). The gate is unchanged.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -26,8 +33,12 @@ import { addDays, analyzeTake, loadLedger, loadMantras, saveLedger, usedIds } fr
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(DIR, '..');
 export const TAKES_DIR = path.join(DIR, 'mantra', 'takes');
+export const BATCH_DIR = path.join(DIR, 'mantra', 'batches');
 export const SPARE = 2;
+export const SEEDS = 3;
+export const TIGHT_SEEDS = 2;
 export const TIGHT_HOURS = 12;
+export const GPU_MIN_PER_AUDIO_MIN = 0.75; // music/kaggle/bhajan_batch.py's own estimate (measured)
 export const NAME_SHARE = 0.8;
 export const CER_MAX = 0.5;
 export const MODEL = 'ACE-Step 1.5 (acestep-v15-turbo DiT fp32 + acestep-5Hz-lm-1.7B)';
@@ -91,8 +102,9 @@ export function stylesFor(cat, ledger, mantra, count, salt = '') {
   return out;
 }
 
-/** The Kaggle job of one take (music/kaggle/bhajan_batch.py fields). */
-export function takeJob(cat, m, { date, n, style }) {
+/** The Kaggle job of one arrangement (music/kaggle/bhajan_batch.py fields): `seeds` takes of it, each its own ledger
+ *  take (<job>-s<seed>). `salt` (the batch name) keeps a second session's seeds (and so its take ids) new. */
+export function takeJob(cat, m, { date, n, style, seeds = 1, salt = '' }) {
   const mid = (m.sec_per_rep[0] + m.sec_per_rep[1]) / 2;
   const reps = Math.max(6, Math.ceil(110 / mid));
   const unit = sungUnit(m);
@@ -102,7 +114,8 @@ export function takeJob(cat, m, { date, n, style }) {
     title_roman: `${m.roman} (${style.raag})`, title_hi: m.short || m.text, deity: m.id, public_domain_text: m.source_en,
     lyrics: `[verse]\n${Array(reps).fill(unit).join('\n')}`, lyrics_devanagari: Array(reps).fill(unit).join('\n'),
     language: 'hi', singer: 'male', caption: `${style.caption}, ${cat.caption_suffix}`, bpm: style.bpm,
-    duration: Math.max(75, Math.min(150, Math.round(reps * mid) + 8)), seeds: [100000 + (hash(id) % 800000)],
+    duration: Math.max(75, Math.min(150, Math.round(reps * mid) + 8)),
+    seeds: Array.from({ length: seeds }, (_, k) => 100000 + ((hash(salt ? `${id}:${salt}` : id) + k * 7919) % 800000)),
   };
 }
 
@@ -123,15 +136,37 @@ export function needs({ cat, inputs, ledger, today, days = 7, hoursLeft = null, 
   return out;
 }
 
-export function buildBatch(cat, ledger, plan, today) {
+/** The session's time budget (min from the kernel start): generation of every take (~0.75 GPU min per audio min) plus
+ *  ~6 min of setup, then Whisper/Demucs/CLAP QA (~0.8 min a take). Capped so the session stays under an hour. */
+export function deadlines(jobs) {
+  const takes = jobs.reduce((s, j) => s + j.seeds.length, 0);
+  const gen = jobs.reduce((s, j) => s + (j.seeds.length * j.duration) / 60 * GPU_MIN_PER_AUDIO_MIN, 0);
+  const gen_deadline = Math.min(40, Math.max(30, Math.ceil(6 + gen * 1.1)));
+  return { gen_deadline, qa_deadline: Math.min(56, gen_deadline + Math.max(16, Math.ceil(takes * 0.8))) };
+}
+
+/** mantra-<today>, else the first free mantra-<today>-r2, -r3 ... (`taken(name)`: that batch was already made). */
+export function batchName(today, taken = () => false) {
+  let name = `mantra-${today}`;
+  for (let r = 2; taken(name) && r < 50; r++) name = `mantra-${today}-r${r}`;
+  return name;
+}
+
+export function buildBatch(cat, ledger, plan, today, { batch = `mantra-${today}` } = {}) {
   const jobs = [];
+  const known = new Set((ledger.takes || []).map((t) => t.id));
   for (const v of plan) {
     const m = cat.mantras[v.mantra];
-    const styles = stylesFor(cat, ledger, v.mantra, v.make, v.date);
-    styles.forEach((style, i) => jobs.push(takeJob(cat, m, { date: v.date, n: v.have + i + 1, style })));
+    const styles = stylesFor(cat, ledger, v.mantra, v.make, batch === `mantra-${today}` ? v.date : `${v.date}:${batch}`);
+    const seeds = v.tight ? TIGHT_SEEDS : SEEDS;
+    styles.forEach((style, i) => {
+      const j = takeJob(cat, m, { date: v.date, n: v.have + i + 1, style, seeds, salt: batch });
+      j.seeds = j.seeds.filter((s) => !known.has(`${j.id}-s${s}`)); // never a take id the ledger already has
+      if (j.seeds.length) jobs.push(j);
+    });
   }
-  if (jobs.length) Object.assign(jobs[0], { gen_deadline: 30, qa_deadline: 46 });
-  return { batch: `mantra-${today}`, kind: 'mantra', note: 'Mantra-jaap takes (music/mantra-takes.mjs): public-domain mantras, original arrangements, ACE-Step 1.5 (MIT), one take per mala.', videos: plan, jobs };
+  if (jobs.length) Object.assign(jobs[0], deadlines(jobs));
+  return { batch, kind: 'mantra', note: 'Mantra-jaap takes (music/mantra-takes.mjs): public-domain mantras, original arrangements, ACE-Step 1.5 (MIT), one take per mala (several seeds per arrangement, the QA gate keeps the right ones).', videos: plan, jobs };
 }
 
 // ---------------------------------------------------------------- CLI
@@ -151,11 +186,13 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     const hoursLeft = opt('--hours-left') ? Number(opt('--hours-left')) : null;
     const plan = needs({ cat, inputs: loadInputs(ROOT), ledger, today, days: Number(opt('--days', 7)), hoursLeft, mantraFor });
     if (!plan.length) { console.log(`no mantra takes needed (today ${today}${today < cat.generate_from ? `, generation starts ${cat.generate_from}` : ''})`); out('need', 'false'); process.exit(0); }
-    const b = buildBatch(cat, ledger, plan, today);
+    const batch = batchName(today, (n) => fs.existsSync(path.join(BATCH_DIR, `${n}.batch.json`)));
+    const b = buildBatch(cat, ledger, plan, today, { batch });
     writeJson(opt('--out'), b);
     out('need', 'true');
     out('batch', b.batch);
-    console.log(`${b.batch}: ${plan.map((v) => `${v.date} ${v.mantra} (${v.have} usable, +${v.make}${v.tight ? ', quota tight: 3 malas' : ''})`).join('; ')}; ${b.jobs.length} takes, ${b.jobs.reduce((s, j) => s + j.duration, 0)} s of audio`);
+    const takes = b.jobs.reduce((s, j) => s + j.seeds.length, 0);
+    console.log(`${b.batch}: ${plan.map((v) => `${v.date} ${v.mantra} (${v.have} usable, +${v.make} arrangements${v.tight ? ', quota tight: 3 malas' : ''})`).join('; ')}; ${b.jobs.length} arrangements x ${b.jobs[0].seeds.length} seeds = ${takes} takes, ${b.jobs.reduce((s, j) => s + j.duration * j.seeds.length, 0)} s of audio (gen by ${b.jobs[0].gen_deadline} min, QA by ${b.jobs[0].qa_deadline} min)`);
   } else if (cmd === 'import') {
     const from = path.resolve(opt('--from'));
     const batch = JSON.parse(fs.readFileSync(opt('--batch'), 'utf8'));
@@ -170,9 +207,10 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       const m = { ...cat.mantras[j.mantra], id: j.mantra };
       const id = `${t.job}-s${t.seed}`;
       const g = gateTake(t, m);
+      if ((ledger.takes || []).some((x) => x.id === id)) g.why.push('take id already in the ledger (never overwritten)');
       let loop = null;
       let file = null;
-      if (g.ok) {
+      if (g.ok && !g.why.length) {
         const src = [path.join(from, t.file), path.join(from, 'out', t.file)].find((f) => fs.existsSync(f));
         if (!src) g.why.push('audio file missing');
         else {

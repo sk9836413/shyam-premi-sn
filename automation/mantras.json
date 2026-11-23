@@ -163,16 +163,17 @@
   }
  },
  "styles": [
-  { "id": "yaman-bansuri", "tempo": "slow", "bpm": 64, "raag": "Yaman", "caption": "slow meditative Hindu mantra chanting in raag Yaman, tanpura drone, soft bansuri flute, gentle temple bells" },
-  { "id": "bhupali-santoor", "tempo": "slow", "bpm": 66, "raag": "Bhupali", "caption": "slow peaceful Hindu mantra chanting in raag Bhupali, tanpura drone, soft santoor, light temple bells" },
-  { "id": "darbari-sarangi", "tempo": "slow", "bpm": 60, "raag": "Darbari Kanada", "caption": "deep slow Hindu mantra chanting in raag Darbari Kanada, low tanpura drone, soft sarangi, conch at the start" },
-  { "id": "bageshree-veena", "tempo": "slow", "bpm": 62, "raag": "Bageshree", "caption": "serene slow Hindu mantra chanting in raag Bageshree, tanpura drone, soft veena plucks, distant temple bells" },
-  { "id": "malkauns-drone", "tempo": "slow", "bpm": 58, "raag": "Malkauns", "caption": "very calm slow Hindu mantra chanting in raag Malkauns, deep tanpura and shruti box drone, soft bells, meditative" },
-  { "id": "desh-sitar", "tempo": "slow", "bpm": 68, "raag": "Desh", "caption": "gentle slow Hindu mantra chanting in raag Desh, tanpura drone, soft sitar phrases, light manjira" },
+  { "id": "yaman-bansuri", "tempo": "slow", "bpm": 64, "raag": "Yaman", "caption": "slow meditative Indian devotional mantra chanting in raag Yaman, tanpura drone, harmonium, soft bansuri flute, gentle tabla, temple bells" },
+  { "id": "bhupali-santoor", "tempo": "slow", "bpm": 66, "raag": "Bhupali", "caption": "slow peaceful Indian devotional mantra chanting in raag Bhupali, tanpura drone, harmonium, soft santoor, gentle tabla, light temple bells" },
+  { "id": "darbari-sarangi", "tempo": "slow", "bpm": 60, "raag": "Darbari Kanada", "caption": "deep slow Indian devotional mantra chanting in raag Darbari Kanada, low tanpura drone, harmonium, soft sarangi, gentle pakhawaj, conch at the start" },
+  { "id": "bageshree-veena", "tempo": "slow", "bpm": 62, "raag": "Bageshree", "caption": "serene slow Indian devotional mantra chanting in raag Bageshree, tanpura drone, harmonium, soft veena plucks, gentle tabla, distant temple bells" },
+  { "id": "malkauns-drone", "tempo": "slow", "bpm": 58, "raag": "Malkauns", "caption": "very calm slow Indian devotional mantra chanting in raag Malkauns, deep tanpura drone, harmonium, soft tabla, manjira, meditative" },
+  { "id": "desh-sitar", "tempo": "slow", "bpm": 68, "raag": "Desh", "caption": "gentle slow Indian devotional mantra chanting in raag Desh, tanpura drone, harmonium, soft sitar phrases, gentle tabla, light manjira" },
   { "id": "bhairav-harmonium", "tempo": "medium", "bpm": 84, "raag": "Bhairav", "caption": "devotional Hindu mantra chanting in raag Bhairav, harmonium, soft tabla theka, manjira, morning temple feel" },
   { "id": "khamaj-kirtan", "tempo": "medium", "bpm": 88, "raag": "Khamaj", "caption": "warm kirtan-style Hindu mantra chanting in raag Khamaj, harmonium, mridang, kartal, soft group response" },
-  { "id": "kafi-dholak", "tempo": "medium", "bpm": 82, "raag": "Kafi", "caption": "devotional Hindu mantra chanting in raag Kafi, harmonium, gentle dholak, manjira, flowing and calm" },
+  { "id": "kafi-dholak", "tempo": "medium", "bpm": 82, "raag": "Kafi", "caption": "devotional Indian mantra chanting in raag Kafi, harmonium, soft tabla, gentle dholak, manjira, flowing and calm" },
   { "id": "ahir-bhairav-tabla", "tempo": "medium", "bpm": 80, "raag": "Ahir Bhairav", "caption": "soothing Hindu mantra chanting in raag Ahir Bhairav, santoor, soft tabla, tanpura, temple morning" }
  ],
- "caption_suffix": "repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, no drops or breaks, peaceful, solo male vocalist, deep warm voice, clear Sanskrit pronunciation"
+ "styles_note": "23 Nov 2026: CLAP heard the sparse drone / santoor / sitar takes as western pop (7 of 9 takes over 0.30 western) while both ahir-bhairav-tabla takes passed (Indian 0.71 / 0.75): every arrangement now carries harmonium + a soft Indian percussion and the suffix names the Indian devotional bhajan sound (the CLAP gate is unchanged).",
+ "caption_suffix": "Indian devotional bhajan, traditional acoustic Indian instruments, repetitive mantra jaap, the same short melody on every line, steady even tempo, one mantra per line, peaceful, solo male Indian vocalist, deep warm voice, clear Sanskrit pronunciation"
 }
