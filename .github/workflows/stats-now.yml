@@ -1,0 +1,51 @@
+# Stats now: Shyam Premi SN YouTube and Facebook/Instagram numbers on demand, as markdown in this run's job summary.
+# Read-only (counts only); nothing is emailed, committed or published. Manual only, no schedule. Uses this repo's own
+# secrets. Script: scripts/stats-now.mjs.
+#   gh workflow run stats-now.yml -R sk9836413/shyam-premi-sn -f what=all
+#   gh run view <run id> -R sk9836413/shyam-premi-sn
+name: Stats now
+
+on:
+  workflow_dispatch:
+    inputs:
+      what:
+        description: Which numbers
+        type: choice
+        options: [all, youtube, social]
+        default: all
+      date:
+        description: UTC date YYYY-MM-DD (empty = today)
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  stats:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: scripts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Tests
+        run: node --test scripts/stats-now.test.mjs
+      - name: Stats
+        env:
+          WHAT: ${{ inputs.what }}
+          DATE: ${{ inputs.date }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          case "$DATE" in ''|[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ;; *) echo "::error::Bad date (YYYY-MM-DD)"; exit 2 ;; esac
+          node scripts/stats-now.mjs --what "$WHAT" ${DATE:+--date "$DATE"} >> "$GITHUB_STEP_SUMMARY"
+          echo "Done. The numbers are on the run's summary page."
