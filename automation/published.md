@@ -229,3 +229,4 @@
 - 2026-11-24-status-kartik-purnima-trial | instagram: https://www.instagram.com/reel/DgHBO2ESonq/ (trial reel, SS_PERFORMANCE)
 - 2026-11-24-statusday-dev-deepawali-kashi | instagram: https://www.instagram.com/reel/DgHBWS8uR1O/
 - 2026-11-24-owner-gulab-shringar-darshan | instagram: https://www.instagram.com/reel/DgHBb2iJ9tm/
+- 2026-11-24-evening-mehandipur-balaji-darshan | claim: 2026-11-24 evening by run 45331737684.1 at 2026-11-24T05:55:04.638Z
