@@ -1,0 +1,103 @@
+{
+  "slug": "2026-11-25-facts-jigyasa-ganesh-tulsi-varjit",
+  "format": "facts",
+  "variant": "kyun",
+  "art": "illustrated",
+  "release": "2026-11-25",
+  "publish_at": "17:00",
+  "topic": "jigyasa-ganesh-tulsi-varjit",
+  "title": "Ganesh puja mein Tulsi kyun nahi",
+  "kicker": "Dharm ki jigyasa",
+  "playlist": "Ganesh ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Ganesh",
+  "music_mood": "emotional",
+  "sub_size": 60,
+  "style": "warm hand-drawn illustration, clean outlines, soft sunset light, expressive faces, warm diya light, no text, no letters, no writing, no watermark",
+  "hook": "Ganesh puja mein Tulsi varjit kyun?",
+  "cover": "तुलसी क्यों वर्जित?",
+  "cover_lines": [
+    "गणेश पूजा में",
+    "तुलसी",
+    "वर्जित क्यों?"
+  ],
+  "source": "Brahmavaivarta Purana (Ganapati Khand, adhyay 46, Tulsi-Ganesh prasang) aur puja parampara",
+  "deity": "Ganesh ji",
+  "summary": "Ganesh puja mein tulsi kyun nahi chadhti: Brahmavaivarta Purana ki Tulsi-Ganesh katha aur parampara",
+  "scenes": [
+    {
+      "prompt": "Warm hand-drawn illustration, close-up of Lord Ganesh with a gentle smile and folded hands in a lamp-lit puja room, a brass thali with red hibiscus flowers and durva grass in front of him, a green tulsi plant softly glowing to one side, golden diya light, the face in the lower half of the frame, no text",
+      "deity": true,
+      "hero": true,
+      "motion": "in",
+      "animate": "diya flames flicker softly and golden light shimmers while the camera slowly pushes in, the face stays perfectly still",
+      "tts": "गणेश पूजा में तुलसी वर्जित क्यों? जानते हैं?",
+      "sub": "Ganesh puja mein Tulsi varjit kyun? Jaante hain?"
+    },
+    {
+      "prompt": "Warm hand-drawn illustration of Lord Ganesh sitting in quiet meditation on a peaceful bank of the river Ganga at sunset, calm water, soft golden light, trees in the background, no text",
+      "motion": "in",
+      "animate": "river water ripples gently and golden light shimmers while the camera slowly pushes in",
+      "tts": "ब्रह्मवैवर्त पुराण के अनुसार, गंगा किनारे तपस्या में बैठे गणेश जी से तुलसी ने विवाह माँगा।",
+      "sub": "Brahmavaivarta Purana ke anusar, Ganga kinare tapasya mein baithe Ganesh ji se Tulsi ne vivah maanga."
+    },
+    {
+      "prompt": "Warm hand-drawn illustration of Tulsi Devi and Lord Ganesh facing each other on the river bank, both with serious, thoughtful expressions, a soft glow of dusk light between them, dignified and respectful, no text",
+      "motion": "out",
+      "tts": "गणेश जी ने विनम्रता से मना किया। कथा में दोनों ने शाप दिए, फिर नियति समझ ली।",
+      "sub": "Ganesh ji ne vinamrata se mana kiya. Katha mein dono ne shaap diye, phir niyati samajh li."
+    },
+    {
+      "prompt": "Warm hand-drawn illustration of a lush green tulsi plant on a decorated altar beside a small Shri Krishna murti with a peacock feather, glowing diyas and marigold garlands, soft golden light, no text",
+      "reveal": true,
+      "motion": "in",
+      "animate": "diya flames flicker softly and golden light glows while the camera slowly pushes in",
+      "tts": "कथा में तुलसी कृष्ण को प्रिय हैं। मान्यता है, इसीलिए गणेश पूजा में नहीं चढ़तीं।",
+      "sub": "Katha mein Tulsi Krishna ko priya hain. Manyata hai, isiliye Ganesh puja mein nahi chadhtin."
+    },
+    {
+      "prompt": "Warm hand-drawn illustration of a glowing diya placed beside a tulsi plant and a small Ganesh murti together in a quiet courtyard at dusk, soft golden light, peaceful, no text",
+      "moral": true,
+      "motion": "in",
+      "tts": "सीख यही है। हर पूजा की अपनी मर्यादा है। गणेश जी को दूर्वा प्रिय है।",
+      "sub": "Seekh yahi hai. Har puja ki apni maryada hai. Ganesh ji ko doorva priya hai."
+    },
+    {
+      "endcard": true,
+      "tts": "जय श्री गणेश! लाइक, शेयर और सब्सक्राइब करें।",
+      "sub": "Jai Shree Ganesh! Like, Share aur Subscribe karein."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "In the Ganapati Khand of the Brahmavaivarta Purana, Tulsi, performing austerities on the Ganga bank, asks Ganesh to marry her and he politely declines",
+      "source": "Brahmavaivarta Purana, Ganapati Khand, adhyay 46 (numbering differs by edition)",
+      "sources": [
+        "https://www.kamakoti.org/kamakoti/brahma%20vaivartha/bookview.php?chapnum=21",
+        "https://www.indianetzone.com/legend_lord_ganesha_tulsi"
+      ]
+    },
+    {
+      "claim": "The text has Tulsi and Ganesh exchange curses, after which both accept their destinies (Tulsi as wife of Narayana)",
+      "source": "Brahmavaivarta Purana, Ganapati Khand, adhyay 46 (numbering differs by edition)",
+      "sources": [
+        "https://www.kamakoti.org/kamakoti/brahma%20vaivartha/bookview.php?chapnum=21",
+        "https://www.indianetzone.com/legend_lord_ganesha_tulsi"
+      ]
+    },
+    {
+      "claim": "The episode ends with the rule that tulsi leaves are not offered in Ganesh puja; the story is also told, with variations, in other Puranas",
+      "source": "Brahmavaivarta Purana, Ganapati Khand, adhyay 46; puja parampara",
+      "kind": "tradition",
+      "sources": [
+        "https://www.kamakoti.org/kamakoti/brahma%20vaivartha/bookview.php?chapnum=21",
+        "https://www.indianetzone.com/legend_lord_ganesha_tulsi"
+      ]
+    }
+  ],
+  "youtube_title": "Ganesh puja mein Tulsi varjit kyun? 😱 #facts | Ganesh Katha | गणेश पूजा में तुलसी वर्जित क्यों",
+  "youtube_description": "Ganesh ji ki puja mein tulsi kyun nahi chadhti? Brahmavaivarta Purana ki Tulsi aur Ganesh ji ki katha, shant aur samman ke saath.\nSource: Brahmavaivarta Purana (Ganapati Khand, adhyay 46, Tulsi-Ganesh prasang) aur puja parampara\nगणेश पूजा में तुलसी वर्जित क्यों? पुराण की कथा और परंपरा। विवरण संस्करण के अनुसार भिन्न हो सकते हैं।\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.\nJai Shree Ganesh 🙏 Video achha laga ho to Like, Share aur Subscribe karein.\n#facts #story #Ganesh #Tulsi #Shorts",
+  "youtube_tags": "Ganesh puja Tulsi, गणेश पूजा तुलसी, Tulsi varjit kyun, तुलसी वर्जित क्यों, Ganesh ji ki katha, गणेश जी की कथा, Brahmavaivarta Purana, ब्रह्मवैवर्त पुराण, Ganesh facts, Tulsi Ganesh katha, तुलसी गणेश कथा, Ganpati Bappa, गणपति बप्पा",
+  "instagram_caption": "Ganesh puja mein Tulsi varjit kyun? 🙏\nBrahmavaivarta Purana ki Tulsi aur Ganesh ji ki katha, parampara ke saath.\nSource: Brahmavaivarta Purana (Ganapati Khand) aur puja parampara. Chitra AI se (sanketik).\nJai Shree Ganesh! Achha laga ho to Like, Share aur Follow karein.\n#Ganesh #Ganpati #Tulsi #JaiShreeGanesh #facts #pauranik",
+  "facebook_caption": "गणेश पूजा में तुलसी वर्जित क्यों? 🙏 क्या आप यह कथा जानते थे?\nब्रह्मवैवर्त पुराण की तुलसी और गणेश जी की कथा, परंपरा के साथ।\n#Ganesh #JaiShreeGanesh #Tulsi"
+}

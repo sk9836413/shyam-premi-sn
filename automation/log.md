@@ -110,3 +110,4 @@
 2026-11-24 | evening | 2026-11-24-evening-mehandipur-balaji-darshan | Mehandipur Balaji, Dausa (Mandir series, Hanuman ji) | Mehandipur Balaji Dham darshan: Dausa, Rajasthan, ghati between two hills, Bala-roop Hanuman, murti from hill rock (manyata); name-first curiosity hook (even day), 4 scenes
 2026-11-25 | morning | 2026-11-25-morning-budhvar-ganesh | Ganpati Bappa | Day status Short "Ganpati Bappa Status" (12-20 s loop, download link), public 06:00 IST
 2026-11-25 | owner | 2026-11-25-owner-laal-shringar-darshan | Khatu Shyam ji (owner's own footage) | owner-footage Short, clip 05 "Shyam Baba Laal Shringar Darshan", real footage + music cc-mridangam-tambura (YouTube synthetic false, Meta AI label false), public 2026-11-25T07:15 IST
+2026-11-25 | facts | 2026-11-25-facts-jigyasa-ganesh-tulsi-varjit | Ganesh ji | Ganesh puja mein tulsi kyun nahi chadhti: Brahmavaivarta Purana ki Tulsi-Ganesh katha aur parampara (variant kyun, art illustrated, 34 s)
