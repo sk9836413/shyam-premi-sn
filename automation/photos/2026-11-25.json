@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-25",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "ashtavinayak-lenyadri",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/ashtavinayak-lenyadri/commons-lenyadri-caves-ganapati-mandir-03-0daf4f.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-25T01:00:00.000Z",
+      "igAt": "2026-11-25T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-25-1-1.jpg"
+      ],
+      "caption": "Suprabhat 🙏 Budhvar Ganesh ji ka din hai.\nAshtavinayak mein se ek, Girijatmaj Lenyadri, Junnar ke paas pahad ki guphaon mein base Bappa ke darshan.\nगणपति बाप्पा मोरया, मंगल मूर्ति मोरया।\nBappa aapke ghar mein sukh aur shanti banaye rakhein.\nAapne Ashtavinayak ke kitne mandir ke darshan kiye hain?\n\n📷 Photo: Srph2116, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:@lenyadri_caves_ganapati_mandir._03.jpg\n\n#GaneshJi #GanpatiBappaMorya #Ashtavinayak #Lenyadri #Girijatmaj",
+      "fbCaption": "सुप्रभात 🙏 गणपति बाप्पा मोरया। क्या आपने कभी अष्टविनायक के दर्शन किए हैं?\nबुधवार गणेश जी का दिन है। अष्टविनायक में से एक, लेण्याद्री का गिरिजात्मज मंदिर, जुन्नर के पास पहाड़ की गुफाओं में स्थित है।\n\n📷 Photo: Srph2116, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:@lenyadri_caves_ganapati_mandir._03.jpg\n\n#Ganesh #GaneshJi #Ashtavinayak",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1617593333716964",
+        "scheduled": "2026-11-25T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-25T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}
