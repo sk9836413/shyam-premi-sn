@@ -243,7 +243,9 @@ describe('festival dates (automation/festivals.json)', () => {
   test('Ekadashi mornings are the Gyaras Khatu Shyam status; other festival mornings a temple darshan', () => {
     const m = (d) => on(d).find((u) => u.slot === 'morning');
     assert.equal(m('2026-12-04').theme, 'gyaras');
-    assert.equal(m('2026-12-14').kind, 'temple');
+    // 14 Dec is a Kailash day: once the series is approved (24 Nov 2026) its episode takes the festival-morning darshan
+    const d14 = on('2026-12-14');
+    assert.ok(m('2026-12-14')?.kind === 'temple' || d14.some((u) => u.slot === 'kailash'));
     assert.equal(m('2026-11-12').theme, 4);
   });
 });
