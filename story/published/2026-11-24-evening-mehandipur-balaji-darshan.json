@@ -1,0 +1,58 @@
+{
+  "slug": "2026-11-24-evening-mehandipur-balaji-darshan",
+  "title": "Mehandipur Balaji Dham Darshan",
+  "kicker": "Mehandipur Balaji",
+  "playlist": "Hanuman ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "temple": "mehandipur-balaji",
+  "hook": "Mehandipur Balaji: ghati mein kya hai?",
+  "cover": "मेहंदीपुर बालाजी",
+  "scenes": [
+    {
+      "prompt": "Close-up darshan of the Mehandipur Balaji Hanuman murti: orange-vermilion Hanuman ji as a child-form Bala ji, thickly covered with red sindoor and marigold garlands, a round gentle face, in a quiet sanctum lit by small brass diyas, warm golden glow, face in the middle of the frame",
+      "tts": "मेहंदीपुर बालाजी की घाटी में क्या ख़ास है?",
+      "sub": "Mehandipur Balaji ki ghati mein kya khaas hai?",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly, the golden glow gently pulses"
+    },
+    {
+      "prompt": "A peaceful temple nestled in a green valley between two rocky Aravalli hills in Rajasthan, morning golden light, a stone temple with saffron flags, a few devotees walking up, wide view, no text",
+      "tts": "दौसा, राजस्थान में दो पहाड़ियों के बीच बसा धाम।",
+      "sub": "Dausa, Rajasthan mein do pahadiyon ke beech basa dham.",
+      "motion": "out",
+      "real": true,
+      "animate": "soft clouds drift slowly, saffron flags flutter gently, light shifts across the hills"
+    },
+    {
+      "prompt": "Darshan of the Mehandipur Balaji Hanuman murti, orange-vermilion child-form Hanuman ji, sindoor and marigold garlands, slightly wider view in a sanctum with glowing brass diyas in front, warm golden light",
+      "tts": "मान्यता है, बालाजी की मूर्ति पहाड़ी की चट्टान से बनी है।",
+      "sub": "Manyata hai, Balaji ki murti pahadi ki chattan se bani hai.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, many diya flames flicker softly, a few marigold petals drift in the background"
+    },
+    {
+      "endcard": true,
+      "tts": "ॐ श्री हनुमते नमः। अच्छा लगे तो लाइक, शेयर, सब्सक्राइब करें। जय मेहंदीपुर बालाजी!",
+      "sub": "Om Shri Hanumate Namah. Achha lage to Like, Share, Subscribe karein. Jai Mehandipur Balaji!"
+    }
+  ],
+  "youtube_title": "Mehandipur Balaji Dham Darshan | मेहंदीपुर बालाजी धाम दर्शन #Shorts",
+  "youtube_description": "Mehandipur Balaji Dham (Dausa, Rajasthan) ke darshan. Hanuman ji ko yahan Balaji roop mein poojte hain; manyata hai ki murti pahadi ki chattan se bani hai.\nमेहंदीपुर बालाजी धाम, दौसा, राजस्थान के दर्शन 🙏\nॐ श्री हनुमते नमः\nChitra AI dwara banaye gaye hain (sanketik).\nJai Shree Shyam 🙏\nVideo achha lage to Like, Share aur Subscribe karein.\n#MehandipurBalaji #Hanuman #JaiBalaji #Rajasthan",
+  "youtube_tags": "Mehandipur Balaji, मेहंदीपुर बालाजी, Mehandipur Balaji temple, मेहंदीपुर बालाजी मंदिर, Mehandipur Balaji darshan, मेहंदीपुर बालाजी दर्शन, Hanuman ji, हनुमान जी, Dausa Rajasthan, दौसा राजस्थान, Jai Balaji, जय बालाजी",
+  "instagram_caption": "Mehandipur Balaji ki ghati mein kya hai khaas? 🙏\nDausa (Rajasthan) ke Mehandipur Dham mein Balaji ke darshan.\nOm Shri Hanumate Namah\nChitra AI dwara banaye gaye hain (sanketik).\nVideo achha lage to Like, Share aur Follow karein.\n#MehandipurBalaji #Hanuman #JaiBalaji #Rajasthan #Dausa",
+  "facebook_caption": "जय बालाजी 🙏 क्या आपने कभी मेहंदीपुर बालाजी धाम के दर्शन किए हैं?\nदौसा, राजस्थान में दो पहाड़ियों के बीच बसे बालाजी धाम के दर्शन।\nChitra AI dwara banaye gaye hain (sanketik).\n#MehandipurBalaji #Hanuman #JaiBalaji",
+  "music": {
+    "id": "cc-veena-bhairavi-varnam-2",
+    "mood": "calm",
+    "title": "Bhairavi varnam on veena (Pushpa Srivatsan), part 2",
+    "licence": "CC0 1.0 (excerpt, loudness-normalised; Internet Archive)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}

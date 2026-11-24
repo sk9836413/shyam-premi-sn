@@ -230,3 +230,4 @@
 - 2026-11-24-statusday-dev-deepawali-kashi | instagram: https://www.instagram.com/reel/DgHBWS8uR1O/
 - 2026-11-24-owner-gulab-shringar-darshan | instagram: https://www.instagram.com/reel/DgHBb2iJ9tm/
 - 2026-11-24-evening-mehandipur-balaji-darshan | claim: 2026-11-24 evening by run 45331737684.1 at 2026-11-24T05:55:04.638Z
+- 2026-11-24-evening-mehandipur-balaji-darshan | youtube: https://youtube.com/shorts/HBtSw-xGUPw (public at 2026-11-24T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1669024165007655 (scheduled 2026-11-24T15:00:00.000Z) | ig: pending 2026-11-24T13:30:00.000Z
