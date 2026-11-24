@@ -2,7 +2,7 @@
 # Read-only (counts only); nothing is emailed, committed or published. Manual only, no schedule. Uses this repo's own
 # secrets. Script: scripts/stats-now.mjs.
 #   gh workflow run stats-now.yml -R sk9836413/shyam-premi-sn -f what=all
-#   gh run view <run id> -R sk9836413/shyam-premi-sn
+#   gh run view <run id> -R sk9836413/shyam-premi-sn --log | cut -f3- | sed -E 's/^[^0-9]*[0-9T:.-]+Z ?//' | sed -n '/=== STATS BEGIN/,/=== STATS END/p'
 name: Stats now
 
 on:
@@ -47,5 +47,8 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
         run: |
           case "$DATE" in ''|[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ;; *) echo "::error::Bad date (YYYY-MM-DD)"; exit 2 ;; esac
-          node scripts/stats-now.mjs --what "$WHAT" ${DATE:+--date "$DATE"} >> "$GITHUB_STEP_SUMMARY"
+          node scripts/stats-now.mjs --what "$WHAT" ${DATE:+--date "$DATE"} > "$RUNNER_TEMP/stats.md"
+          cat "$RUNNER_TEMP/stats.md" >> "$GITHUB_STEP_SUMMARY"
+          # The same text in the log, so `gh run view <id> --log` can read it (gh does not print job summaries).
+          echo "=== STATS BEGIN"; cat "$RUNNER_TEMP/stats.md"; echo "=== STATS END"
           echo "Done. The numbers are on the run's summary page."
