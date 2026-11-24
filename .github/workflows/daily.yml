@@ -1,5 +1,10 @@
 # Shyam Premi SN: at most 3 YouTube Shorts a day (owner, 9 Nov 2026; scripts/day-plan.mjs decides which, and
 # scripts/upload-guard.mjs enforces a hard cap of 3 Shorts per IST date): 5-6 a day (7-9 Nov) collapsed views to 0-15.
+# CAP 8 FROM 25 NOV 2026 (owner, 24 Nov 2026: "8 ka limit rakho daily"; day-plan CAP / CAP_FROM, upload-guard DAILY_CAP):
+# a ceiling, so the daily Ramayan Tathya Short (17:00) and Kailash Parivar / POV (08:00) go out beside the day status
+# and the evening darshan; every slot keeps its own day / switch / limit, and Kalyug ke Bhagwan moved to 14:30. The
+# lower-priority animations (festival-morning darshan, facts / Ramayan clips) keep the daily Shorts' Kaggle reserve
+# and the Workers AI images keep the evening darshan's neurons (scripts/resource-budget.mjs).
 # PLUS one long katha video EVERY day (owner, 13 Nov 2026), outside the Shorts cap with its own cap of 1: long videos
 # are the only source of watch hours (YPP 4,000 h before 31 Jan 2027), and inside the cap (Mon/Fri of normal days only)
 # festivals pushed them out for 3 days (10-12 Nov).
@@ -139,7 +144,7 @@ env:
   # AI-sung bhajans (music/bhajan.mjs, owner 13 Nov 2026): repo variable BHAJAN_VOCALS=on puts a QA-passed library bhajan
   # (deity / festival match, no repeat within 5 days) into the Shorts and the long video; the voice never overlaps it.
   BHAJAN_VOCALS: ${{ vars.BHAJAN_VOCALS }}
-  # Owner's one-day cap exception for scripts/upload-guard.mjs (YYYY-MM-DD; any other day = normal cap of 3).
+  # Owner's one-day cap exception for scripts/upload-guard.mjs (YYYY-MM-DD; +1; any other day = the normal cap: 8 from 25 Nov 2026, 3 before).
   EXTRA_UPLOAD_DAY: ${{ vars.EXTRA_UPLOAD_DAY }}
   # One-off extra Shorts for the upload guard only ("YYYY-MM-DD:n,..."; owner, 15 Nov 2026: 4-5 Chhath facts Shorts on
   # 15-16 Nov). day-plan.mjs ignores it, so only the uploads dispatched for it use the room. Clear it afterwards.
@@ -348,8 +353,8 @@ jobs:
             echo "movie_kind=$(echo "$line" | cut -d'|' -f2 | xargs)" >> "$GITHUB_OUTPUT"; echo "done=true" >> "$GITHUB_OUTPUT"
             echo "::notice::$today morning = the scheduled series episode"
           elif ! node scripts/day-plan.mjs --date "$today" --slot "$slot" --check > "$RUNNER_TEMP/plan.json"; then
-            # At most 3 uploads a day (scripts/day-plan.mjs): e.g. noon only on Wednesdays when nothing better fits. A
-            # Kalyug ke Bhagwan episode (08:00) no longer replaces the morning Short: both run when the cap allows.
+            # The day's Shorts cap (scripts/day-plan.mjs: 8 from 25 Nov 2026) and each slot's own days: e.g. noon only on
+            # Wednesdays of normal days. A Kalyug ke Bhagwan episode (14:30) never replaces the morning Short.
             # day-plan also writes what/kind/theme: kind=daystatus = the status engine makes the morning Short.
             if [ "${{ inputs.dry_run }}" = true ]; then
               echo "::notice::Dry run of a slot not planned today: $(cat "$RUNNER_TEMP/plan.json")"
@@ -487,14 +492,14 @@ jobs:
 
       # On a movie day the scheduled part (YouTube publishAt 07:00, Facebook scheduled, Instagram queued) is the morning
       # Short: record the slot so later morning triggers skip, and commit today's trend research for the other slots.
-      # The same on a kalyug day for the scheduled Kalyug ke Bhagwan episode (08:00).
+      # The same when a scheduled series episode (Kailash Parivar / POV, 08:00) took the morning slot.
       - name: Movie morning
         if: ${{ !cancelled() && steps.date.outputs.movie_day != '' && !inputs.dry_run }}
         run: |
           today="${{ steps.date.outputs.today }}"; slug="${{ steps.date.outputs.movie_day }}"; kind="${{ steps.date.outputs.movie_kind }}"
           line=$(grep -m1 "^$today | $kind | $slug |" automation/log.md)
           what="mini-movie part (scheduled 07:00, replaces the katha Short)"
-          [ "$kind" = kalyug ] && what="Kalyug ke Bhagwan episode (scheduled 08:00, replaces the morning Short)"
+          [ "$kind" = kalyug ] && what="Kalyug ke Bhagwan episode (scheduled 14:30, replaces the morning Short)"
           [ "$kind" = kailash ] && what="Kailash Parivar episode (scheduled 08:00, replaces the morning Short)"
           [ "$kind" = pov ] && what="Shri Krishna kehte hain episode (scheduled 08:00, replaces the morning Short)"
           echo "$today | morning | $slug | $(echo "$line" | cut -d'|' -f4 | xargs) | $what" >> automation/log.md
@@ -515,8 +520,10 @@ jobs:
       # Every Short is animated: evening/noon up to 4 scenes, morning the (up to 4) scenes marked `animate`, become
       # real clips of their scene's length (Wan 2.2 TI2V-5B on the private Kaggle kernel sps-animate-<slot>, T4 x2), then
       # an automatic check rejects face drift, flicker and colour streaks. One session at a time (lock); a session still
-      # queued after 20 min, a failure or a timeout leaves the zoompan stills. Quota guard: morning needs 5 GPU hours
-      # left this week, evening/noon 3.
+      # queued after 20 min, a failure or a timeout leaves the zoompan stills. Quota guard: evening/noon need 3 GPU hours
+      # left this week; the morning (the festival-morning darshan, below the evening in priority) at least 5 AND the daily
+      # Shorts' reserve + the Kailash / POV episodes still planned before the weekly reset (scripts/resource-budget.mjs
+      # gpu; 8-Shorts cap from 25 Nov 2026), so more Shorts fall back to zoompan instead of exhausting the GPU.
       # Quality (animate/REPORT.md section 10): the kernel also makes the evening's hero darshan clip with Wan 2.2
       # I2V-A14B (only while >= 6 GPU hours are left), RIFE-interpolates every clip to 30 fps and upscales clips (1080 px)
       # and stills (2160 px) with Real-ESRGAN. Every part falls back to the old path; repo variables SPS_ENHANCE=0 /
@@ -558,6 +565,9 @@ jobs:
           [ -n "$KAGGLE_API_TOKEN" ] || fail "no KAGGLE_API_TOKEN secret"
           pip install -q 'kaggle>=2.2' six || fail "kaggle CLI install failed"
           node animate/kaggle.mjs quota --min "$MIN_HOURS" > "$RUNNER_TEMP/quota.json" || fail "under $MIN_HOURS Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
+          if [ "$SPS_SLOT" = morning ]; then
+            node scripts/resource-budget.mjs gpu --quota "$RUNNER_TEMP/quota.json" --min "$MIN_HOURS" > "$RUNNER_TEMP/gpu.txt" || fail "GPU reserve: $(cat "$RUNNER_TEMP/gpu.txt")"
+          fi
           left=$(node -p "Math.floor(require(process.env.RUNNER_TEMP + '/quota.json').left || 0)")
           [ "$left" -ge 6 ] || export SPS_HERO14B=0
           node story/render-story.mjs story/today/scenes.json --prepare || fail "FLUX images / narration failed"
@@ -1054,7 +1064,7 @@ jobs:
   # 2026 | <Hindi> स्टेटस वीडियो #Shorts"), is rendered as a 12-20 s loop (story/render-story.mjs `loop`), hosted on the
   # media Worker (7-day download link in the description), uploaded private with publishAt (a late `eve` goes out at
   # once), scheduled as a Facebook Reel and queued for Instagram (the `instagram` job). Only variants that fit the
-  # 3-a-day cap exist (scripts/day-plan.mjs), and scripts/upload-guard.mjs claims "<day> <slot>" before each upload.
+  # daily Shorts cap exist (scripts/day-plan.mjs; 8 from 25 Nov 2026), and scripts/upload-guard.mjs claims "<day> <slot>" before each upload.
   # DAY STATUS (owner, 16 Nov 2026: a status Short every day, public 06:00 IST for the morning WhatsApp status): when no
   # festival variant is due, the run's family is TOMORROW's weekday day status Short (Gyaras Khatu Shyam on Ekadashi;
   # status-engine `due` -> dayStatusDue), made the same way (pictures + clips once, cache key <date>-daystatus), uploaded
@@ -1091,7 +1101,7 @@ jobs:
           node-version: 22
 
       # What is due now (scripts/status-engine.mjs due): variants of one festival, minus those already in log.md, those the
-      # 3-a-day cap dropped and those whose time has passed. slot=status + status_date = all variants of that festival.
+      # daily Shorts cap dropped and those whose time has passed. slot=status + status_date = all variants of that festival.
       - name: Festival status variants due
         id: d
         run: |
@@ -1973,8 +1983,9 @@ jobs:
   # roles, 30-60 s. With the repo variable KALYUG=on, after every evening-slot run (and alone with slot=kalyug) TOMORROW's
   # episode is made when tomorrow is a Tue/Thu/Sat normal day (scripts/kalyug-due.mjs): Claude writes the spec, edge-tts
   # voices, ONE Kaggle session (sps-kalyug = story/movie_kernel.py: FLUX frames, 2 Wan clips, MuseTalk lip-sync on the
-  # library base clips, Whisper check; ~40-45 GPU-min), render, then YouTube private with publishAt <release> 08:00,
-  # Facebook scheduled, Instagram queued. It is that day's morning Short ("Movie morning" in the story job). Never starts
+  # library base clips, Whisper check; ~40-45 GPU-min), render, then YouTube private with publishAt <release> 14:30
+  # (scripts/day-plan.mjs AT.kalyug; 08:00 until 24 Nov 2026, now the Kailash / POV time), Facebook scheduled, Instagram
+  # queued. Beside the morning day status, never instead of it (the 8-Shorts cap from 25 Nov 2026). Never starts
   # a Kaggle session in 09:00-11:30 / 18:30-21:00 IST or below the daily Shorts' quota reserve (`story/kalyug.py gate`):
   # the next evening trigger (every 30 min to 23:17 IST) tries again; if none succeeds the morning Short runs as usual.
   kalyug:
@@ -2034,7 +2045,7 @@ jobs:
             --max-turns 100
             --allowedTools "Read,Write,Edit,Glob,Grep,WebSearch,WebFetch,Bash(node scripts/validate.mjs:*),Bash(ls:*)"
           prompt: |
-            Write the next "Kalyug ke Bhagwan" episode of Shyam Premi SN. Its release day (IST) is ${{ steps.d.outputs.release }} at 08:00.
+            Write the next "Kalyug ke Bhagwan" episode of Shyam Premi SN. Its release day (IST) is ${{ steps.d.outputs.release }} at ${{ steps.d.outputs.publish_at }} ("publish_at": "${{ steps.d.outputs.publish_at }}").
             Follow automation/STORY.md section 8 exactly (and section 2 for accuracy), with the characters in
             characters/kalyug/cast.json. Lines follow STORY.md "Spoken style" (natural spoken Hindi, short sentences,
             max 18 words). Write story/kalyug/${{ steps.d.outputs.release }}-<topic>.json, make
@@ -2131,7 +2142,7 @@ jobs:
         if: steps.render.outcome == 'success' && !inputs.dry_run && steps.spec.outputs.release != 'pilot'
         run: node scripts/upload-guard.mjs claim --day "${{ steps.spec.outputs.release }}" --slot kalyug --slug "$SLUG"
 
-      - name: YouTube (public at 08:00 IST on the release day)
+      - name: YouTube (public at publish_at IST on the release day, 14:30)
         id: yt
         if: steps.claim.outputs.go == 'true'
         env:
@@ -2178,7 +2189,7 @@ jobs:
           git config user.name "shyam-premi-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add automation/log.md automation/published.md "story/published/$SLUG.json" characters/kalyug/clips "$F"
-          git commit -qm "Kalyug ke Bhagwan $SLUG scheduled for $rel 08:00"
+          git commit -qm "Kalyug ke Bhagwan $SLUG scheduled for $rel ${{ steps.spec.outputs.publish_at }}"
           for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 10; done
 
   # Weekly facts compilation (owner, 15 Nov 2026; scripts/facts-compile.mjs): ONLY after a positive facts review
@@ -2425,7 +2436,8 @@ jobs:
   # "Pauranik facts / rahasya" Short (owner, 15 Nov 2026; scripts/facts.mjs, automation/STORY.md "Facts Shorts"): a dramatic
   # but true curiosity hook about one lesser-known episode, character or temple custom, every fact cited, 17:00 IST, made
   # the evening before like the Kalyug episode (after every evening-slot run; slot=facts alone, facts_spec = a given file).
-  # day-plan.mjs gives it a slot only when the 3-Shorts cap has room (after status, morning and evening darshan Shorts).
+  # day-plan.mjs gives it a slot only when the Shorts cap has room (8 from 25 Nov 2026; after status, morning and evening
+  # darshan Shorts) and its own limits allow (FACTS_PER_WEEK until the facts review; the Ramayan series every day).
   # Topic + variant (story 2-2.5 min / kyun 45-60 s / list 40-50 s / gita on Sundays) + art (cinematic / illustrated A/B)
   # come from scripts/facts.mjs pick; Claude writes the spec when it is not there yet. Pictures: FLUX on the Kaggle GPU first
   # (frames.mjs --kaggle-first, the neurons stay for the daily Shorts), then up to 4 Wan clips (sps-animate-facts) only
@@ -2573,6 +2585,9 @@ jobs:
           hm=$(TZ=Asia/Kolkata date +%H:%M)
           node -e "import('./scripts/facts.mjs').then((m) => process.exit(m.inKaggleWindow('$hm') ? 1 : 0))" || fail "inside a coordinator Kaggle window ($hm IST)"
           node animate/kaggle.mjs quota --min 6 > "$RUNNER_TEMP/quota.json" || fail "under 6 Kaggle GPU hours left this week ($(cat "$RUNNER_TEMP/quota.json"))"
+          # daily facts / Ramayan Short (8-Shorts cap): clips only above the daily Shorts' reserve + the Kailash / POV
+          # episodes still planned before the reset (scripts/resource-budget.mjs gpu), else zoompan
+          node scripts/resource-budget.mjs gpu --quota "$RUNNER_TEMP/quota.json" --min 6 > "$RUNNER_TEMP/gpu.txt" || fail "GPU reserve: $(cat "$RUNNER_TEMP/gpu.txt")"
           node story/render-story.mjs "$W/scenes.json" --prepare || fail "FLUX images / narration failed"
           plan="$W/build/$SLUG/plan.json"
           node animate/kaggle.mjs prepare "$W/scenes.json" --plan "$plan" --max 4 || fail "dataset upload failed"

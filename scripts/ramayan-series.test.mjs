@@ -7,7 +7,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { loadSeries, nextItem, parseSeries, sourceParts } from './ramayan-series.mjs';
 import { checkRamayanSpec, checkSeries, visualProblems } from './ramayan-rules.mjs';
-import { RAMAYAN_DAYS, RAMAYAN_FROM, planDay } from './day-plan.mjs';
+import { PRIORITY, RAMAYAN_DAYS, RAMAYAN_FROM, RAMAYAN_RANK, planDay } from './day-plan.mjs';
 import { placements } from './status-engine.mjs';
 
 const items = loadSeries('.');
@@ -118,10 +118,13 @@ describe('plan', () => {
     assert.ok(!planDay('2026-11-26', inputs({ ramayan: { on: true, total: 60, left: 0, logged: new Set() } })).uploads.some((u) => u.kind === 'ramayan'));
     assert.ok(!planDay('2026-11-26', inputs({ movies: new Map([['2026-11-26', 'x part 1']]) })).uploads.some((u) => u.kind === 'ramayan'));
   });
-  test('festival days still win (status + festival darshan + evening fill the cap)', () => {
+  test('festival days rank first; with the cap of 8 (owner, 24 Nov 2026) the Ramayan Short goes out beside them at 17:00', () => {
     const f = { date: '2026-11-26', key: 'test-fest', tier: 'status', theme: 'shiv', label: 'Test', names: [{ en: 'T', hi: 'ट' }, { en: 'U', hi: 'उ' }, { en: 'V', hi: 'व' }], sources: [] };
-    const p = planDay('2026-11-26', inputs({ festivals: new Map([[f.date, { name: f.label, tier: f.tier, key: f.key, theme: f.theme }]]), placements: placements([f]) }));
-    assert.ok(!p.uploads.some((u) => u.kind === 'ramayan'));
-    assert.ok(p.dropped.includes('facts'));
+    const fi = (o = {}) => inputs({ festivals: new Map([[f.date, { name: f.label, tier: f.tier, key: f.key, theme: f.theme }]]), placements: placements([f]), ...o });
+    const p = planDay('2026-11-26', fi());
+    assert.deepEqual(p.uploads.map((u) => `${u.slot}:${u.kind} ${u.at}`), ['status:status 00:30', 'morning:temple on render, ~10:30', 'facts:ramayan 17:00', 'evening:temple 19:00']);
+    assert.deepEqual(p.dropped, []);
+    // the ranking that decides a full day: after the festival status Shorts, the day status and both darshans, before Kailash / POV
+    assert.ok(RAMAYAN_RANK > PRIORITY.evening && RAMAYAN_RANK < PRIORITY.kailash && RAMAYAN_RANK < PRIORITY.facts);
   });
 });

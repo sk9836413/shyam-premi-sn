@@ -8,7 +8,7 @@ are visible to anyone; never print or commit secrets or private data.
 
 - Daily plan, slots, formats and timings: `automation/STORY.md` (main rules) and the header of `.github/workflows/daily.yml`.
 - Comments: `automation/COMMENTS.md`. Photo posts: `automation/PHOTOS.md`. Temple series and sati-temple rules:
-  `automation/mandir-series.md`. Ramayan facts series (Wed/Thu/Sat 17:00, sourced items only):
+  `automation/mandir-series.md`. Ramayan facts series (daily 17:00 from 26 Nov 2026, sourced items only):
   `automation/ramayan-series.md` + STORY.md section 11. Footage/photo licences: `footage/README.txt`, `characters/REAL-FOOTAGE.md`.
   Growth notes: `automation/growth.md`. Publish log: `automation/published.md`, `automation/log.md`.
 - Validators and guards (never weaken): `scripts/validate.mjs`, `scripts/upload-guard.mjs`, the bhajan/mantra QA in
@@ -36,7 +36,9 @@ are visible to anyone; never print or commit secrets or private data.
 - **Amazon.in affiliate tag `shyam0414-21`** (never `epifive-21`): 2-3 respectful puja-samagri links on long videos
   only, with the Associates disclosure line; never on Shorts, status Shorts, owner footage or Rani Sati content; no
   miracle or "abhimantrit" claims. Switch: repo variable `AMAZON_LINKS`.
-- Respect the caps (3 Shorts a day via the upload guard, 1 owner-footage Reel a day, Facebook spacing); never raise a
-  cap, change a cron or the scheduler, repo variables or secrets. No fake views, bots or engagement bait.
+- Respect the caps (8 YouTube Shorts a day from 25 Nov 2026 via the upload guard and `scripts/day-plan.mjs` (owner, 24 Nov
+  2026; 3 before; a ceiling, not a target: each slot keeps its own days and switches), 1 long video, 1 owner-footage
+  Reel a day, Facebook Reels 90 min apart, the Kaggle GPU / Workers AI guards in `scripts/resource-budget.mjs`); never
+  raise a cap yourself, change a cron or the scheduler, repo variables or secrets. No fake views, bots or engagement bait.
 - No web pages: the Shyam GitHub Pages site was switched off on 19 Nov 2026 (owner); channels only.
 - Reply to the owner in Hinglish. Commit messages end with the `Co-Authored-By:` trailer; pull with rebase before pushing.

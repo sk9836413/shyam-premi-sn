@@ -16,7 +16,7 @@
 // (original arrangement of CC0 human recordings, no AI), so YouTube's synthetic flag and Meta's AI label are both off and
 // no AI line is added. Were an AI track ever used, ai-disclosure.mjs decides the flags and the captions say "sangeet AI se"
 // (only the music), never that the darshan is AI. No third-party song, no sung bhajan without its pronunciation QA.
-// Upload cap: slot `owner` has its own cap of 1 a day (scripts/upload-guard.mjs OWNER_CAP), outside the 3 Shorts.
+// Upload cap: slot `owner` has its own cap of 1 a day (scripts/upload-guard.mjs OWNER_CAP), outside the daily Shorts cap (8 from 25 Nov 2026).
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';

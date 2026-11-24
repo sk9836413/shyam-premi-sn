@@ -18,18 +18,24 @@
 // ~326 neurons per Workers AI image at 4 steps, measured 1 Nov) and a JSON line on stdout. Never exits non-zero for a
 // missing picture: the renderers' fallbackImage() covers whatever is left.
 // Budget rule: scheduled production gets Workers AI first. Pilots and experiments (movie/character work, A/B tests)
-// must use --kaggle (or SPS_WORKERS_AI=0) so they never spend the Shorts' neurons.
+// must use --kaggle (or SPS_WORKERS_AI=0) so they never spend the Shorts' neurons. With up to 8 Shorts a day (owner,
+// 24 Nov 2026) each run also gets a Workers AI allowance by slot (scripts/resource-budget.mjs workersAiAllowance: the
+// evening darshan and the festival status are never limited; until the day's evening darshan is in log.md only the
+// morning-window slots get a few images, so the evening's neurons stay free). Images over the allowance go to Kaggle
+// FLUX, then the bank / photo stand-in; the run leaves WORKERS_AI_MARKER in the images dir so the renderers do not make
+// them with Workers AI after all. --no-budget skips the allowance (a manual run).
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { photosFor } from '../scripts/real-photos.mjs';
+import { NEURONS_PER_IMAGE, workersAiAllowance, writeWorkersAiMarker } from '../scripts/resource-budget.mjs';
 import { KHATU_NEGATIVE, SHEESH_LOOK, longImagesFor, pickStill, realScenesFor, realShyamOn, shyamStills, showsShyamDarshan } from '../scripts/shyam-darshan.mjs';
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(DIR, '..');
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
-export const NEURONS_PER_IMAGE = 326; // FLUX.1-schnell 1024 px, 4 steps (commit 9c1e186: 1 Nov used 13k for ~40 images)
+export { NEURONS_PER_IMAGE }; // 326: FLUX.1-schnell 1024 px, 4 steps (commit 9c1e186: 1 Nov used 13k for ~40 images)
 
 // STORY.md: Khatu Shyam ji is the SHEESH (head) only. A prompt that names him without the sheesh form gets it added.
 // The look is written from the owner's real darshan stills (scripts/shyam-darshan.mjs SHEESH_LOOK, 20 Nov 2026).
@@ -181,14 +187,15 @@ async function kaggleFrames(jobs, { waitMin, slot }) {
 }
 
 // ---- main ---------------------------------------------------------------------------------------------------------
-export async function ensureImages(jobs, { kaggleFirst = false, workersAfter = false, kaggle = true, waitMin = 40, slot = 'pilot', dryRun = false, log = console.log } = {}) {
+export async function ensureImages(jobs, { kaggleFirst = false, workersAfter = false, kaggle = true, waitMin = 40, slot = 'pilot', dryRun = false, log = console.log, allowance = Infinity } = {}) {
   const todo = jobs.filter((j) => !fs.existsSync(j.out));
-  const ledger = { asked: jobs.length, cached: jobs.length - todo.length, workers_ai: 0, workers_ai_neurons: 0, kaggle: 0, missing: 0, exhausted: false };
+  const ledger = { asked: jobs.length, cached: jobs.length - todo.length, workers_ai: 0, workers_ai_neurons: 0, kaggle: 0, missing: 0, exhausted: false, allowance, held: 0 };
+  const allowed = () => ledger.workers_ai < allowance || (ledger.held++, false);
   if (dryRun) { log(JSON.stringify({ dryRun: true, todo: todo.map((j) => ({ id: j.id, out: path.relative(ROOT, j.out) })) })); return ledger; }
   const canWorkers = process.env.MEDIA_URL && process.env.MEDIA_TOKEN && !kaggleFirst && process.env.SPS_WORKERS_AI !== '0';
   const left = [];
   for (const j of todo) {
-    if (!canWorkers || ledger.exhausted) { left.push(j); continue; }
+    if (!canWorkers || ledger.exhausted || !allowed()) { left.push(j); continue; }
     try {
       await workersAi(j); ledger.workers_ai++; j.source = 'workers-ai';
     } catch (e) {
@@ -208,12 +215,14 @@ export async function ensureImages(jobs, { kaggleFirst = false, workersAfter = f
   // --kaggle-first: Workers AI for whatever Kaggle did not make (never for pilots: they pass --kaggle only).
   if (kaggleFirst && workersAfter && process.env.MEDIA_URL && process.env.MEDIA_TOKEN && process.env.SPS_WORKERS_AI !== '0') {
     for (const j of left.filter((x) => x.source !== 'kaggle')) {
-      if (ledger.exhausted) break;
+      if (ledger.exhausted || !allowed()) break;
       try { await workersAi(j); ledger.workers_ai++; j.source = 'workers-ai'; } catch (e) { log(`image ${j.id}: ${e.message}`); if (e.exhausted) ledger.exhausted = true; }
     }
     ledger.workers_ai_neurons = ledger.workers_ai * NEURONS_PER_IMAGE;
   }
   ledger.missing = left.filter((j) => !j.source).length;
+  // held back by the neuron budget and still missing: the renderers must not make them with Workers AI either
+  if (ledger.held && ledger.missing) writeWorkersAiMarker(path.dirname(left.find((j) => !j.source).out), { slot, allowance });
   ledger.sources = Object.fromEntries(jobs.map((j) => [j.id, j.source || (fs.existsSync(j.out) ? 'cached' : 'fallback')]));
   return ledger;
 }
@@ -230,12 +239,21 @@ if (MAIN) {
     const specFile = path.resolve(args.find((a) => a.endsWith('.json')));
     jobs = await wanted(specFile, args.includes('--long') ? 'long' : opt('--visuals') ? 'visuals' : 'story', opt('--visuals') && path.resolve(opt('--visuals')));
   }
+  let budget = { max: Infinity, why: 'no budget (--no-budget)' };
+  if (!args.includes('--no-budget')) {
+    let logText = '';
+    try { logText = fs.readFileSync(path.join(ROOT, 'automation', 'log.md'), 'utf8'); } catch { /* none */ }
+    budget = workersAiAllowance(slot, { log: logText });
+  }
+  console.log(`Workers AI budget: ${budget.why}`);
   const ledger = await ensureImages(jobs, {
     kaggleFirst: args.includes('--kaggle') || args.includes('--kaggle-first'), workersAfter: args.includes('--kaggle-first'), kaggle: !args.includes('--no-kaggle'), waitMin: Number(opt('--wait', 40)), slot, dryRun: args.includes('--dry-run'),
+    allowance: budget.max,
   });
   const line = `- Images (${slot}): ${ledger.asked} needed, ${ledger.cached} cached, Workers AI ${ledger.workers_ai} (~${ledger.workers_ai_neurons} neurons)` +
     `${ledger.exhausted ? ' then 4006 (daily neurons used up)' : ''}, Kaggle FLUX ${ledger.kaggle}` +
-    `${ledger.kaggle_detail?.session_s ? ` (${Math.round(ledger.kaggle_detail.session_s / 60)} GPU-min)` : ''}, left for bank/photo fallback ${ledger.missing}`;
+    `${ledger.kaggle_detail?.session_s ? ` (${Math.round(ledger.kaggle_detail.session_s / 60)} GPU-min)` : ''}, left for bank/photo fallback ${ledger.missing}` +
+    `${ledger.held ? `; ${ledger.held} held back by the neuron budget (${budget.why})` : ''}`;
   console.log(line);
   console.log(JSON.stringify(ledger));
   if (process.env.GITHUB_STEP_SUMMARY) fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `${line}\n`);

@@ -28,9 +28,9 @@ describe('the Facebook day plan: every Short is a Facebook Reel, 90 min apart (o
     assert.equal(d.videos[0].dawn, true);
     assert.equal(d.photo.at, '06:30');
   });
-  test('festival eve: the status Reel keeps 20:00, the evening darshan moves to 18:30; the day-status Short is a Reel too', () => {
+  test('festival eve: the status Reel keeps 20:00, the evening darshan moves to 18:30; the day-status Short and the 14:30 Kalyug are Reels too', () => {
     const d = fbDay('2026-12-03', synth([fest('2026-12-04', 'x')]));
-    assert.deepEqual(vids(d), ['morning 06:00', 'evening 18:30', 'eve 20:00']);
+    assert.deepEqual(vids(d), ['morning 06:00', 'kalyug 14:30', 'evening 18:30', 'eve 20:00']);
   });
   test('big festival day: 00:30 status + 07:30 statusday (08:30 until 20 Nov 2026) + evening darshan, all three', () => {
     const d = fbDay('2026-12-04', synth([fest('2026-12-04', 'x', 'big')]));
@@ -38,7 +38,7 @@ describe('the Facebook day plan: every Short is a Facebook Reel, 90 min apart (o
   });
   test('Kalyug and the Dadi-Chhotu noon Short (a Page video, over 90 s) are on Facebook now', () => {
     const tue = fbDay('2026-12-08', synth([]));
-    assert.deepEqual(vids(tue), ['morning 06:00', 'kalyug 08:00', 'evening 20:30']);
+    assert.deepEqual(vids(tue), ['morning 06:00', 'kalyug 14:30', 'evening 20:30']); // 14:30 from 25 Nov 2026 (08:00 = Kailash / POV)
     const wed = fbDay('2026-12-09', synth([], { kalyug: false }));
     assert.deepEqual(wed.videos.map((v) => `${v.slot} ${v.at} ${v.type}`), ['morning 06:00 reel', 'noon 15:00 video', 'evening 20:30 reel']);
   });
@@ -47,9 +47,30 @@ describe('the Facebook day plan: every Short is a Facebook Reel, 90 min apart (o
     assert.deepEqual(vids(d), ['morning 06:00', 'movie 07:30', 'evening 20:30']);
     assert.equal(d.videos.find((v) => v.slot === 'movie').type, 'video');
   });
-  test('a crowded morning: statusday 07:30 keeps its time, the movie part moves 90 min away (09:00)', () => {
+  test('a crowded morning: statusday 07:30 keeps its time, the movie part moves 90 min away (09:00); with the cap of 8 the evening darshan stays', () => {
     const d = fbDay('2026-12-04', synth([fest('2026-12-04', 'x', 'big')], { movies: new Map([['2026-12-04', 's part 1']]) }));
-    assert.deepEqual(vids(d), ['status 00:30', 'statusday 07:30', 'movie 09:00']);
+    assert.deepEqual(vids(d), ['status 00:30', 'statusday 07:30', 'movie 09:00', 'evening 20:30']);
+  });
+  test('cap 8 (from 25 Nov 2026): the fullest real days still fit, 90 min apart, before the next 00:30 status', () => {
+    const prev = process.env.KALYUG;
+    process.env.KALYUG = 'on';
+    const inputs = loadInputs('.');
+    if (prev === undefined) delete process.env.KALYUG; else process.env.KALYUG = prev;
+    assert.deepEqual(vids(fbDay('2026-11-26', inputs)), ['morning 06:00', 'kailash 08:00', 'kalyug 14:30', 'facts 17:00', 'evening 20:30']);
+    assert.deepEqual(vids(fbDay('2026-11-27', inputs)), ['status 00:30', 'pov 08:00', 'morning 10:30', 'facts 17:00', 'evening 20:30']);
+    assert.deepEqual(vids(fbDay('2026-11-30', inputs)), ['morning 06:00', 'kailash 08:00', 'facts 17:00', 'evening 18:30', 'eve 20:00']);
+    // Lohri (a Kailash Thursday) with the Makar Sankranti eve status: 6 Reels, and Makar Sankranti day itself
+    assert.deepEqual(vids(fbDay('2027-01-14', inputs)), ['status 00:30', 'kailash 08:00', 'morning 10:30', 'facts 17:00', 'evening 18:30', 'eve 20:00']);
+    assert.deepEqual(vids(fbDay('2027-01-15', inputs)), ['status 00:30', 'statusday 07:30', 'pov 09:00', 'facts 17:00', 'evening 20:30']);
+    // a crowded synthetic override day (7 Reels: status 00:30, dawn bhajan 06:00, Kalyug, facts, darshan, eve, extra bhajan)
+    // still keeps 90 min and ends before 23:00
+    const many = fbDay('2026-12-15', synth([fest('2026-12-15', 'x', 'status', 'pradosh'), fest('2026-12-16', 'y')], {
+      override: { days: { '2026-12-15': { slots: { morning: { kind: 'bhajan', day: 'x', title: 't' }, bhajan: { kind: 'bhajan', day: 'x', title: 'u', at: '19:45' } } } } },
+      extraDay: '2026-12-15', series: { kailash: { on: true, logged: new Set(), tieIns: new Map() }, pov: { on: true, logged: new Set(), tieIns: new Map() } },
+      kalyugLogged: new Set(['2026-12-15']), factsLogged: new Set(['2026-12-15']) }));
+    const times = many.videos.map((v) => at('2026-12-15', v.at)).sort((a, b) => a - b);
+    for (let k = 1; k < times.length; k++) assert.ok(times[k] - times[k - 1] >= GAP_MIN * 60e3, vids(many).join(', '));
+    assert.ok(many.videos.length >= 6 && many.videos.every((v) => v.at <= '23:00'), vids(many).join(', '));
   });
   test('the real calendar (11 Nov 2026 - 31 Jan 2027): every YouTube Short is on Facebook, 90 min apart, the long one as a feed video (12:30; bhajan / mantra long 05:30)', () => {
     const inputs = loadInputs('.');
@@ -98,7 +119,7 @@ describe('fbDecision: the flag each workflow step passes', () => {
     const posted = fbPosted(md);
     assert.deepEqual(posted, [{ slug: '2026-12-10-morning-x', date: '2026-12-10', slot: 'morning', at: Date.parse('2026-12-10T05:00:00.000Z') }]);
     // the morning Reel went out at 10:30 IST; a replacement Short of another slot ready at 10:40 -> 12:00
-    const d = fbDecision({ date: '2026-12-10', slot: 'kalyug', now: at('2026-12-10', '10:40'), inputs: i, posted });
+    const d = fbDecision({ date: '2026-12-10', slot: 'pov', now: at('2026-12-10', '10:40'), inputs: i, posted });
     assert.equal(d.at, '2026-12-10T12:00', d.why);
   });
   test('a Reel scheduled for 20:30 already (published.md) pushes a late Short to 22:00', () => {
@@ -112,7 +133,7 @@ describe('fbDecision: the flag each workflow step passes', () => {
     const big = synth([fest('2026-12-04', 'x', 'big')]);
     assert.equal(fbDecision({ date: '2026-12-04', slot: 'statusday', now: at('2026-12-03', '19:00'), inputs: big }).at, '2026-12-04T07:30');
     assert.equal(fbDecision({ date: '2026-12-09', slot: 'noon', now: at('2026-12-09', '13:00'), inputs: synth([]) }).at, '2026-12-09T15:00');
-    assert.equal(fbDecision({ date: '2026-12-08', slot: 'kalyug', now: at('2026-12-07', '21:00'), inputs: synth([]) }).at, '2026-12-08T08:00');
+    assert.equal(fbDecision({ date: '2026-12-08', slot: 'kalyug', now: at('2026-12-07', '21:00'), inputs: synth([]) }).at, '2026-12-08T14:30');
   });
   test('the owner-footage Reel wants 07:15 (owner-footage.json, 20 Nov 2026) and stays 90 min from the planned Reels', () => {
     const now = at('2026-12-03', '19:00');
@@ -378,9 +399,10 @@ describe('dawn uploads on Facebook', () => {
     const big = synth([fest('2026-12-04', 'x')], { movies: new Map([['2026-12-04', 's part 1']]),
       override: { days: { '2026-12-04': { slots: { morning: { kind: 'bhajan', day: 'x', title: 't' } } } } } });
     const d = fbDay('2026-12-04', big);
-    assert.deepEqual(vids(d), ['status 00:30', 'morning 06:00', 'movie 07:30']);
-    const k = fbDay('2026-12-08', synth([], { override: { days: { '2026-12-08': { slots: { morning: { kind: 'bhajan', day: 'x', title: 't' } } } } } }));
-    assert.deepEqual(vids(k), ['morning 06:00', 'kalyug 08:00', 'evening 20:30']);
+    assert.deepEqual(vids(d), ['status 00:30', 'morning 06:00', 'movie 07:30', 'evening 20:30']);
+    // an override day has no new Kalyug episode (25 Nov 2026); an already scheduled one keeps its 14:30
+    const k = fbDay('2026-12-08', synth([], { kalyugLogged: new Set(['2026-12-08']), override: { days: { '2026-12-08': { slots: { morning: { kind: 'bhajan', day: 'x', title: 't' } } } } } }));
+    assert.deepEqual(vids(k), ['morning 06:00', 'kalyug 14:30', 'evening 20:30']);
     for (const v of d.videos) assert.ok(v.at === '00:30' || v.at === '06:00' || v.at >= '07:00', vids(d).join(', '));
     const times = d.videos.map((v) => at('2026-12-04', v.at)).sort((a, b) => a - b);
     for (let k = 1; k < times.length; k++) assert.ok(times[k] - times[k - 1] >= GAP_MIN * 60e3, vids(d).join(', '));

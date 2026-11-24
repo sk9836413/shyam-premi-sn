@@ -1,7 +1,7 @@
 // scripts/upload-guard.mjs decisions (no git, no network). Run: node --test scripts/upload-guard.test.mjs
 import { describe, test } from 'node:test';
 import assert from 'node:assert/strict';
-import { DAILY_CAP, LONG_CAP, claimLine, decide, extraUploads, kindOf, shortsCap } from './upload-guard.mjs';
+import { DAILY_CAP, DAILY_CAP_BEFORE, DAILY_CAP_FROM, LONG_CAP, OWNER_CAP, UPLOAD_CALLS_PER_DAY, claimLine, dailyCap, decide, extraUploads, kindOf, shortsCap } from './upload-guard.mjs';
 
 const NOW = Date.parse('2026-11-07T13:17:05Z');
 const base = { day: '2026-11-08', slot: 'status', slug: '2026-11-08-status-diwali', run: '42376221296.1', now: NOW };
@@ -68,15 +68,17 @@ describe('decide', () => {
 });
 
 // Owner, 13 Nov 2026: 3 Shorts + 1 long video per IST date; the long video never counts against the Shorts cap.
-describe('daily cap per kind: 3 Shorts + 1 long', () => {
+// (14 Nov 2026 is before DAILY_CAP_FROM: the cap of 3 of that time.)
+describe('daily cap per kind: 3 Shorts + 1 long (until 24 Nov 2026)', () => {
   const day = '2026-11-14';
   const three = `${day} | morning | ${day}-morning-a | x | y\n${day} | evening | ${day}-evening-b | x | y\n${day} | eve | ${day}-eve-c | x | y\n`;
   const longLine = `${day} | long | ${day}-long-mandir-part-1 | x | y\n`;
   const at = (slot, slug, o = {}) => decide({ day, slot, slug, run: '7.1', now: NOW, ...o });
-  test('kinds: only `long` is a long video; status/morning/evening/noon/kalyug/movie are Shorts', () => {
+  test('kinds: only `long` is a long video, `owner` its own; status/morning/evening/noon/kalyug/kailash/pov/facts/movie are Shorts', () => {
     assert.equal(kindOf('long'), 'long');
-    for (const s of ['status', 'eve', 'statusday', 'morning', 'evening', 'noon', 'kalyug', 'movie']) assert.equal(kindOf(s), 'short', s);
-    assert.equal(DAILY_CAP, 3);
+    assert.equal(kindOf('owner'), 'owner');
+    for (const s of ['status', 'eve', 'statusday', 'morning', 'evening', 'noon', 'kalyug', 'kailash', 'pov', 'facts', 'movie']) assert.equal(kindOf(s), 'short', s);
+    assert.equal(dailyCap(day), 3);
     assert.equal(LONG_CAP, 1);
   });
   test('3 Shorts + 1 long are allowed (in either order)', () => {
@@ -123,6 +125,51 @@ describe('daily cap per kind: 3 Shorts + 1 long', () => {
   });
 });
 
+// Owner, 24 Nov 2026: "8 ka limit rakho daily". From 25 Nov 2026 the guard lets 8 Shorts a day through (the day plan
+// fills them only with Shorts that have their own day), the long video and the owner Short keep their own caps of 1.
+describe('daily cap of 8 Shorts (from 25 Nov 2026)', () => {
+  const day = '2026-11-26';
+  const line = (slot) => `${day} | ${slot} | ${day}-${slot}-x | x | y\n`;
+  const at = (slot, o = {}) => decide({ day, slot, slug: `${day}-${slot}-new`, run: '7.1', now: NOW, ...o });
+  test('3 until 24 Nov 2026, 8 from 25 Nov 2026; EXTRA_UPLOAD_DAY still adds 1', () => {
+    assert.deepEqual([DAILY_CAP, DAILY_CAP_BEFORE, DAILY_CAP_FROM], [8, 3, '2026-11-25']);
+    assert.deepEqual([dailyCap('2026-11-24'), dailyCap('2026-11-25'), dailyCap('2027-01-15')], [3, 8, 8]);
+    assert.equal(shortsCap('2026-11-24', ''), 3);
+    assert.equal(shortsCap(day, ''), 8);
+    assert.equal(shortsCap(day, day), 9);
+  });
+  test('a Kailash Thursday: day status, Kailash, Kalyug, Ramayan facts and the evening darshan all go (the 4th and 5th are no longer capped)', () => {
+    let log = '';
+    for (const slot of ['morning', 'kailash', 'kalyug', 'facts', 'evening']) {
+      assert.equal(at(slot, { log }).go, true, slot);
+      log += line(slot);
+    }
+    assert.equal(at('eve', { log }).go, true); // a 6th would still fit
+  });
+  test('the 9th Short of a day is capped; the long video and the owner Short keep their own caps beside 8 Shorts', () => {
+    const eight = ['status', 'morning', 'kailash', 'statusday', 'kalyug', 'facts', 'evening', 'eve'].map(line).join('');
+    const r = at('noon', { log: eight });
+    assert.deepEqual([r.go, r.cap, r.kind, r.max], [false, true, 'short', 8]);
+    assert.match(r.reason, /max 8 Shorts a day/);
+    assert.equal(at('long', { log: eight }).go, true);
+    assert.equal(at('owner', { log: eight }).go, true);
+    assert.equal(at('noon', { log: eight, cap: shortsCap(day, day) }).go, true); // the owner's one-day exception: 9
+  });
+  test('a claim made the evening before counts on its publish day (25 Nov 2026 is the first 8-cap day)', () => {
+    const d = '2026-11-25';
+    const log = ['morning', 'noon', 'facts'].map((s) => `${d} | ${s} | ${d}-${s}-x | x | y\n`).join('');
+    assert.equal(decide({ day: d, slot: 'evening', slug: `${d}-evening-y`, run: '1.1', now: NOW, log }).go, true);
+    const d24 = '2026-11-24';
+    const log24 = ['status', 'statusday', 'evening'].map((s) => `${d24} | ${s} | ${d24}-${s}-x | x | y\n`).join('');
+    assert.equal(decide({ day: d24, slot: 'pov', slug: `${d24}-pov-y`, run: '1.1', now: NOW, log: log24 }).cap, true); // 24 Nov: still 3
+  });
+  test('YouTube upload bucket: the most uploads a day (8 + EXTRA_UPLOAD_DAY + EXTRA_UPLOADS 3 + long + owner) x 2 attempts stays under the 100 videos.insert calls', () => {
+    const most = shortsCap(day, day, `${day}:3`) + LONG_CAP + OWNER_CAP;
+    assert.equal(most, 14);
+    assert.ok(most * 2 < UPLOAD_CALLS_PER_DAY);
+  });
+});
+
 // Owner, 14 Nov 2026: dawn uploads (05:30 / 05:45 IST) are rendered and claimed the evening before; they count on the
 // IST date they go public (the claim's --day and the log.md line carry it), never on the render day.
 describe('dawn uploads count on their publish day', () => {
@@ -159,9 +206,10 @@ describe('EXTRA_UPLOADS one-off exception', () => {
     assert.equal(extraUploads('2026-11-15', undefined), 0);
   });
   test('adds to the cap, together with EXTRA_UPLOAD_DAY', () => {
-    assert.equal(shortsCap('2026-11-15', '', '2026-11-15:3'), DAILY_CAP + 3);
-    assert.equal(shortsCap('2026-11-15', '2026-11-15', '2026-11-15:2'), DAILY_CAP + 3);
-    assert.equal(shortsCap('2026-11-18', '', '2026-11-15:3'), DAILY_CAP);
+    assert.equal(shortsCap('2026-11-15', '', '2026-11-15:3'), 3 + 3);
+    assert.equal(shortsCap('2026-11-15', '2026-11-15', '2026-11-15:2'), 3 + 3);
+    assert.equal(shortsCap('2026-11-18', '', '2026-11-15:3'), 3);
+    assert.equal(shortsCap('2026-12-05', '', '2026-12-05:2'), DAILY_CAP + 2);
   });
   test('15 Nov: status + morning + eve + 3 Chhath facts Shorts go, a 7th is capped', () => {
     const d = '2026-11-15';

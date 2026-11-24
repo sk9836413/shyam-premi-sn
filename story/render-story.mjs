@@ -33,6 +33,7 @@ import { focusCrop, realScenesFor, relStill } from '../scripts/shyam-darshan.mjs
 import { framePrompt } from '../animate/kaggle.mjs';
 import { makeCover } from './cover.mjs';
 import { fallbackImage, iconography } from '../animate/frames.mjs';
+import { workersAiHeld } from '../scripts/resource-budget.mjs';
 
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
 const FFPROBE = FF.replace(/ffmpeg(\.exe)?$/, 'ffprobe$1');
@@ -105,6 +106,8 @@ async function workersImage(scene, i) {
   const file = path.join(base, 'images', `${spec.slug}-${i}.jpg`);
   if (fs.existsSync(file)) return file;
   if (workersAiDown || process.env.SPS_WORKERS_AI === '0') throw new Error('Workers AI skipped (4006 earlier in this run or SPS_WORKERS_AI=0)');
+  // animate/frames.mjs held this image back today for the neuron budget (scripts/resource-budget.mjs): bank / photo instead
+  if (workersAiHeld(path.dirname(file))) throw new Error('Workers AI skipped (neuron budget: the evening darshan keeps its neurons)');
   // In CI the media Worker runs FLUX through its AI binding (no Cloudflare API token needed);
   // locally the Workers AI REST API is called with the wrangler login.
   const viaWorker = process.env.MEDIA_URL && process.env.MEDIA_TOKEN;

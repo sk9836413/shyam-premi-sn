@@ -23,6 +23,7 @@ import { creditLine, photosFor } from '../scripts/real-photos.mjs';
 import { focusCrop, longImagesFor, relStill } from '../scripts/shyam-darshan.mjs';
 import { coverWords, longThumbs } from './cover.mjs';
 import { fallbackImage, iconography } from '../animate/frames.mjs';
+import { workersAiHeld } from '../scripts/resource-budget.mjs';
 
 const started = Date.now();
 const FF = process.env.FFMPEG_PATH || 'E:/tools/ffmpeg/bin/ffmpeg.exe';
@@ -110,6 +111,7 @@ async function image(img, i) {
     return fb.file;
   };
   if (!process.env.MEDIA_URL || !process.env.MEDIA_TOKEN || workersAiDown || process.env.SPS_WORKERS_AI === '0') return standIn('Workers AI not used');
+  if (workersAiHeld(path.dirname(file))) return standIn('Workers AI held back by the neuron budget (scripts/resource-budget.mjs)');
   let last;
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {

@@ -4,7 +4,8 @@
 # NO cron of its own: daily.yml calls it after every evening-slot run (and slot=kalyug dispatches); it can be
 # dispatched by hand. It does something only when the owner approved the pilot (automation/krishna-pov-topics.json
 # "approved": true; the repo variable KRISHNA_POV=off pauses it) AND tomorrow has a pov slot (scripts/series-plan.mjs:
-# Tue/Fri + at most one festival tie-in a week; under the 3-Shorts cap it replaces the weekday day-status morning Short).
+# Tue/Fri + at most one festival tie-in a week; with the 8-Shorts cap from 25 Nov 2026 it goes out beside the day status,
+# the evening darshan and the Ramayan facts Short, never instead of the day status or a festival status).
 # Steps as kailash.yml: Claude writes the spec, edge-tts (one fixed Krishna voice, human chain), ONE Kaggle session
 # (sps-krishna-pov: FLUX B-roll frames, MuseTalk lip-sync on the flat face, talk-clip fallback, Whisper), render, the QA
 # GATE (Whisper names, lip-sync share, master-sheet consistency, 45-62 s; a failure publishes nothing and is logged),

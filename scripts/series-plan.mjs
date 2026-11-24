@@ -7,9 +7,11 @@
 // day a week and never a big festival, which has no morning slot to give: its idea airs on the nearest series day inside
 // the idea's window). Never on movie days (17-20 Nov 2026 keep the movie part) or on date-scoped override days
 // (automation/chhath-2026.json: Chhath until 16 Nov).
-// Under the 3-Shorts cap (owner, 16 Nov 2026: movie > festival status > day status > darshan > Kailash / POV > facts):
-// a series Short ranks after the festival status Shorts, the morning day status Short and the evening temple darshan,
-// before the facts Short, Kalyug ke Bhagwan and the Dadi-Chhotu noon Short. When the cap would still drop it, it takes
+// Under the daily Shorts cap (scripts/day-plan.mjs capFor: 3 until 24 Nov 2026, 8 from 25 Nov 2026, owner 24 Nov 2026
+// "8 ka limit rakho daily"; priority, owner 16 Nov 2026: movie > festival status > day status > darshan > Ramayan facts >
+// Kailash / POV > facts): a series Short ranks after the festival status Shorts, the morning day status Short, the
+// evening temple darshan and the Ramayan series Short, before the pauranik facts Short, Kalyug ke Bhagwan and the
+// Dadi-Chhotu noon Short. With the cap of 8 it simply goes out beside them; only when the cap would still drop it does it take
 // the place of the festival-morning temple darshan (the second darshan of a festival day; the evening darshan stays),
 // else of that day's facts Short. It never displaces the day status Short (incl. the Khatu Gyaras status), a festival
 // status Short, the evening temple darshan or a movie part. If its episode is not in log.md by the morning run (QA gate

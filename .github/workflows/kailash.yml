@@ -4,8 +4,9 @@
 # NO cron of its own: daily.yml calls this workflow after every evening-slot run (and for slot=kalyug dispatches), and it
 # can be dispatched by hand. It does something only when the owner approved the pilot (automation/kailash-episodes.json
 # "approved": true; the repo variable KAILASH=off pauses it) AND tomorrow has a kailash slot (scripts/day-plan.mjs: Mon/Thu/Sat
-# and festival tie-in days; never movie or Chhath-override days; under the 3-Shorts cap it replaces the weekday
-# day-status morning Short or Kalyug/Dadi-Chhotu, never a festival status, the evening darshan or a dawn bhajan).
+# and festival tie-in days; never movie or Chhath-override days; with the 8-Shorts cap from 25 Nov 2026 it goes out
+# BESIDE the day status, the evening darshan and the Ramayan facts Short; only when a day's cap is full does it take the
+# festival-morning darshan's place, never a festival status, the day status, the evening darshan or a dawn bhajan).
 # Steps: Claude writes tomorrow's spec from the chosen bank idea, edge-tts voices, ONE Kaggle session (sps-kailash on
 # story/movie_kernel.py: FLUX frames with the anti-likeness negative prompt, 2 Wan clips, MuseTalk lip-sync, Whisper),
 # render, then the QA GATE (`kailash.py qa`: deity names heard by Whisper, lip-sync share after the beard/blur reject

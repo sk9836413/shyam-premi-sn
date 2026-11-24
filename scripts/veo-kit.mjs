@@ -26,6 +26,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { fallbackImage } from '../animate/frames.mjs';
+import { workersAiAllowance } from './resource-budget.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const argv = process.argv.slice(2);
@@ -592,7 +593,15 @@ const STEPS_HI = [
 // ---------- images ----------
 // FLUX.2 [klein] 9B draws a true 9:16 picture (and kept Khatu Shyam ji's iconography best in the 5 Nov test);
 // FLUX.1 schnell (square) is the fallback. Returns true when the picture is square.
+// Neuron budget (scripts/resource-budget.mjs, slot `veo`): the kit runs in the morning window, before the evening darshan.
+let fluxLeft = null;
 async function flux(prompt, file) {
+  if (fluxLeft === null) {
+    let log = '';
+    try { log = fs.readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'automation', 'log.md'), 'utf8'); } catch { /* none */ }
+    fluxLeft = workersAiAllowance('veo', { log }).max;
+  }
+  if (fluxLeft-- <= 0) throw new Error('Workers AI held back by the neuron budget (the evening darshan keeps its neurons)');
   let last = '';
   for (const body of [{ model: 'flux-2-klein-9b', width: 720, height: 1280 }, { steps: STEPS }]) {
     const r = await fetch(`${MEDIA_URL}/ai/flux`, {

@@ -3,14 +3,16 @@
 // GitHub Actions, the same keys as step outputs.
 //   node scripts/kalyug-due.mjs [--spec story/kalyug/<file>.json] [--today YYYY-MM-DD]
 // The episode for TOMORROW (IST) is made the evening before (after the evening run, outside the 09:00-11:30 and
-// 18:30-21:00 IST Kaggle windows) and scheduled for its release day at publish_at (08:00) as that day's morning Short.
+// 18:30-21:00 IST Kaggle windows) and scheduled for its release day at publish_at: the day plan's kalyug time (AT.kalyug,
+// 14:30 IST from 25 Nov 2026, so it never shares 08:00 with the Kailash Parivar / POV episode; a spec's own publish_at
+// of 08:00 is moved to it).
 // produce: --spec given, or tomorrow is a kalyug day (scripts/day-plan.mjs with KALYUG=on), it is not scheduled yet
 //          ("<date> | kalyug |" in automation/log.md) and story/kalyug/<date>-*.json exists (written earlier)
 // write:   the same, but no spec file yet: Claude writes it first
 // none:    KALYUG is not on, tomorrow is not a kalyug day (festival / movie / other weekday), or it is already scheduled
 import fs from 'node:fs';
 import path from 'node:path';
-import { addDays, istToday, loadInputs, planDay } from './day-plan.mjs';
+import { AT, addDays, istToday, loadInputs, planDay } from './day-plan.mjs';
 
 const args = process.argv.slice(2);
 const opt = (n) => (args.includes(n) ? args[args.indexOf(n) + 1] : '');
@@ -19,9 +21,11 @@ const out = (o) => {
   if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, Object.entries(o).map(([k, v]) => `${k}=${v}\n`).join(''));
   process.exit(0);
 };
+// 08:00 is the Kailash / POV series time now: an episode written for 08:00 goes out at the plan's kalyug time instead.
+const kalyugAt = (s = {}) => (s.publish_at && s.publish_at !== '08:00' ? s.publish_at : AT.kalyug);
 const info = (file) => {
   const s = JSON.parse(fs.readFileSync(file, 'utf8'));
-  return { mode: 'produce', file, slug: s.slug, release: s.release, publish_at: s.publish_at || '08:00', lead: s.lead };
+  return { mode: 'produce', file, slug: s.slug, release: s.release, publish_at: kalyugAt(s), lead: s.lead };
 };
 
 if (opt('--spec')) out(info(opt('--spec')));
@@ -36,4 +40,4 @@ if (new RegExp(`^${day} \\| kalyug \\|`, 'm').test(log)) out({ mode: 'none', why
 const dir = 'story/kalyug';
 const f = (fs.existsSync(dir) ? fs.readdirSync(dir) : []).filter((x) => x.startsWith(`${day}-`) && x.endsWith('.json')).sort()[0];
 if (f) out(info(path.posix.join(dir, f)));
-out({ mode: 'write', release: day, publish_at: '08:00' });
+out({ mode: 'write', release: day, publish_at: AT.kalyug });

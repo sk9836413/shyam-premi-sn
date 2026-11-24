@@ -1,7 +1,7 @@
 // "Kailash Parivar" schedule helpers (STORY.md section 9): the Kailash entry of scripts/series-plan.mjs (Mon/Thu/Sat +
-// at most one festival tie-in day a week, 08:00 IST, only after the owner approved the pilot; under the 3-Shorts cap it
-// replaces the weekday day-status morning Short, never a festival status, the evening darshan, a dawn bhajan or a movie
-// part). Used by scripts/kailash-due.mjs and the tests; scripts/day-plan.mjs uses series-plan.mjs directly.
+// at most one festival tie-in day a week, 08:00 IST, only after the owner approved the pilot; under the daily Shorts cap
+// (8 from 25 Nov 2026) it goes out beside the day status and the evening darshan, never instead of a festival status,
+// the day status, the evening darshan, a dawn bhajan or a movie part). Used by scripts/kailash-due.mjs and the tests; scripts/day-plan.mjs uses series-plan.mjs directly.
 import * as S from './series-plan.mjs';
 
 const CFG = S.seriesOf('kailash');

@@ -4,9 +4,13 @@ You write the devotional story videos for **Shyam Premi SN** (YouTube, Instagram
 `morning` (festival days) and `evening` temple darshan Shorts (sections 1-4), the facts Shorts, the "Ramayan Ke Rochak
 Tathya" series Shorts (section 11) and the Dadi-Chhotu Short (slot `noon`, section 6). The plain long katha video (section 5) is stopped (owner, 16 Nov 2026).
 
-**At most 3 YouTube uploads a day (owner, 9 Nov 2026).** At 3-4 uploads a day (2-6 Nov) Shorts got hundreds of views;
-at 5-6 a day (7-9 Nov) they fell to 0-15, most likely YouTube's repetitive / mass-produced AI content signals. So every
-upload must be high quality and clearly different.
+**At most 8 YouTube Shorts a day from 25 Nov 2026 (owner, 24 Nov 2026: "8 ka limit rakho daily"; 3 until 24 Nov 2026,
+owner 9 Nov 2026).** The cap was raised so that the daily "Ramayan Ke Rochak Tathya" Short (17:00) and the approved
+"Kailash Parivar" series (Mon/Thu/Sat 08:00) go out beside the day status and the evening darshan. It is a **ceiling, not
+a target**: every slot still needs its own day, switch and limit (below), so a normal day has 4-5 Shorts. The warning
+of 7-9 Nov still holds (at 5-6 a day Shorts fell to 0-15 views, most likely YouTube's repetitive / mass-produced AI
+content signals): every upload must be high quality and **clearly different** from the others of the day (another
+deity, format and look), never a near-copy to fill a slot.
 
 **Re-plan around what goes viral (owner, 11 Nov 2026; data of all 109 videos).** Festival "status" Shorts average 154
 views (Choti Diwali Status 2026: 798, Dhanteras Status: 456; the big festivals, out the night before or just after
@@ -26,7 +30,8 @@ katha Shorts 18, the worst: **no more katha Shorts**. Generic "X Darshan" Shorts
 - The new **facts Shorts** got 1-7 views each: at most 2 a week until the 25 Nov 2026 review (median under 20 views =
   facts off).
 
-The workflow (`scripts/day-plan.mjs`) fills every day by priority, max 3 Shorts (+ at most 1 long video):
+The workflow (`scripts/day-plan.mjs` `capFor`; `scripts/upload-guard.mjs` enforces the same cap) fills every day by
+priority, max 8 Shorts from 25 Nov 2026 (3 before) (+ at most 1 long video, + the owner's footage Short):
 
 | Priority | Upload | Made by |
 |---|---|---|
@@ -35,16 +40,34 @@ The workflow (`scripts/day-plan.mjs`) fills every day by priority, max 3 Shorts 
 | 2 | `morning` on every non-festival day (movie days too): the weekday **day status** Short, public **06:00**, made the evening before (Somvar Mahadev, Mangalvar Hanuman/Salasar Balaji, Budhvar Ganesh, Guruvar Vishnu/Sai, Shukravar Lakshmi/Santoshi, Shanivar Shani dev, Ravivar Surya; Ekadashi: Gyaras Khatu Shyam) | the `status` job, status engine (no action from you) |
 | 2 | `morning` on other festival days (not movie / big-festival days): a **famous-temple darshan** Short tied to the festival's deity | you (sections 1-4) |
 | 3 | `evening` 19:00: a **famous-temple darshan** Short (Khatu Shyam ji, Salasar Balaji, Mehandipur Balaji, Shakambhari Mata, Jeen Mata, Rani Sati Dadi with the sati rules first) | you (sections 1-4) |
-| 3.5 | `facts` 17:00 on **Wed/Thu/Sat** (from 26 Nov 2026): the **"Ramayan Ke Rochak Tathya"** series Short (`automation/ramayan-series.md`, in order); festivals, the day status and the darshan still win; outside the facts weekly limit; `RAMAYAN=off` pauses it | `facts` job, you write it (section 11) |
-| 3.6 / 3.7 | "Kailash Parivar" (Mon/Thu/Sat) / "Shri Krishna kehte hain" (Tue/Fri) 08:00, when approved; never instead of the day status or the evening darshan | sections 9-10 |
-| 3.8 | `facts` 17:00: the "pauranik facts / rahasya" Short, **max 2 a week** until the 25 Nov 2026 review | `facts` job, you write it (section "Facts Shorts") |
-| 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`), only if the cap has room | `kalyug` job (section 8) |
-| 5 | `noon` Dadi-Chhotu Wed 15:00, only if the cap has room | you (section 6) |
-| own cap | `long` (16:9, outside the 3 Shorts, max 1 a day): ONLY the weekly mantra jaap (Sundays, a Krishna week's Ekadashi) or a festival bhajan jukebox (>= 4 full-length QA-passed bhajans of that festival), at **05:30**; no plain katha | `mantra` / `jukebox` jobs |
-| own cap | `owner` (owner, 20 Nov 2026): the owner's own REAL pandal darshan reels, 1 a day at **07:15** (aarti time, from 21 Nov 2026; was 09:30; outside the 3 Shorts; order, titles, music in automation/owner-footage.json, skip list automation/owner-footage-skip.txt). Real footage is never called AI | `owner-footage.yml` (no action from you) |
+| 3.5 | `facts` 17:00 **every day** (from 26 Nov 2026; owner 24 Nov 2026 "roj 1"): the **"Ramayan Ke Rochak Tathya"** series Short (`automation/ramayan-series.md`, in order); festivals, the day status and the darshan rank first; not on movie / override days; outside the facts weekly limit; `RAMAYAN=off` pauses it | `facts` job, you write it (section 11) |
+| 3.6 / 3.7 | "Kailash Parivar" (Mon/Thu/Sat) / "Shri Krishna kehte hain" (Tue/Fri) 08:00, when approved; beside the day status, the evening darshan and the Ramayan Short, never instead of them; not on movie / override days | sections 9-10 |
+| 3.8 | `facts` 17:00: the "pauranik facts / rahasya" Short, **max 2 a week** until the 25 Nov 2026 review; the facts slot is the Ramayan Short's while that series runs (one facts Short a day, never two) | `facts` job, you write it (section "Facts Shorts") |
+| 4 | "Kalyug ke Bhagwan" **14:30** (08:00 until 24 Nov 2026; 08:00 is the Kailash / POV time now), Tue/Thu/Sat of normal days (`KALYUG=on`) | `kalyug` job (section 8) |
+| 5 | `noon` Dadi-Chhotu 15:00, Wednesdays of normal days | you (section 6) |
+| own cap | `long` (16:9, outside the Shorts cap, max 1 a day): ONLY the weekly mantra jaap (Sundays, a Krishna week's Ekadashi) or a festival bhajan jukebox (>= 4 full-length QA-passed bhajans of that festival), at **05:30**; no plain katha | `mantra` / `jukebox` jobs |
+| own cap | `owner` (owner, 20 Nov 2026): the owner's own REAL pandal darshan reels, 1 a day at **07:15** (aarti time, from 21 Nov 2026; was 09:30; outside the Shorts cap; order, titles, music in automation/owner-footage.json, skip list automation/owner-footage-skip.txt). Real footage is never called AI | `owner-footage.yml` (no action from you) |
 
-Any Short below the first three that day is left out (the prompt tells you your slot's plan). Movie days and big-festival
-days have no `morning` Short of yours.
+A Short ranked below the day's cap is left out (the prompt tells you your slot's plan); with 8 that only happens on a
+crowded festival day. Movie days and big-festival days have no `morning` Short of yours; a movie day and a date-scoped
+override day (automation/chhath-2026.json) have no Kailash / POV, Ramayan, pauranik facts, Kalyug or Dadi-Chhotu Short.
+Publish times stay spread (00:30 status, 05:30-06:00 dawn, 07:00 movie, 07:30 statusday, 08:00 Kailash / POV, ~10:30
+festival-morning darshan, 14:30 Kalyug, 15:00 Dadi-Chhotu, 17:00 facts / Ramayan, 19:00 darshan, 20:00 eve status: never
+two in the same minute, at least 30 min apart; Facebook Reels 90 min apart, `scripts/fb.mjs`).
+
+**Resource guards for the 8-Shorts day** (`scripts/resource-budget.mjs`; a Short over budget still goes out, in the
+simpler form, never a skipped festival status or evening darshan):
+- **Workers AI FLUX** (10,000 free neurons a day, reset 05:30 IST, ~326 per image): the evening darshan and the festival
+  status Shorts are never limited. Until the day's evening darshan is in log.md only the morning-window runs get
+  Workers AI (festival-morning darshan 6 images, Dadi-Chhotu 6, photos 2, Veo kit 3), so ~10 images stay for the
+  evening; the facts / Ramayan, long and loop runs use Kaggle FLUX first and then the picture bank. Write 4-6 image
+  scenes; never more images than the spec needs.
+- **Kaggle GPU** (~30 h a week, 2 sessions at a time): the evening darshan / status keep `quota --min 3`; the
+  festival-morning darshan and the facts / Ramayan clips animate only above the daily Shorts' reserve (2.4 h a day + 1 h
+  until the Saturday reset) plus 1.25 h for every Kailash / POV episode still due before the reset, else zoompan
+  stills; Kailash / POV / Kalyug keep their own gate (`story/kalyug.py gate`).
+- **YouTube**: videos.insert has its own bucket (100 a day), far above 8 + long + owner; ~51-102 shared units a Short.
+  **GitHub Actions**: public repo, free. **Facebook**: Reels 90 min apart fit (07:00-23:00 holds 11).
 
 ### Publish times: bhajans at dawn (owner, 14 Nov 2026: "Bhajan subah subah hi bajate h log")
 
@@ -65,12 +88,12 @@ Devotees play bhajans early in the morning, so bhajan and mantra content is publ
   `mantra`); photos.yml's 19:46 IST run dispatches daily.yml `slot=dawn` as the retry when one is still missing. No new
   cron; the Cloudflare scheduler is unchanged. Bhajan renders run on the GitHub runner (no Kaggle, no Claude).
 - **Day attribution:** the IST publish date is the upload's date (slug `<publish date>-...`, the upload-guard claim, the
-  log.md line), so a video rendered on the 14th for 05:45 on the 15th counts against the 15th's caps (3 Shorts + 1 long).
+  log.md line), so a video rendered on the 14th for 05:45 on the 15th counts against the 15th's caps (8 Shorts from 25 Nov 2026 + 1 long).
 - **Fallback:** if the evening render is missing, the morning run makes it and it goes public as soon as it is ready
   (Facebook/Instagram at once); for a long video never later than 12:30 (the long job waits for the jukebox / mantra
   job and tells its 12:30 katha only when they did not make the day's long video).
 - **Facebook spacing:** Reels stay at least 90 min apart; 00:30 status -> 06:00 dawn bhajan is 5.5 h. No other Reel is
-  planned between 01:00 and 07:00 (statusday 07:30, movie 07:30 -> 09:00 on a statusday, kalyug 08:00, the owner-footage Reel from 07:15 move later, never
+  planned between 01:00 and 07:00 (statusday 07:30, movie 07:30 -> 09:00 on a statusday, Kailash / POV 08:00, kalyug 14:30, the owner-footage Reel from 07:15 move later, never
   earlier).
 - 15 Nov 2026 05:45 Sandhya Arghya bhajan Short (song 26f-04), rendered 14 Nov evening; 16 Nov 05:45 Usha Arghya bhajan
   Short (26e-07), rendered 15 Nov evening; 22 Nov 05:30 the first weekly mantra jaap (Vasudevaya).
@@ -452,7 +475,7 @@ or a manual `slot=long` dispatch). The rules below apply then.
 Only when the prompt says the slot is `long`. **Every day** (owner, 13 Nov 2026: long videos are the channel's only
 source of watch hours), after the morning Short, you write one **long katha video**: 16:9, **5-10 minutes**, a regular
 YouTube video (not a Short), published at 12:30 IST (a bhajan / mantra long video made by the jukebox / mantra jobs
-goes out at 05:30 instead; see "Publish times"). It is outside the 3-Shorts-a-day cap. Movie days keep their movie
+goes out at 05:30 instead; see "Publish times"). It is outside the Shorts-a-day cap. Movie days keep their movie
 part and still get the long video (a different story from the part). Sections 3-4 do not apply to it; everything else
 below does.
 
@@ -727,17 +750,19 @@ footage/<temple>/ has them; never call an AI image real.
 
 Validate with `node scripts/validate.mjs story/movies/<series>/part-<n>.json`. Do not render, upload, commit or push.
 
-## 8. "Kalyug ke Bhagwan" (08:00 on Tue/Thu/Sat when it fits; job `kalyug`)
+## 8. "Kalyug ke Bhagwan" (14:30 on Tue/Thu/Sat of normal days; job `kalyug`)
 
 Owner, 9 Nov 2026: **cute, fully animated 3D cartoon deities (Pixar-like family-movie look) in everyday roles**, with
 lip-sync. A child or parent has a relatable modern problem; the deity, gentle, wise or playful, gives a short lesson
 rooted in a well-known katha, shloka or value. 30-60 s vertical Shorts. With the repo variable `KALYUG=on`, the
-episode goes out at 08:00 on **Tuesday, Thursday and Saturday when it fits under the 3-a-day cap** (`scripts/day-plan.mjs`,
-owner 11 Nov 2026: status and temple Shorts come first): beside the morning day status Short and the evening temple
-darshan, not instead of them. A day with a festival status Short (or the evening before one), a festival day and a
+episode goes out at **14:30** (08:00 until 24 Nov 2026; 08:00 is the Kailash / POV time now) on **Tuesday, Thursday and
+Saturday** of normal days (`scripts/day-plan.mjs`; the cap of 8 from 25 Nov 2026 has room, owner 11 Nov 2026: status and
+temple Shorts come first): beside the morning day status Short, the Kailash / POV episode, the Ramayan Short and the
+evening temple darshan, not instead of them. A day with a festival status Short (or the evening before one), a festival day and a
 movie day (17-20 Nov) has no episode. The `kalyug` job makes TOMORROW's episode the evening before (after the evening
 run, outside the Kaggle windows) only when tomorrow's plan has it, and schedules it (YouTube publishAt 08:00, Facebook
-scheduled, Instagram queued).
+scheduled, Instagram queued). The time comes from `scripts/kalyug-due.mjs` (the plan's kalyug time; a spec written
+for 08:00 is moved to 14:30).
 
 **Characters** (`characters/kalyug/cast.json`; one canonical portrait `<id>.png` + one base clip `clips/<id>.mp4` each,
 picked by a person, never regenerated; voices fixed): `bal-ganesh` (big ears, short curled trunk, one broken tusk,
@@ -770,7 +795,7 @@ teacher or guide. Iconography stays correct (colours, crown, attributes). Cute, 
 
 **File.** `story/kalyug/<release>-<topic>.json`, slug `<release>-kalyug-<topic>` (Roman a-z0-9-). Copy the shape of
 `story/kalyug/pilot-ep1.json`:
-- `format: "kalyug"`, `series: "kalyug-ke-bhagwan"`, `series_title`, `release`, `publish_at: "08:00"`, `lead` (the
+- `format: "kalyug"`, `series: "kalyug-ke-bhagwan"`, `series_title`, `release`, `publish_at: "14:30"`, `lead` (the
   deity id), `deity`, `topic`, `title` (Roman, max 40, **deity name first**: "Bal Ganesh aur exam ka darr"),
   `title_dev` (Devanagari), `summary` (max 160, no "|"), `lesson`, `source`, `facts`, optional `shloka`, `music`
   (`playful` or `calm`), `cast`, `names` (Devanagari names for the pronunciation check).
@@ -800,8 +825,9 @@ difference, not the length. **Write your own scripts and titles**; never copy an
 they are scripture).
 
 **Schedule** (`scripts/day-plan.mjs` slot `facts`, public **17:00 IST**, made the evening before by job `facts`): from
-17 Nov 2026 wherever the 3-Shorts cap has room, LAST in the priority (after the festival status, day status, darshan and
-Kailash / POV Shorts; owner, 16 Nov 2026). The first facts Shorts got 1-7 views each, so **at most 2 a week (Mon-Sun)
+17 Nov 2026 wherever the Shorts cap has room (8 from 25 Nov 2026), LAST in the priority (after the festival status, day
+status, darshan and Kailash / POV Shorts; owner, 16 Nov 2026); never on a movie or override day, and the facts slot is
+the Ramayan Short's while that series runs. The first facts Shorts got 1-7 views each, so **at most 2 a week (Mon-Sun)
 until the review on 25 Nov 2026**: `scripts/growth-compare.mjs --facts-review` (the growth job, first morning run from
 25 Nov) writes `automation/facts-review.json` and a "Facts review" section in growth.md: a median under 20 views =
 verdict "off", the planner stops facts; else "on", the weekly limit ends. Movie days keep the movie part. Repo variable
@@ -1103,8 +1129,8 @@ Saturday** the facts slot (public **17:00 IST**, made the evening before by the 
 instead of a pauranik facts Short. Wednesday's facts slot only competes with the Dadi-Chhotu noon Short, Thursday is
 Guruvar (Vishnu / Shri Ram), Saturday Hanuman ji's day; Tuesday and Friday stay with the live "Shri Krishna kehte hain"
 series. **Festival days still win**: the festival status Shorts, the day status, the evening darshan and the
-festival-morning darshan rank first, so on a festival Wed/Thu/Sat the cap usually leaves it out and the next number
-simply moves to the next Ramayan day (never on movie or override days). It ranks above Kailash / POV (a series Short
+festival-morning darshan rank first; with the cap of 8 (from 25 Nov 2026) it goes out beside them, and only a day whose
+cap is full leaves it out (the next number simply moves to the next Ramayan day; never on movie or override days). It ranks above Kailash / POV (a series Short
 never takes its place), the pauranik facts Short, Kalyug and Dadi-Chhotu. It is outside the facts "2 a week" limit and
 the 25 Nov facts review; repo variable **`RAMAYAN=off`** pauses it (`FACTS=off` now stops only the pauranik facts Shorts).
 `node scripts/facts.mjs plan` and `node scripts/ramayan-series.mjs next` show what comes next.

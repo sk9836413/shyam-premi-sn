@@ -12,8 +12,9 @@
 //        - automation/log.md already has "<day> | <slot> |" (another run published the slot), or
 //        - automation/published.md has "- <slug> | youtube: https…", or
 //        - another run holds an unexpired claim (2 h) on the same day+slot or slug that it has not released, or
-//        - the DAILY CAP, counted per kind (owner, 13 Nov 2026): at most 3 Shorts (every slot but `long`: status, eve,
-//          statusday, morning, evening, noon, kalyug, movie parts) and, separately, 1 long video per IST date
+//        - the DAILY CAP, counted per kind (owner, 13 Nov 2026): at most DAILY_CAP Shorts (every slot but `long` and
+//          `owner`: status, eve, statusday, morning, evening, noon, kalyug, kailash, pov, facts, movie parts; 8 from
+//          25 Nov 2026, owner 24 Nov 2026 "8 ka limit rakho daily"; 3 on earlier dates) and, separately, 1 long video per IST date
 //          (log.md / published.md lines of that date, plus live claims of other slots of the same kind). The long
 //          video never counts against the Shorts cap; neither does slot `owner` (the owner's own darshan footage, 1 a day,
 //          OWNER_CAP, scripts/owner-footage.mjs). The skip is logged as "- <slug> | skipped: daily cap ..." in
@@ -34,10 +35,21 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 export const CLAIM_TTL_MS = 2 * 3600e3;
-export const DAILY_CAP = 3; // YouTube Shorts per IST date (owner, 9 Nov 2026; scripts/day-plan.mjs CAP)
+// YouTube Shorts per IST date: 3 (owner, 9 Nov 2026) until 24 Nov 2026, 8 from DAILY_CAP_FROM (owner, 24 Nov 2026: "8 ka
+// limit rakho daily"; scripts/day-plan.mjs CAP / CAP_FROM / CAP_BEFORE, the same numbers). A ceiling: the day plan
+// fills it only with the Shorts that have their own day and switch (most days 4-5).
+export const DAILY_CAP = 8;
+export const DAILY_CAP_FROM = '2026-11-25';
+export const DAILY_CAP_BEFORE = 3;
+/** The plain Shorts cap of an IST date (no owner exception). */
+export const dailyCap = (day) => (String(day) >= DAILY_CAP_FROM ? DAILY_CAP : DAILY_CAP_BEFORE);
+// YouTube Data API (scripts/youtube.mjs): videos.insert has its own bucket of 100 calls a day for the Google project;
+// every other call comes from the shared 10,000 units (~51-102 units a Short: thumbnail + playlist). The most this
+// channel can upload in a day stays far under the bucket (test: DAILY_CAP + EXTRA_UPLOAD_DAY + long + owner).
+export const UPLOAD_CALLS_PER_DAY = 100;
 export const LONG_CAP = 1; // long videos per IST date, on top of the Shorts (owner, 13 Nov 2026; day-plan LONG_CAP)
 // The owner's own darshan footage (owner, 20 Nov 2026: "daily upload me daal do"; scripts/owner-footage.mjs): ONE extra
-// Short a day in slot `owner`, with its own cap, so it never takes one of the 3 planned Shorts' places and they never
+// Short a day in slot `owner`, with its own cap, so it never takes one of the planned Shorts' places and they never
 // take its place.
 export const OWNER_CAP = 1;
 
@@ -47,7 +59,7 @@ export const kindOf = (slot) => (slot === 'long' ? 'long' : slot === 'owner' ? '
 const esc = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 /** Pure decision from the two files' text (unit-tested). */
-export function decide({ log = '', pub = '', day, slot, slug, run, now = Date.now(), ttl = CLAIM_TTL_MS, cap = DAILY_CAP, longCap = LONG_CAP, ownerCap = OWNER_CAP }) {
+export function decide({ log = '', pub = '', day, slot, slug, run, now = Date.now(), ttl = CLAIM_TTL_MS, cap = dailyCap(day), longCap = LONG_CAP, ownerCap = OWNER_CAP }) {
   if (new RegExp(`^${esc(day)} \\| ${esc(slot)} \\|`, 'm').test(log)) return { go: false, reason: `log.md already has ${day} | ${slot}` };
   if (new RegExp(`^- ${esc(slug)} \\| youtube: https?://`, 'm').test(pub)) return { go: false, reason: `published.md already has ${slug} on YouTube` };
   const claims = new Map(); // "<run>|<day> <slot>|<slug>" -> at
@@ -92,10 +104,10 @@ export function dayUploads({ log = '', pub = '', day }) {
  *  15 Nov 2026, a Short that should have failed the pronunciation gate). They never count against the cap. */
 export const withheld = (pub = '') => new Set([...String(pub).matchAll(/^- (\S+) \| withheld:/gm)].map((m) => m[1]));
 
-/** The Shorts cap of a date: DAILY_CAP, +1 on the owner's one-day exception (repo variable EXTRA_UPLOAD_DAY=YYYY-MM-DD,
+/** The Shorts cap of a date: dailyCap(day), +1 on the owner's one-day exception (repo variable EXTRA_UPLOAD_DAY=YYYY-MM-DD,
  *  e.g. a big festival). The long video has its own cap (LONG_CAP) and is never affected. */
 export const shortsCap = (day, extra = process.env.EXTRA_UPLOAD_DAY, uploads = process.env.EXTRA_UPLOADS) =>
-  (extra && extra.trim() === day ? DAILY_CAP + 1 : DAILY_CAP) + extraUploads(day, uploads);
+  dailyCap(day) + (extra && extra.trim() === day ? 1 : 0) + extraUploads(day, uploads);
 
 /** ONE-OFF owner exceptions beyond EXTRA_UPLOAD_DAY (repo variable EXTRA_UPLOADS = "YYYY-MM-DD:n[,YYYY-MM-DD:n]"; owner,
  *  15 Nov 2026: "Isi format me chath ka 4-5 video aaj live karo" = 4-5 Chhath facts Shorts on 15-16 Nov on top of the

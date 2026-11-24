@@ -1,6 +1,6 @@
 # Owner footage lane (owner, 20 Nov 2026: "tum upload kardo, daily upload me daal do"; scripts/owner-footage.mjs,
 # automation/owner-footage.json): the owner's own REAL darshan reels from a Khatu Shyam ji pandal, ONE a day as an EXTRA
-# Short (upload-guard slot `owner`, its own cap of 1, outside the 3 Shorts), public at the plan's time (07:15 IST from
+# Short (upload-guard slot `owner`, its own cap of 1, outside the daily Shorts cap), public at the plan's time (07:15 IST from
 # 21 Nov 2026, aarti time; was 09:30) on
 # YouTube (publishAt), Facebook (scheduled, fb.mjs spacing) and Instagram (queued; daily.yml's `instagram` job flushes it).
 # The reels (music already mixed in) are assets of the GitHub release named in the plan, never in git history.

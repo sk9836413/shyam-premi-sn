@@ -329,7 +329,7 @@ export function dayStatusDue({ today, log = '', planFor }) {
 /**
  * The variants of ONE family (festival) to make in this run. eve variants publish today (evening), status/statusday
  * variants tomorrow; with `family` every not-yet-logged variant of that festival from today on (dry: all of them).
- * planFor(date) = scripts/day-plan.mjs planDay: a variant the 3-a-day cap dropped is not made.
+ * planFor(date) = scripts/day-plan.mjs planDay: a variant the daily Shorts cap dropped is not made (8 from 25 Nov 2026).
  * When no festival variant is due, tomorrow's DAY STATUS Short (dayStatusDue) is the run's family instead
  * ({ family: date, daystatus: { date, theme, at } }); festivals always go first (their times are tighter).
  */
@@ -341,7 +341,7 @@ export function due({ today, now = Date.now(), log = '', festivals, planFor, fam
     if (family ? p.festival.date !== family : !((p.slot === 'eve' && p.date === today) || (p.slot !== 'eve' && p.date === tomorrow))) continue;
     const id = `${p.date} ${p.slot} ${p.festival.key}`;
     const planned = planFor(p.date).uploads.some((u) => u.slot === p.slot && u.festival === p.festival.key && u.k === p.k);
-    if (!planned) { skipped.push(`${id}: dropped by the 3-a-day cap (scripts/day-plan.mjs)`); continue; }
+    if (!planned) { skipped.push(`${id}: dropped by the daily Shorts cap (scripts/day-plan.mjs)`); continue; }
     if (dry) { ok.push(p); continue; }
     if (new RegExp(`^${p.date} \\| ${p.slot} \\|`, 'm').test(log)) { skipped.push(`${id}: already in log.md`); continue; }
     const at = Date.parse(`${p.date}T${p.at}:00+05:30`);
@@ -369,7 +369,7 @@ export function calendarMarkdown(festivals, isPlanned = () => true) {
   const plan = placements(festivals);
   const rows = festivals.map((f) => {
     const ps = plan.filter((p) => p.festival.key === f.key);
-    const when = ps.map((p) => `${p.countdown ? 'countdown ' : ''}${p.slot} ${p.date.slice(5)} ${p.at}${isPlanned(p) ? '' : ' dropped by the 3-a-day cap'}`).join(', ');
+    const when = ps.map((p) => `${p.countdown ? 'countdown ' : ''}${p.slot} ${p.date.slice(5)} ${p.at}${isPlanned(p) ? '' : ' dropped by the daily Shorts cap'}`).join(', ');
     const status = f.tier === 'info' ? 'no status Short' : `${f.tier === 'big' ? 'BIG, ' : ''}${f.season ? 'SEASON, ' : ''}status Shorts: ${when}`;
     const names = (f.names || []).map((n) => n.en).filter((n) => n !== f.label).join('; ');
     return `| ${f.date} | ${f.label}${names ? `; ${names}` : ''} (${status}). Sources: ${f.sources.join('; ')} |`;
