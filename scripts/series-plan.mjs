@@ -87,7 +87,7 @@ export function makeRoom(slot, cands, cap, rank) {
   // status, a festival status or the evening darshan; owner, 16 Nov 2026)
   const order = [
     (c) => c.slot === 'morning' && c.kind === 'temple',
-    (c) => c.slot === 'facts' && !c.logged,
+    (c) => c.slot === 'facts' && !c.logged && c.kind !== 'ramayan', // never the Ramayan series Short (owner, 24 Nov 2026)
   ];
   for (const test of order) {
     const m = cands.findIndex((c) => kept.includes(c) && test(c));

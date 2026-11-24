@@ -148,7 +148,8 @@ describe('facts Shorts: max 2 a week until the 25 Nov 2026 review', () => {
     const inputs = realInputs();
     inputs.factsReview = null;
     for (let mon = '2026-11-16'; mon <= '2027-01-25'; mon = addDays(mon, 7)) {
-      const n = Array.from({ length: 7 }, (_, k) => addDays(mon, k)).filter((d) => slots(planDay(d, inputs)).includes('facts')).length;
+      // the Ramayan series Short (Wed/Thu/Sat, owner 24 Nov 2026) uses the facts slot but is outside the facts weekly limit
+    const n = Array.from({ length: 7 }, (_, k) => addDays(mon, k)).filter((d) => planDay(d, inputs).uploads.some((u) => u.slot === 'facts' && u.kind !== 'ramayan')).length;
       assert.ok(n <= FACTS_PER_WEEK, `week of ${mon}: ${n}`);
     }
   });

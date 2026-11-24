@@ -31,6 +31,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { addDays, istToday, loadInputs, planDay, weekday } from './day-plan.mjs';
 import { align, cer, nameOccurrences, norm, RULES } from '../music/bhajan-batch.mjs';
+import { seriesState } from './ramayan-series.mjs';
 
 export const TOPICS_FILE = 'automation/facts-topics.json';
 export const SPEC_DIR = 'story/facts';
@@ -46,18 +47,18 @@ export const LENGTH = { story: [110, 165], kyun: [45, 62], list: [38, 55], gita:
 export const SCENES = { story: [10, 16], kyun: [6, 9], list: [5, 8], gita: [5, 8] };
 export const CPS = 12.9;
 export const MAX_RENDERED = 179;
-const WEAK = /wikipedia\.org|blogspot\.|wordpress\.|medium\.com|quora\.com|youtube\.com|facebook\.com|instagram\.com|bhaktibharat|myyatradiary|studycafe|tripadvisor|holidify|templepurohit|pinterest/i;
+export const WEAK = /wikipedia\.org|blogspot\.|wordpress\.|medium\.com|quora\.com|youtube\.com|facebook\.com|instagram\.com|bhaktibharat|myyatradiary|studycafe|tripadvisor|holidify|templepurohit|pinterest/i;
 const DEVANAGARI = /[ऀ-ॿ]/;
 // Folk / temple belief must be said as such in the narration (owner, 15 Nov 2026).
 export const FOLK_MARK = /मान्यता|लोककथा|लोक कथा|कहते हैं|कहा जाता है|परंपरा|परम्परा|लोक मान्यता|श्रद्धा है/;
 // Hindi / Roman number words a hook or title might invent ("दस गुना"): allowed only when the topic lists them.
 // ("ek" / "एक" is also the article "a", so it is not counted; Devanagari words only as whole words: दोस्त is not दो.)
-const NUMBER_WORDS = /\b\d+\b|\b(teen|chaar|char|paanch|panch|chhah|saat|aath|nau|das|bees|sau|hazaar|hazar|lakh|crore|karod)\b|(?<![\p{L}\p{M}])(दो|तीन|चार|पाँच|पांच|छह|सात|आठ|नौ|दस|बीस|सौ|हज़ार|हजार|लाख|करोड़)(?![\p{L}\p{M}])/giu;
+export const NUMBER_WORDS = /\b\d+\b|\b(teen|chaar|char|paanch|panch|chhah|saat|aath|nau|das|bees|sau|hazaar|hazar|lakh|crore|karod)\b|(?<![\p{L}\p{M}])(दो|तीन|चार|पाँच|पांच|छह|सात|आठ|नौ|दस|बीस|सौ|हज़ार|हजार|लाख|करोड़)(?![\p{L}\p{M}])/giu;
 const GUNA = /guna|गुना|times/i;
 // Physical humiliation or vulgarity: never a deity (owner, 15 Nov 2026: the "kyun" action may look dramatic, never demeaning).
-const DEMEAN = /\b(thappad|slap|slapp|kick|kicked|kicking|lat maar|laat maar|joota|jute|chappal|naked|nude|nanga|vulgar|sexy|drunk|sharab|daaru|toilet|vomit|spit|thook)\b|थप्पड़|लात मार|जूता|चप्पल|नंगा|शराब|थूक/i;
-const STUDIO = /pixar|disney|ghibli|dreamworks|marvel|illumination|amar chitra katha/i;
-const GORE = /\b(blood|bloody|gore|beheaded|beheading|severed|decapitat|corpse|dead body|wound|killing|slaughter)/i;
+export const DEMEAN = /\b(thappad|slap|slapp|kick|kicked|kicking|lat maar|laat maar|joota|jute|chappal|naked|nude|nanga|vulgar|sexy|drunk|sharab|daaru|toilet|vomit|spit|thook)\b|थप्पड़|लात मार|जूता|चप्पल|नंगा|शराब|थूक/i;
+export const STUDIO = /pixar|disney|ghibli|dreamworks|marvel|illumination|amar chitra katha/i;
+export const GORE = /\b(blood|bloody|gore|beheaded|beheading|severed|decapitat|corpse|dead body|wound|killing|slaughter)/i;
 // "धर्म की जिज्ञासा" answers come from shastra or parampara (owner, 15 Nov 2026): never pseudo-science or health claims.
 export const PSEUDO = /bacteria|bacteri|virus|vaigyanik karan|scientific reason|science (says|proves)|positive energy|negative energy|vibration|immunity|oxygen|health benefit|rog door|bimari door|बैक्टीरिया|वायरस|वैज्ञानिक कारण|विज्ञान भी मानता|पॉजिटिव एनर्जी|नेगेटिव एनर्जी|सकारात्मक ऊर्जा|नकारात्मक ऊर्जा|इम्युनिटी|ऑक्सीजन|रोग दूर|बीमारी दूर|सेहत के लिए/i;
 
@@ -175,7 +176,7 @@ const slugTopic = (slug, topics) => topics.find((t) => String(slug).includes(t.i
 /** Variant for a date: Sunday = gita (~1 a week); otherwise rotate story -> kyun -> list over the facts history. */
 export function variantFor(date, history = []) {
   if (weekday(date) === 0) return 'gita';
-  const done = history.filter((h) => h.date < date && h.variant && h.variant !== 'gita');
+  const done = history.filter((h) => h.date < date && h.variant && h.variant !== 'gita' && h.variant !== 'ramayan'); // the Ramayan series has its own format
   const last = done.at(-1)?.variant;
   const order = ['story', 'kyun', 'list'];
   return last ? order[(order.indexOf(last) + 1) % order.length] : 'story';
@@ -262,26 +263,44 @@ export const inKaggleWindow = (hm) => KAGGLE_WINDOWS.some(([a, b]) => hm >= a &&
 export function factsDue({ root = '.', today = istToday(), now = Date.now(), inputs = loadInputs(root), spec } = {}) {
   const info = (file) => {
     const s = JSON.parse(read(path.join(root, file)));
-    return { mode: 'produce', file, slug: s.slug, release: s.release, publish_at: s.publish_at || PUBLISH_AT, topic: s.topic, variant: s.variant, art: s.art };
+    return { mode: 'produce', file, slug: s.slug, release: s.release, publish_at: s.publish_at || PUBLISH_AT, topic: s.topic, variant: s.variant, art: s.art, series: s.series || '' };
   };
   const gpu = !inKaggleWindow(istHM(now));
   if (spec) return { ...info(spec), gpu };
-  if (process.env.FACTS === 'off') return { mode: 'none', why: 'repo variable FACTS=off', gpu };
+  // FACTS=off (loadInputs: inputs.facts) and RAMAYAN=off (inputs.ramayan.on) are applied by the plan itself: FACTS=off
+  // stops the pauranik facts Shorts, RAMAYAN=off the Ramayan series (owner, 24 Nov 2026); each keeps the other running.
   const log = read(path.join(root, 'automation/log.md'));
   const days = istHM(now) < '14:00' ? [today, addDays(today, 1)] : [addDays(today, 1)];
   const why = [];
   for (const day of days) {
-    if (!planDay(day, inputs).uploads.some((u) => u.slot === 'facts')) { why.push(`${day}: no facts slot (cap)`); continue; }
+    const up = planDay(day, inputs).uploads.find((u) => u.slot === 'facts');
+    if (!up) { why.push(`${day}: no facts slot (cap)`); continue; }
     if (new RegExp(`^${day} \\| facts \\|`, 'm').test(log)) { why.push(`${day}: already scheduled`); continue; }
     const dir = path.join(root, SPEC_DIR);
     const f = (fs.existsSync(dir) ? fs.readdirSync(dir) : []).filter((x) => x.startsWith(`${day}-`) && x.endsWith('.json')).sort()[0];
     if (f) return { ...info(path.posix.join(SPEC_DIR, f)), gpu };
+    if (up.kind === 'ramayan') {
+      // Ramayan Ke Rochak Tathya (STORY.md section 11): the next item of automation/ramayan-series.md, in order
+      const st = seriesState(root);
+      if (!st.next) { why.push(`${day}: the Ramayan series is complete`); continue; }
+      return { mode: 'write', release: day, publish_at: PUBLISH_AT, topic: st.next.id, variant: 'ramayan', art: artFor(day, factsHistory(root)), series: 'ramayan',
+        item: st.next.n, total: st.total, brief: ramayanBrief(st.next, st.total), gpu };
+    }
     const topics = loadTopics(root);
     const p = pickTopic(day, { topics, history: factsHistory(root), log, festivals: inputs.festivalList || [] });
     if (!p.topic) { why.push(`${day}: no topic left in the bank`); continue; }
     return { mode: 'write', release: day, publish_at: PUBLISH_AT, topic: p.topic.id, variant: p.variant, art: p.art, gpu };
   }
   return { mode: 'none', why: why.join('; ') || 'nothing due', gpu };
+}
+
+/** One-line instructions for the facts job's prompt when the day's Short is a Ramayan series item. */
+export function ramayanBrief(it, total) {
+  return `RAMAYAN SERIES: this Short is "Ramayan Tathya ${it.n}/${total}", item ${it.n} of automation/ramayan-series.md (id ${it.id}), NOT a topic of ` +
+    `automation/facts-topics.json. Follow automation/STORY.md section 11 "Ramayan Ke Rochak Tathya" instead of the facts variants: the hook and fact ` +
+    `beats speak the item's hook_hi / fact_hi word for word (their sub lines are hook / fact word for word), the source scene shows "${it.source}" ` +
+    `(source_line), then the one-line lesson and the end card; "series": "ramayan", "variant": "ramayan", playlist "Ramayan Ke Rochak Tathya". ` +
+    `Re-check the citation at ${it.verify} before writing; if the text there does not support the item, write nothing and say so.`;
 }
 
 // ---------------------------------------------------------------- spec rules (scripts/validate.mjs calls these)
@@ -482,6 +501,18 @@ export const FACTS_NAMES = {
   षष्ठी: { deity: 'devi', ok: '^[षश]' },
   शनि: { deity: 'shani', ok: '^श[नण]' },
   कर्ण: { deity: 'mahabharat', ok: '^क[र]?्?[णन]' },
+  // Ramayan Ke Rochak Tathya (24 Nov 2026): the names its Shorts say, so the gate checks them too
+  राम: { deity: 'ram', ok: '^रा?म' },
+  सीता: { deity: 'ram', ok: '^सी?त' },
+  लक्ष्मण: { deity: 'ram', ok: '^ल[क]?्?[षशछ]' },
+  भरत: { deity: 'ram', ok: '^भ' },
+  सुग्रीव: { deity: 'ram', ok: '^सु?ग' },
+  विभीषण: { deity: 'ram', ok: '^[वब]ि?भ' },
+  वाल्मीकि: { deity: 'ram', ok: '^[वब]ा?ल' },
+  तुलसीदास: { deity: 'ram', ok: '^तु?ल' },
+  दशरथ: { deity: 'ram', ok: '^द[शस]' },
+  अंगद: { deity: 'ram', ok: '^अं?ग' },
+  शबरी: { deity: 'ram', ok: '^[शस]ब' },
 };
 export const FACTS_RULES = { names: FACTS_NAMES };
 export const QA_CER_MAX = 0.25; // whole narration (edge-tts Madhur measured 4-5 % CER on 10 Nov 2026)
@@ -567,9 +598,14 @@ function main() {
     return;
   }
   if (cmd === 'check') {
-    const e = checkFactsSpec(JSON.parse(read(args[1])));
-    console.log(e.length ? e.map((x) => `- ${x}`).join('\n') : `OK: ${args[1]}`);
-    process.exit(e.length ? 1 : 0);
+    const spec = JSON.parse(read(args[1]));
+    const done = (e) => { console.log(e.length ? e.map((x) => `- ${x}`).join('\n') : `OK: ${args[1]}`); process.exit(e.length ? 1 : 0); };
+    // a Ramayan series spec has its own rules (scripts/ramayan-rules.mjs imports this module, hence the late import)
+    if (spec.series === 'ramayan') {
+      import('./ramayan-rules.mjs').then(async ({ checkRamayanSpec }) => done(checkRamayanSpec(spec, (await import('./ramayan-series.mjs')).loadSeries('.'))));
+      return;
+    }
+    done(checkFactsSpec(spec));
   }
   if (cmd === 'qa') {
     const spec = JSON.parse(read(opt('--spec')));
@@ -583,9 +619,17 @@ function main() {
     const history = factsHistory('.');
     const topics = loadTopics('.');
     const log = read('automation/log.md');
+    let ram = inputs.ramayan?.next?.n || 0; // the Ramayan series runs in order
     for (let i = 0; i < Number(opt('--days') || 14); i++) {
       const d = addDays(from, i);
-      if (!planDay(d, inputs).uploads.some((u) => u.slot === 'facts')) { console.log(`${d} -`); continue; }
+      const up = planDay(d, inputs).uploads.find((u) => u.slot === 'facts');
+      if (!up) { console.log(`${d} -`); continue; }
+      if (up.kind === 'ramayan') {
+        const r = inputs.ramayan;
+        console.log(`${d} ramayan ${r.logged?.has(d) ? '(made)' : ram && ram <= r.total ? `Ramayan Tathya ${ram}/${r.total}` : '(series complete)'}`);
+        if (!r.logged?.has(d) && ram) ram++;
+        continue;
+      }
       const have = history.find((h) => h.date === d && h.topic);
       const p = have ? { variant: have.variant, art: have.art, topic: topics.find((t) => t.id === have.topic) } : pickTopic(d, { topics, history, log, festivals: inputs.festivalList || [] });
       console.log(`${d} ${p.variant}/${p.art} ${p.topic?.id || '(none)'}: ${p.topic?.hook || ''}${have ? ' (spec written)' : ''}`);

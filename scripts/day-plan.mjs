@@ -27,6 +27,10 @@
 //                  the sati rules)
 //   3.6 kailash / 3.7 pov   the character series (scripts/series-plan.mjs), 08:00 on their days; never instead of the
 //                  day status or the evening darshan (on a festival tie-in day they take the festival-morning darshan)
+//   3.5 facts      on RAMAYAN_DAYS (Wed/Thu/Sat, from RAMAYAN_FROM): the "Ramayan Ke Rochak Tathya" series Short instead (owner,
+//                  24 Nov 2026: "Ramayan se related facts video bahut viral ho rhe h"; automation/ramayan-series.md, STORY.md
+//                  section 11), 17:00, made the evening before by the facts job; outside the facts weekly limit and the
+//                  facts review; festivals, the day status and the evening darshan still come first; repo var RAMAYAN=off
 //   3.8 facts      "pauranik facts / rahasya" Short 17:00 (scripts/facts.mjs, made the evening before): at most
 //                  FACTS_PER_WEEK = 2 a week until the FACTS_REVIEW (25 Nov 2026) verdict in automation/facts-review.json
 //                  (scripts/growth-compare.mjs --facts-review): median under 20 views = facts stop; repo var FACTS=off too
@@ -64,6 +68,7 @@ import { STATUSDAY_AT, loadFestivals, placements } from './status-engine.mjs';
 import { DAY_THEMES } from './status-themes.mjs';
 import { loadMantras, mantraFor } from './mantra.mjs';
 import { addSeries, allSeriesInputs, morningFallback, seriesTables } from './series-plan.mjs';
+import { ramayanLogDates, seriesState } from './ramayan-series.mjs';
 
 const WEEKDAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 export const CAP = 3; // Shorts: every vertical upload (status, morning, evening, noon, kalyug, movie parts)
@@ -79,6 +84,14 @@ export const FACTS_PER_WEEK = 2;
 export const FACTS_REVIEW = '2026-11-25';
 export const FACTS_REVIEW_FILE = 'automation/facts-review.json';
 export const FACTS_MEDIAN_MIN = 20;
+// Ramayan Ke Rochak Tathya (owner, 24 Nov 2026): the facts slot on these weekdays is the next series item. Wednesday (its
+// facts slot only competes with the Dadi-Chhotu noon Short), Thursday (Guruvar: Vishnu / Shri Ram) and Saturday (Hanuman
+// ji's day); Tuesday and Friday stay with the live "Shri Krishna kehte hain" POV series. Rank RAMAYAN_RANK: after the
+// festival status Shorts, the day status, the evening darshan and the festival-morning darshan (festival days win), before
+// the Kailash / POV series (3.6 / 3.7), the generic facts Short, Kalyug and Dadi-Chhotu.
+export const RAMAYAN_DAYS = [3, 4, 6];
+export const RAMAYAN_FROM = '2026-11-26';
+export const RAMAYAN_RANK = 3.5;
 // Festival bhajan jukebox as the long video (owner, 16 Nov 2026): the festivals.json theme -> the library songs it uses
 // (bhajan.festival or bhajan.deity) and the picture bank (brand/photo-bank/<bank>). Only kinds scripts/jukebox.mjs can
 // build are listed (its titles, captions and thumbnail are Chhath's); a Khatu Janmotsav jukebox needs >= 4 full-length
@@ -146,12 +159,14 @@ export function loadInputs(root = '.') {
   const kalyugLogged = new Set([...log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| kalyug \| /gm)].map((m) => m[1]));
   let override = null;
   try { override = JSON.parse(read(path.join(root, OVERRIDE_FILE))); } catch { /* none */ }
-  const factsLogged = new Set([...log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| facts \| /gm)].map((m) => m[1]));
+  const ramayanLogged = ramayanLogDates(log); // a Ramayan series Short is logged as `facts` too: not a pauranik facts Short
+  const factsLogged = new Set([...log.matchAll(/^(\d{4}-\d{2}-\d{2}) \| facts \| /gm)].map((m) => m[1]).filter((d) => !ramayanLogged.has(d)));
   let factsReview = null;
   try { factsReview = JSON.parse(read(path.join(root, FACTS_REVIEW_FILE))); } catch { /* not reviewed yet */ }
   const seriesIn = allSeriesInputs(root, list, log);
   return { ...seriesIn, festivals, festivalList: list, placements: placements(list), movies, kalyug: process.env.KALYUG === 'on', kalyugLogged, longs: longsOf(log), today: istToday(),
     override, extraDay: (process.env.EXTRA_UPLOAD_DAY || '').trim(), mantras: loadMantras(root), facts: process.env.FACTS !== 'off', factsLogged, factsReview,
+    ramayan: { ...seriesState(root), logged: ramayanLogged },
     library: bhajanLibrary(root) };
 }
 
@@ -189,7 +204,7 @@ const factsMemo = new WeakMap();
 function factsKept(date, inputs) {
   let m = factsMemo.get(inputs);
   if (!m) factsMemo.set(inputs, (m = new Map()));
-  if (!m.has(date)) m.set(date, planDay(date, inputs).uploads.some((u) => u.slot === 'facts'));
+  if (!m.has(date)) m.set(date, planDay(date, inputs).uploads.some((u) => u.slot === 'facts' && u.kind !== 'ramayan'));
   return m.get(date);
 }
 const mondayOf = (date) => addDays(date, -((weekday(date) + 6) % 7));
@@ -212,6 +227,17 @@ export function factsState(date, inputs = {}) {
   if (r?.verdict === 'on' && date >= r.date) return { on: true, why: `facts review ${r.date}: median ${r.median} views` };
   const n = factsInWeek(date, inputs);
   return n < FACTS_PER_WEEK ? { on: true, why: `${n} facts Short(s) this week` } : { on: false, why: `${FACTS_PER_WEEK} facts Shorts this week already (max ${FACTS_PER_WEEK} a week until the ${FACTS_REVIEW} review)` };
+}
+
+/** The Ramayan series candidate of a date (the facts slot), or null: a logged item counts first; else RAMAYAN_DAYS from
+ *  RAMAYAN_FROM while the series is on (RAMAYAN != off) and has items left, never on a movie or override day. */
+export function ramayanCandidate(date, inputs = {}, ctx = {}) {
+  const r = inputs.ramayan;
+  if (!r) return null;
+  const what = `Ramayan Ke Rochak Tathya series Short${r.next ? ` (next: ${r.next.n}/${r.total} ${r.next.id})` : ''}, 17:00, made the evening before by the facts job (automation/ramayan-series.md, STORY.md section 11)`;
+  if (r.logged?.has(date)) return { slot: 'facts', kind: 'ramayan', logged: true, what };
+  if (!r.on || !(r.left > 0) || date < RAMAYAN_FROM || !RAMAYAN_DAYS.includes(ctx.wd ?? weekday(date)) || ctx.movie || ctx.override) return null;
+  return { slot: 'facts', kind: 'ramayan', rank: RAMAYAN_RANK, what };
 }
 
 /** The long videos in log.md: [{ date, text }] (text = slug, deity and summary, lower case). */
@@ -299,8 +325,10 @@ export function planDay(date, inputs = {}) {
   }
   // Facts Short (scripts/facts.mjs): from FACTS_FROM where it fits (last in the priority), at most FACTS_PER_WEEK a week
   // until the review; a logged one counts first.
-  const factsOn = factsState(date, inputs).on; // loadInputs sets inputs.facts (FACTS != off); hand-made test inputs leave it out
-  if (inputs.factsLogged?.has(date) || factsOn) {
+  const ram = ramayanCandidate(date, inputs, { wd, movie, override: inputs.override?.days?.[date] });
+  const factsOn = !ram && factsState(date, inputs).on; // loadInputs sets inputs.facts (FACTS != off); hand-made test inputs leave it out
+  if (ram) cands.push(ram);
+  else if (inputs.factsLogged?.has(date) || factsOn) {
     cands.push({ slot: 'facts', kind: 'facts', logged: Boolean(inputs.factsLogged?.has(date)), what: 'pauranik facts / rahasya Short (17:00, made the evening before; scripts/facts.mjs, STORY.md "Facts Shorts")' });
   }
   if (!fest && !movie && NOON_DAYS.includes(wd)) cands.push({ slot: 'noon', what: 'Dadi-Chhotu Short (new setting/outfits)' });

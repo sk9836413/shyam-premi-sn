@@ -395,10 +395,18 @@ for (const [i, scene] of spec.scenes.entries()) {
       `box=1:boxcolor=0x1a0b00@0.72:boxborderw=34:x=(w-text_w)/2:y=1075:enable='between(t,${cover ? COVER_END - 0.04 : 0},2.6)'`
     : '';
   // Countdown Shorts (facts variant "list"): the item number as a big gold badge on the picture's top-left corner.
-  const badge = Number.isInteger(scene.item) && !scene.endcard
+  const itemBadge = Number.isInteger(scene.item) && !scene.endcard
     ? `,drawtext=fontfile='${FONT}':text='${scene.item}':fontsize=150:fontcolor=0xFFD54A:borderw=8:bordercolor=0x2a0900:box=1:boxcolor=0xB71C1C@0.92:boxborderw=28:x=70:y=290`
     : '';
-  const encode = ['-map', '[v]', '-frames:v', String(frames), '-r', String(FPS), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', clip];
+  // Ramayan Ke Rochak Tathya (STORY.md section 11): the scene's primary source line ("Valmiki Ramayan, Sundar Kand,
+  // Sarga 49") on a gold-on-maroon band in the upper third for the whole scene. Drawn by ffmpeg, never by the image model.
+  const srcFile = path.join(work, `source-${i}.txt`);
+  const hasSource = typeof scene.source_line === 'string' && scene.source_line.trim() && !scene.endcard;
+  if (hasSource) fs.writeFileSync(srcFile, wrap(scene.source_line.trim(), 24));
+  const badge = (hasSource
+    ? `,drawtext=fontfile='${FONT}':textfile='${esc(srcFile)}':fontsize=58:fontcolor=0xFFE7A8:line_spacing=12:box=1:boxcolor=0x4a0d0d@0.86:boxborderw=26:x=(w-text_w)/2:y=330`
+    : '') + itemBadge;
+  const encode =['-map', '[v]', '-frames:v', String(frames), '-r', String(FPS), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '19', clip];
   if (scene.endcard && LOGO) {
     // End card: the channel logo on deep blue, fading in, with the sign-off line.
     const signFile = path.join(work, 'signoff.txt');

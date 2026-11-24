@@ -22,7 +22,8 @@ const BAIT = /share\s*kar(o|ein|na)?\s*(warna|nahi\s*to)|paisa\s*aayega|dhan\s*v
 const PLAYLISTS = ['Khatu Shyam ji ki Kathayein', 'Shiv ji ki Kathayein', 'Hanuman ji ki Kathayein', 'Ganesh ji ki Kathayein',
   'Vishnu ji aur Krishna ki Kathayein', 'Maa Durga aur Devi ki Kathayein', 'Shani Dev ki Kathayein', 'Surya Dev ki Kathayein', 'Tyohar aur Vrat Kathayein', 'Mandir Itihas',
   '12 Jyotirlinga', 'Char Dham', 'Shakti Peeth', 'Ashtavinayak', 'Panch Kedar', 'Sapta Puri', 'Pancha Bhoota Sthalam',
-  'Krishna Leela Dham', 'Hanuman ji ke Prasiddh Mandir', 'Navagraha Mandir', 'Prasiddh Mandir'];
+  'Krishna Leela Dham', 'Hanuman ji ke Prasiddh Mandir', 'Navagraha Mandir', 'Prasiddh Mandir',
+  'Ramayan Ke Rochak Tathya']; // the Ramayan series (owner, 24 Nov 2026; STORY.md section 11)
 
 // ---- Hook, title and cover formulas (STORY.md "Hook, title and cover formulas"; channel data of 6 Nov 2026) ---------
 // Winners name the deity, temple or festival in the first 2 seconds, in the title's first words and on the opening
@@ -48,6 +49,11 @@ const NAMES = new RegExp('\\b(' + [
   'basant', 'vasant', 'mahashivratri', 'holika', 'sheetala', 'basoda', 'mauni', 'somvati', 'phalgun',
   // season countdown names (festivals.json `season`, 20 Nov 2026): other searched spellings
   'mahashivaratri', 'shivaratri', 'falgun', 'phagun', 'dhulandi', 'khichdi',
+  // Ramayan Ke Rochak Tathya (24 Nov 2026): the epic and its people
+  'ramayan', 'ramayana', 'ramcharitmanas', 'valmiki', 'tulsidas', 'lakshman', 'bharat', 'shatrughna', 'ravan', 'ravana', 'jatayu',
+  'sampati', 'shabari', 'vibhishan', 'sugriv', 'angad', 'kumbhakarn', 'kumbhkaran', 'kaikeyi', 'dasharath', 'sumitra', 'kaushalya',
+  'janak', 'janaki', 'ahalya', 'kevat', 'marich', 'surasa', 'mainak', 'agastya', 'anasuya', 'vishwamitra', 'mandodari', 'jambavan',
+  'rameshwaram', 'siya',
 ].join('|') + ')', 'i');
 const GENERIC = new Set(['ki', 'ka', 'ke', 'aur', 'mein', 'me', 'se', 'ko', 'hai', 'ji', 'jai', 'shree', 'shri', 'katha', 'kahani',
   'darshan', 'status', 'video', 'shorts', 'sampoorn', 'mandir', 'dham', 'temple', 'kyun', 'kya', 'kaise', 'baba', 'part', 'the']);
@@ -55,7 +61,7 @@ const words = (t) => String(t || '').toLowerCase().replace(/[^a-z0-9\s-]/g, ' ')
 // Weak openers: greetings, "today" intros and slow build-ups, in Roman (hook, sub) and Devanagari (tts).
 const WEAK_OPENER = /^(aaj\s+(suniye|sunte|hum|ham|ki\s+katha|ke\s+video|main|mai|mein|ka\s+din)|aaj\s+(somvar|mangalvar|budhvar|guruvar|shukravar|shanivar|ravivar)|namaste|namaskar|pranam|ram\s+ram\s+(ji|sa)|jai\s+shree\s+(shyam|ram|krishna)\s+(doston|bhakto|dosto)|doston|dosto|bhakto|bhaktjan|pyare|swagat|welcome|hello|hi\b|chaliye|aaiye|aaye|aaj\s+hum|is\s+video|iss\s+video|ek\s+baar\s+ki\s+baat|bahut\s+(samay|pehle|purani)|suniye|dekhiye|dadi\s*(maa)?\s*,)/i;
 const WEAK_OPENER_DEV = /^(आज\s+(सुनिए|सुनते|हम|की\s+कथा|का\s+दिन|सोमवार|मंगलवार|बुधवार|गुरुवार|शुक्रवार|शनिवार|रविवार)|नमस्ते|नमस्कार|प्रणाम|दोस्तों|भक्तों|स्वागत|चलिए|आइए|एक\s+बार\s+की\s+बात|बहुत\s+समय\s+पहले|सुनिए|दादी\s*(माँ)?\s*,)/;
-const VALUE = /\b(darshan|status|katha|kahani|rahasya|itihas|shubh|divya|adbhut|anokh[ia]|pavan|prachin|sampoorn|sachchi|sacchi|vrat|puja|pooja|aarti|vishesh|mahatva|kyun|kaise|shubhkamnayein|janmotsav|2026|2027)\b|दर्शन|स्टेटस|कथा|कहानी|रहस्य|इतिहास|शुभ|दिव्य|अद्भुत|अनोख|पावन|प्राचीन|संपूर्ण|सम्पूर्ण|व्रत|पूजा|आरती|विशेष|महत्व|क्यों|कैसे|शुभकामना/i;
+const VALUE = /\b(darshan|status|katha|kahani|rahasya|itihas|shubh|divya|adbhut|anokh[ia]|pavan|prachin|sampoorn|sachchi|sacchi|vrat|puja|pooja|aarti|vishesh|mahatva|kyun|kaise|shubhkamnayein|janmotsav|tathya|rochak|2026|2027)\b|तथ्य|रोचक|दर्शन|स्टेटस|कथा|कहानी|रहस्य|इतिहास|शुभ|दिव्य|अद्भुत|अनोख|पावन|प्राचीन|संपूर्ण|सम्पूर्ण|व्रत|पूजा|आरती|विशेष|महत्व|क्यों|कैसे|शुभकामना/i;
 const romanTitle = (yt) => String(yt || '').replace(/#shorts/gi, '').split('|')[0].trim();
 const devTitle = (yt) => (String(yt || '').replace(/#shorts/gi, '').split('|').map((p) => p.trim()).find((p) => DEVANAGARI.test(p)) || '');
 const titleKeys = words(romanTitle(s.youtube_title)).concat(words(s.temple), words(s.deity));
@@ -228,7 +234,13 @@ if (s.format === 'loop') {
 // in scripts/facts.mjs (unit-tested); the channel's hook, opening, cover and title formulas apply as for every Short.
 if (s.format === 'facts') {
   const { checkFactsSpec } = await import('./facts.mjs');
-  for (const p of checkFactsSpec(s)) problems.push(p);
+  if (s.series === 'ramayan') {
+    // Ramayan Ke Rochak Tathya (STORY.md section 11; scripts/ramayan-rules.mjs): the item's hook and fact word for word, its
+    // source line on screen, no science-proof / NASA / era claims, no numbers the item does not have, the visual rules.
+    const { checkRamayanSpec } = await import('./ramayan-rules.mjs');
+    const { loadSeries } = await import('./ramayan-series.mjs');
+    for (const p of checkRamayanSpec(s, loadSeries('.'))) problems.push(p);
+  } else for (const p of checkFactsSpec(s)) problems.push(p);
   const scenes = Array.isArray(s.scenes) ? s.scenes : [];
   need(['hm_omega', 'hf_alpha'].includes(s.voice), 'voice must be hm_omega or hf_alpha');
   need(PLAYLISTS.includes(s.playlist), `playlist must be one of: ${PLAYLISTS.join(', ')}`);

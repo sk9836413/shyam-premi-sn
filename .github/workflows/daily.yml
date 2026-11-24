@@ -2450,6 +2450,7 @@ jobs:
       MEDIA_URL: https://shyam-premi-media.sk9836413.workers.dev
       MEDIA_TOKEN: ${{ secrets.MEDIA_TOKEN }}
       FACTS: ${{ vars.FACTS }}
+      RAMAYAN: ${{ vars.RAMAYAN }}  # Ramayan Ke Rochak Tathya series (STORY.md section 11); off = paused
       KALYUG: ${{ vars.KALYUG }}
       W: story/facts/work
     steps:
@@ -2491,6 +2492,7 @@ jobs:
             never invent numbers or events. Write story/facts/${{ steps.d.outputs.release }}-${{ steps.d.outputs.topic }}.json with slug
             ${{ steps.d.outputs.release }}-facts-${{ steps.d.outputs.topic }}, make `node scripts/validate.mjs <that file>` pass, and change
             nothing else.
+            ${{ steps.d.outputs.brief }}
 
       - name: Spec
         id: spec

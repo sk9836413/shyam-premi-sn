@@ -1,8 +1,8 @@
 # Shyam Premi SN: daily story video instructions
 
 You write the devotional story videos for **Shyam Premi SN** (YouTube, Instagram, Facebook): the
-`morning` (festival days) and `evening` temple darshan Shorts (sections 1-4), the facts Shorts, and the Dadi-Chhotu
-Short (slot `noon`, section 6). The plain long katha video (section 5) is stopped (owner, 16 Nov 2026).
+`morning` (festival days) and `evening` temple darshan Shorts (sections 1-4), the facts Shorts, the "Ramayan Ke Rochak
+Tathya" series Shorts (section 11) and the Dadi-Chhotu Short (slot `noon`, section 6). The plain long katha video (section 5) is stopped (owner, 16 Nov 2026).
 
 **At most 3 YouTube uploads a day (owner, 9 Nov 2026).** At 3-4 uploads a day (2-6 Nov) Shorts got hundreds of views;
 at 5-6 a day (7-9 Nov) they fell to 0-15, most likely YouTube's repetitive / mass-produced AI content signals. So every
@@ -35,6 +35,7 @@ The workflow (`scripts/day-plan.mjs`) fills every day by priority, max 3 Shorts 
 | 2 | `morning` on every non-festival day (movie days too): the weekday **day status** Short, public **06:00**, made the evening before (Somvar Mahadev, Mangalvar Hanuman/Salasar Balaji, Budhvar Ganesh, Guruvar Vishnu/Sai, Shukravar Lakshmi/Santoshi, Shanivar Shani dev, Ravivar Surya; Ekadashi: Gyaras Khatu Shyam) | the `status` job, status engine (no action from you) |
 | 2 | `morning` on other festival days (not movie / big-festival days): a **famous-temple darshan** Short tied to the festival's deity | you (sections 1-4) |
 | 3 | `evening` 19:00: a **famous-temple darshan** Short (Khatu Shyam ji, Salasar Balaji, Mehandipur Balaji, Shakambhari Mata, Jeen Mata, Rani Sati Dadi with the sati rules first) | you (sections 1-4) |
+| 3.5 | `facts` 17:00 on **Wed/Thu/Sat** (from 26 Nov 2026): the **"Ramayan Ke Rochak Tathya"** series Short (`automation/ramayan-series.md`, in order); festivals, the day status and the darshan still win; outside the facts weekly limit; `RAMAYAN=off` pauses it | `facts` job, you write it (section 11) |
 | 3.6 / 3.7 | "Kailash Parivar" (Mon/Thu/Sat) / "Shri Krishna kehte hain" (Tue/Fri) 08:00, when approved; never instead of the day status or the evening darshan | sections 9-10 |
 | 3.8 | `facts` 17:00: the "pauranik facts / rahasya" Short, **max 2 a week** until the 25 Nov 2026 review | `facts` job, you write it (section "Facts Shorts") |
 | 4 | "Kalyug ke Bhagwan" 08:00, Tue/Thu/Sat (`KALYUG=on`), only if the cap has room | `kalyug` job (section 8) |
@@ -805,6 +806,9 @@ until the review on 25 Nov 2026**: `scripts/growth-compare.mjs --facts-review` (
 25 Nov) writes `automation/facts-review.json` and a "Facts review" section in growth.md: a median under 20 views =
 verdict "off", the planner stops facts; else "on", the weekly limit ends. Movie days keep the movie part. Repo variable
 `FACTS=off` stops it too. Facebook: a Page video (over 90 s) or a Reel at its own time (`scripts/fb.mjs`).
+**Wednesday, Thursday and Saturday** (from 26 Nov 2026) the facts slot is the "Ramayan Ke Rochak Tathya" series Short
+instead (section 11; owner, 24 Nov 2026): when the job's prompt says "RAMAYAN SERIES", follow section 11, not the
+variants below. Those Shorts do not count towards the facts limit above.
 
 **Topic, variant, art** (`node scripts/facts.mjs pick --date D`; the job's prompt names them):
 - Topic from `automation/facts-topics.json` (100+ topics, each with `cite` = the work + kand/sarga, parva, khand or the
@@ -1084,3 +1088,73 @@ the scene `prompt`; at most 2 scenes with `animate`), `endcard` (the blessing + 
 divine fx through voice/humanize.py; MuseTalk on the flat face, else the talk clip, else the base clip; the QA gate:
 Whisper must hear every spoken name, at least half of the close-ups lip-synced, consistency against the master sheet,
 45-62 s). Validate with `node scripts/validate.mjs story/krishna-pov/<file>.json`. Do not render, upload, commit or push.
+
+## 11. "Ramayan Ke Rochak Tathya" (facts slot 17:00 on Wed/Thu/Sat; job `facts`; owner, 24 Nov 2026)
+
+Owner, 24 Nov 2026: "abhi Ramayan se related facts video bahut viral ho rhe h". A numbered series of short, sourced
+Ramayan facts: **`automation/ramayan-series.md`** (60 items, each with a Hinglish hook, the fact in Roman and in
+Devanagari, a PRIMARY source line and a one-line lesson; every citation checked on 24 Nov 2026 against the Valmiki
+Ramayan and Shri Ramcharitmanas text on heritage.iitk.ac.in). Folklore and later retellings are not items; the file lists
+what was left out and why. It reuses the Mandir-series idea (a fixed, numbered list worked through in order) inside the
+facts pipeline (writing, Whisper name gate, render, upload, log line are the facts job's).
+
+**Schedule** (`scripts/day-plan.mjs` `RAMAYAN_DAYS`, `RAMAYAN_FROM` 26 Nov 2026, rank 3.5): on **Wednesday, Thursday and
+Saturday** the facts slot (public **17:00 IST**, made the evening before by the `facts` job) is the next series item
+instead of a pauranik facts Short. Wednesday's facts slot only competes with the Dadi-Chhotu noon Short, Thursday is
+Guruvar (Vishnu / Shri Ram), Saturday Hanuman ji's day; Tuesday and Friday stay with the live "Shri Krishna kehte hain"
+series. **Festival days still win**: the festival status Shorts, the day status, the evening darshan and the
+festival-morning darshan rank first, so on a festival Wed/Thu/Sat the cap usually leaves it out and the next number
+simply moves to the next Ramayan day (never on movie or override days). It ranks above Kailash / POV (a series Short
+never takes its place), the pauranik facts Short, Kalyug and Dadi-Chhotu. It is outside the facts "2 a week" limit and
+the 25 Nov facts review; repo variable **`RAMAYAN=off`** pauses it (`FACTS=off` now stops only the pauranik facts Shorts).
+`node scripts/facts.mjs plan` and `node scripts/ramayan-series.mjs next` show what comes next.
+
+**Beats (pinned, in this order; `"beat"` on every scene):**
+1. `hook` (2-3 s): the item's `hook_hi` as tts and its `hook` as sub, **word for word**, over a dramatic close-up of the
+   person it names (the cover frame). The spec's own on-screen `hook` (max 45, Roman) may be a shorter line but must
+   name the subject and add no new claim.
+2. `fact` (1-3 scenes): together their tts lines are the item's `fact_hi` and their sub lines the item's `fact`,
+   **word for word**: no added, dropped or changed word (the validator compares them with the series file). Split at
+   sentence ends.
+3. `source` (one scene): `"source_line"` = the item's `source` exactly (the renderer draws it on screen, e.g. "Valmiki
+   Ramayan, Sundar Kand, Sarga 49"), `sub` = the same line, tts = the text and kand in Hindi, max 90 characters, e.g.
+   `यह प्रसंग वाल्मीकि रामायण के सुंदरकांड में है।` / `यह प्रसंग रामचरितमानस के लंकाकांड में है।`
+4. `lesson` (one scene, `"moral": true`): one line of meaning or lesson (the item's `lesson` is the guide), tts max 110.
+5. The end card: a jaikara (जय श्री राम / जय सियाराम / जय बजरंगबली) + the like, share and subscribe ask, as in section 3
+   (e.g. `जय श्री राम! ऐसे ही रोचक तथ्य के लिए लाइक, शेयर और श्याम प्रेमी एसएन को सब्सक्राइब करें।`).
+28-62 s, 5-8 scenes; 1-4 scenes with `animate` (gentle micro-motion, animated tts max 95); the spoken-style rules apply.
+
+**Fields.** As the facts Short (section "Facts Shorts": `story/facts/<release>-<item id>.json`, slug
+`<release>-facts-<item id>`, `format: "facts"`, `publish_at: "17:00"`, `art` A/B, `style`, `cover` / `cover_lines`,
+`facts`, `deity`, `summary`) plus `"series": "ramayan"`, `"variant": "ramayan"`, `"topic": "<item id>"`, `"source"` =
+the item's source line, `"kicker": "Ramayan Tathya <n>/<total>"`, `"playlist": "Ramayan Ke Rochak Tathya"` (in
+validate.mjs PLAYLISTS; created on YouTube at the first upload). `youtube_title`: **`Ramayan Tathya <n>/<total>: <Roman
+line> | रामायण तथ्य <n>: <देवनागरी> #Shorts`** (Roman part max 48, whole title max 100). `youtube_description`: 2-4
+Hinglish lines, a Devanagari line, `Source: <item source>`, `Chitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.`,
+the like/share/subscribe line, then `#ramayan #facts` + 1-2 subject tags. `facts`: at least the item's fact with 2 URLs,
+one of them the item's `verify` page (re-check it before writing; if the text does not support the item, write
+nothing and report it). Instagram and Facebook captions as for every Short (Facebook: no asks; its 3 hashtags from
+`node scripts/fb.mjs tags <spec>`).
+
+**Hard rules (`scripts/ramayan-rules.mjs`, run by `node scripts/validate.mjs`):** the hook, fact and source must match
+the series item as above; never "scientific proof", "vaigyanik praman", NASA, satellite, carbon-dating or archaeology
+claims; no BCE years, "N saal pehle" or "years ago"; **no number** (age, distance, duration, year) anywhere in the
+Short, title or captions that the item itself does not have; no pseudo-science, "proven" or cure claims; respectful
+wording for Shri Ram, Mata Sita, Lakshman ji, Hanuman ji, Bharat ji; Ravan factual, never mocked; no politics, nothing
+against any community, deity or tradition.
+
+**Pictures** (every `prompt`, checked): traditional depictions only. **Shri Ram (and Shri Krishna) are dark /
+blue-complexioned** in every prompt that shows them ("dark blue-complexioned Shri Ram with a bow, yellow pitambar,
+golden mukut"), never fair-skinned; Mata Sita, Lakshman ji, Bharat ji in traditional dress and ornaments; **Hanuman ji**
+in his traditional vanara form (orange-vermilion, gada, mukut) with "clean-shaven vanara face, no beard" (only Salasar
+Balaji has daadhi-moonchh); Ravan regal and factual, never comic or ridiculed; respectful, modest framing; no gore (a
+battle is light, dust and petals). **No text in generated images**: never ask for words, letters, signs or titles (the
+source line and cover are drawn by the renderer); `style` says "no text". Real photos only under the existing rules
+(`temple` from footage/temples.json, licence-checked Wikimedia CC0 / PD / CC BY with credits, `real: true` only on the
+real place, never on a katha scene); otherwise AI pictures with the AI line in the description. AI voices only (the
+facts narrator chain), the licence-checked music beds only, never a song, a film clip or another channel's footage.
+
+**QA (automatic, never loosened):** the facts Whisper name gate (scripts/facts.mjs `qa`; it now also checks राम, सीता,
+लक्ष्मण, भरत, सुग्रीव, विभीषण, वाल्मीकि, तुलसीदास, दशरथ, अंगद, शबरी: more names checked, never fewer) and the narration CER;
+a second failure means no upload. Validate with `node scripts/validate.mjs <file>`; the sample
+`scripts/fixtures/ramayan-sample.json` (item 1) shows the shape. Do not render, upload, commit or push.

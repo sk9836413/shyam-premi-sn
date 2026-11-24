@@ -8,7 +8,8 @@ are visible to anyone; never print or commit secrets or private data.
 
 - Daily plan, slots, formats and timings: `automation/STORY.md` (main rules) and the header of `.github/workflows/daily.yml`.
 - Comments: `automation/COMMENTS.md`. Photo posts: `automation/PHOTOS.md`. Temple series and sati-temple rules:
-  `automation/mandir-series.md`. Footage/photo licences: `footage/README.txt`, `characters/REAL-FOOTAGE.md`.
+  `automation/mandir-series.md`. Ramayan facts series (Wed/Thu/Sat 17:00, sourced items only):
+  `automation/ramayan-series.md` + STORY.md section 11. Footage/photo licences: `footage/README.txt`, `characters/REAL-FOOTAGE.md`.
   Growth notes: `automation/growth.md`. Publish log: `automation/published.md`, `automation/log.md`.
 - Validators and guards (never weaken): `scripts/validate.mjs`, `scripts/upload-guard.mjs`, the bhajan/mantra QA in
   `music/` (Whisper name gate). Tests: `node --test scripts/*.test.mjs`.

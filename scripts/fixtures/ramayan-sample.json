@@ -1,0 +1,80 @@
+{
+  "format": "facts",
+  "series": "ramayan",
+  "variant": "ramayan",
+  "art": "illustrated",
+  "release": "2026-11-26",
+  "publish_at": "17:00",
+  "topic": "ramayan-01-krauncha-shlok",
+  "slug": "2026-11-26-facts-ramayan-01-krauncha-shlok",
+  "title": "Pehla shlok, ek dukh se",
+  "kicker": "Ramayan Tathya 1/60",
+  "playlist": "Ramayan Ke Rochak Tathya",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Ram",
+  "style": "warm hand-drawn illustration, clean outlines, soft sunset light, expressive faces, traditional Indian devotional art, no text, no letters, no writing",
+  "hook": "Ramayan ka pehla shlok kaise bana?",
+  "cover": "रामायण का पहला श्लोक",
+  "cover_lines": ["रामायण का", "पहला श्लोक", "कैसे बना?"],
+  "source": "Valmiki Ramayan, Bal Kand, Sarga 2",
+  "deity": "Maharishi Valmiki (Ramayan)",
+  "summary": "Ramayan Tathya 1/60: Tamasa kinare kraunch pakshi ka dukh, Ma Nishad pehla shlok, Brahma ji ki aagya (Valmiki Ramayan, Bal Kand, Sarga 2)",
+  "scenes": [
+    {
+      "beat": "hook",
+      "prompt": "close-up portrait of Maharishi Valmiki, an elderly sage with a long white beard, saffron robes and rudraksha beads, eyes moist with compassion, on the bank of the Tamasa river at sunrise, soft golden light, no text",
+      "tts": "क्या आप जानते हैं? रामायण का पहला श्लोक एक पक्षी के दुख से निकला!",
+      "sub": "Kya aap jaante hain? Ramayan ka pehla shlok ek pakshi ke dukh se nikla!",
+      "motion": "in",
+      "animate": "the river water ripples softly and the sage's white beard stirs gently in the morning breeze"
+    },
+    {
+      "beat": "fact",
+      "prompt": "a pair of krauncha cranes beside the Tamasa river in a calm forest at dawn, one crane looking up in sorrow as a single white feather drifts down, no blood, the sage Valmiki watching from the bank with folded hands, no text",
+      "tts": "तमसा नदी के किनारे महर्षि वाल्मीकि ने एक दृश्य देखा। एक शिकारी ने क्रौंच पक्षियों के जोड़े में से एक को मार दिया।",
+      "sub": "Tamasa nadi ke kinare Maharishi Valmiki ne ek drishya dekha. Ek shikari ne kraunch pakshiyon ke jode mein se ek ko maar diya.",
+      "motion": "pan"
+    },
+    {
+      "beat": "fact",
+      "prompt": "Maharishi Valmiki with closed eyes and a tear on his cheek, one hand raised as a verse flows from his heart, a soft divine glow around him, Brahma ji on a pink lotus in the sky blessing him, no text",
+      "tts": "उनका दुख एक श्लोक बनकर निकला, मा निषाद। फिर ब्रह्मा जी ने उन्हें इसी छंद में श्री राम की कथा लिखने को कहा।",
+      "sub": "Unka dukh ek shlok bankar nikla, 'Ma Nishad', aur Brahma ji ne unhe isi chhand mein Shri Ram ki katha likhne ko kaha.",
+      "motion": "in"
+    },
+    {
+      "beat": "source",
+      "source_line": "Valmiki Ramayan, Bal Kand, Sarga 2",
+      "prompt": "a closed bundle of palm-leaf manuscripts tied with red thread on a carved wooden stand in a quiet forest hermitage, a small brass diya glowing beside it, warm light, no text, no letters, no writing",
+      "tts": "यह प्रसंग वाल्मीकि रामायण के बालकांड में है।",
+      "sub": "Valmiki Ramayan, Bal Kand, Sarga 2",
+      "motion": "out"
+    },
+    {
+      "beat": "lesson",
+      "moral": true,
+      "prompt": "Maharishi Valmiki seated in peaceful meditation under a banyan tree at golden hour, a pair of cranes flying freely in the sky above, hopeful mood, no text",
+      "tts": "सच्ची करुणा से ही महान रचना जन्म लेती है।",
+      "sub": "Sachchi karuna se hi mahaan rachna janm leti hai.",
+      "motion": "in",
+      "animate": "the cranes glide slowly across the golden sky and the banyan leaves sway gently"
+    },
+    {
+      "endcard": true,
+      "tts": "जय श्री राम! ऐसे ही रोचक तथ्य के लिए लाइक, शेयर और श्याम प्रेमी एसएन को सब्सक्राइब करें।",
+      "sub": "Jai Shree Ram! Aise hi rochak tathya ke liye Like, Share aur Shyam Premi SN ko Subscribe karein."
+    }
+  ],
+  "facts": [
+    {
+      "claim": "By the Tamasa, Valmiki saw a hunter kill one of a pair of krauncha birds; his grief became the shloka 'Ma Nishad'; Brahma asked him to tell Rama's whole story in that metre.",
+      "source": "Valmiki Ramayan, Bal Kand, Sarga 2",
+      "sources": ["https://heritage.iitk.ac.in/VRAM/1.2.15", "https://heritage.iitk.ac.in/VRAM/1.2.31"]
+    }
+  ],
+  "youtube_title": "Ramayan Tathya 1/60: Pehla shlok kaise bana? | रामायण तथ्य 1: पहला श्लोक #Shorts",
+  "youtube_description": "Ramayan Tathya 1/60: Maharishi Valmiki ne kraunch pakshi ka dukh dekha, aur Ramayan ka pehla shlok 'Ma Nishad' bana.\nरामायण का पहला श्लोक: महर्षि वाल्मीकि और क्रौंच पक्षी का प्रसंग।\nSource: Valmiki Ramayan, Bal Kand, Sarga 2\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.\nRamayan ki aisi rochak baatein dekhne ke liye Like, Share aur Subscribe karein. Jai Shree Ram 🙏\n#ramayan #facts #valmiki #jaishreeram",
+  "youtube_tags": "Ramayan facts, रामायण तथ्य, Ramayan ke rochak tathya, रामायण के रोचक तथ्य, Valmiki Ramayan, वाल्मीकि रामायण, pehla shlok, पहला श्लोक, Ma Nishad shlok, मा निषाद, Ramayan Tathya, Shri Ram, श्री राम",
+  "instagram_caption": "Ramayan ka pehla shlok ek pakshi ke dukh se nikla! Maharishi Valmiki aur kraunch pakshi ka prasang (Valmiki Ramayan, Bal Kand). Aisi rochak baaton ke liye follow karein.\n#Ramayan #JaiShreeRam #Valmiki #RamayanFacts",
+  "facebook_caption": "जय श्री राम 🙏 क्या आपने रामायण के पहले श्लोक की यह कथा पहले सुनी थी?\nमहर्षि वाल्मीकि ने क्रौंच पक्षी का दुख देखा, और रामायण का पहला श्लोक बना।\nValmiki Ramayan, Bal Kand ka prasang.\n#JaiShreeRam #Ramayan #Bhakti"
+}
