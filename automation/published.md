@@ -226,3 +226,6 @@
 - 2026-11-23-evening-salasar-balaji-emotional | instagram: https://www.instagram.com/reel/DgFfa6mBUdF/
 - 2026-11-23-eve-dev-deepawali | instagram: skipped (missed the 2026-11-23T14:30:00.000Z slot by 9 h)
 - 2026-11-24-status-kartik-purnima | instagram: https://www.instagram.com/reel/DgGnc3hz6D9/
+- 2026-11-24-status-kartik-purnima-trial | instagram: https://www.instagram.com/reel/DgHBO2ESonq/ (trial reel, SS_PERFORMANCE)
+- 2026-11-24-statusday-dev-deepawali-kashi | instagram: https://www.instagram.com/reel/DgHBWS8uR1O/
+- 2026-11-24-owner-gulab-shringar-darshan | instagram: https://www.instagram.com/reel/DgHBb2iJ9tm/
