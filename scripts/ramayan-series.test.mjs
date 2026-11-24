@@ -106,10 +106,10 @@ describe('plan', () => {
   const inputs = (o = {}) => ({ festivals: new Map(), placements: placements([]), movies: new Map(), kalyug: false, kalyugLogged: new Set(),
     ramayan: { on: true, total: 60, left: 60, next: items[0], logged: new Set() }, ...o });
   test('Wed/Thu/Sat from RAMAYAN_FROM: the facts slot is the Ramayan Short', () => {
-    assert.deepEqual(RAMAYAN_DAYS, [3, 4, 6]);
+    assert.deepEqual(RAMAYAN_DAYS, [0, 1, 2, 3, 4, 5, 6]);
     const thu = planDay('2026-11-26', inputs());
     assert.equal(thu.uploads.find((u) => u.slot === 'facts')?.kind, 'ramayan');
-    assert.ok(!planDay('2026-11-27', inputs()).uploads.some((u) => u.kind === 'ramayan')); // Friday
+    assert.equal(planDay("2026-11-27", inputs()).uploads.find((u) => u.slot === "facts")?.kind, "ramayan"); // Friday too (daily since 24 Nov)
     assert.ok(!planDay('2026-11-19', inputs()).uploads.some((u) => u.kind === 'ramayan')); // before RAMAYAN_FROM
     assert.ok(RAMAYAN_FROM <= '2026-11-26');
   });

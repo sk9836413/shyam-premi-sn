@@ -2,7 +2,7 @@
   "series": "kailash-parivar",
   "series_title": "Kailash Parivar",
   "playlist": "Kailash Parivar",
-  "approved": false,
+  "approved": true,
   "approved_note": "The owner watches the pilot (E:\\SK\\kailash-pilot\\ep1.mp4) and then sets \"approved\": true here (the repo variable KAILASH=off pauses it later). Until then scripts/day-plan.mjs plans no kailash slot and nothing is uploaded, like story/movies/<series>/series.json.",
   "days": ["Mon", "Thu", "Sat"],
   "publish_at": "08:00",

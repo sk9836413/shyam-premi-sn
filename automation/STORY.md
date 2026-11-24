@@ -1098,7 +1098,7 @@ Ramayan and Shri Ramcharitmanas text on heritage.iitk.ac.in). Folklore and later
 what was left out and why. It reuses the Mandir-series idea (a fixed, numbered list worked through in order) inside the
 facts pipeline (writing, Whisper name gate, render, upload, log line are the facts job's).
 
-**Schedule** (`scripts/day-plan.mjs` `RAMAYAN_DAYS`, `RAMAYAN_FROM` 26 Nov 2026, rank 3.5): on **Wednesday, Thursday and
+**Schedule** (`scripts/day-plan.mjs` `RAMAYAN_DAYS`, `RAMAYAN_FROM` 26 Nov 2026, rank 3.5): on **every day (owner, 24 Nov 2026: "roj 1"; was Wednesday, Thursday and
 Saturday** the facts slot (public **17:00 IST**, made the evening before by the `facts` job) is the next series item
 instead of a pauranik facts Short. Wednesday's facts slot only competes with the Dadi-Chhotu noon Short, Thursday is
 Guruvar (Vishnu / Shri Ram), Saturday Hanuman ji's day; Tuesday and Friday stay with the live "Shri Krishna kehte hain"

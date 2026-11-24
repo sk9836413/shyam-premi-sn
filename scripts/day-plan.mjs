@@ -27,7 +27,7 @@
 //                  the sati rules)
 //   3.6 kailash / 3.7 pov   the character series (scripts/series-plan.mjs), 08:00 on their days; never instead of the
 //                  day status or the evening darshan (on a festival tie-in day they take the festival-morning darshan)
-//   3.5 facts      on RAMAYAN_DAYS (Wed/Thu/Sat, from RAMAYAN_FROM): the "Ramayan Ke Rochak Tathya" series Short instead (owner,
+//   3.5 facts      on RAMAYAN_DAYS (EVERY day since the owner asked "roj 1" on 24 Nov 2026, from RAMAYAN_FROM): the "Ramayan Ke Rochak Tathya" series Short instead (owner,
 //                  24 Nov 2026: "Ramayan se related facts video bahut viral ho rhe h"; automation/ramayan-series.md, STORY.md
 //                  section 11), 17:00, made the evening before by the facts job; outside the facts weekly limit and the
 //                  facts review; festivals, the day status and the evening darshan still come first; repo var RAMAYAN=off
@@ -89,7 +89,7 @@ export const FACTS_MEDIAN_MIN = 20;
 // ji's day); Tuesday and Friday stay with the live "Shri Krishna kehte hain" POV series. Rank RAMAYAN_RANK: after the
 // festival status Shorts, the day status, the evening darshan and the festival-morning darshan (festival days win), before
 // the Kailash / POV series (3.6 / 3.7), the generic facts Short, Kalyug and Dadi-Chhotu.
-export const RAMAYAN_DAYS = [3, 4, 6];
+export const RAMAYAN_DAYS = [0, 1, 2, 3, 4, 5, 6]; // owner 24 Nov 2026: "roj 1" (was Wed/Thu/Sat)
 export const RAMAYAN_FROM = '2026-11-26';
 export const RAMAYAN_RANK = 3.5;
 // Festival bhajan jukebox as the long video (owner, 16 Nov 2026): the festivals.json theme -> the library songs it uses
