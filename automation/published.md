@@ -235,3 +235,4 @@
 - 2026-11-25-morning-budhvar-ganesh | youtube: https://youtube.com/shorts/efYjnh1941s (public at 2026-11-25T00:30:00.000Z) | status variant, made 24 Nov 12:29 IST | social: fb: https://www.facebook.com/reel/29443502465269791 (scheduled 2026-11-25T00:30:00.000Z) | ig: pending 2026-11-25T00:30:00.000Z
 - 2026-11-25-facts-jigyasa-ganesh-tulsi-varjit | skipped: pronunciation gate (names not heard right: scene 2 विष्णु->विश्णू, scene 6 विष्णु->विश्णों) 24 Nov 12:33 IST
 - 2026-11-25-owner-laal-shringar-darshan | claim: 2026-11-25 owner by run 45401776111.1 at 2026-11-24T13:17:15.441Z
+- 2026-11-25-owner-laal-shringar-darshan | youtube: https://youtube.com/shorts/-P2a-EQq1e8 (public at 2026-11-25T01:45:00.000Z) | owner-footage Short (clip 05, real footage), made 24 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/1462761896916849 (scheduled 2026-11-25T02:00:00.000Z) | ig: pending 2026-11-25T01:45:00.000Z
