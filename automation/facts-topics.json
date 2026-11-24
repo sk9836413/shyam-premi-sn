@@ -5243,6 +5243,90 @@
     "added": "2026-11-23"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-khatu-lakhdatar",
+   "p": 1,
+   "deity": "khatu",
+   "name": "Khatu Shyam ji (Barbarik)",
+   "playlist": "Khatu Shyam ji ki Kathayein",
+   "label": "tradition",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Khatu Shyam ko Lakhdatar kyun kehte?",
+   "hook_hi": "खाटू श्याम को 'लखदातार' क्यों कहते हैं?",
+   "angle": "Lakhdatar naam ki parampara: devotees ke manokamna poori karne wale ke roop mein Khatu Shyam ji ko pukarne ka bhaav. Ye 'maanyata' ke roop mein kaho, shastra ka seedha shlok mat gadho. Check the naam's use in Khatu temple publications and parampara; no promises of wealth.",
+   "cite": {
+    "work": "TODO: verify (likely Khatu Shyam mandir parampara for the naam 'Lakhdatar'; Skanda Purana, Kaumarika Khand, for the Barbarik katha)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "Khatu Shyam",
+    "Lakhdatar"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-24",
+    "refs": [],
+    "added": "2026-11-24"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-shiv-sharabh-roop",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Shiv ji (Sharabh avatar)",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Shiv ji ne Sharabh roop kyun liya?",
+   "hook_hi": "शिव जी ने शरभ रूप क्यों लिया?",
+   "angle": "Narasimha avatar ka krodh shaant karne ke liye Shiv ji ka Sharabh roop: katha ka kram, Narasimha ki ugrata aur Shiv ka sanyam, aur Shiv-Vishnu ki ek-doosre ke prati shraddha. Check which Purana tells it (Shiva Purana or Narasimha Purana) and which telling; present it as katha, not as history.",
+   "cite": {
+    "work": "TODO: verify (likely Shiva Purana or Narasimha Purana: Sharabha avatar and the calming of Narasimha)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "Shiv Sharabh",
+    "Narasimha"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-24",
+    "refs": [
+     "https://youtube.com/shorts/Ya2W2rWYwHw"
+    ],
+    "added": "2026-11-24"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-hanuman-sanjeevani-pahad",
+   "p": 2,
+   "deity": "hanuman",
+   "name": "Hanuman ji (Sanjeevani)",
+   "playlist": "Hanuman ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Hanuman ji poora pahad kyun laaye?",
+   "hook_hi": "हनुमान जी पूरा पहाड़ क्यों ले आए?",
+   "angle": "Lanka yuddh mein Lakshman ko Sanjeevani booti ki zaroorat: Hanuman ji ka Dronagiri par jaana, booti pehchan na paana aur poora pahad uthana. Katha ka kram aur 'booti kyun nahi pehchani' ka jawab Valmiki Ramayana (Yuddha Kanda) mein dekho; kisi ek telling ko proof mat kaho.",
+   "cite": {
+    "work": "TODO: verify (likely Valmiki Ramayana, Yuddha Kanda: Sanjeevani booti and Dronagiri)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "Hanuman Sanjeevani",
+    "Dronagiri"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-24",
+    "refs": [],
+    "added": "2026-11-24"
+   },
+   "status": "idea"
   }
  ]
 }
