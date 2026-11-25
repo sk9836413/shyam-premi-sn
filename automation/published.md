@@ -252,3 +252,4 @@
 - 2026-11-26-kailash-sankashti-mushak-chand | claim: 2026-11-26 kailash by run 45552041165.1 at 2026-11-25T07:54:05.471Z
 - 2026-11-26-kailash-sankashti-mushak-chand | youtube: https://youtube.com/shorts/WGM1wvQeXNs (public at 2026-11-26T02:30:00.000Z) | Kailash Parivar (mini, realistic, 41.52 s, clips 2, lip-sync 1/1, 39.5 GPU min), made 25 Nov 13:24 IST | social: fb: https://www.facebook.com/reel/1718406256340606 (scheduled 2026-11-26T02:30:00.000Z) | ig: pending 2026-11-26T02:30:00.000Z
 - 2026-11-26-owner-baba-ka-darbar | claim: 2026-11-26 owner by run 45621949008.1 at 2026-11-25T13:17:27.833Z
+- 2026-11-26-owner-baba-ka-darbar | youtube: https://youtube.com/shorts/BrTQnyYdRXA (public at 2026-11-26T01:45:00.000Z) | owner-footage Short (clip 06, real footage), made 25 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/1187918870594911 (scheduled 2026-11-26T04:00:00.000Z) | ig: pending 2026-11-26T01:45:00.000Z

@@ -116,3 +116,4 @@
 2026-11-26 | morning | 2026-11-26-morning-guruvar-vishnu | Thursday Vishnu ji | Day status Short "Thursday Vishnu ji Status" (12-20 s loop, download link), public 06:00 IST
 2026-11-26 | facts | 2026-11-26-facts-ramayan-01-krauncha-shlok | Maharishi Valmiki (Ramayan) | Ramayan Tathya 1/60: Tamasa kinare kraunch pakshi ka dukh, Ma Nishad pehla shlok, Brahma ji ki aagya (Valmiki Ramayan, Bal Kand, Sarga 2) (variant ramayan, art cinematic, 36 s)
 2026-11-26 | kailash | 2026-11-26-kailash-sankashti-mushak-chand | Ganesh Parvati | Kailash Parivar mini: Sankashti ke vrat mein Mushak chaand ka intezaar karta hai; Ganesh ji dhairya sikhate hain, chaand nikalte hi pehla laddoo
+2026-11-26 | owner | 2026-11-26-owner-baba-ka-darbar | Khatu Shyam ji (owner's own footage) | owner-footage Short, clip 06 "Baba Shyam Ka Darbar", real footage + music cc-eastern-loop-shruti (YouTube synthetic false, Meta AI label false), public 2026-11-26T07:15 IST
