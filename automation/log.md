@@ -111,3 +111,4 @@
 2026-11-25 | morning | 2026-11-25-morning-budhvar-ganesh | Ganpati Bappa | Day status Short "Ganpati Bappa Status" (12-20 s loop, download link), public 06:00 IST
 2026-11-25 | owner | 2026-11-25-owner-laal-shringar-darshan | Khatu Shyam ji (owner's own footage) | owner-footage Short, clip 05 "Shyam Baba Laal Shringar Darshan", real footage + music cc-mridangam-tambura (YouTube synthetic false, Meta AI label false), public 2026-11-25T07:15 IST
 2026-11-25 | facts | 2026-11-25-facts-jigyasa-ganesh-tulsi-varjit | Ganesh ji | Ganesh puja mein tulsi kyun nahi chadhti: Brahmavaivarta Purana ki Tulsi-Ganesh katha aur parampara (variant kyun, art illustrated, 34 s)
+2026-11-25 | noon | 2026-11-25-noon-karni-mata-deshnoke | Karni Mata Mandir, Deshnoke (Mandir series, Maa Durga roop) | Karni Mata Mandir Deshnoke: chuhe (kaba) kyun pavitra, Yamraj ki lok katha (manyata), Maharaja Ganga Singh ka sangmarmar dwar; agla: Nathdwara Shrinath ji

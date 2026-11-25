@@ -1,0 +1,188 @@
+{
+  "slug": "2026-11-25-noon-karni-mata-deshnoke",
+  "format": "dialogue",
+  "title": "Karni Mata Mandir Deshnoke",
+  "kicker": "Dadi ki Kahani",
+  "playlist": "Mandir Itihas",
+  "temple": "karni-mata",
+  "next": "Nathdwara Shrinath ji",
+  "deity": "Karni Mata Mandir, Deshnoke (Mandir series, Maa Durga roop)",
+  "summary": "Karni Mata Mandir Deshnoke: chuhe (kaba) kyun pavitra, Yamraj ki lok katha (manyata), Maharaja Ganga Singh ka sangmarmar dwar; agla: Nathdwara Shrinath ji",
+  "hook": "Karni Mata Mandir mein chuhe kyun?",
+  "cover": "करणी माता मंदिर",
+  "style": "stylized 3D animated feature film look, soft warm cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "look": {
+    "setting": "on a carved sandstone jharokha balcony of an old Bikaner haveli at golden sunset, brass diyas and marigolds beside them, sand-coloured rooftops far below",
+    "dadi": "a deep maroon cotton saree with a silver border and a light grey shawl",
+    "chhotu": "a teal kurta with white pyjama and a small yellow Rajasthani pagdi",
+    "light": "warm golden sunset light"
+  },
+  "visuals": {
+    "temple": {
+      "prompt": "Front view of the Karni Mata temple at Deshnoke, Rajasthan: a white marble facade with carved arches and silver doors, devotees at the entrance, warm golden light",
+      "real": true
+    },
+    "devi": {
+      "prompt": "Divine darshan of Goddess Karni Mata as a calm Durga-form mother goddess in a saffron saree with golden ornaments, gentle serene face, marigold garlands and brass diyas, warm glow",
+      "real": false
+    },
+    "rats": {
+      "prompt": "Many small rats gathering around a brass plate of sweet prasad on a marble temple floor, a few white ones among them, marigold petals, soft warm temple light, gentle mood",
+      "real": false
+    },
+    "doors": {
+      "prompt": "Close view of the carved white marble entrance gate with silver-panelled doors of a Rajasthani temple, ornate arches and fine stone carving, soft golden light",
+      "real": true
+    }
+  },
+  "lines": [
+    {
+      "who": "chhotu",
+      "tts": "करणी माता मंदिर में चूहे क्यों हैं, दादी?",
+      "sub": "Karni Mata Mandir mein chuhe kyun hain, Dadi?",
+      "top": "temple"
+    },
+    {
+      "who": "dadi",
+      "tts": "सुनो बेटा, यह देशनोक का करणी माता मंदिर है। बीकानेर के पास, राजस्थान में।",
+      "sub": "Suno beta, ye Deshnoke ka Karni Mata Mandir hai. Bikaner ke paas, Rajasthan mein.",
+      "top": "temple"
+    },
+    {
+      "who": "chhotu",
+      "tts": "देशनोक? वहाँ कौन सी देवी विराजती हैं?",
+      "sub": "Deshnoke? Wahan kaun si Devi virajti hain?",
+      "top": "devi"
+    },
+    {
+      "who": "dadi",
+      "tts": "करणी माता। मान्यता है कि वे माँ दुर्गा का ही रूप थीं।",
+      "sub": "Karni Mata. Manyata hai ki ve Maa Durga ka hi roop thin.",
+      "top": "devi"
+    },
+    {
+      "who": "chhotu",
+      "tts": "तो चूहे उनके मंदिर में कहाँ से आए?",
+      "sub": "To chuhe unke mandir mein kahan se aaye?",
+      "top": "rats"
+    },
+    {
+      "who": "dadi",
+      "tts": "इन्हें लोग काबा कहते हैं। मंदिर में इन्हें बहुत पवित्र माना जाता है।",
+      "sub": "Inhein log kaba kehte hain. Mandir mein inhein bahut pavitra mana jata hai.",
+      "top": "rats"
+    },
+    {
+      "who": "chhotu",
+      "tts": "पवित्र? ऐसा क्यों, दादी?",
+      "sub": "Pavitra? Aisa kyun, Dadi?",
+      "top": "rats"
+    },
+    {
+      "who": "dadi",
+      "tts": "लोक कथा के अनुसार, करणी माता चारण कुल में जन्मी थीं। एक बार उनके परिवार का बच्चा नहीं रहा।",
+      "sub": "Lok katha ke anusar, Karni Mata Charan kul mein janmi thin. Ek baar unke parivar ka bachcha nahin raha.",
+      "top": "devi"
+    },
+    {
+      "who": "chhotu",
+      "tts": "अरे! फिर माता ने क्या किया?",
+      "sub": "Are! Phir Mata ne kya kiya?",
+      "top": "devi"
+    },
+    {
+      "who": "dadi",
+      "tts": "कहते हैं, वे यमराज के पास गईं। उन्होंने कहा, अब मेरे कुल के लोग चूहे बनकर लौटेंगे।",
+      "sub": "Kehte hain, ve Yamraj ke paas gayin. Unhone kaha, ab mere kul ke log chuhe bankar lautenge.",
+      "top": "devi"
+    },
+    {
+      "who": "chhotu",
+      "tts": "सच में? इसीलिए चूहों को कोई नहीं भगाता?",
+      "sub": "Sach mein? Isiliye chuhon ko koi nahin bhagata?",
+      "top": "rats"
+    },
+    {
+      "who": "dadi",
+      "tts": "हाँ बेटा। भक्त उन्हें प्रसाद खिलाते हैं। सफ़ेद काबा दिख जाए, तो शुभ मानते हैं।",
+      "sub": "Haan beta. Bhakt unhein prasad khilate hain. Safed kaba dikh jaye, to shubh mante hain.",
+      "top": "rats"
+    },
+    {
+      "who": "chhotu",
+      "tts": "तो क्या वहाँ चूहों से डर नहीं लगता?",
+      "sub": "To kya wahan chuhon se dar nahin lagta?",
+      "top": "rats"
+    },
+    {
+      "who": "dadi",
+      "tts": "नहीं बेटा। भक्त शांति से दर्शन करते हैं, और चूहों का ध्यान रखते हैं।",
+      "sub": "Nahin beta. Bhakt shanti se darshan karte hain, aur chuhon ka dhyan rakhte hain.",
+      "top": "rats"
+    },
+    {
+      "who": "chhotu",
+      "tts": "और यह इतना सुंदर मंदिर किसने बनवाया?",
+      "sub": "Aur ye itna sundar mandir kisne banwaya?",
+      "top": "doors"
+    },
+    {
+      "who": "dadi",
+      "tts": "बीकानेर के महाराजा गंगा सिंह जी ने। बीसवीं सदी में उन्होंने संगमरमर का सुंदर द्वार बनवाया।",
+      "sub": "Bikaner ke Maharaja Ganga Singh ji ne. Bisvin sadi mein unhone sangmarmar ka sundar dwar banwaya.",
+      "top": "doors"
+    },
+    {
+      "who": "chhotu",
+      "tts": "तो मंदिर में और क्या खास है, दादी?",
+      "sub": "To mandir mein aur kya khaas hai, Dadi?",
+      "top": "doors"
+    },
+    {
+      "who": "dadi",
+      "tts": "चाँदी जैसे दरवाज़े और नक्काशी। भक्त माता को भोग चढ़ाकर प्रणाम करते हैं।",
+      "sub": "Chaandi jaise darwaze aur nakkashi. Bhakt Mata ko bhog chadhakar pranam karte hain.",
+      "top": "doors"
+    },
+    {
+      "who": "chhotu",
+      "tts": "वाह! दादी, कल किस मंदिर की कहानी सुनाओगी?",
+      "sub": "Wah! Dadi, kal kis mandir ki kahani sunaogi?",
+      "top": "end"
+    },
+    {
+      "who": "dadi",
+      "tts": "कल सुनाऊँगी नाथद्वारा के श्रीनाथ जी की। लाइक, शेयर और सब्सक्राइब करना, बेटा! जय करणी माता!",
+      "sub": "Kal sunaungi Nathdwara ke Shrinath ji ki. Like, Share aur Subscribe karna, beta! Jai Karni Mata!",
+      "top": "end"
+    }
+  ],
+  "facts": [
+    {
+      "claim": "The Karni Mata temple is at Deshnoke near Bikaner, Rajasthan; the rats are called kabba and are held sacred",
+      "sources": [
+        "https://www.incredibleindia.gov.in/en/rajasthan/bikaner/karni-mata-mandir",
+        "https://zeenews.india.com/hindi/india/rajasthan/photo-gallery-rajasthan-karni-mata-temple-bikaner-rats-desnok-chuhe-wala-mandir/1760610788115"
+      ]
+    },
+    {
+      "claim": "Karni Mata is believed to be an incarnation of Durga, born in the Charan clan; legend says she bargained with Yama so that her clansmen are reborn as rats before becoming humans",
+      "sources": [
+        "https://www.incredibleindia.gov.in/en/rajasthan/bikaner/karni-mata-mandir",
+        "https://en.wikipedia.org/wiki/Karni_Mata_Temple"
+      ]
+    },
+    {
+      "claim": "Maharaja Ganga Singh of Bikaner had the temple's carved marble entrance and doors built in the early 20th century",
+      "sources": [
+        "https://www.incredibleindia.gov.in/en/rajasthan/bikaner/karni-mata-mandir",
+        "https://zeenews.india.com/hindi/india/rajasthan/web-stories/bikaner-rajasthan-famous-mandir-bikaner-near-deshnok-karni-mata-temple-rat-please-to-visit/1751628845530"
+      ]
+    }
+  ],
+  "youtube_title": "Karni Mata Mandir Deshnoke Katha | करणी माता मंदिर देशनोक #Shorts",
+  "youtube_description": "Karni Mata Mandir, Deshnoke (Bikaner) mein chuhe kyun pavitra hain? Dadi aur Chhotu ki baatcheet: Karni Mata ki lok katha (manyata) aur Maharaja Ganga Singh ka sangmarmar dwar.\nकरणी माता मंदिर देशनोक की कहानी।\nजय करणी माता 🙏\nJai Shree Shyam 🙏\nChitra AI dwara banaye gaye hain (sanketik). Awaaz aur animation AI se.\nPasand aaye to Like, Share aur Subscribe karein.\n#KarniMata #Deshnoke #Bikaner #DadiChhotu\n\nPhoto: Pablo Nicolás Taibi Cicare from León, Spain, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Courtyard_of_the_Karni_Mata_temple_at_Deshnoke_near_Bikaner.jpg)\nPhoto: Arian Zwegers, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Deshnok,_Karni_Mata_Temple_(6271597223).jpg)\nPhoto: Pablo Nicolás Taibi Cicare from León, Spain, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Entrance_of_the_Karni_Mata_temple_at_Deshnoke_near_Bikaner.jpg)\nPhoto: Bikky1102, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Karni_Mata_Temple,_Deshnoke.jpg)\nPhoto: SPD2025, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Karni_Mata_Temple_Deshnoke_Rajasthan.jpg)\nPhoto: Jean-Pierre Dalbéra from Paris, France, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:La_statue_de_la_d%C3%A9esse_entour%C3%A9e_des_rats_sacr%C3%A9s_(Temple_de_Karni_Mata)_(8423510937).jpg)",
+  "youtube_tags": "Karni Mata Mandir, करणी माता मंदिर, Deshnoke, देशनोक, Karni Mata temple rats, करणी माता चूहों का मंदिर, Bikaner temple, बीकानेर मंदिर, Karni Mata ki katha, करणी माता की कथा, Dadi aur Chhotu, Shyam Premi SN",
+  "instagram_caption": "Karni Mata Mandir mein chuhe kyun? Chhotu ne Dadi se poochha!\nDeshnoke ke kaba aur Karni Mata ki lok katha (manyata).\nJai Karni Mata 🙏\nLike, Share aur Subscribe karein.\n#KarniMata #Deshnoke #Bikaner #DadiChhotu #Rajasthan\n\nPhoto: Pablo Nicolás Taibi Cicare from León, Spain, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Courtyard_of_the_Karni_Mata_temple_at_Deshnoke_near_Bikaner.jpg)\nPhoto: Arian Zwegers, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Deshnok,_Karni_Mata_Temple_(6271597223).jpg)\nPhoto: Pablo Nicolás Taibi Cicare from León, Spain, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Entrance_of_the_Karni_Mata_temple_at_Deshnoke_near_Bikaner.jpg)\nPhoto: Bikky1102, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Karni_Mata_Temple,_Deshnoke.jpg)\nPhoto: SPD2025, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Karni_Mata_Temple_Deshnoke_Rajasthan.jpg)\nPhoto: Jean-Pierre Dalbéra from Paris, France, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:La_statue_de_la_d%C3%A9esse_entour%C3%A9e_des_rats_sacr%C3%A9s_(Temple_de_Karni_Mata)_(8423510937).jpg)",
+  "facebook_caption": "जय करणी माता 🙏 क्या आपने कभी देशनोक के करणी माता मंदिर के दर्शन किए हैं?\nदादी और छोटू की बातचीत में बीकानेर के पास देशनोक के मंदिर और काबा की लोक कथा (मान्यता)।\n#KarniMata #Deshnoke #Bikaner\n\nPhoto: Pablo Nicolás Taibi Cicare from León, Spain, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Courtyard_of_the_Karni_Mata_temple_at_Deshnoke_near_Bikaner.jpg)\nPhoto: Arian Zwegers, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Deshnok,_Karni_Mata_Temple_(6271597223).jpg)\nPhoto: Pablo Nicolás Taibi Cicare from León, Spain, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Entrance_of_the_Karni_Mata_temple_at_Deshnoke_near_Bikaner.jpg)\nPhoto: Bikky1102, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Karni_Mata_Temple,_Deshnoke.jpg)\nPhoto: SPD2025, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Karni_Mata_Temple_Deshnoke_Rajasthan.jpg)\nPhoto: Jean-Pierre Dalbéra from Paris, France, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:La_statue_de_la_d%C3%A9esse_entour%C3%A9e_des_rats_sacr%C3%A9s_(Temple_de_Karni_Mata)_(8423510937).jpg)"
+}
