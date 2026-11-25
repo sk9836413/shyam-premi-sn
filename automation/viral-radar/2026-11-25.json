@@ -1,0 +1,451 @@
+{
+ "date": "2026-11-25",
+ "mode": "daily",
+ "queries": [
+  "रहस्य मंदिर",
+  "गरुड़ पुराण"
+ ],
+ "thresholds": {
+  "views": 100000,
+  "fastViews": 30000,
+  "fastDays": 3,
+  "multiple": 5,
+  "minShorts": 3,
+  "strongMedian": 40000,
+  "maxSeconds": 180
+ },
+ "quota": {
+  "searches": 2,
+  "list_calls": 28,
+  "units": 228,
+  "cap": 900
+ },
+ "counts": {
+  "found": 100,
+  "shorts": 95,
+  "over_threshold": 16,
+  "viral": 6,
+  "strong": 0,
+  "likely_reuploads": 7
+ },
+ "viral": [
+  {
+   "id": "7Ct4NJCXeAg",
+   "url": "https://youtube.com/shorts/7Ct4NJCXeAg",
+   "title": "कैलाश में छिपा था महादेव का सबसे बड़ा रहस्य! 😱 आखिर कौन था गद्दार?",
+   "channel": "दिव्य कथा स्टूडियो",
+   "channelId": "UCTxhMq8xYWmCCQIZNSyPbYw",
+   "published": "2026-11-18T05:00:58Z",
+   "ageDays": 6.9,
+   "seconds": 65,
+   "views": 1282841,
+   "likes": 19995,
+   "thumb": "https://i.ytimg.com/vi/7Ct4NJCXeAg/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 4440,
+   "median": 1686,
+   "n_shorts": 29,
+   "multiple": 760.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "views far beyond subscribers"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya",
+     "question"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya",
+     "question"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "topic": "Kailash ka chhupa raaz, gaddar kaun",
+    "cover_style": "Shiv, Parvati and Ganesh around a glowing blue pot in a cave, dark figure behind, fearful faces, big 'raaz' title",
+    "art_style": "cinematic",
+    "why": "Family-drama mystery on Mahadev's household with an AI-cinematic cover; 760x its channel median, so a real pull for the kailash format.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "MuuEMSnqhmQ",
+   "url": "https://youtube.com/shorts/MuuEMSnqhmQ",
+   "title": "मरने के बाद आत्मा के साथ क्या होता है? 😨 गरुड़ पुराण का रहस्य",
+   "channel": "Nidhi ",
+   "channelId": "UCA_us7cqc2UCpOadjBsvndA",
+   "published": "2026-11-22T05:19:02Z",
+   "ageDays": 2.9,
+   "seconds": 110,
+   "views": 243328,
+   "likes": 1970,
+   "thumb": "https://i.ytimg.com/vi/MuuEMSnqhmQ/hqdefault.jpg",
+   "query": "गरुड़ पुराण",
+   "subs": 7130,
+   "median": 1002,
+   "n_shorts": 29,
+   "multiple": 242.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya",
+     "question"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "vishnu",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question",
+     "rahasya"
+    ],
+    "format": "facts",
+    "deity": "vishnu",
+    "topic": "Marne ke baad atma ka safar (Garud Purana)",
+    "cover_style": "man in white dhoti in front of a fiery red river and gate, staff-holding guard figure at right, 2 text bands with question",
+    "art_style": "illustrated",
+    "why": "Afterlife question in the cover text plus a Garud Purana tag; the fear tone is not ours, but the question hook travels (243x).",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "PJfAtXRNzF0",
+   "url": "https://youtube.com/shorts/PJfAtXRNzF0",
+   "title": "शिवजी को तुलसी क्यों नहीं चढ़ाई जाती? असली रहस्य जानकर चौंक जाएंगे! | Harihar Milan #shorts",
+   "channel": "Tyohar Katha",
+   "channelId": "UCG8DvJQR162El9DzBR8Z0Dg",
+   "published": "2026-11-20T11:44:06Z",
+   "ageDays": 4.7,
+   "seconds": 112,
+   "views": 602595,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/PJfAtXRNzF0/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 13500,
+   "median": 6316,
+   "n_shorts": 29,
+   "multiple": 95.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "varjit",
+     "kyon",
+     "rahasya",
+     "question"
+    ],
+    "hook": "varjit",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "varjit",
+    "hooks": [
+     "varjit",
+     "kyon"
+    ],
+    "format": "facts",
+    "deity": "shiv",
+    "topic": "Shiv ko Tulsi kyon nahi chadhti (pooja niyam)",
+    "cover_style": "split cover: Shiv and Krishna faces, a tulsi leaf with a red no-sign, two big text bands",
+    "art_style": "cinematic",
+    "why": "Pooja-niyam 'kyon nahi' question with a clear no-sign image; 95x its channel median.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "GiU8bdzX0jQ",
+   "url": "https://youtube.com/shorts/GiU8bdzX0jQ",
+   "title": "🌺 माँ जतमई का रहस्य! जंगल में कैसे बना माता का दिव्य धाम?",
+   "channel": "Sanatan_bhakti",
+   "channelId": "UCkb_tkBctAxyJZjnYYU_GfQ",
+   "published": "2026-11-20T14:00:10Z",
+   "ageDays": 4.6,
+   "seconds": 158,
+   "views": 226351,
+   "likes": 3893,
+   "thumb": "https://i.ytimg.com/vi/GiU8bdzX0jQ/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 6670,
+   "median": 5321,
+   "n_shorts": 29,
+   "multiple": 42.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya",
+     "question"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "devi",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya",
+     "question"
+    ],
+    "format": "katha",
+    "deity": "devi",
+    "topic": "Jatmai Maa dham ki katha (Chhattisgarh)",
+    "cover_style": "Devi with garland before a waterfall, old man and woman at puja, 3 text bands with 'rahasyamayi katha'",
+    "art_style": "cinematic",
+    "why": "Local temple-legend cover with place name and 'rahasya' band; same title and cover as TbRyOHT22ds (the other copy), so the pair is one video.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "C_C8PVkgFnc",
+   "url": "https://youtube.com/shorts/C_C8PVkgFnc",
+   "title": "😱 माँ अंगारमोती का रहस्य! धमतरी की इस देवी की अद्भुत कहानी 🌺🙏",
+   "channel": "Sanatan_bhakti",
+   "channelId": "UCkb_tkBctAxyJZjnYYU_GfQ",
+   "published": "2026-11-19T07:00:06Z",
+   "ageDays": 5.9,
+   "seconds": 142,
+   "views": 206930,
+   "likes": 4205,
+   "thumb": "https://i.ytimg.com/vi/C_C8PVkgFnc/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 6670,
+   "median": 5321,
+   "n_shorts": 29,
+   "multiple": 38.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "devi",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "katha",
+    "deity": "devi",
+    "topic": "Angarmoti Maa, Dhamtari ki lok katha",
+    "cover_style": "Devi portrait at top, big white text 'maa angarmoti', lower band 'lokkatha', dam and people in a side strip",
+    "art_style": "illustrated",
+    "why": "Name-of-the-goddess title plus 'rahasya' and a place tag; 39x its channel median.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "dMcgnGHj4lo",
+   "url": "https://youtube.com/shorts/dMcgnGHj4lo",
+   "title": "😱 चैतुरगढ़ किले का रहस्य! पहाड़ की चोटी पर माता महिषासुरमर्दिनी का चमत्कारी धाम | छत्तीसगढ़",
+   "channel": "Sanatan_bhakti",
+   "channelId": "UCkb_tkBctAxyJZjnYYU_GfQ",
+   "published": "2026-11-23T14:00:07Z",
+   "ageDays": 1.6,
+   "seconds": 138,
+   "views": 35440,
+   "likes": 981,
+   "thumb": "https://i.ytimg.com/vi/dMcgnGHj4lo/hqdefault.jpg",
+   "query": "रहस्य मंदिर",
+   "subs": 6670,
+   "median": 5321,
+   "n_shorts": 29,
+   "multiple": 6.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "chamatkar",
+     "rahasya"
+    ],
+    "hook": "chamatkar",
+    "format": "facts",
+    "deity": "devi",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "chamatkar",
+    "hooks": [
+     "chamatkar",
+     "listicle",
+     "rahasya"
+    ],
+    "format": "facts",
+    "deity": "devi",
+    "topic": "Chaiturgarh ka Maa dham, talab aur Shankar gufa",
+    "cover_style": "Devi with lion and trishul top-left, fort and lakes, 4 callout boxes around, 3 text bands",
+    "art_style": "cinematic",
+    "why": "Callout-listicle cover of a fort-temple with 'chamatkari dham' title; modest 6.7x, so the callout layout is the lesson.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  }
+ ],
+ "strong": [],
+ "near": [],
+ "reuploads": [
+  {
+   "id": "O6g4NFko3NA",
+   "url": "https://youtube.com/shorts/O6g4NFko3NA",
+   "title": "मरने के बाद 13 दिन आत्मा कहाँ रहती है? | गरुड़ पुराण का रहस्य",
+   "channel": "Tantra Gatha | तंत्र गाथा",
+   "views": 319072,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "XQgRThEAAQ8",
+   "url": "https://youtube.com/shorts/XQgRThEAAQ8",
+   "title": "मृत्यु के बाद आत्मा के साथ क्या होता है? | Garud Puran Mystery",
+   "channel": "Bhagwan._.Tales4",
+   "views": 184576,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "r8Gn-qv_GIY",
+   "url": "https://youtube.com/shorts/r8Gn-qv_GIY",
+   "title": "पुरी का रहस्यमयी मार्कंडेश्वर मंदिर! जहाँ महादेव ने यमराज को रोक दिया था 🔱",
+   "channel": "Rahasya dhara ",
+   "views": 184473,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "VEeKDdf6qoE",
+   "url": "https://youtube.com/shorts/VEeKDdf6qoE",
+   "title": "मरने के बाद 13 दिन आत्मा के साथ क्या होता है? 😱 #shorts #aidocumentary #historyfacts #reality #reach",
+   "channel": "InkDoc Stories",
+   "views": 165970,
+   "signals": [
+    "tiny channel",
+    "new channel",
+    "random topics"
+   ]
+  },
+  {
+   "id": "XBoVW1pVx5A",
+   "url": "https://youtube.com/shorts/XBoVW1pVx5A",
+   "title": "मुंडेश्वरी मंदिर का रहस्य! जहां बकरे की बलि देने पर भी नहीं जाती उसकी जान 😱🙏 #maamundabasri #short",
+   "channel": "Facts20vikash",
+   "views": 116793,
+   "signals": [
+    "new channel",
+    "random topics"
+   ]
+  },
+  {
+   "id": "0GBzHRbmNmg",
+   "url": "https://youtube.com/shorts/0GBzHRbmNmg",
+   "title": "मैहर देवी मंदिर का रहस्य 🚩🧜 || #viral​",
+   "channel": "Eshubhaivlogs",
+   "views": 113425,
+   "signals": [
+    "spammy title",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "DLasujdQsTY",
+   "url": "https://youtube.com/shorts/DLasujdQsTY",
+   "title": "मरने के बाद क्या होता है। गरुड़ पुराण। Part 2#shorts #kahani",
+   "channel": "Animated Insights",
+   "views": 30902,
+   "signals": [
+    "tiny channel",
+    "new channel",
+    "random topics"
+   ]
+  },
+  {
+   "id": "TbRyOHT22ds",
+   "url": "https://youtube.com/shorts/TbRyOHT22ds",
+   "title": "🌺 माँ जतमई का रहस्य! जंगल में कैसे बना माता का दिव्य धाम?",
+   "channel": "shivsakti_video ",
+   "views": 120729,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "rf4OCs_ppfs",
+   "url": "https://youtube.com/shorts/rf4OCs_ppfs",
+   "title": "उत्तरकाशी के इस त्रिशूल का रहस्य आज तक कोई नहीं सुलझा पाया!#AkshatGupta #shorts #viral  #Trishul",
+   "channel": "HINDU-SANATAN-70",
+   "views": 1301471,
+   "signals": [
+    "spammy title",
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "ohMRrnPS4Hg",
+   "url": "https://youtube.com/shorts/ohMRrnPS4Hg",
+   "title": "😱 त्र्यंबकेश्वर मंदिर का अद्भुत रहस्य! यहां विराजते हैं तीन मुखों वाले महादेव 🔱🙏Trimbakeshwar Temple",
+   "channel": "FactJunction ",
+   "views": 103491,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  }
+ ],
+ "ideas_added": [
+  "facts:radar-trimbak-teen-mukh",
+  "facts:radar-angarmoti-naam",
+  "kailash:radar-chhata-kisne-liya",
+  "pov:radar-line-dhairya"
+ ],
+ "analysis_problems": []
+}

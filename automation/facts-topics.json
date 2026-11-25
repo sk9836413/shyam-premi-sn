@@ -5327,6 +5327,69 @@
     "added": "2026-11-24"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-trimbak-teen-mukh",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Trimbakeshwar Jyotirlinga",
+   "playlist": "12 Jyotirlinga",
+   "label": "tradition",
+   "kind": "jigyasa",
+   "variant_only": "kyun",
+   "hook": "Trimbak shivling par teen mukh kyon?",
+   "hook_hi": "त्र्यंबक शिवलिंग पर तीन मुख क्यों?",
+   "angle": "Tell the Nashik Trimbakeshwar belief: the lingam is worshipped with three faces, read in the tradition as Brahma, Vishnu and Mahesh. Mark it 'manyata hai' and check the temple's own history page plus one Shiva Purana Jyotirlinga text. No crowd, timing or miracle claims.",
+   "cite": {
+    "work": "TODO: verify (likely Shiva Purana, Jyotirlinga section; Trimbakeshwar sthal-katha, Nashik)",
+    "ref": "TODO: verify (chapter and verse for the three-faced lingam tradition)"
+   },
+   "sources": [],
+   "keywords": [
+    "Trimbakeshwar",
+    "Jyotirlinga"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-25",
+    "refs": [
+     "https://youtube.com/shorts/ohMRrnPS4Hg"
+    ],
+    "added": "2026-11-25"
+   },
+   "numbers_ok": [
+    "teen",
+    "तीन"
+   ],
+   "status": "idea"
+  },
+  {
+   "id": "radar-angarmoti-naam",
+   "p": 2,
+   "deity": "devi",
+   "name": "Maa Angarmoti, Dhamtari",
+   "playlist": "Maa Durga aur Devi ki Kathayein",
+   "label": "tradition",
+   "kind": "lokdevta",
+   "hook": "Angarmoti naam kaise pada?",
+   "hook_hi": "अंगारमोती नाम कैसे पड़ा?",
+   "angle": "Tell the Dhamtari local belief about how Maa Angarmoti got her name, marked 'lok katha ke anusar'. Check the local temple board or the Dhamtari district page and two local sources before recording. No miracle, cure or crowd claims.",
+   "cite": {
+    "work": "TODO: verify (Dhamtari district page; local lok katha of Maa Angarmoti)",
+    "ref": "TODO: verify (the local name-origin account and its source)"
+   },
+   "sources": [],
+   "keywords": [
+    "Angarmoti",
+    "Dhamtari"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-25",
+    "refs": [
+     "https://youtube.com/shorts/C_C8PVkgFnc"
+    ],
+    "added": "2026-11-25"
+   },
+   "status": "idea"
   }
  ]
 }
