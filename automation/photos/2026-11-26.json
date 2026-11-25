@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-26",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "barsana",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/barsana/commons-shri-radha-rani-temple-barsana-panoramio-c5bff9.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-26T01:00:00.000Z",
+      "igAt": "2026-11-26T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-26-1-1.jpg"
+      ],
+      "caption": "Suprabhat 🙏 Guruvar ki shubh subah.\nBrij ke Barsana mein pahadi par base Shri Radha Rani (Shriji) Mandir ke darshan.\nराधे राधे, जय श्री राधा रानी।\nShriji ki kripa aap sabke ghar mein bani rahe.\nAapne Barsana ya Brij ki yatra kab ki thi?\n\n📷 Photo: Gyanendrasinghchauha…, CC BY 3.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Shri_Radha_Rani_Temple_Barsana_-_panoramio.jpg\n\n#RadhaRani #RadheRadhe #Barsana #Shriji #Brij",
+      "fbCaption": "सुप्रभात 🙏 राधे राधे। क्या आपने कभी बरसाना के श्री राधा रानी मंदिर के दर्शन किए हैं?\nब्रज के बरसाना में पहाड़ी पर स्थित श्रीजी मंदिर के दर्शन, गुरुवार की शुभ सुबह।\n\n📷 Photo: Gyanendrasinghchauha…, CC BY 3.0, via Wikimedia Commons, cropped: https://commons.wikimedia.org/wiki/File:Shri_Radha_Rani_Temple_Barsana_-_panoramio.jpg\n\n#RadhaRani #RadheRadhe #Barsana",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1618799150263049",
+        "scheduled": "2026-11-26T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-26T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}
