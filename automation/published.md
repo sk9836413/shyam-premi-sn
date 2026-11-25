@@ -250,3 +250,4 @@
 - 2026-11-26-facts-ramayan-01-krauncha-shlok | claim: 2026-11-26 facts by run 45552041165.1 at 2026-11-25T07:39:53.815Z
 - 2026-11-26-facts-ramayan-01-krauncha-shlok | youtube: https://youtube.com/shorts/yLaVzAO5UsU (public at 2026-11-26T11:30:00.000Z) | facts ramayan/cinematic, 36 s, made 25 Nov 13:10 IST | social: fb: https://www.facebook.com/reel/1082398224812771 (scheduled 2026-11-26T11:30:00.000Z) | ig: pending 2026-11-26T11:30:00.000Z
 - 2026-11-26-kailash-sankashti-mushak-chand | claim: 2026-11-26 kailash by run 45552041165.1 at 2026-11-25T07:54:05.471Z
+- 2026-11-26-kailash-sankashti-mushak-chand | youtube: https://youtube.com/shorts/WGM1wvQeXNs (public at 2026-11-26T02:30:00.000Z) | Kailash Parivar (mini, realistic, 41.52 s, clips 2, lip-sync 1/1, 39.5 GPU min), made 25 Nov 13:24 IST | social: fb: https://www.facebook.com/reel/1718406256340606 (scheduled 2026-11-26T02:30:00.000Z) | ig: pending 2026-11-26T02:30:00.000Z

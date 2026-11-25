@@ -1,0 +1,146 @@
+{
+  "format": "kailash",
+  "series": "kailash-parivar",
+  "series_title": "Kailash Parivar",
+  "episode_id": "sankashti-mushak-chand",
+  "slug": "2026-11-26-kailash-sankashti-mushak-chand",
+  "release": "2026-11-26",
+  "publish_at": "08:00",
+  "variant": "mini",
+  "style": "realistic",
+  "lead": "ganesh",
+  "deity": "Ganesh Parvati",
+  "topic": "Sankashti par Mushak ka vrat aur chaand ka intezaar",
+  "story_type": "parampara",
+  "summary": "Kailash Parivar mini: Sankashti ke vrat mein Mushak chaand ka intezaar karta hai; Ganesh ji dhairya sikhate hain, chaand nikalte hi pehla laddoo",
+  "moral": "Vrat ka phal dhairya mein hai",
+  "title": "Chaand ka intezaar",
+  "title_dev": "चाँद का इंतज़ार",
+  "cover": "चाँद का इंतज़ार",
+  "source": "Parampara: Sankashti Chaturthi par chandrodaya ke baad, Chandra ko arghya dekar vrat kholte hain; Ganesh ji aur Chandra ki katha parampara mein kahi jaati hai. Mushak ka vrat aur laddoo is episode ki kalpana hai.",
+  "facts": [
+    {
+      "claim": "Sankashti Chaturthi ka vrat din bhar rakha jaata hai aur raat ko chandrodaya ke baad Chandra ko arghya dekar kholte hain",
+      "sources": [
+        "https://www.drikpanchang.com/vrat-katha/sankashti/gajanana/gajanana-sankashti-vrat-katha.html",
+        "https://www.indiatvnews.com/lifestyle/spirituality/bhalachandra-sankashti-chaturthi-2026-vrat-katha-2026-03-06-1032772"
+      ]
+    },
+    {
+      "claim": "Parampara mein Ganesh ji aur Chandra ki katha kahi jaati hai (Chandra ne Ganesh ji ka roop dekhkar hansi udayi, to Ganesh ji ne shraap diya)",
+      "sources": [
+        "https://www.drikpanchang.com/vrat-katha/ganesha-chaturthi/ganesha-chaturthi-vrat-katha.html",
+        "https://hindutone.com/festivals/ganesh-chaturthi/ganesh-chaturthi-moon-chandra-darshan/"
+      ]
+    }
+  ],
+  "music": "calm",
+  "cast": [
+    "ganesh",
+    "mushak",
+    "parvati"
+  ],
+  "names": [
+    "गणेश",
+    "गजानन"
+  ],
+  "scenes": [
+    {
+      "prompt": "A quiet evening on snowy Mount Kailash, little Bal Ganesh sits beside a small oil lamp and a leaf plate of laddoos, his cute little mouse Mushak sits next to him looking up at a cloudy darkening sky with a hungry hopeful face, Mata Parvati stands behind them with a puja thali, warm lamp light, medium wide shot",
+      "cast": [
+        "ganesh",
+        "mushak",
+        "parvati"
+      ],
+      "motion": "in",
+      "seed": 14,
+      "animate": "the oil lamp flickers softly and Mushak tilts his head up to look at the sky",
+      "lines": [
+        {
+          "who": "mushak",
+          "tts": "प्रभु, चाँद कब निकलेगा? भूख से पेट गुड़गुड़ा रहा है!",
+          "sub": "Prabhu, chaand kab niklega? Bhookh se pet gudguda raha hai!",
+          "mood": "excitement"
+        },
+        {
+          "who": "ganesh",
+          "tts": "मूषक, आज तुमने भी संकष्टी का व्रत रखा है, है ना?",
+          "sub": "Mushak, aaj tumne bhi Sankashti ka vrat rakha hai, hai na?"
+        },
+        {
+          "who": "mushak",
+          "tts": "जी प्रभु! पर चाँद तो बादलों में छुप गया… मैं थक गया।",
+          "sub": "Ji Prabhu! Par chaand to baadlon mein chhup gaya... main thak gaya.",
+          "mood": "emotional"
+        }
+      ]
+    },
+    {
+      "prompt": "Close view of little Bal Ganesh gently comforting his small mouse Mushak on a snowy rock, Mata Parvati smiles lovingly beside them, soft twilight with drifting clouds and a few stars, warm light, medium shot",
+      "cast": [
+        "parvati",
+        "ganesh",
+        "mushak"
+      ],
+      "motion": "in",
+      "seed": 27,
+      "lines": [
+        {
+          "who": "parvati",
+          "tts": "बेटा मूषक, धैर्य रखो। गणेश, इसे वह कथा सुनाओ।",
+          "sub": "Beta Mushak, dhairya rakho. Ganesh, ise woh katha sunao.",
+          "mood": "calm"
+        },
+        {
+          "who": "ganesh",
+          "tts": "सुनो मूषक। कहते हैं, चाँद के दर्शन और अर्घ्य के बाद ही व्रत खुलता है।",
+          "sub": "Suno Mushak. Kehte hain, chaand ke darshan aur arghya ke baad hi vrat khulta hai.",
+          "mood": "calm"
+        }
+      ]
+    },
+    {
+      "prompt": "The clouds part and a bright full moon rises over snowy Mount Kailash, little Bal Ganesh offers a small copper vessel of water in arghya with folded hands, his happy mouse Mushak jumps with joy beside him, a laddoo on a leaf plate in front, Mata Parvati smiles in the background, silver moonlight and warm lamp glow, wide shot",
+      "cast": [
+        "ganesh",
+        "mushak",
+        "parvati"
+      ],
+      "motion": "out",
+      "seed": 39,
+      "animate": "the clouds slowly part to reveal the glowing moon and Mushak hops happily beside the laddoo",
+      "lines": [
+        {
+          "who": "ganesh",
+          "tts": "धैर्य का फल मीठा होता है, मूषक। देखो… चाँद निकल आया!",
+          "sub": "Dhairya ka phal meetha hota hai, Mushak. Dekho... chaand nikal aaya!",
+          "mood": "wonder"
+        },
+        {
+          "who": "mushak",
+          "tts": "जय गजानन! चाँद आ गया, चाँद आ गया!",
+          "sub": "Jai Gajanan! Chaand aa gaya, chaand aa gaya!",
+          "mood": "excitement"
+        },
+        {
+          "who": "ganesh",
+          "tts": "लो, सबसे पहला लड्डू तुम्हारा।",
+          "sub": "Lo, sabse pehla laddoo tumhara.",
+          "mood": "calm"
+        }
+      ]
+    }
+  ],
+  "endcard": {
+    "who": "parvati",
+    "tts": "व्रत का फल धैर्य में है। अच्छा लगे तो लाइक और सब्सक्राइब करें।",
+    "sub": "Vrat ka phal dhairya mein hai. Achha lage to Like aur Subscribe karein.",
+    "mood": "calm"
+  },
+  "youtube_title": "😱 चाँद निकलने तक भूखे रहे मूषक जी! फिर गणेश जी ने जो किया… 🔱❤️ | Mahadev Parvati",
+  "youtube_description": "Kailash Parivar (mini): Sankashti ke vrat mein Mushak ji chaand ka intezaar karte rahe. Phir Ganesh ji ne dhairya ki baat sunayi, aur chaand nikalte hi pehla laddoo Mushak ko mila!\nKatha ka strot: parampara; Sankashti Chaturthi par chandrodaya ke baad Chandra ko arghya dekar vrat kholne ki parampara hai. Mushak ka vrat aur laddoo is episode ki kalpana hai.\nव्रत का फल धैर्य में है। गणपति बप्पा मोरया 🙏\nChitra, awaaz aur animation AI se banaye gaye hain (sanketik).\nAchhi lage to Like, Share aur Subscribe karein · Shyam Premi SN\nKailash Parivar #KailashParivar #Ganesh #Sankashti #Shorts",
+  "youtube_tags": "Mahadev Parvati, महादेव पार्वती, Kailash Parivar, कैलाश परिवार, Sankashti Chaturthi, संकष्टी चतुर्थी, Ganesh Mushak, गणेश मूषक, Ganesh ji ki kahani, Ganesh Parvati story, Shiv Parivar",
+  "instagram_caption": "Chaand ka intezaar! Sankashti ke vrat mein Mushak ji ko Ganesh ji ne dhairya sikhaya, aur chaand nikalte hi pehla laddoo mila 🔱❤️\nParampara: chandrodaya ke baad Chandra ko arghya dekar vrat kholte hain.\nHar Har Mahadev!\nAchhi lage to Like, Share aur Follow karein\n#MahadevParvati #KailashParivar #HarHarMahadev #Ganesh #Sankashti",
+  "facebook_caption": "व्रत का फल धैर्य में है 🙏 आप संकष्टी का व्रत कैसे खोलते हैं?\nचाँद के इंतज़ार में मूषक जी और गणेश जी: कैलाश परिवार की एक प्यारी कहानी, चंद्रोदय के बाद व्रत खोलने की परंपरा के साथ।\n#Mahadev #HarHarMahadev #Ganesh",
+  "playlist": "Kailash Parivar"
+}
