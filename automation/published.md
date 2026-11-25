@@ -239,3 +239,5 @@
 - 2026-11-24-evening-mehandipur-balaji-darshan | instagram: https://www.instagram.com/reel/DgIERHaPyMt/
 - 2026-11-25-facts-jigyasa-ganesh-tulsi-varjit | claim: 2026-11-25 facts by run 45401776111.1 at 2026-11-24T13:35:54.424Z
 - 2026-11-25-facts-jigyasa-ganesh-tulsi-varjit | youtube: https://youtube.com/shorts/MgVIpflLjRk (public at 2026-11-25T11:30:00.000Z) | facts kyun/illustrated, 34 s, made 24 Nov 19:06 IST | social: fb: https://www.facebook.com/reel/1104673865721928 (scheduled 2026-11-25T11:30:00.000Z) | ig: pending 2026-11-25T11:30:00.000Z
+- 2026-11-25-morning-budhvar-ganesh | instagram: https://www.instagram.com/reel/DgJl7S1hBVl/
+- 2026-11-25-owner-laal-shringar-darshan | instagram: https://www.instagram.com/reel/DgJmAqpR9T4/
