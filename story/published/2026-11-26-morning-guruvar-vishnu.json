@@ -1,0 +1,84 @@
+{
+  "slug": "2026-11-26-morning-guruvar-vishnu",
+  "format": "status",
+  "loop": true,
+  "date": "2026-11-26",
+  "festival": "Thursday Vishnu ji",
+  "family": "day-guruvar-vishnu",
+  "title": "Shyam Premi SN",
+  "kicker": "Thursday Vishnu ji",
+  "playlist": "Vishnu ji aur Krishna ki Kathayein",
+  "voice": "hf_alpha",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm festive colours, glowing diyas, vertical friendly centred composition, no text, no letters, no writing",
+  "cta": "स्टेटस पर लगाएं 📲",
+  "share_line": "📲 अपने WhatsApp स्टेटस पर लगाएं और परिवार में शेयर करें 🙏",
+  "send": {
+    "pre": "आपका दिन शुभ हो",
+    "big": "शुभ गुरुवार, जय श्री हरि 🙏",
+    "pill": "इसे अपने परिवार को भेजें 🙏",
+    "seconds": 3
+  },
+  "greeting": "आपका दिन शुभ हो, शुभ गुरुवार, जय श्री हरि 🙏",
+  "status_name": {
+    "en": "Thursday Vishnu ji",
+    "hi": "गुरुवार श्री हरि"
+  },
+  "mantra_source": "Bhagwan Vishnu ka dwadashakshar mantra (Shrimad Bhagwat parampara)",
+  "deity": "Vishnu ji / Sai Baba (Guruvar)",
+  "day_status": "guruvar-vishnu",
+  "scenes": [
+    {
+      "prompt": "Divine darshan of Bhagwan Vishnu with four arms holding conch, chakra, mace and lotus, blue complexion, golden crown and yellow silk dhoti, serene face, standing on a pink lotus, a soft golden halo, tulsi leaves and lit clay diyas in the foreground, a decorated temple sanctum, the deity's face large, sharp and clearly visible in the upper half of the picture",
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, diya flames flicker softly",
+      "deity": true,
+      "motion": "in",
+      "hold": 6,
+      "big": "ॐ साईं राम! शुभ गुरुवार 🙏",
+      "line": "जय श्री हरि",
+      "tts": "ॐ साईं राम! शुभ गुरुवार! भगवान श्री हरि की कृपा आप पर सदा बनी रहे।",
+      "sub": "Thursday Vishnu ji! Bhagwan Shri Hari ki kripa aap par sada bani rahe.",
+      "image": "stills/0.jpg",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A green tulsi plant in a decorated clay pot on a temple courtyard at dawn, lit diyas around it, yellow marigold flowers and a small brass kalash, calm golden light",
+      "motion": "pan",
+      "hold": 6,
+      "big": "ॐ नमो नारायणाय",
+      "mantra": "ॐ नमो भगवते वासुदेवाय",
+      "tts": "ॐ नमो भगवते वासुदेवाय।",
+      "sub": "Om Namo Bhagavate Vasudevaya.",
+      "image": "stills/1.jpg"
+    },
+    {
+      "prompt": "Shirdi Sai Baba seated calmly on a stone with one leg folded, white kafni robe and white head cloth, a gentle blessing hand, an old Dwarkamai mosque wall behind, warm lamp light, the deity's face large, sharp and clearly visible in the upper half of the picture",
+      "animate": "a very slow push-in, the lamp light glows softly, the face stays still",
+      "deity": true,
+      "motion": "out",
+      "hold": 6,
+      "big": "ॐ साईं राम",
+      "line": "श्रद्धा और सबूरी",
+      "tts": "श्रद्धा और सबूरी, जीवन को आसान बना देती है।",
+      "sub": "Shraddha aur saburi, jeevan ko aasaan bana deti hai.",
+      "image": "stills/2.jpg",
+      "video": "clips/2.mp4"
+    }
+  ],
+  "youtube_title": "Thursday Vishnu ji Status | गुरुवार श्री हरि स्टेटस वीडियो #Shorts",
+  "youtube_description": "Thursday Vishnu ji! Guruvar Bhagwan Vishnu (aur bahut se bhakton ke liye Sai Baba) ka din hai. WhatsApp status ke liye sundar video.\nॐ साईं राम! शुभ गुरुवार 🙏 जय श्री हरि\nआपका दिन शुभ हो, शुभ गुरुवार, जय श्री हरि 🙏\nMantra: ॐ नमो भगवते वासुदेवाय (Bhagwan Vishnu ka dwadashakshar mantra (Shrimad Bhagwat parampara))\n\nStatus video download karein (7 din tak, free): https://shyam-premi-media.sk9836413.workers.dev/m/2026-11-26-morning-guruvar-vishnu.mp4\n\nIs status video ko download karke apne WhatsApp / Instagram status par lagayein.\n\nShyam Premi SN ki taraf se aapko aur aapke parivaar ko dher saari shubhkamnayein. Jai Shree Shyam 🙏\nAchha lage to Like karein, apno ko bhejein aur channel Subscribe karein.\n#GuruvarStatus #JaiShreeHari #VishnuJi #SaiBaba #OmSaiRam\nChitra AI dwara banaye gaye hain (sanketik). Awaaz AI se.",
+  "youtube_tags": "Thursday Vishnu ji status, गुरुवार श्री हरि स्टेटस, Thursday Vishnu ji whatsapp status, Thursday Vishnu ji status video, गुरुवार श्री हरि स्टेटस वीडियो, गुरुवार श्री हरि व्हाट्सएप स्टेटस, Guruvar status, Vishnu ji status, Sai Baba status, गुरुवार स्टेटस, विष्णु जी स्टेटस, साईं बाबा स्टेटस, Thursday status, Om Sai Ram, Jai Shree Hari",
+  "instagram_caption": "आपका दिन शुभ हो, शुभ गुरुवार, जय श्री हरि 🙏\nThursday Vishnu ji 🙏 Bhagwan Shri Hari ki kripa aap par sada bani rahe.\nइसे अपने परिवार को भेजें 🙏\n#GuruvarStatus #JaiShreeHari #VishnuJi #SaiBaba #OmSaiRam\n\nStatus video download karein (7 din tak, free): https://shyam-premi-media.sk9836413.workers.dev/m/2026-11-26-morning-guruvar-vishnu.mp4",
+  "facebook_caption": "Thursday Vishnu ji 🙏\nBhagwan Shri Hari ki kripa aap par sada bani rahe.\n#GuruvarStatus #JaiShreeHari #VishnuJi\n\nStatus video download karein (7 din tak, free): https://shyam-premi-media.sk9836413.workers.dev/m/2026-11-26-morning-guruvar-vishnu.mp4",
+  "publish_at": "06:00",
+  "slot": "morning",
+  "music": {
+    "id": "cc-dhol-tasha-2",
+    "mood": "festive",
+    "title": "Dhol-Tasha, Thane, part 2",
+    "licence": "CC0 1.0 (excerpt, loudness-normalised; Freesound)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}
