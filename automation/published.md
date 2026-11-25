@@ -241,3 +241,4 @@
 - 2026-11-25-facts-jigyasa-ganesh-tulsi-varjit | youtube: https://youtube.com/shorts/MgVIpflLjRk (public at 2026-11-25T11:30:00.000Z) | facts kyun/illustrated, 34 s, made 24 Nov 19:06 IST | social: fb: https://www.facebook.com/reel/1104673865721928 (scheduled 2026-11-25T11:30:00.000Z) | ig: pending 2026-11-25T11:30:00.000Z
 - 2026-11-25-morning-budhvar-ganesh | instagram: https://www.instagram.com/reel/DgJl7S1hBVl/
 - 2026-11-25-owner-laal-shringar-darshan | instagram: https://www.instagram.com/reel/DgJmAqpR9T4/
+- 2026-11-25-noon-karni-mata-deshnoke | claim: 2026-11-25 noon by run 45548750011.1 at 2026-11-25T04:49:51.525Z
