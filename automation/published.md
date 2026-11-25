@@ -248,3 +248,4 @@
 - 2026-11-26-morning-guruvar-vishnu | claim: 2026-11-26 morning by run 45552041165.1 at 2026-11-25T07:28:05.953Z
 - 2026-11-26-morning-guruvar-vishnu | youtube: https://youtube.com/shorts/yOLIDFczpKk (public at 2026-11-26T00:30:00.000Z) | status variant, made 25 Nov 12:58 IST | social: fb: https://www.facebook.com/reel/2358396668335823 (scheduled 2026-11-26T00:30:00.000Z) | ig: pending 2026-11-26T00:30:00.000Z
 - 2026-11-26-facts-ramayan-01-krauncha-shlok | claim: 2026-11-26 facts by run 45552041165.1 at 2026-11-25T07:39:53.815Z
+- 2026-11-26-facts-ramayan-01-krauncha-shlok | youtube: https://youtube.com/shorts/yLaVzAO5UsU (public at 2026-11-26T11:30:00.000Z) | facts ramayan/cinematic, 36 s, made 25 Nov 13:10 IST | social: fb: https://www.facebook.com/reel/1082398224812771 (scheduled 2026-11-26T11:30:00.000Z) | ig: pending 2026-11-26T11:30:00.000Z
