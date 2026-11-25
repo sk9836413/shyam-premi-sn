@@ -243,3 +243,4 @@
 - 2026-11-25-owner-laal-shringar-darshan | instagram: https://www.instagram.com/reel/DgJmAqpR9T4/
 - 2026-11-25-noon-karni-mata-deshnoke | claim: 2026-11-25 noon by run 45548750011.1 at 2026-11-25T04:49:51.525Z
 - 2026-11-25-noon-karni-mata-deshnoke | youtube: https://youtube.com/shorts/vz15PSiJhG4 (public at 2026-11-25T09:30:00.000Z) | social: fb: https://www.facebook.com/388779648425633/videos/1169203402473245 (scheduled 2026-11-25T09:30:00.000Z) | ig: error no hosted video_url to publish from later | dialogue stills, lip-synced 0/20, 100 s, real footage 6
+- 2026-11-25-evening-kashi-vishwanath-emotional | claim: 2026-11-25 evening by run 45552041165.1 at 2026-11-25T06:28:15.392Z
