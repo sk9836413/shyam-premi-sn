@@ -245,3 +245,4 @@
 - 2026-11-25-noon-karni-mata-deshnoke | youtube: https://youtube.com/shorts/vz15PSiJhG4 (public at 2026-11-25T09:30:00.000Z) | social: fb: https://www.facebook.com/388779648425633/videos/1169203402473245 (scheduled 2026-11-25T09:30:00.000Z) | ig: error no hosted video_url to publish from later | dialogue stills, lip-synced 0/20, 100 s, real footage 6
 - 2026-11-25-evening-kashi-vishwanath-emotional | claim: 2026-11-25 evening by run 45552041165.1 at 2026-11-25T06:28:15.392Z
 - 2026-11-25-evening-kashi-vishwanath-emotional | youtube: https://youtube.com/shorts/GU0fruxLmmY (public at 2026-11-25T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/4138409356454041 (scheduled 2026-11-25T15:00:00.000Z) | ig: pending 2026-11-25T13:30:00.000Z | animated 3/3
+- 2026-11-26-morning-guruvar-vishnu | claim: 2026-11-26 morning by run 45552041165.1 at 2026-11-25T07:28:05.953Z
