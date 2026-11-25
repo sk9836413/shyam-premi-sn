@@ -13,6 +13,21 @@ Data API lifetime views: younger videos have had less time, so compare "views pe
 | 2026-11-16 | 47 | 6055 | 134 |
 | 2026-11-23 | 51 | 8784 | 159 |
 
+## Facts review 2026-11-25
+
+Owner, 16 Nov 2026: facts Shorts max 2 a week until 25 Nov, then compare; median under 20 views = facts off.
+
+| Day | Views | Short |
+|---|---|---|
+| 2026-11-15 | 11 | Chhath: Sita ji aur Draupadi ka vrat 😱 #facts / Chhath Puja Katha / स |
+| 2026-11-15 | 3 | Chhath ka arghya pehle kisne diya 😱 #facts / Karna Katha / छठ और कर्ण |
+| 2026-11-15 | 1 | Chhathi Maiya ka sabse bada chamatkar 😱 #facts / Chhath Puja Katha /  |
+| 2026-11-16 | 6 | Chhathi Maiya ko Chhathi kyun kehte 😱 #facts / Chhath Puja Katha / छठ |
+| 2026-11-16 | 5 | Chhath: doobte Suraj ko arghya kyun 😱 #facts / Chhath Puja Katha / डू |
+| 2026-11-17 | 55 | Khatu Shyam ke 5 naam ka rahasya 😱 #facts / Khatu Shyam Katha / बाबा  |
+
+- 6 facts Shorts public 2026-11-15 to 2 days before 2026-11-25: median **5.5** views -> verdict **OFF: scripts/day-plan.mjs plans no facts Short from 2026-11-25 (automation/facts-review.json; to try again, set its verdict to "on" or delete it)**.
+
 ## Upload time test (A/B from 21 Nov 2026, compare after 2 weeks)
 
 Competitor decode of 20 Nov 2026 (automation/competitor-decode-2026-11.md, 1,307 Shorts of 15 devotional channels):

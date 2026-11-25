@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-25",
+  "n": 6,
+  "median": 5.5,
+  "min": 20,
+  "verdict": "off",
+  "since": "2026-11-15",
+  "videos": [
+    {
+      "id": "F5c4qkJhoa8",
+      "slug": "2026-11-15-facts-chhath-sita-draupadi-katha",
+      "day": "2026-11-15",
+      "views": 11
+    },
+    {
+      "id": "0MX_1qsjyxI",
+      "slug": "2026-11-15-facts-chhath-karna-surya-arghya",
+      "day": "2026-11-15",
+      "views": 3
+    },
+    {
+      "id": "0QCNjLRqwoc",
+      "slug": "2026-11-15-facts-chhath-shashthi-devi-priyavrat",
+      "day": "2026-11-15",
+      "views": 1
+    },
+    {
+      "id": "iYZ1gplGy3U",
+      "slug": "2026-11-16-facts-chhath-chhathi-naam-kyun",
+      "day": "2026-11-16",
+      "views": 6
+    },
+    {
+      "id": "1RW7-Hi9umE",
+      "slug": "2026-11-16-facts-chhath-doobte-suraj-arghya-kyun",
+      "day": "2026-11-16",
+      "views": 5
+    },
+    {
+      "id": "Lx56n9u4W5s",
+      "slug": "2026-11-17-facts-khatu-baba-ke-naam",
+      "day": "2026-11-17",
+      "views": 55
+    }
+  ]
+}
