@@ -21,17 +21,18 @@
       "type": "video",
       "source": "2026-11-26-morning-guruvar-vishnu",
       "fb": {
-        "claim": {
-          "run": "45757035398.1",
-          "at": "2026-11-26T04:44:35.962Z"
-        }
+        "id": "1622418312323020",
+        "at": "2026-11-26T04:44:56.076Z"
       },
       "ig": {
-        "claim": {
-          "run": "45757035398.1",
-          "at": "2026-11-26T04:44:35.962Z"
-        }
-      }
+        "id": "17970108999208188",
+        "at": "2026-11-26T04:45:38.585Z"
+      },
+      "seconds": {
+        "source": 18,
+        "story": 18.3
+      },
+      "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-26-video.mp4"
     }
   ]
 }
