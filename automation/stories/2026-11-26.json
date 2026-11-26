@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-26",
+  "stories": [
+    {
+      "key": "morning",
+      "type": "image",
+      "source": "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-26-1-1.jpg",
+      "fb": {
+        "claim": {
+          "run": "45750738789.1",
+          "at": "2026-11-26T03:44:05.520Z"
+        }
+      },
+      "ig": {
+        "claim": {
+          "run": "45750738789.1",
+          "at": "2026-11-26T03:44:05.520Z"
+        }
+      }
+    }
+  ]
+}
