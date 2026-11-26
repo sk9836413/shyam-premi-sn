@@ -255,3 +255,6 @@
 - 2026-11-26-owner-baba-ka-darbar | youtube: https://youtube.com/shorts/BrTQnyYdRXA (public at 2026-11-26T01:45:00.000Z) | owner-footage Short (clip 06, real footage), made 25 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/1187918870594911 (scheduled 2026-11-26T04:00:00.000Z) | ig: pending 2026-11-26T01:45:00.000Z
 - 2026-11-25-facts-jigyasa-ganesh-tulsi-varjit | instagram: https://www.instagram.com/reel/DgKnheRyIdX/
 - 2026-11-25-evening-kashi-vishwanath-emotional | instagram: https://www.instagram.com/reel/DgKpFpohLl_/
+- 2026-11-26-morning-guruvar-vishnu | instagram: https://www.instagram.com/reel/DgMKzSGPW6C/
+- 2026-11-26-kailash-sankashti-mushak-chand | instagram: https://www.instagram.com/reel/DgMK8TlsWj7/
+- 2026-11-26-owner-baba-ka-darbar | instagram: https://www.instagram.com/reel/DgMLBp4BFR3/
