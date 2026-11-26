@@ -260,3 +260,4 @@
 - 2026-11-26-owner-baba-ka-darbar | instagram: https://www.instagram.com/reel/DgMLBp4BFR3/
 - 2026-11-26-evening-ramdevra-baba-ramdev-darshan | claim: 2026-11-26 evening by run 45760137514.1 at 2026-11-26T06:24:40.383Z
 - 2026-11-26-evening-ramdevra-baba-ramdev-darshan | youtube: https://youtube.com/shorts/XNEmxr106Lw (public at 2026-11-26T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/996278569796098 (scheduled 2026-11-26T15:00:00.000Z) | ig: pending 2026-11-26T13:30:00.000Z | animated 4/4
+- 2026-11-27-status-sankashti-chaturthi | claim: 2026-11-27 status by run 45760137514.1 at 2026-11-26T07:06:52.708Z
