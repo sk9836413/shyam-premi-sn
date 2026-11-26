@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-27",
+  "weekday": "Shukravar",
+  "festival": null,
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-27T01:00:00.000Z",
+      "igAt": "2026-11-27T03:43:00.000Z",
+      "kind": "darshan",
+      "temple": "karni-mata",
+      "templeName": "Karni Mata Mandir, Deshnoke",
+      "category": "devi",
+      "photos": [
+        {
+          "file": "footage/karni-mata/commons-karni-mata-temple-deshnoke-8c2e56.jpg",
+          "credit": "Photo: Bikky1102, CC BY 4.0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Karni_Mata_Temple,_Deshnoke.jpg",
+          "licence": "CC BY 4.0",
+          "author": "Bikky1102",
+          "title": "File:Karni Mata Temple, Deshnoke.jpg"
+        }
+      ],
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    }
+  ]
+}
