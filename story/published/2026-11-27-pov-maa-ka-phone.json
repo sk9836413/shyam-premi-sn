@@ -1,0 +1,150 @@
+{
+  "format": "krishna-pov",
+  "series": "shri-krishna-kehte-hain",
+  "series_title": "Shri Krishna kehte hain",
+  "topic_id": "maa-ka-phone",
+  "slug": "2026-11-27-pov-maa-ka-phone",
+  "release": "2026-11-27",
+  "publish_at": "08:00",
+  "lead": "krishna",
+  "deity": "Shri Krishna",
+  "topic": "Maa ka phone: reels ke saath maa-baba ke liye bhi time",
+  "story_type": "fictional",
+  "summary": "Shri Krishna kehte hain: mobile bhi chalao, par maa-baba ka phone pehli ghanti par uthao; unke liye roz thoda samay",
+  "message": "Mobile bhi chalao, par maa-baba ka phone pehli ghanti par uthao",
+  "title": "Maa ka phone",
+  "title_dev": "माँ का फ़ोन",
+  "label": "Maa ka phone",
+  "cover": "माँ का फ़ोन",
+  "music": "calm",
+  "cast": [
+    "krishna"
+  ],
+  "names": [
+    "कृष्ण",
+    "कान्हा"
+  ],
+  "scenes": [
+    {
+      "prompt": "Shri Krishna stands in a peaceful flower garden by the Yamuna river at sunrise, a soft pink and saffron dawn sky, lotus leaves on the water, he looks warmly at the viewer, medium close shot",
+      "cast": [
+        "krishna"
+      ],
+      "motion": "in",
+      "seed": 61,
+      "lines": [
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "आज कितनी रील देखीं? और माँ का फ़ोन?",
+          "sub": "Aaj kitni reel dekhin? Aur maa ka phone?",
+          "mood": "wonder"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "बुरा मत मानना, मैं तो बस पूछ रहा हूँ।",
+          "sub": "Bura mat maanna, main to bas poochh raha hoon.",
+          "mood": "calm"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "मैं कृष्ण हूँ, सबकी सुनता हूँ। पर आज एक माँ की बात सुनो।",
+          "sub": "Main Krishna hoon, sabki sunta hoon. Par aaj ek maa ki baat suno.",
+          "mood": "calm"
+        }
+      ]
+    },
+    {
+      "prompt": "A warm cozy Indian home courtyard in soft morning light, a kind elderly mother sits on a charpai holding an old phone and looking at it hopefully, a young person on a sofa nearby smiles while looking at their own phone, gentle devotional storybook mood, wide shot",
+      "motion": "pan",
+      "seed": 72,
+      "animate": "the morning light shifts softly and the mother looks hopefully at her phone while the young person gently looks up",
+      "lines": [
+        {
+          "who": "krishna",
+          "shot": "wide",
+          "tts": "एक माँ रोज़ फ़ोन हाथ में लेकर बैठती है। इंतज़ार करती है।",
+          "sub": "Ek maa roz phone haath mein lekar baithti hai. Intezaar karti hai.",
+          "mood": "emotional"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "उसे बस इतना चाहिए, कि बेटा एक बार आवाज़ सुना दे।",
+          "sub": "Use bas itna chahiye, ki beta ek baar awaaz suna de.",
+          "mood": "emotional"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "रील तो रोज़ नई आती हैं। माँ की आवाज़, हमेशा नहीं रहती।",
+          "sub": "Reel to roz nayi aati hain. Maa ki awaaz, hamesha nahi rehti.",
+          "mood": "serious"
+        }
+      ]
+    },
+    {
+      "prompt": "A young person sits happily on the steps of a sunlit home talking on the phone with a smiling face, a small tulsi plant and a diya beside them, soft pink and golden morning sky, warm family feeling, medium wide shot",
+      "motion": "in",
+      "seed": 85,
+      "lines": [
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "तो मोबाइल भी चलाओ, उसमें कोई बुराई नहीं।",
+          "sub": "To mobile bhi chalao, usmein koi buraai nahi.",
+          "mood": "calm"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "पर माँ-बाबा का फ़ोन आए, तो पहली घंटी पर उठाओ।",
+          "sub": "Par maa-baba ka phone aaye, to pehli ghanti par uthao.",
+          "mood": "excitement"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "अगर पास नहीं हो, तो आज ही उन्हें ख़ुद फ़ोन करो।",
+          "sub": "Agar paas nahi ho, to aaj hi unhein khud phone karo.",
+          "mood": "calm"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "पूछो, खाना खाया? तबीयत में सब ठीक है, हैं ना?",
+          "sub": "Poochho, khaana khaaya? Sab theek hai, hain na?",
+          "mood": "calm"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "देखना, उनकी हँसी सुनकर, तुम्हारा मन भी हल्का हो जाएगा।",
+          "sub": "Dekhna, unki hansi sunkar, tumhara mann bhi halka ho jaayega.",
+          "mood": "emotional"
+        },
+        {
+          "who": "krishna",
+          "shot": "close",
+          "tts": "माता-पिता का मान ही सबसे बड़ी पूजा है। मैं कहता हूँ, यही मुझे प्रिय है।",
+          "sub": "Mata-pita ka maan hi sabse badi pooja hai. Main kehta hoon, yahi mujhe priya hai.",
+          "mood": "calm"
+        }
+      ]
+    }
+  ],
+  "endcard": {
+    "who": "krishna",
+    "tts": "मेरा आशीर्वाद तुम्हारे साथ है। अच्छा लगे तो लाइक और सब्सक्राइब करना।",
+    "sub": "Mera aashirwad tumhare saath hai. Achha lage to Like aur Subscribe karna.",
+    "mood": "calm"
+  },
+  "youtube_title": "Reels ke liye time hai, maa ke phone ke liye? 👀 | Ghar Special #krishna #shorts",
+  "youtube_description": "Shri Krishna kehte hain: mobile bhi chalao, par maa-baba ka phone pehli ghanti par uthao. Aaj ek baar unhein khud phone karo.\nYeh Gita ki bhaavna mein ek saral sandesh hai: maa-baba ka maan karna.\nभक्तिभाव से बनाई गई काल्पनिक प्रस्तुति। जय श्री कृष्ण 🙏\nChitra, awaaz aur animation AI se banaye gaye hain (sanketik).\nAchhi lage to Like, Share aur Subscribe karein · Shyam Premi SN\n#ShriKrishnaKehteHain #Krishna #Shorts #Ghar",
+  "youtube_tags": "Shri Krishna kehte hain, श्रीकृष्ण, Krishna POV, Krishna motivation Hindi, माँ का फ़ोन, माता पिता का सम्मान, Krishna vani, Maa baap seva, Jai Shri Krishna, कृष्ण वाणी",
+  "instagram_caption": "Reels ke liye time hai, maa ke phone ke liye? Shri Krishna kehte hain: mobile bhi chalao, par maa-baba ka phone pehli ghanti par uthao 🙏\nAaj ek baar unhein khud phone karo.\nJai Shri Krishna!\nAchhi lage to Like, Share aur Follow karein\n#ShriKrishnaKehteHain #JaiShreeKrishna #Krishna #MaaBaap",
+  "facebook_caption": "आज आपने माँ या बाबा को फ़ोन किया? 🙏\nश्री कृष्ण कहते हैं: मोबाइल भी चलाओ, पर माँ-बाबा का फ़ोन पहली घंटी पर उठाओ।\n#ShreeKrishna #JaiShreeKrishna #Bhakti",
+  "playlist": "Shri Krishna kehte hain"
+}
