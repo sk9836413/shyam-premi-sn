@@ -266,3 +266,4 @@
 - 2026-11-27-pov-maa-ka-phone | claim: 2026-11-27 pov by run 45760137514.1 at 2026-11-26T07:44:29.318Z
 - 2026-11-27-pov-maa-ka-phone | youtube: https://youtube.com/shorts/iz7dnD0-dcw (public at 2026-11-27T02:30:00.000Z) | Shri Krishna kehte hain (66.58 s, clips 1, lip-sync 12/12, 41 GPU min), made 26 Nov 13:14 IST | social: fb: https://www.facebook.com/reel/1545032975352413 (scheduled 2026-11-27T02:30:00.000Z) | ig: pending 2026-11-27T02:30:00.000Z
 - 2026-11-27-owner-jyot-aur-darshan | claim: 2026-11-27 owner by run 45827595679.1 at 2026-11-26T13:17:22.033Z
+- 2026-11-27-owner-jyot-aur-darshan | youtube: https://youtube.com/shorts/shtRX0gAKco (public at 2026-11-27T01:45:00.000Z) | owner-footage Short (clip 07, real footage), made 26 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/1698315268344064 (scheduled 2026-11-27T06:30:00.000Z) | ig: pending 2026-11-27T01:45:00.000Z
