@@ -1,0 +1,1510 @@
+{
+ "date": "2026-11-26",
+ "mode": "daily",
+ "queries": [
+  "महाभारत",
+  "रामायण"
+ ],
+ "thresholds": {
+  "views": 100000,
+  "fastViews": 30000,
+  "fastDays": 3,
+  "multiple": 5,
+  "minShorts": 3,
+  "strongMedian": 40000,
+  "maxSeconds": 180
+ },
+ "quota": {
+  "searches": 2,
+  "list_calls": 54,
+  "units": 254,
+  "cap": 900
+ },
+ "counts": {
+  "found": 99,
+  "shorts": 94,
+  "over_threshold": 93,
+  "viral": 23,
+  "strong": 3,
+  "likely_reuploads": 11
+ },
+ "viral": [
+  {
+   "id": "lTgQXbz-ur8",
+   "url": "https://youtube.com/shorts/lTgQXbz-ur8",
+   "title": "#mahabharth के अनुसार पांडवों, कर्ण और द्रौपदी का जन्म इन देवताओं एवं राजवंशों से हुआ था !#KRISHNA",
+   "channel": "chetna parekar",
+   "channelId": "UCKo5pUKFp5PMAuLqByXrjsQ",
+   "published": "2026-11-21T14:15:15Z",
+   "ageDays": 4.6,
+   "seconds": 16,
+   "views": 413960,
+   "likes": 1502,
+   "thumb": "https://i.ytimg.com/vi/lTgQXbz-ur8/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 432,
+   "median": 245,
+   "n_shorts": 29,
+   "multiple": 1689.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "tiny channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "facts",
+    "deity": "mahabharat",
+    "topic": "Pandavon, Karna, Draupadi ka janm",
+    "cover_style": "family-tree chart: 5 labelled portraits, arrows to Surya + Kunti, Draupadi card, Hindi band at bottom",
+    "art_style": "infographic-2d",
+    "why": "Lineage chart with labelled connector lines answers the cover question at a glance; 1,690x shows the question works for Mahabharat lineage",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "IjPakdSG4Xo",
+   "url": "https://youtube.com/shorts/IjPakdSG4Xo",
+   "title": "🙏❤️ नन्हे से रामलला की मनमोहक छवि 😍 | बाल स्वरूप श्रीराम के दिव्य दर्शन 🚩✨ #JaiShriRam🌺 #shorts",
+   "channel": "जय माता दी 🙏🏻",
+   "channelId": "UCJvrvw2ByG1J6CNoEBbguQA",
+   "published": "2026-11-23T06:26:18Z",
+   "ageDays": 2.9,
+   "seconds": 10,
+   "views": 747187,
+   "likes": 4323,
+   "thumb": "https://i.ytimg.com/vi/IjPakdSG4Xo/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 3520,
+   "median": 1594,
+   "n_shorts": 29,
+   "multiple": 468.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "views far beyond subscribers"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "darshan",
+    "deity": "other",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "ram",
+    "topic": "Baal Ram Lalla darshan",
+    "cover_style": "close-up baby Ram with bow and peacock feather, no text on cover",
+    "art_style": "cartoon-3d",
+    "why": "Pure darshan close-up with no hook text; 747k views on a 10 s clip, the title carries the hook",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "1tDpRU0CmiQ",
+   "url": "https://youtube.com/shorts/1tDpRU0CmiQ",
+   "title": "रामायण -EP 30 -शूर्पणखा का खर-दूषण के पास जाना। खर दूषण का वध।रावण द्वारा शिव ताण्डव स्तोत्र की रचना",
+   "channel": "Shakti bhakti ai   ",
+   "channelId": "UCDEUwBIP5EPVUJJSVZGoX7w",
+   "published": "2026-11-24T09:14:09Z",
+   "ageDays": 1.8,
+   "seconds": 11,
+   "views": 337512,
+   "likes": 1346,
+   "thumb": "https://i.ytimg.com/vi/1tDpRU0CmiQ/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 5980,
+   "median": 2320,
+   "n_shorts": 29,
+   "multiple": 145.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "series"
+    ],
+    "hook": "series",
+    "format": "series",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "series",
+    "hooks": [
+     "series"
+    ],
+    "format": "series",
+    "deity": "ram",
+    "topic": "Ramayan EP 30: Shurpanakha, Khar-Dushan",
+    "cover_style": "Ram with bow in forest, big yellow 'Jai shree Ram' text, small logo top-left",
+    "art_style": "cinematic",
+    "why": "EP numbering on one hero frame; the working part is the numbered series, not the cover art",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "CjGO34k2lek",
+   "url": "https://youtube.com/shorts/CjGO34k2lek",
+   "title": "जब राम जी की मांग में सिन्दूर देख चौंक गए गुरु वशिष्ठ! 😳✨ #shorts",
+   "channel": "Gyan Katha",
+   "channelId": "UC7ZEz9wwmBzWGrv0g666H5A",
+   "published": "2026-11-21T11:30:31Z",
+   "ageDays": 4.7,
+   "seconds": 172,
+   "views": 482437,
+   "likes": 14496,
+   "thumb": "https://i.ytimg.com/vi/CjGO34k2lek/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 70500,
+   "median": 4485,
+   "n_shorts": 29,
+   "multiple": 107.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "other",
+    "deity": "other",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "topic": "Ram's sindoor, Guru Vashishtha reacts",
+    "cover_style": "child figure in a red bridal veil with sindoor, old sage's face at right, Hindi text 'मांग में सिन्दूर?!'",
+    "art_style": "cartoon-3d",
+    "why": "jab-hook with a shock text; the bridal-veil image of a child god is sensitive, so we do not copy it",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "th84EquCkQQ",
+   "url": "https://youtube.com/shorts/th84EquCkQQ",
+   "title": "माता सीता के पैरों के निशान #ramayan #chitrakoot #jankikund #sitakund #kanpurboys #youtubeshorts",
+   "channel": "Kanpur Boys",
+   "channelId": "UCKjGj9X7oU_vgu7Y-lv_AGw",
+   "published": "2026-11-22T15:30:06Z",
+   "ageDays": 3.5,
+   "seconds": 16,
+   "views": 348520,
+   "likes": 4134,
+   "thumb": "https://i.ytimg.com/vi/th84EquCkQQ/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 282000,
+   "median": 3691,
+   "n_shorts": 30,
+   "multiple": 94.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "ram",
+    "topic": "Janki Kund, Chitrakoot: Sita's footprints",
+    "cover_style": "real shrine photo (red domes, river), woman inset bottom-left, Hindi caption band",
+    "art_style": "real-photo",
+    "why": "Real place photo with a caption band; 348k views on a 16 s place clip",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "bnJOCNhgfmc",
+   "url": "https://youtube.com/shorts/bnJOCNhgfmc",
+   "title": "माता सीता के पैरों के निशान #ramayan #chitrakoot #jankikund #sitakund #kanpurboys #youtubeshorts",
+   "channel": "Kanpur Boys",
+   "channelId": "UCKjGj9X7oU_vgu7Y-lv_AGw",
+   "published": "2026-11-23T07:30:05Z",
+   "ageDays": 2.8,
+   "seconds": 16,
+   "views": 273153,
+   "likes": 3451,
+   "thumb": "https://i.ytimg.com/vi/bnJOCNhgfmc/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 282000,
+   "median": 3691,
+   "n_shorts": 30,
+   "multiple": 74,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "ram",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "ram",
+    "topic": "Janki Kund, Chitrakoot: Sita's footprints",
+    "cover_style": "same shrine photo, caption band at top, woman inset bottom-left",
+    "art_style": "real-photo",
+    "why": "Same clip re-posted with the caption band moved (273k); the place is the idea, not the edit",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "WdmkI7ThiO4",
+   "url": "https://youtube.com/shorts/WdmkI7ThiO4",
+   "title": "अर्जुन का घमंड तोड़ने के लिए श्रीकृष्ण ने बताया ये रहस्य । @BhaktiPath #mahabharat #krishna #ai",
+   "channel": "Our Anmol talk's ",
+   "channelId": "UCtLNHSNscmWIMABCvZ22z9Q",
+   "published": "2026-11-19T01:30:03Z",
+   "ageDays": 7.1,
+   "seconds": 176,
+   "views": 1610640,
+   "likes": 37753,
+   "thumb": "https://i.ytimg.com/vi/WdmkI7ThiO4/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 166000,
+   "median": 30445,
+   "n_shorts": 29,
+   "multiple": 52.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "krishna",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "katha",
+    "deity": "krishna",
+    "topic": "Krishna and Arjun's pride",
+    "cover_style": "Krishna close-up with raised hand, Arjun in armour beside, burning chariot, red and yellow text bands",
+    "art_style": "cinematic",
+    "why": "'Rahasya' promise plus an Arjun-pride conflict on one frame; 1.6M views at 53x",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "jI_H908reD8",
+   "url": "https://youtube.com/shorts/jI_H908reD8",
+   "title": "Adipurush vs Ramayan | Who got best Dialogues",
+   "channel": "Harsh Bajpai",
+   "channelId": "UCbo7lGFiZ7e_MlsDu6MZAWA",
+   "published": "2026-11-20T04:21:18Z",
+   "ageDays": 6,
+   "seconds": 34,
+   "views": 736410,
+   "likes": 16346,
+   "thumb": "https://i.ytimg.com/vi/jI_H908reD8/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 8900,
+   "median": 37749.5,
+   "n_shorts": 30,
+   "multiple": 19.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "ram",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "Z4DuMzf9ZoI",
+   "url": "https://youtube.com/shorts/Z4DuMzf9ZoI",
+   "title": "रावण ने माता सीता के साथ क्या किया था? वाल्मीकि रामायण का सच! 😱 #shorts",
+   "channel": "SUBHAM MOVIE",
+   "channelId": "UC4mDYaxClkrUnInE221TnxQ",
+   "published": "2026-11-19T12:29:18Z",
+   "ageDays": 6.6,
+   "seconds": 66,
+   "views": 1095499,
+   "likes": 23965,
+   "thumb": "https://i.ytimg.com/vi/Z4DuMzf9ZoI/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 12200,
+   "median": 64827,
+   "n_shorts": 29,
+   "multiple": 16.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "facts",
+    "deity": "ram",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "facts",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "qg14TPROjaQ",
+   "url": "https://youtube.com/shorts/qg14TPROjaQ",
+   "title": "ADIPURUSH vs RAMAYAN | Which Ravan is Better Part 3",
+   "channel": "Harsh Bajpai",
+   "channelId": "UCbo7lGFiZ7e_MlsDu6MZAWA",
+   "published": "2026-11-24T11:56:53Z",
+   "ageDays": 1.7,
+   "seconds": 35,
+   "views": 635313,
+   "likes": 14318,
+   "thumb": "https://i.ytimg.com/vi/qg14TPROjaQ/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 8900,
+   "median": 37749.5,
+   "n_shorts": 30,
+   "multiple": 16.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "series"
+    ],
+    "hook": "series",
+    "format": "series",
+    "deity": "ram",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "series",
+    "hooks": [
+     "series"
+    ],
+    "format": "series",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "exCPjOQ5HNE",
+   "url": "https://youtube.com/shorts/exCPjOQ5HNE",
+   "title": "Ganja lovers hurt ho jayenge 🥀 #arjun #subhadra #arsu # #mahabharat #love #explore #trending #viral",
+   "channel": "Subhadra_vibes ",
+   "channelId": "UCM5sYuoftfRtodxa0gjKRRw",
+   "published": "2026-11-22T11:51:24Z",
+   "ageDays": 3.7,
+   "seconds": 50,
+   "views": 477744,
+   "likes": 12733,
+   "thumb": "https://i.ytimg.com/vi/exCPjOQ5HNE/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 6260,
+   "median": 31258,
+   "n_shorts": 29,
+   "multiple": 15.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "mahabharat",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "mahabharat",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "2bwtw6Znfbs",
+   "url": "https://youtube.com/shorts/2bwtw6Znfbs",
+   "title": "Top 10 Most Powerful Villains in Ramayana Movie🔥 #shorts #ramayan #ranbirkapoor #yash #ravan #viral",
+   "channel": "TopVerse 🔥",
+   "channelId": "UCHXitiLdKf4nl4Ik0-LyYVg",
+   "published": "2026-11-19T08:05:57Z",
+   "ageDays": 6.8,
+   "seconds": 37,
+   "views": 441636,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/2bwtw6Znfbs/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 2450,
+   "median": 28973,
+   "n_shorts": 29,
+   "multiple": 15.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "ram",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "6mBoDU6HmDY",
+   "url": "https://youtube.com/shorts/6mBoDU6HmDY",
+   "title": "दुर्योधन ने दी चुनौती पितामह को । @BhaktiPath #indreshji #mahabharat #trending #katha #animation",
+   "channel": "Our Anmol talk's ",
+   "channelId": "UCtLNHSNscmWIMABCvZ22z9Q",
+   "published": "2026-11-23T08:04:21Z",
+   "ageDays": 2.8,
+   "seconds": 179,
+   "views": 500702,
+   "likes": 6006,
+   "thumb": "https://i.ytimg.com/vi/6mBoDU6HmDY/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 166000,
+   "median": 34935,
+   "n_shorts": 30,
+   "multiple": 14.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "mahabharat",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "mahabharat",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "gy7D4AjCxpQ",
+   "url": "https://youtube.com/shorts/gy7D4AjCxpQ",
+   "title": "माता गांधारी का श्रीकृष्ण को श्राप | महाभारत युद्ध के बाद क्या हुआ? | Krishna Gandhari Samvad",
+   "channel": "Shree Ram",
+   "channelId": "UClv-XbensclULYdhpJH9Vow",
+   "published": "2026-11-21T17:08:05Z",
+   "ageDays": 4.4,
+   "seconds": 99,
+   "views": 211065,
+   "likes": 2375,
+   "thumb": "https://i.ytimg.com/vi/gy7D4AjCxpQ/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 16700,
+   "median": 15863,
+   "n_shorts": 29,
+   "multiple": 13.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "facts",
+    "deity": "krishna",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "facts",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "Fa1CZqWDVlM",
+   "url": "https://youtube.com/shorts/Fa1CZqWDVlM",
+   "title": "महाभारत में शकुनि अपने जगहे बिलकुल ठीक थे! #krishna #mahadev #mahabharat #ramayan #vishnu #hanuman",
+   "channel": "KaliYug",
+   "channelId": "UCzOpQQi-jRnqkGGslNWxCgw",
+   "published": "2026-11-21T11:30:37Z",
+   "ageDays": 4.7,
+   "seconds": 134,
+   "views": 776870,
+   "likes": 25888,
+   "thumb": "https://i.ytimg.com/vi/Fa1CZqWDVlM/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 562000,
+   "median": 69661.5,
+   "n_shorts": 30,
+   "multiple": 11.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "hanuman",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "p7-khEV9IIU",
+   "url": "https://youtube.com/shorts/p7-khEV9IIU",
+   "title": "Adipurush vs Ramayan | Real Pushpak Viman Part2 #bollywood",
+   "channel": "Harsh Bajpai",
+   "channelId": "UCbo7lGFiZ7e_MlsDu6MZAWA",
+   "published": "2026-11-24T02:22:50Z",
+   "ageDays": 2.1,
+   "seconds": 35,
+   "views": 332519,
+   "likes": 9291,
+   "thumb": "https://i.ytimg.com/vi/p7-khEV9IIU/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 8900,
+   "median": 37749.5,
+   "n_shorts": 30,
+   "multiple": 8.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "series"
+    ],
+    "hook": "series",
+    "format": "series",
+    "deity": "ram",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "series",
+    "hooks": [
+     "series"
+    ],
+    "format": "series",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "fN4T4gJLpEs",
+   "url": "https://youtube.com/shorts/fN4T4gJLpEs",
+   "title": "🙏 महाभारत में बताए गए इन 8 पवित्र नामों का महात्म्य जानकर आप भी मंत्रमुग्ध हो जाएंगे!",
+   "channel": "Radha_Vallabh_Seva",
+   "channelId": "UCZ2pU5B7_cjjpcF5Kvy-RHA",
+   "published": "2026-11-20T15:42:46Z",
+   "ageDays": 5.5,
+   "seconds": 70,
+   "views": 394975,
+   "likes": 11808,
+   "thumb": "https://i.ytimg.com/vi/fN4T4gJLpEs/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 40700,
+   "median": 50673,
+   "n_shorts": 29,
+   "multiple": 7.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle"
+    ],
+    "hook": "listicle",
+    "format": "other",
+    "deity": "mahabharat",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "listicle",
+    "hooks": [
+     "listicle"
+    ],
+    "format": "other",
+    "deity": "mahabharat",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "hUBnNPGBUZc",
+   "url": "https://youtube.com/shorts/hUBnNPGBUZc",
+   "title": "Why Krishna Came Suddenly? 😱 The Divine Truth 💥 #mahabharat",
+   "channel": "Mythology by Tomesh",
+   "channelId": "UC3iqaKAh7jvxhdmuZnJ6jVg",
+   "published": "2026-11-20T02:15:15Z",
+   "ageDays": 6.1,
+   "seconds": 54,
+   "views": 624397,
+   "likes": 13025,
+   "thumb": "https://i.ytimg.com/vi/hUBnNPGBUZc/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 192000,
+   "median": 81038,
+   "n_shorts": 29,
+   "multiple": 7.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "hook": "kyon",
+    "format": "facts",
+    "deity": "krishna",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "format": "facts",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "0UqK5kRU8fc",
+   "url": "https://youtube.com/shorts/0UqK5kRU8fc",
+   "title": "दुर्योधन अमर हो जाता! अगर अपनी माँ की बात मान लेता तो 😱 | महाभारत रहस्य",
+   "channel": " Raw Talks With Anaya\n",
+   "channelId": "UCypM0aiIUC17DzPpB4o6K-Q",
+   "published": "2026-11-20T07:41:37Z",
+   "ageDays": 5.8,
+   "seconds": 124,
+   "views": 425327,
+   "likes": 3635,
+   "thumb": "https://i.ytimg.com/vi/0UqK5kRU8fc/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 46800,
+   "median": 60051,
+   "n_shorts": 30,
+   "multiple": 7.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "rahasya"
+    ],
+    "hook": "rahasya",
+    "format": "facts",
+    "deity": "mahabharat",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "rahasya",
+    "hooks": [
+     "rahasya"
+    ],
+    "format": "facts",
+    "deity": "mahabharat",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "UZj1ytoRejo",
+   "url": "https://youtube.com/shorts/UZj1ytoRejo",
+   "title": "श्री कृष्णा जी ने तोड़ी अपनी प्रतिज्ञा @BhaktiPath #indreshji #mahabharat #katha #animation",
+   "channel": "Our Anmol talk's ",
+   "channelId": "UCtLNHSNscmWIMABCvZ22z9Q",
+   "published": "2026-11-24T01:23:14Z",
+   "ageDays": 2.1,
+   "seconds": 178,
+   "views": 231611,
+   "likes": 4227,
+   "thumb": "https://i.ytimg.com/vi/UZj1ytoRejo/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 166000,
+   "median": 34935,
+   "n_shorts": 30,
+   "multiple": 6.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "krishna",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "2MjKZVN5Lmo",
+   "url": "https://youtube.com/shorts/2MjKZVN5Lmo",
+   "title": "अर्जुन को जब नाग कन्या ने जल के अंदर खीचा l🔥🙏🔥#कृष्ण #महाभारत #krishna #krishnastatus #shorts",
+   "channel": "Bhakti Drishayam 6.o",
+   "channelId": "UCmeass5sShjWLFxuO408gqA",
+   "published": "2026-11-20T01:40:20Z",
+   "ageDays": 6.1,
+   "seconds": 43,
+   "views": 979980,
+   "likes": 7703,
+   "thumb": "https://i.ytimg.com/vi/2MjKZVN5Lmo/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 40900,
+   "median": 164001.5,
+   "n_shorts": 30,
+   "multiple": 6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "other",
+    "deity": "krishna",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "ulQ1tddmaWc",
+   "url": "https://youtube.com/shorts/ulQ1tddmaWc",
+   "title": "रावण के मरते ही खुद श्री राम ने क्यों तोड़ दिया था राम सेतु? 😱",
+   "channel": "Priyansh Shukla",
+   "channelId": "UCdefYfRohqSQt6EI4DVC_9w",
+   "published": "2026-11-23T12:58:59Z",
+   "ageDays": 2.6,
+   "seconds": 143,
+   "views": 3459228,
+   "likes": 133860,
+   "thumb": "https://i.ytimg.com/vi/ulQ1tddmaWc/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 2670000,
+   "median": 662724.5,
+   "n_shorts": 30,
+   "multiple": 5.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "hook": "kyon",
+    "format": "facts",
+    "deity": "ram",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "format": "facts",
+    "deity": "ram",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "sm9FId5CpnM",
+   "url": "https://youtube.com/shorts/sm9FId5CpnM",
+   "title": "Ek Chawal Se Bhara Pet! ⚡ \"Shree Krishna Ki Leela\" 🏹 #mahabharat",
+   "channel": "Mythology by Tomesh",
+   "channelId": "UC3iqaKAh7jvxhdmuZnJ6jVg",
+   "published": "2026-11-19T12:45:32Z",
+   "ageDays": 6.6,
+   "seconds": 44,
+   "views": 423056,
+   "likes": 7193,
+   "thumb": "https://i.ytimg.com/vi/sm9FId5CpnM/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 192000,
+   "median": 81038,
+   "n_shorts": 29,
+   "multiple": 5.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "krishna",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "krishna",
+    "by": "rules"
+   }
+  }
+ ],
+ "strong": [
+  {
+   "id": "oQd0WBN8wy8",
+   "url": "https://youtube.com/shorts/oQd0WBN8wy8",
+   "title": "केवट का अनोखा प्रेम देखकर भावुक हो गए प्रभु श्री राम 🙏❤️ | राम और केवट की कथा #ramayan",
+   "channel": "Factorial xyz",
+   "channelId": "UC_ySFz0XNyK1s16XGu4fxmg",
+   "published": "2026-11-23T07:07:30Z",
+   "ageDays": 2.9,
+   "seconds": 117,
+   "views": 2184777,
+   "likes": 101444,
+   "thumb": "https://i.ytimg.com/vi/oQd0WBN8wy8/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 1030000,
+   "median": 670523,
+   "n_shorts": 30,
+   "multiple": 3.3,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "3.3x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "katha",
+    "deity": "ram",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "ram",
+    "topic": "Ram and Kevat: the boatman's love",
+    "cover_style": "Ram and Sita on the riverbank with a boat, no text, blurred side frames",
+    "art_style": "cinematic",
+    "why": "Plain katha cover of a strong channel (2.2M views), no hook text; the 117 s story runs long",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "tDCQN2THWqw",
+   "url": "https://youtube.com/shorts/tDCQN2THWqw",
+   "title": "क्या श्री राम की भी एक सगी बड़ी बहन थीं? 😱 #facts",
+   "channel": "Priyansh Shukla",
+   "channelId": "UCdefYfRohqSQt6EI4DVC_9w",
+   "published": "2026-11-20T13:38:46Z",
+   "ageDays": 5.6,
+   "seconds": 171,
+   "views": 1230985,
+   "likes": 57020,
+   "thumb": "https://i.ytimg.com/vi/tDCQN2THWqw/hqdefault.jpg",
+   "query": "रामायण",
+   "subs": 2670000,
+   "median": 662724.5,
+   "n_shorts": 30,
+   "multiple": 1.9,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "1.9x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "facts",
+    "deity": "ram",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "facts",
+    "deity": "ram",
+    "topic": "Ram's elder sister? (claim)",
+    "cover_style": "crowned bearded king's hand on a girl's head, girl in red and gold lehenga, no text",
+    "art_style": "cinematic",
+    "why": "Question facts with a family image: 1.2M views but only 1.9x; the claim needs a text source before we use it",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "Ab_jz6bwKng",
+   "url": "https://youtube.com/shorts/Ab_jz6bwKng",
+   "title": "जब श्रीकृष्ण ने बर्बरीक से माँगा शीश दान | Kaalchakra Edits | #sanatandharma",
+   "channel": "Kaalchakra Edits",
+   "channelId": "UCJOWXEVBHgDggpvorXqaALg",
+   "published": "2026-11-20T03:30:39Z",
+   "ageDays": 6,
+   "seconds": 59,
+   "views": 1109250,
+   "likes": 28673,
+   "thumb": "https://i.ytimg.com/vi/Ab_jz6bwKng/hqdefault.jpg",
+   "query": "महाभारत",
+   "subs": 57700,
+   "median": 264875,
+   "n_shorts": 29,
+   "multiple": 4.2,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "4.2x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "other",
+    "deity": "khatu",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "katha",
+    "deity": "khatu",
+    "topic": "Krishna asks Barbarik for his head",
+    "cover_style": "close-up Khatu Shyam murti face (orange turban), Hindi caption band at bottom, dark side frames",
+    "art_style": "murti-darshan",
+    "why": "jab-hook on a murti face; for us Khatu Shyam is sheesh-only, so this full-face cover is not ours to copy",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  }
+ ],
+ "near": [
+  {
+   "id": "PCJROX39-h8",
+   "url": "https://youtube.com/shorts/PCJROX39-h8",
+   "title": "Ramayan Main Ye Wali Baat Nahi Hai Ft. ADIPURUSH!",
+   "channel": "Vishaaal",
+   "views": 729781,
+   "multiple": 219.3,
+   "why_not": []
+  },
+  {
+   "id": "YV-5Vw9PxbM",
+   "url": "https://youtube.com/shorts/YV-5Vw9PxbM",
+   "title": "Ramayana Honest Public Review 🔥 Top 5 Audience Reactions | जनता ने क्या कहा ? #shorts",
+   "channel": "Dewana_ Moviewala",
+   "views": 485087,
+   "multiple": 15.5,
+   "why_not": []
+  },
+  {
+   "id": "aVb-QgqfuTs",
+   "url": "https://youtube.com/shorts/aVb-QgqfuTs",
+   "title": "Rama and Ravana battle | Greatest Ramayan war movements #ramayan #ravan #ram #lordrama #kingrama",
+   "channel": "UncleJi Namaste",
+   "views": 334403,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "T98iOS2jlEk",
+   "url": "https://youtube.com/shorts/T98iOS2jlEk",
+   "title": "दीन दयाल बिरिदु संभारी, हरहु नाथ मम संकट भारी 🙏 | श्री राम स्तुति | राम भक्ति | जय श्री राम 🚩🙏",
+   "channel": "JK Creation",
+   "views": 327552,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "rZrcIMJxoro",
+   "url": "https://youtube.com/shorts/rZrcIMJxoro",
+   "title": "Maa Sita ka pta lagane lanka me Hanuman | Ramayan muvi",
+   "channel": "Haribhakt Gatha",
+   "views": 326085,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "UKtI2OcHZsc",
+   "url": "https://youtube.com/shorts/UKtI2OcHZsc",
+   "title": "Mahabharata started with a Fisherman| Mythology Explained",
+   "channel": "The Sacred Thread",
+   "views": 289513,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "c6BN6D3PQ8M",
+   "url": "https://youtube.com/shorts/c6BN6D3PQ8M",
+   "title": "सच्चा वैरागी वोह है जोह प्रेम से नहीं डरता #geeta #krishna #mahabharat #geetagyan",
+   "channel": "DEEPU HINWAR",
+   "views": 287780,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "mCoHI4n7DC8",
+   "url": "https://youtube.com/shorts/mCoHI4n7DC8",
+   "title": "1988 Mahabharat Bheem Evolution | Praveen Kumar Soban Se Lekar Aaj Tak Ka Badalta Roop 😱🔥",
+   "channel": "Star icon By Vikash",
+   "views": 285409,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  }
+ ],
+ "reuploads": [
+  {
+   "id": "058qxhtTy3g",
+   "url": "https://youtube.com/shorts/058qxhtTy3g",
+   "title": "रामायण मूवी का ये सिन💖😂😂😂#viral #trending #ramayan #movie #subscribe",
+   "channel": "Anchala_ki _duniya",
+   "views": 739641,
+   "signals": [
+    "tiny channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "diqun6lr6hE",
+   "url": "https://youtube.com/shorts/diqun6lr6hE",
+   "title": "क्या रावण आ गया 🤔🚩 #shorts #ramayan #hanumanji #hunumankripa05",
+   "channel": "Hunuman Kripa 05",
+   "views": 724732,
+   "signals": [
+    "views far beyond subscribers",
+    "new channel"
+   ]
+  },
+  {
+   "id": "ofV4hdM5g14",
+   "url": "https://youtube.com/shorts/ofV4hdM5g14",
+   "title": "No one can escape fate. #fyp #explore #ramayan #ytshorts #mahabharat #lifelessons",
+   "channel": "Narrative Toons",
+   "views": 531480,
+   "signals": [
+    "views far beyond subscribers",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "4qNx9sNn5CI",
+   "url": "https://youtube.com/shorts/4qNx9sNn5CI",
+   "title": "कृष्ण ने कर्ण को धोखे से क्यूँ मारा?😱 #akshatgupta #shorts #mahabharat",
+   "channel": "Hindu108",
+   "views": 530912,
+   "signals": [
+    "views far beyond subscribers",
+    "new channel"
+   ]
+  },
+  {
+   "id": "ni4mtjKwvJM",
+   "url": "https://youtube.com/shorts/ni4mtjKwvJM",
+   "title": "😱 पर्वत जैसे कुंभकर्ण का वध कैसे हुआ? #shorts #shortvideo #viral #viralvideo #trending",
+   "channel": "Bhakti Ka Sansar1922",
+   "views": 445358,
+   "signals": [
+    "views far beyond subscribers",
+    "random topics",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "k2OF5aA6HPw",
+   "url": "https://youtube.com/shorts/k2OF5aA6HPw",
+   "title": "7 Boons That Changed the Mahabharata #shorts",
+   "channel": "Lore Wala",
+   "views": 438088,
+   "signals": [
+    "views far beyond subscribers",
+    "random topics"
+   ]
+  },
+  {
+   "id": "tklhyxMkMrc",
+   "url": "https://youtube.com/shorts/tklhyxMkMrc",
+   "title": "The 7 Most Dangerous Curses in Mahabharata 😱 #mahabharata #shorts",
+   "channel": "Lore Wala",
+   "views": 372601,
+   "signals": [
+    "views far beyond subscribers",
+    "random topics"
+   ]
+  },
+  {
+   "id": "pDU6PPznMQ0",
+   "url": "https://youtube.com/shorts/pDU6PPznMQ0",
+   "title": "महाभारत विराट युद्ध 🔥🔥 #mahabharat#krishna #mahabharata #bhagavadgita #geetagyan #Mahabharat#Virat",
+   "channel": "(MAHABHARAT STORY )",
+   "views": 233367,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "dgJd5E4EcmE",
+   "url": "https://youtube.com/shorts/dgJd5E4EcmE",
+   "title": "अगर रामायण में श्री कृष्ण होते तो क्या होता? 😱🔥 | Ramayana Meets Krishna #shorts",
+   "channel": " YUGAANTRA ॐ",
+   "views": 221805,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "u6ccN_tQH0I",
+   "url": "https://youtube.com/shorts/u6ccN_tQH0I",
+   "title": "कर्ण की चिता को धरती पर जगह क्यों नहीं मिली? | महाभारत",
+   "channel": "YugDarshanKathayein",
+   "views": 190628,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "8f2l8Op0g_w",
+   "url": "https://youtube.com/shorts/8f2l8Op0g_w",
+   "title": "अगर महाभारत में श्रीराम होते तो क्या होता? 🚩🔥 | Ram in Mahabharat #shorts",
+   "channel": " YUGAANTRA ॐ",
+   "views": 168108,
+   "signals": [
+    "tiny channel",
+    "new channel"
+   ]
+  },
+  {
+   "id": "GqPAX82b4Nk",
+   "url": "https://youtube.com/shorts/GqPAX82b4Nk",
+   "title": "Why isn't anyone saying how handsome Ravi Dubey looks as Lakshman? 🫣❤️ #ramayana #ramayan #lakshman",
+   "channel": "Hullor Diaries",
+   "views": 736173,
+   "signals": [
+    "views far beyond subscribers",
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "ilSQ_c9BjNQ",
+   "url": "https://youtube.com/shorts/ilSQ_c9BjNQ",
+   "title": "महाभारत: भीम ने कैसे किया हिडिम्बासुर का वध? 🔥 | Bhim vs Hidimbasur #shorts",
+   "channel": "Mahabharat.Moments",
+   "views": 452938,
+   "signals": [
+    "views far beyond subscribers",
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "ckUMr9TbolQ",
+   "url": "https://youtube.com/shorts/ckUMr9TbolQ",
+   "title": "ADIPURUSH vs RAMAYAN | Which Ravan is Better Part 2",
+   "channel": "Harsh Bajpai",
+   "views": 4975271,
+   "signals": [
+    "views far beyond subscribers",
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "7WUcZXX2OqE",
+   "url": "https://youtube.com/shorts/7WUcZXX2OqE",
+   "title": "महाभारत: ब्राह्मण बनकर पांडवों को अगवा करने आया जटासुर! 😱 | भीम ने किया वध #shorts #mahabharat",
+   "channel": "Mahabharat.Moments",
+   "views": 181135,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "c27aUZHAEk8",
+   "url": "https://youtube.com/shorts/c27aUZHAEk8",
+   "title": "🙏रावण भी नहीं हिला पाया कैलाश पर्वत  रामायण शूटिंग  BTS #ramayanbts #Behindscene",
+   "channel": "Pawan official UP 43",
+   "views": 2040514,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "HhG10Fzev94",
+   "url": "https://youtube.com/shorts/HhG10Fzev94",
+   "title": "ADIPURUSH vs RAMAYAN | Who Got Worst VFX",
+   "channel": "Harsh Bajpai",
+   "views": 1327829,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "pNAgWFGtalg",
+   "url": "https://youtube.com/shorts/pNAgWFGtalg",
+   "title": "ADIPURUSH vs RAMAYAN | Who had Real JATAYU",
+   "channel": "Harsh Bajpai",
+   "views": 1129713,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "-q01pYAyCbQ",
+   "url": "https://youtube.com/shorts/-q01pYAyCbQ",
+   "title": "महाभारत युद्ध के बाद क्या हुआ? | माता गांधारी का श्रीकृष्ण को श्राप  | Krishna Gandhari Samvad",
+   "channel": "Shree Ram",
+   "views": 475060,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "rn7swOvgd78",
+   "url": "https://youtube.com/shorts/rn7swOvgd78",
+   "title": "क्यों युधिष्ठिर जी भोजन को लेकर चिंतित हुए 😱😱😱#mahabharat #krishna #arjun #karna #bhishma #duryodhan",
+   "channel": "Ram editor 07",
+   "views": 514671,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  }
+ ],
+ "ideas_added": [
+  "facts:radar-pandav-devta-ansh",
+  "facts:radar-janki-kund-rahasya",
+  "facts:radar-jatasur-chhal",
+  "kailash:radar-mushak-ghamand",
+  "pov:radar-smaran-samay"
+ ],
+ "analysis_problems": []
+}

@@ -5390,6 +5390,89 @@
     "added": "2026-11-25"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-pandav-devta-ansh",
+   "p": 2,
+   "deity": "mahabharat",
+   "name": "Pandavon ka devta-vansh",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Pandav kis devta ke ansh the?",
+   "hook_hi": "पांडव किस-किस देवता के अंश थे?",
+   "angle": "Adi Parva, Sambhava Parva: Yudhishthir born of Dharma, Bheem of Vayu, Arjun of Indra, the twins of the Ashvins, through Kunti's mantra; Draupadi's birth told separately. Show each devta as a labelled portrait with a connector line, one name a shot. Only what the text says, no science claims.",
+   "cite": {
+    "work": "TODO: verify (likely Mahabharat, Adi Parva, Sambhava Parva: Pandavon ka janm)",
+    "ref": "TODO: verify (Kunti's mantra and the Pandava births, Ganguli adhyay)"
+   },
+   "sources": [],
+   "keywords": [
+    "pandav janm",
+    "kunti mantra"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-26",
+    "refs": [
+     "https://youtube.com/shorts/lTgQXbz-ur8"
+    ],
+    "added": "2026-11-26"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-janki-kund-rahasya",
+   "p": 2,
+   "deity": "ram",
+   "name": "Janki Kund, Chitrakoot",
+   "playlist": "Prasiddh Mandir",
+   "label": "tradition",
+   "hook": "Chitrakoot ke Janki Kund ka rahasya",
+   "hook_hi": "चित्रकूट में जानकी कुंड का रहस्य",
+   "angle": "Chitrakoot sthal-katha: Ram, Sita and Lakshman's stay on the Mandakini, and the Janki Kund: the folk belief (manyata) of Sita's bath and the footprints on the rock. Say 'manyata hai' / 'lok katha ke anusar'. Visuals: the kund at dusk, flowing water, the shrine. No miracle or health claims.",
+   "cite": {
+    "work": "TODO: verify (likely Lok katha, Janki Kund sthal-katha, Chitrakoot; Valmiki Ramayan Ayodhya Kand for the Chitrakoot stay)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "janki kund",
+    "chitrakoot"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-26",
+    "refs": [
+     "https://youtube.com/shorts/th84EquCkQQ"
+    ],
+    "added": "2026-11-26"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-jatasur-chhal",
+   "p": 2,
+   "deity": "mahabharat",
+   "name": "Jatasur aur Pandav",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Jatasur ka chhal kya tha?",
+   "hook_hi": "जटासुर का छल क्या था?",
+   "angle": "Vana Parva (Jatasura-vadha): the asur comes to the Pandavas' forest hut as a Brahmin and plans to carry them and Draupadi off at night; Bheem stops him. Tell the disguise and the answer in calm words, one line on the fight, no gore on screen. Check the Ganguli text for who was taken.",
+   "cite": {
+    "work": "TODO: verify (likely Mahabharat, Vana Parva, Jatasura-vadha)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "jatasur bheem"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-26",
+    "refs": [
+     "https://youtube.com/shorts/7WUcZXX2OqE"
+    ],
+    "added": "2026-11-26"
+   },
+   "status": "idea"
   }
  ]
 }
