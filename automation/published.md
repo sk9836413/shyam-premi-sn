@@ -258,3 +258,4 @@
 - 2026-11-26-morning-guruvar-vishnu | instagram: https://www.instagram.com/reel/DgMKzSGPW6C/
 - 2026-11-26-kailash-sankashti-mushak-chand | instagram: https://www.instagram.com/reel/DgMK8TlsWj7/
 - 2026-11-26-owner-baba-ka-darbar | instagram: https://www.instagram.com/reel/DgMLBp4BFR3/
+- 2026-11-26-evening-ramdevra-baba-ramdev-darshan | claim: 2026-11-26 evening by run 45760137514.1 at 2026-11-26T06:24:40.383Z
