@@ -262,3 +262,4 @@
 - 2026-11-26-evening-ramdevra-baba-ramdev-darshan | youtube: https://youtube.com/shorts/XNEmxr106Lw (public at 2026-11-26T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/996278569796098 (scheduled 2026-11-26T15:00:00.000Z) | ig: pending 2026-11-26T13:30:00.000Z | animated 4/4
 - 2026-11-27-status-sankashti-chaturthi | claim: 2026-11-27 status by run 45760137514.1 at 2026-11-26T07:06:52.708Z
 - 2026-11-27-status-sankashti-chaturthi | youtube: https://youtube.com/shorts/GvQNViev98Q (public at 2026-11-26T19:00:00.000Z) | status variant, made 26 Nov 12:37 IST | social: fb: https://www.facebook.com/reel/1703231651507811 (scheduled 2026-11-26T19:00:00.000Z) | ig: pending 2026-11-26T19:00:00.000Z
+- 2026-11-27-status-sankashti-chaturthi-trial | instagram trial reel (SS_PERFORMANCE) of 2026-11-27-status-sankashti-chaturthi, made 26 Nov 12:38 IST | social: fb: skipped (not in the Facebook plan) | ig: pending 2026-11-27T03:30:00.000Z
