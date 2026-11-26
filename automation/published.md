@@ -269,3 +269,4 @@
 - 2026-11-27-owner-jyot-aur-darshan | youtube: https://youtube.com/shorts/shtRX0gAKco (public at 2026-11-27T01:45:00.000Z) | owner-footage Short (clip 07, real footage), made 26 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/1698315268344064 (scheduled 2026-11-27T06:30:00.000Z) | ig: pending 2026-11-27T01:45:00.000Z
 - 2026-11-26-facts-ramayan-01-krauncha-shlok | instagram: https://www.instagram.com/reel/DgNMUYzBQfW/
 - 2026-11-26-evening-ramdevra-baba-ramdev-darshan | instagram: https://www.instagram.com/reel/DgNN4TJTKrO/
+- 2026-11-27-facts-ramayan-02-hanuman-naam | skipped: pronunciation gate (names not heard right: scene 7 श्याम->शाम) 26 Nov 19:19 IST
