@@ -1,0 +1,69 @@
+{
+  "slug": "2026-11-26-evening-ramdevra-baba-ramdev-darshan",
+  "title": "Baba Ramdev ji Ramdevra Darshan",
+  "kicker": "Ramdevra · Jaisalmer",
+  "playlist": "Mandir Itihas",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "temple": "ramdevra",
+  "hook": "Baba Ramdev ji: Ramsa Pir kyun?",
+  "cover": "बाबा रामदेव जी",
+  "scenes": [
+    {
+      "prompt": "Close-up darshan of a Baba Ramdev ji murti: a serene kind face with a mustache, a saffron turban with a gold border, a white and saffron robe, marigold garlands around the shoulders, a small brass diya in front, a quiet temple sanctum, warm golden glow, face in the middle of the frame",
+      "tts": "बाबा रामदेव जी को रामसा पीर क्यों कहते हैं?",
+      "sub": "Baba Ramdev ji ko Ramsa Pir kyun kehte hain?",
+      "motion": "in",
+      "deity": true,
+      "hero": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly, the golden glow gently pulses",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "A peaceful Rajasthan desert village temple with a white and saffron shikhar, saffron flags fluttering, golden sand dunes around, morning light, a few devotees walking, wide view, no text",
+      "tts": "रामदेवरा, जैसलमेर ज़िले का प्रसिद्ध धाम।",
+      "sub": "Ramdevra, Jaisalmer zile ka prasiddh dham.",
+      "motion": "out",
+      "real": true,
+      "animate": "saffron flags flutter gently, soft dust drifts over the sand, warm light shifts slowly",
+      "video": "clips/1.mp4"
+    },
+    {
+      "prompt": "Darshan of the Baba Ramdev ji murti in a sanctum, saffron turban, white robe, marigold and rose garlands, a row of brass diyas glowing in front, slightly wider view, warm golden light, a few petals resting at the base",
+      "tts": "मान्यता है, हिंदू-मुसलमान, दोनों उन्हें पूजते हैं।",
+      "sub": "Manyata hai, Hindu-Musalman, dono unhe poojte hain.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, many diya flames flicker softly, a few marigold petals drift in the background",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "Close-up of a pair of small carved footprint charan symbols on a marble platform, marigold petals and a brass diya beside them, soft warm temple light, shallow depth of field, no text",
+      "tts": "भक्त चरण चिह्नों के आगे दीया जलाते हैं।",
+      "sub": "Bhakt charan chinhon ke aage diya jalate hain.",
+      "motion": "pan",
+      "animate": "the diya flame flickers softly, a few marigold petals sway gently in the warm air",
+      "video": "clips/3.mp4"
+    },
+    {
+      "endcard": true,
+      "tts": "जय बाबा रामदेव जी! अच्छा लगे तो लाइक, शेयर और सब्सक्राइब करें। जय बाबा रामदेव!",
+      "sub": "Jai Baba Ramdev ji! Achha lage to Like, Share aur Subscribe karein. Jai Baba Ramdev!"
+    }
+  ],
+  "youtube_title": "Baba Ramdev ji Ramdevra Darshan | बाबा रामदेव जी रामदेवरा दर्शन #Shorts",
+  "youtube_description": "Baba Ramdev ji ke darshan, Ramdevra (Jaisalmer, Rajasthan). Manyata hai ki Hindu aur Musalman dono unhe Ramsa Pir ke roop mein shraddha se poojte hain.\nबाबा रामदेव जी, रामदेवरा, जैसलमेर के दर्शन 🙏\nJai Baba Ramdev ji\nChitra AI dwara banaye gaye hain (sanketik).\nJai Shree Shyam 🙏\nVideo achha lage to Like, Share aur Subscribe karein.\n#BabaRamdev #Ramdevra #Rajasthan #JaiBabaRi",
+  "youtube_tags": "Baba Ramdev ji, बाबा रामदेव जी, Ramdevra, रामदेवरा, Ramdevra darshan, रामदेवरा दर्शन, Ramsa Pir, रामसा पीर, Ramdevra Jaisalmer, रामदेवरा जैसलमेर, Baba Ramdev temple, बाबा रामदेव मंदिर",
+  "instagram_caption": "Baba Ramdev ji ko Ramsa Pir kyun kehte hain? 🙏\nRamdevra (Jaisalmer) mein Baba ke darshan; manyata hai ki sabhi dharm ke log shraddha se aate hain.\nChitra AI dwara banaye gaye hain (sanketik).\nVideo achha lage to Like, Share aur Follow karein.\n#BabaRamdev #Ramdevra #Rajasthan #Jaisalmer #Bhakti",
+  "facebook_caption": "जय बाबा रामदेव जी 🙏 क्या आपने कभी रामदेवरा में बाबा रामदेव जी के दर्शन किए हैं?\nजैसलमेर ज़िले के रामदेवरा धाम के दर्शन।\nChitra AI dwara banaye gaye hain (sanketik).\n#BabaRamdev #Ramdevra #Bhakti",
+  "music": {
+    "id": "cc-shruti-swarmandal",
+    "mood": "calm",
+    "title": "Shruti box and swarmandal",
+    "licence": "original arrangement of CC0 / public-domain-dedicated recordings (Shyam Premi SN, music/build-library.mjs)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}
