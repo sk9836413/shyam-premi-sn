@@ -1,0 +1,67 @@
+{
+  "slug": "2026-11-27-morning-trinetra-ganesh-ranthambore",
+  "title": "Trinetra Ganesh Darshan",
+  "kicker": "Sankashti Chaturthi",
+  "playlist": "Ganesh ji ki Kathayein",
+  "voice": "hm_omega",
+  "signoff": "Jai Shree Shyam",
+  "style": "3D animated devotional movie style, Pixar quality, soft cinematic lighting, rich warm colours, no text, no letters, no writing",
+  "hook": "Trinetra Ganesh ji ko pehla card kyun?",
+  "cover": "त्रिनेत्र गणेश दर्शन",
+  "temple": "trinetra-ganesh",
+  "scenes": [
+    {
+      "prompt": "Close-up of a vermilion-orange swayambhu Lord Ganesh murti with three eyes, the third eye on the forehead, elephant face, large ears, tilak, marigold garland, brass diyas glowing in front, inside a stone fort temple, front-facing, serene",
+      "tts": "त्रिनेत्र गणेश जी, रणथंभौर! पहला न्योता इन्हीं को क्यों जाता है?",
+      "sub": "Trinetra Ganesh ji, Ranthambore! Pehla nyota inhi ko kyun jaata hai?",
+      "mood": "wonder",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the face stays still and serene, the diya flames flicker softly, a few marigold petals drift in the foreground",
+      "video": "clips/0.mp4"
+    },
+    {
+      "prompt": "Ancient Ranthambore fort on a rocky hill in Rajasthan at golden sunrise, sandstone ramparts and gateways, a stone path climbing up to the Ganesh temple",
+      "tts": "यह मंदिर राजस्थान के सवाई माधोपुर में, रणथंभौर किले के भीतर है।",
+      "sub": "Yeh mandir Rajasthan ke Sawai Madhopur mein, Ranthambore qile ke andar hai.",
+      "motion": "pan",
+      "real": true
+    },
+    {
+      "prompt": "Lord Ganesh with three eyes seated with Riddhi and Siddhi, and his two sons Shubh and Labh beside him, orange-vermilion murtis in a stone temple, marigold garlands, warm diya light, close-up, serene",
+      "tts": "तीसरी आँख वाले गणेश जी, साथ में रिद्धि-सिद्धि और शुभ-लाभ।",
+      "sub": "Teesri aankh wale Ganesh ji, saath mein Riddhi-Siddhi aur Shubh-Labh.",
+      "motion": "in",
+      "deity": true,
+      "animate": "a very slow gentle camera push-in, the faces stay still and serene, the diya flames flicker softly, incense smoke rises slowly",
+      "video": "clips/2.mp4"
+    },
+    {
+      "prompt": "A family hands a red wedding invitation card with a ribbon to a temple priest in front of a Ganesh temple inside an old fort, warm morning light, marigold garlands",
+      "tts": "मान्यता है, राजा हम्मीर को सपना आया। शादी का पहला कार्ड यहीं भेजते हैं।",
+      "sub": "Manyata hai, Raja Hammir ko sapna aaya. Shaadi ka pehla card yahin bhejte hain.",
+      "mood": "emotional",
+      "motion": "out"
+    },
+    {
+      "endcard": true,
+      "tts": "ॐ गं गणपतये नमः। पसंद आए तो लाइक, शेयर और सब्सक्राइब करें। जय त्रिनेत्र गणेश!",
+      "sub": "Om Gam Ganapataye Namah. Pasand aaye to Like, Share aur Subscribe karein. Jai Trinetra Ganesh!",
+      "motion": "out"
+    }
+  ],
+  "youtube_title": "Trinetra Ganesh Darshan, Ranthambore | त्रिनेत्र गणेश दर्शन #Shorts",
+  "youtube_description": "Sankashti Chaturthi par Trinetra Ganesh Mandir, Ranthambore fort (Sawai Madhopur, Rajasthan) ke darshan. Teen netra wale Ganesh ji, Riddhi-Siddhi aur Shubh-Labh ke saath. Raja Hammir ke sapne ki baat manyata hai.\nत्रिनेत्र गणेश जी, रणथंभौर किला, सवाई माधोपुर: संकष्टी चतुर्थी दर्शन।\nॐ गं गणपतये नमः\nJai Shree Shyam 🙏\nDarshan achha laga ho to like, share aur Shyam Premi SN ko subscribe karein.\n#TrinetraGanesh #Ranthambore #SankashtiChaturthi #Ganesh",
+  "youtube_tags": "Trinetra Ganesh, त्रिनेत्र गणेश, Trinetra Ganesh Mandir Ranthambore, त्रिनेत्र गणेश मंदिर रणथंभौर, Ranthambore Ganesh ji, Sankashti Chaturthi, संकष्टी चतुर्थी, Ganesh ji darshan, गणेश जी दर्शन, Sawai Madhopur, Ganesh Mandir, Ganpati Bappa",
+  "instagram_caption": "Trinetra Ganesh ji, Ranthambore: shaadi ka pehla card yahin 🙏\nSankashti Chaturthi par teen netra wale Ganesh ji ke darshan. Om Gam Ganapataye Namah.\nDarshan achha laga ho to like, share aur follow karein.\n#TrinetraGanesh #Ranthambore #SankashtiChaturthi #GaneshJi #GanpatiBappa",
+  "facebook_caption": "गणपति बप्पा मोरया 🙏 क्या आपने कभी रणथंभौर के त्रिनेत्र गणेश जी के दर्शन किए हैं?\nसवाई माधोपुर, रणथंभौर किले में तीन नेत्रों वाले गणेश जी, रिद्धि-सिद्धि और शुभ-लाभ के साथ (मान्यता)।\n#TrinetraGanesh #Ganesh #SankashtiChaturthi",
+  "music": {
+    "id": "cc-guitar-raga-impro",
+    "mood": "calm",
+    "title": "Indian-style guitar improvisation",
+    "licence": "CC0 1.0 (excerpt, loudness-normalised; Freesound)",
+    "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution": null,
+    "reused": false
+  }
+}

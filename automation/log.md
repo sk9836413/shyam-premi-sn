@@ -121,3 +121,4 @@
 2026-11-27 | status | 2026-11-27-status-sankashti-chaturthi | Ganadhipa Sankashti Chaturthi | status Short variant 1 "Sankashti Chaturthi Status 2026 🙏" (12-20 s loop, download link), public 00:30 IST
 2026-11-27 | pov | 2026-11-27-pov-maa-ka-phone | Shri Krishna | Shri Krishna kehte hain: mobile bhi chalao, par maa-baba ka phone pehli ghanti par uthao; unke liye roz thoda samay
 2026-11-27 | owner | 2026-11-27-owner-jyot-aur-darshan | Khatu Shyam ji (owner's own footage) | owner-footage Short, clip 07 "Shyam Baba Jyot Aur Darshan", real footage + music cc-sitar-room-harmonium (YouTube synthetic false, Meta AI label false), public 2026-11-27T07:15 IST
+2026-11-27 | morning | 2026-11-27-morning-trinetra-ganesh-ranthambore | Trinetra Ganesh, Ranthambore (Mandir series, Ganesh ji, Sankashti) | Trinetra Ganesh darshan: Ranthambore fort, Sawai Madhopur, teen netra, Riddhi-Siddhi + Shubh-Labh, pehla shaadi card (manyata, Raja Hammir ka sapna); nothing about timings

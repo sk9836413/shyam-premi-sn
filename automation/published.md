@@ -275,3 +275,4 @@
 - 2026-11-27-pov-maa-ka-phone | instagram: https://www.instagram.com/reel/DgOvnAJOHD9/
 - 2026-11-27-owner-jyot-aur-darshan | instagram: https://www.instagram.com/reel/DgOvsM6hvip/
 - 2026-11-27-morning-trinetra-ganesh-ranthambore | claim: 2026-11-27 morning by run 45935827399.1 at 2026-11-27T04:21:53.427Z
+- 2026-11-27-morning-trinetra-ganesh-ranthambore | youtube: https://youtube.com/shorts/5YsbsPw1yZY | social: fb: https://www.facebook.com/reel/2946291799079029 (scheduled 2026-11-27T05:00:00.000Z) | ig: https://www.instagram.com/reel/DgOz7sZPGC0/ | animated 2/4
