@@ -14,6 +14,23 @@
         "at": "2026-11-27T03:44:06.286Z"
       },
       "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-27-morning.jpg"
+    },
+    {
+      "key": "video",
+      "type": "video",
+      "source": "2026-11-27-status-sankashti-chaturthi",
+      "fb": {
+        "claim": {
+          "run": "45941607775.1",
+          "at": "2026-11-27T04:44:07.112Z"
+        }
+      },
+      "ig": {
+        "claim": {
+          "run": "45941607775.1",
+          "at": "2026-11-27T04:44:07.112Z"
+        }
+      }
     }
   ]
 }
