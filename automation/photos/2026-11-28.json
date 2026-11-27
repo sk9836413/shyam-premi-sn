@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-28",
+  "posts": [
+    {
+      "n": 1,
+      "kind": "darshan",
+      "temple": "bade-hanuman-prayagraj",
+      "ai": false,
+      "bank": null,
+      "photos": [
+        "footage/bade-hanuman-prayagraj/commons-lete-hanuman-ji-mandir-ccdcf1.jpg"
+      ],
+      "source": "claude",
+      "fbAt": "2026-11-28T01:00:00.000Z",
+      "igAt": "2026-11-28T03:43:00.000Z",
+      "images": [
+        "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-28-1-1.jpg"
+      ],
+      "caption": "सुप्रभात 🙏 Shanivar ki shuruaat Bade (Lete) Hanuman ji ke darshan se.\nप्रयागराज के संगम किनारे विराजे हनुमान जी को प्रणाम।\nManyata hai ki yahan Hanuman ji lete hue roop mein virajman hain.\nJai Bajrangbali, aapka din mangalmay ho.\nAap Hanuman ji ke mandir kab gaye the, aur kaunsa mandir aapko sabse priya hai?\n\n📷 Photo: Dsrprj, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Lete_Hanuman_Ji_Mandir.jpg\n\n#HanumanJi #JaiBajrangbali #BadeHanuman #LeteHanuman #Prayagraj",
+      "fbCaption": "सुप्रभात 🙏 जय बजरंग बली। क्या आपने कभी प्रयागराज के बड़े हनुमान जी के दर्शन किए हैं?\nशनिवार को संकटमोचन हनुमान जी का स्मरण मन को शांति देता है।\nमान्यता है कि यहाँ हनुमान जी लेटे हुए रूप में विराजमान हैं।\n\n📷 Photo: Dsrprj, CC0, via Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Lete_Hanuman_Ji_Mandir.jpg\n\n#Hanuman #JaiBajrangbali #Prayagraj",
+      "fbSource": "claude",
+      "fb": {
+        "id": "1621148683361429",
+        "scheduled": "2026-11-28T01:00:00.000Z"
+      },
+      "ig": {
+        "pending": "2026-11-28T03:43:00.000Z"
+      }
+    }
+  ],
+  "neurons": 0
+}

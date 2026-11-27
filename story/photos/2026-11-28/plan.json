@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-28",
+  "weekday": "Shanivar",
+  "festival": null,
+  "posts": [
+    {
+      "n": 1,
+      "fbAt": "2026-11-28T01:00:00.000Z",
+      "igAt": "2026-11-28T03:43:00.000Z",
+      "kind": "darshan",
+      "temple": "bade-hanuman-prayagraj",
+      "templeName": "Bade (Lete) Hanuman, Prayagraj",
+      "category": "hanuman",
+      "photos": [
+        {
+          "file": "footage/bade-hanuman-prayagraj/commons-lete-hanuman-ji-mandir-ccdcf1.jpg",
+          "credit": "Photo: Dsrprj, CC0, via Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Lete_Hanuman_Ji_Mandir.jpg",
+          "licence": "CC0",
+          "author": "Dsrprj",
+          "title": "File:Lete Hanuman Ji Mandir.jpg"
+        }
+      ],
+      "write": [
+        "big",
+        "line",
+        "place",
+        "text",
+        "caption",
+        "hashtags",
+        "fb_caption"
+      ]
+    }
+  ]
+}
