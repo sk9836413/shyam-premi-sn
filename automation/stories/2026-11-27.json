@@ -6,17 +6,14 @@
       "type": "image",
       "source": "https://shyam-premi-media.sk9836413.workers.dev/m/photo-2026-11-27-1-1.jpg",
       "fb": {
-        "claim": {
-          "run": "45935827399.1",
-          "at": "2026-11-27T03:43:48.715Z"
-        }
+        "id": "2373436460110859",
+        "at": "2026-11-27T03:43:58.427Z"
       },
       "ig": {
-        "claim": {
-          "run": "45935827399.1",
-          "at": "2026-11-27T03:43:48.715Z"
-        }
-      }
+        "id": "18177035374458101",
+        "at": "2026-11-27T03:44:06.286Z"
+      },
+      "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-27-morning.jpg"
     }
   ]
 }
