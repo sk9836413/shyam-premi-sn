@@ -281,3 +281,4 @@
 - 2026-11-28-morning-shanivar-shani-dev | claim: 2026-11-28 morning by run 45944477305.1 at 2026-11-27T07:08:30.571Z
 - 2026-11-28-morning-shanivar-shani-dev | youtube: https://youtube.com/shorts/vg5KPnJxx9A (public at 2026-11-28T00:30:00.000Z) | status variant, made 27 Nov 12:38 IST | social: fb: https://www.facebook.com/reel/1146191764462685 (scheduled 2026-11-28T00:30:00.000Z) | ig: pending 2026-11-28T00:30:00.000Z
 - 2026-11-28-kailash-parvati-tapasya | claim: 2026-11-28 kailash by run 45944477305.1 at 2026-11-27T07:43:50.664Z
+- 2026-11-28-kailash-parvati-tapasya | youtube: https://youtube.com/shorts/MQ6L2djxrv8 (public at 2026-11-28T02:30:00.000Z) | Kailash Parivar (full, realistic, 73.63 s, clips 2, lip-sync 4/7, 43.2 GPU min), made 27 Nov 13:14 IST | social: fb: https://www.facebook.com/reel/2896548764193885 (scheduled 2026-11-28T02:30:00.000Z) | ig: pending 2026-11-28T02:30:00.000Z

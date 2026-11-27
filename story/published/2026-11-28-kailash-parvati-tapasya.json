@@ -1,0 +1,206 @@
+{
+  "format": "kailash",
+  "series": "kailash-parivar",
+  "series_title": "Kailash Parivar",
+  "episode_id": "parvati-tapasya",
+  "slug": "2026-11-28-kailash-parvati-tapasya",
+  "release": "2026-11-28",
+  "publish_at": "08:00",
+  "variant": "full",
+  "style": "realistic",
+  "lead": "parvati",
+  "deity": "Parvati Mahadev Ganesh",
+  "topic": "Ganesh ji haar maan rahe the; Mata Parvati ne apni tapasya ki katha sunayi",
+  "story_type": "scripture",
+  "summary": "Kailash Parivar: Ganesh ji ka barf ka mandir baar-baar girta hai; Mata Parvati apni tapasya ki katha sunati hain aur Mahadev lagan ka mol batate hain",
+  "moral": "Lagan se har mushkil aasaan",
+  "title": "Maa ki tapasya",
+  "title_dev": "माँ की तपस्या",
+  "cover": "माँ की तपस्या",
+  "source": "Shiva Purana, Rudra Samhita, Parvati Khanda: Mata Parvati ki kathor tapasya; Saptarishiyon aur brahmachari roop mein Mahadev ki pariksha, jisme Parvati ji adig rahin, phir Mahadev ne apna asli roop dikhaya. Ganesh ji ka barf ka mandir is episode ki kalpana hai.",
+  "facts": [
+    {
+      "claim": "Shiva Purana (Rudra Samhita, Parvati Khanda) mein Parvati ji ki kathor tapasya; Mahadev ne pehle Saptarishiyon ko bhejkar unka sankalp parkha",
+      "sources": [
+        "https://www.boloji.com/articles/53542/shiva-purana-rudra-samhita-parvati--18",
+        "https://www.greenmesg.org/bharatavarsha/scriptures/puranas/shiva_purana/parvati_khanda/penance_of_devi_parvati.php"
+      ]
+    },
+    {
+      "claim": "Mahadev ne brahmachari ke roop mein aakar Parvati ji ki pariksha li, wo adig rahin, aur ant mein Mahadev ne apna asli roop dikhaya",
+      "sources": [
+        "https://www.greenmesg.org/bharatavarsha/scriptures/puranas/shiva_purana/parvati_khanda/penance_of_devi_parvati.php",
+        "https://de.wisdomlib.org/hinduism/book/shiva-purana-english/d/doc226089.html"
+      ]
+    }
+  ],
+  "music": "calm",
+  "cast": [
+    "parvati",
+    "ganesh",
+    "mahadev"
+  ],
+  "names": [
+    "पार्वती",
+    "महादेव",
+    "गणेश",
+    "गजानन"
+  ],
+  "scenes": [
+    {
+      "prompt": "Little Bal Ganesh sits sadly in the snow on Kailash beside a small collapsed heap of snow bricks, his head low, Mata Parvati bends lovingly toward him and Mahadev watches with a kind calm smile, soft blue dawn light with golden rim light, medium wide shot",
+      "cast": [
+        "ganesh",
+        "parvati",
+        "mahadev"
+      ],
+      "motion": "in",
+      "seed": 12,
+      "animate": "light snowflakes drift down while Mata Parvati gently strokes Bal Ganesh's head",
+      "lines": [
+        {
+          "who": "ganesh",
+          "tts": "माँ, मैं हार गया! मंदिर फिर गिर गया!",
+          "sub": "Maa, main haar gaya! Mandir phir gir gaya!",
+          "mood": "emotional"
+        },
+        {
+          "who": "parvati",
+          "tts": "अरे बेटा, ऐसे नहीं कहते। एक बार फिर कोशिश करो।",
+          "sub": "Arey beta, aise nahi kehte. Ek baar phir koshish karo.",
+          "mood": "calm"
+        },
+        {
+          "who": "ganesh",
+          "tts": "सात बार बना चुका हूँ, माँ। हर बार गिर जाता है।",
+          "sub": "Saat baar bana chuka hoon, Maa. Har baar gir jaata hai.",
+          "mood": "emotional"
+        },
+        {
+          "who": "mahadev",
+          "tts": "पार्वती, इसे अपनी तपस्या की कथा सुनाओ।",
+          "sub": "Parvati, ise apni tapasya ki katha sunao.",
+          "mood": "calm"
+        }
+      ]
+    },
+    {
+      "prompt": "Mata Parvati sits with Bal Ganesh close beside her on a flat rock on snowy Kailash, telling a story with a soft loving face, warm golden light, oil lamp glowing nearby, medium shot",
+      "cast": [
+        "parvati",
+        "ganesh"
+      ],
+      "motion": "in",
+      "seed": 25,
+      "lines": [
+        {
+          "who": "parvati",
+          "tts": "सुनो बेटा गणेश… मैंने भी महादेव के लिए बहुत कठिन तपस्या की थी।",
+          "sub": "Suno beta Ganesh… maine bhi Mahadev ke liye bahut kathin tapasya ki thi.",
+          "mood": "calm"
+        },
+        {
+          "who": "ganesh",
+          "tts": "सच, माँ? फिर क्या हुआ?",
+          "sub": "Sach, Maa? Phir kya hua?",
+          "mood": "wonder"
+        }
+      ]
+    },
+    {
+      "prompt": "Mata Parvati sits in calm deep tapasya with closed eyes and folded hands on the snowy Himalayan slopes, seven distant sage silhouettes in the soft mist, golden sunrise glow, painterly wide shot",
+      "cast": [
+        "parvati"
+      ],
+      "motion": "pan",
+      "seed": 38,
+      "animate": "mist drifts slowly across the snow while a soft golden glow pulses around Mata Parvati",
+      "lines": [
+        {
+          "who": "parvati",
+          "tts": "पुराण कहते हैं, सप्तऋषि आए और मुझे रोकना चाहा। पर मैं नहीं मानी।",
+          "sub": "Puran kehte hain, saptarishi aaye aur mujhe rokna chaha. Par main nahi maani.",
+          "mood": "serious"
+        },
+        {
+          "who": "parvati",
+          "tts": "फिर एक ब्रह्मचारी आए और मुझे परखने लगे। मैं तब भी अडिग रही।",
+          "sub": "Phir ek brahmachari aaye aur mujhe parakhne lage. Main tab bhi adig rahi.",
+          "mood": "emotional"
+        }
+      ]
+    },
+    {
+      "prompt": "Mahadev stands radiant in his true divine form on snowy Kailash with a gentle smile, soft blue-white glow around him, Mata Parvati looks at him with folded hands and joyful tears, golden rim light, medium shot",
+      "cast": [
+        "mahadev",
+        "parvati"
+      ],
+      "motion": "in",
+      "seed": 51,
+      "animate": "a soft golden glow spreads around Mahadev while flower petals drift down slowly",
+      "lines": [
+        {
+          "who": "mahadev",
+          "tts": "तब मैंने अपना असली रूप दिखाया। उसकी लगन जीत गई।",
+          "sub": "Tab maine apna asli roop dikhaya. Uski lagan jeet gayi.",
+          "mood": "calm"
+        },
+        {
+          "who": "parvati",
+          "tts": "देखो बेटा… वही तपस्या मुझे महादेव के पास ले आई।",
+          "sub": "Dekho beta… wahi tapasya mujhe Mahadev ke paas le aayi.",
+          "mood": "emotional"
+        },
+        {
+          "who": "mahadev",
+          "tts": "हाँ पुत्र, यही लगन आज तुम्हें भी चाहिए।",
+          "sub": "Haan putra, yahi lagan aaj tumhein bhi chahiye.",
+          "mood": "calm"
+        },
+        {
+          "who": "ganesh",
+          "tts": "समझ गया, माँ! मैं एक बार और बनाऊँगा!",
+          "sub": "Samajh gaya, Maa! Main ek baar aur banaunga!",
+          "mood": "excitement"
+        }
+      ]
+    },
+    {
+      "prompt": "Little Bal Ganesh stands proudly with folded hands before a small neat snow temple that stands firm, Mata Parvati and Mahadev smile lovingly beside him, golden sunset light on snowy Kailash, wide shot",
+      "cast": [
+        "ganesh",
+        "parvati",
+        "mahadev"
+      ],
+      "motion": "out",
+      "seed": 64,
+      "lines": [
+        {
+          "who": "ganesh",
+          "tts": "माँ, देखो! इस बार मंदिर खड़ा है!",
+          "sub": "Maa, dekho! Is baar mandir khada hai!",
+          "mood": "excitement"
+        },
+        {
+          "who": "parvati",
+          "tts": "मेरे बेटे की लगन जीत गई। कितनी प्यारी बात!",
+          "sub": "Mere bete ki lagan jeet gayi. Kitni pyaari baat!",
+          "mood": "emotional"
+        }
+      ]
+    }
+  ],
+  "endcard": {
+    "who": "mahadev",
+    "tts": "लगन से हर मुश्किल आसान होती है। अच्छा लगे तो लाइक और सब्सक्राइब करें।",
+    "sub": "Lagan se har mushkil aasaan hoti hai. Achha lage to Like aur Subscribe karein.",
+    "mood": "calm"
+  },
+  "youtube_title": "😱 गणेश जी हार मानने वाले थे! फिर माता पार्वती ने जो सुनाया… 🔱❤️ | Mahadev Parvati",
+  "youtube_description": "Kailash Parivar: Ganesh ji ka barf ka mandir baar-baar gir gaya aur wo haar maan rahe the. Tab Mata Parvati ne apni tapasya ki katha sunayi aur Mahadev ne lagan ka mol bataya.\nKatha ka strot: Shiva Purana, Rudra Samhita, Parvati Khanda (Parvati ji ki tapasya aur Mahadev ki pariksha). Ganesh ji ka barf ka mandir is episode ki kalpana hai.\nलगन से हर मुश्किल आसान होती है। हर हर महादेव 🔱\nChitra, awaaz aur animation AI se banaye gaye hain (sanketik).\nAchhi lage to Like, Share aur Subscribe karein · Shyam Premi SN\nKailash Parivar #KailashParivar #MahadevParvati #Shorts",
+  "youtube_tags": "Mahadev Parvati, महादेव पार्वती, Kailash Parivar, कैलाश परिवार, Parvati tapasya, पार्वती की तपस्या, Ganesh ji ki kahani, Shiv Parivar story, Mahadev Parvati story, Shiva Purana katha, lagan ki kahani",
+  "instagram_caption": "Ganesh ji haar maan rahe the, tab Mata Parvati ne apni tapasya ki katha sunayi 🔱❤️\nKatha: Shiva Purana (Parvati Khanda).\nHar Har Mahadev!\nAchhi lage to Like, Share aur Follow karein\n#MahadevParvati #KailashParivar #HarHarMahadev #Ganesh #Parvati",
+  "facebook_caption": "लगन से हर मुश्किल आसान होती है 🙏 आपने कभी हार मानकर फिर कोशिश की है?\nMata Parvati ki tapasya: Shiva Purana (Parvati Khanda).\n#Mahadev #HarHarMahadev #Parvati",
+  "playlist": "Kailash Parivar"
+}
