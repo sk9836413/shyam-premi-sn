@@ -278,3 +278,4 @@
 - 2026-11-27-morning-trinetra-ganesh-ranthambore | youtube: https://youtube.com/shorts/5YsbsPw1yZY | social: fb: https://www.facebook.com/reel/2946291799079029 (scheduled 2026-11-27T05:00:00.000Z) | ig: https://www.instagram.com/reel/DgOz7sZPGC0/ | animated 2/4
 - 2026-11-27-evening-mahakaleshwar-ujjain-emotional | claim: 2026-11-27 evening by run 45944477305.1 at 2026-11-27T06:24:50.159Z
 - 2026-11-27-evening-mahakaleshwar-ujjain-emotional | youtube: https://youtube.com/shorts/oXXD3T_RyQc (public at 2026-11-27T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1720611139404270 (scheduled 2026-11-27T15:00:00.000Z) | ig: pending 2026-11-27T13:30:00.000Z | animated 3/3
+- 2026-11-28-morning-shanivar-shani-dev | claim: 2026-11-28 morning by run 45944477305.1 at 2026-11-27T07:08:30.571Z
