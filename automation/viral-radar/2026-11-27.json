@@ -1,0 +1,2377 @@
+{
+ "date": "2026-11-27",
+ "mode": "daily",
+ "queries": [
+  "खाटू श्याम",
+  "महादेव"
+ ],
+ "thresholds": {
+  "views": 100000,
+  "fastViews": 30000,
+  "fastDays": 3,
+  "multiple": 5,
+  "minShorts": 3,
+  "strongMedian": 40000,
+  "maxSeconds": 180
+ },
+ "quota": {
+  "searches": 2,
+  "list_calls": 54,
+  "units": 254,
+  "cap": 900
+ },
+ "counts": {
+  "found": 100,
+  "shorts": 97,
+  "over_threshold": 92,
+  "viral": 47,
+  "strong": 2,
+  "likely_reuploads": 4
+ },
+ "viral": [
+  {
+   "id": "nLHh7tRWfLE",
+   "url": "https://youtube.com/shorts/nLHh7tRWfLE",
+   "title": "जब वृद्ध के प्राण लेने पहुँचे यमराज, तो महादेव को झाड़ू लगाते देख रह गए दंग! #shorts",
+   "channel": "दिव्य रहस्य",
+   "channelId": "UCVv7zMpTO4CxeB9SfyakIXA",
+   "published": "2026-11-23T09:15:03Z",
+   "ageDays": 3.8,
+   "seconds": 178,
+   "views": 820617,
+   "likes": 20345,
+   "thumb": "https://i.ytimg.com/vi/nLHh7tRWfLE/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 11800,
+   "median": 136.5,
+   "n_shorts": 18,
+   "multiple": 6011.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "other",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab",
+     "chamatkar"
+    ],
+    "format": "katha",
+    "deity": "shiv",
+    "topic": "Yamraj aur Mahadev, bhakt ko abhay",
+    "cover_style": "close-up Yamraj and Mahadev, old man on bed, 3 Devanagari text bands",
+    "art_style": "illustrated",
+    "why": "Jab-hook rescue story at 6011x; the painted cover with a big Hindi text band reads at thumbnail size.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "FiMxEYyCEkM",
+   "url": "https://youtube.com/shorts/FiMxEYyCEkM",
+   "title": "🥹समुद्र में खो गईं माता पार्वती 😢 महादेव जाल लेकर ढूंढने निकले 🙏🏻 | हर हर महादेव 🔱#mahadev #shivji",
+   "channel": "Mahadev Ki Deewani ",
+   "channelId": "UCl_cQGZmjw3QVpQXUZSvdSA",
+   "published": "2026-11-20T01:38:56Z",
+   "ageDays": 7.1,
+   "seconds": 61,
+   "views": 1430189,
+   "likes": 43455,
+   "thumb": "https://i.ytimg.com/vi/FiMxEYyCEkM/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 12900,
+   "median": 1434,
+   "n_shorts": 29,
+   "multiple": 997.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "emotional",
+    "hooks": [
+     "emotional"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "topic": "Parvati samundra mein kho gayi, Mahadev dhoondhne nikle",
+    "cover_style": "one Shiv figure running with a spear in rain, no text",
+    "art_style": "cinematic",
+    "why": "Lost-loved-one emotion at 997x, but the cover has no text, so the title alone carries the hook.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "eegxMhmxJ-s",
+   "url": "https://youtube.com/shorts/eegxMhmxJ-s",
+   "title": "खाटू श्याम बाबा सबकी मनोकामनाए पूरी करे #shorts #shortvideo #khatushyam #khatushyambirthday",
+   "channel": "AJ Ajay Chitodiya",
+   "channelId": "UCL2KmAHjjvktZpB-p45Ot3A",
+   "published": "2026-11-20T05:59:48Z",
+   "ageDays": 6.9,
+   "seconds": 9,
+   "views": 811787,
+   "likes": 15562,
+   "thumb": "https://i.ytimg.com/vi/eegxMhmxJ-s/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 46300,
+   "median": 1546,
+   "n_shorts": 29,
+   "multiple": 525.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "khatu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "chamatkar",
+    "hooks": [
+     "chamatkar",
+     "name"
+    ],
+    "format": "other",
+    "deity": "khatu",
+    "topic": "Khatu Shyam ji, manokamna poori",
+    "cover_style": "3-panel collage: Khatu sheesh, two real-photo men, big text promising a wish comes true",
+    "art_style": "real-photo",
+    "why": "525x on a 9-second clip, driven by a wish-fulfilment promise (miracle bait); never copy that claim.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "iN7XPtBleUo",
+   "url": "https://youtube.com/shorts/iN7XPtBleUo",
+   "title": "Happy Birthday Baba Shyam 2026 🎂✨ | Khatu Shyam Janmotsav Status | Devuthani Ekadashi #shorts",
+   "channel": "khatu shyam studio ",
+   "channelId": "UCLNwyqb5Q8fxsUChtcIafUQ",
+   "published": "2026-11-23T11:30:31Z",
+   "ageDays": 3.7,
+   "seconds": 12,
+   "views": 912378,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/iN7XPtBleUo/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 26600,
+   "median": 2505.5,
+   "n_shorts": 30,
+   "multiple": 364.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "khatu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "khatu",
+    "topic": "Khatu Shyam janmotsav status",
+    "cover_style": "decorated float with men and crowd, no text on the cover",
+    "art_style": "real-photo",
+    "why": "Birthday status at 364x; the title names Baba Shyam and the occasion, the cover is an event photo.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "f_I8M2ihxmU",
+   "url": "https://youtube.com/shorts/f_I8M2ihxmU",
+   "title": "don't ignore mahadev drawing 🙏🔱 #mahadev #mahakal #trending #art #viral #god #devotional #hanuman",
+   "channel": "Artistic world ",
+   "channelId": "UCwv80Z44H8-aGJ4bAEu8btg",
+   "published": "2026-11-25T12:58:22Z",
+   "ageDays": 1.6,
+   "seconds": 18,
+   "views": 580630,
+   "likes": 5275,
+   "thumb": "https://i.ytimg.com/vi/f_I8M2ihxmU/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 7280,
+   "median": 2001,
+   "n_shorts": 29,
+   "multiple": 290.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "hanuman",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "topic": "Mahadev drawing (title only)",
+    "cover_style": "3D soldier figure holding a football, 'American soldiers' label, no deity",
+    "art_style": "cartoon-3d",
+    "why": "Viral only through its title; the cover is an unrelated soldier figure, so do not model its cover.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "rdpc8yJG5bg",
+   "url": "https://youtube.com/shorts/rdpc8yJG5bg",
+   "title": "नंदी ने महादेव को ही कैलाश से बाहर कर दिया! 🤣🔱#Mahadev #Nandi #MataParvati",
+   "channel": "mahakalshorts-p4k",
+   "channelId": "UCafZxJwOXNZHnifs3zd8Bjg",
+   "published": "2026-11-20T00:43:48Z",
+   "ageDays": 7.1,
+   "seconds": 21,
+   "views": 944454,
+   "likes": 10174,
+   "thumb": "https://i.ytimg.com/vi/rdpc8yJG5bg/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 4960,
+   "median": 3776,
+   "n_shorts": 29,
+   "multiple": 250.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "phir-jo-kiya",
+    "hooks": [
+     "phir-jo-kiya"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "topic": "Nandi aur Mahadev, Kailash mein hasi-mazaak",
+    "cover_style": "bull-headed Nandi with trident in snowy temple, Shiv seated at side, no text",
+    "art_style": "cinematic",
+    "why": "Comic Kailash family hook at 250x; the dramatic AI cover has no text, so the title carries it.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "6sqHRpYkxv0",
+   "url": "https://youtube.com/shorts/6sqHRpYkxv0",
+   "title": "हर# हर महादेव 🙏🔱महादेव और माता पार्वती की सुंदर खड़े होकर #बनाई गई फैमिली फोटो ❤️गणेश जी और कार्तिक",
+   "channel": "Ankit kumar Devta video 📸 ai",
+   "channelId": "UCVs3jUXpERqwqTlr8rDXToA",
+   "published": "2026-11-24T12:53:56Z",
+   "ageDays": 2.6,
+   "seconds": 10,
+   "views": 997285,
+   "likes": 5694,
+   "thumb": "https://i.ytimg.com/vi/6sqHRpYkxv0/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 6570,
+   "median": 4714,
+   "n_shorts": 29,
+   "multiple": 211.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "topic": "Shiv-Parvati family photo with Ganesh and Kartikeya",
+    "cover_style": "real photo of a huge building mural of the family, small 'Jay maa' text in corner",
+    "art_style": "real-photo",
+    "why": "Family-photo promise at 212x; the mural image is large and simple, matching the title.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "40k96k9vyXw",
+   "url": "https://youtube.com/shorts/40k96k9vyXw",
+   "title": "नंदी ने महादेव का साथ क्यों छोड़ा? 😢 | Shiv Nandi Emotional Story | Mahadev Ki Kahani #mahadev #yt",
+   "channel": "VedRahasya   8m",
+   "channelId": "UCJ4fWdHR7gm5a5EgJJYmVdA",
+   "published": "2026-11-22T03:27:38Z",
+   "ageDays": 5,
+   "seconds": 155,
+   "views": 1419139,
+   "likes": 66102,
+   "thumb": "https://i.ytimg.com/vi/40k96k9vyXw/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 26700,
+   "median": 7277,
+   "n_shorts": 29,
+   "multiple": 195,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "hook": "kyon",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon",
+     "emotional"
+    ],
+    "format": "katha",
+    "deity": "shiv",
+    "topic": "Nandi ne Mahadev ka saath kyun chhoda (reference story)",
+    "cover_style": "white calf with flower garland in snow, Shiv blurred behind, no text",
+    "art_style": "cinematic",
+    "why": "Kyon plus emotional question at 195x for a 155-second story; the calm cover works without a text card.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "H_TODC0znA0",
+   "url": "https://youtube.com/shorts/H_TODC0znA0",
+   "title": "#Jab Mahadev Ke Bhang Ke Liye Mach Gayi Bhari ghamasan#vairal #mahadev#shorts",
+   "channel": "Sadhana Patel",
+   "channelId": "UCaTkn8rE_xxNyuErXPejAjw",
+   "published": "2026-11-25T00:12:42Z",
+   "ageDays": 2.1,
+   "seconds": 11,
+   "views": 564329,
+   "likes": 2715,
+   "thumb": "https://i.ytimg.com/vi/H_TODC0znA0/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 8630,
+   "median": 2908,
+   "n_shorts": 29,
+   "multiple": 194.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "topic": "Mahadev ke liye ghamasan (bhang plot, not to copy)",
+    "cover_style": "Shiv pointing at lamps in a dark stone hall, no text",
+    "art_style": "cinematic",
+    "why": "Jab-hook at 194x; the cover is a dramatic still with no text. The bhang plot is a rule break for us.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "h4iDagcX-7o",
+   "url": "https://youtube.com/shorts/h4iDagcX-7o",
+   "title": "Mahadev vs Gajasura – Power & Devotion #shiv #shivshakti #harharmahadev #facts #ganesh #mahadev #fyp",
+   "channel": "NiT's Epic Tales",
+   "channelId": "UCqmT9kg0NwqhGMrTCa0-GPA",
+   "published": "2026-11-22T05:25:14Z",
+   "ageDays": 4.9,
+   "seconds": 158,
+   "views": 1478138,
+   "likes": 60272,
+   "thumb": "https://i.ytimg.com/vi/h4iDagcX-7o/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 188000,
+   "median": 7813,
+   "n_shorts": 30,
+   "multiple": 189.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "katha",
+    "deity": "shiv",
+    "topic": "Mahadev vs Gajasur",
+    "cover_style": "elephant-headed Gajasur against snow mountains, two Hindi text bands, 'watch' button",
+    "art_style": "illustrated",
+    "why": "Versus-name hook at 189x with a clean two-band title card; the channel name on the cover is the uploader's own.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "k8y8Tz6O9EQ",
+   "url": "https://youtube.com/shorts/k8y8Tz6O9EQ",
+   "title": "जब महादेव के दिव्य स्वरूप पर हुआ पवित्र दूध से अभिषेक! 🙏#adiyogi",
+   "channel": "ayodhyavasi ",
+   "channelId": "UCOg8z12I3-K98h5wfMJGKfA",
+   "published": "2026-11-22T02:15:55Z",
+   "ageDays": 5.1,
+   "seconds": 9,
+   "views": 513744,
+   "likes": 3212,
+   "thumb": "https://i.ytimg.com/vi/k8y8Tz6O9EQ/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 12200,
+   "median": 2943,
+   "n_shorts": 29,
+   "multiple": 174.6,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "darshan",
+    "deity": "shiv",
+    "topic": "Shiv murti par doodh abhishek",
+    "cover_style": "dark Shiv statue face with milk pouring over it, no text",
+    "art_style": "murti-darshan",
+    "why": "Jab-hook abhishek darshan at 175x on a 9-second clip; a sacred close-up needs no caption.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "6pW3qgnm6IQ",
+   "url": "https://youtube.com/shorts/6pW3qgnm6IQ",
+   "title": "Happy Birthday Baba Shyam 2026 🎂✨ | Khatu Shyam Janmotsav Status | Devuthani Ekadashi #shorts",
+   "channel": "khatu shyam studio ",
+   "channelId": "UCLNwyqb5Q8fxsUChtcIafUQ",
+   "published": "2026-11-23T08:30:06Z",
+   "ageDays": 3.8,
+   "seconds": 12,
+   "views": 410753,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/6pW3qgnm6IQ/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 26600,
+   "median": 2505.5,
+   "n_shorts": 30,
+   "multiple": 163.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "khatu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "khatu",
+    "topic": "Khatu Shyam birthday darshan",
+    "cover_style": "sheesh darshan with flower garlands at the gate, two real-photo people, no text",
+    "art_style": "murti-darshan",
+    "why": "Same birthday status at 164x; the sheesh darshan is the right look for Khatu covers.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "ZGBjqt8184U",
+   "url": "https://youtube.com/shorts/ZGBjqt8184U",
+   "title": "Happy Birthday Baba Shyam 2026 🎂✨ | Khatu Shyam Janmotsav Status | Devuthani Ekadashi #shorts",
+   "channel": "khatu shyam studio ",
+   "channelId": "UCLNwyqb5Q8fxsUChtcIafUQ",
+   "published": "2026-11-21T01:00:31Z",
+   "ageDays": 6.1,
+   "seconds": 12,
+   "views": 400200,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/ZGBjqt8184U/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 26600,
+   "median": 2505.5,
+   "n_shorts": 30,
+   "multiple": 159.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "khatu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "khatu",
+    "topic": "Khatu janmotsav raat, aatishbaazi",
+    "cover_style": "night crowd, fireworks, tall decorated pole, no text",
+    "art_style": "real-photo",
+    "why": "Night festival crowd at 160x; the real-photo cover signals the event without any text.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "XyL1Q0JNZic",
+   "url": "https://youtube.com/shorts/XyL1Q0JNZic",
+   "title": "Happy Birthday Baba Shyam 2026 🎂✨ | Khatu Shyam Janmotsav Status | Devuthani Ekadashi #shorts",
+   "channel": "khatu shyam studio ",
+   "channelId": "UCLNwyqb5Q8fxsUChtcIafUQ",
+   "published": "2026-11-23T13:21:16Z",
+   "ageDays": 3.6,
+   "seconds": 23,
+   "views": 381597,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/XyL1Q0JNZic/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 26600,
+   "median": 2505.5,
+   "n_shorts": 30,
+   "multiple": 152.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "khatu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "khatu",
+    "topic": "Khatu darshan, bheed ke saath",
+    "cover_style": "people at the shrine entrance in purple light, no text",
+    "art_style": "real-photo",
+    "why": "Same birthday status at 152x; the plain real-photo cover works only because the title carries the event.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "THrwywhoP_c",
+   "url": "https://youtube.com/shorts/THrwywhoP_c",
+   "title": "पार्वती का खाना भूत ने खाया, फिर पड़ा भारी😂🔱 | Mahadev Status | New Mahadev Shorts video | #shorts",
+   "channel": "Seema Pareek ",
+   "channelId": "UCjYoNjd44ZFa_CYgdFN0Blw",
+   "published": "2026-11-25T13:17:40Z",
+   "ageDays": 1.6,
+   "seconds": 11,
+   "views": 867892,
+   "likes": 4568,
+   "thumb": "https://i.ytimg.com/vi/THrwywhoP_c/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 2830,
+   "median": 6820,
+   "n_shorts": 29,
+   "multiple": 127.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "views far beyond subscribers"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "phir-jo-kiya",
+    "hooks": [
+     "phir-jo-kiya"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "topic": "Parvati ka khana bhoot ne khaya",
+    "cover_style": "bhoot eating from a plate Parvati holds, Shiv blurred behind, one bold Hindi text band",
+    "art_style": "cinematic",
+    "why": "Comic 'X ne khaya, phir pada bhari' Kailash hook at 127x; the one-line text band reads on a phone.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "6nogAYNQI2E",
+   "url": "https://youtube.com/shorts/6nogAYNQI2E",
+   "title": "Happy Birthday Baba Shyam 2026 🎂✨ | Khatu Shyam Janmotsav Status | Devuthani Ekadashi #shorts",
+   "channel": "khatu shyam studio ",
+   "channelId": "UCLNwyqb5Q8fxsUChtcIafUQ",
+   "published": "2026-11-22T11:30:21Z",
+   "ageDays": 4.7,
+   "seconds": 12,
+   "views": 274778,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/6nogAYNQI2E/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 26600,
+   "median": 2505.5,
+   "n_shorts": 30,
+   "multiple": 109.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "khatu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "khatu",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "uavqMfBWSF8",
+   "url": "https://youtube.com/shorts/uavqMfBWSF8",
+   "title": "Nandi aur Kali jaldi darvaja band karo | Mahadev shorts video | #shorts #mahadev",
+   "channel": "Seema Pareek ",
+   "channelId": "UCjYoNjd44ZFa_CYgdFN0Blw",
+   "published": "2026-11-25T06:48:13Z",
+   "ageDays": 1.9,
+   "seconds": 11,
+   "views": 721928,
+   "likes": 3017,
+   "thumb": "https://i.ytimg.com/vi/uavqMfBWSF8/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 2830,
+   "median": 6820,
+   "n_shorts": 29,
+   "multiple": 105.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "views far beyond subscribers"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "BFva5lgHwL0",
+   "url": "https://youtube.com/shorts/BFva5lgHwL0",
+   "title": "Wait for Mahadev 😢🕉 #mahadev #shiv #art #shorts #youtubeshorts #viral",
+   "channel": "shubham pushpam painting",
+   "channelId": "UC0VuW0H6CZYlgl5dvcMIwTQ",
+   "published": "2026-11-20T12:06:15Z",
+   "ageDays": 6.7,
+   "seconds": 8,
+   "views": 6315918,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/BFva5lgHwL0/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 55100,
+   "median": 80139,
+   "n_shorts": 29,
+   "multiple": 78.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "1apWXSTP0I0",
+   "url": "https://youtube.com/shorts/1apWXSTP0I0",
+   "title": "महादेव का डमरू फिर खो गया🤔🤔🙏🙏🕉️🕉️#shorts #viral #mahadev #bhakti",
+   "channel": "Naina Ki Duniya   ",
+   "channelId": "UCFGXWuPykFIRceO_y91luwA",
+   "published": "2026-11-20T03:44:09Z",
+   "ageDays": 7,
+   "seconds": 21,
+   "views": 859108,
+   "likes": 7517,
+   "thumb": "https://i.ytimg.com/vi/1apWXSTP0I0/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 27500,
+   "median": 11091,
+   "n_shorts": 29,
+   "multiple": 77.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "W2hby_3-HaE",
+   "url": "https://youtube.com/shorts/W2hby_3-HaE",
+   "title": "भारत के चार प्रसिद्ध खाटू श्याम मंदिर 😱 4 Famous Khatu Shyam Temples #facts",
+   "channel": "Mukul Arora",
+   "channelId": "UCrJvTg_5rZHSAGqx0Fsq8uw",
+   "published": "2026-11-21T12:37:43Z",
+   "ageDays": 5.6,
+   "seconds": 50,
+   "views": 755643,
+   "likes": 32388,
+   "thumb": "https://i.ytimg.com/vi/W2hby_3-HaE/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 10700,
+   "median": 10731,
+   "n_shorts": 29,
+   "multiple": 70.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "listicle"
+    ],
+    "hook": "listicle",
+    "format": "facts",
+    "deity": "khatu",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "listicle",
+    "hooks": [
+     "listicle"
+    ],
+    "format": "facts",
+    "deity": "khatu",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "-pZ46mJFkEM",
+   "url": "https://youtube.com/shorts/-pZ46mJFkEM",
+   "title": "Khatu Shyam Birthday Status 2026 💗|Shyam Baba Birthday Status| Shyam Janamotsav #shorts #shyamstatus",
+   "channel": "khatu shyam studio ",
+   "channelId": "UCLNwyqb5Q8fxsUChtcIafUQ",
+   "published": "2026-11-20T13:00:20Z",
+   "ageDays": 6.6,
+   "seconds": 22,
+   "views": 162399,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/-pZ46mJFkEM/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 26600,
+   "median": 2505.5,
+   "n_shorts": 30,
+   "multiple": 64.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "khatu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "khatu",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "DkXQufhDT9E",
+   "url": "https://youtube.com/shorts/DkXQufhDT9E",
+   "title": "🔱 महादेव के प्यारे परिवार का दिव्य दर्शन ❤️🙏Shiv Parivar Ki Anokhi Mahima 🌺 | Har Har Mahadev#shorts",
+   "channel": "Naman_LIVE 0008",
+   "channelId": "UCghUhWR7600nBky5YKwzkEw",
+   "published": "2026-11-23T12:14:36Z",
+   "ageDays": 3.6,
+   "seconds": 11,
+   "views": 613478,
+   "likes": 3307,
+   "thumb": "https://i.ytimg.com/vi/DkXQufhDT9E/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 1320,
+   "median": 10515.5,
+   "n_shorts": 20,
+   "multiple": 58.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "views far beyond subscribers"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "darshan",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "6fUv6sapTXo",
+   "url": "https://youtube.com/shorts/6fUv6sapTXo",
+   "title": "🕉 जय महाकालेश्वर 🌺☘️# trending #viralshorts # हर हर महादेव 🕉🌺☘️🙏",
+   "channel": "poojasirohi-r5j",
+   "channelId": "UCkO2n8NU_Mmyo-5STWap0nA",
+   "published": "2026-11-21T09:20:33Z",
+   "ageDays": 5.8,
+   "seconds": 20,
+   "views": 530131,
+   "likes": 5328,
+   "thumb": "https://i.ytimg.com/vi/6fUv6sapTXo/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 21900,
+   "median": 12501,
+   "n_shorts": 29,
+   "multiple": 42.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "76VKQZ3jUtw",
+   "url": "https://youtube.com/shorts/76VKQZ3jUtw",
+   "title": "🔱जब महादेव के सामने आ गया उनका हमशक्ल 😱🔱 फिर माता पार्वती ने ऐसे पहचाना असली शिव को! 🚩 #shorts",
+   "channel": "Ravi Rewa",
+   "channelId": "UCIEJJ6nq7oHpGI2ULlF8RCg",
+   "published": "2026-11-20T10:50:54Z",
+   "ageDays": 6.7,
+   "seconds": 65,
+   "views": 567342,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/76VKQZ3jUtw/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 13400,
+   "median": 16009,
+   "n_shorts": 29,
+   "multiple": 35.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "mF__4t2aA18",
+   "url": "https://youtube.com/shorts/mF__4t2aA18",
+   "title": "दो-दो पार्वती देखकर चौंक गए महादेव 😱🔱 असली पार्वती कौन? | #mahadev #parvati #yt #shorts",
+   "channel": "Ravi Rewa",
+   "channelId": "UCIEJJ6nq7oHpGI2ULlF8RCg",
+   "published": "2026-11-23T11:30:23Z",
+   "ageDays": 3.7,
+   "seconds": 59,
+   "views": 552453,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/mF__4t2aA18/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 13400,
+   "median": 16009,
+   "n_shorts": 29,
+   "multiple": 34.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "hfe4MJeYkTk",
+   "url": "https://youtube.com/shorts/hfe4MJeYkTk",
+   "title": "जय छठी माईया 🌺🙏#mahadev #omnamahshivaya #trendingshorts #youtubeshorts #viral",
+   "channel": "Er Ajeet 02",
+   "channelId": "UCY_ASOl1_Qf7Ubr5MsQh2Hw",
+   "published": "2026-11-23T11:23:38Z",
+   "ageDays": 3.7,
+   "seconds": 49,
+   "views": 3768449,
+   "likes": 29584,
+   "thumb": "https://i.ytimg.com/vi/hfe4MJeYkTk/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 200000,
+   "median": 112748,
+   "n_shorts": 29,
+   "multiple": 33.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "7ZZtETtQR_Q",
+   "url": "https://youtube.com/shorts/7ZZtETtQR_Q",
+   "title": "कैलाश पर मंडराया भयानक संकट! क्यों घबराए महादेव? 😱🔱 #mahadev #shorts",
+   "channel": "Sanatan Astha TV",
+   "channelId": "UCP2cPzHCXyEKsZJIm5rl6Yw",
+   "published": "2026-11-23T02:23:09Z",
+   "ageDays": 4.1,
+   "seconds": 11,
+   "views": 593579,
+   "likes": 2680,
+   "thumb": "https://i.ytimg.com/vi/7ZZtETtQR_Q/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 4640,
+   "median": 19063.5,
+   "n_shorts": 30,
+   "multiple": 31.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "hook": "kyon",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "kyon",
+    "hooks": [
+     "kyon",
+     "question"
+    ],
+    "format": "facts",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "G2O2x1jNWV0",
+   "url": "https://youtube.com/shorts/G2O2x1jNWV0",
+   "title": "महादेव और माता पार्वती का अद्भुत दृश्य 🙏🔱 | हर हर महादेव #shorts",
+   "channel": "ai_video_ wala ",
+   "channelId": "UCCGJvDl0Ptj0Cy9XDBo8kog",
+   "published": "2026-11-22T14:17:10Z",
+   "ageDays": 4.6,
+   "seconds": 11,
+   "views": 1028453,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/G2O2x1jNWV0/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 2000,
+   "median": 36125,
+   "n_shorts": 29,
+   "multiple": 28.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [
+    "views far beyond subscribers"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "nQ_cx71J4vU",
+   "url": "https://youtube.com/shorts/nQ_cx71J4vU",
+   "title": "\"महादेव! भांग चोर पकड़ लिया मैंने!\" कैलाश पर हंगामा 😱⚡ #shorts #mahadev",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-20T14:10:03Z",
+   "ageDays": 6.6,
+   "seconds": 11,
+   "views": 1392599,
+   "likes": 7014,
+   "thumb": "https://i.ytimg.com/vi/nQ_cx71J4vU/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 59627.5,
+   "n_shorts": 30,
+   "multiple": 23.4,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "wDaKVt3EfWA",
+   "url": "https://youtube.com/shorts/wDaKVt3EfWA",
+   "title": "\"महादेव जल्दी आइए... त्रिशूल चोरी हो गया!\" 😱🔱 #shorts #mahadev",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-23T13:41:28Z",
+   "ageDays": 3.6,
+   "seconds": 11,
+   "views": 1314012,
+   "likes": 5139,
+   "thumb": "https://i.ytimg.com/vi/wDaKVt3EfWA/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 59627.5,
+   "n_shorts": 30,
+   "multiple": 22,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "BxP6-9pFf3s",
+   "url": "https://youtube.com/shorts/BxP6-9pFf3s",
+   "title": "हर हर महादेव कमेंट में जरूर लिखना है🙏🙏🚩",
+   "channel": "Pappu kumar yadav🙏🙏",
+   "channelId": "UCiKI-bWozPLXN3Fv2rxRBjg",
+   "published": "2026-11-21T05:40:45Z",
+   "ageDays": 5.9,
+   "seconds": 16,
+   "views": 654231,
+   "likes": 10946,
+   "thumb": "https://i.ytimg.com/vi/BxP6-9pFf3s/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 18300,
+   "median": 33614,
+   "n_shorts": 29,
+   "multiple": 19.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": false,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "fK-FNGHurL0",
+   "url": "https://youtube.com/shorts/fK-FNGHurL0",
+   "title": "\"छोड़ भोजन को!\" कालिया पर पार्वती का गुस्सा 😱⚡ #shorts #mahadev",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-23T07:42:54Z",
+   "ageDays": 3.8,
+   "seconds": 11,
+   "views": 898590,
+   "likes": 4741,
+   "thumb": "https://i.ytimg.com/vi/fK-FNGHurL0/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 59627.5,
+   "n_shorts": 30,
+   "multiple": 15.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "SkyatnReTas",
+   "url": "https://youtube.com/shorts/SkyatnReTas",
+   "title": "Wait for Mahadev 😢🕉 #mahadev #shiv #art #shorts #youtubeshorts #viral",
+   "channel": "shubham pushpam painting",
+   "channelId": "UC0VuW0H6CZYlgl5dvcMIwTQ",
+   "published": "2026-11-21T14:13:03Z",
+   "ageDays": 5.6,
+   "seconds": 8,
+   "views": 1186817,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/SkyatnReTas/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 55100,
+   "median": 80139,
+   "n_shorts": 29,
+   "multiple": 14.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "t4cesyCakjo",
+   "url": "https://youtube.com/shorts/t4cesyCakjo",
+   "title": "\"ये नीचे रख!\" पार्वती का गुस्सा देखकर महादेव भी हैरान 😱⚡ #shorts #mahadev",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-21T10:14:27Z",
+   "ageDays": 5.7,
+   "seconds": 11,
+   "views": 885278,
+   "likes": 6545,
+   "thumb": "https://i.ytimg.com/vi/t4cesyCakjo/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 59627.5,
+   "n_shorts": 30,
+   "multiple": 14.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "Zje9HwNZKFw",
+   "url": "https://youtube.com/shorts/Zje9HwNZKFw",
+   "title": "जन्मदिन पर कचरे में मिले बाबा श्याम.. 😭🙏 फिर हुई आरती, बँटा प्रसाद ❤️ #KhatuShyam #Shorts",
+   "channel": "Bhakti Sagar YT",
+   "channelId": "UCmzarqWGsbRET-KV2334SDg",
+   "published": "2026-11-20T12:30:39Z",
+   "ageDays": 6.6,
+   "seconds": 60,
+   "views": 1111123,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/Zje9HwNZKFw/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 9310,
+   "median": 79552.5,
+   "n_shorts": 6,
+   "multiple": 14,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "new channel"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "darshan",
+    "deity": "khatu",
+    "length": "31-60 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "darshan",
+    "deity": "khatu",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "7F63AMSLibk",
+   "url": "https://youtube.com/shorts/7F63AMSLibk",
+   "title": "Mere Pyare Baba Ka Jannam Din Aa Gaya l 🙏🚩 #shyam #birthday",
+   "channel": "khatu shyam manona dham",
+   "channelId": "UCnZnnyR5iennfeJZSt00JuA",
+   "published": "2026-11-21T02:20:50Z",
+   "ageDays": 6.1,
+   "seconds": 8,
+   "views": 20543920,
+   "likes": 106484,
+   "thumb": "https://i.ytimg.com/vi/7F63AMSLibk/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 235000,
+   "median": 1484409,
+   "n_shorts": 29,
+   "multiple": 13.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "vishnu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "vishnu",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "BJHwI-5Dm1A",
+   "url": "https://youtube.com/shorts/BJHwI-5Dm1A",
+   "title": "\"नंदी... महादेव जल्दी आइए! ये देखिए\" 😱⚡ #shorts #mahadev",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-22T06:33:12Z",
+   "ageDays": 4.9,
+   "seconds": 11,
+   "views": 823755,
+   "likes": 4830,
+   "thumb": "https://i.ytimg.com/vi/BJHwI-5Dm1A/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 59627.5,
+   "n_shorts": 30,
+   "multiple": 13.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "mb7m_eyublY",
+   "url": "https://youtube.com/shorts/mb7m_eyublY",
+   "title": "नरकासुर ने महादेव से मांगे पांच ऐसे वर, कि नारायण की आंखों में आ गए आंसू mahakali part 75 #Shorts",
+   "channel": "Parivikaa",
+   "channelId": "UCq9IBrGJIoqdPbuKT23Ixbg",
+   "published": "2026-11-20T02:23:17Z",
+   "ageDays": 7.1,
+   "seconds": 67,
+   "views": 1537438,
+   "likes": 0,
+   "thumb": "https://i.ytimg.com/vi/mb7m_eyublY/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 34000,
+   "median": 112460.5,
+   "n_shorts": 30,
+   "multiple": 13.7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "series"
+    ],
+    "hook": "series",
+    "format": "series",
+    "deity": "shiv",
+    "length": "61-120 s"
+   },
+   "analysis": {
+    "hook_type": "series",
+    "hooks": [
+     "series"
+    ],
+    "format": "series",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "ZUcXmAf4sfA",
+   "url": "https://youtube.com/shorts/ZUcXmAf4sfA",
+   "title": "जब राम नाम ने महादेव और नारायण की लाखों वर्षों की क्रीड़ा रोक दी! 🙏 | जय श्री राम #shorts",
+   "channel": "deva.toontales",
+   "channelId": "UCWJXhH-8tQdZjV8UMvJwtEg",
+   "published": "2026-11-23T01:39:53Z",
+   "ageDays": 4.1,
+   "seconds": 151,
+   "views": 576793,
+   "likes": 37907,
+   "thumb": "https://i.ytimg.com/vi/ZUcXmAf4sfA/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 76300,
+   "median": 46295,
+   "n_shorts": 29,
+   "multiple": 12.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "jab"
+    ],
+    "hook": "jab",
+    "format": "other",
+    "deity": "shiv",
+    "length": "121-180 s"
+   },
+   "analysis": {
+    "hook_type": "jab",
+    "hooks": [
+     "jab"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "WTJxWLcQnwE",
+   "url": "https://youtube.com/shorts/WTJxWLcQnwE",
+   "title": "\"नीचे रख!\" पार्वती का गुस्सा देखकर महादेव भी हैरान 😱⚡ #shorts #mahadev",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-23T06:35:20Z",
+   "ageDays": 3.9,
+   "seconds": 11,
+   "views": 733150,
+   "likes": 2832,
+   "thumb": "https://i.ytimg.com/vi/WTJxWLcQnwE/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 59627.5,
+   "n_shorts": 30,
+   "multiple": 12.3,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "kailash",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "kailash",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "V5gBio64w3w",
+   "url": "https://youtube.com/shorts/V5gBio64w3w",
+   "title": "\"माता जल्दी चलिए... महादेव को घेर लिया!\" 😱🔱 #shorts #mahadev",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-24T12:06:59Z",
+   "ageDays": 2.7,
+   "seconds": 11,
+   "views": 723794,
+   "likes": 3818,
+   "thumb": "https://i.ytimg.com/vi/V5gBio64w3w/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 59627.5,
+   "n_shorts": 30,
+   "multiple": 12.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "XnAfNz6XPj4",
+   "url": "https://youtube.com/shorts/XnAfNz6XPj4",
+   "title": "Har har mahadev🕉😱😱 #shorts #youtubeshorts #trending #bhakti #youtube #mahadev #viral #song",
+   "channel": "mr alone 900",
+   "channelId": "UCxi3I-s1hODevJfBR6VDeYw",
+   "published": "2026-11-21T06:30:08Z",
+   "ageDays": 5.9,
+   "seconds": 24,
+   "views": 685768,
+   "likes": 4625,
+   "thumb": "https://i.ytimg.com/vi/XnAfNz6XPj4/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 8530000,
+   "median": 57670,
+   "n_shorts": 30,
+   "multiple": 11.9,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "loop",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "loop",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "g_9u1WybqVA",
+   "url": "https://youtube.com/shorts/g_9u1WybqVA",
+   "title": "\"महादेव जल्दी आइए... इसका मुंह खोलो!\" 😱⚡ #shorts #mahadev",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-21T08:35:21Z",
+   "ageDays": 5.8,
+   "seconds": 11,
+   "views": 688517,
+   "likes": 3642,
+   "thumb": "https://i.ytimg.com/vi/g_9u1WybqVA/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 59627.5,
+   "n_shorts": 30,
+   "multiple": 11.5,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "HblDk4eOFIA",
+   "url": "https://youtube.com/shorts/HblDk4eOFIA",
+   "title": "\"पहले महादेव को देके आ, फिर पीने की सोचना? 😱⚡ #shorts #mahadev",
+   "channel": "Pinki8126-q9j",
+   "channelId": "UC2M9ok1_vsKDPwXHAD3QZ1w",
+   "published": "2026-11-23T07:31:35Z",
+   "ageDays": 3.8,
+   "seconds": 11,
+   "views": 583412,
+   "likes": 3238,
+   "thumb": "https://i.ytimg.com/vi/HblDk4eOFIA/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 92300,
+   "median": 59627.5,
+   "n_shorts": 30,
+   "multiple": 9.8,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "question"
+    ],
+    "hook": "question",
+    "format": "facts",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "question",
+    "hooks": [
+     "question"
+    ],
+    "format": "facts",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "yBnBo8MhxVs",
+   "url": "https://youtube.com/shorts/yBnBo8MhxVs",
+   "title": "Jai mahadev aur ma parvti devi @KartikBind88  #new #shorts #viral #trending #viralvideo #mahadev",
+   "channel": "Kartik Bind",
+   "channelId": "UC1d7OpFZWX2JYXh6cUuk1KQ",
+   "published": "2026-11-21T11:59:28Z",
+   "ageDays": 5.7,
+   "seconds": 21,
+   "views": 1116679,
+   "likes": 6383,
+   "thumb": "https://i.ytimg.com/vi/yBnBo8MhxVs/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 42400,
+   "median": 158978,
+   "n_shorts": 30,
+   "multiple": 7,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [
+    "spammy title"
+   ],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "veer",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "veer",
+    "deity": "shiv",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "zUeIBM-u2zI",
+   "url": "https://youtube.com/shorts/zUeIBM-u2zI",
+   "title": "Mere Pyare Baba Ka Jannam Din Aa Gaya l 🙏🚩 #shyam #birthday",
+   "channel": "khatu shyam manona dham",
+   "channelId": "UCnZnnyR5iennfeJZSt00JuA",
+   "published": "2026-11-22T11:33:12Z",
+   "ageDays": 4.7,
+   "seconds": 8,
+   "views": 9128246,
+   "likes": 63341,
+   "thumb": "https://i.ytimg.com/vi/zUeIBM-u2zI/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 235000,
+   "median": 1484409,
+   "n_shorts": 29,
+   "multiple": 6.1,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "vishnu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "vishnu",
+    "by": "rules"
+   }
+  },
+  {
+   "id": "3N09Hj_zdTE",
+   "url": "https://youtube.com/shorts/3N09Hj_zdTE",
+   "title": "Mere Pyare Baba Ka Jannam Din Aa Gaya l 🙏🚩 #shyam #birthday",
+   "channel": "khatu shyam manona dham",
+   "channelId": "UCnZnnyR5iennfeJZSt00JuA",
+   "published": "2026-11-21T04:49:13Z",
+   "ageDays": 6,
+   "seconds": 8,
+   "views": 7767439,
+   "likes": 50962,
+   "thumb": "https://i.ytimg.com/vi/3N09Hj_zdTE/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 235000,
+   "median": 1484409,
+   "n_shorts": 29,
+   "multiple": 5.2,
+   "viral": true,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "vishnu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "vishnu",
+    "by": "rules"
+   }
+  }
+ ],
+ "strong": [
+  {
+   "id": "NTEH2xT21fw",
+   "url": "https://youtube.com/shorts/NTEH2xT21fw",
+   "title": "Mere Pyare Baba Ka Jannam Din Aa Gaya l 🙏🚩 #shyam #birthday",
+   "channel": "khatu shyam manona dham",
+   "channelId": "UCnZnnyR5iennfeJZSt00JuA",
+   "published": "2026-11-21T11:31:46Z",
+   "ageDays": 5.7,
+   "seconds": 8,
+   "views": 5459206,
+   "likes": 33050,
+   "thumb": "https://i.ytimg.com/vi/NTEH2xT21fw/hqdefault.jpg",
+   "query": "खाटू श्याम",
+   "subs": 235000,
+   "median": 1484409,
+   "n_shorts": 29,
+   "multiple": 3.7,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "3.7x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "vishnu",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "khatu",
+    "topic": "Khatu Shyam janmdin aa gaya (countdown)",
+    "cover_style": "man in pink on a stage above a crowd, English text 'Coming soon happy birthday khatu shyam ji' with date",
+    "art_style": "real-photo",
+    "why": "Strong channel's birthday countdown with the date on the cover; this is a status pattern, not an outlier.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  },
+  {
+   "id": "Ktg8oO-vclA",
+   "url": "https://youtube.com/shorts/Ktg8oO-vclA",
+   "title": "🙏 तीनो नयन से सुतल महादेव, भोलेनाथ की महिमा अपरंपार बा।",
+   "channel": "Bhakti Zon ",
+   "channelId": "UCDZVCVmLW2zNnkFbexQvbAw",
+   "published": "2026-11-20T01:00:32Z",
+   "ageDays": 7.1,
+   "seconds": 21,
+   "views": 522770,
+   "likes": 3749,
+   "thumb": "https://i.ytimg.com/vi/Ktg8oO-vclA/hqdefault.jpg",
+   "query": "महादेव",
+   "subs": 3440,
+   "median": 127401.5,
+   "n_shorts": 12,
+   "multiple": 4.1,
+   "viral": false,
+   "off_topic": false,
+   "strong_channel": true,
+   "why_not": [
+    "4.1x the channel median (needs 5x)"
+   ],
+   "reupload": [],
+   "likely_reupload": false,
+   "heuristic": {
+    "hooks": [
+     "name"
+    ],
+    "hook": "name",
+    "format": "other",
+    "deity": "shiv",
+    "length": "<=30 s"
+   },
+   "analysis": {
+    "hook_type": "name",
+    "hooks": [
+     "name"
+    ],
+    "format": "other",
+    "deity": "shiv",
+    "topic": "Bhole Nath ki mahima (Bhojpuri title)",
+    "cover_style": "woman in red saree cooking over a fire in a village, no deity, no text",
+    "art_style": "cinematic",
+    "why": "Only 4.1x its strong channel's median, and the cover shows no deity; the title alone carries the hook.",
+    "reupload_suspect": false,
+    "by": "claude"
+   }
+  }
+ ],
+ "near": [
+  {
+   "id": "O7eYOzwpgsM",
+   "url": "https://youtube.com/shorts/O7eYOzwpgsM",
+   "title": "Mahadev & Sons NEW PROMO - 24th November 2026 - Episode 251",
+   "channel": "Bollywood pe Charcha",
+   "views": 497577,
+   "multiple": 58.1,
+   "why_not": []
+  },
+  {
+   "id": "LLAIIXii-zc",
+   "url": "https://youtube.com/shorts/LLAIIXii-zc",
+   "title": "विष्णु राज महादेव अमरनाथ पहुंच शांति के भाई निरहुआ की शादी में🥰 #vishnurajkavideo #viralshortsvideo",
+   "channel": "Shriti sanjay ",
+   "views": 436126,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "6qpWbSwnvaw",
+   "url": "https://youtube.com/shorts/6qpWbSwnvaw",
+   "title": "सेवक ने भगवान शिव से ऐसा सवाल पूछा कि महादेव ने दिया अद्भुत जवाब! 😱🔱 #shorts #story",
+   "channel": "story Indian 2X",
+   "views": 409710,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "CDVpDweV60U",
+   "url": "https://youtube.com/shorts/CDVpDweV60U",
+   "title": "जय श्रीश्याम 🙏 जय खाटू श्याम खाटू श्याम 🙏🙏🙏",
+   "channel": "jay mahakal g r k",
+   "views": 349705,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "9R1JbQWiRT0",
+   "url": "https://youtube.com/shorts/9R1JbQWiRT0",
+   "title": "सृष्टि से पहले क्या था? महादेव के प्रश्न पर विष्णु जी ने बताया परम सत्य का रहस्य! 🔱🙏 #Shorts",
+   "channel": "Dev Bhakti Katha",
+   "views": 339068,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "epOaM8TF3Tk",
+   "url": "https://youtube.com/shorts/epOaM8TF3Tk",
+   "title": "खाटू श्याम जी मंदिर मनौना धाम में पहुँचा  गंभीर मरीज।",
+   "channel": "suraj_youtuber_02",
+   "views": 295030,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "5_z2qithgy8",
+   "url": "https://youtube.com/shorts/5_z2qithgy8",
+   "title": "🙏 Jai Shree Shyam ❤️ | Khatu Shyam Baba Status | #shorts #khatushyam #jaishreeshyam #bhakti",
+   "channel": "💓HINDU DHARAM 75M💓",
+   "views": 292539,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  },
+  {
+   "id": "7WIVEBwNL78",
+   "url": "https://youtube.com/shorts/7WIVEBwNL78",
+   "title": "खाटू श्याम बाबा का जन्मदिन 🎂 !!khatushyam!! #shorts",
+   "channel": "Darshan with Advik",
+   "views": 280700,
+   "multiple": null,
+   "why_not": [
+    "only 0 other Shorts on the channel (needs 3 for a median)"
+   ]
+  }
+ ],
+ "reuploads": [
+  {
+   "id": "MPAg8cFV5g4",
+   "url": "https://youtube.com/shorts/MPAg8cFV5g4",
+   "title": "😱 महादेव ने इंसान को कुत्ते, गाय और बंदर की उम्र क्यों दी? जानिए  जिंदगी का सबसे अनोखा रहस्य! 🔱🙏",
+   "channel": "BhaktiAISansar ",
+   "views": 5532301,
+   "signals": [
+    "views far beyond subscribers",
+    "new channel"
+   ]
+  },
+  {
+   "id": "TBwpbmjajUM",
+   "url": "https://youtube.com/shorts/TBwpbmjajUM",
+   "title": "🔱 हर हर महादेव 🙏❤️ | महादेव की कृपा सब पर बनी रहे 🕉️ | Bholenath Status #shorts",
+   "channel": "Sonu Lofi Vibes 🌌\n",
+   "views": 1055298,
+   "signals": [
+    "views far beyond subscribers",
+    "random topics"
+   ]
+  },
+  {
+   "id": "yj6MeoHufbg",
+   "url": "https://youtube.com/shorts/yj6MeoHufbg",
+   "title": "Brother and sister-in-law came to visit Khatu Shyam Baba 🙏🙏#amarnathsdk #shortvideo shorts",
+   "channel": "Mr Mukesh Fun",
+   "views": 528118,
+   "signals": [
+    "random topics",
+    "non-devotional channel"
+   ]
+  },
+  {
+   "id": "Fz-mhfadxzQ",
+   "url": "https://youtube.com/shorts/Fz-mhfadxzQ",
+   "title": "🚗देखो मेरी नई कार जिसमें बैठकर जल्दी खाटू श्याम पहुंच जाएंगे🙏#khatushyam #newcar #trending #viral",
+   "channel": "शिव पार्वती",
+   "views": 113706,
+   "signals": [
+    "tiny channel",
+    "spammy title"
+   ]
+  },
+  {
+   "id": "sYiocn0o7Jc",
+   "url": "https://youtube.com/shorts/sYiocn0o7Jc",
+   "title": "भोलेनाथ के सच्चे भक्त ने जीत लिया महादेव का दिल! ❤️| #storytelling #montagem #mhacommunity #mahadev",
+   "channel": "Mani Edits ",
+   "views": 512409,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  },
+  {
+   "id": "RjfnQ-Z2GsU",
+   "url": "https://youtube.com/shorts/RjfnQ-Z2GsU",
+   "title": "🕉️ “द्रौपदी ने महादेव से माँगे थे पाँच श्रेष्ठ गुणों वाले पति!” 🔥🚩 | Mahabharat Edit #shorts",
+   "channel": "Khushi Sanatani ",
+   "views": 471626,
+   "signals": [
+    "TV / film still or watermark (thumbnail)"
+   ]
+  }
+ ],
+ "ideas_added": [
+  "facts:radar-gajasur-pet-mahadev",
+  "facts:radar-nandi-shilad-putra",
+  "kailash:radar-trishul-chhupa",
+  "pov:radar-mrityu-ka-dar"
+ ],
+ "analysis_problems": []
+}

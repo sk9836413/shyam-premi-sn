@@ -5473,6 +5473,64 @@
     "added": "2026-11-26"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-gajasur-pet-mahadev",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Gajasur aur Mahadev (Krittivas)",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Gajasur ke pet mein Mahadev kyun?",
+   "hook_hi": "गजासुर के पेट में महादेव क्यों?",
+   "angle": "Gajasur ne Shiv ko chunauti di; Shiv ne use haraya, uske pet mein nritya kiya, aur phir uski khaal se Krittivas bane. Shiva / Linga Purana ke Gajasur vadh prasang ko dhyan se check karna.",
+   "cite": {
+    "work": "TODO: verify (likely Shiva Purana / Linga Purana, Gajasur vadh and Krittivas katha)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "Mahadev Gajasur",
+    "Krittivas"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-27",
+    "refs": [
+     "https://youtube.com/shorts/h4iDagcX-7o"
+    ],
+    "added": "2026-11-27"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-nandi-shilad-putra",
+   "p": 2,
+   "deity": "shiv",
+   "name": "Nandi: Shilad muni ke putra",
+   "playlist": "Shiv ji ki Kathayein",
+   "label": "scripture",
+   "variant_only": "kyun",
+   "hook": "Nandi Shiv ke dwarpal kyun bane?",
+   "hook_hi": "नंदी शिव के द्वारपाल क्यों बने?",
+   "angle": "Shilad muni ki tapasya par Shiv ne unhe putra ka vardan diya, aur Nandi ko Shiv ke ganon aur dwar ki raksha ka adhikar mila. Shiva / Skanda Purana ke Nandi janm prasang ko dhyan se check karna.",
+   "cite": {
+    "work": "TODO: verify (likely Shiva Purana / Skanda Purana, Nandi janm katha)",
+    "ref": "TODO: verify"
+   },
+   "sources": [],
+   "keywords": [
+    "Nandi Shiv",
+    "Shilad muni"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-27",
+    "refs": [
+     "https://youtube.com/shorts/40k96k9vyXw"
+    ],
+    "added": "2026-11-27"
+   },
+   "status": "idea"
   }
  ]
 }
