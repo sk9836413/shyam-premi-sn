@@ -271,3 +271,6 @@
 - 2026-11-26-evening-ramdevra-baba-ramdev-darshan | instagram: https://www.instagram.com/reel/DgNN4TJTKrO/
 - 2026-11-27-facts-ramayan-02-hanuman-naam | skipped: pronunciation gate (names not heard right: scene 7 श्याम->शाम) 26 Nov 19:19 IST
 - 2026-11-27-status-sankashti-chaturthi | instagram: https://www.instagram.com/reel/DgOF678BYLP/
+- 2026-11-27-status-sankashti-chaturthi-trial | instagram: https://www.instagram.com/reel/DgOvgn6MPFj/ (trial reel, SS_PERFORMANCE)
+- 2026-11-27-pov-maa-ka-phone | instagram: https://www.instagram.com/reel/DgOvnAJOHD9/
+- 2026-11-27-owner-jyot-aur-darshan | instagram: https://www.instagram.com/reel/DgOvsM6hvip/
