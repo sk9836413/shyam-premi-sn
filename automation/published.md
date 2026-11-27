@@ -280,3 +280,4 @@
 - 2026-11-27-evening-mahakaleshwar-ujjain-emotional | youtube: https://youtube.com/shorts/oXXD3T_RyQc (public at 2026-11-27T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1720611139404270 (scheduled 2026-11-27T15:00:00.000Z) | ig: pending 2026-11-27T13:30:00.000Z | animated 3/3
 - 2026-11-28-morning-shanivar-shani-dev | claim: 2026-11-28 morning by run 45944477305.1 at 2026-11-27T07:08:30.571Z
 - 2026-11-28-morning-shanivar-shani-dev | youtube: https://youtube.com/shorts/vg5KPnJxx9A (public at 2026-11-28T00:30:00.000Z) | status variant, made 27 Nov 12:38 IST | social: fb: https://www.facebook.com/reel/1146191764462685 (scheduled 2026-11-28T00:30:00.000Z) | ig: pending 2026-11-28T00:30:00.000Z
+- 2026-11-28-kailash-parvati-tapasya | claim: 2026-11-28 kailash by run 45944477305.1 at 2026-11-27T07:43:50.664Z
