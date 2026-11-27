@@ -274,3 +274,4 @@
 - 2026-11-27-status-sankashti-chaturthi-trial | instagram: https://www.instagram.com/reel/DgOvgn6MPFj/ (trial reel, SS_PERFORMANCE)
 - 2026-11-27-pov-maa-ka-phone | instagram: https://www.instagram.com/reel/DgOvnAJOHD9/
 - 2026-11-27-owner-jyot-aur-darshan | instagram: https://www.instagram.com/reel/DgOvsM6hvip/
+- 2026-11-27-morning-trinetra-ganesh-ranthambore | claim: 2026-11-27 morning by run 45935827399.1 at 2026-11-27T04:21:53.427Z
