@@ -21,17 +21,18 @@
       "type": "video",
       "source": "2026-11-28-morning-shanivar-shani-dev",
       "fb": {
-        "claim": {
-          "run": "46108876060.1",
-          "at": "2026-11-28T04:44:31.103Z"
-        }
+        "id": "28799694103038660",
+        "at": "2026-11-28T04:44:47.670Z"
       },
       "ig": {
-        "claim": {
-          "run": "46108876060.1",
-          "at": "2026-11-28T04:44:31.103Z"
-        }
-      }
+        "id": "17899784040420744",
+        "at": "2026-11-28T04:45:27.564Z"
+      },
+      "seconds": {
+        "source": 17,
+        "story": 17.2
+      },
+      "media": "https://shyam-premi-media.sk9836413.workers.dev/m/story-2026-11-28-video.mp4"
     }
   ]
 }
