@@ -294,3 +294,4 @@
 - 2026-11-29-morning-ravivar-surya-dev | youtube: https://youtube.com/shorts/4ioVt3gKS20 (public at 2026-11-29T00:30:00.000Z) | status variant, made 28 Nov 12:09 IST | social: fb: https://www.facebook.com/reel/28949239514753178 (scheduled 2026-11-29T00:30:00.000Z) | ig: pending 2026-11-29T00:30:00.000Z
 - 2026-11-29-owner-pandal-se-darshan-tak | claim: 2026-11-29 owner by run 46148812601.1 at 2026-11-28T13:17:10.484Z
 - 2026-11-29-owner-pandal-se-darshan-tak | youtube: https://youtube.com/shorts/NyN2w4MOA0w (public at 2026-11-29T01:45:00.000Z) | owner-footage Short (clip 04, real footage), made 28 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/2416667845838299 (scheduled 2026-11-29T02:00:00.000Z) | ig: pending 2026-11-29T01:45:00.000Z
+- 2026-11-28-evening-ambaji-mata-banaskantha-darshan | instagram: https://www.instagram.com/reel/DgSXZkXBBAo/
