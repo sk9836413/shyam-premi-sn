@@ -290,3 +290,4 @@
 - 2026-11-28-owner-pandal-darshan | instagram: https://www.instagram.com/reel/DgRUmkQgZNz/
 - 2026-11-28-evening-ambaji-mata-banaskantha-darshan | claim: 2026-11-28 evening by run 46111090673.1 at 2026-11-28T05:36:10.342Z
 - 2026-11-28-evening-ambaji-mata-banaskantha-darshan | youtube: https://youtube.com/shorts/spx5VE3VbS4 (public at 2026-11-28T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1707983514091998 (scheduled 2026-11-28T15:00:00.000Z) | ig: pending 2026-11-28T13:30:00.000Z
+- 2026-11-29-morning-ravivar-surya-dev | claim: 2026-11-29 morning by run 46111090673.1 at 2026-11-28T06:39:38.101Z
