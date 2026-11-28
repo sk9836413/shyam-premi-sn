@@ -285,3 +285,6 @@
 - 2026-11-28-owner-pandal-darshan | claim: 2026-11-28 owner by run 46005728784.1 at 2026-11-27T13:17:19.748Z
 - 2026-11-28-owner-pandal-darshan | youtube: https://youtube.com/shorts/1GsOvKcZbjU (public at 2026-11-28T01:45:00.000Z) | owner-footage Short (clip 09, real footage), made 27 Nov 18:47 IST | social: fb: https://www.facebook.com/reel/2258972304650085 (scheduled 2026-11-28T04:00:00.000Z) | ig: pending 2026-11-28T01:45:00.000Z
 - 2026-11-27-evening-mahakaleshwar-ujjain-emotional | instagram: https://www.instagram.com/reel/DgPymfEuNHo/
+- 2026-11-28-morning-shanivar-shani-dev | instagram: https://www.instagram.com/reel/DgRUWybBx_e/
+- 2026-11-28-kailash-parvati-tapasya | instagram: https://www.instagram.com/reel/DgRUgmig9DA/
+- 2026-11-28-owner-pandal-darshan | instagram: https://www.instagram.com/reel/DgRUmkQgZNz/
