@@ -5531,6 +5531,94 @@
     "added": "2026-11-27"
    },
    "status": "idea"
+  },
+  {
+   "id": "radar-nagpash-ram-lakshman",
+   "p": 2,
+   "deity": "ram",
+   "name": "Ram-Lakshman (Nagpash)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "kind": "astra",
+   "hook": "Nagpash se Ram-Lakshman kaise chhute?",
+   "hook_hi": "नागपाश से राम-लक्ष्मण कैसे छूटे?",
+   "angle": "Yuddha Kanda: Indrajit binds Ram and Lakshman with the Nagpash; Garuda arrives and the serpents flee, and the brothers are freed. Tell the rescue in calm words with no violence on screen; Garuda is Vishnu's vahan, which links it to the playlist.",
+   "cite": {
+    "work": "TODO: verify (likely Valmiki Ramayana, Yuddha Kanda)",
+    "ref": "TODO: verify (sarga for the Nagpash rescue)"
+   },
+   "sources": [],
+   "keywords": [
+    "nagpash",
+    "garuda"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-28",
+    "refs": [
+     "https://youtube.com/shorts/lBeHhE5W_Jo"
+    ],
+    "added": "2026-11-28"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-gita-3-35-svadharma",
+   "p": 2,
+   "deity": "krishna",
+   "name": "Shri Krishna (Bhagavad Gita)",
+   "playlist": "Vishnu ji aur Krishna ki Kathayein",
+   "label": "scripture",
+   "hook": "Apna dharm kyun sabse bada?",
+   "hook_hi": "अपना धर्म क्यों सबसे बड़ा?",
+   "angle": "Gita 3.35: Krishna tells Arjun at Kurukshetra that one's own duty, even imperfectly done, is better than another's duty done well; one everyday lesson on doing your own work with honesty, no ritual rules.",
+   "cite": {
+    "work": "Shrimad Bhagavad Gita",
+    "ref": "TODO: verify Adhyay 3, shlok 35 in the Sanskrit and two translations"
+   },
+   "sources": [
+    "https://www.gitasupersite.iitk.ac.in/",
+    "https://www.holy-bhagavad-gita.org/"
+   ],
+   "keywords": [
+    "gita 3.35",
+    "svadharma"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-28",
+    "refs": [
+     "https://youtube.com/shorts/S8RpDuAlhDw"
+    ],
+    "added": "2026-11-28"
+   },
+   "status": "idea"
+  },
+  {
+   "id": "radar-leta-hanuman-prayagraj",
+   "p": 3,
+   "deity": "hanuman",
+   "name": "Leta Hanuman (Prayagraj)",
+   "playlist": "Hanuman ji ke Prasiddh Mandir",
+   "label": "tradition",
+   "hook": "Prayagraj ke Leta Hanuman: rahasya?",
+   "hook_hi": "प्रयागराज के लेटे बजरंगी का रहस्य",
+   "angle": "Prayagraj's lying-down Hanuman idol and the local belief about why he rests there; say 'मान्यता है' and tell the temple's own account, with no claims about strength, cures or any fort.",
+   "cite": {
+    "work": "TODO: verify (Prayagraj Leta Hanuman mandir, local tradition)",
+    "ref": "TODO: verify the temple's own account"
+   },
+   "sources": [],
+   "keywords": [
+    "leta hanuman",
+    "prayagraj"
+   ],
+   "from": {
+    "source": "viral-radar 2026-11-28",
+    "refs": [
+     "https://youtube.com/shorts/tGSUjsx5rlM"
+    ],
+    "added": "2026-11-28"
+   },
+   "status": "idea"
   }
  ]
 }

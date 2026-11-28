@@ -10,6 +10,45 @@ Which devotional Shorts are TRULY viral in India each week, and why (scripts/vir
 - Ideas go into the banks as "status": "idea" with a citation to verify (`node scripts/topic-banks.mjs promote`).
   Our own words only: titles and scripts of other channels are never copied.
 
+## Week of 2026-11-28
+
+Runs: 2026-11-22 daily, 2026-11-23 sweep, 2026-11-24 daily, 2026-11-25 daily, 2026-11-26 daily, 2026-11-27 daily, 2026-11-28 daily; quota used 2363 units (cap 900/day).
+
+### Top 10 truly viral references
+
+| # | Title | Channel | Views | x median | Age | Length | Hook | Format | Deity | Art / cover |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | [जब वृद्ध के प्राण लेने पहुँचे यमराज, तो महादेव को झाड़ू लगाते देख रह ग](https://youtube.com/shorts/nLHh7tRWfLE) | दिव्य रहस्य | 8.2 L | 6011.8 | 3.8 d | 178 s | जब… | katha | shiv | illustrated: close-up Yamraj and Mahadev, old man on bed, 3  |
+| 2 | [#mahabharth के अनुसार पांडवों, कर्ण और द्रौपदी का जन्म इन देवताओं एवं ](https://youtube.com/shorts/lTgQXbz-ur8) | chetna parekar | 4.1 L | 1689.6 | 4.6 d | 16 s | other question | facts | mahabharat | infographic-2d: family-tree chart: 5 labelled portraits, arr |
+| 3 | [लक्ष्मण 14 साल तक क्यों नहीं सोए? 😱 उर्मिला ने किया था सबसे बड़ा त्या](https://youtube.com/shorts/RJLRkvY-AdM) | Ulta Gyann | 11.9 L | 1488.5 | 5.7 d | 122 s | 😱 क्यों? | facts | ram | illustrated: Lakshman asleep under a tree, Ram by the river  |
+| 4 | [विष्णु जी का सिर कैसे कटा? 😱 हयग्रीव अवतार का रहस्य / #shorts](https://youtube.com/shorts/uJqsVTdch7Y) | BHAKTI FACTS | 21.6 L | 1146.5 | 6.8 d | 169 s | strange visual ("X क्या कर रहे हैं? 😱") | facts | vishnu | cinematic: blue deity body on cracked ground, head lying apa |
+| 5 | [🥹समुद्र में खो गईं माता पार्वती 😢 महादेव जाल लेकर ढूंढने निकले 🙏🏻 ](https://youtube.com/shorts/FiMxEYyCEkM) | Mahadev Ki Deewani  | 14.3 L | 997.3 | 7.1 d | 61 s | emotional-motivational line | kailash | shiv | cinematic: one Shiv figure running with a spear in rain, no  |
+| 6 | [रामायण रहस्य #spiritualawarness #spirituality #shortsfeed](https://youtube.com/shorts/v6Ygkxtn_BI) | अरुण कुमार शर्मा काशी | 15.4 L | 957.3 | 6.1 d | 80 s | रहस्य / secret | facts | ram | cinematic: seated blue deity flanked by 3 figures, Shesh naa |
+| 7 | [कैलाश में छिपा था महादेव का सबसे बड़ा रहस्य! 😱 आखिर कौन था गद्दार?](https://youtube.com/shorts/7Ct4NJCXeAg) | दिव्य कथा स्टूडियो | 12.8 L | 760.9 | 6.9 d | 65 s | रहस्य / secret | kailash | shiv | cinematic: Shiv, Parvati and Ganesh around a glowing blue po |
+| 8 | [जब रावण और हनुमान जी के बीच हुआ एक मुक्के का युद्ध! जानिए किसमें था सब](https://youtube.com/shorts/kW97Vejt1Gk) | Mr India& Bharat  | 12.5 L | 626.2 | 6.7 d | 171 s | जब… | facts | hanuman | cinematic: seated Hanuman in meditation at a temple with a f |
+| 9 | [sheru bhai 🆚 Mahadev 🔱🦁महादेव के भक्त और शेरू भाई के फैन कमेंट जरूर](https://youtube.com/shorts/_Qo8Ot0yZSo) | Mayna Patra | 28.4 L | 613.6 | 4.7 d | 54 s | name / plain | other | shiv | illustrated: versus frame: Sheru on a throne vs Mahadev, 2 t |
+| 10 | [माता सीता का सिंदूर देखकर हनुमान जी ने किया ऐसा काम 😍🚩 / Jai Shree R](https://youtube.com/shorts/Vss7DIJ35QI) | kattarhindusanatandharm-ram | 11.7 L | 602.8 | 2.6 d | 25 s | फिर … ने जो किया… | katha | hanuman | cinematic: close-up Hanuman, sindoor pouring down his chest  |
+
+### What's working
+
+- 192 truly viral devotional Shorts in 7 days (>= 100k or 30k in 3 days, >= 5x their channel's median).
+- Hooks: name / plain 102, जब… 16, other question 12, 😱 क्यों? 12.
+- Formats: other 91, facts 35, kailash 15, darshan 14; deities: shiv 56, hanuman 37, krishna 25, devi 22.
+- Art: cinematic 34, real-photo 17, illustrated 10, cartoon-3d 6; length: <=30 s 94, 31-60 s 42, 121-180 s 37, 61-120 s 19.
+- Best: "जब वृद्ध के प्राण लेने पहुँचे यमराज, तो महादेव को झाड़ू लगात" 8.2 L (6011.8x, जब…); "#mahabharth के अनुसार पांडवों, कर्ण और द्रौपदी का जन्म इन दे" 4.1 L (1689.6x, other question); "लक्ष्मण 14 साल तक क्यों नहीं सोए? 😱 उर्मिला ने किया था सबसे" 11.9 L (1488.5x, 😱 क्यों?).
+- New ideas in the banks (status "idea", citation to verify): facts:radar-hanuman-musthi-ravan, facts:radar-krishna-makhan-chor, facts:radar-krishna-bansuri-bans, kailash:radar-mehndi-rang-halka, pov:radar-pehli-roti-gau, facts:radar-andhak-janm, facts:radar-kali-krodh-shiv, facts:radar-vidur-neeti, kailash:radar-der-se-ghar-aaye, pov:radar-jalan-shant, facts:radar-khatu-lakhdatar, facts:radar-shiv-sharabh-roop, facts:radar-hanuman-sanjeevani-pahad, kailash:radar-chudiyan-gayab, pov:radar-mandir-na-ja-paaye, facts:radar-trimbak-teen-mukh, facts:radar-angarmoti-naam, kailash:radar-chhata-kisne-liya, pov:radar-line-dhairya, facts:radar-pandav-devta-ansh, facts:radar-janki-kund-rahasya, facts:radar-jatasur-chhal, kailash:radar-mushak-ghamand, pov:radar-smaran-samay, facts:radar-gajasur-pet-mahadev, facts:radar-nandi-shilad-putra, kailash:radar-trishul-chhupa, pov:radar-mrityu-ka-dar, facts:radar-nagpash-ram-lakshman, facts:radar-gita-3-35-svadharma, facts:radar-leta-hanuman-prayagraj, kailash:radar-nandi-ghanti-kho-gayi, pov:radar-bachchon-ko-kahani.
+
+### Consistently strong channels (median >= 40k: style to learn from, not outliers)
+
+- Bengali Bhomra By Sanchita: "Clay Se Banaya Ram Bhakt Hanuman #hanuman #hanumanji #shorts" 13.3 L (channel median 7.3 L)
+- Priyansh Shukla: "जब गोवर्धन उठाते ही पत्थर बनने लगा हनुमान जी का शरीर! 😱  #f" 10.0 L (channel median 6.6 L)
+- khatu shyam manona dham: "Mere Pyare Baba Ka Jannam Din Aa Gaya l 🙏🚩 #shyam #birthda" 14.8 L (channel median 15.6 L)
+- Artist Shintu Mourya: "💧Water Tank Art Of Khatu shyam ji😱🙏🏻🙇🏻 #khatushyam #kh" 7.3 L (channel median 8.1 L)
+- Amit Sculpture Create: "unique mahadev murti making | mahadev idol making | shiv mur" 6.4 L (channel median 1.4 L)
+- Learn With Vishu: "महादेव और विष्णु का पुत्र? 😳 भगवान अयप्पा की अनसुनी कहानी" 6.1 L (channel median 3.3 L)
+- Bhakti Zon : "🙏 तीनो नयन से सुतल महादेव, भोलेनाथ की महिमा अपरंपार बा।" 5.1 L (channel median 1.3 L)
+- Ram editor 07: "क्यों युधिष्ठिर जी भोजन को लेकर चिंतित हुए 😱😱😱#mahabharat" 4.0 L (channel median 1.1 L)
+
 ## Week of 2026-11-27
 
 Runs: 2026-11-21 daily, 2026-11-22 daily, 2026-11-23 sweep, 2026-11-24 daily, 2026-11-25 daily, 2026-11-26 daily, 2026-11-27 daily; quota used 2363 units (cap 900/day).
