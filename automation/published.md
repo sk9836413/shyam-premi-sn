@@ -288,3 +288,4 @@
 - 2026-11-28-morning-shanivar-shani-dev | instagram: https://www.instagram.com/reel/DgRUWybBx_e/
 - 2026-11-28-kailash-parvati-tapasya | instagram: https://www.instagram.com/reel/DgRUgmig9DA/
 - 2026-11-28-owner-pandal-darshan | instagram: https://www.instagram.com/reel/DgRUmkQgZNz/
+- 2026-11-28-evening-ambaji-mata-banaskantha-darshan | claim: 2026-11-28 evening by run 46111090673.1 at 2026-11-28T05:36:10.342Z
