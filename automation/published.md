@@ -292,3 +292,4 @@
 - 2026-11-28-evening-ambaji-mata-banaskantha-darshan | youtube: https://youtube.com/shorts/spx5VE3VbS4 (public at 2026-11-28T13:30:00.000Z) | social: fb: https://www.facebook.com/reel/1707983514091998 (scheduled 2026-11-28T15:00:00.000Z) | ig: pending 2026-11-28T13:30:00.000Z
 - 2026-11-29-morning-ravivar-surya-dev | claim: 2026-11-29 morning by run 46111090673.1 at 2026-11-28T06:39:38.101Z
 - 2026-11-29-morning-ravivar-surya-dev | youtube: https://youtube.com/shorts/4ioVt3gKS20 (public at 2026-11-29T00:30:00.000Z) | status variant, made 28 Nov 12:09 IST | social: fb: https://www.facebook.com/reel/28949239514753178 (scheduled 2026-11-29T00:30:00.000Z) | ig: pending 2026-11-29T00:30:00.000Z
+- 2026-11-29-owner-pandal-se-darshan-tak | claim: 2026-11-29 owner by run 46148812601.1 at 2026-11-28T13:17:10.484Z
